@@ -1,6 +1,7 @@
 # NFV API Tests
 
 This is a development repository for ETSI STF 557.
+It includes the NFV API conformance test descriptions.
 
 ## License
 
