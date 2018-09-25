@@ -103,11 +103,11 @@ POST VNF Package Artifact - (Method not implemented)
     POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/{artifactPath}
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
 
 PUT VNF Package Artifact - (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
@@ -117,11 +117,11 @@ PUT VNF Package Artifact - (Method not implemented)
     PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/{artifactPath}
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
 
 PATCH VNF Package Artifact - (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
@@ -132,11 +132,11 @@ PATCH VNF Package Artifact - (Method not implemented)
     #PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/{artifactPath}
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
 
 DELETE VNF Package Artifact - (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
@@ -146,8 +146,8 @@ DELETE VNF Package Artifact - (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/{artifactPath}
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK

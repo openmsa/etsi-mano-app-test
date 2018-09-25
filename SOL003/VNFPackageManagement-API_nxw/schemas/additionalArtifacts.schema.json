@@ -1,0 +1,34 @@
+{
+	"description": "Information about VNF package artifacts contained in the VNF package that are not software images. This attribute shall not be present before the VNF package content is on-boarded. Otherwise, this attribute shall be present if the VNF package contains additional artifacts.\n",
+	"type": "array",
+	"items": {
+		"description": "This type represents an artifact other than a software image which is contained in a VNF package.\n",
+		"type": "object",
+		"required": ["artifactPath", "checksum"],
+		"properties": {
+			"artifactPath": {
+				"description": "Path in the VNF package, which identifies the artifact and also allows to access a copy of the artifact.\n",
+				"type": "string"
+			},
+			"checksum": {
+				"description": "This type represents the checksum of a VNF package or an artifact file.\n",
+				"type": "object",
+				"required": ["algorithm", "hash"],
+				"properties": {
+					"algorithm": {
+						"description": "Name of the algorithm used to generate the checksum, as defined in ETSI GS NFV-SOL 004. For example, SHA-256, SHA-512.\n",
+						"type": "string"
+					},
+					"hash": {
+						"description": "The hexadecimal value of the checksum.\n",
+						"type": "string"
+					}
+				}
+			},
+			"metadata": {
+				"description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159.\n",
+				"type": "object"
+			}
+		}
+	}
+}

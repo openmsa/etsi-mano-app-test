@@ -1,0 +1,43 @@
+{
+	"description": "Links to resources related to this resource.\n",
+	"type": "object",
+	"required": ["self", "packageContent"],
+	"properties": {
+		"self": {
+			"description": "This type represents a link to a resource.\n",
+			"type": "object",
+			"required": ["href"],
+			"properties": {
+				"href": {
+					"description": "URI of the referenced resource.\n",
+					"type": "string",
+					"format": "url"
+				}
+			}
+		},
+		"vnfd": {
+			"description": "This type represents a link to a resource.\n",
+			"type": "object",
+			"required": ["href"],
+			"properties": {
+				"href": {
+					"description": "URI of the referenced resource.\n",
+					"type": "string",
+					"format": "url"
+				}
+			}
+		},
+		"packageContent": {
+			"description": "This type represents a link to a resource.\n",
+			"type": "object",
+			"required": ["href"],
+			"properties": {
+				"href": {
+					"description": "URI of the referenced resource.\n",
+					"type": "string",
+					"format": "url"
+				}
+			}
+		}
+	}
+}

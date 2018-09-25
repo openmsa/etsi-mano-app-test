@@ -132,11 +132,11 @@ POST all PACKAGE (Method not implemented)
     POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/vnfd
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
 
 PUT all PACKAGE (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
@@ -146,11 +146,11 @@ PUT all PACKAGE (Method not implemented)
     PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/vnfd
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
 
 PATCH all PACKAGE (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
@@ -161,11 +161,11 @@ PATCH all PACKAGE (Method not implemented)
     #PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/vnfd
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
 
 DELETE all PACKAGE (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
@@ -175,8 +175,8 @@ DELETE all PACKAGE (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK

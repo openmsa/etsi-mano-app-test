@@ -136,11 +136,11 @@ PUT Subscription - (Method not implemented)
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
 
 PATCH Subscription - (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
@@ -151,11 +151,11 @@ PATCH Subscription - (Method not implemented)
     #PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
 
 DELETE Subscription - (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
@@ -165,8 +165,8 @@ DELETE Subscription - (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    ${problemDetails}=    Get Response Body
-    Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    #${problemDetails}=    Get Response Body
+    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
+    #Log    Trying to validate ProblemDetails
+    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    #Log    Validation OK
