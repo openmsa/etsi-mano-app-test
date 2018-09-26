@@ -16,7 +16,8 @@ GET Subscription
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Received a 200 OK as expected
     ${result}=    Get Response Body
-    Validate Json    PkgmSubscription.schema.json    ${result}
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    PkgmSubscription.schema.json    ${json}
     Log    Validated PkgmSubscription schema
 
 GET Subscription - Filter
@@ -29,7 +30,8 @@ GET Subscription - Filter
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Received a 200 OK as expected
     ${result}=    Get Response Body
-    Validate Json    PkgmSubscription.schema.json    ${result}
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    PkgmSubscription.schema.json    ${json}
     Log    Validated PkgmSubscription schema
 
 GET Subscription - Negative Filter
@@ -42,9 +44,10 @@ GET Subscription - Negative Filter
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Received a 400 Bad Request as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET Subscription - Negative (Not Found)
@@ -56,9 +59,10 @@ GET Subscription - Negative (Not Found)
     Response Status Code Should Equal    404
     Log    Received 404 Not Found as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET Subscription - Negative (Unauthorized: Wrong Token)
@@ -70,9 +74,10 @@ GET Subscription - Negative (Unauthorized: Wrong Token)
     Response Status Code Should Equal    401
     Log    Received 401 Unauthorized as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 POST Subscription
@@ -88,8 +93,9 @@ POST Subscription
     Log    Received 201 Created as expected
     Response Should Have Header    Location
     Log    Response has header Location
-    ${response}    Get Response Body
-    Validate Json    PkgmSubscription.schema.json    ${response}
+    ${result}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    PkgmSubscription.schema.json    ${json}
     Log    Validation of PkgmSubscription OK
 
 POST Subscription - DUPLICATION
@@ -106,8 +112,9 @@ POST Subscription - DUPLICATION
     Log    Received 201 Created as expected
     Response Should Have Header    Location
     Log    Response has header Location
-    ${response}    Get Response Body
-    Validate Json    PkgmSubscription.schema.json    ${response}
+    ${result}    Get Response Body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    PkgmSubscription.schema.json    ${json}
     Log    Validation of PkgmSubscription OK
 
 POST Subscription - NO DUPLICATION
@@ -124,9 +131,9 @@ POST Subscription - NO DUPLICATION
     Log    Received 303 See Other as expected
     Response Should Have Header    Location
     Log    Response header contains Location
-    ${result}=    Get Response Body
-    ${count}=    Get Length    ${result}
-    Run Keyword If    $count == 0    Response body is empty as expected
+    Comment    ${result}=    Get Response Body
+    Comment    ${count}=    Get Length    ${result}
+    Comment    Run Keyword If    $count == 0    Response body is empty as expected
 
 PUT Subscription - (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
@@ -136,26 +143,15 @@ PUT Subscription - (Method not implemented)
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 PATCH Subscription - (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
     Create HTTP Context    ${NFVO_HOST}:${NFVO_PORT}    ${NFVO_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Request Header    Authorization    ${AUTHORIZATION}
-    Http Request    "PATCH"    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    #PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
+    Http Request    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 DELETE Subscription - (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
@@ -165,8 +161,3 @@ DELETE Subscription - (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK

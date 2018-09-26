@@ -16,7 +16,8 @@ GET Individual Subscription
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Received a 200 OK as expected
     ${result}=    Get Response Body
-    Validate Json    PkgmSubscription.schema.json    ${result}
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    PkgmSubscription.schema.json    ${json}
     Log    Validated PkgmSubscription schema
 
 GET Subscription - Negative (Not Found)
@@ -28,9 +29,10 @@ GET Subscription - Negative (Not Found)
     Response Status Code Should Equal    404
     Log    Received 404 Not Found as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET Subscription - Negative (Unauthorized: Wrong Token)
@@ -42,9 +44,10 @@ GET Subscription - Negative (Unauthorized: Wrong Token)
     Response Status Code Should Equal    401
     Log    Received 401 Unauthorized as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 DELETE Subscription
@@ -72,9 +75,10 @@ DELETE Subscription - Negative (Not Found)
     Response Status Code Should Equal    404
     Log    The subscriptionId is not present in database
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 PUT Subscription - (Method not implemented)
@@ -85,23 +89,12 @@ PUT Subscription - (Method not implemented)
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 PATCH Subscription - (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
     Create HTTP Context    ${NFVO_HOST}:${NFVO_PORT}    ${NFVO_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Request Header    Authorization    ${AUTHORIZATION}
-    Http Request    "PATCH"    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    #PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    Http Request    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK

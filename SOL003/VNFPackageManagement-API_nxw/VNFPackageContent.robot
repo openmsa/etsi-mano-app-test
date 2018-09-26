@@ -53,9 +53,10 @@ GET VNF Package Content - Negative Range
     Response Status Code Should Equal    416
     Log    Received 416 Range not satisfiable as expected.
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET VNF Package Content - Negative (Not Found)
@@ -67,9 +68,10 @@ GET VNF Package Content - Negative (Not Found)
     Response Status Code Should Equal    404
     Log    Received 404 Not Found as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET VNF Package Content - Negative (Unauthorized: Wrong Token)
@@ -82,9 +84,10 @@ GET VNF Package Content - Negative (Unauthorized: Wrong Token)
     Response Status Code Should Equal    401
     Log    Received 401 Unauthorized as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET VNF Package Content - Negative (onboardingState issue)
@@ -96,9 +99,10 @@ GET VNF Package Content - Negative (onboardingState issue)
     Response Status Code Should Equal    409
     Log    Received 409 Conflict as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 POST VNF Package Content - (Method not implemented)
@@ -109,11 +113,6 @@ POST VNF Package Content - (Method not implemented)
     POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 PUT VNF Package Content - (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
@@ -123,26 +122,15 @@ PUT VNF Package Content - (Method not implemented)
     PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 PATCH VNF Package Content - (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
     Create HTTP Context    ${NFVO_HOST}:${NFVO_PORT}    ${NFVO_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Request Header    Authorization    ${AUTHORIZATION}
-    Http Request    "PATCH"    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
-    #PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
+    Http Request    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 DELETE VNF Package Content - (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
@@ -152,8 +140,3 @@ DELETE VNF Package Content - (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK

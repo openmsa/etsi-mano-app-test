@@ -13,10 +13,11 @@ GET all Packages
     Run Keyword If    ${AUTH_USAGE} == 1    Set Request Header    Authorization    ${AUTHORIZATION}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
     Response Status Code Should Equal    200
-    ${vnfPkgInfos}=    Get Response Body
+    ${result}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${result}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
-    Validate Json    vnfPkgInfo.schema.json    ${vnfPkgInfos}
+    Validate Json    vnfPkgInfo.schema.json    ${json}
     Log    Validation OK
 
 GET all Packages - Filter
@@ -26,10 +27,11 @@ GET all Packages - Filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Request Header    Authorization    ${AUTHORIZATION}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${POS_FIELDS}
     Response Status Code Should Equal    200
-    ${vnfPkgInfos}=    Get Response Body
+    ${result}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${result}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
-    Validate Json    vnfPkgInfo.schema.json    ${vnfPkgInfos}
+    Validate Json    vnfPkgInfo.schema.json    ${json}
     Log    Validation OK
 
 GET all Packages - Negative (wronge filter name)
@@ -41,9 +43,10 @@ GET all Packages - Negative (wronge filter name)
     Response Status Code Should Equal    400
     Log    Received 400 Bad Request as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET all Packages - Negative (Unauthorized: Wrong Token)
@@ -56,9 +59,10 @@ GET all Packages - Negative (Unauthorized: Wrong Token)
     Response Status Code Should Equal    401
     Log    Received 401 Unauthorized as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET all Packages - Negative (Unauthorized: No Token)
@@ -71,9 +75,10 @@ GET all Packages - Negative (Unauthorized: No Token)
     Response Status Code Should Equal    401
     Log    Received 401 Unauthorized as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 GET all Packages - all_fields
@@ -84,20 +89,21 @@ GET all Packages - all_fields
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?all_fields
     Response Status Code Should Equal    200
     ${vnfPkgInfos}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
-    Validate Json    vnfPkgInfo.schema.json    ${vnfPkgInfos}
+    Validate Json    vnfPkgInfo.schema.json    ${json}
     Log    Validation OK
     Log    Trying to validate softwareImages schema
-    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
-    Validate Json    softwareImage.schema.json    ${softwareImages}
+    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    Validate Json    softwareImage.schema.json    ${softwareImages[0]}
     Log    Validation for softwareImage schema OK
     Log    Trying to validate additionalArtifacts schema
-    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
-    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts}
+    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
     Log    Validation for additionalArtifacts schema OK
-    ${links}=    Get Value From Json    ${vnfPkgInfos}    $.._links
-    Validate Json    links.schema.json    ${links}
+    ${links}=    Get Value From Json    ${json}    $.._links
+    Validate Json    links.schema.json    ${links[0]}
     Log    Validation for _links schema OK
 
 GET all Packages - fields
@@ -109,17 +115,18 @@ GET all Packages - fields
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?fields=${fields}
     Response Status Code Should Equal    200
     ${vnfPkgInfos}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response, checking vnfPkgInfo and other complex attributes included in the vnfPkgInfo
-    Validate Json    vnfPkgInfo.schema.json    ${vnfPkgInfos}
+    Validate Json    vnfPkgInfo.schema.json    ${json}
     Log    Validation for vnfPkgInfo OK
     Log    Trying to validate softwareImages schema
-    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
-    Validate Json    softwareImage.schema.json    ${softwareImages}
+    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    Validate Json    softwareImage.schema.json    ${softwareImages[0]}
     Log    Validation for softwareImage schema OK
     Log    Trying to validate additionalArtifacts schema
-    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
-    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts}
+    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
     Log    Validation for additionalArtifacts schema OK
 
 GET all PACKAGE (Negative: Not found)
