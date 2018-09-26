@@ -138,9 +138,10 @@ GET all PACKAGE (Negative: Not found)
     Response Status Code Should Equal    404
     Log    Received 404 Not Found as expected
     ${problemDetails}=    Get Response Body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
 POST all PACKAGE (Method not implemented)
@@ -151,11 +152,6 @@ POST all PACKAGE (Method not implemented)
     POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 PUT all PACKAGE (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
@@ -165,26 +161,15 @@ PUT all PACKAGE (Method not implemented)
     PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 PATCH all PACKAGE (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
     Create HTTP Context    ${NFVO_HOST}:${NFVO_PORT}    ${NFVO_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Request Header    Authorization    ${AUTHORIZATION}
-    Http Request    "PATCH"    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
-    #PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
+    Http Request    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK
 
 DELETE all PACKAGE (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
@@ -194,8 +179,3 @@ DELETE all PACKAGE (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
     Response Status Code Should Equal    405
     Log    Received 405 Method not implemented as expected
-    #${problemDetails}=    Get Response Body
-    #Response Header Should Equal    Content-Type    ${CONTENT_TYPE_JSON}
-    #Log    Trying to validate ProblemDetails
-    #Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    #Log    Validation OK

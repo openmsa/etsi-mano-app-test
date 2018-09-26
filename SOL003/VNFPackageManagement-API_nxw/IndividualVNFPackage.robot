@@ -3,6 +3,7 @@ Library           HttpLibrary.HTTP
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/generic.txt    # Generic Parameters
 Resource          environment/individualVnfPackage.txt
+Library           JSONLibrary
 
 *** Test Cases ***
 GET Individual VNF Package

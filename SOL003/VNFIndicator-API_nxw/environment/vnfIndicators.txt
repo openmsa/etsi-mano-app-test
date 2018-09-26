@@ -1,0 +1,3 @@
+*** Variables ***
+${POS_FIELDS}     name=vnfIndicator&vnfInstanceId=80b0deba-c398-445b-bef0-ac0fe733e3d0
+${NEG_FIELDS}     wrongName=wrongValue
