@@ -1,0 +1,3 @@
+*** Variables ***
+${pmJobId}        29f4ff6a-be91-4ec8-856e-fcf1e2479e4e
+${erroneousPmJobId}    erroneousPmJobId

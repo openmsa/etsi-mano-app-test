@@ -1,0 +1,35 @@
+{
+	"description": "Links for this resource.\n",
+	"type": "object",
+	"required": ["self"],
+	"properties": {
+		"self": {
+			"description": "This type represents a link to a resource.\n",
+			"type": "object",
+			"required": ["href"],
+			"properties": {
+				"href": {
+					"description": "URI of the referenced resource.\n",
+					"type": "string",
+					"format": "url"
+				}
+			}
+		},
+		"objects": {
+			"description": "Links to resources representing the VNF instances for which performance information is collected. Shall be present if the VNF instance information is accessible as a resource.\n",
+			"type": "array",
+			"items": {
+				"description": "This type represents a link to a resource.\n",
+				"type": "object",
+				"required": ["href"],
+				"properties": {
+					"href": {
+						"description": "URI of the referenced resource.\n",
+						"type": "string",
+						"format": "url"
+					}
+				}
+			}
+		}
+	}
+}

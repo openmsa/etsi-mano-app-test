@@ -1,0 +1,34 @@
+{
+	"description": "Criteria of the collection of performance information.\n",
+	"type": "object",
+	"required": ["collectionPeriod", "reportingPeriod"],
+	"properties": {
+		"performanceMetric": {
+			"description": "This defines the types of performance metrics for the specified object instances, as specified in ETSI GS NFV-IFA 027). At least one of the two attributes (performance metric or group) shall be present.\n",
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"performanceMetricGroup": {
+			"description": "Group of performance metrics. A metric group is a pre-defined list of metrics, known to the producer that it can decompose to individual metrics. At least one of the two attributes (performance metric or group) shall be present.\n",
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"collectionPeriod": {
+			"description": "Specifies the periodicity at which the producer will collect performance information. The unit shall be seconds. At the end of each reportingPeriod, the producer will inform the consumer about availability of the performance data collected for each completed collection period during this reportingPeriod. The reportingPeriod should be equal to or a multiple of the collectionPeriod. In the latter case, the performance data for the collection periods within one reporting period are reported together.\n",
+			"type": "integer"
+		},
+		"reportingPeriod": {
+			"description": "Specifies the periodicity at which the producer will report to the consumer. about performance information. The unit shall be seconds. At the end of each reportingPeriod, the producer will inform the consumer about availability of the performance data collected for each completed collection period during this reportingPeriod. The reportingPeriod should be equal to or a multiple of the collectionPeriod. In the latter case, the performance data for the collection periods within one reporting period are reported together.\n",
+			"type": "integer"
+		},
+		"reportingBoundary": {
+			"description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
+			"type": "string",
+			"format": "date-time"
+		}
+	}
+}
