@@ -30,10 +30,20 @@ Create a new vnfInstance Unauthorized
     Log    Create VNF instance by POST to /vnflcm/v1/vnf_instances
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
+    #Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
     Post    /vnflcm/v1/vnf_instances    {"vnfdId": "12345","vnfInstanceName": "Test-VnfInstance", "vnfInstanceDescription": "bla"}
     Output    response
     Integer    response status    401
+    Log    Status code validated
+    
+Create a new vnfInstance Forbidden
+    Log    Create VNF instance by POST to /vnflcm/v1/vnf_instances
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
+    Post    /vnflcm/v1/vnf_instances    {"vnfdId": "12345","vnfInstanceName": "Test-VnfInstance", "vnfInstanceDescription": "bla"}
+    Output    response
+    Integer    response status    403
     Log    Status code validated
 
 Get information about multiple VNF instances  
@@ -46,11 +56,36 @@ Get information about multiple VNF instances
     Output    response
     Log    Validate Status code
     Integer    response status    200
-    
-    Log    Execute Query and validate against online spec
+
+Get information about multiple VNF instances Bad Request 
+    Log    Query VNF The GET method queries information about multiple VNF instances.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
     GET    /vnflcm/v1/vnf_instances?fields=wrong_field
     Log    Validate Status code
+    Output    response
     Integer    response status    400
+
+Get information about multiple VNF instances Unauthorized
+    Log    Query VNF The GET method queries information about multiple VNF instances.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    #Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
+    Get    /vnflcm/v1/vnf_instances
+    Output    response
+    Integer    response status    401
+    Log    Status code validated
+
+Get information about multiple VNF instances Forbidden
+    Log    Query VNF The GET method queries information about multiple VNF instances
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
+    Get    /vnflcm/v1/vnf_instances
+    Output    response
+    Integer    response status    403
+    Log    Status code validated
     
 *** Keywords ***
 
