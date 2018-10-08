@@ -8,7 +8,7 @@ Resource          environment/pmJobs.txt
 
 *** Test Cases ***
 GET all Pm Jobs
-    Log    Trying to get all PM Jobs present in the NFVO Catalogue
+    Log    Trying to get all PM Jobs present in the VNFM
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Request Header    Authorization    ${VNFM_AUTHENTICATION}
@@ -22,7 +22,7 @@ GET all Pm Jobs
     Log    Validation OK
 
 GET all Pm Jobs - Filter
-    Log    Trying to get all PM Jobs present in the NFVO Catalogue, using filter params
+    Log    Trying to get all PM Jobs present in the VNFM, using filter params
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Request Header    Authorization    ${VNFM_AUTHENTICATION}
@@ -36,7 +36,7 @@ GET all Pm Jobs - Filter
     Log    Validation OK
 
 GET all Pm Jobs - Negative (wronge filter name)
-    Log    Trying to get all PM Jobs present in the NFVO Catalogue, using an erroneous filter param
+    Log    Trying to get all PM Jobs present in the VNFM, using an erroneous filter param
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Request Header    Authorization    ${VNFM_AUTHENTICATION}
@@ -52,7 +52,7 @@ GET all Pm Jobs - Negative (wronge filter name)
 
 GET all Pm Jobs - Negative (Unauthorized: Wrong Token)
     Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as NFVO is not supporting authentication
+    Pass Execution If    ${VNFM_AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Set Request Header    Authorization    ${NEG_AUTHORIZATION}
@@ -68,7 +68,7 @@ GET all Pm Jobs - Negative (Unauthorized: Wrong Token)
 
 GET all Pm Jobs - Negative (Unauthorized: No Token)
     Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as NFVO is not supporting authentication
+    Pass Execution If    ${VNFM_AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
@@ -82,7 +82,7 @@ GET all Pm Jobs - Negative (Unauthorized: No Token)
     Log    Validation OK
 
 GET all Pm Jobs - all_fields
-    Log    Trying to get all PM Jobs present in the NFVO Catalogue, using 'all_fields' filter
+    Log    Trying to get all PM Jobs present in the VNFM, using 'all_fields' filter
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Request Header    Authorization    ${VNFM_AUTHENTICATION}
@@ -108,8 +108,8 @@ GET all Pm Jobs - all_fields
     Log    Validation for _links schema OK
 
 GET all Pm Jobs - fields
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as NFVO is not supporting 'fields'
+    Log    Trying to get all VNF Packages present in the VNFM, using filter params
+    Pass Execution If    ${VNFM_AUTH_USAGE} == 0    Skipping test as VNFM is not supporting 'fields'
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Request Header    Authorization    ${VNFM_AUTHENTICATION}

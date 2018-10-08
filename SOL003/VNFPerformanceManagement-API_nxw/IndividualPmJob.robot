@@ -37,7 +37,7 @@ GET Individual PM Job - Negative (Not Found)
 
 GET Individual PM Job - Negative (Unauthorized: Wrong Token)
     Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
+    Pass Execution If    ${VNFM_AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     Set Request Header    Authorization    ${NEG_AUTHORIZATION}
@@ -53,7 +53,7 @@ GET Individual PM Job - Negative (Unauthorized: Wrong Token)
 
 GET Individual PM Job - Negative (Unauthorized: No Token)
     Log    Trying to perform a negative get, without authentication token.
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as NFVO is not supporting authentication
+    Pass Execution If    ${VNFM_AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
     Create HTTP Context    ${VNFM_HOST}:${VNFM_PORT}    ${VNFM_SCHEMA}
     Set Request Header    Accept    ${ACCEPT_JSON}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}

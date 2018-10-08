@@ -16,3 +16,4 @@ ${apiName}        vnfpm
 ${FIELD_USAGE}    1
 ${VNFM_AUTHENTICATION}    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ${VNFM_AUTH_USAGE}    1
+${VNFM_DUPLICATION}    1
