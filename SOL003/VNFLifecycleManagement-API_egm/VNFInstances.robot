@@ -2,20 +2,19 @@
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
-#Library    RequestsLibrary
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 
 *** Test cases ***
 
 Create a new vnfInstance
-    Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}
+    Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    {"vnfdId": "${vnfId}","vnfInstanceName": "${vnfInstanceName}", "vnfInstanceDescription": "${vnfInstanceDescription}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    {"vnfdId": "${vnfInstanceId}","vnfInstanceName": "${vnfInstanceName}", "vnfInstanceDescription": "${vnfInstanceDescription}"}
     Output    response
     Integer    response status    201
-    Log    Status code validated
+    Log    Status code validated    
 
 # Create a new vnfInstance Bad Request
     # Log    Create VNF instance by POST to /vnflcm/v1/vnf_instances

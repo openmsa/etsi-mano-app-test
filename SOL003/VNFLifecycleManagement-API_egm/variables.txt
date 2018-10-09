@@ -7,13 +7,16 @@ ${VNFM_SCHEMA}    https
 ${NFVO_SCHEMA}    https
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ${CONTENT_TYPE}    application/json
+${CONTENT_TYPE_PATCH}    application/merge-patch+json 
+${PATCH_BODY_REQUEST}    {}
+${PATCH_BODY_REQUEST_CONFLICT}    {}   
 ${ACCEPT}         application/json
 ${apiRoot}        /
 ${apiName}        vnflcm
 ${apiVersion}     v1    
 ${AUTH_USAGE}     1
 ${WRONG_AUTHORIZATION}    Bearer    XXXXXWRONGXXXXX
-${vnfId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${vnfInstanceName}    Test-VnfInstance
 ${vnfInstanceDescription}    description vnf
 ${vnfInstanceDescription_Update}    Updated description vnf 
