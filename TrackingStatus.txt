@@ -1,0 +1,45 @@
+SOL003
+
+SOL003
+  - VirtualisedResourcesQuotaAvailableNotification-API_egm
+
+  - VNFFaultManagement-API_egm
+
+  - VNFFaultManagementNotification-API_egm
+
+  - VNFIndicator-API_nxw ------------------------------------> [DONE]
+    *  VNFIndicators --------------------------------------------> [DONE]
+    *  VnfIndicatorsInVnfInstance -------------------------------> [DONE]
+    *  IndividualVNFindicator -----------------------------------> [DONE]
+    *  Subscriptions --------------------------------------------> [DONE]
+    *  IndividualSubscription -----------------------------------> [DONE]
+
+  - VNFIndicatorNotification-API_nxw ------------------------> [NOT STARTED]
+
+  - VNFLifecycleManagement-API_egm
+
+  - VNFLifecycleOperationGranting-API_egm
+
+  - VNFPackageManagement-API_nxw ----------------------------> [ONGOING]
+    * VNFPackages -----------------------------------------------> [ONGOING] // Missing exclude fields
+    * IndividualVNFPackage --------------------------------------> [DONE]
+    * VNFDInIndividualVNFPackage --------------------------------> [DONE]
+    * VNFPackageContent -----------------------------------------> [DONE]
+    * VNFPackageArtifacts ---------------------------------------> [DONE]
+    * Subscriptions ---------------------------------------------> [DONE]
+    * IndividualSubscription ------------------------------------> [DONE]
+
+  - VNFPackageManagementNotification-API_nxw ----------------> [NOT STARTED]
+
+  - VNFPerformanceManagement-API_nxw ------------------------> [DONE]
+    * PMJobs ----------------------------------------------------> [DONE]
+    * IndividualPmJob -------------------------------------------> [DONE]
+    * Reports ---------------------------------------------------> [DONE]
+    * Thresholds ------------------------------------------------> [DONE]
+    * IndividualThreshold ---------------------------------------> [DONE]
+    * Subscriptions ---------------------------------------------> [DONE]
+    * IndividualSubscription ------------------------------------> [DONE]
+
+  - VNFPerformanceManagementNotification-API_nxw  -----------> [NOT STARTED]
+
+SOL005

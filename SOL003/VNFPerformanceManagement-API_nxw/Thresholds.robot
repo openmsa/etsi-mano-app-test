@@ -21,7 +21,7 @@ GET Thresholds
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with thresholds schema
-    Validate Json    Thresholds.schema.json    ${json}
+    Validate Json    Threshold.schema.json    ${json}
 
 GET Thresholds - Filter
     [Documentation]    The client can use this method to query information about thresholds.
@@ -34,9 +34,9 @@ GET Thresholds - Filter
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${performanceReport}''')    json
-    Log    Trying to validate result with PerformanceReport schema
-    Validate Json    PerformanceReport.schema.json    ${json}
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Log    Trying to validate result with Threshold schema
+    Validate Json    Threshold.schema.json    ${json}
 
 GET Thresholds - NEGATIVE Filter
     [Documentation]    The client can use this method to query information about thresholds.
@@ -80,7 +80,7 @@ POST Reports
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with thresholds schema
-    Validate Json    Thresholds.schema.json    ${json}
+    Validate Json    Threshold.schema.json    ${json}
     Log    Trying to validate the Location header
     ${headers}=    Output    response headers
     Should Contain    ${headers}    Location

@@ -21,10 +21,10 @@ GET Report on Single PM Job
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${performanceReport}''')    json
+    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate result with PerformanceReport schema
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
     Validate Json    PerformanceReport.schema.json    ${json}
 
 GET Report on Single PM Job - Negative (Not Found)
@@ -36,9 +36,9 @@ GET Report on Single PM Job - Negative (Not Found)
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${erroneousReportId}
     Integer    response status    404
     Log    Received 404 Not Found as expected
+    Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
     ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Log    Trying to validate ProblemDetails
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 

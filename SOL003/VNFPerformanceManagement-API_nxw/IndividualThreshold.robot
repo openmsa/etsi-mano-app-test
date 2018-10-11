@@ -21,7 +21,7 @@ GET Individual Threshold
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with thresholds schema
-    Validate Json    Thresholds.schema.json    ${json}
+    Validate Json    Threshold.schema.json    ${json}
 
 GET Individual Threshold - Negative (Not Found)
     [Documentation]    The client can use this method to query information about thresholds.
@@ -32,9 +32,9 @@ GET Individual Threshold - Negative (Not Found)
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     Integer    response status    404
     Log    Received 404 Not Found as expected
+    Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
     ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Log    Trying to validate ProblemDetails
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 

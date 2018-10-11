@@ -14,3 +14,4 @@ ${NEG_AUTHORIZATION}    Bearer negativetoken
 ${apiVersion}     v1
 ${apiName}        vnfpkgm
 ${FIELD_USAGE}    1
+${NFVO_PLAIN}     1
