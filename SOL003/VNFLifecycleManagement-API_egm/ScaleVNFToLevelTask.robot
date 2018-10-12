@@ -41,7 +41,7 @@ Scale a vnfInstance to level Conflict (parallel LCM operation)
     [Setup]    Launch another LCM operation
     log    Trying to Scale a vnf Instance
     Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${Scale_Vnf_REQUEST}
     Log    Validate Status code

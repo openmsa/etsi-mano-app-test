@@ -30,3 +30,7 @@ ${ARTIFACT_ID}    artifactId
 ${WRONG_ACCEPT}    application/json
 ${Scale_Vnf_REQUEST}    {}
 ${Scale_Vnf_to_Level_REQUEST}    {}
+${Change_Vnf_Flavour_REQUEST}    {}
+${Terminate_Vnf_REQUEST}    {}
+${Heal_Vnf_REQUEST}    {}
+${Operate_Vnf_REQUEST}    {}
