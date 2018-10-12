@@ -16,7 +16,27 @@ SOL003
 
   - VNFIndicatorNotification-API_nxw ------------------------> [NOT STARTED]
 
-  - VNFLifecycleManagement-API_egm
+  - VNFLifecycleManagement-API_egm  ----------------------------> [ONGOING]
+    * VNFInstances --------------------------------------> [DONE]
+    * IndividualVNFInstance --------------------------------------> [DONE]
+    * InstantiateVNFTask --------------------------------------> [DONE]
+    * ScaleVNFTask --------------------------------------> [DONE]
+    * ScaleVNFToLevelTask --------------------------------------> [DONE]
+    * ChangeExternalVNFConnectivityTask  ----------------------------> [ONGOING]
+    * TerminateVNFTask  ----------------------------> [ONGOING]
+    * HealVNFTask  ----------------------------> [ONGOING]
+    * OperateVNFTask  ----------------------------> [ONGOING]
+    * ChangeExternalVNFConnectivityTask  ----------------------------> [ONGOING]
+    * VnfLcmOperationOccurences  ----------------------------> [ONGOING]
+    * IndividualVnfLcmOperationOccurence  ----------------------------> [ONGOING]
+    * RetryOperationTask  ----------------------------> [ONGOING]
+    * RollbackOperationTask  ----------------------------> [ONGOING]
+    * FailOperationTask  ----------------------------> [ONGOING]
+    * CancelOperationTask  ----------------------------> [ONGOING]
+    * Subscriptions  ----------------------------> [ONGOING]
+    * IndividualSubscription  ----------------------------> [ONGOING]
+    * NotificationEndpoint  ----------------------------> [ONGOING]
+    
 
   - VNFLifecycleOperationGranting-API_egm
 

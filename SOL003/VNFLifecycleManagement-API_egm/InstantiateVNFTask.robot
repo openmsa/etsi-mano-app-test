@@ -2,6 +2,9 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
+Library     DependencyLibrary
+Suite setup    Check resource existance
+
 
 *** Test Cases ***
 Instantiate a vnfInstance
@@ -21,6 +24,7 @@ Instantiate a vnfInstance Conflict
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in INSTANTIATED state. 
     ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    [Setup]    Check resource instantiated
     Log    Trying to Instantiate a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -61,3 +65,18 @@ DELETE Instantiate VNFInstance - Method not implemented
     Log    Validate Status code
     Output    response
     Integer    response status    405
+
+*** Key words ***
+Check resource existance
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
+    Integer    response status    200
+
+Check resource instantiated
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
+    String    response body instantiationState    INSTANTIATED

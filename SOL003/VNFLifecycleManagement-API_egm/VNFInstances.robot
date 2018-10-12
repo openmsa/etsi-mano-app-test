@@ -7,6 +7,7 @@ Library    REST    http://${VNFM_HOST}:${VNFM_PORT}
 *** Test cases ***
 
 Create a new vnfInstance
+    [Setup]    #make sure the vnfInstand ${vnfInstanceId} doesn't exist
     Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -126,6 +127,4 @@ DELETE VNFInstances - Method not implemented
     Log    Validate Status code
     Output    response
     Integer    response status    405
-    
-*** Keywords ***
 

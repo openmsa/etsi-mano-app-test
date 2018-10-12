@@ -5,6 +5,8 @@ Library    REST    http://${VNFM_HOST}:${VNFM_PORT}
 ...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Documentation    This resource represents an individual VNF instance. The client can use this resource to modify and delete the 
 ...    underlying VNF instance, and to read information about the VNF instance.
+Suite setup    Check resource existance
+
 
 *** Test Cases ***
 Post Individual VNFInstance - Method not implemented
@@ -27,7 +29,7 @@ Get Information about an individual VNF Instance
     Output    response
     Integer    response status    200
     
-PUT Individual VNFInstance - Method not implemented
+PUT Individual VNFInstance - Method not implemented 
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -56,6 +58,7 @@ PATCH Individual VNFInstance Conflict
     [Documentation]    Conflict
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that another LCM operation is ongoing. The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    [Setup]    Launch another LCM operation
     log    Trying to modify an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
@@ -64,6 +67,7 @@ PATCH Individual VNFInstance Conflict
     Log    Validate Status code
     Output    response
     Integer    response status    409
+    [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
 PATCH Individual VNFInstance Precondition failed
     # TODO: Need to set the pre-condition of the test
@@ -97,6 +101,7 @@ DELETE Individual VNFInstance Conflict
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in INSTANTIATED state. 
     ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    [Setup]    Check resource instantiated
     log    Trying to delete an individual VNF instance Conflict
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}
@@ -104,4 +109,26 @@ DELETE Individual VNFInstance Conflict
     Output    response
     Integer    response status    409
     
-    
+*** Key words ***   
+
+Check resource existance
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
+    Integer    response status    200
+
+Check resource instantiated
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
+    String    response body instantiationState    INSTANTIATED
+
+Launch another LCM operation
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${Scale_Vnf_REQUEST}
+    Integer    response status    202
+
