@@ -20,6 +20,10 @@ GET all Pm Jobs
     ${json}=    evaluate    json.loads('''${result}''')    json
     Validate Json    PmJob.schema.json    ${json}
     Log    Validation OK
+    Log    Checking that reports element is missing
+    ${reports}=    Get Value From Json    ${json}    $..reports
+    Should Be Empty    ${reports}
+    Log    Reports element is empty as expected
 
 GET all Pm Jobs - Filter
     Log    Trying to get all PM Jobs present in the VNFM, using filter params
@@ -61,9 +65,27 @@ GET all Pm Jobs - all_fields
     Validate Json    links.schema.json    ${links[0]}
     Log    Validation for _links schema OK
 
+GET all Pm Jobs - exclude_default
+    Log    Trying to get all VNF Packages present in the VNFM, using filter params
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?exclude_default
+    Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
+    Log    Trying to validate response
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    PmJob.schema.json    ${json}
+    Log    Validation OK
+    Log    Checking that reports element is missing
+    ${reports}=    Get Value From Json    ${json}    $..reports
+    Should Be Empty    ${reports}
+    Log    Reports element is empty as expected
+
 GET all Pm Jobs - fields
     Log    Trying to get all VNF Packages present in the VNFM, using filter params
-    Pass Execution If    ${VNFM_AUTH_USAGE} == 0    Skipping test as VNFM is not supporting 'fields'
+    Pass Execution If    ${FIELDS_USAGE} == 0    Skipping test as VNFM is not supporting 'fields'
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?fields=${fields}
@@ -83,6 +105,29 @@ GET all Pm Jobs - fields
     ${reports}=    Get Value From Json    ${json}    $..reports
     Validate Json    reports.schema.json    ${reports[0]}
     Log    Validation for reports schema OK
+
+GET all Pm Jobs - exclude_fields
+    Log    Trying to get all VNF Packages present in the VNFM, using filter params
+    Pass Execution If    ${FIELDS_USAGE} == 0    Skipping test as VNFM is not supporting 'fields'
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?fields=${fields}
+    Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
+    Log    Trying to validate response
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    PmJob.schema.json    ${json}
+    Log    Validation OK
+    Log    Checking that reports element is missing
+    ${reports}=    Get Value From Json    ${json}    $..reports
+    Should Be Empty    ${reports}
+    Log    Reports element is empty as expected
+    Log    Checking that criteria element is missing
+    ${criteria}=    Get Value From Json    ${json}    $..criteria
+    Should Be Empty    ${criteria}
+    Log    Criteria element is empty as expected
 
 GET all Pm Jobs - Negative (wronge filter name)
     Log    Trying to get all PM Jobs present in the VNFM, using an erroneous filter param

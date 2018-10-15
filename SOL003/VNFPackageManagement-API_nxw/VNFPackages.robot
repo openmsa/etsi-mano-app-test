@@ -19,6 +19,18 @@ GET all Packages
     ${json}=    evaluate    json.loads('''${result}''')    json
     Validate Json    vnfPkgInfo.schema.json    ${json}
     Log    Validation OK
+    Log    Checking missing information for softwareImages element
+    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    Should Be Empty    ${softwareImages}
+    Log    softwareImages element is missing as excepted
+    Log    Checking missing information for additionalArtifact element
+    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    Should Be Empty    ${additional_artifacts}
+    Log    additionalArtifact element is missing as excepted
+    Log    Checking missing information for _links element
+    ${links}=    Get Value From Json    ${json}    $.._links
+    Should Be Empty    ${links}
+    Log    _links element is missing as excepted
 
 GET all Packages - Filter
     Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
@@ -105,8 +117,35 @@ GET all Packages - all_fields
     Validate Json    links.schema.json    ${links[0]}
     Log    Validation for _links schema OK
 
+GET all Packages - exclude_default
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using exclude_default filter.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exclude_default
+    Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
+    ${vnfPkgInfos}=    Output    response body
+    ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
+    Log    Trying to validate response
+    Validate Json    vnfPkgInfo.schema.json    ${json}
+    Log    Validation OK
+    Log    Checking missing information for softwareImages element
+    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    Should Be Empty    ${softwareImages}
+    Log    softwareImages element is missing as excepted
+    Log    Checking missing information for additionalArtifact element
+    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    Should Be Empty    ${additional_artifacts}
+    Log    additionalArtifact element is missing as excepted
+    Log    Checking missing information for _links element
+    ${links}=    Get Value From Json    ${json}    $.._links
+    Should Be Empty    ${links}
+    Log    _links element is missing as excepted
+
 GET all Packages - fields
     Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?fields=${fields}
@@ -126,6 +165,26 @@ GET all Packages - fields
     ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
     Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
     Log    Validation for additionalArtifacts schema OK
+
+GET all Packages - exclude_fields
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use exclude_fields option
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exlude_fields=${fields}
+    Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
+    ${vnfPkgInfos}=    Output    response body
+    ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
+    Log    Checking missing information for softwareImages element
+    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    Should Be Empty    ${softwareImages}
+    Log    softwareImages element is missing as excepted
+    Log    Checking missing information for additionalArtifact element
+    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    Should Be Empty    ${additional_artifacts}
+    Log    additionalArtifact element is missing as excepted
 
 GET all PACKAGE (Negative: Not found)
     Log    Trying to perform a GET on a erroneous URI
