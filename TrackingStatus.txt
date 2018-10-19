@@ -1,11 +1,24 @@
-SOL003
+SOL002
+
+  - VNFConfiguration-API_egm --------------------------------> [NOT STARTED]
+
+  - VNFFaultManagement-API_egm ------------------------------> [NOT STARTED]
+
+  - VNFIndicator-API_nxw ------------------------------------> [NOT STARTED]
+
+  - VNFIndicatorNotification-API_nxw ------------------------> [NOT STARTED]
+
+  - VNFLifecycleManagement-API_egm --------------------------> [NOT STARTED]
+
+  - VNFPerformanceManagement-API_nxw ------------------------> [NOT STARTED]
 
 SOL003
-  - VirtualisedResourcesQuotaAvailableNotification-API_egm
 
-  - VNFFaultManagement-API_egm
+  - VirtualisedResourcesQuotaAvailableNotification-API_egm --> [NOT STARTED]
 
-  - VNFFaultManagementNotification-API_egm
+  - VNFFaultManagement-API_egm ------------------------------> [NOT STARTED]
+
+  - VNFFaultManagementNotification-API_egm ------------------> [NOT STARTED]
 
   - VNFIndicator-API_nxw ------------------------------------> [DONE]
     *  VNFIndicators --------------------------------------------> [DONE]
@@ -16,29 +29,29 @@ SOL003
 
   - VNFIndicatorNotification-API_nxw ------------------------> [NOT STARTED]
 
-  - VNFLifecycleManagement-API_egm  ----------------------------> [ONGOING]
-    * VNFInstances --------------------------------------> [DONE]
-    * IndividualVNFInstance --------------------------------------> [DONE]
-    * InstantiateVNFTask --------------------------------------> [DONE]
-    * ScaleVNFTask --------------------------------------> [DONE]
-    * ScaleVNFToLevelTask --------------------------------------> [DONE]
-    * ChangeExternalVNFConnectivityTask  ----------------------------> [ONGOING]
-    * TerminateVNFTask  ----------------------------> [ONGOING]
-    * HealVNFTask  ----------------------------> [ONGOING]
-    * OperateVNFTask  ----------------------------> [ONGOING]
-    * ChangeExternalVNFConnectivityTask  ----------------------------> [ONGOING]
-    * VnfLcmOperationOccurences  ----------------------------> [ONGOING]
-    * IndividualVnfLcmOperationOccurence  ----------------------------> [ONGOING]
-    * RetryOperationTask  ----------------------------> [ONGOING]
-    * RollbackOperationTask  ----------------------------> [ONGOING]
-    * FailOperationTask  ----------------------------> [ONGOING]
-    * CancelOperationTask  ----------------------------> [ONGOING]
-    * Subscriptions  ----------------------------> [ONGOING]
-    * IndividualSubscription  ----------------------------> [ONGOING]
-    * NotificationEndpoint  ----------------------------> [ONGOING]
+  - VNFLifecycleManagement-API_egm  -------------------------> [ONGOING]
+    * VNFInstances ----------------------------------------------> [DONE]
+    * IndividualVNFInstance -------------------------------------> [DONE]
+    * InstantiateVNFTask ----------------------------------------> [DONE]
+    * ScaleVNFTask ----------------------------------------------> [DONE]
+    * ScaleVNFToLevelTask ---------------------------------------> [DONE]
+    * ChangeExternalVNFConnectivityTask  ------------------------> [ONGOING]
+    * TerminateVNFTask  -----------------------------------------> [ONGOING]
+    * HealVNFTask  ----------------------------------------------> [ONGOING]
+    * OperateVNFTask  -------------------------------------------> [ONGOING]
+    * ChangeExternalVNFConnectivityTask  ------------------------> [ONGOING]
+    * VnfLcmOperationOccurences  --------------------------------> [ONGOING]
+    * IndividualVnfLcmOperationOccurence  -----------------------> [ONGOING]
+    * RetryOperationTask  ---------------------------------------> [ONGOING]
+    * RollbackOperationTask  ------------------------------------> [ONGOING]
+    * FailOperationTask  ----------------------------------------> [ONGOING]
+    * CancelOperationTask  --------------------------------------> [ONGOING]
+    * Subscriptions  --------------------------------------------> [ONGOING]
+    * IndividualSubscription  -----------------------------------> [ONGOING]
+    * NotificationEndpoint  -------------------------------------> [ONGOING]
     
 
-  - VNFLifecycleOperationGranting-API_egm
+  - VNFLifecycleOperationGranting-API_egm -------------------> [NOT STARTED]
 
   - VNFPackageManagement-API_nxw ----------------------------> [ONGOING]
     * VNFPackages -----------------------------------------------> [ONGOING] // Missing exclude fields
@@ -63,3 +76,11 @@ SOL003
   - VNFPerformanceManagementNotification-API_nxw  -----------> [NOT STARTED]
 
 SOL005
+
+  - NSDManagement-API_nxw -----------------------------------> [NOT STARTED]
+
+  - NSFaultManagement-API_egm -------------------------------> [NOT STARTED]
+
+  - NSLifecycleManagement-API_egm ---------------------------> [NOT STARTED]
+
+  - VNFPackageManagement-API_nxw ----------------------------> [NOT STARTED]
