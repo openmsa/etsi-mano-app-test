@@ -53,8 +53,8 @@ SOL003
 
   - VNFLifecycleOperationGranting-API_egm -------------------> [NOT STARTED]
 
-  - VNFPackageManagement-API_nxw ----------------------------> [ONGOING]
-    * VNFPackages -----------------------------------------------> [ONGOING] // Missing exclude fields
+  - VNFPackageManagement-API_nxw ----------------------------> [DONE]
+    * VNFPackages -----------------------------------------------> [DONE]
     * IndividualVNFPackage --------------------------------------> [DONE]
     * VNFDInIndividualVNFPackage --------------------------------> [DONE]
     * VNFPackageContent -----------------------------------------> [DONE]
