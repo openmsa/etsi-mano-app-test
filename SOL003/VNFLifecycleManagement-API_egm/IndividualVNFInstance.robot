@@ -7,6 +7,9 @@ Documentation    This resource represents an individual VNF instance. The client
 ...    underlying VNF instance, and to read information about the VNF instance.
 Suite setup    Check resource existance
 
+*** Variables ***
+${Etag}=    an etag
+${Etag_modified}=    a modified etag
 
 *** Test Cases ***
 Post Individual VNFInstance - Method not implemented
@@ -27,6 +30,7 @@ Get Information about an individual VNF Instance
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
     Log    Validate Status code
     Output    response
+    ${Etag}=    Output    response headers Etag
     Integer    response status    200
     
 PUT Individual VNFInstance - Method not implemented 
@@ -37,6 +41,7 @@ PUT Individual VNFInstance - Method not implemented
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}
     Log    Validate Status code
     Output    response
+    ${Etag_modified}=    Output    response headers Etag
     Integer    response status    405
 
 PATCH Individual VNFInstance
@@ -52,6 +57,21 @@ PATCH Individual VNFInstance
     Log    Validate Status code
     Output    response
     Integer    response status    202
+
+PATCH Individual VNFInstance Precondition failed
+    [Documentation]    Precondition Failed
+    ...    A precondition given in an HTTP request header is not fulfilled. 
+    ...    Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity. 
+    ...    The response body should contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    log    Trying to modify an individual VNF instance Precondition failed
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
+    Set Headers    {"If-Match": "${Etag}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${PATCH_BODY_REQUEST}
+    Log    Validate Status code
+    Output    response
+    Integer    response status    412
 
 PATCH Individual VNFInstance Conflict
     # TODO: Need to set the pre-condition of the test
@@ -69,22 +89,6 @@ PATCH Individual VNFInstance Conflict
     Integer    response status    409
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
-PATCH Individual VNFInstance Precondition failed
-    # TODO: Need to set the pre-condition of the test
-    # TODO: According to the Etag mechanism principle (https://www.logicbig.com/quick-info/web/etag-header.html), a request header 'If-None-Match' is needed to trigger the Etag validation. 
-    # But this request header is not mentioned in the spec  
-    [Documentation]    Precondition Failed
-    ...    A precondition given in an HTTP request header is not fulfilled. 
-    ...    Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity. 
-    ...    The response body should contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
-    log    Trying to modify an individual VNF instance Precondition failed
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${PATCH_BODY_REQUEST}
-    Log    Validate Status code
-    Output    response
-    Integer    response status    412
 
 DELETE Individual VNFInstance
     [Documentation]    Delete VNF Identifier This method deletes an individual VNF instance resource.
