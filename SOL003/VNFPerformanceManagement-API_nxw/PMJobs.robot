@@ -5,6 +5,7 @@ Library           JSONLibrary
 Library           OperatingSystem
 Resource          environment/pmJobs.txt
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library           MockServerLibrary
 
 *** Test Cases ***
 GET all Pm Jobs

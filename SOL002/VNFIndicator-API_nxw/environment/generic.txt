@@ -1,0 +1,18 @@
+*** Variables ***
+${PRODUCER_HOST}    localhost    # Hostname of the NFVO
+${PRODUCER_PORT}    8081    # Listening port of the NFVO
+${PRODUCER_SCHEMA}    https
+${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
+${CONTENT_TYPE_JSON}    application/json
+${ACCEPT_JSON}    application/json
+${apiRoot}        /
+${AUTH_USAGE}     1
+${NEG_AUTHORIZATION}    Bearer negativetoken
+${apiVersion}     v1
+${apiName}        vnfind
+${FIELD_USAGE}    1
+${PRODUCER_AUTHENTICATION}    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+${PRODUCER_AUTH_USAGE}    1
+${EM-VNF_HOST}    localhost
+${EM-VNF_PORT}    8002
+${EM-VNF_SCHEMA}    https

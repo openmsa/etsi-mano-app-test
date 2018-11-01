@@ -1,15 +1,16 @@
 *** Settings ***
+Documentation     This resource represents VNF indicators related to a VNF instance. The client can use this resource to query multiple VNF indicators that are related to a particular VNF instance.
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/generic.txt    # Generic Parameters
 Resource          environment/vnfIndicatorinVnfInstance.txt
 Library           JSONLibrary
-Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
 
 *** Test Cases ***
 GET Indicators on VNF Instance
     Log    This resource represents VNF indicators related to a VNF instance.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
@@ -23,7 +24,7 @@ GET Indicators on VNF Instance
 GET Indicators on VNF Instance - Filter
     Log    This resource represents VNF indicators related to a VNF instance.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}?${POS_FIELDS}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
@@ -37,7 +38,7 @@ GET Indicators on VNF Instance - Filter
 GET Indicators on VNF Instance - Negative Filter
     Log    This resource represents VNF indicators related to a VNF instance.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}?${NEG_FIELDS}
     Integer    response status    400
     ${contentType}=    Output    response headers Content-Type
@@ -51,7 +52,7 @@ GET Indicators on VNF Instance - Negative Filter
 GET Indicators on VNF Instance - Negative (Not Found)
     Log    Trying to perform a negative get, using wrong authorization bearer
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${erroneousVnfInstanceId}
     Integer    response status    404
     Log    Received 404 Not Found as expected
@@ -66,7 +67,7 @@ GET Indicators on VNF Instance - Negative (Not Found)
 POST Indicators on VNF Instance - (Method not implemented)
     Log    Trying to perform a POST (method should not be implemented)
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -74,7 +75,7 @@ POST Indicators on VNF Instance - (Method not implemented)
 PUT Indicators on VNF Instance - (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -82,7 +83,7 @@ PUT Indicators on VNF Instance - (Method not implemented)
 PATCH Indicators on VNF Instance - (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -90,6 +91,6 @@ PATCH Indicators on VNF Instance - (Method not implemented)
 DELETE Indicators on VNF Instance - (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
     Log    Received 405 Method not implemented as expected
