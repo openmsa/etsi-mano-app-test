@@ -4,13 +4,25 @@ SOL002
 
   - VNFFaultManagement-API_egm ------------------------------> [NOT STARTED]
 
-  - VNFIndicator-API_nxw ------------------------------------> [NOT STARTED]
-
+  - VNFIndicator-API_nxw ------------------------------------> [DONE]
+    *  VNFIndicators --------------------------------------------> [DONE]
+    *  VnfIndicatorsInVnfInstance -------------------------------> [DONE]
+    *  IndividualVNFindicator -----------------------------------> [DONE]
+    *  Subscriptions --------------------------------------------> [DONE]
+    *  IndividualSubscription -----------------------------------> [DONE]
+    
   - VNFIndicatorNotification-API_nxw ------------------------> [NOT STARTED]
 
   - VNFLifecycleManagement-API_egm --------------------------> [NOT STARTED]
 
-  - VNFPerformanceManagement-API_nxw ------------------------> [NOT STARTED]
+  - VNFPerformanceManagement-API_nxw ------------------------> [IN PROGRESS]
+    * PMJobs ----------------------------------------------------> [IN PROGRESS]
+    * IndividualPmJob -------------------------------------------> [NOT STARTED]
+    * IndividualReport-------------------------------------------> [NOT STARTED]
+    * Thresholds ------------------------------------------------> [NOT STARTED]
+    * IndividualThreshold ---------------------------------------> [NOT STARTED]
+    * Subscriptions ---------------------------------------------> [NOT STARTED]
+    * IndividualSubscription ------------------------------------> [NOT STARTED]
 
 SOL003
 
@@ -66,7 +78,7 @@ SOL003
   - VNFPerformanceManagement-API_nxw ------------------------> [DONE]
     * PMJobs ----------------------------------------------------> [DONE]
     * IndividualPmJob -------------------------------------------> [DONE]
-    * Reports ---------------------------------------------------> [DONE]
+    * IndividualReport ------------------------------------------> [DONE]
     * Thresholds ------------------------------------------------> [DONE]
     * IndividualThreshold ---------------------------------------> [DONE]
     * Subscriptions ---------------------------------------------> [DONE]
