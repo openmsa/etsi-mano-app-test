@@ -28,7 +28,11 @@ SOL003
 
   - VirtualisedResourcesQuotaAvailableNotification-API_egm --> [NOT STARTED]
 
-  - VNFFaultManagement-API_egm ------------------------------> [NOT STARTED]
+  - VNFFaultManagement-API_egm ------------------------------> [IN PROGRESS]
+    * Alarms ----------------------------------------------> [DONE]
+    * IndividualAlarm ----------------------------------------------> [DONE]
+    * Subscriptions  --------------------------------------------> [IN PROGRESS] //to be reviewed with nxw on how notification server will be configured
+    * IndividualSubscription  -----------------------------------> [IN PROGRESS]
 
   - VNFFaultManagementNotification-API_egm ------------------> [NOT STARTED]
 
