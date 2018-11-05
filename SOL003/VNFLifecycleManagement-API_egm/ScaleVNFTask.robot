@@ -2,7 +2,8 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
-Library     DependencyLibrary
+Library    DependencyLibrary
+Library    OperatingSystem
 Suite setup    Check resource existance
 
 *** Test Cases ***
@@ -12,7 +13,8 @@ Scale a vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${Scale_Vnf_REQUEST}
+    ${body}=    Get File    json/scaleVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     Integer    response status    202
     Log    Status code validated
 
@@ -27,7 +29,8 @@ Scale a vnfInstance Conflict (Not-Instantiated)
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${Scale_Vnf_REQUEST}
+    ${body}=    Get File    json/scaleVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     Output    response
     Integer    response status    409
     Log    Status code validated
@@ -43,7 +46,8 @@ Scale a vnfInstance Conflict (parallel LCM operation)
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${Scale_Vnf_REQUEST}
+    ${body}=    Get File    json/scaleVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     Log    Validate Status code
     Output    response
     Integer    response status    409
@@ -60,7 +64,8 @@ Scale a vnfInstance Not Found
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${Scale_Vnf_REQUEST}
+    ${body}=    Get File    json/scaleVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     Integer    response status    404
     Log    Status code validated
    
@@ -123,5 +128,6 @@ Launch another LCM operation
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${Scale_Vnf_to_level_REQUEST}
+    ${body}=    Get File    json/scaleVnfToLevelRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     Integer    response status    202

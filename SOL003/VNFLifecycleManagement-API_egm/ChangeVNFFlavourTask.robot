@@ -2,7 +2,7 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
-Library     DependencyLibrary
+Library     OperatingSystem
 Suite setup    Check resource existance
 
 *** Test Cases ***
@@ -12,7 +12,8 @@ Change deployment flavour of a vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${Change_Vnf_Flavour_REQUEST}
+    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Integer    response status    202
     Log    Status code validated
 
@@ -28,7 +29,8 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${Change_Vnf_Flavour_REQUEST}
+    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Output    response
     Integer    response status    409
     Log    Status code validated
@@ -45,7 +47,8 @@ Change deployment flavour of a vnfInstance Conflict (parallel LCM operation)
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${Change_Vnf_Flavour_REQUEST}
+    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Log    Validate Status code
     Output    response
     Integer    response status    409
@@ -62,7 +65,8 @@ Change deployment flavour of a vnfInstance Not Found
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${Change_Vnf_Flavour_REQUEST}
+    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Integer    response status    404
     Log    Status code validated
    
@@ -125,5 +129,6 @@ Launch another LCM operation
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${Scale_Vnf_REQUEST}
+    ${body}=    Get File    json/scaleVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     Integer    response status    202

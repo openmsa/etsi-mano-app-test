@@ -8,9 +8,6 @@ ${NFVO_SCHEMA}    https
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ${CONTENT_TYPE}    application/json
 ${CONTENT_TYPE_PATCH}    application/merge-patch+json 
-${PATCH_BODY_REQUEST}    {}
-${PATCH_BODY_REQUEST_CONFLICT}    {} 
-${INSTANTIATE_VNF_REQUEST}    {}  
 ${ACCEPT}         application/json
 ${apiRoot}        /
 ${apiName}        vnflcm
@@ -28,13 +25,6 @@ ${vnfPkgId_processing}    007c111c-38a1-42c0-a666-7475ecb1567c
 ${ARTIFACT_TYPE}    application/octet-stream
 ${ARTIFACT_ID}    artifactId
 ${WRONG_ACCEPT}    application/json
-${Scale_Vnf_REQUEST}    {}
-${Scale_Vnf_to_Level_REQUEST}    {}
-${Change_Vnf_Flavour_REQUEST}    {}
-${Terminate_Vnf_REQUEST}    {}
-${Heal_Vnf_REQUEST}    {}
-${Operate_Vnf_REQUEST}    {}
-${Change_Ext_Vnf_Connectivity_REQUEST}    {}
 ${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
 ${CancelMode}    GRACEFUL
 ${LccnSubscriptionRequest}    {}

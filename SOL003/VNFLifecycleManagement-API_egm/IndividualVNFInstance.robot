@@ -3,6 +3,7 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT}    
 ...    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    OperatingSystem
 Documentation    This resource represents an individual VNF instance. The client can use this resource to modify and delete the 
 ...    underlying VNF instance, and to read information about the VNF instance.
 Suite setup    Check resource existance
@@ -53,7 +54,8 @@ PATCH Individual VNFInstance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${PATCH_BODY_REQUEST}
+    ${body}=    Get File    json/patchBodyRequest.json
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
     Log    Validate Status code
     Output    response
     Integer    response status    202
@@ -68,7 +70,8 @@ PATCH Individual VNFInstance Precondition failed
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
     Set Headers    {"If-Match": "${Etag}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${PATCH_BODY_REQUEST}
+    ${body}=    Get File    json/patchBodyRequest.json
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
     Log    Validate Status code
     Output    response
     Integer    response status    412
@@ -83,7 +86,8 @@ PATCH Individual VNFInstance Conflict
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${PATCH_BODY_REQUEST_CONFLICT}
+    ${body}=    Get File    json/patchBodyRequest.json
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
     Log    Validate Status code
     Output    response
     Integer    response status    409
@@ -133,6 +137,7 @@ Launch another LCM operation
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${Scale_Vnf_REQUEST}
+    ${body}=    Get File    json/scaleVnfToLevelRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     Integer    response status    202
 

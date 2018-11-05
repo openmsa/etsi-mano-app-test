@@ -41,7 +41,7 @@ SOL003
 
   - VNFIndicatorNotification-API_nxw ------------------------> [NOT STARTED]
 
-  - VNFLifecycleManagement-API_egm  -------------------------> [DONE] // with request content to be specified 
+  - VNFLifecycleManagement-API_egm  -------------------------> [DONE]  
     * VNFInstances ----------------------------------------------> [DONE]
     * IndividualVNFInstance -------------------------------------> [DONE]
     * InstantiateVNFTask ----------------------------------------> [DONE]
@@ -58,9 +58,9 @@ SOL003
     * RollbackOperationTask  ------------------------------------> [DONE]
     * FailOperationTask  ----------------------------------------> [DONE]
     * CancelOperationTask  --------------------------------------> [DONE]
-    * Subscriptions  --------------------------------------------> [DONE]
-    * IndividualSubscription  -----------------------------------> [DONE]
-    * NotificationEndpoint  -------------------------------------> [DONE]
+    * Subscriptions  --------------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
+    * IndividualSubscription  -----------------------------------> [DONE] //same as above
+    * NotificationEndpoint  -------------------------------------> [DONE] //same as above
 
   - VNFLifecycleOperationGranting-API_egm -------------------> [NOT STARTED]
 

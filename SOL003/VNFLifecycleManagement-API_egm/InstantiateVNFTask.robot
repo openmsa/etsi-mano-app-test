@@ -2,7 +2,8 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
-Library     DependencyLibrary
+Library    DependencyLibrary
+Library    OperatingSystem
 Suite setup    Check resource existance
 
 
@@ -13,7 +14,8 @@ Instantiate a vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${INSTANTIATE_VNF_REQUEST}
+    ${body}=    Get File    json/instantiateVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${body}
     Output    response
     Integer    response status    202
     Log    Status code validated
@@ -29,7 +31,8 @@ Instantiate a vnfInstance Conflict
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${INSTANTIATE_VNF_REQUEST}
+    ${body}=    Get File    json/instantiateVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${body}
     Output    response
     Integer    response status    409
     Log    Status code validated
