@@ -12,7 +12,7 @@ ${Etag_modified}=    a modified etag
 
 *** Test cases ***
 POST Alarm - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
+    log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}

@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
-...        spec=SOL003-VNFLifecycleManagement-API.yaml
+...        spec=SOL003-VNFFaultManagement-API.yaml
 Library     OperatingSystem
 
 *** Test Cases ***
@@ -10,7 +10,7 @@ Create a new subscription
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/lccbSubscriptionRequest.json
+    ${body}=    Get File    json/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Output    response
     Integer    response status    201
@@ -22,7 +22,7 @@ Create a new Subscription - DUPLICATION
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    json/lccbSubscriptionRequest.json
+    ${body}=    Get File    json/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Output    response
     Integer    response status    201
@@ -34,7 +34,7 @@ Create a new Subscription - NO-DUPLICATION
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    json/lccbSubscriptionRequest.json
+    ${body}=    Get File    json/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Output    response
     Integer    response status    303
@@ -70,7 +70,6 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
 PUT subscriptions - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
     Log    Validate Status code
@@ -80,7 +79,6 @@ PUT subscriptions - Method not implemented
 PATCH subscriptions - Method not implemented
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
     Log    Validate Status code
@@ -90,7 +88,6 @@ PATCH subscriptions - Method not implemented
 DELETE subscriptions - Method not implemented
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Log    Validate Status code

@@ -31,8 +31,9 @@ SOL003
   - VNFFaultManagement-API_egm ------------------------------> [IN PROGRESS]
     * Alarms ----------------------------------------------> [DONE]
     * IndividualAlarm ----------------------------------------------> [DONE]
-    * Subscriptions  --------------------------------------------> [IN PROGRESS] //to be reviewed with nxw on how notification server will be configured
-    * IndividualSubscription  -----------------------------------> [IN PROGRESS]
+    * Subscriptions  --------------------------------------------> [DONE] 
+    * IndividualSubscription  -----------------------------------> [DONE]
+    * NotificationEndpoint  -------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
 
   - VNFFaultManagementNotification-API_egm ------------------> [NOT STARTED]
 
@@ -62,9 +63,9 @@ SOL003
     * RollbackOperationTask  ------------------------------------> [DONE]
     * FailOperationTask  ----------------------------------------> [DONE]
     * CancelOperationTask  --------------------------------------> [DONE]
-    * Subscriptions  --------------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
-    * IndividualSubscription  -----------------------------------> [DONE] //same as above
-    * NotificationEndpoint  -------------------------------------> [DONE] //same as above
+    * Subscriptions  --------------------------------------------> [DONE] 
+    * IndividualSubscription  -----------------------------------> [DONE] 
+    * NotificationEndpoint  -------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
 
   - VNFLifecycleOperationGranting-API_egm -------------------> [NOT STARTED]
 
