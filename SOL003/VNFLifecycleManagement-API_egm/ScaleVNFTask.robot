@@ -8,8 +8,8 @@ Suite setup    Check resource existance
 
 *** Test Cases ***
 Scale a vnfInstance
-    [Documentation]    Instantiate VNF The POST method instantiates a VNF instance.
-    Log    Trying to Instantiate a vnf Instance
+    [Documentation]    Scale VNF The POST method scales a VNF instance.
+    Log    Trying to scale a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -19,7 +19,7 @@ Scale a vnfInstance
     Log    Status code validated
 
 Scale a vnfInstance Conflict (Not-Instantiated)
-    # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
+    # TODO: Need to set the pre-condition of the test. VNF instance shall be in NOT-INSTANTIATED state
     [Documentation]    Conflict. 
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, or that another lifecycle management operation is ongoing. 
