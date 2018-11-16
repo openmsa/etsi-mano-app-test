@@ -2,7 +2,9 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
-Library     OperatingSystem
+Library    OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Suite setup    Check resource existance
 
 *** Test Cases ***
@@ -16,6 +18,9 @@ Scale a vnfInstance to level
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     Integer    response status    202
     Log    Status code validated
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 Scale a vnfInstance to level Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
@@ -30,9 +35,12 @@ Scale a vnfInstance to level Conflict (Not-Instantiated)
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
-    Output    response
     Integer    response status    409
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 Scale a vnfInstance to level Conflict (parallel LCM operation)
     [Documentation]    Conflict
@@ -47,8 +55,11 @@ Scale a vnfInstance to level Conflict (parallel LCM operation)
     ${body}=    Get File    json/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
     
 Scale a vnfInstance Not Found
@@ -66,6 +77,10 @@ Scale a vnfInstance Not Found
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     Integer    response status    404
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
    
     
 GET Scale to level VNFInstance - Method not implemented

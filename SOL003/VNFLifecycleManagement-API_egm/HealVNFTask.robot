@@ -3,6 +3,8 @@ Resource    variables.txt
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 Library     OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Suite setup    Check resource existance
 
 *** Test Cases ***
@@ -16,6 +18,9 @@ Heal a vnfInstance
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Integer    response status    202
     Log    Status code validated
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 Heal a vnfInstance Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
@@ -31,9 +36,12 @@ Heal a vnfInstance Conflict (Not-Instantiated)
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/healVnFRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
-    Output    response
     Integer    response status    409
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 Heal a vnfInstance Conflict (parallel LCM operation)
     # TODO: Need to set the pre-condition of the test
@@ -50,8 +58,11 @@ Heal a vnfInstance Conflict (parallel LCM operation)
     ${body}=    Get File    json/healVnFRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
     
 Heal a vnfInstance Not Found
@@ -69,14 +80,16 @@ Heal a vnfInstance Not Found
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Integer    response status    404
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
    
-    
 GET Heal VNFInstance - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PUT Heal VNFInstance - Method not implemented
@@ -84,7 +97,6 @@ PUT Heal VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH Heal VNFInstance - Method not implemented
@@ -92,7 +104,6 @@ PATCH Heal VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE Heal VNFInstance - Method not implemented
@@ -100,7 +111,6 @@ DELETE Heal VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 *** Key words ***

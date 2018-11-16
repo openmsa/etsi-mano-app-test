@@ -3,6 +3,8 @@ Resource    variables.txt
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    DependencyLibrary
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Documentation    This task resource represents the "Retry operation" operation. The client can use this resource to initiate retrying a VNF lifecycle operation.
 Suite setup    Check resource existance
 
@@ -10,18 +12,16 @@ Suite setup    Check resource existance
 Post Retry operation task  
     [Documentation]    The POST method initiates retrying a VNF lifecycle operation if that operation has experienced a temporary failure,
     ...     i.e. the related "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
+    Depends on test    Check resource FAILED_TEMP
     Log    Retry a VNF lifecycle operation if that operation has experienced a temporary failure
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry
-    Output    response
     Log    Validate Status code
     Integer    response status    202
-
-Check resource FAILED_TEMP
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId} 
-    String    response body operationState    FAILED_TEMP
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 Post Retry operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
@@ -37,9 +37,14 @@ Post Retry operation task Conflict (Not-FAILED_TEMP)
     Output    response
     Integer    response status    409
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 Post Retry operation task Conflict (parallel LCM operation)
     # TODO: Need to set the pre-condition of the test
+    Depends on test    Check resource FAILED_TEMP
     [Documentation]    Conflict
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is not in FAILED_TEMP state, 
@@ -50,8 +55,11 @@ Post Retry operation task Conflict (parallel LCM operation)
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
 Post Retry operation task Not Found
@@ -67,15 +75,17 @@ Post Retry operation task Not Found
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 GET Retry operation task - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/retry    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PUT Retry operation task - Method not implemented
@@ -83,7 +93,6 @@ PUT Retry operation task - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/retry    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH Retry operation task - Method not implemented
@@ -91,7 +100,6 @@ PATCH Retry operation task - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/retry    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE Retry operation task - Method not implemented
@@ -99,7 +107,6 @@ DELETE Retry operation task - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/retry    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 *** Key words ***
@@ -118,3 +125,8 @@ Check retry not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     # how to check if retry is not supported?
+
+Check resource FAILED_TEMP
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId} 
+    String    response body operationState    FAILED_TEMP

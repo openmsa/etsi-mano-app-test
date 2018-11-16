@@ -2,14 +2,15 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
-Library    DependencyLibrary
 Library    OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Suite setup    Check resource existance
 
 *** Test Cases ***
 Scale a vnfInstance
-    [Documentation]    Scale VNF The POST method scales a VNF instance.
-    Log    Trying to scale a vnf Instance
+    [Documentation]    Instantiate VNF The POST method instantiates a VNF instance.
+    Log    Trying to Instantiate a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -17,9 +18,12 @@ Scale a vnfInstance
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     Integer    response status    202
     Log    Status code validated
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 Scale a vnfInstance Conflict (Not-Instantiated)
-    # TODO: Need to set the pre-condition of the test. VNF instance shall be in NOT-INSTANTIATED state
+    # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Conflict. 
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, or that another lifecycle management operation is ongoing. 
@@ -31,9 +35,12 @@ Scale a vnfInstance Conflict (Not-Instantiated)
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/scaleVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
-    Output    response
     Integer    response status    409
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 Scale a vnfInstance Conflict (parallel LCM operation)
     # TODO: Need to set the pre-condition of the test
@@ -48,9 +55,12 @@ Scale a vnfInstance Conflict (parallel LCM operation)
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/scaleVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
-    Log    Validate Status code
-    Output    response
     Integer    response status    409
+    Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
     
 Scale a vnfInstance Not Found
@@ -68,14 +78,16 @@ Scale a vnfInstance Not Found
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     Integer    response status    404
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
    
-    
 GET Scale VNFInstance - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PUT Scale VNFInstance - Method not implemented
@@ -83,7 +95,6 @@ PUT Scale VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH Scale VNFInstance - Method not implemented
@@ -91,7 +102,6 @@ PATCH Scale VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE Scale VNFInstance - Method not implemented
@@ -99,7 +109,6 @@ DELETE Scale VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 *** Key words ***
