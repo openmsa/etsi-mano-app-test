@@ -3,6 +3,8 @@ Resource    variables.txt
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 Library     OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Suite setup    Check resource existance
 
 *** Test Cases ***
@@ -16,6 +18,9 @@ Change deployment flavour of a vnfInstance
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Integer    response status    202
     Log    Status code validated
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
@@ -31,9 +36,12 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/changeVnfFlavourRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
-    Output    response
     Integer    response status    409
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 Change deployment flavour of a vnfInstance Conflict (parallel LCM operation)
     # TODO: Need to set the pre-condition of the test
@@ -50,8 +58,11 @@ Change deployment flavour of a vnfInstance Conflict (parallel LCM operation)
     ${body}=    Get File    json/changeVnfFlavourRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
     
 Change deployment flavour of a vnfInstance Not Found
@@ -69,6 +80,10 @@ Change deployment flavour of a vnfInstance Not Found
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Integer    response status    404
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
    
     
 GET Change deployment flavour VNFInstance - Method not implemented
@@ -76,7 +91,6 @@ GET Change deployment flavour VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PUT Change deployment flavour VNFInstance - Method not implemented
@@ -84,7 +98,6 @@ PUT Change deployment flavour VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH Change deployment flavour VNFInstance - Method not implemented
@@ -92,7 +105,6 @@ PATCH Change deployment flavour VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE Change deployment flavour VNFInstance - Method not implemented
@@ -100,7 +112,6 @@ DELETE Change deployment flavour VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 *** Key words ***

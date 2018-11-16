@@ -3,6 +3,9 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 
 *** Test cases ***
 
@@ -12,40 +15,18 @@ Create a new vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    {"vnfdId": "${vnfInstanceId}","vnfInstanceName": "${vnfInstanceName}", "vnfInstanceDescription": "${vnfInstanceDescription}"}
-    Output    response
+    ${body}=    Get File    json/createVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
     Integer    response status    201
-    Log    Status code validated    
-
-# Create a new vnfInstance Bad Request
-    # Log    Create VNF instance by POST to /vnflcm/v1/vnf_instances
-    # Set Headers  {"Accept":"${ACCEPT}"}  
-    # Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    # Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    # Post    /vnflcm/v1/vnf_instances    {"bad_request": "bad_example"}
-    # Output    response
-    # Integer    response status    400
-    # Log    Status code validated
-
-# Create a new vnfInstance Unauthorized
-    # Log    Create VNF instance by POST to /vnflcm/v1/vnf_instances
-    # Set Headers  {"Accept":"${ACCEPT}"}  
-    # Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    # #Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
-    # Post    /vnflcm/v1/vnf_instances    {"vnfdId": "12345","vnfInstanceName": "Test-VnfInstance", "vnfInstanceDescription": "bla"}
-    # Output    response
-    # Integer    response status    401
-    # Log    Status code validated
-    
-# Create a new vnfInstance Forbidden
-    # Log    Create VNF instance by POST to /vnflcm/v1/vnf_instances
-    # Set Headers  {"Accept":"${ACCEPT}"}  
-    # Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    # Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
-    # Post    /vnflcm/v1/vnf_instances    {"vnfdId": "12345","vnfInstanceName": "Test-VnfInstance", "vnfInstanceDescription": "bla"}
-    # Output    response
-    # Integer    response status    403
-    # Log    Status code validated
+    Log    Status code validated 
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE}
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    vnfInstance.schema.json    ${json}
+    Log    Validation OK
 
 Get information about multiple VNF instances  
     Log    Query VNF The GET method queries information about multiple VNF instances.
@@ -54,9 +35,14 @@ Get information about multiple VNF instances
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
-    Output    response
     Log    Validate Status code
     Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE}
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    vnfInstance.schema.json    ${json}
+    Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
     Log    Query VNF The GET method queries information about multiple VNF instances.
@@ -65,8 +51,11 @@ Get information about multiple VNF instances Bad Request Invalid attribute-based
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?attribute_not_exist=some_value
     Log    Validate Status code
-    Output    response
     Integer    response status    400
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute selector
     Log    Query VNF The GET method queries information about multiple VNF instances.
@@ -75,37 +64,19 @@ Get information about multiple VNF instances Bad Request Invalid attribute selec
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?fields=wrong_field
     Log    Validate Status code
-    Output    response
     Integer    response status    400
-
-# Get information about multiple VNF instances Unauthorized
-    # Log    Query VNF The GET method queries information about multiple VNF instances.
-    # Set Headers  {"Accept":"${ACCEPT}"}  
-    # Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    # Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
-    # Get    /vnflcm/v1/vnf_instances
-    # Output    response
-    # Integer    response status    401
-    # Log    Status code validated
-
-# Get information about multiple VNF instances Forbidden
-    # Log    Query VNF The GET method queries information about multiple VNF instances
-    # Set Headers  {"Accept":"${ACCEPT}"}  
-    # Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    # Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${WRONG_AUTHORIZATION}"}
-    # Get    /vnflcm/v1/vnf_instances
-    # Output    response
-    # Integer    response status    403
-    # Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     
 PUT VNFInstances - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    {"vnfInstanceDescription": "${vnfInstanceDescription_Update}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances   
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH VNFInstances - Method not implemented
@@ -113,9 +84,8 @@ PATCH VNFInstances - Method not implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    {"vnfInstanceDescription": "${vnfInstanceDescription_Update}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 DELETE VNFInstances - Method not implemented
@@ -125,6 +95,4 @@ DELETE VNFInstances - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
     Log    Validate Status code
-    Output    response
     Integer    response status    405
-

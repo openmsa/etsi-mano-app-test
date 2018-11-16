@@ -4,6 +4,8 @@ Library    REST    http://${VNFM_HOST}:${VNFM_PORT}
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    DependencyLibrary
 Library    OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Suite setup    Check resource existance
 
 
@@ -16,9 +18,11 @@ Instantiate a vnfInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/instantiateVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${body}
-    Output    response
     Integer    response status    202
     Log    Status code validated
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 Instantiate a vnfInstance Conflict
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
@@ -33,16 +37,18 @@ Instantiate a vnfInstance Conflict
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/instantiateVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${body}
-    Output    response
     Integer    response status    409
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     
 GET Instantiate VNFInstance - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PUT Instantiate VNFInstance - Method not implemented
@@ -50,7 +56,6 @@ PUT Instantiate VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH Instantiate VNFInstance - Method not implemented
@@ -58,7 +63,6 @@ PATCH Instantiate VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE Instantiate VNFInstance - Method not implemented
@@ -66,7 +70,6 @@ DELETE Instantiate VNFInstance - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 *** Key words ***

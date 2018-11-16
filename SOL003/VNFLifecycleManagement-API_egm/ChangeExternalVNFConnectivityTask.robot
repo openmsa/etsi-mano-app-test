@@ -2,7 +2,9 @@
 Resource    variables.txt 
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
-Library     OperatingSystem
+Library    OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Suite setup    Check resource existance
 
 *** Test Cases ***
@@ -16,6 +18,9 @@ Change external VNF connectivity
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    ${body}
     Integer    response status    202
     Log    Status code validated
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 Change external VNF connectivity Conflict (parallel LCM operation)
     # TODO: Need to set the pre-condition of the test
@@ -31,8 +36,11 @@ Change external VNF connectivity Conflict (parallel LCM operation)
     ${body}=    Get File    json/changeExtVnfConnectivityRequest .json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    ${body}
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
        
     
@@ -41,7 +49,6 @@ GET Change external VNF connectivity - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PUT Change external VNF connectivity - Method not implemented
@@ -49,7 +56,6 @@ PUT Change external VNF connectivity - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH Change external VNF connectivity - Method not implemented
@@ -57,7 +63,6 @@ PATCH Change external VNF connectivity - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE Change external VNF connectivity - Method not implemented
@@ -65,7 +70,6 @@ DELETE Change external VNF connectivity - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 *** Key words ***

@@ -3,6 +3,8 @@ Resource    variables.txt
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    DependencyLibrary
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Documentation    This task resource represents the "Fail operation" operation. 
 ...    The client can use this resource to mark a VNF lifecycle management operation occurrence as "finally failed", 
 ...    i.e. change the state of the related VNF LCM operation occurrence resource to "FAILED", if it is not assumed that a subsequent retry or rollback will succeed. 
@@ -19,11 +21,9 @@ Post Fail operation task
     Output    response
     Log    Validate Status code
     Integer    response status    202
-
-Check resource FAILED_TEMP
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId} 
-    String    response body operationState    FAILED_TEMP
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 Post Fail operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
@@ -36,9 +36,12 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
     Log    Final Fail an operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
-    Output    response
     Integer    response status    409
     Log    Status code validated
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 Post Fail operation task Conflict (parallel LCM operation)
     # TODO: Need to set the pre-condition of the test
@@ -52,8 +55,11 @@ Post Fail operation task Conflict (parallel LCM operation)
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
 Post Fail operation task Not Found
@@ -69,15 +75,17 @@ Post Fail operation task Not Found
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 GET Fail operation task - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PUT Fail operation task - Method not implemented
@@ -85,7 +93,6 @@ PUT Fail operation task - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH Fail operation task - Method not implemented
@@ -93,7 +100,6 @@ PATCH Fail operation task - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE Fail operation task - Method not implemented
@@ -101,7 +107,6 @@ DELETE Fail operation task - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 *** Key words ***
@@ -120,3 +125,8 @@ Check Fail not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     # how to check if Fail is not supported?
+
+Check resource FAILED_TEMP
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId} 
+    String    response body operationState    FAILED_TEMP
