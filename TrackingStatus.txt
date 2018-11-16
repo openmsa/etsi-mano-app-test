@@ -94,7 +94,7 @@ SOL003
     * Subscriptions ---------------------------------------------> [DONE]
     * IndividualSubscription ------------------------------------> [DONE]
 
-  - VNFPerformanceManagementNotification-API_nxw  -----------> [NOT STARTED]
+  - VNFPerformanceManagementNotification-API_nxw  -----------> [DONE]
 
 SOL005
 
