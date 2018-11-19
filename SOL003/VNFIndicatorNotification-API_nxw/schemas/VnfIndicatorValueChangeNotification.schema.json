@@ -1,0 +1,90 @@
+{
+    "description": "This type represents a VNF indicator value change notification. The notification shall be triggered by the VNFM when the value of an indicator has changed.\n",
+    "type": "object",
+    "required": [
+      "id",
+      "notificationType",
+      "subscriptionId",
+      "timeStamp",
+      "vnfIndicatorId",
+      "value",
+      "vnfInstanceId",
+      "_links"
+    ],
+    "properties": {
+      "id": {
+        "description": "An identifier with the intention of being globally unique.\n",
+        "type": "string"
+      },
+      "notificationType": {
+        "description": "Discriminator for the different notification types. Shall be set to \"VnfIndicatorValueChangeNotification\" for this notification type.\n",
+        "type": "string",
+        "enum": [
+          "VnfIndicatorValueChangeNotification"
+        ]
+      },
+      "subscriptionId": {
+        "description": "An identifier with the intention of being globally unique.\n",
+        "type": "string"
+      },
+      "timeStamp": {
+        "description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
+        "type": "string",
+        "format": "date-time"
+      },
+      "vnfIndicatorId": {
+        "description": "An identifier that is unique within a VNF descriptor.\n",
+        "type": "string"
+      },
+      "name": {
+        "description": "Human readable name of the VNF indicator. Shall be present if defined in the VNFD.\n",
+        "type": "string"
+      },
+      "value": {
+        "description": "Provides the value of the VNF indicator. The value format is defined in the VNFD. ETSI GS NFV-SOL 001 specifies the structure and format of the VNFD based on TOSCA specifications.\n",
+        "type": "object"
+      },
+      "vnfInstanceId": {
+        "description": "An identifier with the intention of being globally unique.\n",
+        "type": "string"
+      },
+      "_links": {
+        "description": "Links for this resource.\n",
+        "type": "object",
+        "required": [
+          "vnfInstance",
+          "subscription"
+        ],
+        "properties": {
+          "vnfInstance": {
+            "description": "This type represents a link to a resource.\n",
+            "type": "object",
+            "required": [
+              "href"
+            ],
+            "properties": {
+              "href": {
+                "description": "URI of the referenced resource.\n",
+                "type": "string",
+                "format": "url"
+              }
+            }
+          },
+          "subscription": {
+            "description": "This type represents a link to a resource.\n",
+            "type": "object",
+            "required": [
+              "href"
+            ],
+            "properties": {
+              "href": {
+                "description": "URI of the referenced resource.\n",
+                "type": "string",
+                "format": "url"
+              }
+            }
+          }
+        }
+      }
+    }
+  }

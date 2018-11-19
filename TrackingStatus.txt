@@ -11,18 +11,22 @@ SOL002
     *  Subscriptions --------------------------------------------> [DONE]
     *  IndividualSubscription -----------------------------------> [DONE]
     
-  - VNFIndicatorNotification-API_nxw ------------------------> [NOT STARTED]
+  - VNFIndicatorNotification-API_nxw ------------------------> [DONE]
+    *  VNFIndicatorNotification ---------------------------------> [DONE]
 
   - VNFLifecycleManagement-API_egm --------------------------> [NOT STARTED]
 
-  - VNFPerformanceManagement-API_nxw ------------------------> [IN PROGRESS]
+  - VNFPerformanceManagement-API_nxw ------------------------> [DONE]
     * PMJobs ----------------------------------------------------> [DONE]
     * IndividualPmJob -------------------------------------------> [DONE]
     * IndividualReport-------------------------------------------> [DONE]
-    * Thresholds ------------------------------------------------> [IN PROGRESS]
-    * IndividualThreshold ---------------------------------------> [NOT STARTED]
-    * Subscriptions ---------------------------------------------> [NOT STARTED]
-    * IndividualSubscription ------------------------------------> [NOT STARTED]
+    * Thresholds ------------------------------------------------> [DONE]
+    * IndividualThreshold ---------------------------------------> [DONE]
+    * Subscriptions ---------------------------------------------> [DONE]
+    * IndividualSubscription ------------------------------------> [DONE]
+
+  - VNFPerformanceManagementNotification-API_nxw ------------> [DONE]
+    * PerformanceManagementNotification -------------------------> [DONE] // to change the json schemas cause they're missing on the etsi api page and are different from the one on sol003
 
 SOL003
 
@@ -32,8 +36,8 @@ SOL003
     * NotificationEndpoint  -------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
 
   - VNFFaultManagement-API_egm ------------------------------> [DONE]
-    * Alarms ----------------------------------------------> [DONE]
-    * IndividualAlarm ----------------------------------------------> [DONE]
+    * Alarms ----------------------------------------------------> [DONE]
+    * IndividualAlarm -------------------------------------------> [DONE]
     * Subscriptions  --------------------------------------------> [DONE] 
     * IndividualSubscription  -----------------------------------> [DONE]
     * NotificationEndpoint  -------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
@@ -47,7 +51,9 @@ SOL003
     *  Subscriptions --------------------------------------------> [DONE]
     *  IndividualSubscription -----------------------------------> [DONE]
 
-  - VNFIndicatorNotification-API_nxw ------------------------> [NOT STARTED]
+  - VNFIndicatorNotification-API_nxw ------------------------> [DONE]
+    *  VNFIndicatorNotification ---------------------------------> [DONE]
+
 
   - VNFLifecycleManagement-API_egm  -------------------------> [DONE]  
     * VNFInstances ----------------------------------------------> [DONE]
@@ -71,8 +77,8 @@ SOL003
     * NotificationEndpoint  -------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
 
   - VNFLifecycleOperationGranting-API_egm -------------------> [IN PROGRESS]
-    * Grants----------------------------------------------> [DONE]
-    * IndividualGrant----------------------------------------------> [IN PROGRESS]
+    * Grants-----------------------------------------------------> [DONE]
+    * IndividualGrant--------------------------------------------> [IN PROGRESS]
 
   - VNFPackageManagement-API_nxw ----------------------------> [DONE]
     * VNFPackages -----------------------------------------------> [DONE]
@@ -83,7 +89,8 @@ SOL003
     * Subscriptions ---------------------------------------------> [DONE]
     * IndividualSubscription ------------------------------------> [DONE]
 
-  - VNFPackageManagementNotification-API_nxw ----------------> [NOT STARTED]
+  - VNFPackageManagementNotification-API_nxw ----------------> [DONE]
+    *  PackageManagementNotification ----------------------------> [DONE]
 
   - VNFPerformanceManagement-API_nxw ------------------------> [DONE]
     * PMJobs ----------------------------------------------------> [DONE]
@@ -95,6 +102,7 @@ SOL003
     * IndividualSubscription ------------------------------------> [DONE]
 
   - VNFPerformanceManagementNotification-API_nxw  -----------> [DONE]
+    *  VNFPerformanceManagementNotification ---------------------> [DONE]
 
 SOL005
 
