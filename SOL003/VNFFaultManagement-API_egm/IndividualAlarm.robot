@@ -1,9 +1,11 @@
 *** Settings ***
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    variables.txt 
-Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFFaultManagement-API.yaml
-Library     OperatingSystem
+Library    OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
 Library    DependencyLibrary
 
 *** Variables ***
@@ -27,10 +29,15 @@ Get information about an alarm
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
-    Output    response
     ${Etag}=    Output    response headers Etag
     Log    Validate Status code
     Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE}
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    alarm.schema.json    ${json}
+    Log    Validation OK
 
 PUT Alarm - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
@@ -50,9 +57,14 @@ PATCH Alarm
     ${body}=    Get File    json/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
-    Output    response
     ${Etag_modified}=    Output    response headers Etag
     Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE}
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    alarmModifications.schema.json    ${json}
+    Log    Validation OK
 
 PATCH Alarm - Conflict
     [Documentation]    Conflict
@@ -67,8 +79,11 @@ PATCH Alarm - Conflict
     ${body}=    Get File    json/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
-    Output    response
     Integer    response status    409
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 PATCH Alarm - Precondition failed
     [Documentation]    Precondition Failed
@@ -84,8 +99,11 @@ PATCH Alarm - Precondition failed
     ${body}=    Get File    json/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
-    Output    response
     Integer    response status    412
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
 
 DELETE Alarm - Method not implemented
     log    Trying to perform a DELETE. This method should not be implemented

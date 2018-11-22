@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    variables.txt 
-Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    JSONLibrary
@@ -88,9 +88,12 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
     Integer    response status    400
-    Log    Received a 400 Bad Request as expected
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     
 PUT subscriptions - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented

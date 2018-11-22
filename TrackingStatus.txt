@@ -33,14 +33,13 @@ SOL003
   - VirtualisedResourcesQuotaAvailableNotification-API_egm --> [DONE]
     * Subscriptions  --------------------------------------------> [DONE] 
     * IndividualSubscription  -----------------------------------> [DONE]
-    * NotificationEndpoint  -------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
+    * NotificationEndpoint  -------------------------------------> [DONE] //to change the json schemas cause they're missing on the etsi api page
 
   - VNFFaultManagement-API_egm ------------------------------> [DONE]
     * Alarms ----------------------------------------------------> [DONE]
     * IndividualAlarm -------------------------------------------> [DONE]
     * Subscriptions  --------------------------------------------> [DONE] 
     * IndividualSubscription  -----------------------------------> [DONE]
-    * NotificationEndpoint  -------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
 
   - VNFFaultManagementNotification-API_egm ------------------> [NOT STARTED]
 
@@ -74,7 +73,7 @@ SOL003
     * CancelOperationTask  --------------------------------------> [DONE]
     * Subscriptions  --------------------------------------------> [DONE] 
     * IndividualSubscription  -----------------------------------> [DONE] 
-    * NotificationEndpoint  -------------------------------------> [DONE] //to be reviewed with nxw on how notification server will be configured
+    * NotificationEndpoint  -------------------------------------> [DONE] //to change the json schemas cause they're missing on the etsi api page
 
   - VNFLifecycleOperationGranting-API_egm -------------------> [IN PROGRESS]
     * Grants-----------------------------------------------------> [DONE]

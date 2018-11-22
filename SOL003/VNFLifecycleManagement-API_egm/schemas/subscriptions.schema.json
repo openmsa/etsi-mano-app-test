@@ -1,6 +1,4 @@
 {
-  "definitions": {},
-  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "description": "This type represents a subscription related to notifications about VNF lifecycle changes.\n",
   "required": [

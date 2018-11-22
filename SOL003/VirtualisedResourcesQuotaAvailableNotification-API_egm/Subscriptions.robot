@@ -1,8 +1,11 @@
 *** Settings ***
 Resource    variables.txt 
-Library    REST    http://${NFVO_HOST}:${NFVO_PORT} 
+Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT} 
 ...        spec=SOL003-VirtualisedResourcesQuotaAvailableNotification-API.yaml
-Library     OperatingSystem
+Library    OperatingSystem
+Library    JSONLibrary
+Library    JSONSchemaLibrary    schemas/
+
 
 *** Test Cases ***
 Create a new subscription
@@ -12,9 +15,16 @@ Create a new subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/vrQuotaAvailSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Output    response
     Integer    response status    201
     Log    Status code validated
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE}
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    subscriptions.schema.json    ${json}
+    Log    Validation OK
 
 Create a new Subscription - DUPLICATION
     Log    Trying to create a subscription with an already created content
@@ -24,9 +34,14 @@ Create a new Subscription - DUPLICATION
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body}=    Get File    json/vrQuotaAvailSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Output    response
     Integer    response status    201
     Log    Status code validated
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE}
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    subscriptions.schema.json    ${json}
+    Log    Validation OK
 
 Create a new Subscription - NO-DUPLICATION
     Log    Trying to create a subscription with an already created content
@@ -36,9 +51,11 @@ Create a new Subscription - NO-DUPLICATION
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body}=    Get File    json/vrQuotaAvailSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Output    response
     Integer    response status    303
     Log    Status code validated
+    ${headers}=    Output    response headers
+    Should Contain    ${headers}    Location
+    Log    Validation OK
 
 GET Subscriptions
     Log    Get the list of active subscriptions
@@ -47,9 +64,12 @@ GET Subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Output    response
     Log    Validate Status code
     Integer    response status    200
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    subscriptions.schema.json    ${json}
+    Log    Validation OK
 
 GET Subscription - Filter
     Log    Get the list of active subscriptions using a filter
@@ -58,6 +78,10 @@ GET Subscription - Filter
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
     Integer    response status    200
     Log    Received a 200 OK as expected
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    subscriptions.schema.json    ${json}
+    Log    Validation OK
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Log    Get the list of active subscriptions using an invalid filter
@@ -66,14 +90,20 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
     Integer    response status    400
     Log    Received a 400 Bad Request as expected
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    ${CONTENT_TYPE}
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
     
 PUT subscriptions - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH subscriptions - Method not implemented
@@ -81,8 +111,6 @@ PATCH subscriptions - Method not implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
-    Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 DELETE subscriptions - Method not implemented
@@ -91,6 +119,5 @@ DELETE subscriptions - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     

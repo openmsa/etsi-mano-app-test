@@ -1,7 +1,7 @@
 *** Settings ***
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    variables.txt 
-Library    REST    http://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    JSONLibrary
