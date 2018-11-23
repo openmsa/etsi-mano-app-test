@@ -2,7 +2,13 @@ SOL002
 
   - VNFConfiguration-API_egm --------------------------------> [NOT STARTED]
 
-  - VNFFaultManagement-API_egm ------------------------------> [NOT STARTED]
+  - VNFFaultManagement-API_egm ------------------------------> [DONE]
+    * Alarms ----------------------------------------------------> [DONE]
+    * IndividualAlarm -------------------------------------------> [DONE]
+    * Subscriptions  --------------------------------------------> [DONE]
+    * EscalatePerceivedSeverityTask  ----------------------------> [DONE] 
+    * IndividualSubscription  -----------------------------------> [DONE]
+    * NotificationEndpoint  -------------------------------------> [DONE]
 
   - VNFIndicator-API_nxw ------------------------------------> [DONE]
     *  VNFIndicators --------------------------------------------> [DONE]
@@ -14,7 +20,26 @@ SOL002
   - VNFIndicatorNotification-API_nxw ------------------------> [DONE]
     *  VNFIndicatorNotification ---------------------------------> [DONE]
 
-  - VNFLifecycleManagement-API_egm --------------------------> [NOT STARTED]
+  - VNFLifecycleManagement-API_egm --------------------------> [DONE]
+    * VNFInstances ----------------------------------------------> [DONE]
+    * IndividualVNFInstance -------------------------------------> [DONE]
+    * InstantiateVNFTask ----------------------------------------> [DONE]
+    * ScaleVNFTask ----------------------------------------------> [DONE]
+    * ScaleVNFToLevelTask ---------------------------------------> [DONE]
+    * ChangeExternalVNFConnectivityTask  ------------------------> [DONE]
+    * TerminateVNFTask  -----------------------------------------> [DONE]
+    * HealVNFTask  ----------------------------------------------> [DONE]
+    * OperateVNFTask  -------------------------------------------> [DONE]
+    * ChangeExternalVNFConnectivityTask  ------------------------> [DONE]
+    * VnfLcmOperationOccurences  --------------------------------> [DONE]
+    * IndividualVnfLcmOperationOccurence  -----------------------> [DONE]
+    * RetryOperationTask  ---------------------------------------> [DONE]
+    * RollbackOperationTask  ------------------------------------> [DONE]
+    * FailOperationTask  ----------------------------------------> [DONE]
+    * CancelOperationTask  --------------------------------------> [DONE]
+    * Subscriptions  --------------------------------------------> [DONE] 
+    * IndividualSubscription  -----------------------------------> [DONE] 
+    * NotificationEndpoint  -------------------------------------> [DONE] //to change the json schemas cause they're missing on the etsi api page
 
   - VNFPerformanceManagement-API_nxw ------------------------> [DONE]
     * PMJobs ----------------------------------------------------> [DONE]

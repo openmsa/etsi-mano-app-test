@@ -1,0 +1,71 @@
+{
+  "description": "This type represents a notification that the alarm list has been rebuilt, e.g. if the VNFM detects its storage holding the alarm list is corrupted. The notification shall be triggered by the VNFM when the alarm list has been rebuilt.\n",
+  "type": "object",
+  "required": [
+    "id",
+    "notificationType",
+    "subscriptionId",
+    "timeStamp",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "notificationType": {
+      "description": "Discriminator for the different notification types. Shall be set to \"AlarmListRebuiltNotification\" for this notification type.\n",
+      "type": "string",
+      "enum": [
+        "AlarmListRebuiltNotification"
+      ]
+    },
+    "subscriptionId": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "timeStamp": {
+      "description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
+      "type": "string",
+      "format": "date-time"
+    },
+    "_links": {
+      "description": "Links to resources related to this notification.\n",
+      "type": "object",
+      "required": [
+        "subscription",
+        "alarms"
+      ],
+      "properties": {
+        "subscription": {
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of the referenced resource.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        },
+        "alarms": {
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of the referenced resource.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "description": "This type represents a subscription related to notifications related to the availability of the virtualised resources quotas.\n",
+  "type": "object",
+  "required": [
+    "id",
+    "callbackUri",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "filter": {
+      "description": "This type represents a subscription filter related to notifications about the availability of the virtualised resources quotas. At a particular nesting level in the filter structure, the following applies: All attributes shall match in order for the filter to match (logical \"and\" between different filter attributes). If an attribute is an array, the attribute shall match if at least one of the values in the array matches (logical \"or\" between the values of one filter attribute).\n",
+      "type": "object",
+      "properties": {
+        "vimIds": {
+          "description": "Match VIMs that were created the quota for a consumer of the virtualised resources. This attribute shall only be supported when VNF-related Resource Management in direct mode is applicable.\n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "resourceProviderIds": {
+          "description": "Match the entities responsible for the management of the virtualised resources that were allocated by the NFVO. This attribute shall only be supported when VNF-related Resource Management in indirect mode is applicable. The identification scheme is outside the scope of the present document.\n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "resourceTypes": {
+          "description": "Match particular resource types.\n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "COMPUTE",
+              "STORAGE",
+              "NETWORK"
+            ]
+          }
+        },
+        "resourceGroupIds": {
+          "description": "Match the \"infrastructure resource groups\" that are logical groupings of the virtualised resources assigned to a tenant within an infrastructure Domain.\n",
+          "type": "array",
+          "items": {
+            "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "callbackUri": {
+      "description": "String formatted according to IETF RFC 3986.\n",
+      "type": "string"
+    },
+    "_links": {
+      "description": "Links for this resource\n",
+      "type": "object",
+      "required": [
+        "self"
+      ],
+      "properties": {
+        "self": {
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of the referenced resource.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        }
+      }
+    }
+  }
+}
