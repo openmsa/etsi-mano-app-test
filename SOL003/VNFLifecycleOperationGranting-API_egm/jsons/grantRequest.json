@@ -1,7 +1,7 @@
 {
-  "vnfInstanceId": "string",
-  "vnfLcmOpOccId": "string",
-  "vnfdId": "string",
+  "vnfInstanceId": "myVnfInstanceId",
+  "vnfLcmOpOccId": "myLcmOccId",
+  "vnfdId": "myVnF",
   "flavourId": "string",
   "operation": "INSTANTIATE",
   "isAutomaticInvocation": true,

@@ -41,7 +41,8 @@ SOL003
     * Subscriptions  --------------------------------------------> [DONE] 
     * IndividualSubscription  -----------------------------------> [DONE]
 
-  - VNFFaultManagementNotification-API_egm ------------------> [NOT STARTED]
+  - VNFFaultManagementNotification-API_egm ------------------> [DONE]
+    * NotificationEndpoint  -------------------------------------> [DONE]
 
   - VNFIndicator-API_nxw ------------------------------------> [DONE]
     *  VNFIndicators --------------------------------------------> [DONE]
@@ -75,9 +76,9 @@ SOL003
     * IndividualSubscription  -----------------------------------> [DONE] 
     * NotificationEndpoint  -------------------------------------> [DONE] //to change the json schemas cause they're missing on the etsi api page
 
-  - VNFLifecycleOperationGranting-API_egm -------------------> [IN PROGRESS]
+  - VNFLifecycleOperationGranting-API_egm -------------------> [DONE]
     * Grants-----------------------------------------------------> [DONE]
-    * IndividualGrant--------------------------------------------> [IN PROGRESS]
+    * IndividualGrant--------------------------------------------> [DONE]
 
   - VNFPackageManagement-API_nxw ----------------------------> [DONE]
     * VNFPackages -----------------------------------------------> [DONE]
