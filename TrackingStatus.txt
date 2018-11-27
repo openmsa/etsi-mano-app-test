@@ -1,6 +1,7 @@
 SOL002
 
-  - VNFConfiguration-API_egm --------------------------------> [NOT STARTED]
+  - VNFConfiguration-API_egm --------------------------------> [DONE]
+    * Configuration -----------------------------------------> [DONE]
 
   - VNFFaultManagement-API_egm ------------------------------> [DONE]
     * Alarms ----------------------------------------------------> [DONE]

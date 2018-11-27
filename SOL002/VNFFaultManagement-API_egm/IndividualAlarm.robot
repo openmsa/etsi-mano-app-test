@@ -19,11 +19,10 @@ POST Alarm - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
-Get information about an alarm  
-    Log    Query VNF The GET method queries information about multiple alarms.
+Get information about a configuration  
+    Log    Query VNF The GET method queries information about an alarm.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -45,7 +44,6 @@ PUT Alarm - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH Alarm
@@ -111,5 +109,5 @@ DELETE Alarm - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     Log    Validate Status code
-    Output    response
+
     Integer    response status    405   
