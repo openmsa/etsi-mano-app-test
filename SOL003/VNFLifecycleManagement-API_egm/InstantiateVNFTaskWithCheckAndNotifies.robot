@@ -13,8 +13,9 @@ Library    JSONLibrary
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Documentation  
 ...    Preconditions:
-...    ...    Subscription to LCM operations.
-...    ...    The notification enpoint will be condifured on http://localhost:8888/subscribe
+...    ...    Mock server's jar should be locally present on the same directory when the test will run
+...    ...    The notification endpoint will be configured on http://localhost:8888/subscribe
+...    ...    Subscription to LCM operations previously performed using as callback_URI: http://localhost:8888/subscribe.
 
 
 *** Test Cases ***
