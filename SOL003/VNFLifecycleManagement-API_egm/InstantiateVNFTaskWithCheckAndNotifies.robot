@@ -34,8 +34,8 @@ Create VNFInstance
     ${instance_response}=    Instantiate VNF   ${resource_response.body.id}
     Validate Status Code    ${instance_response.status_code}    202
     Validate Header    ${instance_response.headers}    Location
-    Wait Until VNF Instantiated    ${instance_response.headers.Location}
     Verify Notification Handler     ${req}
+    Wait Until VNF Instantiated    ${instance_response.headers.Location}
     Log    Retrieve VNF Instance
     ${get_response}=    Retrieve VNFinstance    ${instance_response.body.id}
     Should Not Be Empty    ${get_response}
@@ -122,7 +122,12 @@ Verify Notification Handler
 Wait Until VNF Instantiated
     [Arguments]    ${vnfLcmOpOccId}
     :FOR    ${i}    IN RANGE    20
+    \    ${req}=    Start Notification Handler     VnfLcmOperationOccurrenceNotification    ${callback_endpoint}
+    \    Sleep    10s
+    \    Verify Notification Handler     ${req}
     \    Get  ${vnfLcmOpOccId}
     \    ${body}=    Output    response body
     \    Exit For Loop If    ${body.operationState} == COMPLETED
-    \    Sleep 5s
+
+    
+    
