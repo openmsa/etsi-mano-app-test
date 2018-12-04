@@ -121,13 +121,14 @@ Verify Notification Handler
     
 Wait Until VNF Instantiated
     [Arguments]    ${vnfLcmOpOccId}
+    ${req}=    Start Notification Handler     VnfLcmOperationOccurrenceNotification    ${callback_endpoint}
     :FOR    ${i}    IN RANGE    20
-    \    ${req}=    Start Notification Handler     VnfLcmOperationOccurrenceNotification    ${callback_endpoint}
     \    Sleep    10s
-    \    Verify Notification Handler     ${req}
+    \    Verify Mock Expectation     ${req}
     \    Get  ${vnfLcmOpOccId}
     \    ${body}=    Output    response body
     \    Exit For Loop If    ${body.operationState} == COMPLETED
+	Clear Requests  ${callback_endpoint}
 
     
     
