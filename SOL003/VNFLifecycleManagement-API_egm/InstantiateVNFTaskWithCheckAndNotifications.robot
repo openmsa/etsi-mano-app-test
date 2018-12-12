@@ -22,24 +22,24 @@ ${vnfInstanceId}
 
 *** Test Cases ***
 VNF Instantiation
+[Documentation]    Test ID: 5.x.y.x
+    ...    Test title: VNF Instantiation
+    ...    Test objective: The objective is to test the instantiation of a VNF instance
+    ...    Pre-conditions: VNF instance resources is created (Test ID: 5.a.b.c)
+    ...    Reference: section 5.x.y - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: VNFM is in direct mode
+    ...    Post-Conditions: VNF instance in INSTANTIATED state
     Send VNF Instantiation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
     Check Operation Occurrence Id
-    Check Operation Notification STARTING
-    Check Operation Notification PROCESSING
-    Check Operation Notification COMPLETED
+    Check Operation Notification    STARTING
+    Check Operation Notification    PROCESSING
+    Check Operation Notification    COMPLETED
     Check Postcondition  
     
 *** Keywords ***
-Create VNF Resource
-    Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/createVnfRequest.json
-    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
-
 Send VNF Instantiation Request
     Log    Instantiate a VNF Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -108,6 +108,14 @@ Verify Notification COMPLETED
     [Arguments]    ${status}
     Verify Mock Expectation     ${notification_request} 
 
+Create VNF Resource
+    Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/createVnfRequest.json
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
+
 Initialize System
     Create Sessions
     Configure Notification Handler     VnfIdentifierCreationNotification    ${callback_endpoint}
@@ -125,4 +133,4 @@ Check Postcondition
     Should Be Equal    ${response.body.id}    ${vnfInstanceId}    
     Check HTTP Response Header Contains    Content-Type
     Check HTTP Response Json Schema    ${response.body}    vnfInstance.schema.json
-    Check VNF Status    ${response.body.instantiationState}    INSTANTIATED 
+    Check VNF Status    ${response.body.instantiationState}    INSTANTIATED
