@@ -1,9 +1,9 @@
 SOL002
 
-  - VNFConfiguration-API_egm --------------------------------> [DONE]
+  - VNFConfiguration-API     --------------------------------> [DONE]
     * Configuration -----------------------------------------> [DONE]
 
-  - VNFFaultManagement-API_egm ------------------------------> [DONE]
+  - VNFFaultManagement-API     ------------------------------> [DONE]
     * Alarms ----------------------------------------------------> [DONE]
     * IndividualAlarm -------------------------------------------> [DONE]
     * Subscriptions  --------------------------------------------> [DONE]
@@ -11,17 +11,17 @@ SOL002
     * IndividualSubscription  -----------------------------------> [DONE]
     * NotificationEndpoint  -------------------------------------> [DONE]
 
-  - VNFIndicator-API_nxw ------------------------------------> [DONE]
+  - VNFIndicator-API     ------------------------------------> [DONE]
     *  VNFIndicators --------------------------------------------> [DONE]
     *  VnfIndicatorsInVnfInstance -------------------------------> [DONE]
     *  IndividualVNFindicator -----------------------------------> [DONE]
     *  Subscriptions --------------------------------------------> [DONE]
     *  IndividualSubscription -----------------------------------> [DONE]
     
-  - VNFIndicatorNotification-API_nxw ------------------------> [DONE]
+  - VNFIndicatorNotification-API     ------------------------> [DONE]
     *  VNFIndicatorNotification ---------------------------------> [DONE]
 
-  - VNFLifecycleManagement-API_egm --------------------------> [DONE]
+  - VNFLifecycleManagement-API     --------------------------> [DONE]
     * VNFInstances ----------------------------------------------> [DONE]
     * IndividualVNFInstance -------------------------------------> [DONE]
     * InstantiateVNFTask ----------------------------------------> [DONE]
@@ -42,7 +42,7 @@ SOL002
     * IndividualSubscription  -----------------------------------> [DONE] 
     * NotificationEndpoint  -------------------------------------> [DONE] //to change the json schemas cause they're missing on the etsi api page
 
-  - VNFPerformanceManagement-API_nxw ------------------------> [DONE]
+  - VNFPerformanceManagement-API     ------------------------> [DONE]
     * PMJobs ----------------------------------------------------> [DONE]
     * IndividualPmJob -------------------------------------------> [DONE]
     * IndividualReport-------------------------------------------> [DONE]
@@ -51,37 +51,37 @@ SOL002
     * Subscriptions ---------------------------------------------> [DONE]
     * IndividualSubscription ------------------------------------> [DONE]
 
-  - VNFPerformanceManagementNotification-API_nxw ------------> [DONE]
+  - VNFPerformanceManagementNotification-API     ------------> [DONE]
     * PerformanceManagementNotification -------------------------> [DONE] // to change the json schemas cause they're missing on the etsi api page and are different from the one on sol003
 
 SOL003
 
-  - VirtualisedResourcesQuotaAvailableNotification-API_egm --> [DONE]
+  - VirtualisedResourcesQuotaAvailableNotification-API     --> [DONE]
     * Subscriptions  --------------------------------------------> [DONE] 
     * IndividualSubscription  -----------------------------------> [DONE]
     * NotificationEndpoint  -------------------------------------> [DONE] //to change the json schemas cause they're missing on the etsi api page
 
-  - VNFFaultManagement-API_egm ------------------------------> [DONE]
+  - VNFFaultManagement-API     ------------------------------> [DONE]
     * Alarms ----------------------------------------------------> [DONE]
     * IndividualAlarm -------------------------------------------> [DONE]
     * Subscriptions  --------------------------------------------> [DONE] 
     * IndividualSubscription  -----------------------------------> [DONE]
 
-  - VNFFaultManagementNotification-API_egm ------------------> [DONE]
+  - VNFFaultManagementNotification-API     ------------------> [DONE]
     * NotificationEndpoint  -------------------------------------> [DONE]
 
-  - VNFIndicator-API_nxw ------------------------------------> [DONE]
+  - VNFIndicator-API     ------------------------------------> [DONE]
     *  VNFIndicators --------------------------------------------> [DONE]
     *  VnfIndicatorsInVnfInstance -------------------------------> [DONE]
     *  IndividualVNFindicator -----------------------------------> [DONE]
     *  Subscriptions --------------------------------------------> [DONE]
     *  IndividualSubscription -----------------------------------> [DONE]
 
-  - VNFIndicatorNotification-API_nxw ------------------------> [DONE]
+  - VNFIndicatorNotification-API     ------------------------> [DONE]
     *  VNFIndicatorNotification ---------------------------------> [DONE]
 
 
-  - VNFLifecycleManagement-API_egm  -------------------------> [DONE]  
+  - VNFLifecycleManagement-API      -------------------------> [DONE]  
     * VNFInstances ----------------------------------------------> [DONE]
     * IndividualVNFInstance -------------------------------------> [DONE]
     * InstantiateVNFTask ----------------------------------------> [DONE]
@@ -102,11 +102,11 @@ SOL003
     * IndividualSubscription  -----------------------------------> [DONE] 
     * NotificationEndpoint  -------------------------------------> [DONE] //to change the json schemas cause they're missing on the etsi api page
 
-  - VNFLifecycleOperationGranting-API_egm -------------------> [DONE]
+  - VNFLifecycleOperationGranting-API     -------------------> [DONE]
     * Grants-----------------------------------------------------> [DONE]
     * IndividualGrant--------------------------------------------> [DONE]
 
-  - VNFPackageManagement-API_nxw ----------------------------> [DONE]
+  - VNFPackageManagement-API     ----------------------------> [DONE]
     * VNFPackages -----------------------------------------------> [DONE]
     * IndividualVNFPackage --------------------------------------> [DONE]
     * VNFDInIndividualVNFPackage --------------------------------> [DONE]
@@ -115,10 +115,10 @@ SOL003
     * Subscriptions ---------------------------------------------> [DONE]
     * IndividualSubscription ------------------------------------> [DONE]
 
-  - VNFPackageManagementNotification-API_nxw ----------------> [DONE]
+  - VNFPackageManagementNotification-API     ----------------> [DONE]
     *  PackageManagementNotification ----------------------------> [DONE]
 
-  - VNFPerformanceManagement-API_nxw ------------------------> [DONE]
+  - VNFPerformanceManagement-API     ------------------------> [DONE]
     * PMJobs ----------------------------------------------------> [DONE]
     * IndividualPmJob -------------------------------------------> [DONE]
     * IndividualReport ------------------------------------------> [DONE]
@@ -127,15 +127,15 @@ SOL003
     * Subscriptions ---------------------------------------------> [DONE]
     * IndividualSubscription ------------------------------------> [DONE]
 
-  - VNFPerformanceManagementNotification-API_nxw  -----------> [DONE]
+  - VNFPerformanceManagementNotification-API      -----------> [DONE]
     *  VNFPerformanceManagementNotification ---------------------> [DONE]
 
 SOL005
 
-  - NSDManagement-API_nxw -----------------------------------> [NOT STARTED]
+  - NSDManagement-API     -----------------------------------> [NOT STARTED]
 
-  - NSFaultManagement-API_egm -------------------------------> [NOT STARTED]
+  - NSFaultManagement-API     -------------------------------> [NOT STARTED]
 
-  - NSLifecycleManagement-API_egm ---------------------------> [NOT STARTED]
+  - NSLifecycleManagement-API     ---------------------------> [NOT STARTED]
 
-  - VNFPackageManagement-API_nxw ----------------------------> [NOT STARTED]
+  - VNFPackageManagement-API     ----------------------------> [NOT STARTED]
