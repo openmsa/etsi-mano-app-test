@@ -4,7 +4,9 @@ This repository hosts the NFV API Conformance test specification for the APIs de
 
 The Test Specification is built as a collection of [Robot Framework](robotframework.org/) Test Description. [Robot Framework](robotframework.org/) is a generic test automation framework for acceptance testing and acceptance test-driven development.
 
-**IMPORTANT: This repository and the NFV API Conformance Test Specification is Work in Progress. The Robot Framework Test Descriptions are expected to be consolidated and reviewed in the short term, and possibly re-organized to ease automation of NFV workflows testing. SOL005 Test Descriptions are under development and will be contributed during Q1-2019**
+**IMPORTANT: This repository and the NFV API Conformance Test Specification is Work in Progress. The current version focuses on conformance tests of individual SOL002 and SOL003 resource endpoints. The Robot Framework Test Descriptions are expected to be consolidated and reviewed in the short term, and possibly re-organized to ease automation of NFV workflows testing.
+
+SOL005 Test Descriptions are under development and will be contributed during Q1-2019.**
 
 ## Content structure
 
@@ -23,7 +25,9 @@ For each of the interface sub-folders, a list of Robot Framework files is includ
     <spec_name>/<interface_name>/environment/
 ```
 The *jsons* folders include the templates for the JSON requests to be issued automatically issued by the Test System. The tester is expected to fill or complete the content of these JSON requests according to the tests to be executed.
+
 The *schemas* folders include the JSON schemas for requests and reponses over the . They are extracted from the [SOL002](https://forge.etsi.org/gitlab/nfv/SOL002-SOL003), [SOL003](https://forge.etsi.org/gitlab/nfv/SOL002-SOL003) and [SOL005](https://forge.etsi.org/gitlab/nfv/SOL005) OpenAPIs.
+
 The *environment* folders include the list of variables and parameters used in the Robot Framework Test Cases. The tester is expected to value these variables according to the tests to be executed.
 
 ## Dependencies and Preconditions
