@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    variables.txt 
+Resource    environment/variables.txt 
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
@@ -60,7 +60,7 @@ DELETE an individual subscription
     Output    response
     Integer    response status    204
 
-*** Key words ***   
+*** Keywords ***   
 
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}

@@ -1,16 +1,10 @@
 *** Settings ***
-Resource          variables.txt
+Resource          environment/variables.txt
 Library           REST    http://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library           OperatingSystem
 Library           BuiltIn
 Library           JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-
-*** Variables ***
-${GRANT_POLLING_TOT}    2
-${GRANT_POLLING_INTERVAL}    5s
-${SCALE_POLLING_TOT}    10
-${SCALE_POLLING_INTERVAL}    15s
   
 
 *** Keywords ***

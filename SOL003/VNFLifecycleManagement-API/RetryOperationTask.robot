@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    variables.txt 
+Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    DependencyLibrary
@@ -109,7 +109,7 @@ DELETE Retry operation task - Method not implemented
     Log    Validate Status code
     Integer    response status    405
 
-*** Key words ***
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

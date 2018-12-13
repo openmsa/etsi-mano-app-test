@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    variables.txt 
+Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL002-VNFLifecycleManagement-API.yaml
 Library    DependencyLibrary

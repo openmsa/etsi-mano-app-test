@@ -1,5 +1,5 @@
 *** Settings ***
-Resource   variables.txt 
+Resource   environment/variables.txt 
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -81,7 +81,7 @@ DELETE an individual grant - Method not implemented
     Log    Validate Status code
     Integer    response status    204
 
-*** Key words ***   
+*** Keywords ***   
 
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}

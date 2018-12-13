@@ -1,7 +1,7 @@
 *** Setting ***
 Suite Setup       Initialize System
 Suite Teardown    Terminate All Processes    kill=true
-Resource    variables.txt
+Resource    environment/variables.txt
 Library    OperatingSystem
 Library    MockServerLibrary
 Library    Process

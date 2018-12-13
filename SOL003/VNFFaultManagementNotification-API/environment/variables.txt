@@ -36,3 +36,4 @@ ${notification_port}    9091
 ${VnfLcmOperationOccurrenceNotification}    {}
 ${VnfIdentifierCreationNotification}    {}
 ${VnfIdentifierDeletionNotification}    {}
+${sleep_interval}    20s
