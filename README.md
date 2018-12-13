@@ -23,7 +23,7 @@ The Test Specification is built as a collection of [Robot Framework](robotframew
 
 **IMPORTANT: This repository and the NFV API Conformance Test Specification is Work in Progress. The current version focuses on conformance tests of individual SOL002 and SOL003 resource endpoints. The [Robot Framework](robotframework.org/) Test Descriptions are expected to be consolidated and reviewed in the short term, and possibly re-organized to ease automation of NFV workflows testing. SOL005 Test Descriptions are under development and will be contributed during Q1-2019.**
 
-More information at [NFV API Conformance Test Specification wiki](https://forge.etsi.org/gitlab/nfv/stf-557/api-tests/wikis/NFV-API-Conformance-Test-Specification).
+More information at [NFV API Conformance Test Specification wiki](https://forge.etsi.org/gitlab/nfv/api-tests/wikis/NFV-API-Conformance-Test-Specification).
 
 ## How to raise issues
 
