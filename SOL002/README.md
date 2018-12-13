@@ -1,7 +1,6 @@
 # NFV API Tests
 
-This is a development folder for ETSI STF 557.
-It includes the NFV API conformance test descriptions for NFV SOL002 APIs.
+This folder includes the NFV API conformance test descriptions for NFV SOL002 APIs.
 
 The reference spec version is v2.4.1: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/002/02.04.01_60/gs_NFV-SOL002v020401p.pdf
 
