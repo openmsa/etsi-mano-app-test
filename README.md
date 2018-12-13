@@ -10,7 +10,7 @@ More information at [NFV API Conformance Test Specification wiki](https://forge.
 
 ## How to raise issues
 
-Change requests can be filed at [ETSI Forge Bugzilla](). Please report errors, bugs or other issues [here](https://forge.etsi.org/bugzilla/enter_bug.cgi?product=NFV).
+Change requests can be filed at [ETSI Forge Bugzilla](<LINK>). Please report errors, bugs or other issues [here](https://forge.etsi.org/bugzilla/enter_bug.cgi?product=NFV).
 
 ## How to contribute
 
