@@ -1,14 +1,14 @@
 # NFV API Conformance Test Specification
 
-This repository hosts the NFV API Conformance test specification for the APIs defined in ETSI NFV GS [SOL002](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/002/02.04.01_60/gs_NFV-SOL002v020401p.pdf), [SOL003](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/003/02.04.01_60/gs_NFV-SOL003v020401p.pdf), [SOL005](http://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/005/02.04.01_60/gs_NFV-SOL005v020401p.pdf).
+This repository hosts the NFV API Conformance test specification for the APIs defined in ETSI NFV GS [SOL002](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/002/02.04.01_60/gs_NFV-SOL002v020401p.pdf), [SOL003](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/003/02.04.01_60/gs_NFV-SOL003v020401p.pdf), [SOL005](http://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/005/02.04.01_60/gs_NFV-SOL005v020401p.pdf), in their versions v2.4.1.
 
 The Test Specification is built as a collection of [Robot Framework](robotframework.org/) Test Description. [Robot Framework](robotframework.org/) is a generic test automation framework for acceptance testing and acceptance test-driven development.
 
-**IMPORTANT: This repository and the NFV API Conformance Test Specification is Work in Progress. The current version focuses on conformance tests of individual SOL002 and SOL003 resource endpoints. The Robot Framework Test Descriptions are expected to be consolidated and reviewed in the short term, and possibly re-organized to ease automation of NFV workflows testing. SOL005 Test Descriptions are under development and will be contributed during Q1-2019.**
+**IMPORTANT: This repository and the NFV API Conformance Test Specification is Work in Progress. The current version focuses on conformance tests of individual SOL002 and SOL003 resource endpoints. The [Robot Framework](robotframework.org/) Test Descriptions are expected to be consolidated and reviewed in the short term, and possibly re-organized to ease automation of NFV workflows testing. SOL005 Test Descriptions are under development and will be contributed during Q1-2019.**
 
 ## Content structure
 
-This repository is following the structure of the ETSI NFV GS SOL002, SOL003 and SOL005 specifications. It includes a dedicated folder for each of these NFV spec, with individual sub-folders for every interface in the given specification, following this structure:
+This repository is following the structure of the ETSI NFV GS [SOL002](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/002/02.04.01_60/gs_NFV-SOL002v020401p.pdf), [SOL003](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/003/02.04.01_60/gs_NFV-SOL003v020401p.pdf), [SOL005](http://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/005/02.04.01_60/gs_NFV-SOL005v020401p.pdf) specifications. It includes a dedicated folder for each of these NFV spec, with individual sub-folders for every interface in the given specification, following this structure:
 ```
     <spec_name>/<interface_name>
 ```
@@ -16,7 +16,7 @@ e.g.
 ```
     SOL002/VNF-Configuration-API/
 ```
-For each of the interface sub-folders, a list of Robot Framework files is included, each providing the set of Test Cases related to a given resource endpoint within the reference interface. In addition, the following sub-folders are included:
+For each of the interface sub-folders, a list of [Robot Framework](robotframework.org/) files is included, each providing the set of Test Cases related to a given resource endpoint within the reference interface. In addition, the following sub-folders are included:
 ```
     <spec_name>/<interface_name>/jsons
     <spec_name>/<interface_name>/schemas/
@@ -26,19 +26,19 @@ The *jsons* folders include the templates for the JSON requests to be issued aut
 
 The *schemas* folders include the JSON schemas for requests and reponses over the . They are extracted from the [SOL002](https://forge.etsi.org/gitlab/nfv/SOL002-SOL003), [SOL003](https://forge.etsi.org/gitlab/nfv/SOL002-SOL003) and [SOL005](https://forge.etsi.org/gitlab/nfv/SOL005) OpenAPIs.
 
-The *environment* folders include the list of variables and parameters used in the Robot Framework Test Cases. The tester is expected to value these variables according to the tests to be executed.
+The *environment* folders include the list of variables and parameters used in the [Robot Framework](robotframework.org/) Test Cases. The tester is expected to value these variables according to the tests to be executed.
 
 ## Dependencies and Preconditions
 The main precondition for running the tests is having [Robot Framework](robotframework.org/) installed.
-[Robot Framework installation instructions](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst) provide full details of the installation procedure.
+The [Robot Framework Installation Instructions](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst) provide full details of the installation procedure.
 For those familiar with installing Python packages with [pip](http://pip-installer.org/) package manager, the following command can be run to install [Robot Framework](robotframework.org/):
 ```
 $ pip install robotframework
 ```
-Robot Framework 3.0 is recommended. It requires Python 3.
+[Robot Framework](robotframework.org/) 3.0 is recommended for this NFV API Conformance Test Specification. It requires Python 3.
 
 ### Robot Framework Required Libraries
-The Robot Framework Test Cases in this repository depend on the following libraries:
+The [Robot Framework](robotframework.org/) Test Cases in this repository depend on the following libraries:
 
 * [RESTInstance](https://github.com/asyrjasalo/RESTinstance)
 * [DependencyLibrary](https://github.com/mentalisttraceur/robotframework-dependencylibrary)
@@ -59,11 +59,11 @@ $ patch <this_repo_dir>/extensions/mockserverlibrary.patch
 $ python -m pip install -e robotframework-mockserver
 ```
 ## Running Tests
-The Robot Framework Test Cases in this repository can be executed with the following command:
+The [Robot Framework](robotframework.org/) Test Cases in this repository can be executed with the following command:
 ```
 $ robot <name_of_the_robot_file>
 ```
-To execute all test case files in a directory recursively, just give the directory as an argument. You can also give multiple files or directories in one go and use various command line options supported by Robot Framework. 
+To execute all test case files in a directory recursively, just give the directory as an argument. You can also give multiple files or directories in one go and use various command line options supported by [Robot Framework](robotframework.org/). 
 
 For more information about the command line usage, you can run:
 ```
@@ -73,7 +73,7 @@ The [Robot Framework User Guide](http://robotframework.org/robotframework/#user-
 
 ## How to raise issues
 
-Change requests can be filed at [ETSI Forge Bugzilla](<LINK>). Please report errors, bugs or other issues [here](https://forge.etsi.org/bugzilla/enter_bug.cgi?product=NFV).
+Change requests can be filed at [ETSI Forge Bugzilla](). Please report errors, bugs or other issues [here](https://forge.etsi.org/bugzilla/enter_bug.cgi?product=NFV).
 
 ## How to contribute
 
