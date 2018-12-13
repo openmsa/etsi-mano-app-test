@@ -37,3 +37,8 @@ ${VnfLcmOperationOccurrenceNotification}    {}
 ${VnfIdentifierCreationNotification}    {}
 ${VnfIdentifierDeletionNotification}    {}
 ${SYNC_MODE}    0
+${sleep_interval}    20s
+${GRANT_POLLING_TOT}    2
+${GRANT_POLLING_INTERVAL}    5s
+${SCALE_POLLING_TOT}    10
+${SCALE_POLLING_INTERVAL}    15s

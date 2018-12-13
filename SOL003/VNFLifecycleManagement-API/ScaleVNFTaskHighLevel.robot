@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          variables.txt
+Resource          environment/variables.txt
 Library           REST    http://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library           OperatingSystem
 Library           BuiltIn

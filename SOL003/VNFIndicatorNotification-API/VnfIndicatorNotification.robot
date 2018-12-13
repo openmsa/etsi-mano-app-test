@@ -1,4 +1,5 @@
 *** Setting ***
+Resource	environment/variables.txt
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
@@ -8,12 +9,6 @@ Library    BuiltIn
 Library    Collections
 Library    String
 
-*** Variable ***
-${callback_uri}    http://localhost
-${callback_port}    9091
-${callback_endpoint}    /endpoint
-${callback_endpoint_error}    /endpoint_404
-${sleep_interval}    20s
 
 *** Test Cases ***
 Check Notification Endpoint

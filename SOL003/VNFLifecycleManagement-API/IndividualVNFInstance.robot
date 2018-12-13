@@ -1,6 +1,6 @@
 *** Settings ***
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
-Resource    variables.txt 
+Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
 ...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
@@ -134,7 +134,7 @@ DELETE Individual VNFInstance Conflict
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
     
-*** Key words ***   
+*** Keywords ***   
 
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  

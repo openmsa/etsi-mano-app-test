@@ -1,13 +1,11 @@
 *** Settings ***
-Resource          variables.txt
+Resource          environment/variables.txt
 Library           REST    http://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library           OperatingSystem
 Library           BuiltIn
 Library           JSONLibrary
 Library    MockServerLibrary
 
-*** Variables ***
-${sleep_interval}    20s
 
 *** Keywords ***
 Check subscriptions about one VNFInstance and operation type

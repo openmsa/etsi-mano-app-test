@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          variables.txt
+Resource          environment/variables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
 Library    REST    http://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml

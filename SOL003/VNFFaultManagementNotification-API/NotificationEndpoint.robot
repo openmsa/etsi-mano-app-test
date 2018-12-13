@@ -7,8 +7,6 @@ Library    Process
 Library    OperatingSystem
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${notification_port}
 
-*** Variables ***
-${sleep_interval}    20s
 
 *** Test Cases ***
 Deliver a notification - Alarm

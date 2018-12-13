@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    variables.txt 
+Resource    environment/variables.txt 
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT} 
 ...        spec=SOL003-VirtualisedResourcesQuotaAvailableNotification-API.yaml
 Library    OperatingSystem
