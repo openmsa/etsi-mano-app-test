@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    environments/variables.txt 
+Resource    environment/variables.txt 
 Library    REST    ${VNF_SCHEMA}://${VNF_HOST}:${VNF_PORT} 
 ...        spec=SOL002-VNFConfiguration-API.yaml
 Library    JSONLibrary
