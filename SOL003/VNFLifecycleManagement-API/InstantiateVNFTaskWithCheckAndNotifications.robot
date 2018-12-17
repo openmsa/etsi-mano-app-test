@@ -22,7 +22,7 @@ ${vnfInstanceId}
 
 *** Test Cases ***
 VNF Instantiation
-[Documentation]    Test ID: 5.x.y.x
+    [Documentation]    Test ID: 5.x.y.x
     ...    Test title: VNF Instantiation
     ...    Test objective: The objective is to test the instantiation of a VNF instance
     ...    Pre-conditions: VNF instance resources is created (Test ID: 5.a.b.c)

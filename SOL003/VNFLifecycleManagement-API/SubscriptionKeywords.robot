@@ -1,8 +1,10 @@
 *** Settings ***
 Resource          environment/variables.txt
-Library           REST    http://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Resource          VnfLcmMntOperationKeywords.robot
+Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library           OperatingSystem
 Library           BuiltIn
+Library    Process
 Library           JSONLibrary
 Library    MockServerLibrary
 
@@ -18,21 +20,29 @@ Check subscriptions about one VNFInstance and operation type
     Array    response body    minItems=1
     ${body}    Output    response body
     [Return]    ${body}
-    
-   
-Deliver a notification - Operation Occurence
-    log    The POST method delivers a notification from the server to the client.
-    ${json}=	Get File	schemas/vnfLcmOperationOccurrenceNotification.schema.json
+
+Configure Notification Handler
+    [Arguments]    ${element}    ${endpoint}
+    ${json}=	Get File	schemas/${element}.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
-    Log  Creating mock request and response to handle vnfLcmOperationOccurrenceNotification
-    &{req}=  Create Mock Request Matcher    POST  ${notification_ep} body_type='JSON_SCHEMA' body=${BODY}
-    &{rsp}=  Create Mock Response	204 headers="Content-Type: application/json"  body_type='JSON_SCHEMA'
-    Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
-    Log  Verifying results
-    Verify Mock Expectation  ${req}
-    Log  Cleaning the endpoint
-    Clear Requests  ${notification_ep}
+    Log  Creating mock request and response to handle ${element}
+    &{notification_request}=  Create Mock Request Matcher Schema	POST  ${endpoint}  body=${BODY}
+    &{notification_response}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+    [Return]        &{notification_request}
+    
+Check Operation Notification
+    [Arguments]    ${status}    ${endpoint}
+    ${req}=    Configure Notification Handler     VnfLcmOperationOccurrenceNotification    ${endpoint}
+    Wait Until Keyword Succeeds    2 min   10 sec    Verify Mock Expectation     ${req}    
+    ${VnfLcmOccInstance}=    Get VnfLcmOccInstance    ${vnfLcmOpOccId}
+    Check operationState    ${status}    ${VnfLcmOccInstance}
+    Clear Requests  ${endpoint}
+    
+Create Sessions
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${notification_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${NFVO_SCHEMA}://${NFVO_HOST}:${notification_port}     #The API producer is set to NFVO according to SOL003-5.3.9
 
     
 
