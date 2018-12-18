@@ -1,11 +1,11 @@
 *** Settings ***
-Resource          environment/variables.txt
-Resource          VnfLcmMntOperationKeywords.robot
-Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
-Library           OperatingSystem
-Library           BuiltIn
+Resource    environment/variables.txt
+Resource    VnfLcmMntOperationKeywords.robot
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    OperatingSystem
+Library    BuiltIn
 Library    Process
-Library           JSONLibrary
+Library    JSONLibrary
 Library    MockServerLibrary
 
 
@@ -32,7 +32,7 @@ Configure Notification Handler
     [Return]        &{notification_request}
     
 Check Operation Notification
-    [Arguments]    ${status}    ${endpoint}
+    [Arguments]    ${status}    ${endpoint}    ${vnfLcmOpOccId}
     ${req}=    Configure Notification Handler     VnfLcmOperationOccurrenceNotification    ${endpoint}
     Wait Until Keyword Succeeds    2 min   10 sec    Verify Mock Expectation     ${req}    
     ${VnfLcmOccInstance}=    Get VnfLcmOccInstance    ${vnfLcmOpOccId}

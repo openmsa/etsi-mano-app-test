@@ -1,9 +1,10 @@
 *** Settings ***
 Resource    environment/variables.txt
-Library    REST    http://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
 Library    JSONLibrary
+Library    Collections
 Library    JSONSchemaLibrary    schemas/
   
 
@@ -73,12 +74,16 @@ Check operationState
     Should Be Equal    ${currentState}    ${operationState}
     
 Create a new Grant - Synchronous mode
+    [Arguments]    ${vnfInstanceId}    ${vnfLcmOpOccId}    ${operation}
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Pass Execution If    ${SYNC_MODE} == 0    The Granting process is asynchronous mode. Skipping the test
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/grantRequest.json
+    ${json_body}=    evaluate    json.loads('''${body}''')    json
+    Set To Dictionary     ${json_body}    vnfInstanceId=${vnfInstanceId}    vnfLcmOpOccId=${vnfLcmOpOccId}    operation=${operation}  
+    ${body}=    evaluate    json.dumps(${json_body})    json  
     Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
     Integer    response status    201
     Log    Status code validated 
@@ -92,12 +97,16 @@ Create a new Grant - Synchronous mode
     Log    Validation OK
 
 Create a new Grant - Asynchronous mode
+    [Arguments]    ${vnfInstanceId}    ${vnfLcmOpOccId}    ${operation}
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Pass Execution If    ${SYNC_MODE} == 1    The Granting process is synchronous mode. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body}=    Get File    json/grantRequest.json
+    ${json_body}=    evaluate    json.loads('''${body}''')    json
+    Set To Dictionary     ${json_body}    vnfInstanceId=${vnfInstanceId}    vnfLcmOpOccId=${vnfLcmOpOccId}    operation=${operation}    
+    ${body}=    evaluate    json.dumps(${json_body})    json 
     Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
     Output    response
     Integer    response status    202

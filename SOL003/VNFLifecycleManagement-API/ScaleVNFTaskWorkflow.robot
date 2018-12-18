@@ -2,7 +2,7 @@
 Resource          environment/variables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    http://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -31,10 +31,10 @@ Scale out a VnFInstance
     Check Response Status    202    ${response.status}
     Check HTTP Response Header Contains    Location    ${response.headers}
     ${vnfLcmOpOccId}=    Get VnfLcmOpOccId   ${response.headers}
-    Check Operation Notification    STARTING    ${notification_ep}
-    Create a new Grant - Synchronous mode
-    Check Operation Notification    PROCESSING    ${notification_ep}
-    Check Operation Notification    COMPLETED    ${notification_ep}
+    Check Operation Notification    STARTING    ${notification_ep}    ${vnfLcmOpOccId}
+    Create a new Grant - Sync - Scale
+    Check Operation Notification    PROCESSING    ${notification_ep}    ${vnfLcmOpOccId}
+    Check Operation Notification    COMPLETED    ${notification_ep}    ${vnfLcmOpOccId}
     Postcondition Checks
 
 *** Keywords ***
@@ -62,5 +62,6 @@ Compare ScaleInfos
     Run Keyword If    ${type}==SCALE_OUT    Should Be True    ${old_level_value}<${new_level_value}
     ...    ELSE    Should Be True    ${old_level_value}<${new_level_value}
    
-    
+Create a new Grant - Sync - Scale
+    Create a new Grant - Synchronous mode        ${vnfInstanceId}    ${vnfLcmOpOccId}    SCALE
     
