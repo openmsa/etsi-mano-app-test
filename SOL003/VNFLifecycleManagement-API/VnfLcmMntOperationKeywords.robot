@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt
+Resource    environment/scaleVariables.txt
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
@@ -18,7 +19,7 @@ Get Vnf Instance
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}
     ${body}=    Output    response body
     ${json}=    evaluate    json.loads('''${body}''')    json
-    [Return]    ${json}    ${body.aspectId}
+    [Return]    ${json}
 
 Check resource Instantiated
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -40,7 +41,7 @@ Check Response Status
     Log    Status code validated 
     
 Check HTTP Response Header Contains
-    [Arguments]    ${CONTENT_TYPE}    ${headers}
+    [Arguments]    ${headers}    ${CONTENT_TYPE}    
     Should Contain    ${headers}    ${CONTENT_TYPE}
     Log    Header is present 
 
@@ -50,9 +51,11 @@ Send VNFscaleOut Request
     Set Headers    {"Accept":"${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/scaleVnfOutRequest.json  
-    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
-    [Return]    ${response}
+    ${body}=    Get File    json/scaleVnfOutRequest.json
+    ${json}=    evaluate    json.loads('''${body}''')    json
+    ${aspectId}=    Set Variable    ${json.aspectId}  
+    ${scaleOutResponse}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
+    [Return]    ${scaleOutResponse}
 
 Get VnfLcmOpOccId
     [Arguments]    ${headers}

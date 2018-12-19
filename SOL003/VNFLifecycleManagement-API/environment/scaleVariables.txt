@@ -1,0 +1,7 @@
+*** variables ***
+${LccnSubscriptions}    
+${scaleInfo}
+${element}
+${aspectId}
+${scaleOutResponse}
+${vnfLcmOpOccId}
