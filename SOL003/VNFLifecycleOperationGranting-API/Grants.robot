@@ -1,5 +1,5 @@
 *** Settings ***
-Resource   environmentvariables.txt 
+Resource   environment/variables.txt 
 Library    REST    http://${NFVO_HOST}:${NFVO_PORT} 
 ...        spec=SOL003-VNFLifecycleOperationGranting-API.yaml
 Library    OperatingSystem

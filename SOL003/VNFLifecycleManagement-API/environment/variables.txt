@@ -42,3 +42,8 @@ ${GRANT_POLLING_TOT}    2
 ${GRANT_POLLING_INTERVAL}    5s
 ${SCALE_POLLING_TOT}    10
 ${SCALE_POLLING_INTERVAL}    15s
+${callback_uri}    http://localhost
+${callback_port}    9091
+${callback_endpoint}    /endpoint
+${callback_endpoint_error}    /endpoint_404
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.3.0-jar-with-dependencies.jar

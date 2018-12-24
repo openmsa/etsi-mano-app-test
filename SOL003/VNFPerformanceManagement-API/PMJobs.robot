@@ -86,7 +86,7 @@ GET all Pm Jobs - exclude_default
 
 GET all Pm Jobs - fields
     Log    Trying to get all VNF Packages present in the VNFM, using filter params
-    Pass Execution If    ${FIELDS_USAGE} == 0    Skipping test as VNFM is not supporting 'fields'
+    Pass Execution If    ${FIELD_USAGE} == 0    Skipping test as VNFM is not supporting 'fields'
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?fields=${fields}
@@ -109,7 +109,7 @@ GET all Pm Jobs - fields
 
 GET all Pm Jobs - exclude_fields
     Log    Trying to get all VNF Packages present in the VNFM, using filter params
-    Pass Execution If    ${FIELDS_USAGE} == 0    Skipping test as VNFM is not supporting 'fields'
+    Pass Execution If    ${FIELD_USAGE} == 0    Skipping test as VNFM is not supporting 'fields'
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?fields=${fields}

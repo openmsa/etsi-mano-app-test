@@ -16,3 +16,4 @@ ${apiName}        vnfpkgm
 ${FIELD_USAGE}    1
 ${NFVO_PLAIN}     1
 ${NFVO_FIELDS}    1
+${vnfPackageId}  788106a2-d692-44f3-a86d-384f0ce35e42

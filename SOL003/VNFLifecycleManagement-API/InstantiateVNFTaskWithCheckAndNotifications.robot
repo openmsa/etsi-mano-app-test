@@ -66,7 +66,7 @@ Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
     ${json}=    evaluate    json.loads('''${response.body}''')    json
     Validate Json    ${schema}    ${json}
-    ${vnfInstanceId}=    ${response.body.id}
+    ${vnfInstanceId}=    evaluate   ${response.body.id}
     Log    Json Schema Validation OK
     
 Check VNF Status
@@ -104,7 +104,7 @@ Check Operation Notification
     Should Be Equal    ${body.operationState}   ${status}
     Clear Requests  ${callback_endpoint}
 
-Verify Notification COMPLETED
+Verify Notification
     [Arguments]    ${status}
     Verify Mock Expectation     ${notification_request} 
 
@@ -122,15 +122,15 @@ Initialize System
     Create VNF Resource
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
-    Check HTTP Response Header Contains    ${response.headers}    Content-Type
+    Check HTTP Response Header Contains    Content-Type
     Check HTTP Response Body Json Schema Is    vnfInstance.schema.json
 
 Check Postcondition
     Log    Retrieve VNF Instance
     Check VNF Instance    ${vnfInstanceId}
     Should Not Be Empty    ${response}
-    Check HTTP Status Code Is    200
+    Check HTTP Response Status Code Is    200
     Should Be Equal    ${response.body.id}    ${vnfInstanceId}    
     Check HTTP Response Header Contains    Content-Type
-    Check HTTP Response Json Schema    ${response.body}    vnfInstance.schema.json
+    Check HTTP Response Body Json Schema Is    vnfInstance.schema.json
     Check VNF Status    ${response.body.instantiationState}    INSTANTIATED

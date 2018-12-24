@@ -49,7 +49,7 @@ GET all Packages - Filter
 GET all Packages - Negative (wronge filter name)
     Log    Trying to perform a negative get, filtering by the inexistent field 'nfvId'
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}    ${AUTHORIZATION}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${NEG_FIELDS}
     Integer    response status    400
     Log    Received 400 Bad Request as expected
