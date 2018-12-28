@@ -8,6 +8,7 @@ Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
 Library    JSONLibrary
+Library    Process
 Suite Setup    Initialize System
 Suite Teardown    Terminate All Processes    kill=true
 

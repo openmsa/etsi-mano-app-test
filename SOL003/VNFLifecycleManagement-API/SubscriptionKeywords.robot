@@ -26,8 +26,8 @@ Configure Notification Handler
     ${json}=	Get File	schemas/${element}.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle ${element}
-    &{notification_request}=  Create Mock Request Matcher Schema	POST  ${endpoint}  body=${BODY}
-    &{notification_response}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${notification_request}  ${notification_response}
     [Return]        &{notification_request}
     

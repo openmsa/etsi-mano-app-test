@@ -11,8 +11,8 @@ Library    String
 
 *** Test Cases ***
 Check Notification Endpoint
-    &{req}=  Create Mock Request Matcher Schema	GET  ${callback_endpoint}    
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Verify Mock Expectation  ${req}
@@ -22,8 +22,8 @@ Post Performance Information Available Notification
     ${json}=	Get File	schemas/PerformanceInformationAvailableNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle Performance Information Available Notification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${callback_endpoint}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -36,8 +36,8 @@ Post Performance Information Available Notification Negative 404
     ${json}=	Get File	schemas/ProblemDetails.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle Performance Information Available Notification to handle 404 error
-    &{req}=  Create Mock Request Matcher Schema	POST  ${callback_endpoint_error}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=404
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint_error}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=404
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -49,8 +49,8 @@ Post Threshold Crossed Notification
     ${json}=	Get File	schema/ThresholdCrossedNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle Threshold Crossed Notification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${callback_endpoint}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -63,8 +63,8 @@ PostThreshold Crossed Notification Negative 404
     ${json}=	Get File	schemas/ProblemDetails.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handleThreshold Crossed Notification to handle 404 error
-    &{req}=  Create Mock Request Matcher Schema	POST  ${callback_endpoint_error}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=404
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint_error}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=404
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -75,8 +75,8 @@ PostThreshold Crossed Notification Negative 404
     
 PUT Performance Notification 
     Log  PUT Method not implemented
-    &{req}=  Create Mock Request Matcher Schema	PUT  ${callback_endpoint}
-    &{rsp}=  Create Mock Response Schema  status_code=405
+    &{req}=  Create Mock Request Matcher	PUT  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -87,8 +87,8 @@ PUT Performance Notification
     
 PATCH Performance Notification 
     Log  PATCH Method not implemented
-    &{req}=  Create Mock Request Matcher Schema	PATCH  ${callback_endpoint}
-    &{rsp}=  Create Mock Response Schema  status_code=405
+    &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -99,8 +99,8 @@ PATCH Performance Notification
     
 DELETE Performance Notification 
     Log  PATCH Method not implemented
-    &{req}=  Create Mock Request Matcher Schema	DELETE  ${callback_endpoint}
-    &{rsp}=  Create Mock Response Schema  status_code=405
+    &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results

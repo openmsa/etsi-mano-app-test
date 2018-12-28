@@ -14,8 +14,8 @@ Deliver a notification - Vr Quota Availibility
     ${json}=	Get File	schemas/VrQuotaAvailNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle Vr Quota AvailibilityNotification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${notification_ep}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results

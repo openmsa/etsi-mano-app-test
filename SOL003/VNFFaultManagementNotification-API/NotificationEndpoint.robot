@@ -14,8 +14,8 @@ Deliver a notification - Alarm
     ${json}=	Get File	schemas/alarmNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle alarmNotification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${notification_ep}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -28,8 +28,8 @@ Deliver a notification - Alarm Clearance
     ${json}=	Get File	schemas/alarmClearedNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle alarmNotification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${notification_ep}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -42,8 +42,8 @@ Deliver a notification - Alarm List Rebuilt
     ${json}=	Get File	schemas/alarmListRebuiltNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle alarmNotification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${notification_ep}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher  POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -53,8 +53,8 @@ Deliver a notification - Alarm List Rebuilt
 
 Test a notification end point
     log    The GET method allows the server to test the notification endpoint
-    &{req}=  Create Mock Request Matcher Schema	GET  ${notification_ep}    
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	GET  ${notification_ep}    
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Verify Mock Expectation  ${req}

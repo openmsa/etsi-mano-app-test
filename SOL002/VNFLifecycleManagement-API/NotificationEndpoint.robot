@@ -16,8 +16,8 @@ Deliver a notification - Operation Occurence
     ${json}=	Get File	schemas/vnfLcmOperationOccurrenceNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle vnfLcmOperationOccurrenceNotification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${notification_ep}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -30,8 +30,8 @@ Deliver a notification - Id Creation
     ${json}=	Get File	schemas/vnfIdentifierCreationNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle vnfLcmOperationOccurrenceNotification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${notification_ep}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -44,8 +44,8 @@ Deliver a notification - Id deletion
     ${json}=	Get File	schemas/vnfIdentifierCreationNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle vnfLcmOperationOccurrenceNotification
-    &{req}=  Create Mock Request Matcher Schema	POST  ${notification_ep}  body=${BODY}
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Log  Verifying results
@@ -55,8 +55,8 @@ Deliver a notification - Id deletion
 
 Test a notification end point
     log    The GET method allows the server to test the notification endpoint
-    &{req}=  Create Mock Request Matcher Schema	GET  ${notification_ep}    
-    &{rsp}=  Create Mock Response Schema	headers="Content-Type: application/json"  status_code=204
+    &{req}=  Create Mock Request Matcher	GET  ${notification_ep}    
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Verify Mock Expectation  ${req}
