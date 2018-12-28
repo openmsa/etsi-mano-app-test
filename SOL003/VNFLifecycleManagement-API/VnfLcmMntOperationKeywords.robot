@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    environment/configuration.txt
 Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
@@ -21,6 +22,22 @@ Get Vnf Instance
     ${json}=    evaluate    json.loads('''${body}''')    json
     [Return]    ${json}
 
+Check HTTP Response Status Code Is
+    [Arguments]    ${expected_status}    
+    Should Be Equal    ${response.status_code}    ${expected_status}
+    Log    Status code validated 
+
+Check Operation Occurrence Id
+    ${vnfLcmOpOccId}=    Get Value From Json    ${response.headers}    $..Location
+    Should Not Be Empty    ${vnfLcmOpOccId}
+
+Check HTTP Response Body Json Schema Is
+    [Arguments]    ${schema}
+    ${json}=    evaluate    json.loads('''${response.body}''')    json
+    Validate Json    ${schema}    ${json}
+    ${vnfInstanceId}=    evaluate   ${response.body.id}
+    Log    Json Schema Validation OK
+
 Check resource Instantiated
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
@@ -29,24 +46,30 @@ Check resource Instantiated
     Integer    response status    200
     String    response body instantiationState    INSTANTIATED
 
+Check VNF Instance
+    [Arguments]    ${vnfId}
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${response}=    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfId}
+
+Check VNF Status
+    [Arguments]    ${current}    ${expected}
+    Should Be Equal As Strings    ${current}    ${expected}
+    Log    VNF Status in the correct status
+
 Get Vnf Scale Info
     [Arguments]    ${vnfInstanceId}
     ${vnfInstance}=    Get Vnf Instance    ${vnfInstanceId}
     ${scaleInfo}=    Get Value From Json    ${vnfInstance}    $..scaleStatus
     [Return]   ${scaleInfo} 
 
-Check Response Status
-    [Arguments]    ${expected_status}    ${status}
-    Should Be Equal    ${expected_status}    ${status}
-    Log    Status code validated 
-    
 Check HTTP Response Header Contains
-    [Arguments]    ${headers}    ${CONTENT_TYPE}    
-    Should Contain    ${headers}    ${CONTENT_TYPE}
-    Log    Header is present 
+    [Arguments]    ${CONTENT_TYPE}
+    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Log    Header is present
 
-Send VNFscaleOut Request
-    [Arguments]    ${vnfInstanceId}
+Send VNF Scale Out Request
     Log    Trying to scale a vnf Instance
     Set Headers    {"Accept":"${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
@@ -56,26 +79,7 @@ Send VNFscaleOut Request
     ${aspectId}=    Set Variable    ${json.aspectId}  
     ${scaleOutResponse}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     [Return]    ${scaleOutResponse}
-
-Get VnfLcmOpOccId
-    [Arguments]    ${headers}
-    ${json}=    evaluate    json.loads('''${headers}''')    json
-    ${vnfLcmOpOccId}=    Get Value From Json    ${json}    $..Location
-    Should Not Be Empty    ${vnfLcmOpOccId}
-    [Return]    ${vnfLcmOpOccId}
-
-Get VnfLcmOccInstance
-    [Arguments]    ${vnfLcmOpOccId}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
-    ${body}=    Output    response body
-    ${json}=    evaluate    json.loads('''${body}''')    json
-    [Return]    ${json}
-
-Check operationState
-    [Arguments]    ${operationState}    ${VnfLcmOccInstance}
-    ${currentState}=    Get Value From Json    ${VnfLcmOccInstance}    $..operationState
-    Should Be Equal    ${currentState}    ${operationState}
-    
+  
 Create a new Grant - Synchronous mode
     [Arguments]    ${vnfInstanceId}    ${vnfLcmOpOccId}    ${operation}
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants

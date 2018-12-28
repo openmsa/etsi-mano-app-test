@@ -5,9 +5,12 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNF
 Library    OperatingSystem
 Library    BuiltIn
 Library    Process
+Library    Collections
 Library    JSONLibrary
 Library    MockServerLibrary
 
+*** Variables ***
+${json}    {}
 
 *** Keywords ***
 Check subscriptions about one VNFInstance and operation type
@@ -20,30 +23,34 @@ Check subscriptions about one VNFInstance and operation type
     Array    response body    minItems=1
     ${body}    Output    response body
     [Return]    ${body}
-
+  
+Create Sessions
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${callback_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${callback_uri}:${callback_port}
+    
 Configure Notification Handler
-    [Arguments]    ${element}    ${endpoint}
-    ${json}=	Get File	schemas/${element}.schema.json
-    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    [Arguments]    ${endpoint}    ${status}
+    set to dictionary    ${json["operationState"]}    dp=${status}    
+    ${BODY}=    evaluate    json.dumps(${json})    json
     Log  Creating mock request and response to handle ${element}
-    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
     &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${notification_request}  ${notification_response}
-    [Return]        &{notification_request}
-    
+
+Configure Notification Forward
+    [Arguments]    ${element}    ${endpoint}    ${endpoint_fwd}    
+    ${json}=	Get File	schemas/${element}.schema.json
+    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    Log  Creating mock HTTP forward to handle ${element}
+    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{notification_fwd}=  Create Mock Http Forward	${endpoint_fwd}
+    Create Mock Expectation With Http Forward  ${notification_tmp}  ${notification_fwd}
+
 Check Operation Notification
-    [Arguments]    ${status}    ${endpoint}    ${vnfLcmOpOccId}
-    ${req}=    Configure Notification Handler     VnfLcmOperationOccurrenceNotification    ${endpoint}
-    Wait Until Keyword Succeeds    2 min   10 sec    Verify Mock Expectation     ${req}    
-    ${VnfLcmOccInstance}=    Get VnfLcmOccInstance    ${vnfLcmOpOccId}
-    Check operationState    ${status}    ${VnfLcmOccInstance}
-    Clear Requests  ${endpoint}
-    
-Create Sessions
-    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${notification_port}  alias=mockInstance
-    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
-    Create Mock Session  ${NFVO_SCHEMA}://${NFVO_HOST}:${notification_port}     #The API producer is set to NFVO according to SOL003-5.3.9
-
-    
-
-    
+    [Arguments]    ${element}    ${status}
+    Configure Notification Forward    ${element}    ${notification_ep}    ${notification_ep_fwd}
+    Configure Notification Handler    ${notification_ep_fwd}    ${status}
+    Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
+    Clear Requests    ${notification_ep}
+    Clear Requests    ${notification_ep_fwd}

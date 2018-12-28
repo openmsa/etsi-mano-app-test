@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    environment/configuration.txt
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    

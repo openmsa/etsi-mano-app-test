@@ -1,7 +1,10 @@
 *** Setting ***
 Suite Setup       Initialize System
 Suite Teardown    Terminate All Processes    kill=true
+Resource    environment/configuration.txt
 Resource    environment/variables.txt
+Resource    VnfLcmMntOperationKeywords.robot
+Resource    SubscriptionKeywords.robot
 Library    OperatingSystem
 Library    MockServerLibrary
 Library    Process
@@ -12,13 +15,6 @@ Library    JSONSchemaLibrary    schemas/
 Library    JSONLibrary
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 
-*** Variables ***
-${headers} 
-${vnfLcmOpOccId}
-${response}
-&{notification_request}
-&{notification_response}
-${vnfInstanceId}
 
 *** Test Cases ***
 VNF Instantiation
@@ -34,10 +30,10 @@ VNF Instantiation
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
     Check Operation Occurrence Id
-    Check Operation Notification    STARTING
-    Check Operation Notification    PROCESSING
-    Check Operation Notification    COMPLETED
-    Check Postcondition  
+    Check Operation Notification For Instantiation  STARTING
+    Check Operation Notification For Instantiation  PROCESSING
+    Check Operation Notification For Instantiation  COMPLETED
+    Check Postcondition VNF Status  INSTANTIATED
     
 *** Keywords ***
 Send VNF Instantiation Request
@@ -47,85 +43,16 @@ Send VNF Instantiation Request
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/instantiateVnfRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${body}
-
-Check HTTP Response Status Code Is
-    [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
-    Log    Status code validated 
-
-Check HTTP Response Header Contains
-    [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
-    Log    Header is present
-
-Check Operation Occurrence Id
-    ${vnfLcmOpOccId}=    Get Value From Json    ${response.headers}    $..Location
-    Should Not Be Empty    ${vnfLcmOpOccId}
-
-Check HTTP Response Body Json Schema Is
-    [Arguments]    ${schema}
-    ${json}=    evaluate    json.loads('''${response.body}''')    json
-    Validate Json    ${schema}    ${json}
-    ${vnfInstanceId}=    evaluate   ${response.body.id}
-    Log    Json Schema Validation OK
     
-Check VNF Status
-    [Arguments]    ${current}    ${expected}
-    Should Be Equal As Strings    ${current}    ${expected}
-    Log    VNF Status in the correct status
-    
-Check VNF Instance
-    [Arguments]    ${vnfId}
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${response}=    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfId}
-
-Create Sessions
-    Start Process  java  -jar  ../../bin/mockserver-netty-5.3.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
-    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
-    Create Mock Session  ${callback_uri}:${callback_port}
-    
-Configure Notification Handler
-    [Arguments]    ${element}    ${endpoint}
-    ${json}=	Get File	schemas/${element}.schema.json
-    ${BODY}=	evaluate	json.loads('''${json}''')	json
-    Log  Creating mock request and response to handle ${element}
-    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
-    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
-    Create Mock Expectation  ${notification_request}  ${notification_response}
-    
-Check Operation Notification
+Check Operation Notification For Instantiation
     [Arguments]    ${status}
-    Configure Notification Handler     VnfLcmOperationOccurrenceNotification    ${callback_endpoint}
-    Wait Until Keyword Succeeds    2 min   10 sec   Verify Notification    ${status}
-    Get    ${vnfLcmOpOccId}
-    ${body}=    Output    response body
-    Should Be Equal    ${body.operationState}   ${status}
-    Clear Requests  ${callback_endpoint}
-
-Verify Notification
-    [Arguments]    ${status}
-    Verify Mock Expectation     ${notification_request} 
-
-Create VNF Resource
-    Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/createVnfRequest.json
-    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
+    Check Operation Notification    VnfLcmOperationOccurrenceNotification   ${status}
 
 Initialize System
     Create Sessions
-    Configure Notification Handler     VnfIdentifierCreationNotification    ${callback_endpoint}
-    Create VNF Resource
-    Check HTTP Response Status Code Is    201
-    Check HTTP Response Header Contains    Location
-    Check HTTP Response Header Contains    Content-Type
-    Check HTTP Response Body Json Schema Is    vnfInstance.schema.json
 
-Check Postcondition
+Check Postcondition VNF Status
+    [Arguments]    ${status}
     Log    Retrieve VNF Instance
     Check VNF Instance    ${vnfInstanceId}
     Should Not Be Empty    ${response}
@@ -133,4 +60,4 @@ Check Postcondition
     Should Be Equal    ${response.body.id}    ${vnfInstanceId}    
     Check HTTP Response Header Contains    Content-Type
     Check HTTP Response Body Json Schema Is    vnfInstance.schema.json
-    Check VNF Status    ${response.body.instantiationState}    INSTANTIATED
+    Check VNF Status    ${response.body.instantiationState}    ${status}

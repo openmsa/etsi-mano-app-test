@@ -4,4 +4,3 @@ ${scaleInfo}
 ${element}
 ${aspectId}
 ${scaleOutResponse}
-${vnfLcmOpOccId}

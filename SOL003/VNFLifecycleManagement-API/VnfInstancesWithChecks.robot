@@ -1,4 +1,5 @@
 *** Setting ***
+Resource    environment/configuration.txt
 Resource    environment/variables.txt
 Library    OperatingSystem
 Library    BuiltIn
