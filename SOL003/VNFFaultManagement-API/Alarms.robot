@@ -28,7 +28,7 @@ Get information about multiple alarms
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    alarm.schema.json    ${json}
+    Validate Json    Alarms.schema.json    ${json}
     Log    Validation OK
 
 Get information about multiple alarms with filters 
@@ -43,7 +43,7 @@ Get information about multiple alarms with filters
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    alarm.schema.json    ${json}
+    Validate Json    Alarms.schema.json    ${json}
     Log    Validation OK
 
 Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters

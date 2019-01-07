@@ -27,7 +27,7 @@ Get Information about an individual subscription
     Integer    response status    200
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    VrQuotaAvailSubscription.schema.json    ${json}
     Log    Validation OK
 
 PUT an individual subscription - Method not implemented

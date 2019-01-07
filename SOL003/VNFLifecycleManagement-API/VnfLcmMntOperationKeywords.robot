@@ -97,7 +97,7 @@ Create a new Grant - Synchronous mode
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    grant.schema.json    ${json}
+    Validate Json    Grant.schema.json    ${json}
     Log    Validation OK
 
 Create a new Grant - Asynchronous mode

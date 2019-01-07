@@ -28,7 +28,7 @@ Get stauts information about multiple VNF LCM OP OCC
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfLcmOpOcc.schema.json    ${json}
+    Validate Json    VnfLcmOpOccs.schema.json    ${json}
     Log    Validation OK
 
 Get stauts information about multiple VNF LCM OP OCC Bad Request Invalid attribute-based filtering parameters

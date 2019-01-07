@@ -29,7 +29,7 @@ Get Information about an individual subscription
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    FmSubscription.schema.json    ${json}
     Log    Validation OK
 
 PUT an individual subscription - Method not implemented

@@ -1,1 +1,142 @@
-{  "type": "array",  "items": {    "description": "This type represents a subscription related to notifications about VNF indicator value changes.\n",    "type": "object",    "required": [      "id",      "callbackUri",      "_links"    ],    "properties": {      "id": {        "description": "An identifier with the intention of being globally unique.\n",        "type": "string"      },      "filter": {        "description": "This type represents a subscription filter related to notifications about VNF indicator value changes. At a particular nesting level in the filter structure, the following applies: All attributes shall match in order for the filter to match (logical \"and\" between different filter attributes). If an attribute is an array, the attribute shall match if at least one of the values in the array matches (logical \"or\" between the values of one filter attribute).\n",        "type": "object",        "properties": {          "vnfInstanceSubscriptionFilter": {            "description": "This type represents subscription filter criteria to match VNF instances.\n",            "type": "object",            "properties": {              "vnfdIds": {                "description": "If present, match VNF instances that were created based on a VNFD identified by one of the vnfdId values listed in this attribute. The attributes \"vnfdIds\" and \"vnfProductsFromProviders\" are alternatives to reference to VNF instances that are based on certain VNFDs in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",                "type": "array",                "items": {                  "description": "An identifier with the intention of being globally unique.\n",                  "type": "string"                }              },              "vnfProductsFromProviders": {                "description": "If present, match VNF instances that belong to VNF products from certain providers. The attributes \"vnfdIds\" and \"vnfProductsFromProviders\" are alternatives to reference to VNF instances that are based on certain VNFDs in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",                "type": "array",                "items": {                  "type": "object",                  "required": [                    "vnfProvider"                  ],                  "properties": {                    "vnfProvider": {                      "description": "Name of the VNF provider to match.\n",                      "type": "string"                    },                    "vnfProducts": {                      "description": "If present, match VNF instances that belong to VNF products with certain product names, from one particular provider.\n",                      "type": "array",                      "items": {                        "type": "object",                        "required": [                          "vnfProductName"                        ],                        "properties": {                          "vnfProductName": {                            "description": "Name of the VNF product to match.\n",                            "type": "string"                          },                          "versions": {                            "description": "If present, match VNF instances that belong to VNF products with certain versions and a certain product name, from one particular provider.\n",                            "type": "array",                            "items": {                              "type": "object",                              "required": [                                "vnfSoftwareVersion"                              ],                              "properties": {                                "vnfSoftwareVersion": {                                  "description": "A version.\n",                                  "type": "string"                                },                                "vnfdVersions": {                                  "description": "If present, match VNF instances that belong to VNF products with certain VNFD versions, a certain software version and a certain product name, from one particular provider.\n",                                  "type": "array",                                  "items": {                                    "description": "A version.\n",                                    "type": "string"                                  }                                }                              }                            }                          }                        }                      }                    }                  }                }              },              "vnfInstanceIds": {                "description": "If present, match VNF instances with an instance identifier listed in this attribute. The attributes \"vnfInstanceIds\" and \"vnfInstanceNames\" are alternatives to reference to particular VNF Instances in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",                "type": "array",                "items": {                  "description": "An identifier with the intention of being globally unique.\n",                  "type": "string"                }              },              "vnfInstanceNames": {                "description": "If present, match VNF instances with a VNF Instance Name listed in this attribute. The attributes \"vnfInstanceIds\" and \"vnfInstanceNames\" are alternatives to reference to particular VNF Instances in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",                "type": "array",                "items": {                  "type": "string"                }              }            }          },          "indicatorIds": {            "description": "Match particular VNF indicator identifiers.\n",            "type": "array",            "items": {              "description": "An identifier that is unique within a VNF descriptor.\n",              "type": "string"            }          }        }      },      "callbackUri": {        "description": "The URI of the endpoint to send the notification to.\n",        "type": "string",        "format": "url"      },      "_links": {        "description": "Links for this resource.\n",        "type": "object",        "required": [          "self"        ],        "properties": {          "self": {            "description": "This type represents a link to a resource.\n",            "type": "object",            "required": [              "href"            ],            "properties": {              "href": {                "description": "URI of the referenced resource.\n",                "type": "string",                "format": "url"              }            }          }        }      }    }  }}
+{
+  "description": "This type represents a subscription related to notifications about VNF indicator value changes.\n",
+  "type": "object",
+  "required": [
+    "id",
+    "callbackUri",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "filter": {
+      "description": "This type represents a subscription filter related to notifications about VNF indicator value changes. At a particular nesting level in the filter structure, the following applies: All attributes shall match in order for the filter to match (logical \"and\" between different filter attributes). If an attribute is an array, the attribute shall match if at least one of the values in the array matches (logical \"or\" between the values of one filter attribute).\n",
+      "type": "object",
+      "properties": {
+        "vnfInstanceSubscriptionFilter": {
+          "description": "This type represents subscription filter criteria to match VNF instances.\n",
+          "type": "object",
+          "properties": {
+            "vnfdIds": {
+              "description": "If present, match VNF instances that were created based on a VNFD identified by one of the vnfdId values listed in this attribute. The attributes \"vnfdIds\" and \"vnfProductsFromProviders\" are alternatives to reference to VNF instances that are based on certain VNFDs in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+              "type": "array",
+              "items": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              }
+            },
+            "vnfProductsFromProviders": {
+              "description": "If present, match VNF instances that belong to VNF products from certain providers. The attributes \"vnfdIds\" and \"vnfProductsFromProviders\" are alternatives to reference to VNF instances that are based on certain VNFDs in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "vnfProvider"
+                ],
+                "properties": {
+                  "vnfProvider": {
+                    "description": "Name of the VNF provider to match.\n",
+                    "type": "string"
+                  },
+                  "vnfProducts": {
+                    "description": "If present, match VNF instances that belong to VNF products with certain product names, from one particular provider.\n",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "vnfProductName"
+                      ],
+                      "properties": {
+                        "vnfProductName": {
+                          "description": "Name of the VNF product to match.\n",
+                          "type": "string"
+                        },
+                        "versions": {
+                          "description": "If present, match VNF instances that belong to VNF products with certain versions and a certain product name, from one particular provider.\n",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "vnfSoftwareVersion"
+                            ],
+                            "properties": {
+                              "vnfSoftwareVersion": {
+                                "description": "A version.\n",
+                                "type": "string"
+                              },
+                              "vnfdVersions": {
+                                "description": "If present, match VNF instances that belong to VNF products with certain VNFD versions, a certain software version and a certain product name, from one particular provider.\n",
+                                "type": "array",
+                                "items": {
+                                  "description": "A version.\n",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "vnfInstanceIds": {
+              "description": "If present, match VNF instances with an instance identifier listed in this attribute. The attributes \"vnfInstanceIds\" and \"vnfInstanceNames\" are alternatives to reference to particular VNF Instances in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+              "type": "array",
+              "items": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              }
+            },
+            "vnfInstanceNames": {
+              "description": "If present, match VNF instances with a VNF Instance Name listed in this attribute. The attributes \"vnfInstanceIds\" and \"vnfInstanceNames\" are alternatives to reference to particular VNF Instances in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "indicatorIds": {
+          "description": "Match particular VNF indicator identifiers.\n",
+          "type": "array",
+          "items": {
+            "description": "An identifier that is unique within a VNF descriptor.\n",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "callbackUri": {
+      "description": "The URI of the endpoint to send the notification to.\n",
+      "type": "string",
+      "format": "url"
+    },
+    "_links": {
+      "description": "Links for this resource.\n",
+      "type": "object",
+      "required": [
+        "self"
+      ],
+      "properties": {
+        "self": {
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of the referenced resource.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -41,7 +41,7 @@ Get information about multiple VNF instances
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfInstance.schema.json    ${json}
+    Validate Json    vnfInstances.schema.json    ${json}
     Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
