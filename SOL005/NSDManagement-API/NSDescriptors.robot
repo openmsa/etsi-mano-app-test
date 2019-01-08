@@ -5,6 +5,7 @@ Resource          environment/generic.txt    # Generic Parameters
 Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           OperatingSystem
 
 *** Test Cases ***
 GET all Network Service Descriptors
