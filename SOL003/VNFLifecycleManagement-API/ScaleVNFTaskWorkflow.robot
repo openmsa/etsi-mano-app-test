@@ -38,6 +38,7 @@ Scale out a VNF Instance
 *** Keywords ***
 
 Initialize System
+    Create Sessions
     ${scaleInfo}=    Get Vnf Scale Info    ${vnfInstanceId}
     
 Precondition Checks

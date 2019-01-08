@@ -39,12 +39,9 @@ Check HTTP Response Body Json Schema Is
     Log    Json Schema Validation OK
 
 Check resource Instantiated
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
-    Integer    response status    200
-    String    response body instantiationState    INSTANTIATED
+    Check VNF Instance    ${vnfInstanceId}
+    Check HTTP Response Status Code Is    200
+    Check VNF Status    ${response.body.instantiationState}    INSTANTIATED
 
 Check VNF Instance
     [Arguments]    ${vnfId}
@@ -77,8 +74,7 @@ Send VNF Scale Out Request
     ${body}=    Get File    json/scaleVnfOutRequest.json
     ${json}=    evaluate    json.loads('''${body}''')    json
     ${aspectId}=    Set Variable    ${json.aspectId}  
-    ${scaleOutResponse}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
-    [Return]    ${scaleOutResponse}
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
   
 Create a new Grant - Synchronous mode
     [Arguments]    ${vnfInstanceId}    ${vnfLcmOpOccId}    ${operation}
