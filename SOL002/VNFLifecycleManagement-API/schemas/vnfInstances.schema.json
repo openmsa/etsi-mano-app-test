@@ -1,4 +1,6 @@
 {
+  "type:" : "array",
+  "items": {
   "type": "object",
   "description": "This type represents a VNF instance.",
   "required": [
@@ -981,3 +983,4 @@
     }
   }
 }
+  }

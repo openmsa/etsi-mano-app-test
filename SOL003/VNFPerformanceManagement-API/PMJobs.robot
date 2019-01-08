@@ -19,7 +19,7 @@ GET all Pm Jobs
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJob.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${json}
     Log    Validation OK
     Log    Checking that reports element is missing
     ${reports}=    Get Value From Json    ${json}    $..reports
@@ -37,7 +37,7 @@ GET all Pm Jobs - Filter
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJob.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${json}
     Log    Validation OK
 
 GET all Pm Jobs - all_fields
@@ -51,7 +51,7 @@ GET all Pm Jobs - all_fields
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJob.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${json}
     Log    Validation OK
     Log    Trying to validate criteria schema
     ${criteria}=    Get Value From Json    ${json}    $..criteria
@@ -77,7 +77,7 @@ GET all Pm Jobs - exclude_default
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJob.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${json}
     Log    Validation OK
     Log    Checking that reports element is missing
     ${reports}=    Get Value From Json    ${json}    $..reports
@@ -96,7 +96,7 @@ GET all Pm Jobs - fields
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJob.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${json}
     Log    Validation OK
     Log    Trying to validate criteria schema
     ${criteria}=    Get Value From Json    ${json}    $..criteria
@@ -119,7 +119,7 @@ GET all Pm Jobs - exclude_fields
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJob.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${json}
     Log    Validation OK
     Log    Checking that reports element is missing
     ${reports}=    Get Value From Json    ${json}    $..reports

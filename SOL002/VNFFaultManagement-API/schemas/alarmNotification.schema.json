@@ -1,9 +1,4 @@
 {
-  "name": "AlarmNotification",
-  "description": "Information of a VNF alarm.\n",
-  "in": "body",
-  "required": true,
-  "schema": {
     "description": "This type represents an alarm notification about VNF faults. This notification shall be triggered by the VNFM when: * An alarm has been created. * An alarm has been updated, e.g. if the severity of the alarm has  changed.\n",
     "type": "object",
     "required": [
@@ -247,4 +242,3 @@
       }
     }
   }
-}

@@ -17,7 +17,7 @@ GET all Packages
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfPkgInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${json}
     Log    Validation OK
     Log    Checking missing information for softwareImages element
     ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
@@ -43,7 +43,7 @@ GET all Packages - Filter
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfPkgInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${json}
     Log    Validation OK
 
 GET all Packages - Negative (wronge filter name)
@@ -103,7 +103,7 @@ GET all Packages - all_fields
     ${vnfPkgInfos}=    Output    response body
     ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Log    Trying to validate response
-    Validate Json    vnfPkgInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${json}
     Log    Validation OK
     Log    Trying to validate softwareImages schema
     ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
@@ -128,7 +128,7 @@ GET all Packages - exclude_default
     ${vnfPkgInfos}=    Output    response body
     ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Log    Trying to validate response
-    Validate Json    vnfPkgInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${json}
     Log    Validation OK
     Log    Checking missing information for softwareImages element
     ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
@@ -155,7 +155,7 @@ GET all Packages - fields
     ${vnfPkgInfos}=    Output    response body
     ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Log    Trying to validate response, checking vnfPkgInfo and other complex attributes included in the vnfPkgInfo
-    Validate Json    vnfPkgInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${json}
     Log    Validation for vnfPkgInfo OK
     Log    Trying to validate softwareImages schema
     ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages

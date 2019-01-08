@@ -9,7 +9,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This resource represents an individual VNF instance. The client can use this resource to modify and delete the 
 ...    underlying VNF instance, and to read information about the VNF instance.
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Variables ***
 ${Etag}=    an etag
@@ -17,7 +17,7 @@ ${Etag_modified}=    a modified etag
 
 *** Test Cases ***
 Post Individual VNFInstance - Method not implemented
-    log    Trying to perform a POST. This method should not be implemented
+    Log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -26,7 +26,7 @@ Post Individual VNFInstance - Method not implemented
     Integer    response status    405
 
 Get Information about an individual VNF Instance
-    log    Trying to get information about an individual VNF instance
+    Log    Trying to get information about an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -42,7 +42,7 @@ Get Information about an individual VNF Instance
     Log    Validation OK
     
 PUT Individual VNFInstance - Method not implemented 
-    log    Trying to perform a PUT. This method should not be implemented
+    Log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -72,7 +72,7 @@ PATCH Individual VNFInstance Precondition failed
     [Documentation]    Precondition Failed
     ...    A precondition given in an HTTP request header is not fulfilled. 
     ...    Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity. 
-    ...    The response body should contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body should contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     Depends On Test    PATCH Individual VNFInstance    # If the previous test scceeded, it means that Etag has been modified
     log    Trying to modify an individual VNF instance Precondition failed
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -94,7 +94,7 @@ PATCH Individual VNFInstance Conflict
     # TODO: Need to set the pre-condition of the test
     [Documentation]    Conflict
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that another LCM operation is ongoing. The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    Typically, this is due to the fact that another LCM operation is ongoing. The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Launch another LCM operation
     log    Trying to modify an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -126,7 +126,7 @@ DELETE Individual VNFInstance Conflict
     [Documentation]    Conflict 
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in INSTANTIATED state. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Check resource instantiated
     log    Trying to delete an individual VNF instance Conflict
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -140,8 +140,7 @@ DELETE Individual VNFInstance Conflict
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
     
-*** Key words ***   
-
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}

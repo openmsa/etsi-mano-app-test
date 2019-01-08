@@ -1,4 +1,6 @@
 {
+  "type": "array",
+  "items": {
   "type": "object",
   "description": "This type represents a VNF lifecycle management operation occurrence.\n",
   "required": [
@@ -627,4 +629,5 @@
       }
     }
   }
+}
 }
