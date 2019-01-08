@@ -6,7 +6,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
 ...    subscription to notifications related to VNF lifecycle management
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented

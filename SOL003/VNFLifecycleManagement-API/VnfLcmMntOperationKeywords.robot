@@ -5,10 +5,8 @@ Library           OperatingSystem
 Library           BuiltIn
 Library           JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-  
 
 *** Keywords ***
-
 Get Vnf Instance 
     [Arguments]    ${vnfInstanceId}
     Set Headers    {"Accept":"${ACCEPT}"}  

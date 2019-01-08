@@ -5,7 +5,7 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Change external VNF connectivity 
@@ -27,7 +27,7 @@ Change external VNF connectivity Conflict (parallel LCM operation)
     [Documentation]    Conflict
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that another LCM operation is ongoing.
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Launch another LCM operation
     log    Trying to change the deployment flavour of a VNF instance.
     Set Headers    {"Accept":"${ACCEPT}"}  
