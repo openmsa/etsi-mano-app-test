@@ -1,0 +1,6 @@
+*** Variables ***
+${POS_FIELDS}     name=nsdOnboardingState
+${NEG_FIELDS}     wrongName=any_value
+${nsdInfoId}    5a569e1d-4ffe-4e9a-8cf6-c24226651e56
+${erroneous_nsdInfoId}  erroneous_nsdInfoId
+${enabledNsdInfoId}  5a569e1d-4ffe-4e9a-8cf6-c24226651e56
