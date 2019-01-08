@@ -7,7 +7,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 
-*** Test cases ***
+*** Test Cases ***
 POST Alarms - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  

@@ -7,7 +7,7 @@ Library    REST    ${VNFM_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 ...    spec=SOL003-VirtualisedResourcesQuotaAvailableNotification-API.yaml
 Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
 ...    subscription to notifications related to the availability of the virtualised resources quotas.
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented
@@ -55,7 +55,7 @@ DELETE an individual subscription
     Log    Validate Status code
     Integer    response status    204
 
-*** Keywords ***   
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
