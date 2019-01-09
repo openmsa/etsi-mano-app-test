@@ -6,7 +6,7 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 ...    spec=SOL003-VNFFaultManagement-API.yaml
 Documentation    This resource represents an individual subscription for VNF alarms. 
 ...    The client can use this resource to read and to terminate a subscription to notifications related to VNF fault management.
-Suite setup    Check resource existance
+Suite setup    Check resource existance 
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented
@@ -19,6 +19,14 @@ Post Individual Subscription - Method not implemented
     Integer    response status    405
 
 Get Information about an individual subscription
+    [Documentation]    Test ID: 7.4.4.5
+    ...    Test title: Retrieve the alarm subscriptions
+    ...    Test objective: The objective is to read an individual subscription for VNF alarms subscribed by the client
+    ...    Pre-conditions: The subscription with the given id exists
+    ...    Reference: section 7.4.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
     log    Trying to get information about an individual subscription
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

@@ -11,7 +11,14 @@ Library    JSONSchemaLibrary    schemas/
 *** Test cases ***
 
 Create a new vnfInstance
-    [Setup]    #make sure the vnfInstand ${vnfInstanceId} doesn't exist
+    [Documentation]    Test ID: 5.4.2.1
+    ...    Test title: Create a VNF instance
+    ...    Test objective: The objective is to create a new VNF instance resource
+    ...    Pre-conditions: VNF instance with the given vnfInstanceId doesn't exist 
+    ...    Reference: section 5.4.2.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: VNF instance created
     Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -30,6 +37,14 @@ Create a new vnfInstance
     Log    Validation OK
 
 Get information about multiple VNF instances  
+    [Documentation]    Test ID: 5.4.2.2
+    ...    Test title: Get information about multiple VNF instances
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     Log    Query VNF The GET method queries information about multiple VNF instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -46,6 +61,15 @@ Get information about multiple VNF instances
     Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
+    [Documentation]    Test ID: 5.4.2.2-1
+    ...    Test title: Get information about multiple VNF instances - Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute-based filtering parameters
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    Log    Query VNF The GET method queries information about multiple VNF instances.
     Log    Query VNF The GET method queries information about multiple VNF instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -59,6 +83,14 @@ Get information about multiple VNF instances Bad Request Invalid attribute-based
     Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute selector
+    [Documentation]    Test ID: 5.4.2.2-1
+    ...    Test title: Get information about multiple VNF instances - Invalid attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute selector
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     Log    Query VNF The GET method queries information about multiple VNF instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}

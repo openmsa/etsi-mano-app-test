@@ -22,8 +22,16 @@ POST Alarm - Method not implemented
     Output    response
     Integer    response status    405
 
-Get information about an alarm  
-    Log    Query VNF The GET method queries information about multiple alarms.
+Get information about an alarm
+    [Documentation]    Test ID: 7.4.3.1
+    ...    Test title: Get information about an alarm
+    ...    Test objective: The objective is to read an individual alarm.
+    ...    Pre-conditions: The related alarm exists
+    ...    Reference: section 7.4.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions:   
+    Log    Query VNF The GET method queries information about an alarm.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -49,7 +57,14 @@ PUT Alarm - Method not implemented
     Integer    response status    405
 
 PATCH Alarm
-    [Documentation]    This method modifies an individual alarm resource
+    [Documentation]    Test ID: 7.4.3.2
+    ...    Test title: Modify an individual alarm resource
+    ...    Test objective: The objective is to Modify an individual alarm resource
+    ...    Pre-conditions: The related alarm exists
+    ...    Reference: section 7.4.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
@@ -67,11 +82,14 @@ PATCH Alarm
     Log    Validation OK
 
 PATCH Alarm - Conflict
-    [Documentation]    Conflict
-    ...    The operation cannot be executed currently, due to a conflict with the state of the “Individual alarm” resource. 
-    ...    Typically, this is due to the fact that the alarm is already in the state that is requested to be set (such as trying to acknowledge an already-acknowledged alarm). 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
-    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that the alarm is in ackownledged state
+    [Documentation]    Test ID: 7.4.3.2-1
+    ...    Test title: Modify an individual alarm resource - Conflict
+    ...    Test objective: The objective is to Modify an individual alarm resource
+    ...    Pre-conditions: The related alarm exists
+    ...    Reference: section 7.4.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: The alarm resource is not modified
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
@@ -86,10 +104,14 @@ PATCH Alarm - Conflict
     Log    Validation OK
 
 PATCH Alarm - Precondition failed
-    [Documentation]    Precondition Failed
-    ...    A precondition given in an HTTP request header is not fulfilled. Typically, this is due to an ETag mismatch, 
-    ...    indicating that the resource was modified by another entity. The response body should contain a ProblemDetails structure, 
-    ...    in which the “detail” attribute should convey more information about the error.
+    [Documentation]    Test ID: 7.4.3.2-1
+    ...    Test title: Modify an individual alarm resource - Precondition failed
+    ...    Test objective: The objective is to Modify an individual alarm resource
+    ...    Pre-conditions: The related alarm exists
+    ...    Reference: section 7.4.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: The alarm resource is not modified
     Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
