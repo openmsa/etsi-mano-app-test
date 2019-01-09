@@ -22,7 +22,7 @@ Create a new subscription
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    subscription.schema.json    ${json}
     Log    Validation OK
 
 Create a new Subscription - DUPLICATION
@@ -39,7 +39,7 @@ Create a new Subscription - DUPLICATION
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    subscription.schema.json    ${json}
     Log    Validation OK
 
 Create a new Subscription - NO-DUPLICATION

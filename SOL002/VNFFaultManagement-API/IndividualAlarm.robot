@@ -12,7 +12,7 @@ Library    DependencyLibrary
 ${Etag}=    an etag
 ${Etag_modified}=    a modified etag
 
-*** Test cases ***
+*** Test Cases ***
 POST Alarm - Method not implemented
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -66,9 +66,9 @@ PATCH Alarm
 
 PATCH Alarm - Conflict
     [Documentation]    Conflict
-    ...    The operation cannot be executed currently, due to a conflict with the state of the “Individual alarm” resource. 
+    ...    The operation cannot be executed currently, due to a conflict with the state of the ï¿½Individual alarmï¿½ resource. 
     ...    Typically, this is due to the fact that the alarm is already in the state that is requested to be set (such as trying to acknowledge an already-acknowledged alarm). 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that the alarm is in ackownledged state
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
@@ -87,7 +87,7 @@ PATCH Alarm - Precondition failed
     [Documentation]    Precondition Failed
     ...    A precondition given in an HTTP request header is not fulfilled. Typically, this is due to an ETag mismatch, 
     ...    indicating that the resource was modified by another entity. The response body should contain a ProblemDetails structure, 
-    ...    in which the “detail” attribute should convey more information about the error.
+    ...    in which the ï¿½detailï¿½ attribute should convey more information about the error.
     Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
@@ -109,5 +109,4 @@ DELETE Alarm - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     Log    Validate Status code
-
     Integer    response status    405   

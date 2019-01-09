@@ -6,7 +6,7 @@ Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This task resource represents the "Retry operation" operation. The client can use this resource to initiate retrying a VNF lifecycle operation.
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Retry operation task  
@@ -29,7 +29,7 @@ Post Retry operation task Conflict (Not-FAILED_TEMP)
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is not in FAILED_TEMP state, 
     ...    or another error handling action is starting, such as rollback or fail. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     Depends on test failure  Check resource FAILED_TEMP
     Log    Retry an operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -49,7 +49,7 @@ Post Retry operation task Conflict (parallel LCM operation)
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is not in FAILED_TEMP state, 
     ...    or another error handling action is starting, such as rollback or fail. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Launch another error handling action
     log    Retry an operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -69,7 +69,7 @@ Post Retry operation task Not Found
     ...    Specifically in case of this task resource, the response code 404 shall also be returned 
     ...    if the task is not supported for the VNF LCM operation occurrence represented by the parent resource, 
     ...    which means that the task resource consequently does not exist. 
-    ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the “detail” attribute shall convey more information about the error.
+    ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute shall convey more information about the error.
     [Setup]    Check retry not supported
     log    Retry an operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -109,7 +109,7 @@ DELETE Retry operation task - Method not implemented
     Log    Validate Status code
     Integer    response status    405
 
-*** Key words ***
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

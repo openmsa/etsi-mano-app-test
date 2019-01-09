@@ -153,7 +153,7 @@ POST Subscription - NO DUPLICATION
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmSubscriptions.schema.json    ${json}
+    Validate Json    PmSubscription.schema.json    ${json}
     Log    Validated PmSubscription schema
     Log    Trying to validate the Location header
     ${headers}=    Output    response headers

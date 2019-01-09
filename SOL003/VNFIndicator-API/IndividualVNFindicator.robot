@@ -16,7 +16,7 @@ GET Individual VNF Indicator
     Log    Trying to validate response
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfIndicators.schema.json    ${json}
+    Validate Json    vnfIndicator.schema.json    ${json}
     Log    Validation OK
 
 GET Individual VNF Indicator - Negative (Not Found)

@@ -5,7 +5,7 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library     OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Change deployment flavour of a vnfInstance
@@ -28,7 +28,7 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, 
     ...    or that another lifecycle management operation is ongoing. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Check resource not instantiated
     Log    Trying to change the deployment flavour of a VNF instance.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -49,7 +49,7 @@ Change deployment flavour of a vnfInstance Conflict (parallel LCM operation)
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, 
     ...    or that another lifecycle management operation is ongoing. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Launch another LCM operation
     log    Trying to change the deployment flavour of a VNF instance.
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -70,7 +70,7 @@ Change deployment flavour of a vnfInstance Not Found
     [Documentation]    Not Found
     ...    Error: The API producer did not find a current representation for the target resource or is not willing to disclose that one exists. 
     ...    Specifically in case of this task resource, the response code 404 shall also returned if the task is not supported for the VNF instance represented by the parent resource, which means that the task resource consequently does not exist. 
-    ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the “detail” attribute shall convey more information about the error.
+    ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute shall convey more information about the error.
     [Setup]    Check change flavour not supported
     Log    Trying to change the deployment flavour of a VNF instance, not exist
     Set Headers  {"Accept":"${ACCEPT}"}  

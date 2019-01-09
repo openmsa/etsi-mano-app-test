@@ -18,8 +18,8 @@ GET Subscription
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PkgmSubscription.schema.json    ${json}
-    Log    Validated PkgmSubscription schema
+    Validate Json    PkgmSubscriptions.schema.json    ${json}
+    Log    Validated PkgmSubscriptions schema
 
 GET Subscription - Filter
     Log    Trying to get the list of subscriptions using filters
@@ -32,8 +32,8 @@ GET Subscription - Filter
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PkgmSubscription.schema.json    ${json}
-    Log    Validated PkgmSubscription schema
+    Validate Json    PkgmSubscriptions.schema.json    ${json}
+    Log    Validated PkgmSubscriptions schema
 
 GET Subscription - Negative Filter
     Log    Trying to get the list of subscriptions using filters with wrong attribute name
