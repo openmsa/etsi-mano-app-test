@@ -19,11 +19,11 @@ GET all Network Service Descriptors
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     Log  Validation of Content-Type : OK
-#    Log    Trying to validate response
-#    ${result}=    Output    response body
-#    ${json}=    evaluate    json.loads('''${result}''')    json
-#    Validate Json    NsdInfos.schema.json    ${json}
-#    Log    Validation OK
+    Log    Trying to validate response
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    NsdInfos.schema.json    ${json}
+    Log    Validation OK
 
 GET all Network Service Descriptors - Filter
     [Documentation]   The GET method queries information about multiple NS descriptor resources.
@@ -36,11 +36,11 @@ GET all Network Service Descriptors - Filter
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
-#    Log    Trying to validate response
-#    ${result}=    Output    response body
-#    ${json}=    evaluate    json.loads('''${result}''')    json
-#    Validate Json    NsdInfos.schema.json    ${json}
-#    Log    Validation OK
+    Log    Trying to validate response
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    NsdInfos.schema.json    ${json}
+    Log    Validation OK
 
 GET all Network Service Descriptors - Negative (wronge filter name)
     Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -116,10 +116,10 @@ POST a new Network Service Descriptors
     ${headers}=    Output    response headers
     Should Contain    ${headers}    Location
     Log    Response has header Location
-#    ${result}=    Output    response body
-#    ${json}=    evaluate    json.loads('''${result}''')    json
-#    Validate Json    NsdInfo.schema.json    ${json}
-#    Log    Validation of NsdInfo OK
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    NsdInfo.schema.json    ${json}
+    Log    Validation of NsdInfo OK
 
 PUT all Network Service Descriptors (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented

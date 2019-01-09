@@ -19,11 +19,11 @@ GET Single Network Service Descriptor
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     Log  Validation of Content-Type : OK
-#    Log    Trying to validate response
-#    ${result}=    Output    response body
-#    ${json}=    evaluate    json.loads('''${result}''')    json
-#    Validate Json    NsdInfo.schema.json    ${json}
-#    Log    Validation OK
+    Log    Trying to validate response
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    NsdInfo.schema.json    ${json}
+    Log    Validation OK
 
 
 GET Single Network Service Descriptor (Negative: Not found)
@@ -51,10 +51,10 @@ PATCH Single Network Service Descriptor - (Disabling a nsdInfo)
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
     Integer    response status    200
     Log    Received 200 OK as expected
-#    ${result}=    Output    response body
-#    ${json}=    evaluate    json.loads('''${result}''')    json
-#    Validate Json    NsdInfoModification.schema.json    ${json}
-#    Log    Validation of NsdInfoModifications OK
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    NsdInfoModification.schema.json    ${json}
+    Log    Validation of NsdInfoModifications OK
 
 PATCH Single Network Service Descriptor - (Enabling an previously disabled nsdInfo)
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in disabled operational state
