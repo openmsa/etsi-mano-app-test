@@ -2,7 +2,7 @@
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL002-VNFFaultManagement-API.yaml
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Escalate the perceived severity 
@@ -43,7 +43,7 @@ DELETE Escalate the perceived severity - Method not implemented
     Log    Validate Status code
     Integer    response status    405
 
-*** Key words ***
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}

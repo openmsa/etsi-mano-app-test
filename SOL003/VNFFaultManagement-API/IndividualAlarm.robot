@@ -12,7 +12,7 @@ Library    DependencyLibrary
 ${Etag}=    an etag
 ${Etag_modified}=    a modified etag
 
-*** Test cases ***
+*** Test Cases ***
 POST Alarm - Method not implemented
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -78,7 +78,7 @@ PATCH Alarm
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    alarmModifications.schema.json    ${json}
+    Validate Json    AlarmModification.schema.json    ${json}
     Log    Validation OK
 
 PATCH Alarm - Conflict

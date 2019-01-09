@@ -30,7 +30,7 @@ Create a new subscription
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    FmSubscription.schema.json    ${json}
     Log    Validation OK
 
 Create a new Subscription - DUPLICATION
@@ -55,7 +55,7 @@ Create a new Subscription - DUPLICATION
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    FmSubscription.schema.json    ${json}
     Log    Validation OK
 
 Create a new Subscription - NO-DUPLICATION
@@ -99,7 +99,7 @@ GET Subscriptions
     Integer    response status    200
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    FmSubscriptions.schema.json    ${json}
     Log    Validation OK
 
 GET Subscription - Filter
@@ -119,7 +119,7 @@ GET Subscription - Filter
     Log    Received a 200 OK as expected
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    FmSubscriptions.schema.json    ${json}
     Log    Validation OK
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters

@@ -5,7 +5,7 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Terminate a vnfInstance
@@ -28,7 +28,7 @@ Terminate a vnfInstance Conflict (Not-Instantiated)
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, 
     ...    or that another lifecycle management operation is ongoing. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Check resource not instantiated
     Log    Trying to terminate a VNF instance.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -49,7 +49,7 @@ Terminate a vnfInstance Conflict (parallel LCM operation)
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, 
     ...    or that another lifecycle management operation is ongoing. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Launch another LCM operation
     log    Trying to change the deployment flavour of a VNF instance.
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -93,7 +93,7 @@ DELETE Terminate VNFInstance - Method not implemented
     Log    Validate Status code
     Integer    response status    405
 
-*** Key words ***
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}

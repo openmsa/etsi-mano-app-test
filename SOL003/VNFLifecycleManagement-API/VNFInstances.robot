@@ -8,8 +8,7 @@ Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
-*** Test cases ***
-
+*** Test Cases ***
 Create a new vnfInstance
     [Documentation]    Test ID: 5.4.2.1
     ...    Test title: Create a VNF instance
@@ -57,7 +56,7 @@ Get information about multiple VNF instances
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfInstance.schema.json    ${json}
+    Validate Json    vnfInstances.schema.json    ${json}
     Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters

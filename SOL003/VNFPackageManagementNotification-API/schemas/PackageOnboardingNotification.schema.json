@@ -1,0 +1,80 @@
+{
+  "description": "This type represents a VNF package management notification, which informs the receiver that the onboarding process of a VNF package is complete and the package is ready for use. The notification shall be triggered by the NFVO when the \"onboardingState\" attribute of a new VNF package has changed to \"ONBOARDED\".",
+  "type": "object",
+  "required": [
+    "id",
+    "notificationType",
+    "timeStamp",
+    "vnfPkgId",
+    "vnfdId",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "notificationType": {
+      "description": "Discriminator for the different notification types. Shall be set to \"VnfPackageOnboardingNotification\" for this notification type.\n",
+      "type": "string",
+      "enum": [
+        "VnfPackageOnboardingNotification"
+      ]
+    },
+    "subscriptionId": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "timeStamp": {
+      "description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
+      "type": "string",
+      "format": "date-time"
+    },
+    "vnfPkgId": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "vnfdId": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "_links": {
+      "description": "This type represents the links to resources that a VNF package management notification can contain.\n",
+      "type": "object",
+      "required": [
+        "vnfPackage",
+        "subscription"
+      ],
+      "properties": {
+        "vnfPackage": {
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of the referenced resource.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        },
+        "subscription": {
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of the referenced resource.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        }
+      }
+    }
+  }
+}

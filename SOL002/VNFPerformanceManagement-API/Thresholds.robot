@@ -21,7 +21,7 @@ GET Thresholds
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with thresholds schema
-    Validate Json    Threshold.schema.json    ${json}
+    Validate Json    Thresholds.schema.json    ${json}
 
 GET Thresholds - Filter
     [Documentation]    The client can use this method to query information about thresholds.
@@ -36,7 +36,7 @@ GET Thresholds - Filter
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with Threshold schema
-    Validate Json    Threshold.schema.json    ${json}
+    Validate Json    Thresholds.schema.json    ${json}
 
 GET Thresholds - NEGATIVE Filter
     [Documentation]    The client can use this method to query information about thresholds.

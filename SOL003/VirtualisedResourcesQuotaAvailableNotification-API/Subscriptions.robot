@@ -23,7 +23,7 @@ Create a new subscription
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    VrQuotaAvailSubscription.schema.json    ${json}
     Log    Validation OK
 
 Create a new Subscription - DUPLICATION
@@ -40,7 +40,7 @@ Create a new Subscription - DUPLICATION
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    VrQuotaAvailSubscription.schema.json    ${json}
     Log    Validation OK
 
 Create a new Subscription - NO-DUPLICATION
@@ -80,7 +80,7 @@ GET Subscription - Filter
     Log    Received a 200 OK as expected
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    VrQuotaAvailSubscriptions.schema.json    ${json}
     Log    Validation OK
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters

@@ -7,7 +7,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
 ...    subscription to notifications related to VNF lifecycle management
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented
@@ -28,7 +28,7 @@ Get Information about an individual subscription
     Integer    response status    200
      ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscriptions.schema.json    ${json}
+    Validate Json    Subscription.schema.json    ${json}
     Log    Validation OK
 
 PUT an individual subscription - Method not implemented
@@ -57,8 +57,7 @@ DELETE an individual subscription
     Log    Validate Status code
     Integer    response status    204
 
-*** Keywords ***   
-
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}

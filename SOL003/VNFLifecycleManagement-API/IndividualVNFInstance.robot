@@ -10,7 +10,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This resource represents an individual VNF instance. The client can use this resource to modify and delete the 
 ...    underlying VNF instance, and to read information about the VNF instance.
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Variables ***
 ${Etag}=    an etag
@@ -27,14 +27,6 @@ Post Individual VNFInstance - Method not implemented
     Integer    response status    405
 
 Get Information about an individual VNF Instance
-    [Documentation]    Test ID: 5.4.3.1
-    ...    Test title: Get Information about an individual VNF Instance
-    ...    Test objective: The objective is to retrieve information about a VNF instance
-    ...    Pre-conditions: The related VNF instance exists 
-    ...    Reference: section 5.4.3.3.2 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: 
     log    Trying to get information about an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
@@ -60,14 +52,10 @@ PUT Individual VNFInstance - Method not implemented
     Integer    response status    405
 
 PATCH Individual VNFInstance
-    [Documentation]    Test ID: 5.4.3.2
-    ...    Test title: Modify individual VNF Information
-    ...    Test objective: The objective is to modify an individual VNF instance resource
-    ...    Pre-conditions: The related VNF instance exists 
-    ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: The VNF information modified
+    [Documentation]    Modify VNF Information
+    ...    This method modifies an individual VNF instance resource. 
+    ...    Changes to the VNF configurable properties are applied to the configuration in the VNF instance, and are reflected in the representation of this resource. 
+    ...    Other changes are applied to the VNF instance information managed by the VNFM, and are reflected in the representation of this resource
     log    Trying to modify an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
@@ -82,14 +70,10 @@ PATCH Individual VNFInstance
     Log    Validation OK
 
 PATCH Individual VNFInstance Precondition failed
-    [Documentation]    Test ID: 5.4.3.2-1
-    ...    Test title: Modify individual VNF Information - Precondition failed
-    ...    Test objective: The objective is to modify an individual VNF instance resource
-    ...    Pre-conditions: the resource was modified by another entity (Etag modified in the meanwhile). 
-    ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: 
+    [Documentation]    Precondition Failed
+    ...    A precondition given in an HTTP request header is not fulfilled. 
+    ...    Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity. 
+    ...    The response body should contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     Depends On Test    PATCH Individual VNFInstance    # If the previous test scceeded, it means that Etag has been modified
     log    Trying to modify an individual VNF instance Precondition failed
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -106,14 +90,10 @@ PATCH Individual VNFInstance Precondition failed
     Log    Validation OK
 
 PATCH Individual VNFInstance Conflict
-    [Documentation]    Test ID: 5.4.3.2-2
-    ...    Test title: Modify individual VNF Information - Conflict
-    ...    Test objective: The objective is to modify an individual VNF instance resource
-    ...    Pre-conditions: the resource is in a state that PATCH operation is not permitted
-    ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: 
+    # TODO: Need to set the pre-condition of the test
+    [Documentation]    Conflict
+    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Typically, this is due to the fact that another LCM operation is ongoing. The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Launch another LCM operation
     log    Trying to modify an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -143,7 +123,7 @@ DELETE Individual VNFInstance Conflict
     [Documentation]    Conflict 
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in INSTANTIATED state. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Check resource instantiated
     log    Trying to delete an individual VNF instance Conflict
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -155,8 +135,7 @@ DELETE Individual VNFInstance Conflict
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
     
-*** Keywords ***   
-
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
