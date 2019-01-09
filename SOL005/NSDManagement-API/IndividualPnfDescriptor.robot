@@ -2,9 +2,10 @@
 Documentation     This clause defines all the resources and methods provided by the Iindividual PNF descriptor interface. \
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/generic.txt    # Generic Parameters
-Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
+Resource          environment/pnfDescriptors.txt    # Specific nsDescriptors Parameters
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           OperatingSystem
 
 *** Test Cases ***
 GET Single PNF Descriptor
@@ -64,7 +65,7 @@ DELETE Single PNF Descriptor
     Log    Trying to perform a DELETE pnfdInfo.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${nsdInfoId}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
     Integer    response status    204
     Log    Received 204 No Content as expected
 
@@ -74,7 +75,7 @@ POST Single PNF Descriptor (Method not implemented)
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${nsdInfoId}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
 
@@ -84,7 +85,7 @@ PUT Single PNF Descriptor (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${nsdInfoId}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
 
