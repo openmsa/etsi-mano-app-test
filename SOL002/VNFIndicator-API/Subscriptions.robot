@@ -18,7 +18,7 @@ GET Subscription
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    VnfIndicatorSubscription.schema.json    ${json}
+    Validate Json    VnfIndicatorSubscriptions.schema.json    ${json}
     Log    Validated VnfIndicatorSubscription schema
 
 GET Subscription - Filter
@@ -32,7 +32,7 @@ GET Subscription - Filter
     Log    Received a 200 OK as expected
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    VnfIndicatorSubscription.schema.json    ${json}
+    Validate Json    VnfIndicatorSubscriptions.schema.json    ${json}
     Log    Validated VnfIndicatorSubscriptions schema
 
 GET Subscription - Negative Filter

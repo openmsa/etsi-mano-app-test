@@ -6,7 +6,7 @@ Library    DependencyLibrary
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 
 *** Test Cases ***
@@ -29,7 +29,7 @@ Instantiate a vnfInstance Conflict
     [Documentation]    Conflict. 
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in INSTANTIATED state. 
-    ...    The response body shall contain a ProblemDetails structure, in which the “detail” attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the ï¿½detailï¿½ attribute should convey more information about the error.
     [Setup]    Check resource instantiated
     Log    Trying to Instantiate a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -74,7 +74,7 @@ DELETE Instantiate VNFInstance - Method not implemented
     Log    Validate Status code
     Integer    response status    405
 
-*** Key words ***
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}

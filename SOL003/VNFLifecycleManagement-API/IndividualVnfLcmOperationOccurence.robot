@@ -11,7 +11,6 @@ Documentation    This resource represents a VNF lifecycle management operation o
 ...    handling of operation errors via retrying the operation, rolling back the operation, or permanently failing the operation
 
 *** Test Cases ***
-
 Post Individual VNF LCM OP occurences - Method not implemented
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -23,7 +22,7 @@ Post Individual VNF LCM OP occurences - Method not implemented
 Get stauts information about multiple VNF instances  
     [Documentation]    Get Operation Status
     ...    The client can use this method to retrieve status information about a VNF lifecycle management operation occurrence 
-    ...    by reading an individual “VNF LCM operation occurrence” resource.
+    ...    by reading an individual ï¿½VNF LCM operation occurrenceï¿½ resource.
     Log    Query status information about multiple VNF lifecycle management operation occurrences.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -35,7 +34,7 @@ Get stauts information about multiple VNF instances
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfLcmOpOcc.schema.json    ${json}
+    Validate Json    VnfLcmOpOcc.schema.json    ${json}
     Log    Validation OK
 
 PUT stauts information about multiple VNF instances - Method not implemented 

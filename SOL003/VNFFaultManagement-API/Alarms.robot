@@ -7,7 +7,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 
-*** Test cases ***
+*** Test Cases ***
 POST Alarms - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -28,7 +28,7 @@ Get information about multiple alarms
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    alarm.schema.json    ${json}
+    Validate Json    Alarms.schema.json    ${json}
     Log    Validation OK
 
 Get information about multiple alarms with filters 
@@ -43,7 +43,7 @@ Get information about multiple alarms with filters
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    alarm.schema.json    ${json}
+    Validate Json    Alarms.schema.json    ${json}
     Log    Validation OK
 
 Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters

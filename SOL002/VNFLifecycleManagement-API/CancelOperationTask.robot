@@ -6,7 +6,7 @@ Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This task resource represents the "Cancel operation" operation. The client can use this resource to cancel an ongoing VNF lifecycle operation.
-Suite setup    Check resource existance
+Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Cancel operation task  
@@ -106,7 +106,7 @@ DELETE Fail operation task - Method not implemented
     Log    Validate Status code
     Integer    response status    405
 
-*** Key words ***
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

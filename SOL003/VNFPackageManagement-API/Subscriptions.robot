@@ -18,7 +18,7 @@ GET Subscription
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PkgmSubscription.schema.json    ${json}
+    Validate Json    PkgmSubscriptions.schema.json    ${json}
     Log    Validated PkgmSubscription schema
 
 GET Subscription - Filter
@@ -32,7 +32,7 @@ GET Subscription - Filter
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PkgmSubscription.schema.json    ${json}
+    Validate Json    PkgmSubscriptions.schema.json    ${json}
     Log    Validated PkgmSubscription schema
 
 GET Subscription - Negative Filter

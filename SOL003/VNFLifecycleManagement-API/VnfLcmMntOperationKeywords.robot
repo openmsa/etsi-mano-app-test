@@ -8,7 +8,6 @@ Library    BuiltIn
 Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
-  
 
 *** Keywords ***
 
