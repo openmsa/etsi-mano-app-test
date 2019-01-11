@@ -9,9 +9,6 @@ Library    Collections
 Library    JSONLibrary
 Library    MockServerLibrary
 
-*** Variables ***
-${json}    {}
-
 *** Keywords ***
 Check subscriptions about one VNFInstance and operation type
     [Arguments]    ${vnfInstanceId}    ${notificationType}    ${operationType}=""    ${operationState}=""
@@ -30,8 +27,8 @@ Create Sessions
     Create Mock Session  ${callback_uri}:${callback_port}
     
 Configure Notification Handler
-    [Arguments]    ${endpoint}    ${status}
-    set to dictionary    ${json["operationState"]}    dp=${status}    
+    [Arguments]    ${endpoint}    ${status}=""
+    Run Keyword If   ${status}!=""  set to dictionary    ${json["operationState"]}    dp=${status}    
     ${BODY}=    evaluate    json.dumps(${json})    json
     Log  Creating mock request and response to handle ${element}
     &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
@@ -40,7 +37,6 @@ Configure Notification Handler
 
 Configure Notification Forward
     [Arguments]    ${element}    ${endpoint}    ${endpoint_fwd}    
-    ${json}=	Get File	schemas/${element}.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock HTTP forward to handle ${element}
     &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
@@ -48,7 +44,8 @@ Configure Notification Forward
     Create Mock Expectation With Http Forward  ${notification_tmp}  ${notification_fwd}
 
 Check Operation Notification
-    [Arguments]    ${element}    ${status}
+    [Arguments]    ${element}    ${status}=""
+    ${json}=	Get File	schemas/${element}.schema.json
     Configure Notification Forward    ${element}    ${notification_ep}    ${notification_ep_fwd}
     Configure Notification Handler    ${notification_ep_fwd}    ${status}
     Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}

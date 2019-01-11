@@ -4,7 +4,8 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections

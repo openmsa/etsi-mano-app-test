@@ -74,6 +74,14 @@ Send VNF Scale Out Request
     ${json}=    evaluate    json.loads('''${body}''')    json
     ${aspectId}=    Set Variable    ${json.aspectId}  
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
+    
+Send VNF Create Request
+    Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/createVnfRequest.json
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
   
 Create a new Grant - Synchronous mode
     [Arguments]    ${vnfInstanceId}    ${vnfLcmOpOccId}    ${operation}

@@ -17,3 +17,4 @@ ${VnfIdentifierDeletionNotification}    {}
 ${response}    {}
 ${notification_request}    []
 ${notification_response}    []
+${json}    {}
