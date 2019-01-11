@@ -20,7 +20,14 @@ Post Individual Grant - Method not implemented
     Integer    response status    405
 
 Get an individual grant - Successful
-    # TODO: How to set up the precondition?
+    [Documentation]    Test ID: 9.4.3.1
+    ...    Test title: Requests a grant for a particular VNF lifecycle operation - Successful
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
+    ...    Pre-conditions: The related grant information is available to the VNFM
+    ...    Reference: section 9.4.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     log    Trying to read an individual grant
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -35,7 +42,14 @@ Get an individual grant - Successful
     Log    Validation OK
     
 Get an individual grant - Process ongoing
-    # TODO: How to set up the precondition?
+    [Documentation]    Test ID: 9.4.3.2
+    ...    Test title: Requests a grant for a particular VNF lifecycle operation - Process ongoing
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
+    ...    Pre-conditions: The process of creating the grant is ongoing, no grant is available yet.
+    ...    Reference: section 9.4.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     log    Trying to read an individual grant
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -44,7 +58,14 @@ Get an individual grant - Process ongoing
     Integer    response status    202
 
 Get an individual grant - grant rejected
-    # TODO: How to set up the precondition?
+    [Documentation]    Test ID: 9.4.3.3
+    ...    Test title: Requests a grant for a particular VNF lifecycle operation - grant rejected
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
+    ...    Pre-conditions: The related grant is rejected
+    ...    Reference: section 9.4.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     log    Trying to read an individual grant
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

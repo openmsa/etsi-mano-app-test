@@ -10,6 +10,14 @@ ${sleep_interval}    20s
 
 *** Test Cases ***
 Deliver a notification - Vr Quota Availibility
+    [Documentation]    Test ID: 11.4.4.1
+    ...    Test title: Deliver a notification - Vr Quota Availibility
+    ...    Test objective: The objective is to notify related to the availability of the virtualised resources quota.
+    ...    Pre-conditions: The VNF has subscribed to the Vr Quota Availibility resource
+    ...    Reference: section 11.4.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions:  
     log    The POST method delivers a notification from the server to the client.
     ${json}=	Get File	schemas/VrQuotaAvailNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json

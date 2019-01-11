@@ -9,6 +9,14 @@ Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
 Create a new subscription
+    [Documentation]    Test ID: 11.4.2.1
+    ...    Test title: Create a new subscription related to the availability of the virtualised resources quotas
+    ...    Test objective: The objective is to create a new subscription.
+    ...    Pre-conditions: no subscription with the same filter and callbackUri exists
+    ...    Reference: section 11.4.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -27,6 +35,14 @@ Create a new subscription
     Log    Validation OK
 
 Create a new Subscription - DUPLICATION
+    [Documentation]    Test ID: 11.4.2.2
+    ...    Test title: Create a new resource quota subscription - DUPLICATION
+    ...    Test objective: The objective is to create a new subscription.
+    ...    Pre-conditions: subscription with the same filter and callbackUri exists
+    ...    Reference: section 7.4.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: the VNFM allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
+    ...    Post-Conditions: 
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${NFVO_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
@@ -44,6 +60,14 @@ Create a new Subscription - DUPLICATION
     Log    Validation OK
 
 Create a new Subscription - NO-DUPLICATION
+    [Documentation]    Test ID: 11.4.2.3
+    ...    Test title: Create a new resource quota subscription - NO DUPLICATION
+    ...    Test objective: The objective is to create a new subscription.
+    ...    Pre-conditions: subscription with the same filter and callbackUri exists
+    ...    Reference: section 11.4.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: the VNFM decides to not create a duplicate subscription resource 
+    ...    Post-Conditions: 
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${NFVO_DUPLICATION} == 1    VNFM permits duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
@@ -58,6 +82,14 @@ Create a new Subscription - NO-DUPLICATION
     Log    Validation OK
 
 GET Subscriptions
+    [Documentation]    Test ID: 11.4.2.4
+    ...    Test title: Retrieve a list of resource quota subscriptions
+    ...    Test objective: The objective is to retrieve the list of active subscriptions
+    ...    Pre-conditions: 
+    ...    Reference: section 11.4.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
     Log    Get the list of active subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -72,6 +104,14 @@ GET Subscriptions
     Log    Validation OK
 
 GET Subscription - Filter
+    [Documentation]    Test ID: 11.4.2.5
+    ...    Test title: Retrieve a list of resource quota subscriptions
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with filter
+    ...    Pre-conditions: 
+    ...    Reference: section 11.4.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
     Log    Get the list of active subscriptions using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -84,6 +124,14 @@ GET Subscription - Filter
     Log    Validation OK
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
+    [Documentation]    Test ID: 11.4.2.5-1
+    ...    Test title: Retrieve a list of resource quota subscriptions
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with Invalid attribute-based filtering parameters
+    ...    Pre-conditions: 
+    ...    Reference: section 11.4.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
     Log    Get the list of active subscriptions using an invalid filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

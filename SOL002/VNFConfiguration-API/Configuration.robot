@@ -20,7 +20,15 @@ POST Configuration - Method not implemented
     Log    Validate Status code
     Integer    response status    405
 
-Get information about a configuration  
+Get information about a configuration
+    [Documentation]    Test ID: 9.4.2.1
+    ...    Test title: Get information about a configuration
+    ...    Test objective: The objective is to read configuration information about a VNF instance and/or its VNFC instances
+    ...    Pre-conditions: 
+    ...    Reference: section 9.4.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions:   
     Log    Query VNF The GET method queries information about a configuration.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -46,6 +54,14 @@ PUT Config - Method not implemented
     Integer    response status    405
 
 PATCH Config
+    [Documentation]    Test ID: 9.4.2.2
+    ...    Test title: Set or modify a configuration resource
+    ...    Test objective: The objective is to set or modify a configuration resource
+    ...    Pre-conditions: A VNF instance and its VNFC instances exist
+    ...    Reference: section 9.4.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions:  Configuration of the VNF instance and/or its VNFC instances has been set 
     log    Trying to perform a PATCH. This method modifies the configuration
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"} 
@@ -63,10 +79,14 @@ PATCH Config
     Log    Validation OK
 
 PATCH Config - Precondition failed
-    [Documentation]    Precondition Failed
-    ...    Precondition Failed A precondition given in an HTTP request header is not fulfilled. 
-    ...    Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity. 
-    ...    The response body should contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
+    [Documentation]    Test ID: 9.4.2.2-1
+    ...    Test title: Set or modify a configuration resource  - Precondition failed
+    ...    Test objective: The objective is to set or modify a configuration resource, but a precondition given in an HTTP request header is not fulfilled
+    ...    Pre-conditions: A VNF instance and its VNFC instances exist, ETag modified in the meanwhile
+    ...    Reference: section 9.4.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions:  
     Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 

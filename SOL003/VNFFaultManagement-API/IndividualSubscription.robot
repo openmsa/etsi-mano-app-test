@@ -19,7 +19,7 @@ Post Individual Subscription - Method not implemented
     Integer    response status    405
 
 Get Information about an individual subscription
-    [Documentation]    Test ID: 7.4.4.5
+    [Documentation]    Test ID: 7.4.5.1
     ...    Test title: Retrieve the alarm subscriptions
     ...    Test objective: The objective is to read an individual subscription for VNF alarms subscribed by the client
     ...    Pre-conditions: The subscription with the given id exists

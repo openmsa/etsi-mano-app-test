@@ -19,6 +19,14 @@ Post Individual Subscription - Method not implemented
     Integer    response status    405
 
 Get Information about an individual subscription
+    [Documentation]    Test ID: 7.4.6.1
+    ...    Test title: Retrieve the alarm subscriptions
+    ...    Test objective: The objective is to read an individual subscription for VNF alarms subscribed by the client
+    ...    Pre-conditions: The subscription with the given id exists
+    ...    Reference: section 7.4.6 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
     log    Trying to get information about an individual subscription
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

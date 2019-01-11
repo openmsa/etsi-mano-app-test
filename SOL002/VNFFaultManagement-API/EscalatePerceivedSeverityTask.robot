@@ -6,7 +6,14 @@ Suite Setup    Check resource existance
 
 *** Test Cases ***
 Escalate the perceived severity 
-    [Documentation]    escalate the perceived severity of an alarm with the VNFM
+    [Documentation]    Test ID: 7.4.4.1
+    ...    Test title: Escalate the perceived severity
+    ...    Test objective: To enable the consumer to escalate the perceived severity of an alarm that is represented by an individual alarm resource.
+    ...    Pre-conditions: The resource representing the individual alarm has been created
+    ...    Reference: section 7.4.4 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions:   
     Log    escalate the perceived severity of an alarm with the VNFM
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
