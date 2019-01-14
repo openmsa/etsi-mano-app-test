@@ -75,6 +75,17 @@ Send VNF Scale Out Request
     ${aspectId}=    Set Variable    ${json.aspectId}  
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     
+Send VNF Scale To Level Request
+    [Documentation]    Instantiate VNF The POST method instantiates a VNF instance.
+    Log    Trying to Instantiate a vnf Instance
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/scaleVnfToLevelRequest.json
+    ${json}=    evaluate    json.loads('''${body}''')    json
+    ${aspectId}=    Set Variable    ${json.aspectId}  
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
+    
 Send VNF Create Request
     Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
     Set Headers  {"Accept":"${ACCEPT}"}  
