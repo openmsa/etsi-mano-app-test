@@ -1,0 +1,12 @@
+{
+	"objectInstanceIds" : "1f50d68b-82e8-4deb-bd40-c934d4d1ac0a",
+	"criteria" : {
+		"performanceMetric": "cpu_util",
+		"thresholdType": "SIMPLE",
+		"simpleThresholdDetails": {
+			"thresholdValue": 10,
+			"hysteresis": 50
+		}
+		
+	}
+}

@@ -1,0 +1,3 @@
+*** Variables ***
+${filter_ok}      callbackUri=http://localhost/subscriptions
+${filter_ko}      erroneousFilter=erroneous

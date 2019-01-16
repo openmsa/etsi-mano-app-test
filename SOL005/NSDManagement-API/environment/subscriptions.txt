@@ -1,0 +1,4 @@
+*** Variables ***
+${filter_ok}      callbackUri=http://127.0.0.1/subscription
+${filter_ko}      nfvId=f9f130e4-05eb-4082-a676-4c97d13a883d    # Not existant filter attribute-based
+${NFVO_DUPLICATION}    0

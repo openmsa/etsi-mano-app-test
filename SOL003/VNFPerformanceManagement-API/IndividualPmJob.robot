@@ -49,8 +49,14 @@ DELETE Individual PM Job - Negative (Not Found)
     Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${erroneousPmJobId}
     Integer    response status    404
-    Log    Received 204 No Content as expected
-
+    Log    Received 404 Not Found as expected
+    Log    Trying to validate ProblemDetails
+    ${problemDetails}=    Output    response body
+    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
+    Validate Json    ProblemDetails.schema.json    ${json}
+    Log    Validation OK
+	
+	
 POST Individual PM Job - (Method not implemented)
     Log    Trying to perform a POST (method should not be implemented)
     Set Headers    {"Accept": "${ACCEPT_JSON}"}

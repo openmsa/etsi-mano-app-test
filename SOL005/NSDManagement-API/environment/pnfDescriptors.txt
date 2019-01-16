@@ -4,3 +4,11 @@ ${NEG_FIELDS}     wrongName=any_value
 ${pnfdInfoId}    40853bda-8a8f-4f63-9130-cef439f65348
 ${erroneous_pnfdInfoId}  erroneous_pnfdInfoId
 ${enabledPnfdInfoId}  40853bda-8a8f-4f63-9130-cef439f65348
+${NFVO_FIELDS}    1
+${fields}    _links
+${ACCEPT_PLAIN}    text/plain
+${CONTENT_TYPE_PLAIN}    text/plain
+${erroneous_pnfdId}    erroneousPnfdId
+${onboardingStatePnfdId}    8ed2bf1f-f6ae-4d18-b478-bfab02fd4cd2
+${contentFile}    files/pnfdContent.zip
+${creatingPnfdId}    2e4ce0ef-3ea8-49f9-92dd-8771866015bb

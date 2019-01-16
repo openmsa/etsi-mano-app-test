@@ -104,6 +104,66 @@ GET all Network Service Descriptors (Negative: Not found)
     ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
+    
+    
+GET all Network Service Descriptors - all_fields
+        [Documentation]   The GET method queries information about multiple NS descriptor resources.
+    ...    This method shall follow the provisions specified in the Tables 5.4.2.3.2-1 and 5.4.2.3.2-2 for URI query parameters,
+    ...    request and response data structures, and response codes.
+    Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters "all_fields"
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?all_fields
+    Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    Log    Trying to validate response
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    NsdInfos.schema.json    ${json}
+    Log    NsdInfo schema validated
+    ${links}=    Get Value From Json    ${json}    $.._links
+    Validate Json    links.schema.json    ${links[0]}
+    Log    Validation for _links schema OK
+
+GET all Network Service Descriptors - exclude_default
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using exclude_default filter.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?exclude_default
+    Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    Log    Trying to validate response
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    NsdInfos.schema.json    ${json}
+    Log    NsdInfo schema validated
+    Log    Checking missing information for _links element
+    ${links}=    Get Value From Json    ${json}    $.._links
+    Should Be Empty    ${links}
+    Log    _links element is missing as excepted
+
+
+GET all Network Service Descriptors - exclude_fields
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use exclude_fields option
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exlude_fields=${fields}
+    Integer    response status    200
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    Log    Trying to validate response
+    ${result}=    Output    response body
+    ${json}=    evaluate    json.loads('''${result}''')    json
+    Validate Json    NsdInfos.schema.json    ${json}
+    Log    NsdInfo schema validated
+    Log    Checking missing information for _links element
+    ${links}=    Get Value From Json    ${json}    $.._links
+    Should Be Empty    ${links}
+    Log    _links element is missing as excepted
+        
 
 POST a new Network Service Descriptors
     Log    Creating a new network service descriptor

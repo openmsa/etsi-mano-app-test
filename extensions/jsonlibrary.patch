@@ -1,0 +1,59 @@
+diff --git a/JSONLibrary/JSONLibraryKeywords.py b/JSONLibrary/JSONLibraryKeywords.py
+index 6ceb6e1..20bfd45 100644
+--- a/JSONLibrary/JSONLibraryKeywords.py
++++ b/JSONLibrary/JSONLibraryKeywords.py
+@@ -1,7 +1,13 @@
+ # -*- coding: utf-8 -*-
+ from robot.api import logger
+ from robot.api.deco import keyword
+-from version import VERSION
++#from version import VERSION
++try:
++    from version import VERSION
++except:
++    from JSONLibrary.version import VERSION
++
++
+ import os.path
+ import json
+ from jsonpath_rw import Index, Fields
+diff --git a/JSONLibrary/__init__.py b/JSONLibrary/__init__.py
+index efc756e..79ad728 100644
+--- a/JSONLibrary/__init__.py
++++ b/JSONLibrary/__init__.py
+@@ -1,6 +1,12 @@
+ # -*- coding: utf-8 -*-
+-from JSONLibraryKeywords import JSONLibraryKeywords
+-from version import VERSION
++# from JSONLibraryKeywords import JSONLibraryKeywords
++# from version import VERSION
++try:
++    from JSONLibraryKeywords import JSONLibraryKeywords
++    from version import VERSION
++except:
++    from JSONLibrary.JSONLibraryKeywords import JSONLibraryKeywords
++    from JSONLibrary.version import VERSION
+ 
+ __author__ = 'Traitanit Huangsri'
+ __email__ = 'traitanit.hua@gmail.com'
+diff --git a/setup.py b/setup.py
+index 744e6f5..5082364 100644
+--- a/setup.py
++++ b/setup.py
+@@ -2,7 +2,15 @@
+ # -*- coding: utf-8 -*-
+ 
+ from setuptools import setup
+-from JSONLibrary.version import VERSION
++# from JSONLibrary.version import VERSION
++
++
++# importing this has the unwanted side-effect of importing
++# other required packages that may not be installed yet
++# resulting in an error
++#from JSONLibrary.version import VERSION
++
++VERSION = '0.2'
+ 
+ requirements = [
+     'tox',
