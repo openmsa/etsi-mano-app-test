@@ -57,7 +57,7 @@ Check Postcondition VNF
 Create a new Grant - Sync - CHANGE_FLAVOUR
     Create a new Grant - Synchronous mode        ${vnfInstanceId}    ${vnfLcmOpOccId}    CHANGE_FLAVOUR
     
-Check Operation Notification For Change Flavour
+Check Operation Notification For Change Flavour 
     [Arguments]    ${status}
     Check Operation Notification    VnfLcmOperationOccurrenceNotification   ${status}
     
