@@ -31,7 +31,7 @@ Scale out a VNF Instance
     Check HTTP Response Header Contains    Location 
     Check Operation Occurrence Id
     Check Operation Notification For Scale   STARTING
-    Create a new Grant - Sync - Scale
+    Create a new Grant - Sync - ScaleToLevel
     Check Operation Notification For Scale    PROCESSING
     Check Operation Notification For Scale    COMPLETED
     Check Postcondition VNF    
@@ -63,8 +63,8 @@ Compare ScaleInfos
     Should be true    ${old_level_value}==${new_level_value}
     
    
-Create a new Grant - Sync - Scale
-    Create a new Grant - Synchronous mode        ${vnfInstanceId}    ${vnfLcmOpOccId}    SCALE
+Create a new Grant - Sync - ScaleToLevel
+    Create a new Grant - Synchronous mode        ${vnfInstanceId}    ${vnfLcmOpOccId}    SCALE_TO_LEVEL
     
 Check Operation Notification For Scale
     [Arguments]    ${status}

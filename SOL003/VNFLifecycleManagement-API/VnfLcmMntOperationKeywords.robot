@@ -60,6 +60,12 @@ Get Vnf Scale Info
     ${scaleInfo}=    Get Value From Json    ${vnfInstance}    $..scaleStatus
     [Return]   ${scaleInfo} 
 
+Get Vnf Flavour Info
+    [Arguments]    ${vnfInstanceId}
+    ${vnfInstance}=    Get Vnf Instance    ${vnfInstanceId}
+    ${flavourInfo}=    Get Value From Json    ${vnfInstance}    $..flavourId
+    [Return]    ${flavourInfo}
+
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response.headers}    ${CONTENT_TYPE}
@@ -93,6 +99,19 @@ Send VNF Create Request
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/createVnfRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
+
+Send VNF Delete Request
+    log    Delete an individual VNF instance
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${response}=    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}
+
+Send Change VNF Flavour Request
+    Log    Trying to change the deployment flavour of a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
   
 Create a new Grant - Synchronous mode
     [Arguments]    ${vnfInstanceId}    ${vnfLcmOpOccId}    ${operation}
