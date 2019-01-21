@@ -92,7 +92,7 @@ Send VNF Scale To Level Request
     ${aspectId}=    Set Variable    ${json.aspectId}  
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     
-Send VNF Create Request
+Send VNF Instance Resource Create Request
     Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -100,7 +100,7 @@ Send VNF Create Request
     ${body}=    Get File    json/createVnfRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
 
-Send VNF Delete Request
+Send VNF Instance Resource Delete Request
     log    Delete an individual VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${response}=    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}
