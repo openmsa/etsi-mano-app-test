@@ -66,6 +66,12 @@ Get Vnf Flavour Info
     ${flavourInfo}=    Get Value From Json    ${vnfInstance}    $..flavourId
     [Return]    ${flavourInfo}
 
+Get Vnf Operational State Info
+    [Arguments]    ${vnfInstanceId}
+    ${vnfInstance}=    Get Vnf Instance    ${vnfInstanceId}
+    ${stateInfo}=    Get Value From Json    ${vnfInstance}    $..vnfState
+    [Return]    ${stateInfo}
+
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response.headers}    ${CONTENT_TYPE}
@@ -112,6 +118,14 @@ Send Change VNF Flavour Request
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/changeVnfFlavourRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
+
+Send Change VNF Operational State Request
+    Log    Trying to change the operational state of a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/operateVnFRequest.json
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate    ${body}
   
 Create a new Grant - Synchronous mode
     [Arguments]    ${vnfInstanceId}    ${vnfLcmOpOccId}    ${operation}
