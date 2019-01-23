@@ -18,3 +18,4 @@ ${response}    {}
 ${notification_request}    []
 ${notification_response}    []
 ${json}    {}
+${requestedFlavour}    test

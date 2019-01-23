@@ -26,9 +26,18 @@ Create Sessions
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}:${callback_port}
     
-Configure Notification Handler
+Configure Notification Status Handler
     [Arguments]    ${endpoint}    ${status}=""
     Run Keyword If   ${status}!=""  set to dictionary    ${json["operationState"]}    dp=${status}    
+    ${BODY}=    evaluate    json.dumps(${json})    json
+    Log  Creating mock request and response to handle ${element}
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+    
+Configure Notification VNF Instance Handler
+    [Arguments]    ${endpoint}    ${instanceId}=""
+    Run Keyword If   ${instanceId}!=""  set to dictionary    ${json["vnfInstanceId"]}    dp=${instanceId}    
     ${BODY}=    evaluate    json.dumps(${json})    json
     Log  Creating mock request and response to handle ${element}
     &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
@@ -47,7 +56,14 @@ Check Operation Notification
     [Arguments]    ${element}    ${status}=""
     ${json}=	Get File	schemas/${element}.schema.json
     Configure Notification Forward    ${element}    ${notification_ep}    ${notification_ep_fwd}
-    Configure Notification Handler    ${notification_ep_fwd}    ${status}
+    Configure Notification Status Handler    ${notification_ep_fwd}    ${status}
     Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
     Clear Requests    ${notification_ep}
     Clear Requests    ${notification_ep_fwd}
+
+Check VNF Instance Operation Notification
+    [Arguments]    ${element}   ${instance_id}
+    ${json}=	Get File	schemas/${element}.schema.json
+    Configure Notification Forward    ${element}    ${notification_ep}    ${notification_ep_fwd}
+    Configure Notification VNF Instance Handler    ${notification_ep_fwd}    ${instance_id}
+    

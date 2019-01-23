@@ -16,25 +16,25 @@ Suite Teardown    Terminate All Processes    kill=true
 
 
 *** Test Cases ***
-Scale out a VNF Instance
-    [Documentation]    Test ID: 5.x.y.x
-    ...    Test title: Scale out VNF operation
-    ...    Test objective: The objective is to test a scale out of an existing VNF instance
-    ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.a.b.c)
+VNF Instance Scale Out
+   [Documentation]    Test ID: 5.4.5.1
+    ...    Test title: VNF Instance Scale Out worflow
+    ...    Test objective: The objective is to test the workflow for the scaling out a VNF instance
+    ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.4.4.1). NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
     ...    Reference: section 5.4.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: Scale operation is supported for the VNF (as capability in the VNFD)
-    ...    NFVO is not subscribed for
-    ...    Post-Conditions: VNF instance still in INSTANTIATED state and VNF was scaled
+    ...    Applicability:  NFVO is able to receive notifications from VNFM. Scale operation is supported for the VNF (as capability in the VNFD)
+    ...    Post-Conditions: VNF instance still in INSTANTIATED state and VNF is scaled out
     Send VNF Scale Out Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
     Check Operation Occurrence Id
     Check Operation Notification For Scale   STARTING
-    Create a new Grant - Sync - Scale
     Check Operation Notification For Scale    PROCESSING
     Check Operation Notification For Scale    COMPLETED
     Check Postcondition VNF    SCALE_OUT
+
+#Create a new Grant - Sync - Scale REMOVED
 
 *** Keywords ***
 

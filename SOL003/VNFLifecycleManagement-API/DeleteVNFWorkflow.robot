@@ -16,32 +16,28 @@ Suite Teardown    Terminate All Processes    kill=true
 
 
 *** Test Cases ***
-Create a VNF Instance
-    [Documentation]    Test ID: 5.x.y.x
-    ...    Test title: Delete a VNF instance procedure
-    ...    Test objective: The objective is to test the procedure for the deletion of a VNF instance resource.
-    ...    Pre-conditions: The resource representing the VNF instance to be deleted needs to be in NOT_INSTANTIATED state
+Delete VNF Instance Resource
+    [Documentation]    Test ID: 5.3.2.1
+    ...    Test title: Delete VNF Instance workflow
+    ...    Test objective: The objective is to test the workflow for the deleteion of an existing VNF instance resource
+    ...    Pre-conditions: The VNF Instance resource is in NOT_INSTANTIATED state. NFVO is subscribed to VNF Identifier Creation notifications (Test ID: 5.4.20.2)
     ...    Reference: section 5.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: The resource representing the VNF instance has been removed from the list of VNF instance resources
-    Send VNF delete Request
+    ...    Applicability: NFVO is able to receive notifications from VNFM
+    ...    Post-Conditions: The VNF instance resource is deleted on the VNFM.
+    Send VNF Instance Resource delete Request
     Check HTTP Response Status Code Is    204 
-    Check Operation Notification For Create   VnfIdentifierDeletionNotification
-    Check Postcondition VNF    DELETE
+    Check Operation Notification For VNF Instance Deletion 
+    Check Postcondition VNF Instance Deleted
 
 *** Keywords ***
 
 Initialize System
     Create Sessions
 
-Check Postcondition VNF
-    [Arguments]    ${operation}
+Check Postcondition VNF Instance Deleted
     Check VNF Instance    ${vnfInstanceId}
     Check HTTP Response Status Code Is    404
-   
-Check Operation Notification For Create
-    [Arguments]    ${element}
-    ${json}=	Get File	schemas/${element}.schema.json
-    Configure Notification Handler    ${notification_ep}       
-    
+
+Check Operation Notification For VNF Instance Deletion
+    Check VNF Instance Operation Notification    VnfIdentifierDeletionNotification   ${vnfInstanceId}

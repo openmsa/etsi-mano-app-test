@@ -16,24 +16,34 @@ Suite Teardown    Terminate All Processes    kill=true
 
 
 *** Test Cases ***
+<<<<<<< .merge_file_a08480
 Change VNF Flavour Operation
     [Documentation]    Test ID: 5.x.y.x
     ...    Test title: Change VNF Flavour Operation
     ...    Test objective: The objective is to test a change flavour operation of an existing VNF instance
     ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.a.b.c)
     ...    Reference: section 5.3.3 - SOL003 v2.4.1
+=======
+Change VNF Flavour
+    [Documentation]    Test ID: 5.4.7.1
+    ...    Test title: Change VNF Flavour Workflow
+    ...    Test objective: The objective is to test the workflow for a change flavour of an existing VNF instance
+    ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.4.4.1). NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
+    ...    Reference: section 5.4.7 - SOL003 v2.4.1
+>>>>>>> .merge_file_a08764
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: change flavour operation is supported for the VNF (as capability in the VNFD)
+    ...    Applicability: Multiple flavours are supported for the VNF (as capability in the VNFD). NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: VNF instance still in INSTANTIATED state and the flavour is changed
     Send Change VNF Flavour Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
     Check Operation Occurrence Id
     Check Operation Notification For Change Flavour    STARTING
-    Create a new Grant - Sync - CHANGE_FLAVOUR
     Check Operation Notification For Change Flavour    PROCESSING
     Check Operation Notification For Change Flavour    COMPLETED
-    Check Postcondition VNF    CHANGE_FLAVOUR
+    Check Postcondition VNF Flavor Changed
+    
+#Create a new Grant Sync - CHANGE_FLAVOU Scale REMOVED
 
 *** Keywords ***
 
@@ -48,8 +58,7 @@ Precondition Checks
     ${LccnSubscriptions}=    Check subscriptions about one VNFInstance and operation type    ${vnfInstanceId}    VnfLcmOperationOccurrenceNotification    operationType=SCALE
     ${scaleInfo}=    Get Vnf Scale Info        ${vnfInstanceId}
 
-Check Postcondition VNF
-    [Arguments]    ${operation}
+Check Postcondition VNF Flavor Changed
     Check resource instantiated
     ${newFlavour}=    Get Vnf Flavour Info    ${vnfInstanceId}
     Should be Equal    ${requestedFlavour}    ${newFlavour}
