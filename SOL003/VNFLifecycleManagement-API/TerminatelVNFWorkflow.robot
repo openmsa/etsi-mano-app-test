@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 
 *** Test Cases ***
-Operate a VNF Instance
+Terminate a VNF Instance
     [Documentation]    Test ID: 5.x.y.x
     ...    Test title: Terminate a VNF Instance
     ...    Test objective: The objective is to terminate a VNF instance.

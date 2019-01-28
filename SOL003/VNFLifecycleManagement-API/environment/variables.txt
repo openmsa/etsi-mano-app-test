@@ -18,4 +18,8 @@ ${response}    {}
 ${notification_request}    []
 ${notification_response}    []
 ${json}    {}
+${changeVnfFlavourRequest}    {}
 ${requestedFlavour}    test
+${changeVnfOperateRequest}    {}
+${requestedState}   test
+${changeVnfExtConnectivityRequest}    {}
