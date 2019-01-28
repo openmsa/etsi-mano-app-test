@@ -23,3 +23,4 @@ ${requestedFlavour}    test
 ${changeVnfOperateRequest}    {}
 ${requestedState}   test
 ${changeVnfExtConnectivityRequest}    {}
+${patchBodyRequest}   {}
