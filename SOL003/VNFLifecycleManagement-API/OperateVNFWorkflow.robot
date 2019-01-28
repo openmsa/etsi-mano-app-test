@@ -31,9 +31,9 @@ Operate a VNF Instance
     Check Operation Occurrence Id
     Check Operation Notification For Operate    STARTING
     #Create a new Grant - Sync - OPERATE
-    Check Operation Notification For Change Flavour    PROCESSING
-    Check Operation Notification For Change Flavour    COMPLETED
-    Check Postcondition VNF    OPERATE
+    Check Operation Notification For Operate    PROCESSING
+    Check Operation Notification For Operate    COMPLETED
+    Check Postcondition VNF OPERATE
 
 *** Keywords ***
 
@@ -47,8 +47,7 @@ Precondition Checks
     Check resource instantiated
     ${LccnSubscriptions}=    Check subscriptions about one VNFInstance and operation type    ${vnfInstanceId}    VnfLcmOperationOccurrenceNotification    operationType=SCALE
 
-Check Postcondition VNF
-    [Arguments]    ${operation}
+Check Postcondition VNF OPERATE
     Check resource instantiated
     ${newState}=    Get Vnf Operational State Info    ${vnfInstanceId}
     Should be Equal    ${requestedState}    ${newState}

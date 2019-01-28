@@ -29,10 +29,10 @@ Operate a VNF Instance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
     Check Operation Occurrence Id
-    Check Operation Notification For Operate    STARTING
+    Check Operation Notification For Heal    STARTING
     #Create a new Grant - Sync - OPERATE
-    Check Operation Notification For Change Flavour    PROCESSING
-    Check Operation Notification For Change Flavour    COMPLETED
+    Check Operation Notification For Heal    PROCESSING
+    Check Operation Notification For Heal    COMPLETED
     Check Postcondition VNF Heal
 
 *** Keywords ***
@@ -50,7 +50,7 @@ Check Postcondition VNF Heal
 Create a new Grant - Sync - OPERATE
     Create a new Grant - Synchronous mode        ${vnfInstanceId}    ${vnfLcmOpOccId}    OPERATE
     
-Check Operation Notification For Operate 
+Check Operation Notification For Heal 
     [Arguments]    ${status}
     Check Operation Notification    VnfLcmOperationOccurrenceNotification   ${status}
     
