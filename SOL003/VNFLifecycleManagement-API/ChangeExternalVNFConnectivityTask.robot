@@ -15,7 +15,7 @@ Change external VNF connectivity
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/changeExtVnfConnectivityRequest .json
+    ${body}=    Get File    json/changeExtVnfConnectivityRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    ${body}
     Integer    response status    202
     Log    Status code validated

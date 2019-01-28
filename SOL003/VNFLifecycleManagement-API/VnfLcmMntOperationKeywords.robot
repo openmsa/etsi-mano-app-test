@@ -42,6 +42,11 @@ Check resource Instantiated
     Check HTTP Response Status Code Is    200
     Check VNF Status    ${response.body.instantiationState}    INSTANTIATED
 
+Check resource not Instantiated
+    Check VNF Instance    ${vnfInstanceId}
+    Check HTTP Response Status Code Is    200
+    Check VNF Status    ${response.body.instantiationState}    NOT_INSTANTIATED
+
 Check VNF Instance
     [Arguments]    ${vnfId}
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -71,6 +76,11 @@ Get Vnf Operational State Info
     ${vnfInstance}=    Get Vnf Instance    ${vnfInstanceId}
     ${stateInfo}=    Get Value From Json    ${vnfInstance}    $..vnfState
     [Return]    ${stateInfo}
+
+Get Vnf Ext Link Id
+    [Arguments]    ${vnfInstanceId}
+    ${vnfInstance}=    Get Vnf Instance    ${vnfInstanceId}
+    [Return]    ${vnfInstance.instantiatedVnfInfo.extVirtualLinkInfo.id}
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
@@ -126,6 +136,30 @@ Send Change VNF Operational State Request
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    json/operateVnFRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate    ${body}
+
+Send Heal VNF Request
+    Log    Trying to heal a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/healVnFRequest.json
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
+
+Send Change Ext Connectivity Request
+    Log    Trying to change the external connectivity of a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/changeExtVnfConnectivityRequest.json
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    ${body}
+
+Send Terminate VNF Request
+    Log    Trying to terminate a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/terminateVnFRequest.json
+    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/terminate    ${body}
   
 Create a new Grant - Synchronous mode
     [Arguments]    ${vnfInstanceId}    ${vnfLcmOpOccId}    ${operation}
