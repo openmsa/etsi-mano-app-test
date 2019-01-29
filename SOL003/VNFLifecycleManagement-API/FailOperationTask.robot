@@ -21,9 +21,7 @@ Post Fail operation task
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     Output    response
     Log    Validate Status code
-    Integer    response status    202
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
+    Integer    response status    200
     Log    Validation OK
 
 Post Fail operation task Conflict (Not-FAILED_TEMP)
