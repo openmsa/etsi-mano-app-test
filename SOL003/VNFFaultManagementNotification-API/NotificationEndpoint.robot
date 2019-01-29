@@ -5,7 +5,6 @@ Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
 Library    Process
 Library    OperatingSystem
-Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${notification_port}
 
 
 *** Test Cases ***
@@ -22,13 +21,13 @@ Deliver a notification - Alarm
     ${json}=	Get File	schemas/alarmNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle alarmNotification
-    &{req}=  Create Mock Request Matcher	POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Log  Verifying results
     Wait Until Keyword Succeeds    ${sleep_interval}    Verify Mock Expectation    ${req}
     Log  Cleaning the endpoint
-    Clear Requests  ${notification_ep}
+    Clear Requests  ${callback_endpoint}
 
 Deliver a notification - Alarm Clearance
     [Documentation]    Test ID: 7.4.5.2
@@ -43,13 +42,13 @@ Deliver a notification - Alarm Clearance
     ${json}=	Get File	schemas/alarmClearedNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle alarmNotification
-    &{req}=  Create Mock Request Matcher	POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Log  Verifying results
     Wait Until Keyword Succeeds    ${sleep_interval}    Verify Mock Expectation    ${req}
     Log  Cleaning the endpoint
-    Clear Requests  ${notification_ep}
+    Clear Requests  ${callback_endpoint}
 
 Deliver a notification - Alarm List Rebuilt
     [Documentation]    Test ID: 7.4.5.3
@@ -64,13 +63,13 @@ Deliver a notification - Alarm List Rebuilt
     ${json}=	Get File	schemas/alarmListRebuiltNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle alarmNotification
-    &{req}=  Create Mock Request Matcher  POST  ${notification_ep}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{req}=  Create Mock Request Matcher  POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
     Log  Verifying results
     Wait Until Keyword Succeeds    ${sleep_interval}    Verify Mock Expectation    ${req}
     Log  Cleaning the endpoint
-    Clear Requests  ${notification_ep}
+    Clear Requests  ${callback_endpoint}
 
 Test a notification end point
     [Documentation]    Test ID: 7.4.5.4
@@ -82,36 +81,34 @@ Test a notification end point
     ...    Applicability: 
     ...    Post-Conditions:  
     log    The GET method allows the server to test the notification endpoint
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${notification_ep}
+    Get    ${callback_endpoint}
     Log    Validate Status code
     Integer    response status    204
     Log    Validation OK
 
 PUT notification - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
-    Put    ${notification_ep}    
+    Put    ${callback_endpoint}
     Log    Validate Status code
     Output    response
     Integer    response status    405
 
 PATCH subscriptions - Method not implemented
     log    Trying to perform a PATCH. This method should not be implemented
-    Patch    ${notification_ep}    
+    Patch    ${callback_endpoint}
     Log    Validate Status code
     Output    response
     Integer    response status    405
 
 DELETE subscriptions - Method not implemented
     log    Trying to perform a DELETE. This method should not be implemented
-    Delete    ${notification_ep}
+    Delete    ${callback_endpoint}
     Log    Validate Status code
     Output    response
     Integer    response status    405
     
 *** Keywords ***
 Create Sessions
-    Start Process  java  -jar  ../../bin/mockserver-netty-5.3.0-jar-with-dependencies.jar  -serverPort  ${notification_port}  alias=mockInstance
+    Start Process  java  -jar  ../../bin/mockserver-netty-5.3.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
-    Create Mock Session  ${NFVO_SCHEMA}://${NFVO_HOST}:${notification_port}     #The API producer is set to NFVO according to SOL003-7.3.4
+    Create Mock Session  ${callback_uri}:${callback_port}     #The API producer is set to NFVO according to SOL003-7.3.4

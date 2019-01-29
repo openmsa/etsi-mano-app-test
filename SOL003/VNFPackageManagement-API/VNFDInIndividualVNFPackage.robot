@@ -1,6 +1,6 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/vnfdInIndividualVnfPackage.txt
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
@@ -32,8 +32,7 @@ GET VNFD in Individual VNF Package (PLAIN-ZIP)
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgZipVNFD}/vnfd
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
-    Run Keyword If    ${NFVO_PLAIN} == 0    Should Contain    ${contentType}    ${CONTENT_TYPE_ZIP}
-    Run Keyword If    ${NFVO_PLAIN} == 1    Should Contain    ${contentType}    ${CONTENT_TYPE_PLAIN}
+    Should Contain    ${contentType}    ${CONTENT_TYPE_ZIP}
 
 GET VNFD in Individual VNF Package - Negative (PLAIN/ZIP)
     Log    Trying to get a negative case performing a get on a VNFD from a given VNF Package present in the NFVO Catalogue. Accept will be text/plain but VNFD is composed my multiple files.

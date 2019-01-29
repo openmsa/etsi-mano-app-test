@@ -43,7 +43,7 @@ Create a new Subscription - DUPLICATION
     ...    Applicability: the VNFM allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: 
     Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NVFM_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
+    Pass Execution If    ${VNFM_DUPLICATION} == 0    VNFM is not permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -68,7 +68,7 @@ Create a new Subscription - NO-DUPLICATION
     ...    Applicability: the VNFM decides to not create a duplicate subscription resource 
     ...    Post-Conditions: 
     Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NVFM_DUPLICATION} == 1    VNFM permits duplication. Skipping the test
+    Pass Execution If    ${VNFM_DUPLICATION} == 1    VNFM permits duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

@@ -1,6 +1,6 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Resource          environment/vnfIndicators.txt
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
@@ -9,7 +9,7 @@ Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 GET all Indicators
     Log    The GET method queries multiple VNF indicators
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
@@ -23,7 +23,7 @@ GET all Indicators
 GET all Indicators - Filter
     Log    The GET method queries multiple VNF indicators using Attribute-based filtering parameters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators?${POS_FIELDS}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
@@ -37,7 +37,7 @@ GET all Indicators - Filter
 GET all Indicators - Negative (wronge filter name)
     Log    The GET method queries multiple VNF indicators using Attribute-based filtering parameters. Negative case, with erroneous attribute name
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators?${NEG_FIELDS}
     Integer    response status    400
     Log    Received 400 Bad Request as expected
@@ -51,7 +51,7 @@ GET all Indicators - Negative (wronge filter name)
 
 GET all Indicators - Negative (Unauthorized: Wrong Token)
     Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${VNFM_AUTH_USAGE} == 0    Skipping test as VNFM \ is not supporting authentication
+    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as VNFM \ is not supporting authentication
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Authorization": "${NEG_AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators
@@ -67,7 +67,7 @@ GET all Indicators - Negative (Unauthorized: Wrong Token)
 
 GET all Indicators - Negative (Unauthorized: No Token)
     Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${VNFM_AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
+    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Authorization": "${NEG_AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators
@@ -84,7 +84,7 @@ GET all Indicators - Negative (Unauthorized: No Token)
 GET all Indicators (Negative: Not found)
     Log    Trying to perform a GET on a erroneous URI
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicator
     Integer    response status    404
     Log    Received 404 Not Found as expected
@@ -99,7 +99,7 @@ GET all Indicators (Negative: Not found)
 POST all Indicators (Method not implemented)
     Log    Trying to perform a POST (method should not be implemented)
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/indicators
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -107,7 +107,7 @@ POST all Indicators (Method not implemented)
 PUT all Indicators (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/indicators
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -115,7 +115,7 @@ PUT all Indicators (Method not implemented)
 PATCH all Indicators (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/indicators
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -123,7 +123,7 @@ PATCH all Indicators (Method not implemented)
 DELETE all Indicators (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators
     Integer    response status    405
     Log    Received 405 Method not implemented as expected

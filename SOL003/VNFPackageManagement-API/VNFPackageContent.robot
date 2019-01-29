@@ -1,6 +1,6 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/vnfPackageContent.txt
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
@@ -10,7 +10,7 @@ GET VNF Package Content
     Log    Trying to get a VNF Package Content
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/package_content
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_ZIP}
@@ -21,7 +21,7 @@ GET VNF Package Content - Range
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Set Headers    {"Range": "${range}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/package_content
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Integer    response status    206
     Log    Received 206 Partial Content as expected.
     ${headers}=    Output    response headers
@@ -36,7 +36,7 @@ GET VNF Package Content - Range NFVO No RANGE
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Set Headers    {"Range": "${range}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/package_content
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Integer    response status    200
     Log    Received 200 OK as expected. The content is all available on this request. RANGE request has been ignored.
 
@@ -46,7 +46,7 @@ GET VNF Package Content - Negative Range
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Set Headers    {"Range": "${erroneousRange}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/package_content
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Integer    response status    416
     Log    Received 416 Range not satisfiable as expected.
     ${contentType}=    Output    response headers Content-Type

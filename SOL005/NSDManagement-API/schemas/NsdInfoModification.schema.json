@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "nsdOperationalState": {
+      "$ref": "#/definitions/NsdOperationalStateType"
+    },
+    "userDefinedData": {
+      "type": "object",
+      "description": "Modifications of the \"userDefinedData\" attribute in \"NsdInfo\" data type. See note. If present, these modifications shall be applied according to the rules of JSON Merge PATCH (see IETF RFC 7396 [25]). NOTE: At least one of the attributes - nsdOperationalState and userDefinedData - shall be present."
+    }
+  },
+  "description": "This type represents attribute modifications for an individual NS descriptor resource based on the \"NsdInfo\" data type. The attributes of \"NsdInfo\" that can be modified are included in the \"NsdInfoModifications\" data type.\n\nNOTE: At least one of the attributes - nsdOperationalState and userDefinedData - shall be present."
+}

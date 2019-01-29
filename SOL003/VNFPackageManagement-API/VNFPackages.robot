@@ -1,7 +1,7 @@
 *** Settings ***
 Resource          environment/vnfPackages.txt    # VNF Packages specific parameters
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 
@@ -36,7 +36,7 @@ GET all Packages - Filter
     Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${POS_FIELDS}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${POS_FILTER}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
@@ -47,10 +47,10 @@ GET all Packages - Filter
     Log    Validation OK
 
 GET all Packages - Negative (wronge filter name)
-    Log    Trying to perform a negative get, filtering by the inexistent field 'nfvId'
+    Log    Trying to perform a negative get, filtering by the inexistent filter 'nfvId'
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${NEG_FIELDS}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${NEG_FILTER}
     Integer    response status    400
     Log    Received 400 Bad Request as expected
     ${contentType}=    Output    response headers Content-Type
@@ -144,7 +144,7 @@ GET all Packages - exclude_default
     Log    _links element is missing as excepted
 
 GET all Packages - fields
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
     Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

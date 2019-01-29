@@ -1,6 +1,7 @@
 *** Setting ***
 Resource   environment/pmJobs.txt
-Resource   environment/generic.txt
+Resource   environment/IndividualPmJob.txt
+Resource   environment/variables.txt
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -30,7 +31,7 @@ Create PMJob
     Log    Creating a new PM Job
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body}=    Get File    jsons/CreatePmJobRequest.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs    ${body}
     [Return]    response 
@@ -58,9 +59,6 @@ Retrieve PMJob
     [Arguments]    ${pmJobId}
     Set Headers  {"Accept":"${ACCEPT_JSON}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${pmJobId}
     [Return]    response
-    
-    
-    

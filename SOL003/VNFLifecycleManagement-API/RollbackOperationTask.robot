@@ -85,28 +85,28 @@ Post Rollback operation task Not Found
 GET Rollback operation task - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/rollback    
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
     Log    Validate Status code
     Integer    response status    405
 
 PUT Rollback operation task - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/rollback    
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
     Log    Validate Status code
     Integer    response status    405
 
 PATCH Rollback operation task - Method not implemented
     log    Trying to perform a PATCH. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/rollback    
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
     Log    Validate Status code
     Integer    response status    405
     
 DELETE Rollback operation task - Method not implemented
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/rollback    
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
     Log    Validate Status code
     Integer    response status    405
 

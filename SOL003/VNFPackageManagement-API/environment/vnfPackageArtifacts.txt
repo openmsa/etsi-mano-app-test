@@ -1,11 +1,6 @@
 *** Variables ***
-${ACCEPT_ZIP}     application/zip
-${CONTENT_TYPE_ZIP}    application/zip
-${NFVO_RANGE_OK}    1    # If 1 means that Range is supported by the NFVO
-${erroneousVnfPkgId}    erroneousPkgId
-${vnfPkgId}       788106a2-d692-44f3-a86d-384f0ce35e42
-${erroneousRange}    bytes=100000-1000000    # Requesting a out of range number of bytes
-${onboardingStateVnfPkgId}    788106a2-d692-44f3-a86d-384f0ce35e42    # The VNF Package is in CREATED onboardingState
-${range}          bytes=0-1023
 ${artifactPath}    artifactPath
 ${CONTENT_TYPE_OCTET}    application/octet-stream
+${NFVO_RANGE_OK}    1    # If 1 means that Range is supported by the NFVO
+${range}          bytes=0-1023
+${erroneousVnfPkgId}    erroneousPkgId

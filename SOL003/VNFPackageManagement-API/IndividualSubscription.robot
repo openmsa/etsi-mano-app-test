@@ -1,6 +1,6 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/individualSubscription.txt
 Library           OperatingSystem
 Library           JSONLibrary

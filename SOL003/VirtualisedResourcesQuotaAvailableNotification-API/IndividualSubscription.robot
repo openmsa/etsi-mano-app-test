@@ -3,7 +3,7 @@ Resource    environment/variables.txt
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Library    REST    ${VNFM_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}     
+Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 ...    spec=SOL003-VirtualisedResourcesQuotaAvailableNotification-API.yaml
 Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
 ...    subscription to notifications related to the availability of the virtualised resources quotas.
