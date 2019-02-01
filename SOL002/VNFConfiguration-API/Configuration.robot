@@ -1,11 +1,14 @@
 *** Settings ***
-Resource    environments/variables.txt 
+Resource   environment/variables.txt
 Library    REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
 ...        spec=SOL002-VNFConfiguration-API.yaml
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 Library    DependencyLibrary
+
+*** Variables ***
+${response}=    httpresponse
 
 *** Test Cases ***
 POST Configuration - Method not implemented
@@ -135,3 +138,13 @@ Check Postcondition VNF Is Configured
     ${output}=    evaluate    json.loads('''${response.body}''')    json
     ${input}=    Get File    json/vnfConfigModifications.json
     Should Be Equal  ${output}    ${input}   
+
+Send Duplicated VNF configuration
+    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
+    log    Trying to perform a PATCH. This method modifies an individual alarm resource
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Set Headers    {"If-Match": "${Etag}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/vnfConfigModifications.json
+    ${response}=    Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}
