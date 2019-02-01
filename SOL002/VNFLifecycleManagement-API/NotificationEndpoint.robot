@@ -22,7 +22,7 @@ Deliver a notification - Operation Occurence
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
-    Clear Requests  ${callback_endpoint}
+    Clear Requests  ${notification_ep}
 
 Deliver a notification - Id Creation
     log    The POST method delivers a notification from the server to the client.
@@ -36,7 +36,7 @@ Deliver a notification - Id Creation
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
-    Clear Requests  ${callback_endpoint}
+    Clear Requests  ${notification_ep}
 
 Deliver a notification - Id deletion
     log    The POST method delivers a notification from the server to the client.
@@ -50,7 +50,7 @@ Deliver a notification - Id deletion
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
-    Clear Requests  ${callback_endpoint}
+    Clear Requests  ${notification_ep}
 
 Test a notification end point
     log    The GET method allows the server to test the notification endpoint
@@ -59,31 +59,31 @@ Test a notification end point
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Verify Mock Expectation  ${req}
-    Clear Requests  ${callback_endpoint}
+    Clear Requests  ${notification_ep}
 
 PUT notification - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
-    Put    ${callback_endpoint}
+    Put    ${notification_ep}
     Log    Validate Status code
     Output    response
     Integer    response status    405
 
 PATCH subscriptions - Method not implemented
     log    Trying to perform a PATCH. This method should not be implemented
-    Patch    ${callback_endpoint}
+    Patch    ${notification_ep}
     Log    Validate Status code
     Output    response
     Integer    response status    405
 
 DELETE subscriptions - Method not implemented
     log    Trying to perform a DELETE. This method should not be implemented
-    Delete    ${callback_endpoint}
+    Delete    ${notification_ep}
     Log    Validate Status code
     Output    response
     Integer    response status    405
     
 *** Keywords ***
 Create Sessions
-    Start Process  java  -jar  ../../bin/mockserver-netty-5.3.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
+    Start Process  java  -jar  ../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_schema}://${callback_uri}:${callback_port}     #The API producer is set to NFVO according to SOL003-5.3.9

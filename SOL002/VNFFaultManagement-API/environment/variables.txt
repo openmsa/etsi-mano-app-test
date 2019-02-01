@@ -34,3 +34,10 @@ ${AlarmClearedNotification}    {}
 ${AlarmListRebuiltNotification}    {}
 ${PerceivedSeverity}    CRITICAL
 ${sleep_interval}    20s
+${alarm_filter}       managedObjectId
+${managedObjectId}    007c111c-38a1-42c0-a666-7475ecb1567c
+${invalid_alarm_filter}    badFilter
+${notification_ep}    /notification
+${notification_port}    9091
+
+
