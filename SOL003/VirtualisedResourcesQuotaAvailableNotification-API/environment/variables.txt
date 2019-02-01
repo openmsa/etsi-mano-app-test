@@ -24,4 +24,5 @@ ${apiName}        vrqan
 ${apiVersion}     v1
 
 ${VrQuotaAvailNotification}    {}
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
 

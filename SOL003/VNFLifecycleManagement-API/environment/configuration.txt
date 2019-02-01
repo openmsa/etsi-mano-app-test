@@ -35,4 +35,4 @@ ${SYNC_MODE}    0
 ${sleep_interval}    20s
 ${callback_uri}    http://localhost
 ${callback_port}    9091
-${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.3.0-jar-with-dependencies.jar
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar

@@ -39,3 +39,4 @@ ${VnfIdentifierDeletionNotification}    {}
 ${callback_port}    9091
 ${callback_schema}  http
 ${callback_uri}     localhost
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar

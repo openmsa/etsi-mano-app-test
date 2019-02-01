@@ -39,5 +39,5 @@ ${managedObjectId}    007c111c-38a1-42c0-a666-7475ecb1567c
 ${invalid_alarm_filter}    badFilter
 ${notification_ep}    /notification
 ${notification_port}    9091
-
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
 
