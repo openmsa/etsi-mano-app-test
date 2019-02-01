@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    environment/configuration.txt
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
@@ -20,9 +21,7 @@ Post Fail operation task
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     Output    response
     Log    Validate Status code
-    Integer    response status    202
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
+    Integer    response status    200
     Log    Validation OK
 
 Post Fail operation task Conflict (Not-FAILED_TEMP)
@@ -84,28 +83,28 @@ Post Fail operation task Not Found
 GET Fail operation task - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     Log    Validate Status code
     Integer    response status    405
 
 PUT Fail operation task - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     Log    Validate Status code
     Integer    response status    405
 
 PATCH Fail operation task - Method not implemented
     log    Trying to perform a PATCH. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     Log    Validate Status code
     Integer    response status    405
     
 DELETE Fail operation task - Method not implemented
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     Log    Validate Status code
     Integer    response status    405
 

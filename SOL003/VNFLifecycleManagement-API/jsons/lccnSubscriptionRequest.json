@@ -6,5 +6,5 @@
       ]
     }
   },
-  "callbackUri": "http://127.0.0.1/subscribe"
+  "callbackUri": "http://localhost:9091/notification"
 }

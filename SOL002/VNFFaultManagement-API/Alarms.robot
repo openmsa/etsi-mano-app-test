@@ -16,7 +16,15 @@ POST Alarms - Method not implemented
     Log    Validate Status code
     Integer    response status    405
 
-Get information about multiple alarms  
+Get information about multiple alarms 
+    [Documentation]    Test ID: 7.4.2.1
+    ...    Test title: Get information about multiple alarms
+    ...    Test objective: The objective is to retrieve information about the alarm list
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions:  
     Log    Query VNF The GET method queries information about multiple alarms.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -32,6 +40,14 @@ Get information about multiple alarms
     Log    Validation OK
 
 Get information about multiple alarms with filters 
+    [Documentation]    Test ID: 7.4.2.2
+    ...    Test title: Get information about multiple alarms - with filters
+    ...    Test objective: The objective is to retrieve information about the alarm list
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     Log    Query VNF The GET method queries information about multiple alarms with filters.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -47,6 +63,14 @@ Get information about multiple alarms with filters
     Log    Validation OK
 
 Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
+    [Documentation]    Test ID: 7.4.2.2-1
+    ...    Test title: Get information about multiple alarms - with Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is to retrieve information about the alarm list
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
     Log    Query VNF The GET method queries information about multiple alarm instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 

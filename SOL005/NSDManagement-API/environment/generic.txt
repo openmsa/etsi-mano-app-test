@@ -1,0 +1,15 @@
+*** Variables ***
+${NFVO_HOST}    localhost    # Hostname of the NFVO
+${NFVO_PORT}    8081    # Listening port of the NFVO
+${NFVO_SCHEMA}    https
+${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
+${CONTENT_TYPE_JSON}    application/json
+${ACCEPT_JSON}    application/json
+${apiRoot}        /
+${AUTH_USAGE}     1
+${NEG_AUTHORIZATION}    Bearer negativetoken
+${apiVersion}     v1
+${apiName}        nsd
+${FIELD_USAGE}    1
+${NFVO_AUTHENTICATION}    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+${NFVO_AUTH_USAGE}    1

@@ -8,7 +8,6 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-
 Create a new vnfInstance
     [Setup]    #make sure the vnfInstand ${vnfInstanceId} doesn't exist
     Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances

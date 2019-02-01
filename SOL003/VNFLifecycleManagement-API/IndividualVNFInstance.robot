@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    environment/configuration.txt
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
@@ -134,8 +135,7 @@ DELETE Individual VNFInstance Conflict
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
     
-*** Keywords ***   
-
+*** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
@@ -157,4 +157,3 @@ Launch another LCM operation
     ${body}=    Get File    json/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     Integer    response status    202
-

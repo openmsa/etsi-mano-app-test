@@ -22,7 +22,7 @@ Post Cancel operation task
     Should Contain    ${headers}    Location
     Log    Validation OK
 
-Post Fail operation task Conflict (Not-FAILED_TEMP)
+Post Cancel operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Conflict. 
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
@@ -32,7 +32,7 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
     Depends on test failure  Check resource FAILED_TEMP
     Log    Final Fail an operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel
     Integer    response status    409
     Log    Status code validated
     ${problemDetails}=    Output    response body
@@ -40,7 +40,7 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
-Post Fail operation task Conflict (parallel LCM operation)
+Post Cancel operation task Conflict (parallel LCM operation)
     # TODO: Need to set the pre-condition of the test
     [Documentation]    Conflict
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
@@ -50,7 +50,7 @@ Post Fail operation task Conflict (parallel LCM operation)
     [Setup]    Launch another error handling action
     log    Final Fail an operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel
     Log    Validate Status code
     Integer    response status    409
     ${problemDetails}=    Output    response body
@@ -59,7 +59,7 @@ Post Fail operation task Conflict (parallel LCM operation)
     Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
-Post Fail operation task Not Found
+Post Cancel operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Not Found
     ...    Error: The API producer did not find a current representation for the target resource or is not willing to disclose that one exists. 
@@ -70,7 +70,7 @@ Post Fail operation task Not Found
     [Setup]    Check Fail not supported
     log    Final fail an operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel
     Log    Validate Status code
     Integer    response status    409
     ${problemDetails}=    Output    response body
@@ -78,31 +78,31 @@ Post Fail operation task Not Found
     Validate Json    ProblemDetails.schema.json    ${json}
     Log    Validation OK
 
-GET Fail operation task - Method not implemented
+GET Cancel operation task - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/cancel    
     Log    Validate Status code
     Integer    response status    405
 
-PUT Fail operation task - Method not implemented
+PUT Cancel operation task - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/cancel    
     Log    Validate Status code
     Integer    response status    405
 
-PATCH Fail operation task - Method not implemented
+PATCH Cancel operation task - Method not implemented
     log    Trying to perform a PATCH. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/cancel    
     Log    Validate Status code
     Integer    response status    405
     
-DELETE Fail operation task - Method not implemented
+DELETE Cancel operation task - Method not implemented
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/fail    
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/cancel    
     Log    Validate Status code
     Integer    response status    405
 

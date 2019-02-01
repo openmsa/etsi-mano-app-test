@@ -57,7 +57,6 @@ DELETE an individual subscription
     Integer    response status    204
 
 *** Keywords ***
-
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}

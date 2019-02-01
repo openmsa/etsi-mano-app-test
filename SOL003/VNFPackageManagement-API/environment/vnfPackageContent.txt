@@ -1,9 +1,8 @@
 *** Variables ***
 ${ACCEPT_ZIP}     application/zip
-${CONTENT_TYPE_ZIP}    application/zip
 ${NFVO_RANGE_OK}    1    # If 1 means that Range is supported by the NFVO
-${erroneousVnfPkgId}    erroneousPkgId
-${vnfPkgId}       788106a2-d692-44f3-a86d-384f0ce35e42
-${erroneousRange}    bytes=100000-1000000    # Requesting a out of range number of bytes
-${onboardingStateVnfPkgId}    f9f130e4-05eb-4082-a676-4c97d13a883d    # The VNF Package is in CREATED onboardingState
 ${range}          bytes=0-1023
+${erroneousRange}    bytes=10000000-1000000000    # Requesting a out of range number of bytes
+${erroneousVnfPkgId}    erroneousPkgId
+${onboardingStateVnfPkgId}    f9f130e4-05eb-4082-a676-4c97d13a883d    # The VNF Package is in CREATED onboardingState
+${CONTENT_TYPE_ZIP}    application/zip

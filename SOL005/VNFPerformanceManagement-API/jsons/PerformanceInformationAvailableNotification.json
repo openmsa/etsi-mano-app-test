@@ -1,0 +1,13 @@
+{
+	"id": "id",
+	"notificationType" : "PerformanceInformationAvailableNotification",
+	"subscriptionId ": "subscriptionId",
+	"timeStamp": "2012-04-21T18:25:43-05:00",
+	"objectInstanceId": "vnfID",
+	"_links": {
+			"subscription": "link to subscription",
+			"pmJob" : "link to PMJob",
+			"performanceReport": "link to PerformanceReport"
+	}
+	
+}

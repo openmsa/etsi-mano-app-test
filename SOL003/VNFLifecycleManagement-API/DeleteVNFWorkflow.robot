@@ -1,0 +1,43 @@
+*** Settings ***
+Resource    environment/configuration.txt
+Resource    environment/variables.txt
+Resource    environment/scaleVariables.txt
+Resource    VnfLcmMntOperationKeywords.robot
+Resource    SubscriptionKeywords.robot
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+...    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    OperatingSystem
+Library    BuiltIn
+Library    Collections
+Library    JSONLibrary
+Library    Process
+Suite Setup    Initialize System
+Suite Teardown    Terminate All Processes    kill=true
+
+
+*** Test Cases ***
+Delete VNF Instance Resource
+    [Documentation]    Test ID: 5.3.2.1
+    ...    Test title: Delete VNF Instance workflow
+    ...    Test objective: The objective is to test the workflow for the deleteion of an existing VNF instance resource
+    ...    Pre-conditions: The VNF Instance resource is in NOT_INSTANTIATED state. NFVO is subscribed to VNF Identifier Creation notifications (Test ID: 5.4.20.2)
+    ...    Reference: section 5.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: NFVO is able to receive notifications from VNFM
+    ...    Post-Conditions: The VNF instance resource is deleted on the VNFM.
+    Send VNF Instance Resource delete Request
+    Check HTTP Response Status Code Is    204 
+    Check Operation Notification For VNF Instance Deletion 
+    Check Postcondition VNF Instance Deleted
+
+*** Keywords ***
+
+Initialize System
+    Create Sessions
+
+Check Postcondition VNF Instance Deleted
+    Check VNF Instance    ${vnfInstanceId}
+    Check HTTP Response Status Code Is    404
+
+Check Operation Notification For VNF Instance Deletion
+    Check VNF Instance Operation Notification    VnfIdentifierDeletionNotification   ${vnfInstanceId}

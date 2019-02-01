@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    environment/configuration.txt
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
@@ -27,7 +28,7 @@ Create a new subscription
 
 Create a new Subscription - DUPLICATION
     Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NVFM_DUPLICATION} == 0    VNFM is not permitting duplication. Skipping the test
+    Pass Execution If    ${VNFM_DUPLICATION} == 0    VNFM is not permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -44,7 +45,7 @@ Create a new Subscription - DUPLICATION
 
 Create a new Subscription - NO-DUPLICATION
     Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NVFM_DUPLICATION} == 1    VNFM permits duplication. Skipping the test
+    Pass Execution If    ${VNFM_DUPLICATION} == 1    VNFM permits duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

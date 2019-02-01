@@ -7,10 +7,9 @@
 	"crossingDirection": "UP",
 	"objectInstanceId": "vnfID",
 	"performanceMetric": "performanceMetric",
-	"performanceValue": 7
+	"performanceValue": 7,
 	"_links": {
 			"subscription": "link to subscription",
 			"threshold": "link to threshold"
 	}
-	
 }

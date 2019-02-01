@@ -1,0 +1,85 @@
+{
+  "type": "object",
+  "required": [
+    "_links",
+    "id",
+    "nsdOnboardingState",
+    "nsdOperationalState",
+    "nsdUsageState"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Identifier of the onboarded individual NS descriptor resource. This identifier is allocated by the NFVO."
+    },
+    "nsdId": {
+      "type": "object",
+      "description": "This identifier, which is allocated by the NSD designer, identifies the NSD in a globally unique way. It is copied from the NSD content and shall be present after the NSD content is on-boarded."
+    },
+    "nsdName": {
+      "type": "string",
+      "description": "Name of the onboarded NSD. This information is copied from the NSD content and shall be present after the NSD content is on-boarded."
+    },
+    "nsdVersion": {
+      "type": "string",
+      "description": "Version of the on-boarded NSD. The NSD version is a string of variable length.This information is copied from the NSD content and shall be present after the NSD content is on-boarded."
+    },
+    "nsdDesigner": {
+      "type": "string",
+      "description": "Designer of the on-boarded NSD. This information \nis copied from the NSD content and shall be present after the NSD content is on-boarded."
+    },
+    "nsdInvariantId": {
+      "type": "string",
+      "description": "This identifier, which is allocated by the NSD designer, identifies an NSD in a version independent manner. This information is copied from the NSD content and shall be present after the NSD content is on-boarded."
+    },
+    "vnfPkgIds": {
+      "type": "array",
+      "description": "Identifies the VNF package for the VNFD referenced by the on-boarded NS descriptor resource.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pnfdInfoIds": {
+      "type": "array",
+      "description": "Identifies the PnfdInfo element for the PNFD referenced by the on-boarded NS descriptor resource.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nestedNsdInfoIds": {
+      "type": "array",
+      "description": "Identifies the NsdInfo element for the nested NSD referenced by the on-boarded NS descriptor resource. At least one of the attributes – vnfPkgId and nestedNsdInfoId shall be present, after the NSD is on-boarded.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nsdOnboardingState": {
+      "$ref": "#/definitions/NsdOnboardingStateType"
+    },
+    "onboardingFailureDetails": {
+      "$ref": "#/definitions/ProblemDetails"
+    },
+    "nsdOperationalState": {
+      "$ref": "#/definitions/NsdOperationalStateType"
+    },
+    "nsdUsageState": {
+      "$ref": "#/definitions/NsdUsageStateType"
+    },
+    "userDefinedData": {
+      "$ref": "#/definitions/KeyValuePairs"
+    },
+    "_links": {
+      "type": "object",
+      "description": "Links to resources related to this resource.",
+      "properties": {
+        "self": {
+          "$ref": "#/definitions/Link"
+        },
+        "nsd_content": {
+          "$ref": "#/definitions/Link"
+        }
+      }
+    }
+  },
+  "description": "This type represents a response for the query NSD operation. It shall comply with the provisions defined in\nTable 5.5.2.2-1 of GS NFV-SOL 005."
+}

@@ -1,11 +1,13 @@
 *** Settings ***
-Resource          environment/variables.txt
-Library           REST    http://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
-Library           OperatingSystem
-Library           BuiltIn
-Library           JSONLibrary
+Resource    environment/variables.txt
+Resource    VnfLcmMntOperationKeywords.robot
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    OperatingSystem
+Library    BuiltIn
+Library    Process
+Library    Collections
+Library    JSONLibrary
 Library    MockServerLibrary
-
 
 *** Keywords ***
 Check subscriptions about one VNFInstance and operation type
@@ -18,22 +20,50 @@ Check subscriptions about one VNFInstance and operation type
     Array    response body    minItems=1
     ${body}    Output    response body
     [Return]    ${body}
+  
+Create Sessions
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${callback_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${callback_uri}:${callback_port}
     
-   
-Deliver a notification - Operation Occurence
-    log    The POST method delivers a notification from the server to the client.
-    ${json}=	Get File	schemas/vnfLcmOperationOccurrenceNotification.schema.json
+Configure Notification Status Handler
+    [Arguments]    ${endpoint}    ${status}=""
+    Run Keyword If   ${status}!=""  set to dictionary    ${json["operationState"]}    dp=${status}    
+    ${BODY}=    evaluate    json.dumps(${json})    json
+    Log  Creating mock request and response to handle ${element}
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+    
+Configure Notification VNF Instance Handler
+    [Arguments]    ${endpoint}    ${instanceId}=""
+    Run Keyword If   ${instanceId}!=""  set to dictionary    ${json["vnfInstanceId"]}    dp=${instanceId}    
+    ${BODY}=    evaluate    json.dumps(${json})    json
+    Log  Creating mock request and response to handle ${element}
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+
+Configure Notification Forward
+    [Arguments]    ${element}    ${endpoint}    ${endpoint_fwd}    
     ${BODY}=	evaluate	json.loads('''${json}''')	json
-    Log  Creating mock request and response to handle vnfLcmOperationOccurrenceNotification
-    &{req}=  Create Mock Request Matcher    POST  ${notification_ep} body_type='JSON_SCHEMA' body=${BODY}
-    &{rsp}=  Create Mock Response	204 headers="Content-Type: application/json"  body_type='JSON_SCHEMA'
-    Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
-    Log  Verifying results
-    Verify Mock Expectation  ${req}
-    Log  Cleaning the endpoint
-    Clear Requests  ${notification_ep}
+    Log  Creating mock HTTP forward to handle ${element}
+    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{notification_fwd}=  Create Mock Http Forward	${endpoint_fwd}
+    Create Mock Expectation With Http Forward  ${notification_tmp}  ${notification_fwd}
 
-    
+Check Operation Notification
+    [Arguments]    ${element}    ${status}=""
+    ${json}=	Get File	schemas/${element}.schema.json
+    Configure Notification Forward    ${element}    ${notification_ep}    ${notification_ep_fwd}
+    Configure Notification Status Handler    ${notification_ep_fwd}    ${status}
+    Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
+    Clear Requests    ${notification_ep}
+    Clear Requests    ${notification_ep_fwd}
 
+Check VNF Instance Operation Notification
+    [Arguments]    ${element}   ${instance_id}
+    ${json}=	Get File	schemas/${element}.schema.json
+    Configure Notification Forward    ${element}    ${notification_ep}    ${notification_ep_fwd}
+    Configure Notification VNF Instance Handler    ${notification_ep_fwd}    ${instance_id}
     

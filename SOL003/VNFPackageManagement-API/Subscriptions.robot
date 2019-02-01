@@ -1,6 +1,6 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/subscriptions.txt
 Library           OperatingSystem
 Library           JSONLibrary
@@ -19,7 +19,7 @@ GET Subscription
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
     Validate Json    PkgmSubscriptions.schema.json    ${json}
-    Log    Validated PkgmSubscriptions schema
+    Log    Validated PkgmSubscription schema
 
 GET Subscription - Filter
     Log    Trying to get the list of subscriptions using filters
@@ -33,7 +33,7 @@ GET Subscription - Filter
     ${result}=    Output    response body
     ${json}=    evaluate    json.loads('''${result}''')    json
     Validate Json    PkgmSubscriptions.schema.json    ${json}
-    Log    Validated PkgmSubscriptions schema
+    Log    Validated PkgmSubscription schema
 
 GET Subscription - Negative Filter
     Log    Trying to get the list of subscriptions using filters with wrong attribute name

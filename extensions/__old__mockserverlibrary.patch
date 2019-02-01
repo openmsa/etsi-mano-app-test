@@ -1,0 +1,75 @@
+diff --git a/src/MockServerLibrary/library.py b/src/MockServerLibrary/library.py
+index a9e6227..7208e61 100644
+--- a/src/MockServerLibrary/library.py
++++ b/src/MockServerLibrary/library.py
+@@ -68,6 +68,31 @@ class MockServerLibrary(object):
+ 
+         return req
+ 
++    def create_mock_request_matcher_schema(self, method, path, body_type='JSON_SCHEMA', body=None):
++        """Creates a mock request matcher to be used by mockserver.
++
++        Returns the request matcher in a dictionary format.
++
++        `method` is the HTTP method of the mocked endpoint
++
++        `path` is the url of the mocked endpoint, e.g. /api
++
++        `body_type` is the type of the request body, e.g. JSON
++
++        `body` is a dictionary of the json attribute(s) to match
++
++        `exact` is a boolean value which specifies whether the body should match fully (=true),
++        or if only specified fields should match (=false)
++        """
++        req = {}
++        req['method'] = method
++        req['path'] = path
++
++        req['body'] = {'type': body_type, 'jsonSchema': json.dumps(body)}
++
++        return req	
++		
++		
+     def create_mock_response(self, status_code, headers=None, body_type='JSON', body=None):
+         """Creates a mock response to be used by mockserver.
+ 
+@@ -97,6 +122,37 @@ class MockServerLibrary(object):
+ 
+         return rsp
+ 
++		
++    def create_mock_response_schema(self, status_code, headers=None, body_type='JSON_SCHEMA', body=None):
++        """Creates a mock response to be used by mockserver.
++
++        Returns the response in a dictionary format.
++
++        `status_code` is the HTTP status code of the response
++
++        `headers` is a dictionary of headers to be added to the response
++
++        `body_type` is the type of the response body, e.g. JSON
++
++        `body` is a dictonary of JSON attribute(s) to be added to the response body
++        """
++        rsp = {}
++        rsp['statusCode'] = int(status_code)
++
++        if headers:
++            rsp['headers'] = []
++
++            for key, value in headers.items():
++                header = {'name': key, 'values': value.split(",")}
++                rsp['headers'].append(header)
++                logger.debug("Add header - header: {}".format(header))
++
++        if body_type is 'JSON_SCHEMA' and body:
++            rsp['body'] = json.dumps(body)
++
++        return rsp
++
++
+     def create_mock_expectation(self, request, response, count=1, unlimited=True):
+         """Creates a mock expectation to be used by mockserver.
+ 
+

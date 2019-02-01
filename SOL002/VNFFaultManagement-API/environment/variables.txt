@@ -32,3 +32,5 @@ ${callback_endpoint}    /notification
 ${AlarmNotification}    {}
 ${AlarmClearedNotification}    {}
 ${AlarmListRebuiltNotification}    {}
+${PerceivedSeverity}    CRITICAL
+${sleep_interval}    20s

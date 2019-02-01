@@ -1,4 +1,5 @@
 *** Setting ***
+Resource    environment/configuration.txt
 Resource    environment/variables.txt
 Library    OperatingSystem
 Library    BuiltIn
@@ -60,4 +61,4 @@ Retrieve VNFinstance
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfId}
-	[Return]	response
+    [Return]	response

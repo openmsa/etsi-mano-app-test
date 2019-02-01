@@ -3,7 +3,7 @@ Resource    environment/variables.txt
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Library    REST    ${VNFM_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}     
+Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 ...    spec=SOL003-VirtualisedResourcesQuotaAvailableNotification-API.yaml
 Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
 ...    subscription to notifications related to the availability of the virtualised resources quotas.
@@ -19,6 +19,14 @@ Post Individual Subscription - Method not implemented
     Integer    response status    405
 
 Get Information about an individual subscription
+    [Documentation]    Test ID: 11.4.3.1
+    ...    Test title: Retrieve the resource quota subscriptions
+    ...    Test objective: The objective is to read an individual subscription for resource quota subscribed by the client
+    ...    Pre-conditions: The subscription with the given id exists
+    ...    Reference: section 11.4.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
     log    Trying to get information about an individual subscription
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

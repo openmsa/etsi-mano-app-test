@@ -1,0 +1,18 @@
+*** Variables ***
+${POS_FIELDS}     name=nsdOnboardingState
+${NEG_FIELDS}     wrongName=any_value
+${nsdInfoId}    5a569e1d-4ffe-4e9a-8cf6-c24226651e56
+${erroneous_nsdInfoId}  erroneous_nsdInfoId
+${enabledNsdInfoId}  5a569e1d-4ffe-4e9a-8cf6-c24226651e56
+${fields}    _links
+${NFVO_FIELDS}    1
+${Etag}=    an etag
+${modifiedNsdInfoId}    f27200b1-1d8b-48c2-9d98-a993b8ab117f
+${ACCEPT_ZIP}    application/zip
+${CONTENT_TYPE_ZIP}    application/zip
+${NFVO_RANGE_OK}    1
+${range}          bytes=0-1023
+${erroneousRange}    bytes=100000-1000000    # Requesting a out of range number of bytes
+${onboardingStateNsdInfoId}    b992a851-08b1-45a8-9282-a5f7a7df04a6
+${contentFile}    files/nsdContent.zip
+${creatingNsdInfoId}    71241932-994a-46e2-ad6c-1740674dda44

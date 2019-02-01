@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    environment/configuration.txt
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 ...        spec=SOL003-VNFLifecycleManagement-API.yaml
@@ -29,7 +30,7 @@ Instantiate a vnfInstance Conflict
     [Documentation]    Conflict. 
     ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Typically, this is due to the fact that the VNF instance resource is in INSTANTIATED state. 
-    ...    The response body shall contain a ProblemDetails structure, in which the detail attribute should convey more information about the error.
+    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
     [Setup]    Check resource instantiated
     Log    Trying to Instantiate a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  

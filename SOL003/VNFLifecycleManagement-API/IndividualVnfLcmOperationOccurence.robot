@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    environment/configuration.txt
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
 ...    spec=SOL003-VNFLifecycleManagement-API.yaml
@@ -10,7 +11,6 @@ Documentation    This resource represents a VNF lifecycle management operation o
 ...    handling of operation errors via retrying the operation, rolling back the operation, or permanently failing the operation
 
 *** Test Cases ***
-
 Post Individual VNF LCM OP occurences - Method not implemented
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  

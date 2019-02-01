@@ -1,5 +1,5 @@
 {
   "changeStateTo": "STOPPED",
-  "stopType": "FORCEFUL"
+  "stopType": "FORCEFUL",
   "additionalParams": {}
 }

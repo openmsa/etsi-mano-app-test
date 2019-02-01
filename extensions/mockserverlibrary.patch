@@ -1,75 +1,59 @@
 diff --git a/src/MockServerLibrary/library.py b/src/MockServerLibrary/library.py
-index a9e6227..7208e61 100644
+index a9e6227..7ba1eed 100644
 --- a/src/MockServerLibrary/library.py
 +++ b/src/MockServerLibrary/library.py
-@@ -68,6 +68,31 @@ class MockServerLibrary(object):
- 
-         return req
- 
-+    def create_mock_request_matcher_schema(self, method, path, body_type='JSON_SCHEMA', body=None):
-+        """Creates a mock request matcher to be used by mockserver.
-+
-+        Returns the request matcher in a dictionary format.
-+
-+        `method` is the HTTP method of the mocked endpoint
-+
-+        `path` is the url of the mocked endpoint, e.g. /api
-+
-+        `body_type` is the type of the request body, e.g. JSON
-+
-+        `body` is a dictionary of the json attribute(s) to match
-+
-+        `exact` is a boolean value which specifies whether the body should match fully (=true),
-+        or if only specified fields should match (=false)
-+        """
-+        req = {}
-+        req['method'] = method
-+        req['path'] = path
-+
-+        req['body'] = {'type': body_type, 'jsonSchema': json.dumps(body)}
-+
-+        return req	
-+		
-+		
-     def create_mock_response(self, status_code, headers=None, body_type='JSON', body=None):
-         """Creates a mock response to be used by mockserver.
- 
-@@ -97,6 +122,37 @@ class MockServerLibrary(object):
- 
-         return rsp
- 
-+		
-+    def create_mock_response_schema(self, status_code, headers=None, body_type='JSON_SCHEMA', body=None):
-+        """Creates a mock response to be used by mockserver.
-+
-+        Returns the response in a dictionary format.
-+
-+        `status_code` is the HTTP status code of the response
-+
-+        `headers` is a dictionary of headers to be added to the response
-+
-+        `body_type` is the type of the response body, e.g. JSON
-+
-+        `body` is a dictonary of JSON attribute(s) to be added to the response body
-+        """
-+        rsp = {}
-+        rsp['statusCode'] = int(status_code)
-+
-+        if headers:
-+            rsp['headers'] = []
-+
-+            for key, value in headers.items():
-+                header = {'name': key, 'values': value.split(",")}
-+                rsp['headers'].append(header)
-+                logger.debug("Add header - header: {}".format(header))
-+
+@@ -66,6 +66,9 @@ class MockServerLibrary(object):
+             match_type = 'STRICT' if exact else 'ONLY_MATCHING_FIELDS'
+             req['body'] = {'type': body_type, 'json': json.dumps(body), 'matchType': match_type}
+
 +        if body_type is 'JSON_SCHEMA' and body:
-+            rsp['body'] = json.dumps(body)
++            req['body'] = {'type': body_type, 'json': json.dumps(body)}
 +
-+        return rsp
+         return req
+
+     def create_mock_response(self, status_code, headers=None, body_type='JSON', body=None):
+@@ -97,6 +100,42 @@ class MockServerLibrary(object):
+
+         return rsp
+
++    def create_mock_http_forward(self, path, delay=1, unit='SECONDS'):
++        """Creates a mock http override forward to be used by mockserver.
 +
++        Returns the http forward in a dictionary format.
++
++        `path` is the new url where to forward the request
++
++        `delay` is the delay of the forward action
++
++        `unit` is the unit of the delay time (default "SECONDS")
++        """
++        fwd = {}
++        fwd['httpRequest'] = {'path': path}
++        fwd['delay'] = {'timeUnit': unit, 'value': delay}
++
++        return fwd
++
++    def create_mock_expectation_with_http_forward(self, request, forward, count=1, unlimited=True):
++        """Creates a mock expectation with request and forward action to be used by mockserver.
++
++        `request` is a mock request matcher in a dictionary format.
++
++        `forward` is a mock forward in a dictionary format.
++
++        `count` is the number of expected requests
++
++        `unlimited` is a boolean value which, if enabled, allows unspecified number of
++        requests to reply to
++        """
++        data = {}
++        data['httpRequest'] = request
++        data['httpOverrideForwardedRequest'] = forward
++        data['times'] = {'remainingTimes': int(count), 'unlimited': unlimited}
++
++        self.create_mock_expectation_with_data(data)
 +
      def create_mock_expectation(self, request, response, count=1, unlimited=True):
          """Creates a mock expectation to be used by mockserver.
- 
+
+
 
