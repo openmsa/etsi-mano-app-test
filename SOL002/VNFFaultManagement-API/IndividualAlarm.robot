@@ -8,9 +8,6 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    DependencyLibrary
 
-*** Variables ***
-${Etag}=    an etag
-${Etag_modified}=    a modified etag
 
 *** Test Cases ***
 POST Alarm - Method not implemented

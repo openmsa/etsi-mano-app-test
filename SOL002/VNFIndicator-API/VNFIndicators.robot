@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     This clause defines all the resources and methods provided by the VNF Indicator interface. \
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Resource          environment/vnfIndicators.txt
 Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}

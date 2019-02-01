@@ -1,16 +1,16 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/subscriptions.txt
 Library           OperatingSystem
 Library           JSONLibrary
-Library           REST    ${PRODUCER_SCHEMA}://${PRODUCER_HOST}:${PRODUCER_PORT}
+Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
 
 *** Test Cases ***
 GET Subscription
     Log    Trying to get the list of subscriptions
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    200
     Log    Received a 200 OK as expected
@@ -24,7 +24,7 @@ GET Subscription
 GET Subscription - Filter
     Log    Trying to get the list of subscriptions using filters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${POS_FILTER}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
@@ -38,7 +38,7 @@ GET Subscription - Filter
 GET Subscription - Negative Filter
     Log    Trying to get the list of subscriptions using filters with wrong attribute name
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${NEG_FILTER}
     Integer    response status    400
     Log    Received a 400 Bad Request as expected
@@ -53,7 +53,7 @@ GET Subscription - Negative Filter
 GET Subscription - Negative (Not Found)
     Log    Trying to perform a request on a Uri which doesn't exist
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscription
     Integer    response status    404
     Log    Received 404 Not Found as expected
@@ -70,7 +70,7 @@ POST Subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     ${body}=    Get File    json/subscriptions.json
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Integer    response status    201
     Log    Received 201 Created as expected
@@ -85,7 +85,7 @@ POST Subscription
 PUT Subscription - (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -93,7 +93,7 @@ PUT Subscription - (Method not implemented)
 PATCH Subscription - (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -101,7 +101,7 @@ PATCH Subscription - (Method not implemented)
 DELETE Subscription - (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
     Log    Received 405 Method not implemented as expected

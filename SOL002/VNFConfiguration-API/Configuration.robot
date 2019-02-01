@@ -1,15 +1,11 @@
 *** Settings ***
 Resource    environments/variables.txt 
-Library    REST    ${VNF_SCHEMA}://${VNF_HOST}:${VNF_PORT} 
+Library    REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
 ...        spec=SOL002-VNFConfiguration-API.yaml
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 Library    DependencyLibrary
-
-*** Variables ***
-${Etag}=    an etag
-${Etag_modified}=    a modified etag
 
 *** Test Cases ***
 POST Configuration - Method not implemented

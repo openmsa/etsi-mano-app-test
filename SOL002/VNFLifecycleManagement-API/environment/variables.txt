@@ -1,38 +1,32 @@
 *** Variables ***
 ${VNFM_HOST}      localhost    # Hostname of the VNFM
 ${VNFM_PORT}      8080    # Listening port of the VNFM
-${NFVO_HOST}      localhost    # Hostname of the NFVO
-${NFVO_PORT}      8081    # Listening port of the NFVO
 ${VNFM_SCHEMA}    https
-${NFVO_SCHEMA}    https
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+${AUTH_USAGE}     1
+${CancelMode}    GRACEFUL
+${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
 ${CONTENT_TYPE}    application/json
-${CONTENT_TYPE_PATCH}    application/merge-patch+json 
 ${ACCEPT}         application/json
+${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${CONTENT_TYPE_PATCH}    application/merge-patch+json
+${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
+
+${callback_endpoint}    /notification
+${callback_port}    9091
+${callback_schema}  http
+${callback_uri}     localhost
+
+${VNFM_DUPLICATION}    0
+
+${Etag}=    an etag
+${Etag_modified}=    a modified etag
+
 ${apiRoot}        /
 ${apiName}        vnflcm
-${apiVersion}     v1    
-${AUTH_USAGE}     1
-${WRONG_AUTHORIZATION}    Bearer    XXXXXWRONGXXXXX
-${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
-${vnfInstanceName}    Test-VnfInstance
-${vnfInstanceDescription}    description vnf
-${vnfInstanceDescription_Update}    Updated description vnf 
-${SINGLE_FILE_VNFD}    1    # If VNFD is PLAIN TEXT
-${ACCEPT_PLAIN}    text/plain
-${ACCEPT_ZIP}     application/zip
-${vnfPkgId_processing}    007c111c-38a1-42c0-a666-7475ecb1567c
-${ARTIFACT_TYPE}    application/octet-stream
-${ARTIFACT_ID}    artifactId
-${WRONG_ACCEPT}    application/json
-${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
-${CancelMode}    GRACEFUL
-${NVFM_DUPLICATION}    0
-${sub_filter}    filter
-${sub_filter_invalid}    filter_invalid
-${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
-${notification_ep}    /notification
-${notification_port}    9091
+${apiVersion}     v1
+
+
 ${VnfLcmOperationOccurrenceNotification}    {}
 ${VnfIdentifierCreationNotification}    {}
 ${VnfIdentifierDeletionNotification}    {}

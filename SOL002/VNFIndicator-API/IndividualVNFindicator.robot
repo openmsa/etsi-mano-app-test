@@ -1,14 +1,14 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/individualVnfIndicator.txt
-Library           REST    ${PRODUCER_SCHEMA}://${PRODUCER_HOST}:${PRODUCER_PORT}
+Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
 
 *** Test Cases ***
 GET Individual VNF Indicator
     Log    The GET method reads a VNF indicator.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
@@ -22,7 +22,7 @@ GET Individual VNF Indicator
 GET Individual VNF Indicator - Negative (Not Found)
     Log    Trying to perform a negative get, using an erroneous package ID
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${erroneousIndicatorId}
     Integer    response status    404
     Log    Received 404 Not Found as expected
@@ -37,7 +37,7 @@ GET Individual VNF Indicator - Negative (Not Found)
 POST Individual VNF Indicator (Method not implemented)
     Log    Trying to perform a POST (method should not be implemented)
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -45,7 +45,7 @@ POST Individual VNF Indicator (Method not implemented)
 PUT Individual VNF Indicator (Method not implemented)
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -53,7 +53,7 @@ PUT Individual VNF Indicator (Method not implemented)
 PATCH Individual VNF Indicator (Method not implemented)
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -61,7 +61,7 @@ PATCH Individual VNF Indicator (Method not implemented)
 DELETE Individual VNF Indicator (Method not implemented)
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${PRODUCER_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${PRODUCER_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected

@@ -2,7 +2,7 @@
 Documentation     This resource represents subscriptions. The client can use this resource to subscribe to notifications related to VNF
 ...               performance management and to query its subscriptions.
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library           OperatingSystem
 Library           JSONLibrary
@@ -15,7 +15,7 @@ GET Subscription
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    200
     Log    Received a 200 OK as expected
@@ -32,7 +32,7 @@ GET Subscription - Filter
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
     Integer    response status    200
     Log    Received a 200 OK as expected
@@ -49,7 +49,7 @@ GET Subscription - Negative Filter (Erroneous filter)
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ko}
     Integer    response status    400
     Log    Received a 400 Bad Request as expected
@@ -66,7 +66,7 @@ GET Subscription - Negative (Not Found)
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscription
     Integer    response status    404
     Log    Received a 404 Not found as expected
@@ -89,7 +89,7 @@ POST Subscription
     ...    referencing the existing subscription resource with the same filter and callbackUri).
     Set headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     ${body_request}=    Get File    jsons/subscriptions.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body_request}
     Integer    response status    201
@@ -117,7 +117,7 @@ POST Subscription - DUPLICATION
     Pass Execution If    ${VNFM_DUPLICATION} == 1    VNFM is permitting duplication. Skipping the test
     Set headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     ${body_request}=    Get File    jsons/subscriptions.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body_request}
     Integer    response status    303
@@ -144,7 +144,7 @@ POST Subscription - NO DUPLICATION
     Pass Execution If    ${VNFM_DUPLICATION} == 0    VNFM is not permitting duplication. Skipping the test
     Set headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     ${body_request}=    Get File    jsons/subscriptions.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body_request}
     Integer    response status    201
@@ -162,7 +162,7 @@ POST Subscription - NO DUPLICATION
 PUT Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -170,7 +170,7 @@ PUT Subscription - (Method not implemented)
 PATCH Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -178,7 +178,7 @@ PATCH Subscription - (Method not implemented)
 DELETE Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
     Log    Received 405 Method not implemented as expected

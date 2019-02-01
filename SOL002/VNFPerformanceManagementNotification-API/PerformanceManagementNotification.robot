@@ -1,5 +1,5 @@
 *** Setting ***
-Resource	environment/generic.txt
+Resource	environment/variables.txt
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary

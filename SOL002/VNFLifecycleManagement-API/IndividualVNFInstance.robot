@@ -11,10 +11,6 @@ Documentation    This resource represents an individual VNF instance. The client
 ...    underlying VNF instance, and to read information about the VNF instance.
 Suite Setup    Check resource existance
 
-*** Variables ***
-${Etag}=    an etag
-${Etag_modified}=    a modified etag
-
 *** Test Cases ***
 Post Individual VNFInstance - Method not implemented
     Log    Trying to perform a POST. This method should not be implemented

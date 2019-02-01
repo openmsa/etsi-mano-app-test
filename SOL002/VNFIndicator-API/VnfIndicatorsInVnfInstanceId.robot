@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     This resource represents VNF indicators related to a VNF instance. The client can use this resource to query multiple VNF indicators that are related to a particular VNF instance.
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/vnfIndicatorinVnfInstance.txt
 Library           JSONLibrary
 Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
