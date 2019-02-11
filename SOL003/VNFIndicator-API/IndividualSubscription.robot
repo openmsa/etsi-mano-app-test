@@ -16,9 +16,8 @@ GET Individual Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with VnfIndicatorSubscription schema
-    Validate Json    VnfIndicatorSubscription.schema.json    ${json}
+    Validate Json    VnfIndicatorSubscription.schema.json    ${result}
     Log    Validated VnfIndicatorSubscription schema
 
 GET Subscription - Negative (Not Found)
@@ -31,9 +30,8 @@ GET Subscription - Negative (Not Found)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Subscription - Negative (Unauthorized: Wrong Token)
@@ -47,8 +45,7 @@ GET Subscription - Negative (Unauthorized: Wrong Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 DELETE Subscription
@@ -69,9 +66,8 @@ DELETE Subscription - Negative (Not Found)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${problemDetails}=    Output
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 PUT Subscription - (Method not implemented)

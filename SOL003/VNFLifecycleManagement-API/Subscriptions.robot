@@ -22,8 +22,7 @@ Create a new subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    Subscription.schema.json    ${json}
+    Validate Json    Subscription.schema.json    ${result}
     Log    Validation OK
 
 Create a new Subscription - DUPLICATION
@@ -39,8 +38,7 @@ Create a new Subscription - DUPLICATION
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    Subscription.schema.json    ${json}
+    Validate Json    Subscription.schema.json    ${result}
     Log    Validation OK
 
 Create a new Subscription - NO-DUPLICATION
@@ -67,8 +65,7 @@ GET Subscriptions
     Log    Validate Status code
     Integer    response status    200
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    Subscriptions.schema.json    ${json}
+    Validate Json    Subscriptions.schema.json    ${result}
     Log    Validation OK
 
 GET Subscription - Filter
@@ -79,8 +76,7 @@ GET Subscription - Filter
     Integer    response status    200
     Log    Received a 200 OK as expected
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    Subscriptions.schema.json    ${json}
+    Validate Json    Subscriptions.schema.json    ${result}
     Log    Validation OK
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
@@ -92,8 +88,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
 PUT subscriptions - Method not implemented

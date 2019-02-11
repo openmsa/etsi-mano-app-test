@@ -54,8 +54,7 @@ Get information about multiple VNF instances
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfInstances.schema.json    ${json}
+    Validate Json    vnfInstances.schema.json    ${result}
     Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
@@ -76,8 +75,7 @@ Get information about multiple VNF instances Bad Request Invalid attribute-based
     Log    Validate Status code
     Integer    response status    400
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute selector
@@ -97,8 +95,7 @@ Get information about multiple VNF instances Bad Request Invalid attribute selec
     Log    Validate Status code
     Integer    response status    400
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
 PUT VNFInstances - Method not implemented

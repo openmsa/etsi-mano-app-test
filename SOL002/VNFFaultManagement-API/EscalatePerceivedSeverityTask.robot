@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
-...        spec=SOL002-VNFFaultManagement-API.yaml
 Suite Setup    Check resource existance
 
 *** Test Cases ***

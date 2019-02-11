@@ -2,14 +2,13 @@
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt  
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
-...        spec=SOL002-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
 Create a new vnfInstance
-    [Setup]    #make sure the vnfInstand ${vnfInstanceId} doesn't exist
+    #[Setup]    #make sure the vnfInstand ${vnfInstanceId} doesn't exist
     Log    Create VNF instance by POST to ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -23,8 +22,7 @@ Create a new vnfInstance
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfInstance.schema.json    ${json}
+    Validate Json    vnfInstance.schema.json    ${result}
     Log    Validation OK
 
 Get information about multiple VNF instances  
@@ -38,8 +36,7 @@ Get information about multiple VNF instances
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfInstances.schema.json    ${json}
+    Validate Json    vnfInstances.schema.json    ${result}
     Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
@@ -53,8 +50,7 @@ Get information about multiple VNF instances Bad Request Invalid attribute-based
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 Get information about multiple VNF instances Bad Request Invalid attribute selector
@@ -68,8 +64,7 @@ Get information about multiple VNF instances Bad Request Invalid attribute selec
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
 PUT VNFInstances - Method not implemented

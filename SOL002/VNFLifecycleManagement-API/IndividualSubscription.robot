@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
@@ -25,9 +24,8 @@ Get Information about an individual subscription
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Log    Validate Status code
     Integer    response status    200
-     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    subscription.schema.json    ${json}
+    ${result}=    Output    response body
+    Validate Json    subscription.schema.json    ${result}
     Log    Validation OK
 
 PUT an individual subscription - Method not implemented

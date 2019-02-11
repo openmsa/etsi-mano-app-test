@@ -18,8 +18,7 @@ Get Vnf Instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}
     ${body}=    Output    response body
-    ${json}=    evaluate    json.loads('''${body}''')    json
-    [Return]    ${json}
+    [Return]    ${body}
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
@@ -32,8 +31,7 @@ Check Operation Occurrence Id
 
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
-    ${json}=    evaluate    json.loads('''${response.body}''')    json
-    Validate Json    ${schema}    ${json}
+    Validate Json    ${schema}    ${response.body}
     ${vnfInstanceId}=    evaluate   ${response.body.id}
     Log    Json Schema Validation OK
 
@@ -193,8 +191,7 @@ Create a new Grant - Synchronous mode
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    grant.schema.json    ${json}
+    Validate Json    grant.schema.json    ${result}
     Log    Validation OK
 
 Create a new Grant - Asynchronous mode

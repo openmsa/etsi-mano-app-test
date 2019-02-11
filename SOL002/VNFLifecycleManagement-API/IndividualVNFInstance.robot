@@ -2,7 +2,6 @@
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL002-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    DependencyLibrary
 Library    JSONLibrary
@@ -37,8 +36,7 @@ Get Information about an individual VNF Instance
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfInstance.schema.json    ${json}
+    Validate Json    vnfInstance.schema.json    ${result}
     Log    Validation OK
     
 PUT Individual VNFInstance - Method not implemented 
@@ -86,8 +84,7 @@ PATCH Individual VNFInstance Precondition failed
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 PATCH Individual VNFInstance Conflict
@@ -107,10 +104,9 @@ PATCH Individual VNFInstance Conflict
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
-    [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
+    #[Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
 DELETE Individual VNFInstance
     [Documentation]    Delete VNF Identifier This method deletes an individual VNF instance resource.
@@ -136,8 +132,7 @@ DELETE Individual VNFInstance Conflict
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
 *** Keywords ***

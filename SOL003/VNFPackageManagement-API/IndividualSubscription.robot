@@ -17,8 +17,7 @@ GET Individual Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PkgmSubscription.schema.json    ${json}
+    Validate Json    PkgmSubscription.schema.json    ${result}
     Log    Validated PkgmSubscription schema
 
 GET Subscription - Negative (Not Found)
@@ -32,8 +31,7 @@ GET Subscription - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 DELETE Subscription
@@ -62,8 +60,7 @@ DELETE Subscription - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 PUT Subscription - (Method not implemented)

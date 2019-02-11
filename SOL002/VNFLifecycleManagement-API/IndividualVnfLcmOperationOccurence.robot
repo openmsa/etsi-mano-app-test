@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL002-VNFLifecycleManagement-API.yaml
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This resource represents a VNF lifecycle management operation occurrence. The client can use this resource to read
@@ -32,8 +31,7 @@ Get stauts information about multiple VNF instances
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfLcmOpOcc.schema.json    ${json}
+    Validate Json    vnfLcmOpOcc.schema.json    ${result}
     Log    Validation OK
 
 PUT stauts information about multiple VNF instances - Method not implemented 

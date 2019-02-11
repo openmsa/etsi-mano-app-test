@@ -51,8 +51,7 @@ Validate Header
 
 Validate JsonSchema
     [Arguments]    ${body}    ${schema}
-    ${json}=    evaluate    json.loads('''${body}''')    json
-    Validate Json    ${schema}    ${json}
+    Validate Json    ${schema}    ${body}
     Log    Validation OK
     
 Retrieve PMJob

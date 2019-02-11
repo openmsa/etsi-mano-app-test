@@ -2,7 +2,7 @@
 Documentation     This resource represents subscriptions. The client can use this resource to subscribe to notifications related to VNF
 ...               performance management and to query its subscriptions.
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library           OperatingSystem
 Library           JSONLibrary
@@ -22,8 +22,7 @@ GET Individual Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmSubscription.schema.json    ${json}
+    Validate Json    PmSubscription.schema.json    ${result}
     Log    Validated PmSubscription schema
 
 GET Individual Subscription - Negative (Not Found)
@@ -39,8 +38,7 @@ GET Individual Subscription - Negative (Not Found)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${result}
     Log    Validated ProblemDetails schema
 
 POST Individual Subscription - (Method not implemented)

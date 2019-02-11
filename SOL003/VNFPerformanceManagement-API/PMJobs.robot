@@ -18,11 +18,10 @@ GET all Pm Jobs
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJobs.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${result}
     Log    Validation OK
     Log    Checking that reports element is missing
-    ${reports}=    Get Value From Json    ${json}    $..reports
+    ${reports}=    Get Value From Json    ${result}    $..reports
     Should Be Empty    ${reports}
     Log    Reports element is empty as expected
 
@@ -36,8 +35,7 @@ GET all Pm Jobs - Filter
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJobs.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${result}
     Log    Validation OK
 
 GET all Pm Jobs - all_fields
@@ -50,19 +48,18 @@ GET all Pm Jobs - all_fields
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJobs.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${result}
     Log    Validation OK
     Log    Trying to validate criteria schema
-    ${criteria}=    Get Value From Json    ${json}    $..criteria
+    ${criteria}=    Get Value From Json    ${result}    $..criteria
     Validate Json    criteria.schema.json    ${criteria[0]}
     Log    Validation for criteria schema OK
     Log    Trying to validate criteria schema
-    ${reports}=    Get Value From Json    ${json}    $..reports
+    ${reports}=    Get Value From Json    ${result}    $..reports
     Validate Json    reports.schema.json    ${reports[0]}
     Log    Validation for reports schema OK
     Log    Validating _links schema
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${result}    $.._links
     Validate Json    links.schema.json    ${links[0]}
     Log    Validation for _links schema OK
 
@@ -76,11 +73,10 @@ GET all Pm Jobs - exclude_default
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJobs.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${result}
     Log    Validation OK
     Log    Checking that reports element is missing
-    ${reports}=    Get Value From Json    ${json}    $..reports
+    ${reports}=    Get Value From Json    ${result}    $..reports
     Should Be Empty    ${reports}
     Log    Reports element is empty as expected
 
@@ -95,15 +91,14 @@ GET all Pm Jobs - fields
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJobs.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${result}
     Log    Validation OK
     Log    Trying to validate criteria schema
-    ${criteria}=    Get Value From Json    ${json}    $..criteria
+    ${criteria}=    Get Value From Json    ${result}    $..criteria
     Validate Json    criteria.schema.json    ${criteria[0]}
     Log    Validation for criteria schema OK
     Log    Trying to validate criteria schema
-    ${reports}=    Get Value From Json    ${json}    $..reports
+    ${reports}=    Get Value From Json    ${result}    $..reports
     Validate Json    reports.schema.json    ${reports[0]}
     Log    Validation for reports schema OK
 
@@ -118,15 +113,14 @@ GET all Pm Jobs - exclude_fields
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJobs.schema.json    ${json}
+    Validate Json    PmJobs.schema.json    ${result}
     Log    Validation OK
     Log    Checking that reports element is missing
-    ${reports}=    Get Value From Json    ${json}    $..reports
+    ${reports}=    Get Value From Json    ${result}    $..reports
     Should Be Empty    ${reports}
     Log    Reports element is empty as expected
     Log    Checking that criteria element is missing
-    ${criteria}=    Get Value From Json    ${json}    $..criteria
+    ${criteria}=    Get Value From Json    ${result}    $..criteria
     Should Be Empty    ${criteria}
     Log    Criteria element is empty as expected
 
@@ -140,9 +134,8 @@ GET all Pm Jobs - Negative (wronge filter name)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response headers Content-Type
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    ${problemDetails}=    Output    response body
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Pm Jobs (Negative: Not found)
@@ -155,9 +148,8 @@ GET all Pm Jobs (Negative: Not found)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response headers Content-Type
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    ${problemDetails}=    Output    response body
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST all PM Jobs - Create new PM Job
@@ -173,8 +165,7 @@ POST all PM Jobs - Create new PM Job
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJob.schema.json    ${json}
+    Validate Json    PmJob.schema.json    ${result}
     Log    Validation OK
 
 PUT all PM Jobs - (Method not implemented)

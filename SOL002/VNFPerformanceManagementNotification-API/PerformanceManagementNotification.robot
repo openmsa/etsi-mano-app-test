@@ -1,5 +1,5 @@
 *** Setting ***
-Resource	environment/generic.txt
+Resource	environment/variables.txt
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
@@ -111,6 +111,6 @@ DELETE Performance Notification
 
 *** Keywords ***
 Create Sessions
-    Start Process  java  -jar  ../../bin/mockserver-netty-5.3.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
+    Start Process  java  -jar  ../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}:${callback_port}

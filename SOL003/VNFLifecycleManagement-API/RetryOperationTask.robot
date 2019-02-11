@@ -39,8 +39,7 @@ Post Retry operation task Conflict (Not-FAILED_TEMP)
     Integer    response status    409
     Log    Status code validated
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 Post Retry operation task Conflict (parallel LCM operation)
@@ -58,8 +57,7 @@ Post Retry operation task Conflict (parallel LCM operation)
     Log    Validate Status code
     Integer    response status    409
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
@@ -78,8 +76,7 @@ Post Retry operation task Not Found
     Log    Validate Status code
     Integer    response status    409
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Retry operation task - Method not implemented

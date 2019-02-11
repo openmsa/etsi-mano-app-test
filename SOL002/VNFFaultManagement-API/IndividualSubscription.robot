@@ -3,7 +3,6 @@ Resource    environment/variables.txt
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL002-VNFFaultManagement-API.yaml
 Documentation    This resource represents an individual subscription for VNF alarms. 
 ...    The client can use this resource to read and to terminate a subscription to notifications related to VNF fault management.
 Suite Setup    Check resource existance
@@ -36,8 +35,7 @@ Get Information about an individual subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    FmSubscription.schema.json    ${json}
+    Validate Json    FmSubscription.schema.json    ${result}
     Log    Validation OK
 
 PUT an individual subscription - Method not implemented

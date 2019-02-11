@@ -36,8 +36,7 @@ Get Information about an individual subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    FmSubscription.schema.json    ${json}
+    Validate Json    FmSubscription.schema.json    ${result}
     Log    Validation OK
 
 PUT an individual subscription - Method not implemented

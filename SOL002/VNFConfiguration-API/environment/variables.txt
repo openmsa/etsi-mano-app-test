@@ -1,42 +1,17 @@
 *** Variables ***
-${VNFM_HOST}      localhost    # Hostname of the VNFM
-${VNFM_PORT}      8080    # Listening port of the VNFM
-${VNF_HOST}      localhost    # Hostname of the NFVO
-${VNF_PORT}      8081    # Listening port of the NFVO
-${VNFM_SCHEMA}    https
-${VNF_SCHEMA}    https
+
+${Etag}=    an etag
+${Etag_modified}=    12345
+${response}=    httpresponse
+
+${EM-VNF_HOST}      localhost    # Hostname of the NFVO
+${EM-VNF_PORT}      8081    # Listening port of the NFVO
+${EM-VNF_SCHEMA}    https
+
+${ACCEPT}         application/json
+${AUTH_USAGE}     1
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ${CONTENT_TYPE}    application/json
-${CONTENT_TYPE_PATCH}    application/merge-patch+json 
-${ACCEPT}         application/json
 ${apiRoot}        /
 ${apiName}        vnfconfig
-${apiVersion}     v1    
-${AUTH_USAGE}     1
-${WRONG_AUTHORIZATION}    Bearer    XXXXXWRONGXXXXX
-${alarm_filter}       managedObjectId
-${managedObjectId}    007c111c-38a1-42c0-a666-7475ecb1567c
-${invalid_alarm_filter}    badFilter 
-${alarmId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
-${vnfInstanceDescription}    description vnf
-${vnfInstanceDescription_Update}    Updated description vnf 
-${SINGLE_FILE_VNFD}    1    # If VNFD is PLAIN TEXT
-${ACCEPT_PLAIN}    text/plain
-${ACCEPT_ZIP}     application/zip
-${vnfPkgId_processing}    007c111c-38a1-42c0-a666-7475ecb1567c
-${ARTIFACT_TYPE}    application/octet-stream
-${ARTIFACT_ID}    artifactId
-${WRONG_ACCEPT}    application/json
-${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
-${CancelMode}    GRACEFUL
-${LccnSubscriptionRequest}    {}
-${NVFM_DUPLICATION}    0
-${sub_filter}    filter
-${sub_filter_invalid}    filter_invalid
-${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
-${notification_ep}    /notification
-${notification_port}    9091
-${AlarmNotification}    {}
-${AlarmClearedNotification}    {}
-${AlarmListRebuiltNotification}    {}
-${PerceivedSeverity}    CRITICAL
+${apiVersion}     v1

@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     This resource represents an individual threshold.
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library           OperatingSystem
@@ -19,9 +19,8 @@ GET Individual Threshold
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with thresholds schema
-    Validate Json    Threshold.schema.json    ${json}
+    Validate Json    Threshold.schema.json    ${result}
 
 GET Individual Threshold - Negative (Not Found)
     [Documentation]    The client can use this method to query information about thresholds.
@@ -34,8 +33,7 @@ GET Individual Threshold - Negative (Not Found)
     Log    Received 404 Not Found as expected
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 DELETE Individual Threshold
@@ -59,9 +57,8 @@ DELETE Individual Threshold - Negative (Not Found)
     Integer    response status    404
     Log    Received 404 Not Found as expected
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with ProblemDetails schema
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${result}
 
 POST Individual Threshold - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method

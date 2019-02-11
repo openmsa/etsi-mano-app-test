@@ -6,7 +6,7 @@ Documentation     This resource represents an individual performance report that
 ...               It is determined by means outside the scope of the present document, such as configuration or policy, how long an
 ...               individual performance report is available.
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/reports.txt
 Library           JSONLibrary
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
@@ -24,8 +24,7 @@ GET Report on Single PM Job
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate result with PerformanceReport schema
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PerformanceReport.schema.json    ${json}
+    Validate Json    PerformanceReport.schema.json    ${result}
 
 GET Report on Single PM Job - Negative (Not Found)
     [Documentation]    The client can use this method for reading an individual performance report.
@@ -38,8 +37,7 @@ GET Report on Single PM Job - Negative (Not Found)
     Log    Received 404 Not Found as expected
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST Reports - (Method not implemented)

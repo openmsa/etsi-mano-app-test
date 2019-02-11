@@ -1,6 +1,6 @@
 *** Variables ***
-${PRODUCER_HOST}    localhost    # Hostname of the NFVO
-${PRODUCER_PORT}    8081    # Listening port of the NFVO
+${PRODUCER_HOST}    localhost   
+${PRODUCER_PORT}    8081    
 ${PRODUCER_SCHEMA}    https
 ${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
 ${CONTENT_TYPE_JSON}    application/json

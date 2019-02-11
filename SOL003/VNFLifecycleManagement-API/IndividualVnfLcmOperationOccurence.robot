@@ -33,8 +33,7 @@ Get stauts information about multiple VNF instances
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    VnfLcmOpOcc.schema.json    ${json}
+    Validate Json    VnfLcmOpOcc.schema.json    ${result}
     Log    Validation OK
 
 PUT stauts information about multiple VNF instances - Method not implemented 

@@ -16,8 +16,7 @@ GET Individual VNF Package
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${vnfPkgInfo}=    Output    response body
-    ${json}=    evaluate    json.loads('''${vnfPkgInfo}''')    json
-    Validate Json    vnfPkgInfo.schema.json    ${json}
+    Validate Json    vnfPkgInfo.schema.json    ${vnfPkgInfo}
     Log    Validation OK
 
 GET Individual VNF Package - Negative (Not Found)
@@ -31,8 +30,7 @@ GET Individual VNF Package - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST Individual VNF Package - (Method not implemented)
