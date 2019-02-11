@@ -109,6 +109,6 @@ DELETE subscriptions - Method not implemented
     
 *** Keywords ***
 Create Sessions
-    Start Process  java  -jar  ../../bin/mockserver-netty-5.3.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}:${callback_port}     #The API producer is set to NFVO according to SOL003-7.3.4

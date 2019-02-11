@@ -121,3 +121,4 @@ DELETE all Indicators (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
+

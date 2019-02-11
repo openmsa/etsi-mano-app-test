@@ -17,7 +17,7 @@ GET Report on Single PM Job
     ...    This method shall follow the provisions specified in the tables 6.4.4.3.2-1 and 6.4.4.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
@@ -31,7 +31,7 @@ GET Report on Single PM Job - Negative (Not Found)
     ...    This method shall follow the provisions specified in the tables 6.4.4.3.2-1 and 6.4.4.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": ${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${erroneousReportId}
     Integer    response status    404
     Log    Received 404 Not Found as expected
@@ -43,7 +43,7 @@ GET Report on Single PM Job - Negative (Not Found)
 POST Reports - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -51,7 +51,7 @@ POST Reports - (Method not implemented)
 PUT Reports - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -59,7 +59,7 @@ PUT Reports - (Method not implemented)
 PATCH Reports - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
@@ -67,7 +67,7 @@ PATCH Reports - (Method not implemented)
 DELETE Reports - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${VNFM_AUTH_USAGE} == 1    Set Headers    {"Authorization": "${VNFM_AUTHENTICATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected

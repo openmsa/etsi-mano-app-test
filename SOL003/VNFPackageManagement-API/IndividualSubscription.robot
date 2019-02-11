@@ -86,3 +86,4 @@ POST Subscription - (Method not implemented)
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
+

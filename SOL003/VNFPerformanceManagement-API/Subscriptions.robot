@@ -176,3 +176,4 @@ DELETE Subscription - (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
+

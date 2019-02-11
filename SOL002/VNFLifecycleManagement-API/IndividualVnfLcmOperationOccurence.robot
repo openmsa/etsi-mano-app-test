@@ -10,14 +10,14 @@ Documentation    This resource represents a VNF lifecycle management operation o
 
 *** Test Cases ***
 Post Individual VNF LCM OP occurences - Method not implemented
-    log    Trying to perform a POST. This method should not be implemented
+    Log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     Log    Validate Status code
     Integer    response status    405
 
-Get stauts information about multiple VNF instances  
+Get Individual VNF LCM OP occurences
     [Documentation]    Get Operation Status
     ...    The client can use this method to retrieve status information about a VNF lifecycle management operation occurrence 
     ...    by reading an individual �VNF LCM operation occurrence� resource.
@@ -34,24 +34,24 @@ Get stauts information about multiple VNF instances
     Validate Json    vnfLcmOpOcc.schema.json    ${result}
     Log    Validation OK
 
-PUT stauts information about multiple VNF instances - Method not implemented 
-    log    Trying to perform a PUT. This method should not be implemented
+PUT Individual VNF LCM OP occurences - Method not implemented
+    Log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     Log    Validate Status code
     Integer    response status    405
 
-PATCH stauts information about multiple VNF instances - Method not implemented 
-    log    Trying to perform a PATCH. This method should not be implemented
+PATCH Individual VNF LCM OP occurences - Method not implemented
+    Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     Log    Validate Status code
     Integer    response status    405
     
-DELETE stauts information about multiple VNF instances - Method not implemented 
-    log    Trying to perform a DELETE. This method should not be implemented
+DELETE Individual VNF LCM OP occurences - Method not implemented
+    Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}

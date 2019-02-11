@@ -13,3 +13,5 @@ ${apiName}        nsd
 ${FIELD_USAGE}    1
 ${NFVO_AUTHENTICATION}    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ${NFVO_AUTH_USAGE}    1
+
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar

@@ -77,3 +77,4 @@ DELETE Individual Subscription - (Method not implemented)
     ${body}=    Output    response body
     Should Be Empty    ${body}
     Log    Body of the response is empty
+

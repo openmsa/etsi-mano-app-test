@@ -7,9 +7,6 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    DependencyLibrary
 
-*** Variables ***
-${Etag}=    an etag
-${Etag_modified}=    a modified etag
 
 *** Test Cases ***
 POST Alarm - Method not implemented
@@ -127,5 +124,4 @@ DELETE Alarm - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     Log    Validate Status code
-
     Integer    response status    405   

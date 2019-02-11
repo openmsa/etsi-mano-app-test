@@ -103,3 +103,4 @@ DELETE Reports - (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
+

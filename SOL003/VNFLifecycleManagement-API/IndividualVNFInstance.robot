@@ -153,4 +153,3 @@ Launch another LCM operation
     ${body}=    Get File    json/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     Integer    response status    202
-

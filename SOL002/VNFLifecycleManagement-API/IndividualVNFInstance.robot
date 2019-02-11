@@ -16,7 +16,7 @@ ${Etag_modified}=    a modified etag
 
 *** Test Cases ***
 Post Individual VNFInstance - Method not implemented
-    log    Trying to perform a POST. This method should not be implemented
+    Log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -25,7 +25,7 @@ Post Individual VNFInstance - Method not implemented
     Integer    response status    405
 
 Get Information about an individual VNF Instance
-    log    Trying to get information about an individual VNF instance
+    Log    Trying to get information about an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -40,7 +40,7 @@ Get Information about an individual VNF Instance
     Log    Validation OK
     
 PUT Individual VNFInstance - Method not implemented 
-    log    Trying to perform a PUT. This method should not be implemented
+    Log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

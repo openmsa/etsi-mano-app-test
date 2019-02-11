@@ -81,6 +81,7 @@ PATCH subscriptions - Method not implemented
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
 
+
 DELETE subscriptions - Method not implemented
     Log  DELETE Method not implemented
     &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}

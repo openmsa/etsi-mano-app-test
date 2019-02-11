@@ -102,4 +102,3 @@ DELETE Alarms - Method not implemented
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms
     Log    Validate Status code
     Integer    response status    405
-

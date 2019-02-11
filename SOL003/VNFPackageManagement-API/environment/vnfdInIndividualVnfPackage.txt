@@ -5,3 +5,6 @@ ${vnfPkgPlainVNFD}    c26ad7fb-072b-48c4-a663-7d71646d9e98    # The VNF Pakcage 
 ${ACCEPT_ZIP}     application/zip
 ${CONTENT_TYPE_ZIP}    application/zip
 ${vnfPkgZipVNFD}    f5b220d4-6177-4ebb-a554-a43311e16075    # The VNF Package contains a VNFD composed by multiple files
+${erroneousVnfPkgId}    erroneousVnfPackageId    # Given ID for vnfPkg not present in database
+${onboardingStateVnfPkgId}    f9f130e4-05eb-4082-a676-4c97d13a883d    # The VNF Package is in CREATED onboardingState
+

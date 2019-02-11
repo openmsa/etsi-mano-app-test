@@ -55,15 +55,15 @@ Configure Notification Forward
 Check Operation Notification
     [Arguments]    ${element}    ${status}=""
     ${json}=	Get File	schemas/${element}.schema.json
-    Configure Notification Forward    ${element}    ${notification_ep}    ${notification_ep_fwd}
-    Configure Notification Status Handler    ${notification_ep_fwd}    ${status}
+    Configure Notification Forward    ${element}    ${callback_endpoint}    ${callback_endpoint_fwd}
+    Configure Notification Status Handler    ${callback_endpoint_fwd}    ${status}
     Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
-    Clear Requests    ${notification_ep}
-    Clear Requests    ${notification_ep_fwd}
-
+    Clear Requests    ${callback_endpoint}
+    Clear Requests    ${callback_endpoint_fwd}
+    
 Check VNF Instance Operation Notification
     [Arguments]    ${element}   ${instance_id}
     ${json}=	Get File	schemas/${element}.schema.json
-    Configure Notification Forward    ${element}    ${notification_ep}    ${notification_ep_fwd}
-    Configure Notification VNF Instance Handler    ${notification_ep_fwd}    ${instance_id}
+    Configure Notification Forward    ${element}    ${callback_endpoint}    ${callback_endpoint_fwd}
+    Configure Notification VNF Instance Handler    ${callback_endpoint_fwd}    ${instance_id}
     

@@ -2,29 +2,38 @@
 ${VNFM_HOST}      localhost    # Hostname of the VNFM
 ${VNFM_PORT}      8080    # Listening port of the VNFM
 ${VNFM_SCHEMA}    https
-${apiRoot}        /
-${apiName}        vnffm
-${apiVersion}     v1    
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
-${CONTENT_TYPE}    application/json
-${CONTENT_TYPE_PATCH}    application/merge-patch+json 
 ${ACCEPT}         application/json
 ${AUTH_USAGE}     1
 ${alarm_filter}       managedObjectId
 ${managedObjectId}    007c111c-38a1-42c0-a666-7475ecb1567c
 ${invalid_alarm_filter}    badFilter 
-${alarmId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
-
+${apiRoot}        /
+${apiName}        vnffm
+${apiVersion}     v1
+${CONTENT_TYPE}    application/json
 
 ${VNFM_DUPLICATION}    0
+
+${alarmId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
+${Etag}=    an etag
+${Etag_modified}=    a modified etag
+${CONTENT_TYPE_PATCH}    application/merge-patch+json
+
+${PerceivedSeverity}    CRITICAL
+
 ${sub_filter}    filter
 ${sub_filter_invalid}    filter_invalid
+
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
-${PerceivedSeverity}    CRITICAL
 
 ${callback_uri}    http://localhost
 ${callback_port}    9091
 ${callback_endpoint}    /endpoint
 ${callback_endpoint_error}    /endpoint_404
 ${sleep_interval}    20s
+
+${AlarmNotification}    {}
+${AlarmClearedNotification}    {}
+${AlarmListRebuiltNotification}    {}
 

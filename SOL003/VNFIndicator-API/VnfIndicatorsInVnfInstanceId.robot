@@ -89,3 +89,4 @@ DELETE Indicators on VNF Instance - (Method not implemented)
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
     Log    Received 405 Method not implemented as expected
+

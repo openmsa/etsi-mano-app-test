@@ -6,6 +6,8 @@ Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 Library    DependencyLibrary
 
+*** Variables ***
+${response}=    httpresponse
 
 *** Test Cases ***
 POST Configuration - Method not implemented
@@ -93,7 +95,11 @@ Send VNF configuration
     ${body}=    Get File    json/vnfConfigModifications.json
     ${response}=    Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}
 
-Send Duplicated VNF configuration
+PATCH Config - Precondition failed
+    [Documentation]    Precondition Failed
+    ...    Precondition Failed A precondition given in an HTTP request header is not fulfilled. 
+    ...    Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity. 
+    ...    The response body should contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
     Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
     log    Trying to perform a PATCH. This method modifies an individual alarm resource  
     Set Headers  {"Accept":"${ACCEPT}"} 
@@ -130,3 +136,13 @@ Check Postcondition VNF Is Configured
     ${output}=    evaluate    json.loads('''${response.body}''')    json
     ${input}=    Get File    json/vnfConfigModifications.json
     Should Be Equal  ${output}    ${input}   
+
+Send Duplicated VNF configuration
+    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
+    log    Trying to perform a PATCH. This method modifies an individual alarm resource
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Set Headers    {"If-Match": "${Etag}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    json/vnfConfigModifications.json
+    ${response}=    Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}

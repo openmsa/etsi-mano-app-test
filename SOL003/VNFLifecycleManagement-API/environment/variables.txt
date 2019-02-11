@@ -35,3 +35,4 @@ ${changeVnfOperateRequest}    {}
 ${requestedState}   test
 ${changeVnfExtConnectivityRequest}    {}
 ${patchBodyRequest}   {}
+

@@ -163,4 +163,5 @@ DELETE subscriptions - Method not implemented
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Log    Validate Status code
     Integer    response status    405
+
     

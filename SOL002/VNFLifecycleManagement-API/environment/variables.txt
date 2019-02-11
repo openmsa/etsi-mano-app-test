@@ -7,17 +7,17 @@ ${VNFM_SCHEMA}    https
 ${NFVO_SCHEMA}    https
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ${CONTENT_TYPE}    application/json
-${CONTENT_TYPE_PATCH}    application/merge-patch+json 
+${CONTENT_TYPE_PATCH}    application/merge-patch+json
 ${ACCEPT}         application/json
 ${apiRoot}        /
 ${apiName}        vnflcm
-${apiVersion}     v1    
+${apiVersion}     v1
 ${AUTH_USAGE}     1
 ${WRONG_AUTHORIZATION}    Bearer    XXXXXWRONGXXXXX
 ${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${vnfInstanceName}    Test-VnfInstance
 ${vnfInstanceDescription}    description vnf
-${vnfInstanceDescription_Update}    Updated description vnf 
+${vnfInstanceDescription_Update}    Updated description vnf
 ${SINGLE_FILE_VNFD}    1    # If VNFD is PLAIN TEXT
 ${ACCEPT_PLAIN}    text/plain
 ${ACCEPT_ZIP}     application/zip
@@ -27,7 +27,7 @@ ${ARTIFACT_ID}    artifactId
 ${WRONG_ACCEPT}    application/json
 ${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
 ${CancelMode}    GRACEFUL
-${NVFM_DUPLICATION}    0
+${VNFM_DUPLICATION}    0
 ${sub_filter}    filter
 ${sub_filter_invalid}    filter_invalid
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f

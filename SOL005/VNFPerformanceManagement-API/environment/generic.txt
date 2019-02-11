@@ -18,3 +18,6 @@ ${VNFM_AUTHENTICATION}    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ${VNFM_AUTH_USAGE}    1
 ${VNFM_DUPLICATION}    1
 ${NFVO_DUPLICATION}    1
+
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
+

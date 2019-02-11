@@ -71,3 +71,4 @@ DELETE Reports - (Method not implemented)
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
+

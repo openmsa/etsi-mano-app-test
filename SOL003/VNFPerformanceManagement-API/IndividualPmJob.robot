@@ -77,3 +77,4 @@ PATCH Individual PM Job - (Method not implemented)
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
+
