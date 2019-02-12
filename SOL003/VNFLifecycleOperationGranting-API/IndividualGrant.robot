@@ -37,8 +37,7 @@ Get an individual grant - Successful
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    grant.schema.json    ${json}
+    Validate Json    grant.schema.json    ${result}
     Log    Validation OK
     
 Get an individual grant - Process ongoing
@@ -73,8 +72,7 @@ Get an individual grant - grant rejected
     Log    Validate Status code
     Integer    response status    403
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 PUT an individual grant - Method not implemented

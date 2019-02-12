@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
-...        spec=SOL002-VNFLifecycleManagement-API.yaml
 Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -36,8 +35,7 @@ Post Cancel operation task Conflict (Not-FAILED_TEMP)
     Integer    response status    409
     Log    Status code validated
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 Post Cancel operation task Conflict (parallel LCM operation)
@@ -54,10 +52,9 @@ Post Cancel operation task Conflict (parallel LCM operation)
     Log    Validate Status code
     Integer    response status    409
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
-    [Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
+    #[Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
 Post Cancel operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
@@ -74,8 +71,7 @@ Post Cancel operation task Not Found
     Log    Validate Status code
     Integer    response status    409
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Cancel operation task - Method not implemented

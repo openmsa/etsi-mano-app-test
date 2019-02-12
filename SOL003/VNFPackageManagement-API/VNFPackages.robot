@@ -16,19 +16,18 @@ GET all Packages
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfPkgsInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${result}
     Log    Validation OK
     Log    Checking missing information for softwareImages element
-    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    ${softwareImages}=    Get Value From Json    ${result}    $..softwareImages
     Should Be Empty    ${softwareImages}
     Log    softwareImages element is missing as excepted
     Log    Checking missing information for additionalArtifact element
-    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    ${additional_artifacts}=    Get Value From Json    ${result}    $..additionalArtifacts
     Should Be Empty    ${additional_artifacts}
     Log    additionalArtifact element is missing as excepted
     Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${result}    $.._links
     Should Be Empty    ${links}
     Log    _links element is missing as excepted
 
@@ -42,8 +41,7 @@ GET all Packages - Filter
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfPkgsInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${result}
     Log    Validation OK
 
 GET all Packages - Negative (wronge filter name)
@@ -57,8 +55,7 @@ GET all Packages - Negative (wronge filter name)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Packages - Negative (Unauthorized: Wrong Token)
@@ -73,8 +70,7 @@ GET all Packages - Negative (Unauthorized: Wrong Token)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Packages - Negative (Unauthorized: No Token)
@@ -88,8 +84,7 @@ GET all Packages - Negative (Unauthorized: No Token)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Packages - all_fields
@@ -101,19 +96,18 @@ GET all Packages - all_fields
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${vnfPkgInfos}=    Output    response body
-    ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Log    Trying to validate response
-    Validate Json    vnfPkgsInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${vnfPkgInfos}
     Log    Validation OK
     Log    Trying to validate softwareImages schema
-    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
     Validate Json    softwareImage.schema.json    ${softwareImages[0]}
     Log    Validation for softwareImage schema OK
     Log    Trying to validate additionalArtifacts schema
-    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
     Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
     Log    Validation for additionalArtifacts schema OK
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${vnfPkgInfos}    $.._links
     Validate Json    links.schema.json    ${links[0]}
     Log    Validation for _links schema OK
 
@@ -126,20 +120,19 @@ GET all Packages - exclude_default
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${vnfPkgInfos}=    Output    response body
-    ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Log    Trying to validate response
-    Validate Json    vnfPkgsInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${vnfPkgInfos}
     Log    Validation OK
     Log    Checking missing information for softwareImages element
-    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
     Should Be Empty    ${softwareImages}
     Log    softwareImages element is missing as excepted
     Log    Checking missing information for additionalArtifact element
-    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
     Should Be Empty    ${additional_artifacts}
     Log    additionalArtifact element is missing as excepted
     Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${vnfPkgInfos}    $.._links
     Should Be Empty    ${links}
     Log    _links element is missing as excepted
 
@@ -153,16 +146,15 @@ GET all Packages - fields
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${vnfPkgInfos}=    Output    response body
-    ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Log    Trying to validate response, checking vnfPkgInfo and other complex attributes included in the vnfPkgInfo
-    Validate Json    vnfPkgsInfo.schema.json    ${json}
+    Validate Json    vnfPkgsInfo.schema.json    ${vnfPkgInfos}
     Log    Validation for vnfPkgInfo OK
     Log    Trying to validate softwareImages schema
-    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
     Validate Json    softwareImage.schema.json    ${softwareImages[0]}
     Log    Validation for softwareImage schema OK
     Log    Trying to validate additionalArtifacts schema
-    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
     Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
     Log    Validation for additionalArtifacts schema OK
 
@@ -176,13 +168,12 @@ GET all Packages - exclude_fields
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${vnfPkgInfos}=    Output    response body
-    ${json}=    evaluate    json.loads('''${vnfPkgInfos}''')    json
     Log    Checking missing information for softwareImages element
-    ${softwareImages}=    Get Value From Json    ${json}    $..softwareImages
+    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
     Should Be Empty    ${softwareImages}
     Log    softwareImages element is missing as excepted
     Log    Checking missing information for additionalArtifact element
-    ${additional_artifacts}=    Get Value From Json    ${json}    $..additionalArtifacts
+    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
     Should Be Empty    ${additional_artifacts}
     Log    additionalArtifact element is missing as excepted
 
@@ -197,8 +188,7 @@ GET all PACKAGE (Negative: Not found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST all PACKAGE (Method not implemented)

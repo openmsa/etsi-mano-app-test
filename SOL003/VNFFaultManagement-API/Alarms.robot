@@ -35,8 +35,7 @@ Get information about multiple alarms
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    Alarms.schema.json    ${json}
+    Validate Json    Alarms.schema.json    ${result}
     Log    Validation OK
 
 Get information about multiple alarms with filters 
@@ -58,8 +57,7 @@ Get information about multiple alarms with filters
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    Alarms.schema.json    ${json}
+    Validate Json    Alarms.schema.json    ${result}
     Log    Validation OK
 
 Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
@@ -78,8 +76,7 @@ Get information about multiple alarms Bad Request Invalid attribute-based filter
     Log    Validate Status code
     Integer    response status    400
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
 PUT Alarms - Method not implemented

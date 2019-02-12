@@ -66,8 +66,7 @@ Request a new Grant - Forbidden
     Integer    response status    403
     Log    Status code validated
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Grants - Method not implemented
@@ -136,8 +135,7 @@ Get an individual grant - Successful
     Log    Validate Status code
     Integer    response status    200
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    grant.schema.json    ${json}
+    Validate Json    grant.schema.json    ${result}
     Log    Validation OK
 
     

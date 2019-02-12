@@ -15,8 +15,7 @@ GET Individual VNF Indicator
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfIndicator.schema.json    ${json}
+    Validate Json    vnfIndicator.schema.json    ${result}
     Log    Validation OK
 
 GET Individual VNF Indicator - Negative (Not Found)
@@ -30,8 +29,7 @@ GET Individual VNF Indicator - Negative (Not Found)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Individual VNF Indicator - Negative (Unauthorized: Wrong Token)
@@ -46,8 +44,7 @@ GET Individual VNF Indicator - Negative (Unauthorized: Wrong Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Individual VNF Indicator - Negative (Unauthorized: No Token)
@@ -61,8 +58,7 @@ GET Individual VNF Indicator - Negative (Unauthorized: No Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST Individual VNF Indicator (Method not implemented)

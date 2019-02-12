@@ -44,8 +44,7 @@ GET VNFD in Individual VNF Package - Negative (PLAIN/ZIP)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET VNFD in Individual VNF Package - Negative (Not Found)
@@ -60,8 +59,7 @@ GET VNFD in Individual VNF Package - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET VNFD in Individual VNF Package - Negative (onboardingState issue)
@@ -76,8 +74,7 @@ GET VNFD in Individual VNF Package - Negative (onboardingState issue)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST VNFD in Individual VNF Package (Method not implemented)

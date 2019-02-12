@@ -19,9 +19,8 @@ GET Thresholds
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with thresholds schema
-    Validate Json    Thresholds.schema.json    ${json}
+    Validate Json    Thresholds.schema.json    ${result}
 
 GET Thresholds - Filter
     [Documentation]    The client can use this method to query information about thresholds.
@@ -34,9 +33,8 @@ GET Thresholds - Filter
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with Threshold schema
-    Validate Json    Thresholds.schema.json    ${json}
+    Validate Json    Thresholds.schema.json    ${result}
 
 GET Thresholds - NEGATIVE Filter
     [Documentation]    The client can use this method to query information about thresholds.
@@ -47,9 +45,8 @@ GET Thresholds - NEGATIVE Filter
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_KO}
     Integer    response status    400
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with ProblemDetails schema
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${result}
 
 GET Thresholds - Negative (Not Found)
     [Documentation]    The client can use this method to query information about thresholds.
@@ -61,9 +58,8 @@ GET Thresholds - Negative (Not Found)
     Integer    response status    404
     Log    Received 404 Not Found as expected
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
     Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST Threshold Request
@@ -78,9 +74,8 @@ POST Threshold Request
     Integer    response status    201
     Log    Received 201 Created as expected
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
     Log    Trying to validate result with thresholds schema
-    Validate Json    Threshold.schema.json    ${json}
+    Validate Json    Threshold.schema.json    ${result}
     Log    Trying to validate the Location header
     ${headers}=    Output    response headers
     Should Contain    ${headers}    Location

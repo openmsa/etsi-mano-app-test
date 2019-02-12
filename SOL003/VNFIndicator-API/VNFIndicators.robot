@@ -16,8 +16,7 @@ GET all Indicators
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfIndicators.schema.json    ${json}
+    Validate Json    vnfIndicators.schema.json    ${result}
     Log    Validation OK
 
 GET all Indicators - Filter
@@ -30,8 +29,7 @@ GET all Indicators - Filter
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfIndicators.schema.json    ${json}
+    Validate Json    vnfIndicators.schema.json    ${result}
     Log    Validation OK
 
 GET all Indicators - Negative (wronge filter name)
@@ -45,8 +43,7 @@ GET all Indicators - Negative (wronge filter name)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Indicators - Negative (Unauthorized: Wrong Token)
@@ -61,8 +58,7 @@ GET all Indicators - Negative (Unauthorized: Wrong Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Indicators - Negative (Unauthorized: No Token)
@@ -77,8 +73,7 @@ GET all Indicators - Negative (Unauthorized: No Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Indicators (Negative: Not found)
@@ -92,8 +87,7 @@ GET all Indicators (Negative: Not found)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST all Indicators (Method not implemented)

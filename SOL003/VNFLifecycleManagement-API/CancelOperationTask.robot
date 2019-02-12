@@ -36,8 +36,7 @@ Post Cancel operation task Conflict
     Integer    response status    409
     Log    Status code validated
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 Post Cancel operation task Not Found
@@ -55,8 +54,7 @@ Post Cancel operation task Not Found
     Log    Validate Status code
     Integer    response status    409
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Cancel operation task - Method not implemented

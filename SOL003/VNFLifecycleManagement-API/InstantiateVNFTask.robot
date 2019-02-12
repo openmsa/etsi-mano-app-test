@@ -41,8 +41,7 @@ Instantiate a vnfInstance Conflict
     Integer    response status    409
     Log    Status code validated
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
 GET Instantiate VNFInstance - Method not implemented

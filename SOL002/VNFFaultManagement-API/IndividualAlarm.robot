@@ -2,7 +2,6 @@
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt  
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
-...        spec=SOL002-VNFFaultManagement-API.yaml
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -39,8 +38,7 @@ Get information about a configuration
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    alarm.schema.json    ${json}
+    Validate Json    alarm.schema.json    ${result}
     Log    Validation OK
 
 PUT Alarm - Method not implemented
@@ -72,8 +70,7 @@ PATCH Alarm
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    alarmModifications.schema.json    ${json}
+    Validate Json    alarmModifications.schema.json    ${result}
     Log    Validation OK
 
 PATCH Alarm - Conflict
@@ -95,8 +92,7 @@ PATCH Alarm - Conflict
     Log    Validate Status code
     Integer    response status    409
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 PATCH Alarm - Precondition failed
@@ -119,8 +115,7 @@ PATCH Alarm - Precondition failed
     Log    Validate Status code
     Integer    response status    412
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 DELETE Alarm - Method not implemented

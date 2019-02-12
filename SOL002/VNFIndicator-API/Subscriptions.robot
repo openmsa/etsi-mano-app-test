@@ -17,9 +17,8 @@ GET Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    VnfIndicatorSubscriptions.schema.json    ${json}
-    Log    Validated VnfIndicatorSubscriptions schema
+    Validate Json    VnfIndicatorSubscriptions.schema.json    ${result}
+    Log    Validated VnfIndicatorSubscription schema
 
 GET Subscription - Filter
     Log    Trying to get the list of subscriptions using filters
@@ -31,8 +30,7 @@ GET Subscription - Filter
     Should Contain    ${contentType}    application/json
     Log    Received a 200 OK as expected
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    VnfIndicatorSubscriptions.schema.json    ${json}
+    Validate Json    VnfIndicatorSubscriptions.schema.json    ${result}
     Log    Validated VnfIndicatorSubscriptions schema
 
 GET Subscription - Negative Filter
@@ -46,8 +44,7 @@ GET Subscription - Negative Filter
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Subscription - Negative (Not Found)
@@ -61,8 +58,7 @@ GET Subscription - Negative (Not Found)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST Subscription
@@ -78,8 +74,7 @@ POST Subscription
     Should Contain    ${headers}    Location
     Log    Response has header Location
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    VnfIndicatorSubscription.schema.json    ${json}
+    Validate Json    VnfIndicatorSubscription.schema.json    ${result}
     Log    Validation of VnfIndicatorSubscription OK
 
 PUT Subscription - (Method not implemented)

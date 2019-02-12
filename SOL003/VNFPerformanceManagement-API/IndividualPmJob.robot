@@ -16,8 +16,7 @@ GET Individual PM Job
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmJob.schema.json    ${json}
+    Validate Json    PmJob.schema.json    ${result}
     Log    Validation OK
 
 GET Individual PM Job - Negative (Not Found)
@@ -31,8 +30,7 @@ GET Individual PM Job - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 DELETE Individual PM Job
@@ -52,8 +50,7 @@ DELETE Individual PM Job - Negative (Not Found)
     Log    Received 404 Not Found as expected
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 	
 	

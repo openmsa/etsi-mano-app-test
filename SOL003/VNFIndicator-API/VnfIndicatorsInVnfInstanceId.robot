@@ -16,8 +16,7 @@ GET Indicators on VNF Instance
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfIndicators.schema.json    ${json}
+    Validate Json    vnfIndicators.schema.json    ${result}
     Log    Validation OK
 
 GET Indicators on VNF Instance - Filter
@@ -30,8 +29,7 @@ GET Indicators on VNF Instance - Filter
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfIndicators.schema.json    ${json}
+   Validate Json    vnfIndicators.schema.json    ${result}
     Log    Validation OK
 
 GET Indicators on VNF Instance - Negative Filter
@@ -44,8 +42,7 @@ GET Indicators on VNF Instance - Negative Filter
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Indicators on VNF Instance - Negative (Not Found)
@@ -59,8 +56,7 @@ GET Indicators on VNF Instance - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST Indicators on VNF Instance - (Method not implemented)

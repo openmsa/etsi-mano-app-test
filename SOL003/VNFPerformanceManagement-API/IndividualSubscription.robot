@@ -22,8 +22,7 @@ GET Individual Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmSubscription.schema.json    ${json}
+    Validate Json    PmSubscription.schema.json    ${result}
     Log    Validated PmSubscription schema
 
 GET Individual Subscription - Negative (Not Found)
@@ -39,8 +38,7 @@ GET Individual Subscription - Negative (Not Found)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${result}
     Log    Validated ProblemDetails schema
 
 POST Individual Subscription - (Method not implemented)

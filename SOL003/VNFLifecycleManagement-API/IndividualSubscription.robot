@@ -26,9 +26,8 @@ Get Information about an individual subscription
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Log    Validate Status code
     Integer    response status    200
-     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    Subscription.schema.json    ${json}
+    ${result}=    Output    response body
+    Validate Json    Subscription.schema.json    ${result}
     Log    Validation OK
 
 PUT an individual subscription - Method not implemented

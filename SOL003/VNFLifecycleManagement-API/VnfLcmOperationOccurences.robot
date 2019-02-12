@@ -28,8 +28,7 @@ Get stauts information about multiple VNF LCM OP OCC
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    VnfLcmOpOccs.schema.json    ${json}
+    Validate Json    VnfLcmOpOccs.schema.json    ${result}
     Log    Validation OK
 
 Get stauts information about multiple VNF LCM OP OCC Bad Request Invalid attribute-based filtering parameters
@@ -40,8 +39,7 @@ Get stauts information about multiple VNF LCM OP OCC Bad Request Invalid attribu
     Log    Validate Status code
     Integer    response status    400
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 Get stauts information about multiple VNF LCM OP OCC Bad Request Invalid attribute selector
@@ -52,8 +50,7 @@ Get stauts information about multiple VNF LCM OP OCC Bad Request Invalid attribu
     Log    Validate Status code
     Integer    response status    400
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
 PUT stauts information about multiple VNF LCM OP OCC - Method not implemented

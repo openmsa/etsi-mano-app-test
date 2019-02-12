@@ -1,7 +1,6 @@
 *** Settings ***
-Resource   environment/variables.txt
+Resource    environment/variables.txt 
 Library    REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
-...        spec=SOL002-VNFConfiguration-API.yaml
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
@@ -79,7 +78,7 @@ DELETE Config - Method not implemented
     Log    Validate Status code
     Integer    response status    405
     
-*** Keywords ***    
+*** Keywords ***
 Get VNF configuration
     Log    Query VNF The GET method queries information about a configuration.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -124,8 +123,7 @@ Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
     ${contentType}=    Get Value From Json    ${response.headers}    $..Content-Type
     Should Be Equal    ${contentType}    ${CONTENT_TYPE}
-    ${json}=    evaluate    json.loads('''${response.body}''')    json
-    Validate Json    ${schema}    ${json}
+    Validate Json    ${schema}    ${response.body}
     Log    Json Schema Validation OK
     
 Check Postcondition VNF Configuration Untouched

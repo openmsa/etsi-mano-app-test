@@ -1,4 +1,9 @@
 *** Variables ***
+${PRODUCER_HOST}    localhost   
+${PRODUCER_PORT}    8081    
+${PRODUCER_SCHEMA}    https
+${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
+${CONTENT_TYPE_JSON}    application/json
 ${EM-VNF_HOST}    localhost
 ${EM-VNF_PORT}    8002
 ${EM-VNF_SCHEMA}    https
@@ -7,6 +12,3 @@ ${AUTH_USAGE}     1
 ${apiRoot}        /
 ${apiVersion}     v1
 ${apiName}        vnfind
-${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
-${NEG_AUTHORIZATION}    Bearer negativetoken
-${CONTENT_TYPE_JSON}    application/json
