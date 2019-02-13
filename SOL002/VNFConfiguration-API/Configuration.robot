@@ -142,8 +142,6 @@ Check HTTP Response Header Contains
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
-    ${file_schema}=    Get File    ${schema}    
-    ${json_schema}=     evaluate    json.loads('''${schema}''')    json
     Should Contain    ${response[0]['headers']['Content-Type']}    ${CONTENT_TYPE}
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
