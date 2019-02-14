@@ -12,6 +12,6 @@ ${CONTENT_TYPE_JSON}    application/json
 ${ACCEPT_JSON}    application/json
 ${NEG_AUTHORIZATION}    Bearer negativetoken
 ${FIELD_USAGE}    1
-${VNFM_AUTHENTICATION}    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-${VNFM_AUTH_USAGE}    1
+${AUTHORIZATION}    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+${AUTH_USAGE}    1
 ${VNFM_DUPLICATION}    1

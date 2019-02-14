@@ -51,7 +51,7 @@ DELETE Subscription - Negative (Not Found)
     Log    The subscriptionId is not present in database
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
-    ${problemDetails}=    Output
+    ${problemDetails}=    Output    response body
     Log    Trying to validate ProblemDetails
     Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
