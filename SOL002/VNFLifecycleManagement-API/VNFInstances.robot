@@ -13,7 +13,7 @@ Create a new vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/createVnfRequest.json
+    ${body}=    Get File    jsons/createVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
     Integer    response status    201
     Log    Status code validated 

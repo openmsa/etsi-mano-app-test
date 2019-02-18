@@ -6,7 +6,7 @@ Resource    environment/variables.txt
 Library    MockServerLibrary
 Library    Process
 Library    OperatingSystem
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 
 *** Variables ***
 ${sleep_interval}    20s

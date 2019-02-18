@@ -80,35 +80,49 @@ Test a notification end point
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:  
-    log    The GET method allows the server to test the notification endpoint
-    Get    ${callback_endpoint}
-    Log    Validate Status code
-    Integer    response status    204
-    Log    Validation OK
+    Log    The GET method allows the server to test the notification endpoint
+    &{req}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Verify Mock Expectation  ${req}
+    Clear Requests  ${callback_endpoint}
 
 PUT notification - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Put    ${callback_endpoint}
-    Log    Validate Status code
-    Output    response
-    Integer    response status    405
+    Log  PUT Method not implemented
+    &{req}=  Create Mock Request Matcher	PUT  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}
 
 PATCH subscriptions - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Patch    ${callback_endpoint}
-    Log    Validate Status code
-    Output    response
-    Integer    response status    405
+    Log  PATCH Method not implemented
+    &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}
 
 DELETE subscriptions - Method not implemented
-    log    Trying to perform a DELETE. This method should not be implemented
-    Delete    ${callback_endpoint}
-    Log    Validate Status code
-    Output    response
-    Integer    response status    405
+    Log  DELETE Method not implemented
+    &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}
     
 *** Keywords ***
 Create Sessions
     Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
-    Create Mock Session  ${callback_uri}:${callback_port}     #The API producer is set to NFVO according to SOL003-7.3.4
+    Create Mock Session  ${callback_uri}:${callback_port}  

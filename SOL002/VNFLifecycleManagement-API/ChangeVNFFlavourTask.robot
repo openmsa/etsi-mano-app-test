@@ -13,7 +13,7 @@ Change deployment flavour of a vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Integer    response status    202
     Log    Status code validated
@@ -33,7 +33,7 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Integer    response status    409
     Log    Status code validated
@@ -53,7 +53,7 @@ Change deployment flavour of a vnfInstance Conflict (parallel LCM operation)
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Log    Validate Status code
     Integer    response status    409
@@ -73,7 +73,7 @@ Change deployment flavour of a vnfInstance Not Found
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
     Integer    response status    404
     Log    Status code validated
@@ -136,6 +136,6 @@ Launch another LCM operation
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/scaleVnfRequest.json
+    ${body}=    Get File    jsons/scaleVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     Integer    response status    202

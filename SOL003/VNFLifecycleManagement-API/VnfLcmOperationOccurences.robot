@@ -1,8 +1,7 @@
 *** Settings ***
 Resource    environment/configuration.txt
 Resource    environment/variables.txt 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This resource represents VNF lifecycle management operation occurrences. The client can use this resource to query

@@ -5,7 +5,6 @@ Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -51,7 +50,6 @@ Retry VNF LCM Operation - Unsuccessful
     Check Postcondition VNF Retry Unsuccessful
 
 *** Keywords ***
-
 Initialize System
     Create Sessions
     

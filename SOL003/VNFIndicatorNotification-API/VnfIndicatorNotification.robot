@@ -72,7 +72,7 @@ Patch VNF Indicator Notification
     
     
 Delete VNF Indicator Notification 
-    Log  PATCH Method not implemented
+    Log  DELETE Method not implemented
     &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}

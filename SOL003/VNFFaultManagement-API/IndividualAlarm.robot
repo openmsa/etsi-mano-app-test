@@ -2,7 +2,6 @@
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
-...        spec=SOL003-VNFFaultManagement-API.yaml
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -34,7 +33,7 @@ Get information about an alarm
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
-    ${Etag}=    Output    response headers Etag
+    #${Etag}=    Output    response headers Etag
     Log    Validate Status code
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
@@ -65,7 +64,7 @@ PATCH Alarm
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/alarmModifications.json
+    ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
     ${Etag_modified}=    Output    response headers Etag
@@ -89,7 +88,7 @@ PATCH Alarm - Conflict
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/alarmModifications.json
+    ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
     Integer    response status    409
@@ -112,7 +111,7 @@ PATCH Alarm - Precondition failed
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
     Set Headers    {"If-Match": "${Etag}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/alarmModifications.json
+    ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
     Integer    response status    412

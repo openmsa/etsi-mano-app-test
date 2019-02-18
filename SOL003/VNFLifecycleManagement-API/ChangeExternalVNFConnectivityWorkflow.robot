@@ -5,7 +5,6 @@ Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -39,7 +38,7 @@ Operate a VNF Instance
 
 Initialize System
     Create Sessions
-    ${body}=    Get File    json/changeExtVnfConnectivityRequest.json
+    ${body}=    Get File    jsons/changeExtVnfConnectivityRequest.json
     ${changeVnfExtConnectivityRequest}=    evaluate    json.loads('''${body}''')    json    
     
 Precondition Checks

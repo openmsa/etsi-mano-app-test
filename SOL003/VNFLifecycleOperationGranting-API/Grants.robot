@@ -1,7 +1,6 @@
 *** Settings ***
 Resource   environment/variables.txt 
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
-...        spec=SOL003-VNFLifecycleOperationGranting-API.yaml
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -61,7 +60,7 @@ Request a new Grant - Forbidden
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    json/grantRejectedRequest.json
+    ${body}=    Get File    jsons/grantRejectedRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
     Integer    response status    403
     Log    Status code validated
@@ -108,7 +107,7 @@ Send Request Grant Request
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    json/grantRequest.json
+    ${body}=    Get File    jsons/grantRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
 
 Check HTTP Response Status Code Is

@@ -5,7 +5,6 @@ Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -40,7 +39,7 @@ VNF Instance Scale To Level
 
 Initialize System
     Create Sessions
-    ${body}=    Get File    json/scaleVnfToLevelRequest.json
+    ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
     ${scaleVnfToLevelRequest}=    evaluate    json.loads('''${body}''')    json
     ${instantiationLevelId}=    Get Value From Json    ${scaleVnfToLevelRequest}    $..instantiationLevelId    #How to use this info to get the instantiation scale level?
     ${scaleInfo}=    Get Value From Json    ${scaleVnfToLevelRequest}    $..scaleInfo
