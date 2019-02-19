@@ -44,7 +44,6 @@ PUT an individual subscription - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH an individual subscription - Method not implemented
@@ -54,7 +53,6 @@ PATCH an individual subscription - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE an individual subscription
@@ -63,7 +61,6 @@ DELETE an individual subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     Log    Validate Status code
-    Output    response
     Integer    response status    204
 
 *** Keywords ***
