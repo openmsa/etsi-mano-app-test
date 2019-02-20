@@ -2,7 +2,7 @@
 Resource    environment/configuration.txt
 Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    OperatingSystem
 Library    BuiltIn
 Library    JSONLibrary
@@ -90,7 +90,7 @@ Send VNF Scale Out Request
     Set Headers    {"Accept":"${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/scaleVnfOutRequest.json
+    ${body}=    Get File    jsons/scaleVnfOutRequest.json
     ${json}=    evaluate    json.loads('''${body}''')    json
     ${aspectId}=    Set Variable    ${json.aspectId}  
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
@@ -101,7 +101,7 @@ Send VNF Scale To Level Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/scaleVnfToLevelRequest.json
+    ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
     ${json}=    evaluate    json.loads('''${body}''')    json
     ${aspectId}=    Set Variable    ${json.aspectId}  
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
@@ -111,7 +111,7 @@ Send VNF Instance Resource Create Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/createVnfRequest.json
+    ${body}=    Get File    jsons/createVnfRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
 
 Send VNF Instance Resource Delete Request
@@ -124,7 +124,7 @@ Send Change VNF Flavour Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/changeVnfFlavourRequest.json
+    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
 
 Send Change VNF Operational State Request
@@ -132,7 +132,7 @@ Send Change VNF Operational State Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/operateVnFRequest.json
+    ${body}=    Get File    jsons/operateVnFRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate    ${body}
 
 Send Heal VNF Request
@@ -140,7 +140,7 @@ Send Heal VNF Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/healVnFRequest.json
+    ${body}=    Get File    jsons/healVnFRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
 
 Send Change Ext Connectivity Request
@@ -148,7 +148,7 @@ Send Change Ext Connectivity Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/changeExtVnfConnectivityRequest.json
+    ${body}=    Get File    jsons/changeExtVnfConnectivityRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    ${body}
 
 Send Terminate VNF Request
@@ -156,7 +156,7 @@ Send Terminate VNF Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/terminateVnFRequest.json
+    ${body}=    Get File    jsons/terminateVnFRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/terminate    ${body}
 
 Send Info Modification Request
@@ -164,7 +164,7 @@ Send Info Modification Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/patchBodyRequest.json
+    ${body}=    Get File    jsons/patchBodyRequest.json
     ${response}=    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
 
 Send Retry Operation Request
@@ -194,7 +194,7 @@ Create a new Grant - Synchronous mode
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/grantRequest.json
+    ${body}=    Get File    jsons/grantRequest.json
     ${json_body}=    evaluate    json.loads('''${body}''')    json
     Set To Dictionary     ${json_body}    vnfInstanceId=${vnfInstanceId}    vnfLcmOpOccId=${vnfLcmOpOccId}    operation=${operation}  
     ${body}=    evaluate    json.dumps(${json_body})    json  
@@ -216,7 +216,7 @@ Create a new Grant - Asynchronous mode
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    json/grantRequest.json
+    ${body}=    Get File    jsons/grantRequest.json
     ${json_body}=    evaluate    json.loads('''${body}''')    json
     Set To Dictionary     ${json_body}    vnfInstanceId=${vnfInstanceId}    vnfLcmOpOccId=${vnfLcmOpOccId}    operation=${operation}    
     ${body}=    evaluate    json.dumps(${json_body})    json 

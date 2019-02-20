@@ -5,7 +5,6 @@ Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -31,7 +30,6 @@ Delete VNF Instance Resource
     Check Postcondition VNF Instance Deleted
 
 *** Keywords ***
-
 Initialize System
     Create Sessions
 

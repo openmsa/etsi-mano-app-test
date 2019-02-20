@@ -4,7 +4,6 @@ Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
-...    spec=SOL003-VNFLifecycleOperationGranting-API.yaml
 Documentation    This resource represents an individual grant. The client can use this resource to read the grant.
 ...    It is determined by means outside the scope of the present document, such as configuration or policy,
 ...    how long an individual grant is available.

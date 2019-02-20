@@ -3,7 +3,6 @@ Resource    environment/variables.txt
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL003-VNFFaultManagement-API.yaml
 Documentation    This resource represents an individual subscription for VNF alarms. 
 ...    The client can use this resource to read and to terminate a subscription to notifications related to VNF fault management.
 Suite Setup    Check resource existance
@@ -45,7 +44,6 @@ PUT an individual subscription - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
 
 PATCH an individual subscription - Method not implemented
@@ -55,7 +53,6 @@ PATCH an individual subscription - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     Log    Validate Status code
-    Output    response
     Integer    response status    405
     
 DELETE an individual subscription
@@ -64,7 +61,6 @@ DELETE an individual subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     Log    Validate Status code
-    Output    response
     Integer    response status    204
 
 *** Keywords ***

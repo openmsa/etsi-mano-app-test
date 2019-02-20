@@ -57,7 +57,7 @@ PATCH Individual VNFInstance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/patchBodyRequest.json
+    ${body}=    Get File    jsons/patchBodyRequest.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
     Log    Validate Status code
     ${Etag_modified}=    Output    response headers Etag
@@ -77,7 +77,7 @@ PATCH Individual VNFInstance Precondition failed
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
     Set Headers    {"If-Match": "${Etag}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/patchBodyRequest.json
+    ${body}=    Get File    jsons/patchBodyRequest.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
     Log    Validate Status code
     Integer    response status    412
@@ -97,7 +97,7 @@ PATCH Individual VNFInstance Conflict
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/patchBodyRequest.json
+    ${body}=    Get File    jsons/patchBodyRequest.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
     Log    Validate Status code
     Integer    response status    409
@@ -154,7 +154,7 @@ Launch another LCM operation
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/scaleVnfToLevelRequest.json
+    ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     Integer    response status    202
 

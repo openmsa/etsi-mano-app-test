@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    VnfLcmMntOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    spec=SOL003-VNFLifecycleManagement-API.yaml
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 Library    OperatingSystem
 Library    BuiltIn
 Library    Process

@@ -62,7 +62,7 @@ PATCH Alarm
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/alarmModifications.json
+    ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
     ${Etag_modified}=    Output    response headers Etag
@@ -87,7 +87,7 @@ PATCH Alarm - Conflict
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/alarmModifications.json
+    ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
     Integer    response status    409
@@ -110,7 +110,7 @@ PATCH Alarm - Precondition failed
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
     Set Headers    {"If-Match": "${Etag}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/alarmModifications.json
+    ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
     Integer    response status    412

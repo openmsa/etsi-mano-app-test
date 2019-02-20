@@ -32,7 +32,7 @@ Instantiate VNF
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/createVnfRequest.json
+    ${body}=    Get File    jsons/createVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
     [Return]    response 
 

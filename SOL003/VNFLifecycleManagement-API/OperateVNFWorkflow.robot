@@ -5,7 +5,6 @@ Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-...    spec=SOL003-VNFLifecycleManagement-API.yaml
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -36,10 +35,9 @@ Operate a VNF Instance
     Check Postcondition VNF OPERATE
 
 *** Keywords ***
-
 Initialize System
     Create Sessions
-    ${body}=    Get File    json/operateVnFRequest.json
+    ${body}=    Get File    jsons/operateVnFRequest.json
     ${changeVnfOperateRequest}=    evaluate    json.loads('''${body}''')    json
     ${requestedState}=    Get Value From Json    ${changeVnfOperateRequest}    $..changeStateTo 
     

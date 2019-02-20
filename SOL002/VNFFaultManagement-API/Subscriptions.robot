@@ -19,7 +19,7 @@ Create a new subscription
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    json/fmSubscriptionRequest.json
+    ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Integer    response status    201
     Log    Status code validated
@@ -45,7 +45,7 @@ Create a new Subscription - DUPLICATION
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    json/fmSubscriptionRequest.json
+    ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Integer    response status    201
     Log    Status code validated
@@ -69,7 +69,7 @@ Create a new Subscription - NO-DUPLICATION
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    json/fmSubscriptionRequest.json
+    ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Integer    response status    303
     Log    Status code validated
