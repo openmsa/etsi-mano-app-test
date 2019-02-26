@@ -1,6 +1,6 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/vnfdInIndividualVnfPackage.txt
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
@@ -45,8 +45,7 @@ GET VNFD in Individual VNF Package - Negative (PLAIN/ZIP)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET VNFD in Individual VNF Package - Negative (Not Found)
@@ -61,8 +60,7 @@ GET VNFD in Individual VNF Package - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET VNFD in Individual VNF Package - Negative (onboardingState issue)
@@ -77,11 +75,11 @@ GET VNFD in Individual VNF Package - Negative (onboardingState issue)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST VNFD in Individual VNF Package (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a POST (method should not be implemented)
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization: "${AUTHORIZATION}"}
@@ -90,6 +88,7 @@ POST VNFD in Individual VNF Package (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 PUT VNFD in Individual VNF Package (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization: "${AUTHORIZATION}"}
@@ -98,6 +97,7 @@ PUT VNFD in Individual VNF Package (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 PATCH VNFD in Individual VNF Package (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization: "${AUTHORIZATION}"}
@@ -106,6 +106,7 @@ PATCH VNFD in Individual VNF Package (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 DELETE VNFD in Individual VNF Package (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization: "${AUTHORIZATION}"}

@@ -1,9 +1,6 @@
 *** Variables ***
-${VNFM_HOST}      localhost    # Hostname of the VNFM
-${VNFM_PORT}      8080    # Listening port of the VNFM
 ${NFVO_HOST}      localhost    # Hostname of the NFVO
 ${NFVO_PORT}      8081    # Listening port of the NFVO
-${VNFM_SCHEMA}    https
 ${NFVO_SCHEMA}    https
 ${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
 ${CONTENT_TYPE_JSON}    application/json
@@ -14,10 +11,8 @@ ${NEG_AUTHORIZATION}    Bearer negativetoken
 ${apiVersion}     v1
 ${apiName}        vnfpm
 ${FIELD_USAGE}    1
-${VNFM_AUTHENTICATION}    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-${VNFM_AUTH_USAGE}    1
-${VNFM_DUPLICATION}    1
 ${NFVO_DUPLICATION}    1
 
 ${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
 
+${testOptionalMethods}    0

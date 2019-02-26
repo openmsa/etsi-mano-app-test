@@ -3,7 +3,7 @@ Documentation     This resource represents an individual subscription for notifi
 ...               The client can use this resource to read and to terminate a subscription to notifications related to NS performance
 ...               management.
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library           OperatingSystem
 Library           JSONLibrary
@@ -23,8 +23,7 @@ GET Individual Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmSubscription.schema.json    ${json}
+    Validate Json    PmSubscription.schema.json    ${result}
     Log    Validated PmSubscription schema
 
 GET Individual Subscription - Negative (Not Found)
@@ -40,13 +39,13 @@ GET Individual Subscription - Negative (Not Found)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${result}
     Log    Validated ProblemDetails schema
 
 POST Individual Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Integer    response status    405
@@ -55,6 +54,7 @@ POST Individual Subscription - (Method not implemented)
 PUT Individual Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Integer    response status    405
@@ -63,6 +63,7 @@ PUT Individual Subscription - (Method not implemented)
 PATCH Individual Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Integer    response status    405

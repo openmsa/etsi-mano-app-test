@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     This clause defines all the resources and methods provided by the Individual NS descriptor interface. \
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
 Library           OperatingSystem
 Library           JSONLibrary
@@ -24,8 +24,7 @@ GET Single Network Service Descriptor
     Log  Validation of Content-Type : OK
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfo.schema.json    ${json}
+    Validate Json    NsdInfo.schema.json    ${result}
     Log    Validation OK
 
 
@@ -40,8 +39,7 @@ GET Single Network Service Descriptor (Negative: Not found)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 
@@ -62,28 +60,26 @@ PATCH Single Network Service Descriptor - (Disabling a nsdInfo)
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in enabled operational state
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/NsdInfoModificationDisable.json
+    ${body}=    Get File    jsons/NsdInfoModificationDisable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
     Integer    response status    200
     Log    Received 200 OK as expected
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfoModification.schema.json    ${json}
+    Validate Json    NsdInfoModification.schema.json    ${result}
     Log    Validation of NsdInfoModifications OK
 
 PATCH Single Network Service Descriptor - (Enabling an previously disabled nsdInfo)
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in disabled operational state
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/NsdInfoModificationEnable.json
+    ${body}=    Get File    jsons/NsdInfoModificationEnable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
     Integer    response status    200
     Log    Received 200 OK as expected
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfoModification.schema.json    ${json}
+    Validate Json    NsdInfoModification.schema.json    ${result}
     Log    Validation of NsdInfoModifications OK
     
 
@@ -91,7 +87,7 @@ PATCH Single Network Service Descriptor - NEGATIVE (Trying to enable an previous
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in enabled operational state
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/NsdInfoModificationEnable.json
+    ${body}=    Get File    jsons/NsdInfoModificationEnable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${enabledNsdInfoId}    ${body}
     Integer    response status    409
@@ -100,8 +96,7 @@ PATCH Single Network Service Descriptor - NEGATIVE (Trying to enable an previous
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
     
@@ -110,7 +105,7 @@ PATCH Single Network Service Descriptor - NEGATIVE (Trying to enable an previous
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Set Headers    {"If-Match": "${Etag}"}
-    ${body}=    Get File    json/NsdInfoModificationEnable.json
+    ${body}=    Get File    jsons/NsdInfoModificationEnable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${modifiedNsdInfoId}    ${body}
     Integer    response status    412
@@ -122,8 +117,7 @@ PATCH Single Network Service Descriptor - NEGATIVE (Trying to enable an previous
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK  
     
 
@@ -155,12 +149,12 @@ DELETE Single Network Service Descriptor (Negative: Trying to delete an enabled 
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 
 POST Single Network Service Descriptor (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.   
     Log    Trying to perform a POST. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
@@ -172,6 +166,7 @@ POST Single Network Service Descriptor (Method not implemented)
 
 
 PUT Single Network Service Descriptor (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.   
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

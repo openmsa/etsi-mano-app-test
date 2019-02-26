@@ -1,6 +1,6 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/individualVnfPackage.txt
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
@@ -16,8 +16,7 @@ GET Individual VNF Package
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${vnfPkgInfo}=    Output    response body
-    ${json}=    evaluate    json.loads('''${vnfPkgInfo}''')    json
-    Validate Json    vnfPkgInfo.schema.json    ${json}
+    Validate Json    vnfPkgInfo.schema.json    ${vnfPackageId}
     Log    Validation OK
 
 GET Individual VNF Package - Negative (Not Found)
@@ -31,8 +30,7 @@ GET Individual VNF Package - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
     
@@ -46,8 +44,7 @@ PATCH Individual VNF Package
     Log    Received 200 OK as expected
     Log    Trying to validate VnfPkgInfoModification
     ${response}=    Output    response body
-    ${json}=    evaluate    json.loads('''${response}''')    json
-    Validate Json    VnfPkgInfoModification.schema.json    ${json}
+    Validate Json    VnfPkgInfoModification.schema.json    ${response}
     Log    Validation OK
     
     
@@ -61,8 +58,7 @@ PATCH Individual VNF Package - Negative (Conflict on the state of the resource)
     Log    Received 409 Conflict as expected
     Log    Trying to validate ProblemDetails
     ${response}=    Output    response body
-    ${json}=    evaluate    json.loads('''${response}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${response}
     Log    Validation OK    
     
 
@@ -89,12 +85,12 @@ DELETE Individual VNF Package - Negative (Conflict on the state of the resource)
     Log    Received 409 Conflict as expected
     Log    Trying to validate ProblemDetails
     ${response}=    Output    response body
-    ${json}=    evaluate    json.loads('''${response}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${response}
     Log    Validation OK    
     
     
 POST Individual VNF Package - (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a POST (method should not be implemented)
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -103,6 +99,7 @@ POST Individual VNF Package - (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 PUT Individual VNF Package - (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
