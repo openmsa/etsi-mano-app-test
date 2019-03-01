@@ -1,0 +1,22 @@
+{
+  "description": "This type represents a subscription request related to notifications about VNF faults.\n",
+  "type": "object",
+  "required": [
+    "callbackUri"
+  ],
+  "properties": {
+    "filter": {
+      "description": "Filter settings for this subscription, to define the subset of all notifications this subscription relates to. A particular notification is sent to the subscriber if the filter matches, or if there is no filter.\n",
+      "$ref": "#/definitions/FmNotificationsFilter"
+    },
+    "callbackUri": {
+      "description": "The URI of the endpoint to send the notification to.\n",
+      "type": "string",
+      "format": "url"
+    },
+    "authentication": {
+      "description": "Authentication parameters to configure the use of Authorization when sending notifications corresponding to this subscription. This attribute shall only be present if the subscriber requires authorization of notifications.\n",
+      "$ref": "SOL005_def.yaml#/definitions/SubscriptionAuthentication"
+    }
+  }
+}

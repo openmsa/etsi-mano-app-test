@@ -1,0 +1,16 @@
+{
+  "description": "This type represents attribute modifications for an \"Individual alarm\" resource, i.e. modifications to a resource representation based on the \"Alarm\" data type. The attributes of \"Alarm\" that can be modified according to the provisions in clause 8.5.2.4 are included in the \"AlarmModifications\" data type. The \"AlarmModifications\" data type shall comply with the provisions defined in Table 8.5.2.8-1.\n",
+  "type": "object",
+  "required": [
+    "ackState"
+  ],
+  "properties": {
+    "ackState": {
+      "description": "New value of the \"ackState\" attribute in \"Alarm\". Permitted values: - ACKNOWLEDGED\n",
+      "type": "string",
+      "enum": [
+        "ACKNOWLEDGED"
+      ]
+    }
+  }
+}

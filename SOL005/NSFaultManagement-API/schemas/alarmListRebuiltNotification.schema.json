@@ -1,0 +1,50 @@
+{
+  "description": "This type represents a notification that the alarm list has been rebuilt, e.g. if the VNFM detects its storage holding the alarm list is corrupted. The notification shall be triggered by the VNFM when the alarm list has been rebuilt.\n",
+  "type": "object",
+  "required": [
+    "id",
+    "notificationType",
+    "subscriptionId",
+    "timeStamp",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "Identifier of this notification. If a notification is sent multiple times due to multiple subscriptions, the \"id\" attribute of all these notifications shall have the same value.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    },
+    "notificationType": {
+      "description": "Discriminator for the different notification types. Shall be set to \"AlarmListRebuiltNotification\" for this notification type.\n",
+      "type": "string",
+      "enum": [
+        "AlarmListRebuiltNotification"
+      ]
+    },
+    "subscriptionId": {
+      "description": "Identifier of the subscription that this notification relates to.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    },
+    "timeStamp": {
+      "description": "Date-time of the generation of the notification.\n",
+      "$ref": "SOL005_def.yaml#/definitions/DateTime"
+    },
+    "_links": {
+      "description": "Links to resources related to this notification.\n",
+      "type": "object",
+      "required": [
+        "subscription",
+        "alarms"
+      ],
+      "properties": {
+        "subscription": {
+          "description": "Link to the related subscription.\n",
+          "$ref": "SOL005_def.yaml#/definitions/Link"
+        },
+        "alarms": {
+          "description": "Link to the alarm list, i.e. the \"Alarms\" resource.\n",
+          "$ref": "SOL005_def.yaml#/definitions/Link"
+        }
+      }
+    }
+  }
+}

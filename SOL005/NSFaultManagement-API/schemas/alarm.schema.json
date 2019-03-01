@@ -1,0 +1,107 @@
+{
+  "description": "The alarm data type encapsulates information about an alarm. It shall comply with the provisions defined in Table 8.5.2.4-1\n",
+  "type": "object",
+  "required": [
+    "id",
+    "managedObjectId",
+    "alarmRaisedTime",
+    "rootCauseFaultyComponent",
+    "ackState",
+    "perceivedSeverity",
+    "eventTime",
+    "eventType",
+    "probableCause",
+    "isRootCause",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "Identifier of this Alarm information element.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    },
+    "managedObjectId": {
+      "description": "Identifier of the affected NS instance.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    },
+    "rootCauseFaultyComponent": {
+      "description": "The NS components that are causing the NS fault.\n",
+      "$ref": "#/definitions/FaultyComponentInfo"
+    },
+    "rootCauseFaultyResource": {
+      "description": "The virtualised resources that are causing the NS fault. It shall be present when the faulty component is \"NS Virtual Link\" or \"VNF\".\n",
+      "$ref": "#/definitions/FaultyResourceInfo"
+    },
+    "alarmRaisedTime": {
+      "description": "Alarm identifier.\n",
+      "$ref": "SOL005_def.yaml#/definitions/DateTime"
+    },
+    "alarmChangedTime": {
+      "description": "The time stamp indicating when the alarm was cleared.\n",
+      "$ref": "SOL005_def.yaml#/definitions/DateTime"
+    },
+    "alarmClearedTime": {
+      "description": "Links to resources related to this notification.\n",
+      "$ref": "SOL005_def.yaml#/definitions/DateTime"
+    },
+    "ackState": {
+      "description": "Acknowledgment state of the alarm. Permitted values: UNACKNOWLEDGED ACKNOWLEDGED\n",
+      "type": "string",
+      "enum": [
+        "UNACKNOWLEDGED",
+        "ACKNOWLEDGED"
+      ]
+    },
+    "perceivedSeverity": {
+      "description": "Perceived severity of the managed object failure.\n",
+      "$ref": "#/definitions/PerceivedSeverityType"
+    },
+    "eventTime": {
+      "description": "Time stamp indicating when the fault was observed.\n",
+      "$ref": "SOL005_def.yaml#/definitions/DateTime"
+    },
+    "eventType": {
+      "description": "Type of event.\n",
+      "$ref": "#/definitions/EventType"
+    },
+    "faultType": {
+      "description": "Additional information to clarify the type of the fault.\n",
+      "type": "string"
+    },
+    "probableCause": {
+      "description": "Information about the probable cause of the fault.\n",
+      "type": "string"
+    },
+    "isRootCause": {
+      "description": "Attribute indicating if this fault is the root for other correlated alarms. If TRUE, then the alarms listed in the attribute CorrelatedAlarmId are caused by this fault.\n",
+      "type": "boolean"
+    },
+    "correlatedAlarmIds": {
+      "description": "List of identifiers of other alarms correlated to this fault.\n",
+      "type": "array",
+      "items": {
+        "$ref": "SOL005_def.yaml#/definitions/Identifier"
+      }
+    },
+    "faultDetails": {
+      "description": "Provides additional information about the fault..\n",
+      "type": "string"
+    },
+    "_links": {
+      "description": "Links for this resource.\n",
+      "type": "object",
+      "required": [
+        "self"
+      ],
+      "properties": {
+        "self": {
+          "description": "URI of this resource.\n",
+          "$ref": "SOL005_def.yaml#/definitions/Link",
+          "objectInstance": {
+            "description": "Link to the resource representing the NS instance to which the notified alarm is correlated. Shall be present if the NS instance information is accessible as a resource.\n",
+            "$ref": "SOL005_def.yaml#/definitions/Link"
+          }
+        }
+      }
+    }
+  }
+}
