@@ -15,7 +15,7 @@ Check HTTP Response Status Code Is
     
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain     ${response[0]['headers']}    ${CONTENT_TYPE}
     Log    Header is present    
     
 Check HTTP Response Body Json Schema Is
@@ -30,48 +30,129 @@ Check HTTP Response Header ContentType is
     Log    Content Type validated 
     
 Do POST Alarms
-    log    Trying to perform a PUT. This method should not be implemented
+    log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms
-    ${outputResponse}=    Output    Response 
+    ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
 Do PATCH Alarms
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${response} = Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms
+    ${outputResponse} =    Output    response 
+    Set Global Variable    @{response}    ${outputResponse}
     
 Do PUT Alarms
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${response} = Put    ${apiRoot}/${apiName}/${apiVersion}/alarms
+    Put    ${apiRoot}/${apiName}/${apiVersion}/alarms
+    ${outputResponse}=    Output    response 
+    Set Global Variable    @{response}    ${outputResponse}
+
     
 Do DELETE Alarms
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${response} = Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
     
 Do GET Alarms
     Log    Query NFVO The GET method queries information about multiple alarms.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query
-    ${response} = Get    ${apiRoot}/${apiName}/${apiVersion}/alarms
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
     
- Do GET Alarms With Filters
+Do GET Alarms With Filters
 	Log    Query NFVO The GET method queries information about multiple alarms with filters.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
 	Log    Execute Query
-	${response} = Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${alarm_filter}=${nsInstanceId}
+	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${alarm_filter}=${nsInstanceId}
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
 	
 Do GET Alarms With Invalid Filters
 	Log    Query NFVO The GET method queries information about multiple alarms with filters.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
 	Log    Execute Query
-	${response} = Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${Id} 
+	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${nsInstanceId}
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse} 
+	
+Do POST Individual Alarm
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
+    ${outputResponse}=    Output    response 
+    Set Global Variable    @{response}    ${outputResponse}
+    
+Do DELETE Individual Alarm
+    log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+Do PUT Individual Alarm
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+
+Do GET Individual Alarm
+    Log    Query NFVO The GET method queries information about an alarm.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query 
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+Do GET Invalid Individual Alarm
+    Log    Query NFVO The GET method queries information about an invalid alarm. Should return does not exist
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query 
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${invalidAlarmId}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+   
+Do PATCH Individual Alarm
+    log    Trying to perform a PATCH. This method modifies an individual alarm resource
+    Set Headers  {"Accept":"${ACCEPT}"} 
+    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/alarmModifications.json
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+   
+   
+Do PATCH Individual Alarm Conflict
+    log    Trying to perform a PATCH. This method modifies an individual alarm resource
+    Set Headers  {"Accept":"${ACCEPT}"} 
+    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
+    Set Headers    {"If-Match": "${Etag}"} 
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/alarmModifications.json
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+   
+    

@@ -16,6 +16,7 @@ ${CONTENT_TYPE}    application/json
 ${NFVO_DUPLICATION}     0
 
 ${alarmId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
+${invalidAlarmId}    invalidAlramID
 ${Etag}=    an etag
 ${Etag_modified}=    a modified etag
 ${CONTENT_TYPE_PATCH}    application/merge-patch+json

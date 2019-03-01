@@ -20,7 +20,7 @@ POST Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 Get information about multiple alarms 
-    [Documentation]    Test ID: 8.4.2.2
+    [Documentation]    Test ID: 8.4.2.2-1
     ...    Test title: Get information about multiple alarms
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
