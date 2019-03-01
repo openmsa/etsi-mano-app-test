@@ -52,7 +52,7 @@ GET Thresholds - Negative (Not Found)
     Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
-POST Reports
+POST Thresholds
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -67,21 +67,21 @@ POST Reports
     ${headers}=    Output    response headers
     Should Contain    ${headers}    Location
 
-PUT Reports - (Method not implemented)
+PUT Thresholds - (Method not implemented)
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
 
-PATCH Reports - (Method not implemented)
+PATCH Thresholds - (Method not implemented)
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     Integer    response status    405
     Log    Received 405 Method not implemented as expected
 
-DELETE Reports - (Method not implemented)
+DELETE Thresholds - (Method not implemented)
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds
