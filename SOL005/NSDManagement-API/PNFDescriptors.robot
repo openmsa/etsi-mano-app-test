@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     This clause defines all the resources and methods provided by the PNF descriptors interface. \
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/pnfDescriptors.txt    # Specific nsDescriptors Parameters
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
@@ -22,8 +22,7 @@ GET all PNF Descriptors
     Log  Validation of Content-Type : OK
    Log    Trying to validate response
    ${result}=    Output    response body
-   ${json}=    evaluate    json.loads('''${result}''')    json
-   Validate Json    PnfdInfos.schema.json    ${json}
+   Validate Json    PnfdInfos.schema.json    ${result}
    Log    Validation OK
 
 GET all PNF Descriptors - Filter
@@ -39,8 +38,7 @@ GET all PNF Descriptors - Filter
     Should Contain    ${contentType}    application/json
    Log    Trying to validate response
    ${result}=    Output    response body
-   ${json}=    evaluate    json.loads('''${result}''')    json
-   Validate Json    PnfdInfos.schema.json    ${json}
+   Validate Json    PnfdInfos.schema.json    ${result}
    Log    Validation OK
 
 GET all PNF Descriptors - Negative (wronge filter name)
@@ -54,8 +52,7 @@ GET all PNF Descriptors - Negative (wronge filter name)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all PNF Descriptors - Negative (Unauthorized: Wrong Token)
@@ -70,8 +67,7 @@ GET all PNF Descriptors - Negative (Unauthorized: Wrong Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all PNF Descriptors - Negative (Unauthorized: No Token)
@@ -86,8 +82,7 @@ GET all PNF Descriptors - Negative (Unauthorized: No Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all PNF Descriptors (Negative: Not found)
@@ -101,8 +96,7 @@ GET all PNF Descriptors (Negative: Not found)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
     
@@ -119,10 +113,9 @@ GET all PNF Descriptors - all_fields
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PnfdInfos.schema.json    ${json}
+    Validate Json    PnfdInfos.schema.json    ${result}
     Log    PnfdInfos schema validated
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${result}    $.._links
     Validate Json    links.schema.json    ${links[0]}
     Log    Validation for _links schema OK
 
@@ -136,11 +129,10 @@ GET all PNF Descriptors - exclude_default
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PnfdInfos.schema.json    ${json}
+    Validate Json    PnfdInfos.schema.json    ${result}
     Log    PnfdInfo schema validated
     Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${result}    $.._links
     Should Be Empty    ${links}
     Log    _links element is missing as excepted
 
@@ -156,11 +148,10 @@ GET all PNF Descriptors - exclude_fields
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PnfdInfos.schema.json    ${json}
+    Validate Json    PnfdInfos.schema.json    ${result}
     Log    PnfdInfo schema validated
     Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${result}    $.._links
     Should Be Empty    ${links}
     Log    _links element is missing as excepted
 
@@ -168,7 +159,7 @@ POST a new PNF Descriptor
     Log    Creating a new PNF descriptor
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/createPnfdInfoRequest.json
+    ${body}=    Get File    jsons/createPnfdInfoRequest.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors    ${body}
     Integer    response status    201
@@ -177,11 +168,11 @@ POST a new PNF Descriptor
     Should Contain    ${headers}    Location
     Log    Response has header Location
    ${result}=    Output    response body
-   ${json}=    evaluate    json.loads('''${result}''')    json
-   Validate Json    PnfdInfo.schema.json    ${json}
+   Validate Json    PnfdInfo.schema.json    ${result}
    Log    Validation of PnfdInfo OK
 
 PUT all PNF Descriptors (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -190,6 +181,7 @@ PUT all PNF Descriptors (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 PATCH all PNF Descriptors (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -198,6 +190,7 @@ PATCH all PNF Descriptors (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 DELETE all PNF Descriptors (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

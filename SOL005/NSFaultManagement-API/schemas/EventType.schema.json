@@ -1,0 +1,11 @@
+{
+  "description": "The enumeration EventType represents those types of events that trigger an alarm. - COMMUNICATIONS_ALARM: An alarm of this type is associated with the\n  procedure and/or process required conveying information from one point\n  to another (ITU-T Recommendation X.733).\n- PROCESSING_ERROR_ALARM: An alarm of this type is associated with a\n  software or processing fault (ITU-T Recommendation X.733).\n- ENVIRONMENTAL_ALARM: An alarm of this type is associated with a\n  condition related to an enclosure in which the equipment resides\n  (ITU-T Recommendation X.733).\n- QOS_ALARM: An alarm of this type is associated with degradation in the\n  quality of a service (ITU-T Recommendation X.733).\n- EQUIPMENT_ALARM: An alarm of this type is associated with an equipment\n  fault (ITU-T Recommendation X.733).\n",
+  "type": "string",
+  "enum": [
+    "COMMUNICATIONS_ALARM",
+    "PROCESSING_ERROR_ALARM",
+    "ENVIRONMENTAL_ALARM",
+    "QOS_ALARM",
+    "EQUIPMENT_ALARM"
+  ]
+}

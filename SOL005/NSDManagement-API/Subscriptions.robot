@@ -1,6 +1,6 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/subscriptions.txt
 Library           OperatingSystem
 Library           JSONLibrary
@@ -19,8 +19,7 @@ GET Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdmSubscriptions.schema.json    ${json}
+    Validate Json    NsdmSubscriptions.schema.json    ${result}
     Log    Validated NsdmSubscription schema
 
 GET Subscription - Filter
@@ -33,8 +32,7 @@ GET Subscription - Filter
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdmSubscriptions.schema.json    ${json}
+    Validate Json    NsdmSubscriptions.schema.json    ${result}
     Log    Validated NsdmSubscription schema
 
 GET Subscription - Negative Filter
@@ -48,8 +46,7 @@ GET Subscription - Negative Filter
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET Subscription - Negative (Not Found)
@@ -63,8 +60,7 @@ GET Subscription - Negative (Not Found)
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 POST Subscription
@@ -73,7 +69,7 @@ POST Subscription
     Log    Trying to create a new subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/subscriptions.json
+    ${body}=    Get File    jsons/subscriptions.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Integer    response status    201
@@ -82,8 +78,7 @@ POST Subscription
     Should Contain    ${headers}    Location
     Log    Response has header Location
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdmSubscription.schema.json    ${json}
+    Validate Json    NsdmSubscription.schema.json    ${result}
     Log    Validation of NsdmSubscription OK
 
 POST Subscription - DUPLICATION
@@ -91,7 +86,7 @@ POST Subscription - DUPLICATION
     Pass Execution If    ${NFVO_DUPLICATION} == 0    NFVO is not permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/subscriptions.json
+    ${body}=    Get File    jsons/subscriptions.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Integer    response status    201
@@ -100,8 +95,7 @@ POST Subscription - DUPLICATION
     Should Contain    ${headers}    Location
     Log    Response has header Location
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdmSubscription.schema.json    ${json}
+    Validate Json    NsdmSubscription.schema.json    ${result}
     Log    Validation of NsdmSubscription OK
 
 POST Subscription - NO DUPLICATION
@@ -109,7 +103,7 @@ POST Subscription - NO DUPLICATION
     Pass Execution If    ${NFVO_DUPLICATION} == 1    NFVO is permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/subscriptions.json
+    ${body}=    Get File    jsons/subscriptions.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     Integer    response status    303
@@ -119,6 +113,7 @@ POST Subscription - NO DUPLICATION
     Log    Response header contains Location
 
 PUT Subscription - (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -127,6 +122,7 @@ PUT Subscription - (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 PATCH Subscription - (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -135,6 +131,7 @@ PATCH Subscription - (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 DELETE Subscription - (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

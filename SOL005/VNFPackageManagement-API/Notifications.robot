@@ -1,6 +1,5 @@
 *** Setting ***
 Resource	environment/variables.txt
-Resource	environment/generic.txt
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
@@ -76,6 +75,7 @@ Post Package Change Notification Negative 404
     
     
 PUT VNF Package Management Notification 
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log  PUT Method not implemented
     &{req}=  Create Mock Request Matcher	PUT  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
@@ -88,6 +88,7 @@ PUT VNF Package Management Notification
     
     
 PATCH VNF Package Management Notification 
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log  PATCH Method not implemented
     &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
@@ -100,6 +101,7 @@ PATCH VNF Package Management Notification
     
     
 DELETE VNF Package Management Notification 
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log  PATCH Method not implemented
     &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405

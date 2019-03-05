@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     This clause defines all the resources and methods provided by the NS descriptors interface. \
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
@@ -22,8 +22,7 @@ GET all Network Service Descriptors
     Log  Validation of Content-Type : OK
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfos.schema.json    ${json}
+    Validate Json    NsdInfos.schema.json    ${result}
     Log    Validation OK
 
 GET all Network Service Descriptors - Filter
@@ -39,8 +38,7 @@ GET all Network Service Descriptors - Filter
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfos.schema.json    ${json}
+    Validate Json    NsdInfos.schema.json    ${result}
     Log    Validation OK
 
 GET all Network Service Descriptors - Negative (wronge filter name)
@@ -54,8 +52,7 @@ GET all Network Service Descriptors - Negative (wronge filter name)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Network Service Descriptors - Negative (Unauthorized: Wrong Token)
@@ -70,8 +67,7 @@ GET all Network Service Descriptors - Negative (Unauthorized: Wrong Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Network Service Descriptors - Negative (Unauthorized: No Token)
@@ -86,8 +82,7 @@ GET all Network Service Descriptors - Negative (Unauthorized: No Token)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 GET all Network Service Descriptors (Negative: Not found)
@@ -101,8 +96,7 @@ GET all Network Service Descriptors (Negative: Not found)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
     
     
@@ -119,10 +113,9 @@ GET all Network Service Descriptors - all_fields
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfos.schema.json    ${json}
+    Validate Json    NsdInfos.schema.json    ${result}
     Log    NsdInfo schema validated
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${result}    $.._links
     Validate Json    links.schema.json    ${links[0]}
     Log    Validation for _links schema OK
 
@@ -136,11 +129,10 @@ GET all Network Service Descriptors - exclude_default
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfos.schema.json    ${json}
+    Validate Json    NsdInfos.schema.json    ${result}
     Log    NsdInfo schema validated
     Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${result}    $.._links
     Should Be Empty    ${links}
     Log    _links element is missing as excepted
 
@@ -150,17 +142,16 @@ GET all Network Service Descriptors - exclude_fields
     Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use exclude_fields option
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exlude_fields=${fields}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?exlude_fields=${fields}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     Log    Trying to validate response
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfos.schema.json    ${json}
+    Validate Json    NsdInfos.schema.json    ${result}
     Log    NsdInfo schema validated
     Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${json}    $.._links
+    ${links}=    Get Value From Json    ${result}    $.._links
     Should Be Empty    ${links}
     Log    _links element is missing as excepted
         
@@ -169,7 +160,7 @@ POST a new Network Service Descriptors
     Log    Creating a new network service descriptor
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/createNsdInfoRequest.json
+    ${body}=    Get File    jsons/createNsdInfoRequest.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors    ${body}
     Integer    response status    201
@@ -178,11 +169,11 @@ POST a new Network Service Descriptors
     Should Contain    ${headers}    Location
     Log    Response has header Location
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    NsdInfo.schema.json    ${json}
+    Validate Json    NsdInfo.schema.json    ${result}
     Log    Validation of NsdInfo OK
 
 PUT all Network Service Descriptors (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -191,6 +182,7 @@ PUT all Network Service Descriptors (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 PATCH all Network Service Descriptors (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -199,6 +191,7 @@ PATCH all Network Service Descriptors (Method not implemented)
     Log    Received 405 Method not implemented as expected
 
 DELETE all Network Service Descriptors (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

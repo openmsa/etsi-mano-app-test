@@ -1,0 +1,58 @@
+{
+  "description": "This type represents an alarm notification about NS faults.\n",
+  "type": "object",
+  "required": [
+    "id",
+    "notificationType",
+    "subscriptionId",
+    "timeStamp",
+    "alarm",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "Identifier of this notification. If a notification is sent multiple times due to multiple subscriptions, the \"id\" attribute of all these notifications shall have the same value.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    },
+    "notificationType": {
+      "description": "Discriminator for the different notification types. Shall be set to \"AlarmNotification\" for this notification type.\n",
+      "type": "string",
+      "enum": [
+        "AlarmClearedNotification"
+      ]
+    },
+    "subscriptionId": {
+      "description": "Identifier of the subscription that this notification relates to.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    },
+    "timeStamp": {
+      "description": "Date-time of the generation of the notification.\n",
+      "$ref": "SOL005_def.yaml#/definitions/DateTime"
+    },
+    "alarm": {
+      "description": "Information about an alarm including AlarmId, affected NS identifier, and FaultDetails.\n",
+      "$ref": "#/definitions/Alarm"
+    },
+    "alarmClearedTime": {
+      "description": "The time stamp indicating when the alarm was cleared.\n"
+    },
+    "_links": {
+      "description": "Links to resources related to this notification.\n",
+      "type": "object",
+      "required": [
+        "subscription",
+        "alarm"
+      ],
+      "properties": {
+        "subscription": {
+          "description": "Link to the related subscription.\n",
+          "$ref": "SOL005_def.yaml#/definitions/Link"
+        },
+        "alarm": {
+          "description": "Link to the resource that represents the related alarm.\n",
+          "$ref": "SOL005_def.yaml#/definitions/Link"
+        }
+      }
+    }
+  }
+}

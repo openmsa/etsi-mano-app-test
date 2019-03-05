@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     This clause defines all the resources and methods provided by the Iindividual PNF descriptor interface. \
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/pnfDescriptors.txt    # Specific nsDescriptors Parameters
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
@@ -22,8 +22,7 @@ GET Single PNF Descriptor
     Log  Validation of Content-Type : OK
    Log    Trying to validate response
    ${result}=    Output    response body
-   ${json}=    evaluate    json.loads('''${result}''')    json
-   Validate Json    NsdInfo.schema.json    ${json}
+   Validate Json    NsdInfo.schema.json    ${result}
    Log    Validation OK
 
 
@@ -38,8 +37,7 @@ GET Single PNF Descriptor (Negative: Not found)
     Should Contain    ${contentType}    application/json
     Log    Trying to validate ProblemDetails
     ${problemDetails}=    Output    response body
-    ${json}=    evaluate    json.loads('''${problemDetails}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
 
@@ -50,14 +48,13 @@ PATCH Single PNF Descriptor - (Disabling a nsdInfo)
     Log    The PATCH method modifies the user defined data of an individual PNF descriptor resource.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    json/PnfdInfoModification.json
+    ${body}=    Get File    jsons/PnfdInfoModification.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}    ${body}
     Integer    response status    200
     Log    Received 200 OK as expected
    ${result}=    Output    response body
-   ${json}=    evaluate    json.loads('''${result}''')    json
-   Validate Json    PnfdInfoModification.schema.json    ${json}
+   Validate Json    PnfdInfoModification.schema.json    ${result}
    Log    Validation of PnfdInfoModification OK
 
 
@@ -71,6 +68,7 @@ DELETE Single PNF Descriptor
 
 
 POST Single PNF Descriptor (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a POST. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
@@ -82,6 +80,7 @@ POST Single PNF Descriptor (Method not implemented)
 
 
 PUT Single PNF Descriptor (Method not implemented)
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

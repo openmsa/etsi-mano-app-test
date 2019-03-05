@@ -1,6 +1,6 @@
 *** Setting ***
 Resource	environment/notifications.txt
-Resource	environment/generic.txt
+Resource	environment/variables.txt
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
@@ -76,6 +76,7 @@ Post Threshold Crossed Notification Negative 404
     
     
 PUT Performance Notification 
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log  PUT Method not implemented
     &{req}=  Create Mock Request Matcher	PUT  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
@@ -88,6 +89,7 @@ PUT Performance Notification
     
     
 PATCH Performance Notification 
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log  PATCH Method not implemented
     &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
@@ -100,6 +102,7 @@ PATCH Performance Notification
     
     
 DELETE Performance Notification 
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log  PATCH Method not implemented
     &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405

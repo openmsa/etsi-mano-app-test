@@ -1,0 +1,18 @@
+{
+  "description": "This type represents the faulty component that has a negative impact on an NS.  It shall comply with the provisions defined in Table 8.5.3.4-1.\n",
+  "type": "object",
+  "properties": {
+    "faultyNestedNsInstanceId": {
+      "description": "Identifier of the faulty nested NS instance.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    },
+    "faultyResourceType": {
+      "description": "Identifier of the faulty NS virtual link instance.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    },
+    "faultyNsVirtualLinkInstanceId": {
+      "description": "Identifier of the faulty VNF instance.\n",
+      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+    }
+  }
+}

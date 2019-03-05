@@ -2,7 +2,7 @@
 Documentation     This resource represents subscriptions. The client can use this resource to subscribe to notifications related to VNF
 ...               performance management and to query its subscriptions.
 Library           JSONSchemaLibrary    schemas/
-Resource          environment/generic.txt    # Generic Parameters
+Resource          environment/variables.txt    # Generic Parameters
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library           OperatingSystem
 Library           JSONLibrary
@@ -22,8 +22,7 @@ GET Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmSubscriptions.schema.json    ${json}
+    Validate Json    PmSubscriptions.schema.json    ${result}
     Log    Validated PmSubscription schema
 
 GET Subscription - Filter
@@ -39,8 +38,7 @@ GET Subscription - Filter
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmSubscriptions.schema.json    ${json}
+    Validate Json    PmSubscriptions.schema.json    ${result}
     Log    Validated PmSubscription schema
 
 GET Subscription - Negative Filter (Erroneous filter)
@@ -56,8 +54,7 @@ GET Subscription - Negative Filter (Erroneous filter)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${result}
     Log    Validated ProblemDetails schema
 
 GET Subscription - Negative (Not Found)
@@ -73,8 +70,7 @@ GET Subscription - Negative (Not Found)
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    ProblemDetails.schema.json    ${json}
+    Validate Json    ProblemDetails.schema.json    ${result}
     Log    Validated ProblemDetails schema
 
 POST Subscription
@@ -97,8 +93,7 @@ POST Subscription
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmSubscription.schema.json    ${json}
+    Validate Json    PmSubscription.schema.json    ${result}
     Log    Validated PmSubscription schema
     Log    Trying to validate the Location header
     ${headers}=    Output    response headers
@@ -152,8 +147,7 @@ POST Subscription - NO DUPLICATION
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
-    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    PmSubscription.schema.json    ${json}
+    Validate Json    PmSubscription.schema.json    ${result}
     Log    Validated PmSubscription schema
     Log    Trying to validate the Location header
     ${headers}=    Output    response headers
@@ -162,6 +156,7 @@ POST Subscription - NO DUPLICATION
 PUT Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
@@ -170,6 +165,7 @@ PUT Subscription - (Method not implemented)
 PATCH Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
@@ -178,6 +174,7 @@ PATCH Subscription - (Method not implemented)
 DELETE Subscription - (Method not implemented)
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Integer    response status    405
