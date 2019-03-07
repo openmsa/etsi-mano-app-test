@@ -39,3 +39,8 @@ ${AlarmClearedNotification}    {}
 ${AlarmListRebuiltNotification}    {}
 
 ${response}    {}
+
+&{req_mock}    {}
+&{resp_mock}    {}
+
+

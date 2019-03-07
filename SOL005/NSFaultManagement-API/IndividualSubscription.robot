@@ -64,7 +64,7 @@ DELETE an individual subscription
     [Documentation]    Test ID: 8.4.5.5
     ...    Test title:DELETE an individual subscription
     ...    Test objective: The objective is to DELETE an individual subscription 
-    ...    Pre-conditions: Subsbcription already exists
+    ...    Pre-conditions: The Subsbcription already exists
     ...    Reference: section 8.4.5 - SOL005 v2.4.1
     ...    Config ID:
     ...    Applicability: 
