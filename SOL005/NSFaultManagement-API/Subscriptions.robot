@@ -98,7 +98,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
     
 PUT subscriptions - Method not implemented
-     [Documentation]    Test ID: 8.4.4.3
+    [Documentation]    Test ID: 8.4.4.3
     ...    Test title:PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to PUT subscriptions 
     ...    Pre-conditions: 
@@ -110,7 +110,7 @@ PUT subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH subscriptions - Method not implemented
-         [Documentation]    Test ID: 8.4.4.4
+    [Documentation]    Test ID: 8.4.4.4
     ...    Test title:PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to PATCH subscriptions 
     ...    Pre-conditions: 
@@ -122,7 +122,7 @@ PATCH subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE subscriptions - Method not implemented
-         [Documentation]    Test ID: 8.4.4.5
+    [Documentation]    Test ID: 8.4.4.5
     ...    Test title:DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to DELETE subscriptions 
     ...    Pre-conditions: 

@@ -7,6 +7,12 @@ Library    OperatingSystem
 
 
 *** Keywords ***
+Check Individual Subscription existance
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    Integer    response status    200
+    
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     Log    Validate Status code    
@@ -177,7 +183,8 @@ Do GET Subscriptions with filter
     Log    Get the list of active subscriptions using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}${outputResponse}=    Output    response
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
+    ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
     
@@ -212,5 +219,45 @@ Do DELETE Subscriptions
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
+    
+Do POST Individual Subscription
+    log    Trying to perform a POST. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+    
+Do GET Individual Subscription
+    log    Trying to get information about an individual subscription
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+    
+Do PUT Individual Subscription
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+Do PATCH Individual Subscription
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
 
-
+Do DELETE Individual Subscription
+    log    Trying to perform a DELETE.
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
