@@ -108,7 +108,9 @@ Send Request Grant Request
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body}=    Get File    jsons/grantRequest.json
-    ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
+    ${body}=    Output    response
+    Set Suite Variable    &{response}    ${body}
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
@@ -117,20 +119,19 @@ Check HTTP Response Status Code Is
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
-    ${json}=    evaluate    json.loads('''${response.body}''')    json
-    Validate Json    ${schema}    ${json}
+    Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
     
 Get an individual grant - Successful
     log    Trying to read an individual grant
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${response.headers.Location}
+    Get    ${response[0]['headers']['Location']}
     Log    Validate Status code
     Integer    response status    200
     ${result}=    Output    response body
