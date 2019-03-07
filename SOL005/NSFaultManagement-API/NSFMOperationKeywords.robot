@@ -14,8 +14,8 @@ Check HTTP Response Status Code Is
     Log    Status code validated 
     
 Check HTTP Response Header Contains
-    [Arguments]    ${CONTENT_TYPE}
-    Should Contain     ${response[0]['headers']}    ${CONTENT_TYPE}
+    [Arguments]    ${HEADER_TOCHECK}
+    Should Contain     ${response[0]['headers']}    ${HEADER_TOCHECK}
     Log    Header is present    
     
 Check HTTP Response Body Json Schema Is
@@ -154,5 +154,63 @@ Do PATCH Individual Alarm Conflict
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
-   
     
+Do POST Subscription
+    Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/fmSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+
+Do GET Subscriptions
+    Log    Get the list of active subscriptions
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+        
+Do GET Subscriptions with filter
+    Log    Get the list of active subscriptions using a filter
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+    
+Do GET Subscriptions with Invalid filter   
+    Log    Get the list of active subscriptions using an invalid filter
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+Do PUT Subscriptions
+    log    Trying to perform a PUT Subscriptions. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+Do PATCH Subscriptions
+    log    Trying to perform a PATCH Subscriptions. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+    
+Do DELETE Subscriptions
+    log    Trying to perform a DELETE Subscriptions. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+
+

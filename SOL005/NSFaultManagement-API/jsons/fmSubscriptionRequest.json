@@ -1,0 +1,10 @@
+{
+  "filter": {
+    "nsInstanceSubscriptionFilter": {
+      "notificationTypes": [
+        "AlarmNotification"
+      ]
+    }
+  },
+  "callbackUri": "http://127.0.0.1/subscribe"
+}
