@@ -40,7 +40,7 @@ ${AlarmListRebuiltNotification}    {}
 
 ${response}    {}
 
-&{req_mock}    {}
-&{resp_mock}    {}
+${req_mock}    {}
+${resp_mock}    {}
 
 

@@ -21,27 +21,7 @@ Change external VNF connectivity
     Should Contain    ${headers}    Location
     Log    Validation OK
 
-Change external VNF connectivity Conflict (parallel LCM operation)
-    # TODO: Need to set the pre-condition of the test
-    [Documentation]    Conflict
-    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that another LCM operation is ongoing.
-    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    [Setup]    Launch another LCM operation
-    log    Trying to change the deployment flavour of a VNF instance.
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/changeExtVnfConnectivityRequest .json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_ext_conn    ${body}
-    Log    Validate Status code
-    Integer    response status    409
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-    #[Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
-       
-    
+
 GET Change external VNF connectivity - Method not implemented
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

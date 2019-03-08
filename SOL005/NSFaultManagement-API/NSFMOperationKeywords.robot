@@ -4,7 +4,7 @@ Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
-Suite Teardown    Terminate All Processes    kill=true
+#Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
 Library    Process
 

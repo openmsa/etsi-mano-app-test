@@ -16,8 +16,8 @@ ${CONTENT_TYPE}    application/json
 ${VNFM_DUPLICATION}    0
 
 ${alarmId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
-${Etag}=    an etag
-${Etag_modified}=    a modified etag
+${etags}    a modified etag
+${wrong_etag}    wrong-tag    
 ${CONTENT_TYPE_PATCH}    application/merge-patch+json
 
 ${PerceivedSeverity}    CRITICAL

@@ -40,24 +40,7 @@ Post Rollback operation task Conflict (Not-FAILED_TEMP)
     Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
-Post Rollback operation task Conflict (parallel LCM operation)
-    # TODO: Need to set the pre-condition of the test
-    Depends on test    Check resource FAILED_TEMP
-    [Documentation]    Conflict
-    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that the VNF instance resource is not in FAILED_TEMP state, 
-    ...    or another error handling action is starting, such as retry or fail. 
-    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    [Setup]    Launch another error handling action
-    log    Rollback an operation
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
-    Log    Validate Status code
-    Integer    response status    409
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-    #[Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
+
 
 Post Rollback operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent

@@ -41,24 +41,6 @@ Scale a vnfInstance to level Conflict (Not-Instantiated)
     Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
-Scale a vnfInstance to level Conflict (parallel LCM operation)
-    [Documentation]    Conflict
-    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, or that another lifecycle management operation is ongoing. 
-    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    [Setup]    Launch another LCM operation
-    log    Trying to Scale a vnf Instance
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
-    Log    Validate Status code
-    Integer    response status    409
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-    #[Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
     
 Scale a vnfInstance Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent

@@ -22,7 +22,7 @@ Create a new vnfInstance
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/createVnfRequest.json
-    Post    ${apiRoot}${apiName}/${apiVersion}/vnf_instances    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
     Integer    response status    201
     Log    Status code validated 
     ${headers}=    Output    response headers
