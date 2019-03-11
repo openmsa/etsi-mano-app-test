@@ -7,7 +7,6 @@ Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Documentation    This resource represents an individual grant. The client can use this resource to read the grant.
 ...    It is determined by means outside the scope of the present document, such as configuration or policy,
 ...    how long an individual grant is available.
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Individual Grant - Method not implemented
@@ -97,7 +96,7 @@ DELETE an individual grant - Method not implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}   
     Log    Validate Status code
-    Integer    response status    204
+    Integer    response status    405
 
 *** Keywords ***
 Check resource existance

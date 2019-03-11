@@ -119,10 +119,7 @@ GET all Pm Jobs - exclude_fields
     ${reports}=    Get Value From Json    ${result}    $..reports
     Should Be Empty    ${reports}
     Log    Reports element is empty as expected
-    Log    Checking that criteria element is missing
-    ${criteria}=    Get Value From Json    ${result}    $..criteria
-    Should Be Empty    ${criteria}
-    Log    Criteria element is empty as expected
+    
 
 GET all Pm Jobs - Negative (wronge filter name)
     Log    Trying to get all PM Jobs present in the VNFM, using an erroneous filter param

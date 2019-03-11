@@ -8,6 +8,10 @@ Library    JSONSchemaLibrary    schemas/
 Library    DependencyLibrary
 
 
+*** Variables **
+${original_etag}    1234
+
+
 *** Test Cases ***
 POST Alarm - Method not implemented
     log    Trying to perform a POST. This method should not be implemented
@@ -16,6 +20,7 @@ POST Alarm - Method not implemented
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     Log    Validate Status code
     Integer    response status    405
+
 
 Get information about a configuration
     [Documentation]    Test ID: 7.4.3.1
@@ -32,14 +37,16 @@ Get information about a configuration
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
-    ${Etag}=    Output    response headers Etag
     Log    Validate Status code
     Integer    response status    200
+    ${etag}    Output    response header ETag
+    Set Suite Variable    &{original_etag}    ${etag}
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     Validate Json    alarm.schema.json    ${result}
     Log    Validation OK
+
 
 PUT Alarm - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
@@ -48,6 +55,7 @@ PUT Alarm - Method not implemented
     Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     Log    Validate Status code
     Integer    response status    405
+
 
 PATCH Alarm
     [Documentation]    Test ID: 7.4.3.2
@@ -60,40 +68,21 @@ PATCH Alarm
     ...    Post-Conditions: 
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
-    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
+    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"}
+    Set Headers  {"If-Match": "${original_etag[0]}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
-    ${Etag_modified}=    Output    response headers Etag
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     Validate Json    alarmModifications.schema.json    ${result}
     Log    Validation OK
+    
 
-PATCH Alarm - Conflict
-    [Documentation]    Test ID: 7.4.3.2-1
-    ...    Test title: Modify an individual alarm resource - Conflict
-    ...    Test objective: The objective is to Modify an individual alarm resource
-    ...    Pre-conditions: The related alarm exists
-    ...    Reference: section 7.4.3 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: The alarm resource is not modified
-    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that the alarm is in ackownledged state
-    log    Trying to perform a PATCH. This method modifies an individual alarm resource
-    Set Headers  {"Accept":"${ACCEPT}"} 
-    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/alarmModifications.json
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
-    Log    Validate Status code
-    Integer    response status    409
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+
 
 PATCH Alarm - Precondition failed
     [Documentation]    Test ID: 7.4.3.2-1
@@ -108,12 +97,34 @@ PATCH Alarm - Precondition failed
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
-    Set Headers    {"If-Match": "${Etag}"}
+    Set Headers    {"If-Match": "${original_etag[0]}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     Log    Validate Status code
     Integer    response status    412
+    ${problemDetails}=    Output    response body
+    Validate Json    ProblemDetails.schema.json    ${problemDetails}
+    Log    Validation OK
+
+PATCH Alarm - Conflict
+    [Documentation]    Test ID: 7.4.3.2-1
+    ...    Test title: Modify an individual alarm resource - Conflict
+    ...    Test objective: The objective is to Modify an individual alarm resource
+    ...    Pre-conditions: The related alarm exists
+    ...    Reference: section 7.4.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: The alarm resource is not modified
+    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that the alarm is in ackownledged state
+    log    Trying to perform a PATCH. This method modifies an individual alarm resource
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/alarmModifications.json
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
+    Log    Validate Status code
+    Integer    response status    409
     ${problemDetails}=    Output    response body
     Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK

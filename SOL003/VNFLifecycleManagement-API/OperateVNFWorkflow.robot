@@ -37,7 +37,7 @@ Operate a VNF Instance
 *** Keywords ***
 Initialize System
     Create Sessions
-    ${body}=    Get File    jsons/operateVnFRequest.json
+    ${body}=    Get File    jsons/operateVnfRequest.json
     ${changeVnfOperateRequest}=    evaluate    json.loads('''${body}''')    json
     ${requestedState}=    Get Value From Json    ${changeVnfOperateRequest}    $..changeStateTo 
     

@@ -50,7 +50,7 @@ DELETE an individual subscription
     log    Try to delete an individual subscription
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     Log    Validate Status code
     Integer    response status    204
 

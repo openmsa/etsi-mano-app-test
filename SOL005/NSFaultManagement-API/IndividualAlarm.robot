@@ -51,7 +51,7 @@ GET information about Invalid Individual Alarm
 PUT Individual Alarm - Method not implemented
     [Documentation]    Test ID: 8.4.3.3
     ...    Test title:PUT Individual Alarm - Method not implemented
-    ...    Test objective: The objective is to post alarms
+    ...    Test objective: The objective is to put an individual alarm
     ...    Pre-conditions: 
     ...    Reference: section 8.4.3 - SOL005 v2.4.1
     ...    Config ID:
@@ -106,7 +106,7 @@ PATCH Alarm - Precondition failed
 DELETE Individual Alarm - Method not implemented
     [Documentation]    Test ID: 8.4.3.5
     ...    Test title:DELETE Individual Alarm - Method not implemented
-    ...    Test objective: The objective is to post alarms
+    ...    Test objective: The objective is to Delete an individual alarms
     ...    Pre-conditions: 
     ...    Reference: section 8.4.3 - SOL005 v2.4.1
     ...    Config ID:

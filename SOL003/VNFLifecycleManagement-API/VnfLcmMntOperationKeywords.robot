@@ -132,7 +132,7 @@ Send Change VNF Operational State Request
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/operateVnFRequest.json
+    ${body}=    Get File    jsons/operateVnfRequest.json
     ${response}=    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate    ${body}
 
 Send Heal VNF Request

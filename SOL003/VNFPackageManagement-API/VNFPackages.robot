@@ -26,10 +26,6 @@ GET all Packages
     ${additional_artifacts}=    Get Value From Json    ${result}    $..additionalArtifacts
     Should Be Empty    ${additional_artifacts}
     Log    additionalArtifact element is missing as excepted
-    Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${result}    $.._links
-    Should Be Empty    ${links}
-    Log    _links element is missing as excepted
 
 GET all Packages - Filter
     Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
@@ -131,10 +127,7 @@ GET all Packages - exclude_default
     ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
     Should Be Empty    ${additional_artifacts}
     Log    additionalArtifact element is missing as excepted
-    Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${vnfPkgInfos}    $.._links
-    Should Be Empty    ${links}
-    Log    _links element is missing as excepted
+    
 
 GET all Packages - fields
     Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields

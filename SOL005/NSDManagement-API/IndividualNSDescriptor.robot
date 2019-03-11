@@ -6,9 +6,11 @@ Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Para
 Library           OperatingSystem
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
-
 Library    JSONSchemaLibrary    schemas/
+
 *** Variable ***
+${original_etag}    1234
+
 *** Test Cases ***
 GET Single Network Service Descriptor
     [Documentation]   The GET method reads information about an individual NS descriptor.
@@ -26,6 +28,8 @@ GET Single Network Service Descriptor
     ${result}=    Output    response body
     Validate Json    NsdInfo.schema.json    ${result}
     Log    Validation OK
+    ${etag}    Output    response header ETag
+    Set Suite Variable    &{original_etag}    ${etag}
 
 
 GET Single Network Service Descriptor (Negative: Not found)
@@ -60,6 +64,7 @@ PATCH Single Network Service Descriptor - (Disabling a nsdInfo)
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in enabled operational state
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
+    Set Headers    {"If-Match": "${original_etag[0]}"}
     ${body}=    Get File    jsons/NsdInfoModificationDisable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
@@ -83,7 +88,7 @@ PATCH Single Network Service Descriptor - (Enabling an previously disabled nsdIn
     Log    Validation of NsdInfoModifications OK
     
 
-PATCH Single Network Service Descriptor - NEGATIVE (Trying to enable an previously enabled nsdInfo)
+PATCH Single Network Service Descriptor - NEGATIVE (Trying to enable a previously enabled nsdInfo)
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in enabled operational state
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
@@ -104,13 +109,13 @@ PATCH Single Network Service Descriptor - NEGATIVE (Trying to enable an previous
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be modified by another entity
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${Etag}"}
+    Set Headers    {"If-Match": "${original_etag[0]}"}
     ${body}=    Get File    jsons/NsdInfoModificationEnable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${modifiedNsdInfoId}    ${body}
     Integer    response status    412
     Log    Received 412 Precondition failed as expected
-    ${returned_etag}=    Output    response headers Etag
+    ${returned_etag}=    Output    response headers ETag
     Log    Verify different etags
     Should Not Be Equal    ${Etag}    ${returned_etag}    
     ${contentType}=    Output    response headers Content-Type
