@@ -82,7 +82,7 @@ DELETE Individual VNF Indicator - Method not implemented
     Check HTTP Response Status Code Is    405
     Check Postcondition Indicator for VNF instance Exist
     
- *** Keywords ***
+*** Keywords ***
 Get Individual Indicator for a VNF instance
     Log    This resource represents a VNF indicator related to a VNF instance.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}

@@ -139,7 +139,7 @@ Check HTTP Response Header Contains
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
-    Should Contain    ${response[0]['headers']['Content-Type']}    ${CONTENT_TYPE}
+    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
       
