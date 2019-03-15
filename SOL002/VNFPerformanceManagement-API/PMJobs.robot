@@ -118,7 +118,7 @@ GET VNF Performance Monitoring Jobs with invalid resource endpoint
     Check HTTP Response Body Json Schema Is   ProblemDetails
 
 Create new VNF Performance Monitoring Job
-    [Documentation]    Test ID: 6.3.3.1.8
+    [Documentation]    Test ID: 6.3.3.1.9
     ...    Test title: GET VNF Performance Monitoring Jobs with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF performance monitoring jobs fails when using invalid resource endpoint, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
@@ -132,7 +132,7 @@ Create new VNF Performance Monitoring Job
     Check Postcondition PmJob Exists
 
 PUT all VNF Performance Monitoring Jobs - Method not implemented
-    [Documentation]    Test ID: 6.3.3.1.9
+    [Documentation]    Test ID: 6.3.3.1.10
     ...    Test title: PUT all VNF Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF Performance Monitoring Jobs
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
@@ -144,7 +144,7 @@ PUT all VNF Performance Monitoring Jobs - Method not implemented
     Check HTTP Response Status Code Is    405
     
 PATCH all VNF Performance Monitoring Jobs - (Method not implemented)
-    [Documentation]    Test ID: 6.3.3.1.10
+    [Documentation]    Test ID: 6.3.3.1.11
     ...    Test title: PATCH all VNF Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF Performance Monitoring Jobs
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
@@ -156,7 +156,7 @@ PATCH all VNF Performance Monitoring Jobs - (Method not implemented)
     Check HTTP Response Status Code Is    405
     
 DELETE all VNF Performance Monitoring Jobs - Method not implemented
-    [Documentation]    Test ID: 6.3.3.1.11
+    [Documentation]    Test ID: 6.3.3.1.12
     ...    Test title: DELETE all VNF Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to update VNF Performance Monitoring Jobs
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
