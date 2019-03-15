@@ -2,3 +2,4 @@
 ${POS_FILTER}     objectInstanceIds=1f50d68b-82e8-4deb-bd40-c934d4d1ac0a
 ${NEG_FILTER}     criteriaPmJob=erroneousAttributeName
 ${fields}         criteria,reports
+@{response}=    httpresponse

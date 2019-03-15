@@ -3,6 +3,7 @@ Resource    environment/variables.txt
 Resource   NSFMOperationKeywords.robot  
 Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library     OperatingSystem
+Library  DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 

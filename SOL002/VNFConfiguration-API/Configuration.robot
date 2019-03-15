@@ -19,7 +19,7 @@ Set new VNF Configuration
     Send VNF configuration
     Check HTTP Response Status Code Is    200
     Check HTTP Response Header Contains    ETag
-    Check HTTP Response Body Json Schema Is   vnfConfigModifications.schema.json
+    Check HTTP Response Body Json Schema Is   vnfConfigModifications
     Check Postcondition VNF Is Configured
 
 Get information about a VNF configuration
@@ -34,7 +34,7 @@ Get information about a VNF configuration
     ...    Post-Conditions: none
     Get VNF configuration
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   vnfConfiguration.schema.json
+    Check HTTP Response Body Json Schema Is   vnfConfiguration
 
 Get information about a VNF configuration with HTTP Etag
     [Tags]    etag
@@ -49,7 +49,7 @@ Get information about a VNF configuration with HTTP Etag
     Get VNF configuration
     Check HTTP Response Status Code Is    200
     Check HTTP Response Header Contains    ETag
-    Check HTTP Response Body Json Schema Is   vnfConfiguration.schema.json
+    Check HTTP Response Body Json Schema Is   vnfConfiguration
 
 Set new VNF Configuration - HTTP Etag precondition unsuccessful
     [Tags]    etag
@@ -138,8 +138,9 @@ Check HTTP Response Header Contains
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
-    [Arguments]    ${schema}
+    [Arguments]    ${input}
     Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    ${schema} =    Catenate    ${input}    .schema.json
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
       
