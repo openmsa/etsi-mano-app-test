@@ -35,7 +35,7 @@ Instantiate a vnfInstance Conflict
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/instantiateVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instantiatedVnfInstanceId}/instantiate    ${body}
     Integer    response status    409
     Log    Status code validated
     ${contentType}=    Output    response headers Content-Type

@@ -18,8 +18,8 @@ Set new VNF Configuration
     ...    Post-Conditions: The configuration is successfully set in the VNF and it matches the issued configuration
     Send VNF configuration
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Header Contains    Etag
-    Check HTTP Response Body Json Schema Is   vnfConfigModifications.schema.json
+    Check HTTP Response Header Contains    ETag
+    Check HTTP Response Body Json Schema Is   vnfConfigModifications
     Check Postcondition VNF Is Configured
 
 Get information about a VNF configuration
@@ -34,7 +34,7 @@ Get information about a VNF configuration
     ...    Post-Conditions: none
     Get VNF configuration
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   vnfConfiguration.schema.json
+    Check HTTP Response Body Json Schema Is   vnfConfiguration
 
 Get information about a VNF configuration with HTTP Etag
     [Tags]    etag
@@ -48,8 +48,8 @@ Get information about a VNF configuration with HTTP Etag
     ...    Post-Conditions: none
     Get VNF configuration
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Header Contains    Etag
-    Check HTTP Response Body Json Schema Is   vnfConfiguration.schema.json
+    Check HTTP Response Header Contains    ETag
+    Check HTTP Response Body Json Schema Is   vnfConfiguration
 
 Set new VNF Configuration - HTTP Etag precondition unsuccessful
     [Tags]    etag
@@ -121,6 +121,7 @@ Send VNF configuration
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/vnfConfigModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}
+    Set Suite Variable    &{etag}    ${response[0]['headers']['ETag']}
     ${output}=    Output    response
     Set Suite Variable    @{response}    ${output}
 
@@ -137,8 +138,9 @@ Check HTTP Response Header Contains
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
-    [Arguments]    ${schema}
-    Should Contain    ${response[0]['headers']['Content-Type']}    ${CONTENT_TYPE}
+    [Arguments]    ${input}
+    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    ${schema} =    Catenate    ${input}    .schema.json
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
       
@@ -158,11 +160,11 @@ Check Postcondition VNF Is Configured
     Should Be Equal  ${response[0]['body']}    ${input} 
 
 Send Duplicated VNF configuration
-    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
+    Depends On Test    Send VNF configuration    # If the previous test scceeded, it means that Etag has been modified
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"}
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Set Headers    {"If-Match": "${Etag}"}
+    Set Headers    {"If-Match": "${etag[0]}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/vnfConfigModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}

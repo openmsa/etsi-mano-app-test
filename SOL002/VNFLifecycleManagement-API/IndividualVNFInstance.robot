@@ -10,9 +10,9 @@ Documentation    This resource represents an individual VNF instance. The client
 ...    underlying VNF instance, and to read information about the VNF instance.
 Suite Setup    Check resource existance
 
+
 *** Variables ***
-${Etag}=    an etag
-${Etag_modified}=    a modified etag
+${original_etag}    1234
 
 *** Test Cases ***
 Post Individual VNFInstance - Method not implemented
@@ -31,13 +31,14 @@ Get Information about an individual VNF Instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
     Log    Validate Status code
-    ${Etag}=    Output    response headers Etag
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}
     ${result}=    Output    response body
     Validate Json    vnfInstance.schema.json    ${result}
     Log    Validation OK
+    ${etag}    Output    response header ETag
+    Set Suite Variable    &{original_etag}    ${etag}
     
 PUT Individual VNFInstance - Method not implemented 
     Log    Trying to perform a PUT. This method should not be implemented
@@ -56,12 +57,11 @@ PATCH Individual VNFInstance
     log    Trying to modify an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
+    Set Headers    {"If-Match": "${original_etag[0]}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/patchBodyRequest.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
     Log    Validate Status code
-    ${Etag_modified}=    Output    response headers Etag
-    Integer    response status    202
     ${headers}=    Output    response headers
     Should Contain    ${headers}    Location
     Log    Validation OK
@@ -75,7 +75,7 @@ PATCH Individual VNFInstance Precondition failed
     log    Trying to modify an individual VNF instance Precondition failed
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
-    Set Headers    {"If-Match": "${Etag}"}
+    Set Headers    {"If-Match": "${original_etag[0]}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/patchBodyRequest.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
@@ -126,7 +126,7 @@ DELETE Individual VNFInstance Conflict
     [Setup]    Check resource instantiated
     log    Trying to delete an individual VNF instance Conflict
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instantiatedVnfInstanceId}
     Log    Validate Status code
     Integer    response status    409
     ${contentType}=    Output    response headers Content-Type

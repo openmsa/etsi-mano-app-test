@@ -41,26 +41,6 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     Validate Json    ProblemDetails.schema.json    ${problemDetails}
     Log    Validation OK
 
-Change deployment flavour of a vnfInstance Conflict (parallel LCM operation)
-    # TODO: Need to set the pre-condition of the test
-    [Documentation]    Conflict
-    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, 
-    ...    or that another lifecycle management operation is ongoing. 
-    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    [Setup]    Launch another LCM operation
-    log    Trying to change the deployment flavour of a VNF instance.
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
-    Log    Validate Status code
-    Integer    response status    409
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-    #[Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
     
 Change deployment flavour of a vnfInstance Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
