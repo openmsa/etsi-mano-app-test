@@ -6,6 +6,36 @@ Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 
 *** Keywords ***
+Check Fail not supported
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
+    # how to check if Fail is not supported? Also In Sol002 
+    
+Check Cancel not supported
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
+    # how to check if Cancel is not supported? Also In Sol002 
+    
+Check Continue not supported
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
+    # how to check if Continue is not supported? Also In Sol002 
+    
+Check retry not supported
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
+    # how to check if retry is not supported? Also In Sol002 
+    
+Check Rollback not supported
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
+    # how to check if rollback is not supported? Also In Sol002 
+    
+Check resource FAILED_TEMP
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 
+    String    response body operationState    FAILED_TEMP
+    
 Check resource instantiated
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
@@ -397,7 +427,7 @@ Do POST NS LCM OP Occurences
 	Set Global Variable    @{response}    ${outputResponse}
 	
 Do PUT NS LCM OP Occurences
-    log    Trying to perform a POST. This method should not be implemented
+    log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs 	
@@ -405,7 +435,7 @@ Do PUT NS LCM OP Occurences
 	Set Global Variable    @{response}    ${outputResponse}
 	
 Do PATCH NS LCM OP Occurences
-    log    Trying to perform a POST. This method should not be implemented
+    log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs 	
@@ -413,7 +443,7 @@ Do PATCH NS LCM OP Occurences
 	Set Global Variable    @{response}    ${outputResponse}
 	
 Do DELETE NS LCM OP Occurences
-    log    Trying to perform a POST. This method should not be implemented
+    log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs 	
@@ -429,7 +459,7 @@ Do GET NS LCN OP Occurences
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
  
- Do GET NS LCN OP Occurences Invalid attribute-based filtering parameters
+Do GET NS LCN OP Occurences Invalid attribute-based filtering parameters
     Log    Query status information about multiple NS lifecycle management operation occurrences.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
@@ -444,4 +474,304 @@ Do GET NS LCN OP Occurences Invalid attribute selector
 	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?fields=wrong_field
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
+
+Do POST Individual NS LCM OP Occurence
+    log    Trying to perform a POST. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
 	
+Do PUT Individual NS LCM OP Occurence
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 		
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PATCH Individual NS LCM OP Occurence
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do DELETE Individual NS LCM OP Occurence
+    log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do GET Individual NS LCN OP Occurence
+    Log    Query status information about individual NS lifecycle management operation occurrence.
+	Set Headers  {"Accept":"${ACCEPT}"}  
+	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+	Log    Execute Query and validate response
+	Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 	
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+	
+Do GET Retry operation task
+    log    Trying to perform a GET. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PUT Retry operation task
+    log    Trying to perform a PUT. This method should not be implemented 
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  		
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PATCH Retry operation task
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do DELETE Retry operation task
+    log    Trying to perform a DELETE. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do POST Retry operation task
+    Log    Retry a NS lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do GET Rollback operation task
+    log    Trying to perform a GET. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PUT Rollback operation task
+    log    Trying to perform a PUT. This method should not be implemented 
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  		
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PATCH Rollback operation task
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do DELETE Rollback operation task
+    log    Trying to perform a DELETE. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do POST Rollback operation task
+    Log    Rollback a NS lifecycle operation task
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do GET Continue operation task
+    log    Trying to perform a GET. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PUT Continue operation task
+    log    Trying to perform a PUT. This method should not be implemented 
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  		
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PATCH Continue operation task
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do DELETE Continue operation task
+    log    Trying to perform a DELETE. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do POST Continue operation task
+    Log    Continue a NS lifecycle operation task
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+
+Do GET Fail operation task
+    log    Trying to perform a GET. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PUT Fail operation task
+    log    Trying to perform a PUT. This method should not be implemented 
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  		
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PATCH Fail operation task
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do DELETE Fail operation task
+    log    Trying to perform a DELETE. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do POST Fail operation task
+    Log    Fail a NS lifecycle operation task
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do GET Cancel operation task
+    log    Trying to perform a GET. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PUT Cancel operation task
+    log    Trying to perform a PUT. This method should not be implemented 
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  		
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PATCH Cancel operation task
+    Log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do DELETE Cancel operation task
+    Log    Trying to perform a DELETE. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  	 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do POST Cancel operation task
+    Log    Cancel a NS lifecycle operation task
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PUT subscriptions
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do PATCH subscriptions
+    Log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do DELETE subscriptions
+    Log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do POST subscriptions
+    Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/LccnSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}    
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do POST subscriptions DUPLICATION
+    Log    Trying to create a subscription with an already created content
+    Pass Execution If    ${NFVO_DUPLICATION} == 0    NFVO is not permitting duplication. Skipping the test
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/LccnSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}    
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do POST subscriptions NO DUPLICATION
+    Log    Trying to create a subscription with an already created content
+    Pass Execution If    ${NFVO_DUPLICATION} == 1    NFVO is permitting duplication.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/LccnSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}    
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+
+Do GET Subscriptions
+    Log    Get the list of active subscriptions
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do GET Subscriptions with filter
+    Log    Get the list of active subscriptions using a filter
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+
