@@ -1,0 +1,160 @@
+{
+  "type": "array",
+  "items":{
+		"description": "This type represents a request a NS lifecycle operation occurrence.  It shall comply with the provisions defined in Table 6.5.2.3-1.\n",
+		"type": "object",
+		"required": [
+			"id",
+			"operationState",
+			"stateEnteredTime",
+			"nsInstanceId",
+			"lcmOperationType",
+			"startTime",
+			"isAutomaticInvocation",
+			"operationParams",
+			"isCancelPending",
+			"_links"
+		],
+		"properties": {
+			"id": {
+				"description": "Identifier of this NS lifecycle operation occurrence.\n",
+				"$ref": "SOL005_def.yaml#/definitions/Identifier"
+			},
+			"operationState": {
+				"description": "The state of the NS LCM operation.\n",
+				"$ref": "SOL005NSLifecycleManagement_def.yaml#/definitions/NsLcmOperationStateType"
+			},
+			"stateEnteredTime": {
+				"description": "Date-time when the current state was entered.\n",
+				"type": "string",
+				"format": "date-time"
+			},
+			"nsInstanceId": {
+				"description": "Identifier of the NS instance to which the operation applies.\n",
+				"$ref": "SOL005_def.yaml#/definitions/Identifier"
+			},
+			"lcmOperationType": {
+				"description": "Type of the actual LCM operation represented by this lcm operation occurrence.\n",
+				"$ref": "SOL005NSLifecycleManagement_def.yaml#/definitions/NsLcmOpType"
+			},
+			"startTime": {
+				"description": "Date-time of the start of the operation.\n",
+				"type": "string",
+				"format": "date-time"
+			},
+			"isAutomaticInvocation": {
+				"description": "Set to true if this NS LCM operation occurrence has been automatically triggered by the NFVO. This occurs in the case of auto-scaling, auto-healing and when a nested NS is modified as a result of an operation on its composite NS. Set to false otherwise.\n",
+				"type": "boolean"
+			},
+			"operationParams": {
+				"description": "Input parameters of the LCM operation. This attribute shall be formatted according to the request data type of the related LCM operation. The following mapping between lcmOperationType and the data type of this attribute shall apply: - INSTANTIATE: InstantiateNsRequest - SCALE: ScaleNsRequest - UPDATE: UpdateNsRequest - HEAL: HealNsRequest - TERMINATE: TerminateNsRequest\n",
+				"type": "string",
+				"enum": [
+					"INSTANTIATE",
+					"SCALE",
+					"UPDATE",
+					"HEAL",
+					"TERMINATE"
+				]
+			},
+			"isCancelPending": {
+				"description": "If the LCM operation occurrence is in \"PROCESSING\" or \"ROLLING_BACK\" state and the operation is being cancelled, this attribute shall be set to true. Otherwise, it shall be set to false.\n",
+				"type": "boolean"
+			},
+			"cancelMode": {
+				"description": "The mode of an ongoing cancellation. Shall be present when isCancelPending=true, and shall be absent otherwise.\n",
+				"$ref": "#/definitions/CancelModeType"
+			},
+			"error": {
+				"description": "If \"operationState\" is \"FAILED_TEMP\" or \"FAILED\" or \"operationState\" is \"PROCESSING\" or \"ROLLING_BACK\" and previous value of \"operationState\" was \"FAILED_TEMP\", this attribute shall be present and contain error information, unless it has been requested to be excluded via an attribute selector.\n",
+				"$ref": "#/definitions/ProblemDetails"
+			},
+			"resourceChanges": {
+				"description": "This attribute contains information about the cumulative changes to virtualised resources that were performed so far by the LCM operation since its start, if applicable\n",
+				"type": "object",
+				"properties": {
+					"affectedVnfs": {
+						"description": "Information about the VNF instances that were affected during the lifecycle operation, if this notification represents the result of a lifecycle operation.\n",
+						"type": "array",
+						"items": {
+							"$ref": "SOL005NSLifecycleManagement_def.yaml#/definitions/AffectedVnf"
+						}
+					},
+					"affectedPnfs": {
+						"description": "Information about the PNF instances that were affected during the lifecycle operation, if this notification represents the result of a lifecycle operation.\n",
+						"type": "array",
+						"items": {
+							"$ref": "SOL005NSLifecycleManagement_def.yaml#/definitions/AffectedPnf"
+						}
+					},
+					"affectedVls": {
+						"description": "Information about the VL instances that were affected during the lifecycle operation, if this notification represents the result of a lifecycle operation.\n",
+						"type": "array",
+						"items": {
+							"$ref": "SOL005NSLifecycleManagement_def.yaml#/definitions/AffectedVl"
+						}
+					},
+					"affectedVnffgs": {
+						"description": "Information about the VNFFG instances that were affected during the lifecycle operation, if this notification               represents the result of a lifecycle operation. See note\n",
+						"type": "array",
+						"items": {
+							"$ref": "SOL005NSLifecycleManagement_def.yaml#/definitions/AffectedVnffg"
+						}
+					},
+					"affectedNss": {
+						"description": "Information about the nested NS instances that were affected during the lifecycle operation, if this notification represents the result of a lifecycle operation. See note.\n",
+						"type": "array",
+						"items": {
+							"$ref": "SOL005NSLifecycleManagement_def.yaml#/definitions/AffectedNs"
+						}
+					},
+					"affectedSaps": {
+						"description": "Information about the nested NS instances that were affected during the lifecycle operation, if this notification represents the result of a lifecycle operation. See note.\n",
+						"type": "array",
+						"items": {
+							"$ref": "SOL005NSLifecycleManagement_def.yaml#/definitions/AffectedSap"
+						}
+					}
+				}
+			},
+			"_links": {
+				"description": "Links to resources related to this resource.\n",
+				"type": "object",
+				"required": [
+					"self",
+					"nsInstance"
+				],
+				"properties": {
+					"self": {
+						"description": "URI of this resource.\n",
+						"$ref": "SOL005_def.yaml#/definitions/Link"
+					},
+					"nsInstance": {
+						"description": "Link to the NS instance that the operation applies to.\n",
+						"$ref": "SOL005_def.yaml#/definitions/Link"
+					},
+					"cancel": {
+						"description": "Link to the task resource that represents the \"cancel\" operation for this LCM operation occurrence, if cancelling is currently allowed.\n",
+						"$ref": "SOL005_def.yaml#/definitions/Link"
+					},
+					"retry": {
+						"description": "Link to the task resource that represents the \"cancel\" operation for this LCM operation occurrence,  if cancelling is currently allowed.\n",
+						"$ref": "SOL005_def.yaml#/definitions/Link"
+					},
+					"rollback": {
+						"description": "Link to the task resource that represents the \"rollback\" operation for this LCM operation occurrence, if rolling back is currently allowed.\n",
+						"$ref": "SOL005_def.yaml#/definitions/Link"
+					},
+					"continue": {
+						"description": "Link to the task resource that represents the \"continue\" operation for this LCM operation occurrence, if rolling back is currently allowed.\n",
+						"$ref": "SOL005_def.yaml#/definitions/Link"
+					},
+					"fail": {
+						"description": "Link to the task resource that represents the \"fail\" operation for this LCM operation occurrence, if rolling back is currently allowed.\n",
+						"$ref": "SOL005_def.yaml#/definitions/Link"
+					}
+				}
+			}
+		}
+	}
+}
