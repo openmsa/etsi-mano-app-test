@@ -23,7 +23,7 @@ GET individual VNF Performance Job
 GET individual VNF Performance Job with invalid resource identifier
     [Documentation]    Test ID: 6.3.3.2.2
     ...    Test title: Get individual VNF Performance Job with invalid resource identifier
-    ...    Test objective: The objective is to test that the retrieval of an individual VNF performance monitoring job fails when using an invalid resource identified, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Test objective: The objective is to test that the retrieval of an individual VNF performance monitoring job fails when using an invalid resource identifier, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
     ...    Reference: section 6.4.3.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -49,7 +49,7 @@ DELETE Individual VNF Performance Job
 DELETE Individual VNF Performance Job with invalid resource identifier
     [Documentation]    Test ID: 6.3.3.2.4
     ...    Test title: Delete individual VNF Performance Job with invalid resource identifier
-    ...    Test objective: The objective is to test that the deletion of an individual VNF performance monitoring job fails when using an invalid resource identified, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Test objective: The objective is to test that the deletion of an individual VNF performance monitoring job fails when using an invalid resource identifier, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
     ...    Reference: section 6.4.3.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
