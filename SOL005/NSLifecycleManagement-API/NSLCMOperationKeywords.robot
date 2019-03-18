@@ -6,30 +6,43 @@ Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 
 *** Keywords ***
+Create Sessions
+    Start Process  java  -jar  ../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${callback_uri}:${callback_port}   
+    
+Check subscription existance
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    Integer    response status    200
+    
+
 Check Fail not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
-    # how to check if Fail is not supported? Also In Sol002 
+    # how to check if Fail is not supported? Also In Sol002
     
 Check Cancel not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
-    # how to check if Cancel is not supported? Also In Sol002 
+    # how to check if Cancel is not supported? Also In Sol002
     
 Check Continue not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
-    # how to check if Continue is not supported? Also In Sol002 
+    # how to check if Continue is not supported? Also In Sol002
     
 Check retry not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
-    # how to check if retry is not supported? Also In Sol002 
+    # how to check if retry is not supported? Also In Sol002
     
 Check Rollback not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
-    # how to check if rollback is not supported? Also In Sol002 
+    # how to check if rollback is not supported? Also In Sol002
     
 Check resource FAILED_TEMP
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -775,3 +788,45 @@ Do GET Subscriptions with filter
 	Set Global Variable    @{response}    ${outputResponse}
 	
 
+Do POST Individual Subscription
+    log    Trying to perform a POST. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}  
+	
+Do PUT Individual Subscription
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}  
+	
+Do PATCH Individual Subscription
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+
+Do GET Individual subscription
+    log    Trying to get information about an individual subscription
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Do DELETE Individual subscription
+    log    Try to delete an individual subscription
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
