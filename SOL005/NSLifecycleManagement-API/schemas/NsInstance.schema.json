@@ -1,144 +1,144 @@
 {
-	"NsInstance": {
-		"description": "This type represents a response for Query NS operation.  It shall comply with the provisions defined in Table 6.5.2.10-1.\n",
-		"type": "object",
-		"required": [
-			"id",
-			"nsInstanceName",
-			"nsInstanceDescription",
-			"nsdId",
-			"nsdInfoId",
-			"nsState"
-		],
-		"properties": {
-			"id": {
-				"description": "Identifier of the NS instance.\n",
+
+	"description": "This type represents a response for Query NS operation.  It shall comply with the provisions defined in Table 6.5.2.10-1.\n",
+	"type": "object",
+	"required": [
+		"id",
+		"nsInstanceName",
+		"nsInstanceDescription",
+		"nsdId",
+		"nsdInfoId",
+		"nsState"
+	],
+	"properties": {
+		"id": {
+			"description": "Identifier of the NS instance.\n",
+			"$ref": "SOL005_def.yaml#/definitions/Identifier"
+		},
+		"nsInstanceName": {
+			"description": "Human readable name of the NS instance.\n",
+			"type": "string"
+		},
+		"nsInstanceDescription": {
+			"description": "Human readable description of the NS instance.\n",
+			"type": "string"
+		},
+		"nsdId": {
+			"description": "Identifier of the NSD on which the NS instance is based.\n",
+			"$ref": "SOL005_def.yaml#/definitions/Identifier"
+		},
+		"nsdInfoId": {
+			"description": "Identifier of the NSD information object on which the NS instance is based. This identifier was allocated by the NFVO.\n",
+			"$ref": "SOL005_def.yaml#/definitions/Identifier"
+		},
+		"flavourId": {
+			"description": "Identifier of the NS deployment flavor applied to the NS instance. This attribute shall be present if the nsState attribute value is INSTANTIATED.\n",
+			"$ref": "SOL005_def.yaml#/definitions/IdentifierInNsd"
+		},
+		"vnfInstance": {
+			"description": "Information on constituent VNF(s) of the NS instance.\n",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/VnfInstance"
+			}
+		},
+		"pnfInfo": {
+			"description": "Information on the PNF(s) that are part of the NS instance.\n",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/PnfInfo"
+			}
+		},
+		"virtualLinkInfo": {
+			"description": "Information on the VL(s) of the NS instance. This attribute shall be present if the nsState attribute value is INSTANTIATED and if the NS instance has specified connectivity.\n",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/NsVirtualLinkInfo"
+			}
+		},
+		"vnffgInfo": {
+			"description": "Information on the VNFFG(s) of the NS instance.\n",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/VnffgInfo"
+			}
+		},
+		"sapInfo": {
+			"description": "Information on the SAP(s) of the NS instance.\n",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/SapInfo"
+			}
+		},
+		"nestedNsInstanceId": {
+			"description": "Identifier of the nested NS(s) of the NS instance.\n",
+			"type": "array",
+			"items": {
 				"$ref": "SOL005_def.yaml#/definitions/Identifier"
-			},
-			"nsInstanceName": {
-				"description": "Human readable name of the NS instance.\n",
-				"type": "string"
-			},
-			"nsInstanceDescription": {
-				"description": "Human readable description of the NS instance.\n",
-				"type": "string"
-			},
-			"nsdId": {
-				"description": "Identifier of the NSD on which the NS instance is based.\n",
-				"$ref": "SOL005_def.yaml#/definitions/Identifier"
-			},
-			"nsdInfoId": {
-				"description": "Identifier of the NSD information object on which the NS instance is based. This identifier was allocated by the NFVO.\n",
-				"$ref": "SOL005_def.yaml#/definitions/Identifier"
-			},
-			"flavourId": {
-				"description": "Identifier of the NS deployment flavor applied to the NS instance. This attribute shall be present if the nsState attribute value is INSTANTIATED.\n",
-				"$ref": "SOL005_def.yaml#/definitions/IdentifierInNsd"
-			},
-			"vnfInstance": {
-				"description": "Information on constituent VNF(s) of the NS instance.\n",
-				"type": "array",
-				"items": {
-					"$ref": "#/definitions/VnfInstance"
-				}
-			},
-			"pnfInfo": {
-				"description": "Information on the PNF(s) that are part of the NS instance.\n",
-				"type": "array",
-				"items": {
-					"$ref": "#/definitions/PnfInfo"
-				}
-			},
-			"virtualLinkInfo": {
-				"description": "Information on the VL(s) of the NS instance. This attribute shall be present if the nsState attribute value is INSTANTIATED and if the NS instance has specified connectivity.\n",
-				"type": "array",
-				"items": {
-					"$ref": "#/definitions/NsVirtualLinkInfo"
-				}
-			},
-			"vnffgInfo": {
-				"description": "Information on the VNFFG(s) of the NS instance.\n",
-				"type": "array",
-				"items": {
-					"$ref": "#/definitions/VnffgInfo"
-				}
-			},
-			"sapInfo": {
-				"description": "Information on the SAP(s) of the NS instance.\n",
-				"type": "array",
-				"items": {
-					"$ref": "#/definitions/SapInfo"
-				}
-			},
-			"nestedNsInstanceId": {
-				"description": "Identifier of the nested NS(s) of the NS instance.\n",
-				"type": "array",
-				"items": {
-					"$ref": "SOL005_def.yaml#/definitions/Identifier"
-				}
-			},
-			"nsState": {
-				"description": "The state of the NS instance. Permitted values: NOT_INSTANTIATED: The NS instance is terminated or not instantiated. INSTANTIATED: The NS instance is instantiated.\n",
-				"type": "string",
-				"enum": [
-					"NOT_INSTANTIATED",
-					"INSTANTIATED"
-				]
-			},
-			"nsScaleStatus": {
-				"description": "Status of each NS scaling aspect declared in the applicable DF, how \"big\" the NS instance has been scaled w.r.t. that aspect. This attribute shall be present if the nsState attribute value is INSTANTIATED.\n",
-				"type": "array",
-				"items": {
-					"$ref": "#/definitions/NsScaleInfo"
-				}
-			},
-			"additionalAffinityOrAntiAffinityRule": {
-				"description": "Information on the additional affinity or anti-affinity rule from NS instantiation operation. Shall not conflict with rules already specified in the NSD.\n",
-				"type": "array",
-				"items": {
-					"$ref": "#/definitions/AffinityOrAntiAffinityRule"
-				}
-			},
-			"_links": {
-				"type": "object",
-				"description": "Links to resources related to this resource.",
-				"required": [
-					"self"
-				],
-				"properties": {
-					"self": {
-						"description": "URI of this resource.\n",
-						"$ref": "SOL005_def.yaml#/definitions/Link"
-					},
-					"nestedNsInstances": {
-						"description": "Links to resources related to this notification.\n",
-						"type": "array",
-						"items": {
-							"$ref": "SOL005_def.yaml#/definitions/Link"
-						}
-					},
-					"instantiate": {
-						"description": "Link to the \"instantiate\" task resource, if the related operation is possible based on the current status of this NS instance resource (i.e. NS instance in NOT_INSTANTIATED state).\n",
-						"$ref": "SOL005_def.yaml#/definitions/Link"
-					},
-					"terminate": {
-						"description": "Link to the \"terminate\" task resource, if the related operation is possible based on the current status of this NS instance resource (i.e. NS instance is in INSTANTIATED state).\n",
-						"$ref": "SOL005_def.yaml#/definitions/Link"
-					},
-					"update": {
-						"description": "Link to the \"update\" task resource, if the related operation is possible based on the current status of this NS instance resource (i.e. NS instance is in INSTANTIATED state).\n",
-						"$ref": "SOL005_def.yaml#/definitions/Link"
-					},
-					"scale": {
-						"description": "Link to the \"scale\" task resource, if the related operation is supported for this NS instance, and is possible based on the current status of this NS instance resource (i.e. NS instance is in INSTANTIATED state).\n",
-						"$ref": "SOL005_def.yaml#/definitions/Link"
-					},
-					"heal": {
-						"description": "Link to the \"heal\" task resource, if the related operation is supported for this NS instance, and is possible based on the current status of this NS instance resource (i.e. NS instance is in INSTANTIATED state).\n",
+			}
+		},
+		"nsState": {
+			"description": "The state of the NS instance. Permitted values: NOT_INSTANTIATED: The NS instance is terminated or not instantiated. INSTANTIATED: The NS instance is instantiated.\n",
+			"type": "string",
+			"enum": [
+				"NOT_INSTANTIATED",
+				"INSTANTIATED"
+			]
+		},
+		"nsScaleStatus": {
+			"description": "Status of each NS scaling aspect declared in the applicable DF, how \"big\" the NS instance has been scaled w.r.t. that aspect. This attribute shall be present if the nsState attribute value is INSTANTIATED.\n",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/NsScaleInfo"
+			}
+		},
+		"additionalAffinityOrAntiAffinityRule": {
+			"description": "Information on the additional affinity or anti-affinity rule from NS instantiation operation. Shall not conflict with rules already specified in the NSD.\n",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/AffinityOrAntiAffinityRule"
+			}
+		},
+		"_links": {
+			"type": "object",
+			"description": "Links to resources related to this resource.",
+			"required": [
+				"self"
+			],
+			"properties": {
+				"self": {
+					"description": "URI of this resource.\n",
+					"$ref": "SOL005_def.yaml#/definitions/Link"
+				},
+				"nestedNsInstances": {
+					"description": "Links to resources related to this notification.\n",
+					"type": "array",
+					"items": {
 						"$ref": "SOL005_def.yaml#/definitions/Link"
 					}
+				},
+				"instantiate": {
+					"description": "Link to the \"instantiate\" task resource, if the related operation is possible based on the current status of this NS instance resource (i.e. NS instance in NOT_INSTANTIATED state).\n",
+					"$ref": "SOL005_def.yaml#/definitions/Link"
+				},
+				"terminate": {
+					"description": "Link to the \"terminate\" task resource, if the related operation is possible based on the current status of this NS instance resource (i.e. NS instance is in INSTANTIATED state).\n",
+					"$ref": "SOL005_def.yaml#/definitions/Link"
+				},
+				"update": {
+					"description": "Link to the \"update\" task resource, if the related operation is possible based on the current status of this NS instance resource (i.e. NS instance is in INSTANTIATED state).\n",
+					"$ref": "SOL005_def.yaml#/definitions/Link"
+				},
+				"scale": {
+					"description": "Link to the \"scale\" task resource, if the related operation is supported for this NS instance, and is possible based on the current status of this NS instance resource (i.e. NS instance is in INSTANTIATED state).\n",
+					"$ref": "SOL005_def.yaml#/definitions/Link"
+				},
+				"heal": {
+					"description": "Link to the \"heal\" task resource, if the related operation is supported for this NS instance, and is possible based on the current status of this NS instance resource (i.e. NS instance is in INSTANTIATED state).\n",
+					"$ref": "SOL005_def.yaml#/definitions/Link"
 				}
 			}
 		}
 	}
+
 }	
