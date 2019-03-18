@@ -17,8 +17,8 @@ Get Individual Indicator for VNF Instance
     Get Individual Indicator for a VNF instance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   vnfIndicator
-    Check HTTP Response Body Matches VNF Instance ID
-    Check HTTP Response Body Matches Indicator ID
+    Check HTTP Response Body Includes Requested VNF Instance ID
+    Check HTTP Response Body Includes Requested Indicator ID
 
 Get Individual Indicator for VNF Instance with invalid indicator identifier
     [Documentation]    Test ID 6.3.2.3.2
@@ -66,7 +66,7 @@ PATCH Individual VNF Indicator - Method not implemented
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
-    Send PUT Request for individual indicator in VNF instance
+    Send PATCH Request for individual indicator in VNF instance
     Check HTTP Response Status Code Is    405
 
 DELETE Individual VNF Indicator - Method not implemented
@@ -150,11 +150,11 @@ Check HTTP Response Body Json Schema Is
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
 
-Check HTTP Response Body Matches Indicator ID
+Check HTTP Response Body Includes Requested Indicator ID
     Log    Check Response includes propoer VNF instance and Indicator identifiers
     Should Be Equal    ${response[0]['body']['id']}    ${indicatorId}
 
-Check HTTP Response Body Matches VNF Instance ID
+Check HTTP Response Body Includes Requested VNF Instance ID
     Log    Check Response includes propoer VNF instance and Indicator identifiers
     Should Be Equal    ${response[0]['body']['vnfInstanceId']}    ${vnfInstanceId}
 
