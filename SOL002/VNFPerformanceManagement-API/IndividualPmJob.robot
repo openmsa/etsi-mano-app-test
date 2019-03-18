@@ -7,7 +7,7 @@ Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 
 *** Test Cases ***
 GET individual VNF Performance Job
-    [Documentation]    Test ID: 6.4.3.3.2.1
+    [Documentation]    Test ID: 6.3.3.2.1
     ...    Test title: Get individual VNF Performance Job
     ...    Test objective: The objective is to test the retrieval of an individual VNF performance monitoring job and perform a JSON schema and content validation of the collected job data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
@@ -21,7 +21,7 @@ GET individual VNF Performance Job
     Check HTTP Response Body Pm Job Identifier
 
 GET individual VNF Performance Job with invalid resource identifier
-    [Documentation]    Test ID: 6.4.3.3.2.2
+    [Documentation]    Test ID: 6.3.3.2.2
     ...    Test title: Get individual VNF Performance Job with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual VNF performance monitoring job fails when using an invalid resource identified, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
@@ -34,7 +34,7 @@ GET individual VNF Performance Job with invalid resource identifier
     Check HTTP Response Body Json Schema Is   ProblemDetails
 
 DELETE Individual VNF Performance Job
-    [Documentation]    Test ID: 6.4.3.3.2.3
+    [Documentation]    Test ID: 6.3.3.2.3
     ...    Test title: Delete Individual VNF Performance Job
     ...    Test objective: The objective is to test the deletion of an individual VNF performance monitoring job
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
@@ -47,7 +47,7 @@ DELETE Individual VNF Performance Job
     Check Postcondition VNF Pm Job is Deleted
 
 DELETE Individual VNF Performance Job with invalid resource identifier
-    [Documentation]    Test ID: 6.4.3.3.2.4
+    [Documentation]    Test ID: 6.3.3.2.4
     ...    Test title: Delete individual VNF Performance Job with invalid resource identifier
     ...    Test objective: The objective is to test that the deletion of an individual VNF performance monitoring job fails when using an invalid resource identified, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
@@ -60,7 +60,7 @@ DELETE Individual VNF Performance Job with invalid resource identifier
     Check HTTP Response Body Json Schema Is   ProblemDetails
 
 POST Individual VNF Performance Job - Method not implemented
-    [Documentation]    Test ID: 6.4.3.3.2.5
+    [Documentation]    Test ID: 6.3.3.2.5
     ...    Test title: POST Individual VNF Performance Job - method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF Performance Monitoring Job
     ...    Pre-conditions: A VNF instance is instantiated
@@ -73,7 +73,7 @@ POST Individual VNF Performance Job - Method not implemented
     Check Postcondition VNF Performance Job is not Created
 
 PUT Individual VNF Performance Job - Method not implemented
-    [Documentation]    Test ID: 6.4.3.3.2.6
+    [Documentation]    Test ID: 6.3.3.2.6
     ...    Test title: PUT Individual VNF Performance Job - method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF Performance Monitoring Job
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
@@ -86,7 +86,7 @@ PUT Individual VNF Performance Job - Method not implemented
     Check Postcondition VNF Performance Job is Unmodified (Implicit)
 
 PATCH Individual VNF Performance Job - Method not implemented
-    [Documentation]    Test ID: 6.4.3.3.2.7
+    [Documentation]    Test ID: 6.3.3.2.7
     ...    Test title: PATCH Individual VNF Performance Job - method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing new VNF Performance Monitoring Job
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
