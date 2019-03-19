@@ -2,8 +2,10 @@
 Resource    environment/variables.txt
 Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library    JSONLibrary
+Library    Process
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
+Library    MockServerLibrary
 
 *** Keywords ***
 Create Sessions

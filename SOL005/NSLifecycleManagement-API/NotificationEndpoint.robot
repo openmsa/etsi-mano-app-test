@@ -1,7 +1,8 @@
 *** Settings ***
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
-Resource    environment/variables.txt 
+Resource    environment/variables.txt
+Resource   NSLCMOperationKeywords.robot   
 Library    MockServerLibrary
 Library    Process
 Library    OperatingSystem
