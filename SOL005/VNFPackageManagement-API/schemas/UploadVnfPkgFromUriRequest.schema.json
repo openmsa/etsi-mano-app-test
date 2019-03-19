@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "userDefinedData": {
+      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+      "type": "object"
+    }
+  },
+  "description": "\"The payload body contains the address information based on which the NFVO can obtain the content of the VNF package\""
+}

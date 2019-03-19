@@ -12,108 +12,71 @@
       "type": "string"
     },
     "filter": {
-      "description": "This type represents a filter that can be used to subscribe for notifications related to performance management events.\n",
+      "description": "This type represents a filter that can be used to subscribe for  notifications related to performance management events. It shall comply with the provisions defined in Table 7.5.3.2-1. At a particular nesting level in the filter structure, the following applies:  All attributes shall match in order for the filter to match (logical \"and\" between different filter attributes).  If an attribute is an array, the attribute shall match if at least one of the values in the array matches (logical \"or\" between the values of one filter attribute).\n",
       "type": "object",
       "properties": {
-        "vnfInstanceSubscriptionFilter": {
-          "description": "This type represents subscription filter criteria to match VNF instances.\n",
+        "nsInstanceSubscriptionFilter": {
+          "description": "This type represents subscription filter criteria to match NS instances.\n",
           "type": "object",
           "properties": {
+            "nsdIds": {
+              "description": "If present, match NS instances that were created based on a NSD identified by one of the nsdId values listed in this attribute.\n",
+              "type": "array",
+              "items": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              }
+            },
             "vnfdIds": {
-              "description": "If present, match VNF instances that were created based on a VNFD identified by one of the vnfdId values listed in this attribute. The attributes \"vnfdIds\" and \"vnfProductsFromProviders\" are alternatives to reference to VNF instances that are based on certain VNFDs in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+              "description": "If present, match NS instances that contain VNF instances that were created based on a VNFD identified by one of the vnfdId values listed in this attribute.\n",
               "type": "array",
               "items": {
                 "description": "An identifier with the intention of being globally unique.\n",
                 "type": "string"
               }
             },
-            "vnfProductsFromProviders": {
-              "description": "If present, match VNF instances that belong to VNF products from certain providers. The attributes \"vnfdIds\" and \"vnfProductsFromProviders\" are alternatives to reference to VNF instances that are based on certain VNFDs in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                  "vnfProvider"
-                ],
-                "properties": {
-                  "vnfProvider": {
-                    "description": "Name of the VNF provider to match.\n",
-                    "type": "string"
-                  },
-                  "vnfProducts": {
-                    "description": "If present, match VNF instances that belong to VNF products with certain product names, from one particular provider.\n",
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "required": [
-                        "vnfProductName"
-                      ],
-                      "properties": {
-                        "vnfProductName": {
-                          "description": "Name of the VNF product to match.\n",
-                          "type": "string"
-                        },
-                        "versions": {
-                          "description": "If present, match VNF instances that belong to VNF products with certain versions and a certain product name, from one particular provider.\n",
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [
-                              "vnfSoftwareVersion"
-                            ],
-                            "properties": {
-                              "vnfSoftwareVersion": {
-                                "description": "A version.\n",
-                                "type": "string"
-                              },
-                              "vnfdVersions": {
-                                "description": "If present, match VNF instances that belong to VNF products with certain VNFD versions, a certain software version and a certain product name, from one particular provider.\n",
-                                "type": "array",
-                                "items": {
-                                  "description": "A version.\n",
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "vnfInstanceIds": {
-              "description": "If present, match VNF instances with an instance identifier listed in this attribute. The attributes \"vnfInstanceIds\" and \"vnfInstanceNames\" are alternatives to reference to particular VNF Instances in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+            "pnfdIds": {
+              "description": "If present, match NS instances that contain PNFs that are represented by a PNFD identified by one of the pnfdId values listed in this attribute.\n",
               "type": "array",
               "items": {
                 "description": "An identifier with the intention of being globally unique.\n",
                 "type": "string"
               }
             },
-            "vnfInstanceNames": {
-              "description": "If present, match VNF instances with a VNF Instance Name listed in this attribute. The attributes \"vnfInstanceIds\" and \"vnfInstanceNames\" are alternatives to reference to particular VNF Instances in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+            "nsInstanceIds": {
+              "description": "If present, match NS instances with an instance identifier listed in this attribute.\n",
               "type": "array",
               "items": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              }
+            },
+            "nsInstanceNames": {
+              "description": "If present, match NS instances with a NS Instance Name listed in this attribute.\n",
+              "type": "array",
+              "items": {
+                "description": "This type represents stack of string values\n",
                 "type": "string"
               }
             }
           }
         },
         "notificationTypes": {
-          "description": "Match particular notification types. Permitted values: * ThresholdCrossedNotification * PerformanceInformationAvailableNotification The permitted values of the \"notificationTypes\" attribute are spelled exactly as the names of the notification types to facilitate automated code generation systems.\n",
-          "type": "string",
-          "enum": [
-            "ThresholdCrossedNotification",
-            "PerformanceInformationAvailableNotification"
-          ]
+          "description": "Match particular notification types. Permitted values: - ThresholdCrossedNotification - PerformanceInformationAvailableNotification The permitted values of the \"notificationTypes\" attribute are spelled exactly as the names of the notification types to facilitate automated code generation systems.          \n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ThresholdCrossedNotification",
+              "PerformanceInformationAvailableNotification"
+            ]
+          }
         }
       }
     },
     "callbackUri": {
-      "description": "The URI of the endpoint to send the notification to.\n",
-      "type": "string",
-      "format": "url"
+      "description": "String formatted according to IETF RFC 3986.\n",
+      "type": "string"
     },
     "_links": {
       "description": "Links to resources related to this resource.\n",

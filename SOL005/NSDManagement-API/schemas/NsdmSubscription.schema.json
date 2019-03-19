@@ -1,0 +1,237 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "callbackUri",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "filter": {
+      "type": "object",
+      "description": "\"This type represents a subscription filter related to notifications about NSD management. It shall comply with the provisions defined in Table 5.5.3.2-1 of GS NFV-SOL 005. At a particular nesting level in the filter structure, the following applies: All attributes shall match in order for the filter to match (logical \"and\" between different filter attributes). If an attribute is an array, the attribute shall match if at least one of the values in the array matches (logical \"or\" between the values of one filter attribute).\"     \n",
+      "properties": {
+        "notificationTypes": {
+          "description": "\"Match particular notification types. Permitted values: NsdOnBoardingNotification, NsdOnboardingFailureNotification, NsdChangeNotification, NsdDeletionNotification PnfdOnBoardingNotification, PnfdOnBoardingFailureNotification, PnfdDeletionNotification. The permitted values of the \"notificationTypes\" ] attribute are spelled exactly as the names of the notification types to facilitate automated code generation systems.\"\n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "NsdOnBoardingNotification",
+              "NsdOnboardingFailureNotification",
+              "NsdChangeNotification",
+              "NsdDeletionNotification",
+              "PnfdOnBoardingNotification",
+              "PnfdOnBoardingFailureNotification",
+              "PnfdDeletionNotification"
+            ]
+          }
+        },
+        "nsdInfoId": {
+          "description": "Match the NsdInfo identifier which is allocated by the NFVO.\n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "nsdId": {
+          "description": "Match the NSD identifier, which is allocated by the NSD designer.       \n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "nsdName": {
+          "description": "Match the name of the on boarded NSD.       \n",
+          "type": "array",
+          "items": {
+            "description": "This type represents stack of string values\n",
+            "type": "string"
+          }
+        },
+        "nsdVersion": {
+          "description": "Match the NSD version listed as part of this attribute.\n",
+          "type": "array",
+          "items": {
+            "description": "A Version.\n",
+            "type": "string"
+          }
+        },
+        "nsdDesigner": {
+          "description": "\"Match the NSD designer of the on-boarded NSD.\"\n",
+          "type": "array",
+          "items": {
+            "description": "This type represents stack of string values\n",
+            "type": "string"
+          }
+        },
+        "nsdInvariantId": {
+          "description": "Match the NSD invariant identifier which is allocated by the NSD designer and identifies an NSD in a version independent manner.       \n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "vnfPkgIds": {
+          "description": "Match VNF packages with a package identifier listed in the attribute.       \n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "pnfdInfoIds": {
+          "description": "Match the PnfdInfo identifier for the PNFD referenced by the on-boarded NSD.       \n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "nestedNsdInfoIds": {
+          "description": "Match the NsdInfo identifier for the nested NSD referenced by the on-boarded NSD.       \n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "nsdOnboardingState": {
+          "description": "Match particular on-boarding state of the NSD.\n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "\"The enumeration NsdOnboardingStateType shall comply with the provisions defined in Table 5.5.4.5-1 of GS NFV-SOL 005. It indicates the on-boarding state of the NSD. CREATED = The NSD information object is created.  UPLOADING = The associated NSD content is being uploaded.  PROCESSING = The associated NSD content is being processed, e.g. validation.  ONBOARDED = The associated NSD content is on-boarded.\"\n",
+            "enum": [
+              "CREATED",
+              "UPLOADING",
+              "PROCESSING",
+              "ONBOARDED"
+            ]
+          }
+        },
+        "nsdOperationalState": {
+          "description": "Match particular operational state of the on-boarded NSD.       \n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "\"The enumeration NsdOperationalStateType shall comply with the provisions defined in Table 5.5.4.3-1 of GS NFV_SOL 005. It indicates the operational state of the resource. ENABLED = The operational state of the resource is enabled.  DISABLED = The operational state of the resource is disabled.\"\n",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ]
+          }
+        },
+        "nsdUsageState": {
+          "description": "Match particular usage state of the on-boarded NSD.\n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "\"The enumeration NsdUsageStateType shall comply with the provisions defined in Table 5.5.4.4-1 of GS NFV-SOL 005. It indicates the usage state of the resource.IN_USE = The resource is in use.NOT_IN_USE = The resource is not-in-use.\"\n",
+            "enum": [
+              "IN_USE",
+              "NOT_IN_USE"
+            ]
+          }
+        },
+        "pnfdId": {
+          "description": "Match the PNFD identifier which is copied from the PNFD content.       \n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "pnfdName": {
+          "description": "Match the name of the on-boarded PNFD.\n",
+          "type": "array",
+          "items": {
+            "description": "This type represents stack of string values\n",
+            "type": "string"
+          }
+        },
+        "pnfdVersion": {
+          "description": "Match the PNFD designer of the on-boarded PNFD.         \n",
+          "type": "array",
+          "items": {
+            "description": "A Version.\n",
+            "type": "string"
+          }
+        },
+        "pnfdProvider": {
+          "description": "Match the provider of the on-boarded PNFD.\n",
+          "type": "array",
+          "items": {
+            "description": "This type represents stack of string values\n",
+            "type": "string"
+          }
+        },
+        "pnfdInvariantId": {
+          "description": "Match the PNFD in a version independent manner.       \n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "pnfdOnboardingState": {
+          "description": "Match particular on-boarding state of the PNFD.         \n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "The enumeration PnfdOnboardingStateType shall comply with the provisions defined in Table 5.5.4.6-1 of GS-NFV SOL005. It indicates the on-boarding state of the individual PNF descriptor resource. CREATED = The PNF descriptor resource is created.  UPLOADING = The associated PNFD content is being uploaded. PROCESSING = The associated PNFD content is being processed, e.g. validation. ONBOARDED = The associated PNFD content is on-boarded.\n",
+            "enum": [
+              "CREATED",
+              "UPLOADING",
+              "PROCESSING",
+              "ONBOARDING"
+            ]
+          }
+        },
+        "pnfdUsageState": {
+          "description": "Match the usage state of the individual PNF descriptor resource.  \n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "\"The enumeration PnfdUsageStateType shall comply with the provisions defined in Table 5.5.4.7-1 of GS NFV-SOL005. It indicates the usage state of the resource.IN-USE = The resource is in use.NOT_IN_USE = The resource is not-in-use.\"\n",
+            "enum": [
+              "IN_USE",
+              "NOT_IN_USE"
+            ]
+          }
+        }
+      }
+    },
+    "callbackUri": {
+      "description": "String formatted according to IETF RFC 3986.\n",
+      "type": "string"
+    },
+    "_links": {
+      "type": "object",
+      "description": "Links to resources related to this resource.\n",
+      "properties": {
+        "self": {
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of the referenced resource.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        }
+      }
+    }
+  },
+  "description": "This type represents a subscription related to notifications about NSD management."
+}

@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "required": [
+    "userDefinedData"
+  ],
+  "properties": {
+    "userDefinedData": {
+      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+      "type": "object"
+    }
+  },
+  "description": "\"This type represents attribute modifications for an individual PNF descriptor resource based on the \"PnfdInfo\" data type. The attributes of \"PnfdInfo\" that can be modified are included in the \"PnfdInfoModifications\" data type.\""
+}

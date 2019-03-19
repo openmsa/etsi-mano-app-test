@@ -1,1 +1,58 @@
-{  "description": "This type defines the format of a performance report provided by the VNFM to the NFVO as a result of collecting performance information as part of a PM job.\n",  "type": "object",  "properties": {    "entries": {      "description": "List of performance information entries. Each performance report entry is for a given metric of a given object (i.e. VNF instance), but can include multiple collected values.\n",      "type": "array",      "items": {        "type": "object",        "required": [          "objectType",          "objectInstanceId",          "performanceMetric",          "performanceValue"        ],        "properties": {          "objectType": {            "description": "Defines the object type for which performance information is reported (i.e. VNF type). The string value shall be set to the vnfdId of the VNF instance to which the performance information relates.\n",            "type": "string"          },          "objectInstanceId": {            "description": "An identifier with the intention of being globally unique.\n",            "type": "string"          },          "performanceMetric": {            "description": "Name of the metric collected.\n",            "type": "string"          },          "performanceValues": {            "description": "List of performance values with associated timestamp.\n",            "type": "array",            "items": {              "type": "object",              "required": [                "timeStamp",                "performanceValue"              ],              "properties": {                "timeStamp": {                  "description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",                  "type": "string",                  "format": "date-time"                },                "value": {                  "description": "Value of the metric collected. The type of the \"value\" attribute (i.e. scalar, structure (Object in JSON), or array (of scalars, arrays or structures / Objects)) is assumed to be defined in the external measurement specification (see ETSI GS NFV-IFA 027).\n",                  "type": "object"                }              }            }          }        }      }    }  }}
+{
+  "description": "This type defines the format of a performance report provided by the NFVO  to the OSS/BSS as a result of collecting performance information as part of a PM job.  The type shall comply with the provisions defined in Table 7.5.2.10-1.\n",
+  "type": "object",
+  "required": [
+    "entries"
+  ],
+  "properties": {
+    "entries": {
+      "description": "List of performance information entries. Each performance report entry is for a given metric of a given object (i.e. NS instance), but can include multiple collected values.\n",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "objectType",
+          "objectInstanceId",
+          "performanceMetric",
+          "performanceValue"
+        ],
+        "properties": {
+          "objectType": {
+            "description": "Defines the object type for which performance information is reported (i.e. NS type). The string value shall be set to the nsdId of the NS instance to which the performance information relates.\n",
+            "type": "string"
+          },
+          "objectInstanceId": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          },
+          "performanceMetric": {
+            "description": "Name of the metric collected.\n",
+            "type": "string"
+          },
+          "performanceValues": {
+            "description": "List of performance values with associated timestamp.\n",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "timeStamp",
+                "performanceValue"
+              ],
+              "properties": {
+                "timeStamp": {
+                  "description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "value": {
+                  "description": "The type of the \"performanceValue\" attribute (i.e. scalar, structure (Object in JSON), or array (of scalars, arrays or structures / Objects)) is outside the scope of the present document.\n",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

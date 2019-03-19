@@ -22,7 +22,7 @@ GET Single PNF Descriptor
     Log  Validation of Content-Type : OK
    Log    Trying to validate response
    ${result}=    Output    response body
-   Validate Json    NsdInfo.schema.json    ${result}
+   Validate Json    PnfdInfo.schema.json    ${result}
    Log    Validation OK
 
 

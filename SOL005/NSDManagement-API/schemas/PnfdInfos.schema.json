@@ -4,9 +4,8 @@
     "type": "object",
     "required": [
       "id",
-      "nsdOnboardingState",
-      "nsdOperationalState",
-      "nsdUsageState",
+      "pnfdOnboardingState",
+      "pnfdUsageState",
       "_links"
     ],
     "properties": {
@@ -14,58 +13,34 @@
         "description": "An identifier with the intention of being globally unique.\n",
         "type": "string"
       },
-      "nsdId": {
+      "pnfdId": {
         "description": "An identifier with the intention of being globally unique.\n",
         "type": "string"
       },
-      "nsdName": {
-        "type": "string",
-        "description": "\"Name of the on boarded NSD. This information is copied from the NSD content and shall be present after the NSD content is on-boarded.\"\n"
+      "pnfdName": {
+        "description": "Name of the on-boarded PNFD. This information is copied from the PNFD content and shall be present after the PNFD content is on-boarded.\n",
+        "type": "string"
       },
-      "nsdVersion": {
+      "pnfdersion": {
         "description": "A Version.\n",
         "type": "string"
       },
-      "nsdDesigner": {
-        "type": "string",
-        "description": "\"Designer of the on-boarded NSD. This information is copied from the NSD content and shall be present after the NSD content is on-boarded.\"\n"
+      "pnfdProvider": {
+        "description": "\"Provider of the on-boarded PNFD. This information is copied from the PNFD content and shall be present after the PNFD content is on-boarded.\"\n",
+        "type": "string"
       },
-      "nsdInvariantId": {
+      "pnfdInvariantId": {
         "description": "An identifier with the intention of being globally unique.\n",
         "type": "string"
       },
-      "vnfPkgIds": {
-        "description": "Identifies the VNF package for the VNFD referenced by the on-boarded NS descriptor resource.\n",
-        "type": "array",
-        "items": {
-          "description": "An identifier with the intention of being globally unique.\n",
-          "type": "string"
-        }
-      },
-      "pnfdInfoIds": {
-        "description": "Identifies the PnfdInfo element for the PNFD referenced by the on-boarded NS descriptor resource.\n",
-        "type": "array",
-        "items": {
-          "description": "An identifier with the intention of being globally unique.\n",
-          "type": "string"
-        }
-      },
-      "nestedNsdInfoIds": {
-        "description": "Identifies the NsdInfo element for the nested NSD referenced by the on-boarded NS descriptor resource.\n",
-        "type": "array",
-        "items": {
-          "description": "An identifier with the intention of being globally unique.\n",
-          "type": "string"
-        }
-      },
-      "nsdOnboardingState": {
+      "pnfdOnboardingState": {
         "type": "string",
-        "description": "\"The enumeration NsdOnboardingStateType shall comply with the provisions defined in Table 5.5.4.5-1 of GS NFV-SOL 005. It indicates the on-boarding state of the NSD. CREATED = The NSD information object is created.  UPLOADING = The associated NSD content is being uploaded.  PROCESSING = The associated NSD content is being processed, e.g. validation.  ONBOARDED = The associated NSD content is on-boarded.\"\n",
+        "description": "The enumeration PnfdOnboardingStateType shall comply with the provisions defined in Table 5.5.4.6-1 of GS-NFV SOL005. It indicates the on-boarding state of the individual PNF descriptor resource. CREATED = The PNF descriptor resource is created.  UPLOADING = The associated PNFD content is being uploaded. PROCESSING = The associated PNFD content is being processed, e.g. validation. ONBOARDED = The associated PNFD content is on-boarded.\n",
         "enum": [
           "CREATED",
           "UPLOADING",
           "PROCESSING",
-          "ONBOARDED"
+          "ONBOARDING"
         ]
       },
       "onboardingFailureDetails": {
@@ -100,32 +75,27 @@
           }
         }
       },
-      "nsdOperationalState": {
+      "pnfdUsageState": {
         "type": "string",
-        "description": "\"The enumeration NsdOperationalStateType shall comply with the provisions defined in Table 5.5.4.3-1 of GS NFV_SOL 005. It indicates the operational state of the resource. ENABLED = The operational state of the resource is enabled.  DISABLED = The operational state of the resource is disabled.\"\n",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
-      },
-      "nsdUsageState": {
-        "type": "string",
-        "description": "\"The enumeration NsdUsageStateType shall comply with the provisions defined in Table 5.5.4.4-1 of GS NFV-SOL 005. It indicates the usage state of the resource.IN_USE = The resource is in use.NOT_IN_USE = The resource is not-in-use.\"\n",
+        "description": "\"The enumeration PnfdUsageStateType shall comply with the provisions defined in Table 5.5.4.7-1 of GS NFV-SOL005. It indicates the usage state of the resource.IN-USE = The resource is in use.NOT_IN_USE = The resource is not-in-use.\"\n",
         "enum": [
           "IN_USE",
           "NOT_IN_USE"
         ]
       },
       "userDefinedData": {
-        "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
-        "type": "object"
+        "type": "array",
+        "description": "User defined data for the individual PNF descriptor resource. This attribute can be modified with the PATCH method.\n",
+        "items": {
+          "type": "object"
+        }
       },
       "_links": {
-        "type": "object",
         "required": [
-          "self",
-          "nsd_content"
+          "pnfd_content",
+          "self"
         ],
+        "type": "object",
         "description": "\"Links to resources related to this resource.\"\n",
         "properties": {
           "self": {
@@ -142,7 +112,7 @@
               }
             }
           },
-          "nsd_content": {
+          "pnfd_content": {
             "description": "This type represents a link to a resource.\n",
             "type": "object",
             "required": [
@@ -159,6 +129,6 @@
         }
       }
     },
-    "description": "\"This type represents a response for the query NSD operation.\"\t\n"
+    "description": "\"This type represents a response for the query PNFD operation.\""
   }
 }

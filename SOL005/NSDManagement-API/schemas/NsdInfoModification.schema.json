@@ -1,13 +1,22 @@
 {
   "type": "object",
+  "description": "This type represents attribute modifications for an individual NS descriptor resource based on the NsdInfo data type. The attributes of NsdInfo that can be modified are included in the NsdInfoModifications data type.NOTE: At least one of the attributes - nsdOperationalState and userDefinedData - shall be present.\n",
   "properties": {
     "nsdOperationalState": {
-      "$ref": "#/definitions/NsdOperationalStateType"
+      "type": "string",
+      "description": "\"The enumeration NsdOperationalStateType shall comply with the provisions defined in Table 5.5.4.3-1 of GS NFV_SOL 005. It indicates the operational state of the resource. ENABLED = The operational state of the resource is enabled.  DISABLED = The operational state of the resource is disabled.\"\n",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "userDefinedData": {
-      "type": "object",
-      "description": "Modifications of the \"userDefinedData\" attribute in \"NsdInfo\" data type. See note. If present, these modifications shall be applied according to the rules of JSON Merge PATCH (see IETF RFC 7396 [25]). NOTE: At least one of the attributes - nsdOperationalState and userDefinedData - shall be present."
+      "description": "Modifications of the userDefinedData attribute in NsdInfo data type. See note. If present, these modifications shall be applied according to the rules of JSON Merge PATCH (see IETF RFC 7396 [25]).  NOTE- At least one of the attributes - nsdOperationalState and userDefinedData - shall be present.\n",
+      "type": "array",
+      "items": {
+        "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+        "type": "object"
+      }
     }
-  },
-  "description": "This type represents attribute modifications for an individual NS descriptor resource based on the \"NsdInfo\" data type. The attributes of \"NsdInfo\" that can be modified are included in the \"NsdInfoModifications\" data type.\n\nNOTE: At least one of the attributes - nsdOperationalState and userDefinedData - shall be present."
+  }
 }
