@@ -19,7 +19,7 @@ Get Indicators for VNF Instance
     Get all indicators for a VNF instance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   vnfIndicators
-    Check HTTP Response Body Matches VNF Instance ID
+    Check HTTP Response Body Includes Requested VNF Instance ID
 
 GET Indicators for VNF Instance with attribute-based filter
     [Documentation]    Test ID 6.3.2.2.2
@@ -194,7 +194,7 @@ Check HTTP Response Body Json Schema Is
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
 
-Check HTTP Response Body Matches VNF Instance ID
+Check HTTP Response Body Includes Requested VNF Instance ID
     Log    Check Response includes Indicators according to resource identifier
     #todo
     
