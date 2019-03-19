@@ -251,8 +251,7 @@ Do GET Instantiate NSInstance
     ${body}=    Get File    jsons/InstantiateNsRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/instantiate    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
-	
+	Set Global Variable    @{response}    ${outputResponse}
 	
 Do DELETE Scale NSInstance
     log    Trying to delete an Scale NS instance. This method should not be implemented
@@ -297,7 +296,6 @@ Do POST scale nsInstance
 	Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/scale    ${body}
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
-	
 	
 Do DELETE Update NSInstance
     log    Trying to delete an Update NS instance. This method should not be implemented
@@ -786,7 +784,6 @@ Do GET Subscriptions with filter
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
-	
 
 Do POST Individual Subscription
     log    Trying to perform a POST. This method should not be implemented

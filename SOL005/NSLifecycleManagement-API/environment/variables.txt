@@ -39,6 +39,7 @@ ${VnfIdentifierDeletionNotification}    {}
 ${callback_uri}    http://localhost
 ${callback_port}    9091
 ${callback_endpoint}    /endpoint
+${callback_endpoint_fwd}    /notification/check
 ${callback_endpoint_error}    /endpoint_404
 ${sleep_interval}    20s
 
