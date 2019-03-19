@@ -13,7 +13,7 @@ Heal a vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/healVnFRequest.json
+    ${body}=    Get File    jsons/healVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Integer    response status    202
     Log    Status code validated
@@ -28,12 +28,12 @@ Heal a vnfInstance Conflict (Not-Instantiated)
     ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, 
     ...    or that another lifecycle management operation is ongoing. 
     ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    [Setup]    Check resource not instantiated
+    [Setup]    Check resource not instantiated    ${vnfInstanceId}
     Log    Trying to heal a VNF instance.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/healVnFRequest.json
+    ${body}=    Get File    jsons/healVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Integer    response status    409
     Log    Status code validated
@@ -53,7 +53,7 @@ Heal a vnfInstance Not Found
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/healVnFRequest.json
+    ${body}=    Get File    jsons/healVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Integer    response status    404
     Log    Status code validated
@@ -98,10 +98,11 @@ Check resource existance
     Integer    response status    200
 
 Check resource not instantiated
+    [Arguments]    ${instanceId}
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId} 
     String    response body instantiationState    NOT_INSTANTIATED
 
 Check heal not supported

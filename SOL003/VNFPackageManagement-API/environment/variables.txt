@@ -10,6 +10,7 @@ ${NEG_AUTHORIZATION}    Bearer negativetoken
 ${NFVO_FIELDS}    1
 
 ${vnfPackageId}  788106a2-d692-44f3-a86d-384f0ce35e42
+${onboardingStateVnfPkgId}    f9f130e4-05eb-4082-a676-4c97d13a883d    
 
 ${apiRoot}        /
 ${apiVersion}     v1

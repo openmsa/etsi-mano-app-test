@@ -28,7 +28,7 @@ GET Single Network Service Descriptor
     ${result}=    Output    response body
     Validate Json    NsdInfo.schema.json    ${result}
     Log    Validation OK
-    ${etag}    Output    response header ETag
+    ${etag}    Output    response headers ETag
     Set Suite Variable    &{original_etag}    ${etag}
 
 
