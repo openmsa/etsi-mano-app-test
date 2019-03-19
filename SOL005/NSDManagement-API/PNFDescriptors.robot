@@ -116,44 +116,7 @@ GET all PNF Descriptors - all_fields
     Validate Json    PnfdInfos.schema.json    ${result}
     Log    PnfdInfos schema validated
     ${links}=    Get Value From Json    ${result}    $.._links
-    Validate Json    links.schema.json    ${links[0]}
-    Log    Validation for _links schema OK
-
-GET all PNF Descriptors - exclude_default
-    Log    Trying to get all PNF Descriptors present in the NFVO Catalogue, using exclude_default filter.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors?exclude_default
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    PnfdInfos.schema.json    ${result}
-    Log    PnfdInfo schema validated
-    Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${result}    $.._links
-    Should Be Empty    ${links}
-    Log    _links element is missing as excepted
-
-
-GET all PNF Descriptors - exclude_fields
-    Log    Trying to get all PNF descriptors present in the NFVO Catalogue, using filter params
-    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use exclude_fields option
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors?exclude_fields=${fields}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    PnfdInfos.schema.json    ${result}
-    Log    PnfdInfo schema validated
-    Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${result}    $.._links
-    Should Be Empty    ${links}
-    Log    _links element is missing as excepted
+    Should Not Be Empty    ${links}    
 
 POST a new PNF Descriptor
     Log    Creating a new PNF descriptor

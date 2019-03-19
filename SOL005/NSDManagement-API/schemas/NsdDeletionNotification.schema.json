@@ -1,13 +1,12 @@
 {
-  "description": "This type represents a VNF package management notification, which informs the receiver that the on boarding process of a VNF package incomplete and the package is ready for use. A change of the on-boarding state before the VNF package is on-boarded is not reported. It shall comply with the provisions defined in Table 9.5.2.8-1. The support of this notification is mandatory. The notification shall be triggered by the NFVO when the value of the \"onboardingState\" attribute of a new VNF package has changed to \"ONBOARDED\".\n",
   "type": "object",
   "required": [
+    "_links",
     "id",
     "notificationType",
-    "timeStamp",
-    "vnfPkgId",
-    "vnfdId",
-    "_links"
+    "nsdId",
+    "nsdInfoId",
+    "timeStamp"
   ],
   "properties": {
     "id": {
@@ -15,8 +14,8 @@
       "type": "string"
     },
     "notificationType": {
-      "description": "Discriminator for the different notification types. Shall be set to \"VnfPackageOnboardingNotification\" for this notification type.\n",
-      "type": "string"
+      "type": "string",
+      "description": "\"Discriminator for the different notification types. Shall be set to \"NsdDeletionNotification \" for this notification type.\"\n"
     },
     "subscriptionId": {
       "description": "An identifier with the intention of being globally unique.\n",
@@ -27,23 +26,22 @@
       "type": "string",
       "format": "date-time"
     },
-    "vnfPkgId": {
+    "nsdInfoId": {
       "description": "An identifier with the intention of being globally unique.\n",
       "type": "string"
     },
-    "vnfdId": {
+    "nsdId": {
       "description": "An identifier with the intention of being globally unique.\n",
       "type": "string"
     },
     "_links": {
-      "description": "This type represents the links to resources that a VNF package management notification can contain.  \n",
+      "type": "object",
       "required": [
-        "vnfPackage",
+        "nsdInfo",
         "subscription"
       ],
-      "type": "object",
       "properties": {
-        "vnfPackage": {
+        "nsdInfo": {
           "description": "This type represents a link to a resource.\n",
           "type": "object",
           "required": [
@@ -71,7 +69,9 @@
             }
           }
         }
-      }
+      },
+      "description": "\"This type represents the links to resources that an NSD management notification can contain.\"\n"
     }
-  }
+  },
+  "description": "\"This type represents an NSD management notification, which informs the receiver of the deletion of an on-boarded NSD. The notification shall comply with the provisions defined in Table 5.5.2.12-1. The support of this notification is mandatory. The notification shall be triggered by the NFVO when it has deleted an on-boarded NSD.\""
 }

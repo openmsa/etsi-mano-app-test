@@ -44,7 +44,7 @@
           ],
           "properties": {
             "thresholdValue": {
-              "description": "The threshold value. Shall be represented as a floating point number.\n",
+              "description": "The threshold value. Shall be represented as a floating point number.               \n",
               "type": "integer"
             },
             "hysteresis": {
@@ -77,7 +77,7 @@
           }
         },
         "object": {
-          "description": "Link to a resource representing the VNF instance for which performance information is collected. Shall be present if the VNF instance information is accessible as a resource.\n"
+          "description": "Link to a resource representing the NS instance for which performance information is collected. Shall be present if the NS instance information is accessible as a resource."
         }
       }
     }

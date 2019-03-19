@@ -101,7 +101,7 @@ Post PNFD Onboard Failure Notification
     Clear Requests  ${callback_endpoint}
     
 Post PNFD Onboard Notification
-    ${json}=	Get File	schemas/OPNFDOnboardingNotification.schema.json
+    ${json}=	Get File	schemas/PNFDOnboardingNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock request and response to handle  NSD Onboard Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}

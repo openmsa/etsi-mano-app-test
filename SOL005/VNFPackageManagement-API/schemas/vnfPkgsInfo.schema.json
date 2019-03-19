@@ -1,0 +1,293 @@
+{
+	"type": "array",
+	"items": {
+		"type": "object",
+		"required": [
+			"id",
+			"onboardingState",
+			"operationalState",
+			"usageState"
+		],
+		"properties": {
+			"id": {
+				"description": "An identifier with the intention of being globally unique.\n",
+				"type": "string"
+			},
+			"vnfdId": {
+				"description": "An identifier with the intention of being globally unique.\n",
+				"type": "string"
+			},
+			"vnfProvider": {
+				"description": "Provider of the VNF package and the VNFD. This information is copied from the VNFD.  It shall be present after the VNF package content has been on-boarded and absent otherwise.\n",
+				"type": "string"
+			},
+			"vnfProductName": {
+				"description": "Name to identify the VNF product.Invariant for the VNF product lifetime.  This information is copied from the VNFD. It shall be present after the VNF package content has been on-boarded and absent otherwise.\n",
+				"type": "string"
+			},
+			"vnfSoftwareVersion": {
+				"description": "Software version of the VNF. This is changed when there is any change to the software included in the VNF package. This information is copied from the VNFD. It shall be present after the VNF package content has been on-boarded and absent otherwise.\n",
+				"type": "string"
+			},
+			"vnfdVersion": {
+				"description": "Software version of the VNF. This is changed when there is any change to the software included in the VNF package. This information is copied from the VNFD. It shall be present after the VNF package content has been on-boarded and absent otherwise.\n",
+				"type": "string"
+			},
+			"checksum": {
+				"description": "This type represents the checksum of a VNF package or an artifact file.  \n",
+				"required": [
+					"algorithm",
+					"hash"
+				],
+				"type": "object",
+				"properties": {
+					"algorithm": {
+						"description": "Name of the algorithm used to generate the checksum, as defined in ETSI GS NFV-SOL 004 [5]. For example, SHA-256, SHA-512.\n",
+						"type": "string"
+					},
+					"hash": {
+						"description": "The hexadecimal value of the checksum.\n",
+						"type": "string"
+					}
+				}
+			},
+			"softwareImages": {
+				"description": "Information about VNF package artifacts that are software images. This attribute shall not be present before the VNF package content is on-boarded. Otherwise, this attribute shall be present unless it has been requested to be excluded per attribute selector.\n",
+				"type": "array",
+				"items": {
+					"description": "This type represents an artifact contained in a VNF package which represents a software image.  \n",
+					"required": [
+						"id",
+						"name",
+						"provider",
+						"version",
+						"checksum",
+						"containerFormat",
+						"diskFormat",
+						"createdAt",
+						"minDisk",
+						"minRam",
+						"size",
+						"imagePath"
+					],
+					"type": "object",
+					"properties": {
+						"id": {
+							"description": "Identifier of the software image.\n",
+							"type": "string"
+						},
+						"name": {
+							"description": "Name of the software image.\n",
+							"type": "string"
+						},
+						"provider": {
+							"description": "Provider of the software image.\n",
+							"type": "string"
+						},
+						"version": {
+							"description": "Software version of the VNF. This is changed when there is any change to the software included in the VNF package. This information is copied from the VNFD. It shall be present after the VNF package content has been on-boarded and absent otherwise.\n",
+							"type": "string"
+						},
+						"checksum": {
+							"description": "This type represents the checksum of a VNF package or an artifact file.  \n",
+							"required": [
+								"algorithm",
+								"hash"
+							],
+							"type": "object",
+							"properties": {
+								"algorithm": {
+									"description": "Name of the algorithm used to generate the checksum, as defined in ETSI GS NFV-SOL 004 [5]. For example, SHA-256, SHA-512.\n",
+									"type": "string"
+								},
+								"hash": {
+									"description": "The hexadecimal value of the checksum.\n",
+									"type": "string"
+								}
+							}
+						},
+						"containerFormat": {
+							"description": "Container format indicates whether the software image is in a file format that also contains meta-data about the actual software. Permitted values: - AKI: a kernel image format - AMI: a machine image format - ARI: a ram disk image format - BARE: the image does not have a container or meta-data envelope - DOCKER: docker container format - OVA: OVF package in a tar file - OVF: OVF container format\n",
+							"type": "string",
+							"enum": [
+								"AKI",
+								"AMI",
+								"ARI",
+								"BARE",
+								"DOCKER",
+								"OVA",
+								"OVF"
+							]
+						},
+						"diskFormat": {
+							"description": "Disk format of a software image is the format of the underlying disk image. Permitted values: - AKI: a kernel image format - AMI: a machine image format - ARI: a ramdisk image format - ISO: an archive format for the data contents of an optical disc, such as CD-ROM - QCOW2: a common disk image format, which can expand dynamically and supports copy on write - RAW: an unstructured disk image format - VDI: a common disk image format - VHD: a common disk image format - VHDX: enhanced version of VHD format - VMDK: a common disk image format\n",
+							"type": "string",
+							"enum": [
+								"AKI",
+								"AMI",
+								"ARI",
+								"ISO",
+								"QCOW2",
+								"RAW",
+								"VDI",
+								"VHD",
+								"VHDX",
+								"VMDK"
+							]
+						},
+						"createdAt": {
+							"description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
+							"type": "string",
+							"format": "date-time"
+						},
+						"minDisk": {
+							"description": "The minimal disk for this software image in bytes.\n",
+							"type": "integer",
+							"minimum": 0
+						},
+						"minRam": {
+							"description": "The minimal RAM for this software image in bytes.\n",
+							"type": "integer",
+							"minimum": 0
+						},
+						"size": {
+							"description": "Size of this software image in bytes.\n",
+							"type": "integer",
+							"minimum": 0
+						},
+						"userMetadata": {
+							"description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+							"type": "object"
+						},
+						"imagePath": {
+							"description": "Path in the VNF package, which identifies the image artifact and also allows to access a copy of the image artifact.\n",
+							"type": "string"
+						}
+					}
+				}
+			},
+			"additionalArtifacts": {
+				"description": "Information about VNF package artifacts contained in the VNF package that are not software images. This attribute shall not be present before the VNF package content is on-boarded. Otherwise, this attribute shall be present if the VNF package contains additional artifacts.\n",
+				"type": "array",
+				"items": {
+					"description": "This type represents an artifact other than a software image which is contained in a VNF package.  It shall comply with provisions defined in Table 9.5.3.3-1.\n",
+					"required": [
+						"artifactPath",
+						"checksum"
+					],
+					"type": "object",
+					"properties": {
+						"artifactPath": {
+							"description": "This type represents stack of string values\n",
+							"type": "string"
+						},
+						"checksum": {
+							"description": "This type represents the checksum of a VNF package or an artifact file.  \n",
+							"required": [
+								"algorithm",
+								"hash"
+							],
+							"type": "object",
+							"properties": {
+								"algorithm": {
+									"description": "Name of the algorithm used to generate the checksum, as defined in ETSI GS NFV-SOL 004 [5]. For example, SHA-256, SHA-512.\n",
+									"type": "string"
+								},
+								"hash": {
+									"description": "The hexadecimal value of the checksum.\n",
+									"type": "string"
+								}
+							}
+						},
+						"metadata": {
+							"description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+							"type": "object"
+						}
+					}
+				}
+			},
+			"onboardingState": {
+				"description": "The enumeration PackageOnboardingStateType shall comply with the provisions defined in Table 9.5.4.3-1. Permitted values: - CREATED: The VNF package resource has been created. - UPLOADING: The associated VNF package content is being uploaded. - PROCESSING: The associated VNF package content is being processed, e.g. validation. - ONBOARDED: The associated VNF package content is successfully on-boarded.\n",
+				"type": "string",
+				"enum": [
+					"CREATED",
+					"UPLOADING",
+					"PROCESSING",
+					"ONBOARDED"
+				]
+			},
+			"operationalState": {
+				"type": "string",
+				"description": "\"The enumeration PackageOperationalStateType shall  comply with the provisions defined in Table 9.5.4.4-1.\" Acceptable values are: -ENABLED - The VNF package is enabled, i.e. it can be used for instantiation of new VNF instances. -DISABLED - The VNF package is disabled, i.e. it cannot be used for further VNF instantiation requests (unless and until the VNF package is re-enabled).\n",
+				"enum": [
+					"ENABLED",
+					"DISABLED"
+				]
+			},
+			"usageState": {
+				"type": "string",
+				"description": "\"The enumeration PackageUsageStateType shall comply with the provisions. Acceptable values are: -IN_USE - VNF instances instantiated from this VNF package exist. -NOT_IN_USE - No existing VNF instance is instantiated from this VNF package\"      \n",
+				"enum": [
+					"IN_USE",
+					"NOT_IN_USE"
+				]
+			},
+			"userDefinedData": {
+				"description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+				"type": "object"
+			},
+			"_links": {
+				"type": "object",
+				"description": "Links to resources related to this resource.\n",
+				"required": [
+					"self",
+					"packageContent"
+				],
+				"properties": {
+					"self": {
+						"description": "This type represents a link to a resource.\n",
+						"type": "object",
+						"required": [
+							"href"
+						],
+						"properties": {
+							"href": {
+								"description": "URI of the referenced resource.\n",
+								"type": "string",
+								"format": "url"
+							}
+						}
+					},
+					"vnfd": {
+						"description": "This type represents a link to a resource.\n",
+						"type": "object",
+						"required": [
+							"href"
+						],
+						"properties": {
+							"href": {
+								"description": "URI of the referenced resource.\n",
+								"type": "string",
+								"format": "url"
+							}
+						}
+					},
+					"packageContent": {
+						"description": "This type represents a link to a resource.\n",
+						"type": "object",
+						"required": [
+							"href"
+						],
+						"properties": {
+							"href": {
+								"description": "URI of the referenced resource.\n",
+								"type": "string",
+								"format": "url"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

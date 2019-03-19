@@ -41,13 +41,7 @@ DELETE Subscription
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     Integer    response status    204
     Log    Received 204 No Content as expected
-    Comment    Log    Trying to get the deleted element
-    Comment    Create HTTP Context    ${NFVO_HOST}:${NFVO_PORT}    ${NFVO_SCHEMA}
-    Comment    Set Request Header    Accept    ${ACCEPT_JSON}
-    Comment    Run Keyword If    ${AUTH_USAGE} == 1    Set Request Header    Authorization    ${AUTHORIZATION}
-    Comment    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Comment    Response Status Code Should Equal    404
-    Comment    Log    The subscriptionId is not present in database
+
 
 DELETE Subscription - Negative (Not Found)
     Log    Trying to perform a DELETE on a subscriptionId which doesn't exist
