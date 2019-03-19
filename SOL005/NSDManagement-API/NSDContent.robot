@@ -54,16 +54,6 @@ GET NSD Content - Range
     Log    Header Content-Length is present
     
     
-GET NSD Content - Range NFVO No RANGE
-    Log    Trying to get a NSD Content using RANGE using an NFVO that can handle it
-    Pass Execution If    ${NFVO_RANGE_OK} == 1    Skipping this test as NFVO is able to handle partial Requests.
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Set Headers    {"Range": "${range}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content
-    Integer    response status    200
-    Log    Received 200 OK as expected. The content is all available on this request. RANGE request has been ignored.
-        
         
 GET NSD Content - Negative Range
     Log    Trying to get a range of bytes of the limit of the NSD Content

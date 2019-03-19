@@ -28,7 +28,7 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, 
     ...    or that another lifecycle management operation is ongoing. 
     ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    [Setup]    Check resource not instantiated
+    [Setup]    Check resource not instantiated    ${vnfInstanceId}
     Log    Trying to change the deployment flavour of a VNF instance.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -99,10 +99,11 @@ Check resource existance
     Integer    response status    200
 
 Check resource not instantiated
+    [Arguments]    ${instanceId}
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId} 
     String    response body instantiationState    NOT_INSTANTIATED
 
 Check change flavour not supported

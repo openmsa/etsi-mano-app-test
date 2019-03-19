@@ -39,7 +39,7 @@ Get information about a configuration
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     Log    Validate Status code
     Integer    response status    200
-    ${etag}    Output    response header ETag
+    ${etag}    Output    response headers ETag
     Set Suite Variable    &{original_etag}    ${etag}
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE}

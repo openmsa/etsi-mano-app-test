@@ -37,7 +37,7 @@ GET Subscription - Negative Filter
     Log    Trying to get the list of subscriptions using filters with wrong attribute name
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ko}
     Integer    response status    400
     Log    Received a 400 Bad Request as expected
     ${contentType}=    Output    response headers Content-Type

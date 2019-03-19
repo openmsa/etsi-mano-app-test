@@ -37,7 +37,7 @@ Get Information about an individual VNF Instance
     ${result}=    Output    response body
     Validate Json    vnfInstance.schema.json    ${result}
     Log    Validation OK
-    ${etag}    Output    response header ETag
+    ${etag}    Output    response headers ETag
     Set Suite Variable    &{original_etag}    ${etag}
     
 PUT Individual VNFInstance - Method not implemented 

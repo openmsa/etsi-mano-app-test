@@ -36,7 +36,7 @@ Get information about an alarm
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
-    ${etag}    Output    response header ETag
+    ${etag}    Output    response headers ETag
     Set Suite Variable    &{original_etag}    ${etag}
     Log    Validate Status code
     Integer    response status    200

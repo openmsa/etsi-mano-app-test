@@ -14,7 +14,7 @@ Heal a vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/healVnFRequest.json
+    ${body}=    Get File    jsons/healVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Integer    response status    202
     Log    Status code validated
@@ -34,7 +34,7 @@ Heal a vnfInstance Conflict (Not-Instantiated)
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/healVnFRequest.json
+    ${body}=    Get File    jsons/healVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Integer    response status    409
     Log    Status code validated
@@ -55,7 +55,7 @@ Heal a vnfInstance Not Found
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/healVnFRequest.json
+    ${body}=    Get File    jsons/healVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
     Integer    response status    404
     Log    Status code validated

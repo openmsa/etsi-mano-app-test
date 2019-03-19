@@ -1,5 +1,5 @@
 *** Variables ***
-${POS_FIELDS}     vnfdId=41fdd38a-3d4c-465c-83e0-f80e014425f8 ,vnfProvider=NXW    # Positive case, suing compiant fields name for filtering get request
+${POS_FIELDS}     vnfdId=41fdd38a-3d4c-465c-83e0-f80e014425f8&vnfProvider=NXW    # Positive case, suing compiant fields name for filtering get request
 ${NEG_FIELDS}     nfvId=41fdd38a-3d4c-465c-83e0-f80e014425f8    # Negative case, using wrong name of field
 ${CAN_FILTER}     1    # NFVO in able to use filters when retrieving VNF Packages
 ${fields}         softwareImages,additionalArtifacts

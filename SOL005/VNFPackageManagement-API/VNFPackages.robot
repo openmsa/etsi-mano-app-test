@@ -165,7 +165,7 @@ GET all Packages - exclude_fields
     Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use exclude_fields option
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exlude_fields=${fields}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exclude_fields=${fields}
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}

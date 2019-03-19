@@ -14,7 +14,7 @@ Terminate a vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/terminateVnFRequest.json
+    ${body}=    Get File    jsons/terminateVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/terminate    ${body}
     Integer    response status    202
     Log    Status code validated
@@ -34,7 +34,7 @@ Terminate a vnfInstance Conflict (Not-Instantiated)
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/terminateVnFRequest.json
+    ${body}=    Get File    jsons/terminateVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/terminate    ${body}
     Integer    response status    409
     Log    Status code validated
