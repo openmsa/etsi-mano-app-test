@@ -8,6 +8,16 @@ Library    OperatingSystem
 Library    MockServerLibrary
 
 *** Keywords ***
+Initialize System
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${callback_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${callback_uri}:${callback_port}
+    
+Check Operation Occurrence Id
+    ${occid}=    Get Value From Json    ${response[0]['headers']['Location']} 
+    Set Global Variable    @{nsLcmOpOccId}    ${occid}
+    Should Not Be Empty    ${nsLcmOpOccId}
+    
 Create Sessions
     Start Process  java  -jar  ../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
@@ -20,7 +30,6 @@ Check subscription existance
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
     Integer    response status    200
     
-
 Check Fail not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}
@@ -50,6 +59,40 @@ Check resource FAILED_TEMP
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 
     String    response body operationState    FAILED_TEMP
+
+Check Operation Notification Status is
+    [Arguments]    ${status}
+    Check Operation Notification    NsLcmOperationOccurrenceNotification   ${status}
+
+Check Operation Notification
+    [Arguments]    ${element}    ${status}=""
+    ${json}=	Get File	schemas/${element}.schema.json
+    Configure Notification Forward    ${element}    ${callback_endpoint}    ${callback_endpoint_fwd}
+    Configure Notification Status Handler    ${callback_endpoint_fwd}    ${status}
+    Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
+    Clear Requests    ${callback_endpoint}
+    Clear Requests    ${callback_endpoint_fwd}
+    
+Configure Notification Forward
+    [Arguments]    ${element}    ${endpoint}    ${endpoint_fwd}    
+    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    Log  Creating mock HTTP forward to handle ${element}
+    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{notification_fwd}=  Create Mock Http Forward	${endpoint_fwd}
+    Create Mock Expectation With Http Forward  ${notification_tmp}  ${notification_fwd}
+    
+Configure Notification Status Handler
+    [Arguments]    ${endpoint}    ${status}=""
+    Run Keyword If   ${status}!=""  set to dictionary    ${json["notificationStatus"]}    dp=${status}    
+    ${BODY}=    evaluate    json.dumps(${json})    json
+    Log  Creating mock request and response to handle ${element}
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}    
+        
+Check resource operationState is
+    [Arguments]    ${state} 
+    String    ${response[0]['body']['operationState']}   ${state}
     
 Check resource instantiated
     Set Headers    {"Accept":"${ACCEPT}"}  
