@@ -5,12 +5,12 @@ Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
 Suite Setup       Initialize System
 Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Instantiate Flow of NS lifecycle management operations
+    Check resource existance
     Check resource not_instantiated
     Do POST Instatiate nsInstance
     Check HTTP Response Status Code Is    202

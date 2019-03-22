@@ -9,12 +9,12 @@ Library    MockServerLibrary
 
 *** Keywords ***
 Initialize System
-    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${callback_port}  alias=mockInstance
+    Start Process  java  -jar  ../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar  -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
-    Create Mock Session  ${callback_uri}:${callback_port}
+    Create Mock Session  ${callback_uri}:${callback_port} 
     
 Check Operation Occurrence Id
-    ${occid}=    Get Value From Json    ${response[0]['headers']['Location']} 
+    ${occid}=    Get Value From Json    ${response[0]['headers']['Location']}  ${response}
     Set Global Variable    @{nsLcmOpOccId}    ${occid}
     Should Not Be Empty    ${nsLcmOpOccId}
     
