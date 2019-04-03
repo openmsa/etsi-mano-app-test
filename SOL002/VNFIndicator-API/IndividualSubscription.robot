@@ -63,7 +63,7 @@ PUT Individual VNF Indicator Subscription - Method not implemented
     ...    Test title: PUT individual VNF indicator subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify an individual VNF performance indicator subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: section 8.4.5.3.3 - SOL002 v2.4.1
+    ...    Reference: section 8.4.6.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
@@ -76,7 +76,7 @@ PATCH Individual VNF Indicator Subscription - Method not implemented
     ...    Test title: PUT individual VNF indicator subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update an individual VNF performance indicator subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: section 8.4.5.3.4 - SOL002 v2.4.1
+    ...    Reference: section 8.4.6.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
@@ -89,7 +89,7 @@ POST Individual VNF Indicator Subscription - Method not implemented
     ...    Test title: PUT individual VNF indicator subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify an individual VNF performance indicator subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: section 8.4.5.3.1 - SOL002 v2.4.1
+    ...    Reference: section 8.4.6.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: The individual VNF indicator subscription is not created by the operation
