@@ -18,7 +18,7 @@ GET individual VNF Performance Job
     GET individual VNF Performance Job
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   PmJob
-    Check HTTP Response Body Pm Job Identifier
+    Check HTTP Response Body Pm Job Identifier matches the requested Pm Job
 
 GET individual VNF Performance Job with invalid resource identifier
     [Documentation]    Test ID: 6.3.3.2.2
@@ -90,7 +90,7 @@ PATCH Individual VNF Performance Job - Method not implemented
     ...    Test title: PATCH Individual VNF Performance Job - method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing new VNF Performance Monitoring Job
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
-    ...    Reference: section 6.4.3.3.5 - SOL002 v2.4.1
+    ...    Reference: section 6.4.3.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF Performance Job is not modified by the operation
@@ -181,7 +181,7 @@ Check Postcondition VNF Pm Job is Deleted
     GET individual VNF Performance Job
     Check HTTP Response Status Code Is    404
 
-Check HTTP Response Body Pm Job Identifier
+Check HTTP Response Body Pm Job Identifier matches the requested Pm Job
     Log    Going to validate Pm Job info retrieved
     Should Be Equal    ${response[0]['body']['id']}    ${pmJobId} 
     Log    Pm Job identifier as expected

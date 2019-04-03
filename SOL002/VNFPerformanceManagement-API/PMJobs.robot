@@ -40,7 +40,7 @@ GET all VNF Performance Monitoring Jobs with all_fields attribute selector
     ...    Test title: GET all VNF Performance Monitoring Jobs with all_fields attribute selector
     ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring jobs all_fields attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued all_fileds selector
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: section 6.4.2.3.2 - SOL002 v2.4.1
+    ...    Reference: section 4.3.3.2.1, 6.4.2.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -54,7 +54,7 @@ GET all VNF Performance Monitoring Jobs with exclude_default attribute selector
     ...    Test title: GET all VNF Performance Monitoring Jobs with exclude_default attribute selector
     ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring jobs exclude_default attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued exclude_default selector
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: section 6.4.2.3.2 - SOL002 v2.4.1
+    ...    Reference: section 4.3.3.2.1, 6.4.2.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -68,7 +68,7 @@ GET all VNF Performance Monitoring Jobs with fields attribute selector
     ...    Test title: GET all VNF Performance Monitoring Jobs with fields attribute selector
     ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring jobs fields attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued fields selector
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: section 6.4.2.3.2 - SOL002 v2.4.1
+    ...    Reference: section 4.3.3.2.1, 6.4.2.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM supports the use of exclude_fields attribute selector
     ...    Post-Conditions: none
@@ -82,7 +82,7 @@ GET all VNF Performance Monitoring Jobs with exclude_fields attribute selector
     ...    Test title: GET all VNF Performance Monitoring Jobs with exclude_fields attribute selector
     ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring jobs exclude_fields attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued exclude_fields selector
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: section 6.4.2.3.2 - SOL002 v2.4.1
+    ...    Reference: section 4.3.3.2.1, 6.4.2.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM supports the use of exclude_fields attribute selector
     ...    Post-Conditions: none
@@ -106,7 +106,7 @@ GET VNF Performance Monitoring Jobs with invalid attribute-based filter
 
 GET VNF Performance Monitoring Jobs with invalid resource endpoint
     [Documentation]    Test ID: 6.3.3.1.8
-    ...    Test title: GET VNF Performance Monitoring Jobs with invalid attribute-based filter
+    ...    Test title: GET VNF Performance Monitoring Jobs with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of VNF performance monitoring jobs fails when using invalid resource endpoint, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
     ...    Reference: section 6.4.2.3.2 - SOL002 v2.4.1
@@ -119,8 +119,8 @@ GET VNF Performance Monitoring Jobs with invalid resource endpoint
 
 Create new VNF Performance Monitoring Job
     [Documentation]    Test ID: 6.3.3.1.9
-    ...    Test title: GET VNF Performance Monitoring Jobs with invalid attribute-based filter
-    ...    Test objective: The objective is to test that the retrieval of VNF performance monitoring jobs fails when using invalid resource endpoint, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Test title:  Create a new VNF Performance Monitoring Job
+    ...    Test objective: The objective is to test the creation of a new VNF performance monitoring job and perform the JSON schema validation of the returned job data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
     ...    Reference: section 6.4.2.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
