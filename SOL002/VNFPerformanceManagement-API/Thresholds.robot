@@ -76,7 +76,7 @@ Create new Performance Threshold
     Check Postcondition Threshold Exists
 
 PUT Performance Thresholds - Method not implemented
-    [Documentation]    Test ID: 6.3.3.4.5
+    [Documentation]    Test ID: 6.3.3.4.6
     ...    Test title: PUT all VNF Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNF.
@@ -88,7 +88,7 @@ PUT Performance Thresholds - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Performance Thresholds - Method not implemented
-    [Documentation]    Test ID: 6.3.3.4.6
+    [Documentation]    Test ID: 6.3.3.4.7
     ...    Test title: PATCH all VNF Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
@@ -100,7 +100,7 @@ PATCH Performance Thresholds - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Performance Thresholds - Method not implemented
-    [Documentation]    Test ID: 6.3.3.4.7
+    [Documentation]    Test ID: 6.3.3.4.8
     ...    Test title: DELETE all VNF Performance Monitoring Thresholds - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to update VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
