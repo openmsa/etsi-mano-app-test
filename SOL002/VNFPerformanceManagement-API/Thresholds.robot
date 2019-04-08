@@ -22,7 +22,7 @@ GET All Performance Thresholds
 
 GET Performance Thresholds with attribute-based filter
     [Documentation]    Test ID: 6.3.3.4.2
-    ...    Test title: GET VNF Performance Thresholds with attribute-based filter
+    ...    Test title: GET Performance Thresholds with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds when using attribute-based filters, perform a JSON schema validation of the collected thresholds data structure, and verify that the retrieved information matches the issued attribute-based filter
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.5.3.2 - SOL002 v2.4.1
@@ -32,11 +32,11 @@ GET Performance Thresholds with attribute-based filter
     GET Performance Thresholds with attribute-based filter
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   Thresholds
-    Check HTTP Response Body Matches filter
+    Check HTTP Response Body Thresholds match the requested attribute-based filter
 
 GET Performance Thresholds with invalid attribute-based filter
     [Documentation]    Test ID: 6.3.3.4.3
-    ...    Test title: GET VNF Performance Thresholds with invalid attribute-based filter
+    ...    Test title: GET Performance Thresholds with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.5.3.2 - SOL002 v2.4.1
@@ -49,7 +49,7 @@ GET Performance Thresholds with invalid attribute-based filter
 
 GET Performance Thresholds with invalid resource endpoint
     [Documentation]    Test ID: 6.3.3.4.4
-    ...    Test title: GET VNF Performance Thresholds with invalid resource endpoint
+    ...    Test title: GET Performance Thresholds with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when using invalid resource endpoint, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.5.3.2 - SOL002 v2.4.1
@@ -62,7 +62,7 @@ GET Performance Thresholds with invalid resource endpoint
 
 Create new Performance Threshold
     [Documentation]    Test ID: 6.3.3.4.5
-    ...    Test title:  Create a new VNF Performance Threshold
+    ...    Test title:  Create new Performance Threshold
     ...    Test objective: The objective is to test the creation of a new VNF performance threshold and perform the JSON schema validation of the returned threshold data structure
     ...    Pre-conditions: A VNF instance is instantiated.
     ...    Reference: section 6.4.5.3.1 - SOL002 v2.4.1
@@ -77,7 +77,7 @@ Create new Performance Threshold
 
 PUT Performance Thresholds - Method not implemented
     [Documentation]    Test ID: 6.3.3.4.6
-    ...    Test title: PUT all VNF Performance Thresholds - Method not implemented
+    ...    Test title: PUT Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNF.
     ...    Reference: section 6.4.5.3.3 - SOL002 v2.4.1
@@ -89,7 +89,7 @@ PUT Performance Thresholds - Method not implemented
 
 PATCH Performance Thresholds - Method not implemented
     [Documentation]    Test ID: 6.3.3.4.7
-    ...    Test title: PATCH all VNF Performance Thresholds - Method not implemented
+    ...    Test title: PATCH Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.5.3.4 - SOL002 v2.4.1
@@ -101,7 +101,7 @@ PATCH Performance Thresholds - Method not implemented
 
 DELETE Performance Thresholds - Method not implemented
     [Documentation]    Test ID: 6.3.3.4.8
-    ...    Test title: DELETE all VNF Performance Monitoring Thresholds - Method not implemented
+    ...    Test title: DELETE Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to update VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.5.3.5 - SOL002 v2.4.1
@@ -194,7 +194,7 @@ Check Postcondition Threshold Exists
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    Threshold
         
-Check HTTP Response Body Matches filter
+Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
     #todo
     
