@@ -9,7 +9,7 @@ Library           OperatingSystem
 *** Test Cases ***
 GET All Performance Thresholds
     [Documentation]    Test ID: 6.3.3.4.1
-    ...    Test title: GET all VNF Performance Thresholds
+    ...    Test title: GET All Performance Thresholds
     ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds and perform a JSON schema validation of the collected thresholds data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.5.3.2 - SOL002 v2.4.1
