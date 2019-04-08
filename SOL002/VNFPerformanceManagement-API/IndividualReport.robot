@@ -21,7 +21,7 @@ Get Individual Performance Report
 
 Get Individual Performance Report with invalid resource endpoint
         [Documentation]    Test ID: 6.3.3.3.2
-    ...    Test title: Get Individual Performance Report
+    ...    Test title: Get Individual Performance Report with invalid resource endpoint
     ...    Test objective: The objective is to test the retrieval of an individual VNF performance report associated to a monitoring job and perform a JSON schema validation of the collected report data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
     ...    Reference: section 6.4.4.3.2 - SOL002 v2.4.1
