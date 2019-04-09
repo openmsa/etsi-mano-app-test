@@ -4,4 +4,4 @@ ${indicatorId}    34e70855-a9d3-4fef-aece-76a3cd266ec8
 ${erroneousIndicatorId}    erroneousIndicatorId
 ${POS_FILTER}     callbackUri=http://127.0.0.1/subscribe
 ${NEG_FILTER}     callback=http://127.0.0.1/subscribe
-@{response}=    httpresponse
+${response}=    httpresponse
