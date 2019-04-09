@@ -141,7 +141,7 @@ Send Put request for individual VNF Performance Threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${origOutput}=    Output    response
-    Set Suite Variable    @{origResponse}    ${origOutput}
+    Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
     Set Suite Variable    @{response}    ${output}
@@ -152,7 +152,7 @@ Send Patch request for individual VNF Performance Threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${origOutput}=    Output    response
-    Set Suite Variable    @{origResponse}    ${origOutput}
+    Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
     Set Suite Variable    @{response}    ${output}
@@ -161,9 +161,9 @@ Check Postcondition VNF Performance Threshold is Unmodified (Implicit)
     Log    Check postconidtion threshold not modified
     GET individual VNF Performance Threshold
     Log    Check Response matches original VNF Threshold
-    ${threshold}=    evaluate    json.loads('''${response[0]['body']}''')    json
-    Should Be Equal    ${origResponse[0]['body']['id']}    ${threshold.id}
-    Should Be Equal    ${origResponse[0]['body']['criteria']}    ${threshold.criteria}
+    ${threshold}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origresponse['body']['id']}    ${threshold.id}
+    Should Be Equal    ${origresponse['body']['criteria']}    ${threshold.criteria}
     
 Check Postcondition VNF Performance Threshold is not Created
     Log    Trying to get a new Threshold
@@ -181,25 +181,25 @@ Check Postcondition VNF Performance Threshold is Deleted
     
 Check HTTP Response Body Threshold Identifier matches the requested Threshold
     Log    Trying to check response ID
-    Should Be Equal    ${response[0]['body']['id']}    ${thresholdId} 
+    Should Be Equal    ${response['body']['id']}    ${thresholdId} 
     Log    Pm Job identifier as expected
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status} 
+    Should Be Equal    ${response['status']}    ${status} 
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    Should Contain    ${response['headers']['Content-Type']}    application/json
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
 

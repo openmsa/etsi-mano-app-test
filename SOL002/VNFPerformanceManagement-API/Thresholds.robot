@@ -119,7 +119,7 @@ GET all Performance Thresholds
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET Performance Thresholds with attribute-based filter
     Log    Trying to get thresholds present in the VNFM with filter
@@ -127,7 +127,7 @@ GET Performance Thresholds with attribute-based filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET Performance Thresholds with invalid attribute-based filter
     Log    Trying to get thresholds present in the VNFM with invalid filter
@@ -135,7 +135,7 @@ GET Performance Thresholds with invalid attribute-based filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_KO}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 GET VNF Performance Thresholds with invalid resource endpoint
     Log    Trying to get thresholds present in the VNFM with invalid resource endpoint
@@ -143,7 +143,7 @@ GET VNF Performance Thresholds with invalid resource endpoint
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/threshold
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Post Request Create new Performance Threshold
     Log    Creating a new THreshold
@@ -153,7 +153,7 @@ Send Post Request Create new Performance Threshold
     ${request}=    Get File    jsons/CreateThresholdRequest.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds    ${request}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send PUT Request for all Performance Thresholds
     Log    PUT THresholds
@@ -162,7 +162,7 @@ Send PUT Request for all Performance Thresholds
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send PATCH Request for all Performance Thresholds
     Log    PUT THresholds
@@ -171,14 +171,14 @@ Send PATCH Request for all Performance Thresholds
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send DELETE Request for all Performance Thresholds
     Log    DELETE THresholds
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check Postcondition Thresholds Exist
     Log    Checking that Thresholds still exists
@@ -188,9 +188,9 @@ Check Postcondition Threshold Exists
     Log    Checking that Threshold exists
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${response[0]['body']['id']}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${response['body']['id']}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    Threshold
         
@@ -201,19 +201,19 @@ Check HTTP Response Body Thresholds match the requested attribute-based filter
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status} 
+    Should Be Equal    ${response['status']}    ${status} 
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    Should Contain    ${response['headers']['Content-Type']}    application/json
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
 

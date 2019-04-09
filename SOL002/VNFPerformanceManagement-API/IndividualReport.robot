@@ -91,7 +91,7 @@ Get Individual Performance Report
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Get Individual Performance Report with invalid resource endpoint
     Log    Trying to get a performance report with invalid resource endpoint
@@ -99,41 +99,41 @@ Get Individual Performance Report with invalid resource endpoint
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${erroneousReportId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Post request for Individual Performance Report
     Log    Trying to create new performance report
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${newReportId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for Individual Performance Report
     Log    Trying to update performance report
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${origOutput}=    Output    response
-    Set Suite Variable    @{origResponse}    ${origOutput}
+    Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Patch request for Individual Performance Report
     Log    Trying to update performance report
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${origOutput}=    Output    response
-    Set Suite Variable    @{origResponse}    ${origOutput}
+    Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete request for Individual Performance Report
     Log    Trying to delete performance report   
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check Postcondition VNF Individual Performance Report Exists
     Log    Checking that report still exists
@@ -145,31 +145,31 @@ Check Postcondition VNF Individual Performance Report is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${newReportId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Check Postcondition VNF Individual Performance Report is Unmodified (Implicit)
     Log    Check Postcondition VNF PM job is not modified
     Get Individual Performance Report
     Log    Check Response matches original VNF report
-    ${report}=    evaluate    json.loads('''${response[0]['body']}''')    json
-    Should Be Equal    ${origResponse[0]['body']['entries'][0]['objectInstanceId']}    ${report['entries'][0]['objectInstanceId']}
+    ${report}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origResponse['body']['entries'][0]['objectInstanceId']}    ${report['entries'][0]['objectInstanceId']}
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status} 
+    Should Be Equal    ${response['status']}    ${status} 
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    Should Contain    ${response['headers']['Content-Type']}    application/json
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 

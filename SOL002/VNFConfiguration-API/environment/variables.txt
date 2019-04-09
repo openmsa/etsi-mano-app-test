@@ -2,7 +2,7 @@
 
 ${Etag}=    an etag
 ${Etag_modified}=    12345
-@{response}=    httpresponse
+${response}=    httpresponse
 
 ${EM-VNF_HOST}      localhost    # Hostname of the NFVO
 ${EM-VNF_PORT}      8081    # Listening port of the NFVO

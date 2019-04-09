@@ -105,7 +105,7 @@ GET individual VNF Performance Job
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET individual VNF Performance Job with invalid resource identifier  
     Log    Trying to perform a negative get, using erroneous PM Job identifier
@@ -113,7 +113,7 @@ GET individual VNF Performance Job with invalid resource identifier
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${erroneousPmJobId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual VNF Performance Job
     Log    Trying to delete an existing PM Job
@@ -121,7 +121,7 @@ Send Delete request for individual VNF Performance Job
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Delete request for individual VNF Performance Job with invalid resource identifier
     Log    Trying to perform a negative delete, using erroneous PM Job identifier
@@ -129,7 +129,7 @@ Send Delete request for individual VNF Performance Job with invalid resource ide
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${erroneousPmJobId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual VNF Performance Job    
     Log    Trying to perform a POST (method should not be implemented)
@@ -137,7 +137,7 @@ Send Post request for individual VNF Performance Job
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${newPmJobId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Put request for individual VNF Performance Job    
     Log    Trying to perform a POST (method should not be implemented)
@@ -145,10 +145,10 @@ Send Put request for individual VNF Performance Job
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${origOutput}=    Output    response
-    Set Suite Variable    @{origResponse}    ${origOutput}
+    Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual VNF Performance Job    
     Log    Trying to perform a PATCH (method should not be implemented)
@@ -156,7 +156,7 @@ Send Patch request for individual VNF Performance Job
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check Postcondition VNF Performance Job is not Created
     Log    Trying to get a new Pm Job
@@ -164,17 +164,17 @@ Check Postcondition VNF Performance Job is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${newPmJobId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Check Postcondition VNF Performance Job is Unmodified (Implicit)
     Log    Check Postcondition VNF PM job is not modified
     GET individual VNF Performance Job
     Log    Check Response matches original VNF Pm Job
-    ${pmJob}=    evaluate    json.loads('''${response[0]['body']}''')    json
-    Should Be Equal    ${origResponse[0]['body']['id']}    ${pmJob.id}
-    Should Be Equal    ${origResponse[0]['body']['criteria']}    ${pmJob.criteria}
-    Should Be Equal    ${origResponse[0]['body']['_links']}    ${pmJob._links}
+    ${pmJob}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origresponse['body']['id']}    ${pmJob.id}
+    Should Be Equal    ${origresponse['body']['criteria']}    ${pmJob.criteria}
+    Should Be Equal    ${origresponse['body']['_links']}    ${pmJob._links}
 
 Check Postcondition VNF Pm Job is Deleted
     Log    Check Postcondition
@@ -183,24 +183,24 @@ Check Postcondition VNF Pm Job is Deleted
 
 Check HTTP Response Body Pm Job Identifier matches the requested Pm Job
     Log    Going to validate Pm Job info retrieved
-    Should Be Equal    ${response[0]['body']['id']}    ${pmJobId} 
+    Should Be Equal    ${response['body']['id']}    ${pmJobId} 
     Log    Pm Job identifier as expected
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status} 
+    Should Be Equal    ${response['status']}    ${status} 
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    Should Contain    ${response['headers']['Content-Type']}    application/json
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 

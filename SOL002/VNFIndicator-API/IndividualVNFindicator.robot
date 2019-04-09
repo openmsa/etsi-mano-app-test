@@ -89,7 +89,7 @@ Get Individual Indicator for a VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Get Individual Indicator for a VNF instance with invalid indicator identifier
     Log    Trying to perform a negative get, using wrong identifier
@@ -97,7 +97,7 @@ Get Individual Indicator for a VNF instance with invalid indicator identifier
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${erroneousIndicatorId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send POST Request for individual indicator in VNF instance
     Log    Trying to perform a POST (method should not be implemented)
@@ -105,7 +105,7 @@ Send POST Request for individual indicator in VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${notAllowedIndicatorId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send PUT Request for individual indicator in VNF instance
     Log    Trying to perform a PUT. This method should not be implemented
@@ -113,7 +113,7 @@ Send PUT Request for individual indicator in VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send PATCH Request for individual indicator in VNF instance
     Log    Trying to perform a PATCH. This method should not be implemented
@@ -121,7 +121,7 @@ Send PATCH Request for individual indicator in VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output} 
+    Set Suite Variable    ${response}    ${output} 
      
 Send DELETE Request for individual indicator in VNF instance
     Log    Trying to perform a DELETE. This method should not be implemented
@@ -129,37 +129,37 @@ Send DELETE Request for individual indicator in VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output} 
+    Set Suite Variable    ${response}    ${output} 
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status}
+    Should Be Equal    ${response['status']}    ${status}
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Log    ${response[0]['headers']}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Log    ${response['headers']}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    Should Contain    ${response['headers']['Content-Type']}    application/json
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
 Check HTTP Response Body Includes Requested Indicator ID
     Log    Check Response includes propoer VNF instance and Indicator identifiers
-    Should Be Equal    ${response[0]['body']['id']}    ${indicatorId}
+    Should Be Equal    ${response['body']['id']}    ${indicatorId}
 
 Check HTTP Response Body Includes Requested VNF Instance ID
     Log    Check Response includes propoer VNF instance and Indicator identifiers
-    Should Be Equal    ${response[0]['body']['vnfInstanceId']}    ${vnfInstanceId}
+    Should Be Equal    ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
 
 Check Postcondition Indicator for VNF instance Exist
     Log    Check Response includes VNF Indicator
     Get Individual Indicator for a VNF instance
-    Should Be Equal    ${response[0]['body']['vnfInstanceId']}    ${vnfInstanceId}
-    Should Be Equal    ${response[0]['body']['id']}    ${indicatorId}
+    Should Be Equal    ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
+    Should Be Equal    ${response['body']['id']}    ${indicatorId}

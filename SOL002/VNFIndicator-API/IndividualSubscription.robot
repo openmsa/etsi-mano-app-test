@@ -104,7 +104,7 @@ Get Individual VNF Indicator Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET Individual VNF Indicator Subscription with invalid resource identifier
     Log    Trying to perform a request on a subscriptionID which doesn't exist
@@ -112,7 +112,7 @@ GET Individual VNF Indicator Subscription with invalid resource identifier
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete Request for Individual VNF Indicator Subscription
     Log    Trying to perform a DELETE on a subscriptionId
@@ -120,7 +120,7 @@ Send Delete Request for Individual VNF Indicator Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete Request for Individual VNF Indicator Subscription with invalid resource identifier
     Log    Trying to perform a DELETE on a subscriptionId which doesn't exist
@@ -128,14 +128,14 @@ Send Delete Request for Individual VNF Indicator Subscription with invalid resou
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Post Request for Individual VNF Indicator Subscription
     Log    Trying to create a new subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}   
+    Set Suite Variable    ${response}    ${output}   
 
 Send Put Request for Individual VNF Indicator Subscription
     Log    Trying to perform a PUT. This method should not be implemented
@@ -143,38 +143,38 @@ Send Put Request for Individual VNF Indicator Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
-    Set Suite Variable    @{origResponse}    ${origOutput}
+    Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}   
+    Set Suite Variable    ${response}    ${output}   
 
 Send Patch Request for Individual VNF Indicator Subscription
     Log    Trying to create a new subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
-    Set Suite Variable    @{origResponse}    ${origOutput}
+    Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status}
+    Should Be Equal    ${response['status']}    ${status}
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Log    ${response[0]['headers']}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Log    ${response['headers']}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    Should Contain    ${response['headers']['Content-Type']}    application/json
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
 Check Postcondition Individual VNF Indicator Subscription is Deleted
@@ -186,8 +186,8 @@ Check Postcondition VNF individual subscription Unmodified (Implicit)
     Log    Check Postcondition subscription is not modified
     GET Individual VNF Indicator Subscription
     Log    Check Response matches original subscription
-    ${subscription}=    evaluate    json.loads('''${response[0]['body']}''')    json
-    Should Be Equal    ${origResponse[0]['body']['callbackUri']}    ${subscription.callbackUri}
+    ${subscription}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origResponse['body']['callbackUri']}    ${subscription.callbackUri}
     
 Check Postcondition VNF individual subscription is not created
     Log    Check Postcondition subscription is not created
