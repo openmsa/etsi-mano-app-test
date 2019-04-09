@@ -112,7 +112,7 @@ Get VNF configuration
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/configuration
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send VNF configuration
     log    Trying to perform a PATCH. This method modifies the configuration    
@@ -121,27 +121,27 @@ Send VNF configuration
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/vnfConfigModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}
-    Set Suite Variable    &{etag}    ${response[0]['headers']['ETag']}
+    Set Suite Variable    &{etag}    ${response['headers']['ETag']}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status}
+    Should Be Equal    ${response['status']}    ${status}
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Log    ${response[0]['headers']}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Log    ${response['headers']}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    Should Contain    ${response['headers']['Content-Type']}    application/json
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
       
 Check Postcondition VNF Configuration Unmodified (Implicit)
@@ -157,7 +157,7 @@ Check Postcondition VNF Is Configured
     Get VNF configuration
     ${input_file}=    Get File    jsons/vnfConfigModifications.json
     ${input}=    evaluate    json.loads('''${input_file}''')    json
-    Should Be Equal  ${response[0]['body']}    ${input} 
+    Should Be Equal  ${response['body']}    ${input} 
 
 Send Duplicated VNF configuration
     Depends On Test    Send VNF configuration    # If the previous test scceeded, it means that Etag has been modified
@@ -169,7 +169,7 @@ Send Duplicated VNF configuration
     ${body}=    Get File    jsons/vnfConfigModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send POST Request for VNF Configuration
     log    Trying to perform a POST. This method should not be implemented
@@ -177,7 +177,7 @@ Send POST Request for VNF Configuration
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/configuration
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send PUT Request for VNF Configuration
     log    Trying to perform a POST. This method should not be implemented
@@ -185,7 +185,7 @@ Send PUT Request for VNF Configuration
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/configuration
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send DELETE Request for VNF Configuration
     log    Trying to perform a POST. This method should not be implemented
@@ -193,4 +193,4 @@ Send DELETE Request for VNF Configuration
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/configuration
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}

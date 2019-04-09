@@ -3,4 +3,4 @@ ${vnfInstanceId}    80b0deba-c398-445b-bef0-ac0fe733e3d0
 ${erroneousVnfInstanceId}    erroneousVnfInstanceId
 ${POS_FIELDS}     name=vnfIndicator
 ${NEG_FIELDS}     wrongName=any_value
-@{response}=    httpresponse
+${response}=    httpresponse

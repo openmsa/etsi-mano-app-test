@@ -143,7 +143,7 @@ Get all VNF indicators
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     ${body}=    evaluate    json.loads('''${response.body}''')    json
     Set Suite Variable    @{vnfIndicators}    ${body}
     
@@ -154,7 +154,7 @@ Get VNF indicators with filter
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/indicators?${POS_FIELDS}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Get VNF indicators with invalid filter
     Log    The GET method queries multiple VNF indicators using invalid Attribute-based filtering parameters
@@ -163,7 +163,7 @@ Get VNF indicators with invalid filter
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/indicators?${NEG_FIELDS}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Get all VNF indicators with invalid authorization token
     Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as EM/VNF is not supporting authentication
@@ -173,7 +173,7 @@ Get all VNF indicators with invalid authorization token
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Get all VNF indicators without authorization token
     Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as EM/VNF is not supporting authentication
@@ -182,7 +182,7 @@ Get all VNF indicators without authorization token
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Get all VNF indicators with invalid resource endpoint
     Log    The GET method queries multiple VNF indicators omitting token
@@ -191,7 +191,7 @@ Get all VNF indicators with invalid resource endpoint
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send POST Request for all VNF indicators
     log    Trying to perform a POST. This method should not be implemented
@@ -199,7 +199,7 @@ Send POST Request for all VNF indicators
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send PUT Request for all VNF indicators
     log    Trying to perform a PUT. This method should not be implemented
@@ -207,7 +207,7 @@ Send PUT Request for all VNF indicators
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send PATCH Request for all VNF indicators
     log    Trying to perform a PATCH. This method should not be implemented
@@ -215,7 +215,7 @@ Send PATCH Request for all VNF indicators
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send DELETE Request for all VNF indicators
     log    Trying to perform a DELETE. This method should not be implemented
@@ -223,27 +223,27 @@ Send DELETE Request for all VNF indicators
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status} 
+    Should Be Equal    ${response['status']}    ${status} 
     Log    Status code validated
     
 Check HTTP Response Status Code Is 40x  
-    Should Contain Any    ${response[0]['status']}    401    403
+    Should Contain Any    ${response['status']}    401    403
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Should Contain    ${response['headers']['Content-Type']}    application/json
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
 Check Postcondition VNF Indicators Exist

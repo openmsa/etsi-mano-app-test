@@ -1,3 +1,4 @@
 *** Variables ***
 ${subscriptionId}    17563e75-0e14-4bd7-94b4-6bbb869c79aa
 ${erroneousSubscriptionId}    erroneousSubscriptionId
+${response}=    httpresponse

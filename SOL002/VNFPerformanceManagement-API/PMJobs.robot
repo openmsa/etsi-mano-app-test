@@ -175,7 +175,7 @@ GET all VNF Performance Monitoring Jobs
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET VNF Performance Monitoring Jobs with attribute-based filter
     Log    Trying to get all PM Jobs present in the VNFM, using filter params
@@ -183,7 +183,7 @@ GET VNF Performance Monitoring Jobs with attribute-based filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?${POS_FILTER}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET VNF Performance Monitoring Jobs with all_fields attribute selector
     Log    Trying to get all PM Jobs present in the VNFM, using 'all_fields' filter
@@ -191,7 +191,7 @@ GET VNF Performance Monitoring Jobs with all_fields attribute selector
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?all_fields
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET VNF Performance Monitoring Jobs with exclude_default attribute selector
     Log    Trying to get all VNF Packages present in the VNFM, using filter params
@@ -199,7 +199,7 @@ GET VNF Performance Monitoring Jobs with exclude_default attribute selector
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?exclude_default
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET VNF Performance Monitoring Jobs with fields attribute selector
     Log    Trying to get all VNF Packages present in the VNFM, using filter params
@@ -208,7 +208,7 @@ GET VNF Performance Monitoring Jobs with fields attribute selector
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?fields=${fields}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET VNF Performance Monitoring Jobs with exclude_fields attribute selector
     Log    Trying to get all VNF Packages present in the VNFM, using filter params
@@ -217,7 +217,7 @@ GET VNF Performance Monitoring Jobs with exclude_fields attribute selector
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?fields=${fields}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET VNF Performance Monitoring Jobs with invalid attribute-based filter
     Log    Trying to get all PM Jobs present in the VNFM, using an erroneous filter param
@@ -225,7 +225,7 @@ GET VNF Performance Monitoring Jobs with invalid attribute-based filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?${NEG_FILTER}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET VNF Performance Monitoring Jobs with invalid resource endpoint    
     Log    Trying to perform a GET on a erroneous URI
@@ -233,7 +233,7 @@ GET VNF Performance Monitoring Jobs with invalid resource endpoint
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_job    # wrong URI /pm_job instead of /pm_jobs
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Post Request Create new VNF Performance Monitoring Job
     Log    Creating a new PM Job
@@ -243,7 +243,7 @@ Send Post Request Create new VNF Performance Monitoring Job
     ${body}=    Get File    jsons/CreatePmJobRequest.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs    ${body}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send PUT Request for all VNF Performance Monitoring Jobs 
     Log    Trying to perform a PUT. This method should not be implemented
@@ -251,7 +251,7 @@ Send PUT Request for all VNF Performance Monitoring Jobs
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send PATCH Request for all VNF Performance Monitoring Jobs 
     Log    Trying to perform a PUT. This method should not be implemented
@@ -259,7 +259,7 @@ Send PATCH Request for all VNF Performance Monitoring Jobs
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send DELETE Request for all VNF Performance Monitoring Jobs 
     Log    Trying to perform a PUT. This method should not be implemented
@@ -267,7 +267,7 @@ Send DELETE Request for all VNF Performance Monitoring Jobs
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check Postcondition VNF Performance Monitoring Jobs Exist
     Log    Checking that Pm Job still exists
@@ -277,48 +277,48 @@ Check Postcondition PmJob Exists
     Log    Checking that Pm Job exists
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${response[0]['body']['id']}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${response['body']['id']}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    PmJob
     
 Check HTTP Response Body Matches exclude_fields selector
     Log    Checking that reports element is missing
-    ${reports}=    Get Value From Json    ${response[0]['body']}    $..reports
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
     Should Be Empty    ${reports}
     Log    Checking that reports element is missing
-    ${criteria}=    Get Value From Json    ${response[0]['body']}    $..criteria
+    ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
     Should Be Empty    ${criteria}
     Log    Reports element is empty as expected
 
 Check HTTP Response Body Matches fields selector
     Log    Trying to validate criteria schema
-    ${criteria}=    Get Value From Json    ${response[0]['body']}    $..criteria
+    ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
     Validate Json    criteria.schema.json    ${criteria[0]}
     Log    Validation for criteria schema OK
     Log    Trying to validate criteria schema
-    ${reports}=    Get Value From Json    ${response[0]['body']}    $..reports
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
     Validate Json    reports.schema.json    ${reports[0]}
     Log    Validation for reports schema OK
     
 Check HTTP Response Body Matches exclude_default selector
     Log    Checking that reports element is missing
-    ${reports}=    Get Value From Json    ${response[0]['body']}    $..reports
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
     Should Be Empty    ${reports}
     Log    Reports element is empty as expected
 
 Check HTTP Response Body Matches all_fields selector
     Log    Trying to validate criteria schema
-    ${criteria}=    Get Value From Json    ${response[0]['body']}    $..criteria
+    ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
     Validate Json    criteria.schema.json    ${criteria[0]}
     Log    Validation for criteria schema OK
     Log    Trying to validate criteria schema
-    ${reports}=    Get Value From Json    ${response[0]['body']}    $..reports
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
     Validate Json    reports.schema.json    ${reports[0]}
     Log    Validation for reports schema OK
     Log    Validating _links schema
-    ${links}=    Get Value From Json    ${response[0]['body']}    $.._links
+    ${links}=    Get Value From Json    ${response['body']}    $.._links
     Validate Json    links.schema.json    ${links[0]}
     Log    Validation for _links schema OK
     
@@ -328,29 +328,29 @@ Check HTTP Response Body Matches filter
 
 Check HTTP Response Body Does Not Contain reports
     Log    Checking that field element is missing
-    ${reports}=    Get Value From Json    ${response[0]['body']}    $..reports
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
     Should Be Empty    ${reports}
     Log    Reports element is empty as expected
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response[0]['status']}    ${status} 
+    Should Be Equal    ${response['status']}    ${status} 
     Log    Status code validated
     
 Check HTTP Response Status Code Is 40x  
-    Should Contain Any    ${response[0]['status']}    401    403
+    Should Contain Any    ${response['status']}    401    403
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response[0]['headers']['Content-Type']}    application/json
+    Should Contain    ${response['headers']['Content-Type']}    application/json
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
