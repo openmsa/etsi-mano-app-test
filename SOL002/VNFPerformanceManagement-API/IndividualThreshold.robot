@@ -41,14 +41,14 @@ DELETE Individual Threshold
     ...    Reference: section 6.4.6.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: The VNF Performance Threshold is no more available in the VNFM    
+    ...    Post-Conditions: The VNF Performance Threshold is not available anymore in the VNFM    
     Send Delete request for individual VNF Performance Threshold
     Check HTTP Response Status Code Is    204
     Check Postcondition VNF Performance Threshold is Deleted
 
-DELETE Individual Threshold with invalid resource indentifier
+DELETE Individual Threshold with invalid resource identifier
     [Documentation]    Test ID: 6.3.3.5.4
-    ...    Test title: DELETE Individual Threshold with invalid resource indentifier
+    ...    Test title: DELETE Individual Threshold with invalid resource identifier
     ...    Test objective: The objective is to test the deletion of an individual VNF performance threshold
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.6.3.5 - SOL002 v2.4.1
@@ -75,7 +75,7 @@ PUT Individual Threshold - Method not implemented
     [Documentation]    Test ID: 6.3.3.5.6
     ...    Test title: PUT Individual Threshold - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF Performance threshold
-    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance threhsolds are set in the VNFM.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.6.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -88,7 +88,7 @@ PATCH Individual Threshold - Method not implemented
     [Documentation]    Test ID: 6.3.3.5.7
     ...    Test title: PATCH Individual Threshold - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF Performance threshold
-    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance threhsolds are set in the VNFM.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
     ...    Reference: section 6.4.6.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none

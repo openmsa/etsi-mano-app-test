@@ -22,7 +22,7 @@ Get Individual Performance Report
 Get Individual Performance Report with invalid resource endpoint
         [Documentation]    Test ID: 6.3.3.3.2
     ...    Test title: Get Individual Performance Report with invalid resource endpoint
-    ...    Test objective: The objective is to test the retrieval of an individual VNF performance report associated to a monitoring job and perform a JSON schema validation of the collected report data structure
+    ...    Test objective:  The objective is to test that the retrieval of an individual VNF performance report associated to a monitoring job fails when using an invalid resource endpoint 
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
     ...    Reference: section 6.4.4.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -30,7 +30,6 @@ Get Individual Performance Report with invalid resource endpoint
     ...    Post-Conditions: none
     Get Individual Performance Report with invalid resource endpoint
     Check HTTP Response Status Code Is    404
-    Check HTTP Response Body Json Schema Is   ProblemDetails
 
 POST Individual Performance Report - Method not implemented
     [Documentation]    Test ID: 6.3.3.3.3
@@ -49,7 +48,7 @@ PUT Individual Performance Report - Method not implemented
     [Documentation]    Test ID: 6.3.3.3.4
     ...    Test title: PUT Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF performance report within a monitoring job
-    ...    Pre-conditions: A VNF instance is instantiated.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
     ...    Reference: section 6.4.4.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -62,7 +61,7 @@ PATCH Individual Performance Report - Method not implemented
     [Documentation]    Test ID: 6.3.3.3.5
     ...    Test title: PATCH Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF performance report within a monitoring job
-    ...    Pre-conditions: A VNF instance is instantiated.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
     ...    Reference: section 6.4.4.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -74,8 +73,8 @@ PATCH Individual Performance Report - Method not implemented
 DELETE Individual Performance Report - Method not implemented
     [Documentation]    Test ID: 6.3.3.3.6
     ...    Test title: DELETE Individual Performance Report - Method not implemented
-    ...    Test objective: The objective is to test that DELET method is not allowed to delete an existing VNF performance report within a monitoring job
-    ...    Pre-conditions: A VNF instance is instantiated.
+    ...    Test objective: The objective is to test that DELETE method is not allowed to delete an existing VNF performance report within a monitoring job
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
     ...    Reference: section 6.4.4.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none

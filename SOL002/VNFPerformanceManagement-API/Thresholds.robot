@@ -44,8 +44,7 @@ GET Performance Thresholds with invalid attribute-based filter
     ...    Applicability: none
     ...    Post-Conditions: none
     GET Performance Thresholds with invalid attribute-based filter
-    Check HTTP Response Status Code Is    400
-    Check HTTP Response Body Json Schema Is   ProblemDetails
+    Check HTTP Response Status Code Is    404
 
 GET Performance Thresholds with invalid resource endpoint
     [Documentation]    Test ID: 6.3.3.4.4
@@ -107,7 +106,7 @@ DELETE Performance Thresholds - Method not implemented
     ...    Reference: section 6.4.5.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: The VNF performance thresholds are not deleted by the failed operation
     Send DELETE Request for all Performance Thresholds
     Check HTTP Response Status Code Is    405
     Check Postcondition Thresholds Exist
