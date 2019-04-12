@@ -1,5 +1,4 @@
 *** Settings ***
-Documentation     This resource represents an individual threshold.
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
@@ -9,78 +8,196 @@ Resource          environment/individualThresholds.txt
 
 *** Test Cases ***
 GET Individual Threshold
-    [Documentation]    The client can use this method to query information about thresholds.
-    ...    This method shall follow the provisions specified in the tables 6.4.5.3.2-1 and 6.4.5.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
+    [Documentation]    Test ID: 7.3.4.5.1
+    ...    Test title: GET Individual Threshold
+    ...    Test objective: The objective is to test the retrieval of an individual VNF performance threshold and perform a JSON schema and content validation of the collected threshold data structure
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.6.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET individual VNF Performance Threshold
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   Threshold
+    Check HTTP Response Body Threshold Identifier matches the requested Threshold
+
+GET Individual Threshold with invalid resource identifier
+    [Documentation]    Test ID: 7.3.4.5.2
+    ...    Test title: GET Individual Threshold with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of an individual VNF performance threshold fails when using an invalid resource identifier
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
+    ...    Reference: section 6.4.6.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET individual VNF Performance Threshold with invalid resource identifier
+    Check HTTP Response Status Code Is    404
+
+DELETE Individual Threshold
+    [Documentation]    Test ID: 7.3.4.5.3
+    ...    Test title: DELETE Individual Threshold
+    ...    Test objective: The objective is to test the deletion of an individual VNF performance threshold
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.6.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance Threshold is not available anymore in the VNFM    
+    Send Delete request for individual VNF Performance Threshold
+    Check HTTP Response Status Code Is    204
+    Check Postcondition VNF Performance Threshold is Deleted
+
+DELETE Individual Threshold with invalid resource identifier
+    [Documentation]    Test ID: 7.3.4.5.4
+    ...    Test title: DELETE Individual Threshold with invalid resource identifier
+    ...    Test objective: The objective is to test the deletion of an individual VNF performance threshold
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.6.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none   
+    Send Delete request for individual VNF Performance Threshold with invalid resource identifier
+    Check HTTP Response Status Code Is    404
+
+POST Individual Threshold - Method not implemented
+    [Documentation]    Test ID: 7.3.4.5.5
+    ...    Test title: POST Individual Threshold - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF Performance Threshold
+    ...    Pre-conditions: A VNF instance is instantiated
+    ...    Reference: section 6.4.6.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance Threshold is not created on the VNFM
+    Send Post request for individual VNF Performance Threshold
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Performance Threshold is not Created
+
+PUT Individual Threshold - Method not implemented
+    [Documentation]    Test ID: 7.3.4.5.6
+    ...    Test title: PUT Individual Threshold - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF Performance threshold
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.6.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance Threshold is not modified by the operation
+    Send Put request for individual VNF Performance Threshold
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Performance Threshold is Unmodified (Implicit)
+
+PATCH Individual Threshold - Method not implemented
+    [Documentation]    Test ID: 7.3.4.5.7
+    ...    Test title: PATCH Individual Threshold - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF Performance threshold
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.6.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance Threshold is not modified by the operation
+    Send Patch request for individual VNF Performance Threshold
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Performance Threshold is Unmodified (Implicit)
+
+*** Keywords ***
+GET Individual VNF Performance Threshold
+    Log    Trying to get a Threhsold present in the VNFM
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Log    Trying to validate result with thresholds schema
-    Validate Json    Threshold.schema.json    ${result}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
 
-GET Individual Threshold - Negative (Not Found)
-    [Documentation]    The client can use this method to query information about thresholds.
-    ...    This method shall follow the provisions specified in the tables 6.4.5.3.2-1 and 6.4.5.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
+GET individual VNF Performance Threshold with invalid resource identifier
+    Log    Trying to get a Threhsold with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
 
-DELETE Individual Threshold
-    [Documentation]    This method allows to delete a threshold.
-    ...    This method shall follow the provisions specified in the tables 6.4.6.3.5-1, and 6.4.6.3.5-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
+Send Delete request for individual VNF Performance Threshold
+    Log    Trying to delete a Threhsold in the VNFM
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
-    Integer    response status    204
-    Log    Received 204 No Content as expected
-    ${body}=    Output    response body
-    Should Be Empty    ${body}
-    Log    Body of the response is empty
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
 
-DELETE Individual Threshold - Negative (Not Found)
-    [Documentation]    This method allows to delete a threshold.
-    ...    This method shall follow the provisions specified in the tables 6.4.6.3.5-1, and 6.4.6.3.5-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
+Send Delete request for individual VNF Performance Threshold with invalid resource identifier
+    Log    Trying to delete a Threhsold in the VNFM with invalid id
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${result}=    Output    response body
-    Log    Trying to validate result with ProblemDetails schema
-    Validate Json    ProblemDetails.schema.json    ${result}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
 
-POST Individual Threshold - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+Send Post request for individual VNF Performance Threshold
+    Log    Trying to create new threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+    POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
 
-PUT Individual Threshold - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+Send Put request for individual VNF Performance Threshold
+    Log    Trying to PUT threshold
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
 
-PATCH Individual Threshold - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+Send Patch request for individual VNF Performance Threshold
+    Log    Trying to PUT threshold
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
 
+Check Postcondition VNF Performance Threshold is Unmodified (Implicit)
+    Log    Check postconidtion threshold not modified
+    GET individual VNF Performance Threshold
+    Log    Check Response matches original VNF Threshold
+    ${threshold}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origresponse['body']['id']}    ${threshold.id}
+    Should Be Equal    ${origresponse['body']['criteria']}    ${threshold.criteria}
+    
+Check Postcondition VNF Performance Threshold is not Created
+    Log    Trying to get a new Threshold
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+    Check HTTP Response Status Code Is    404
+
+Check Postcondition VNF Performance Threshold is Deleted
+    Log    Check Postcondition Threshold is deleted
+    GET individual VNF Performance Threshold
+    Check HTTP Response Status Code Is    404
+    
+Check HTTP Response Body Threshold Identifier matches the requested Threshold
+    Log    Trying to check response ID
+    Should Be Equal    ${response['body']['id']}    ${thresholdId} 
+    Log    Pm Job identifier as expected
+    
+Check HTTP Response Status Code Is
+    [Arguments]    ${expected_status}
+    ${status}=    Convert To Integer    ${expected_status}    
+    Should Be Equal    ${response['status']}    ${status} 
+    Log    Status code validated
+
+Check HTTP Response Header Contains
+    [Arguments]    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
+    Log    Header is present
+    
+Check HTTP Response Body Json Schema Is
+    [Arguments]    ${input}
+    Should Contain    ${response['headers']['Content-Type']}    application/json
+    ${schema} =    Catenate    ${input}    .schema.json
+    Validate Json    ${schema}    ${response['body']}
+    Log    Json Schema Validation OK
