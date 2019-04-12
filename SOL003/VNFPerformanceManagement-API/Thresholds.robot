@@ -1,5 +1,4 @@
 *** Settings ***
-Documentation     This resource represents thresholds. The client can use this resource to create and query thresholds.
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
@@ -8,99 +7,212 @@ Resource          environment/thresholds.txt
 Library           OperatingSystem
 
 *** Test Cases ***
-GET Thresholds
-    [Documentation]    The client can use this method to query information about thresholds.
-    ...    This method shall follow the provisions specified in the tables 6.4.5.3.2-1 and 6.4.5.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
+GET All Performance Thresholds
+    [Documentation]    Test ID: 7.3.4.4.1
+    ...    Test title: GET All Performance Thresholds
+    ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds and perform a JSON schema validation of the collected thresholds data structure
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.5.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all Performance Thresholds
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   Thresholds
+
+GET Performance Thresholds with attribute-based filter
+    [Documentation]    Test ID: 7.3.4.4.2
+    ...    Test title: GET Performance Thresholds with attribute-based filter
+    ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds when using attribute-based filters, perform a JSON schema validation of the collected thresholds data structure, and verify that the retrieved information matches the issued attribute-based filter
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.5.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Performance Thresholds with attribute-based filter
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   Thresholds
+    Check HTTP Response Body Thresholds match the requested attribute-based filter
+
+GET Performance Thresholds with invalid attribute-based filter
+    [Documentation]    Test ID: 7.3.4.4.3
+    ...    Test title: GET Performance Thresholds with invalid attribute-based filter
+    ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.5.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Performance Thresholds with invalid attribute-based filter
+    Check HTTP Response Status Code Is    404
+
+GET Performance Thresholds with invalid resource endpoint
+    [Documentation]    Test ID: 7.3.4.4.4
+    ...    Test title: GET Performance Thresholds with invalid resource endpoint
+    ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when using invalid resource endpoint, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.5.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET VNF Performance Thresholds with invalid resource endpoint
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails
+
+Create new Performance Threshold
+    [Documentation]    Test ID: 7.3.4.4.5
+    ...    Test title:  Create new Performance Threshold
+    ...    Test objective: The objective is to test the creation of a new VNF performance threshold and perform the JSON schema validation of the returned threshold data structure
+    ...    Pre-conditions: A VNF instance is instantiated.
+    ...    Reference: section 6.4.5.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance Threshold is successfully created on the VNFM
+    Send Post Request Create new Performance Threshold
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is   Threshold
+    Check HTTP Response Header Contains    Location
+    Check Postcondition Threshold Exists
+
+PUT Performance Thresholds - Method not implemented
+    [Documentation]    Test ID: 7.3.4.4.6
+    ...    Test title: PUT Performance Thresholds - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF Performance Thresholds
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNF.
+    ...    Reference: section 6.4.5.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PUT Request for all Performance Thresholds
+    Check HTTP Response Status Code Is    405
+
+PATCH Performance Thresholds - Method not implemented
+    [Documentation]    Test ID: 7.3.4.4.7
+    ...    Test title: PATCH Performance Thresholds - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to modify VNF Performance Thresholds
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.5.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH Request for all Performance Thresholds
+    Check HTTP Response Status Code Is    405
+
+DELETE Performance Thresholds - Method not implemented
+    [Documentation]    Test ID: 7.3.4.4.8
+    ...    Test title: DELETE Performance Thresholds - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not allowed to update VNF Performance Thresholds
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: section 6.4.5.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF performance thresholds are not deleted by the failed operation
+    Send DELETE Request for all Performance Thresholds
+    Check HTTP Response Status Code Is    405
+    Check Postcondition Thresholds Exist
+
+*** Keywords ***
+GET all Performance Thresholds
+    Log    Trying to get all thresholds present in the VNFM    
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Log    Trying to validate result with thresholds schema
-    Validate Json    Thresholds.schema.json    ${result}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
 
-GET Thresholds - Filter
-    [Documentation]    The client can use this method to query information about thresholds.
-    ...    This method shall follow the provisions specified in the tables 6.4.5.3.2-1 and 6.4.5.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
+GET Performance Thresholds with attribute-based filter
+    Log    Trying to get thresholds present in the VNFM with filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Log    Trying to validate result with Threshold schema
-    Validate Json    Thresholds.schema.json    ${result}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
 
-GET Thresholds - NEGATIVE Filter
-    [Documentation]    The client can use this method to query information about thresholds.
-    ...    This method shall follow the provisions specified in the tables 6.4.5.3.2-1 and 6.4.5.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
+GET Performance Thresholds with invalid attribute-based filter
+    Log    Trying to get thresholds present in the VNFM with invalid filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_KO}
-    Integer    response status    400
-    ${result}=    Output    response body
-    Log    Trying to validate result with ProblemDetails schema
-    Validate Json    ProblemDetails.schema.json    ${result}
-
-GET Thresholds - Negative (Not Found)
-    [Documentation]    The client can use this method to query information about thresholds.
-    ...    This method shall follow the provisions specified in the tables 6.4.5.3.2-1 and 6.4.5.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET VNF Performance Thresholds with invalid resource endpoint
+    Log    Trying to get thresholds present in the VNFM with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/threshold
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${problemDetails}=    Output    response body
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
 
-POST Reports
-    [Documentation]    The POST method can be used by the client to create a threshold.
-    ...    This method shall follow the provisions specified in the tables 6.4.5.3.1-1 and 6.4.5.3.1-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+Send Post Request Create new Performance Threshold
+    Log    Creating a new THreshold
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     ${request}=    Get File    jsons/CreateThresholdRequest.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds    ${request}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    ${result}=    Output    response body
-    Log    Trying to validate result with thresholds schema
-    Validate Json    Threshold.schema.json    ${result}
-    Log    Trying to validate the Location header
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
 
-PUT Reports - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+Send PUT Request for all Performance Thresholds
+    Log    PUT THresholds
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
-
-PATCH Reports - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send PATCH Request for all Performance Thresholds
+    Log    PUT THresholds
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
 
-DELETE Reports - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+Send DELETE Request for all Performance Thresholds
+    Log    DELETE THresholds
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition Thresholds Exist
+    Log    Checking that Thresholds still exists
+    GET all Performance Thresholds
+    
+Check Postcondition Threshold Exists
+    Log    Checking that Threshold exists
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${response['body']['id']}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    Threshold
+        
+Check HTTP Response Body Thresholds match the requested attribute-based filter
+    Log    Checking that attribute-based filter is matched
+    #todo
+    
+Check HTTP Response Status Code Is
+    [Arguments]    ${expected_status}
+    ${status}=    Convert To Integer    ${expected_status}    
+    Should Be Equal    ${response['status']}    ${status} 
+    Log    Status code validated
+
+Check HTTP Response Header Contains
+    [Arguments]    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
+    Log    Header is present
+    
+Check HTTP Response Body Json Schema Is
+    [Arguments]    ${input}
+    Should Contain    ${response['headers']['Content-Type']}    application/json
+    ${schema} =    Catenate    ${input}    .schema.json
+    Validate Json    ${schema}    ${response['body']}
+    Log    Json Schema Validation OK
+
 
