@@ -32,12 +32,12 @@ Get VNF Indicators with attribute-based filter
     Get VNF indicators with filter
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   vnfIndicators
-    Check HTTP Response Body Matches Attribute-Based Filter
+    Check HTTP Response Body vnfIndicators Matches the requested attribute-based filter
 
 Get all VNF Indicators with invalid attribute-based filter
     [Documentation]    Test ID: 6.3.2.1.3
     ...    Test title: Get VNF Indicators with invalid attribute-based filter
-    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails using invalid attribute-based filters, and perform the JSON schema validation of the failed operation HTTP response. 
+    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails when using invalid attribute-based filters, and perform the JSON schema validation of the failed operation HTTP response. 
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF.
     ...    Reference: section 8.4.2.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
@@ -47,47 +47,56 @@ Get all VNF Indicators with invalid attribute-based filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is   ProblemDetails
 
-Get all VNF Indicators with invalid authorization token
+Get all VNF Indicators with malformed authorization token
     [Documentation]    Test ID: 6.3.2.1.4
-    ...    Test title: GET all VNF Indicators One or more measures of VNF performance indicators are available in the VNF.
-    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails using invalid authorization token, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Test title: GET all VNF Indicators with malformed authrization token.
+    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails when using malformed authorization token
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF.
     ...    Reference: section 4.5.3.3, 8.4.2.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators. The VNF requires the usage of access tokens for authorizing the API requests.
     ...    Post-Conditions: none
-    Get all VNF indicators with invalid authorization token
-    Check HTTP Response Status Code Is 40x
-    Check HTTP Response Body Json Schema Is   ProblemDetails
+    Get all VNF indicators with malformed authorization token
+    Check HTTP Response Status Code Is    400
 
 Get all VNF Indicators without authorization token
     [Documentation]    Test ID: 6.3.2.1.5
-    ...    Test title: GET all VNF Indicators without authorization bearers
-    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails by omitting the authorization token, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Test title: GET all VNF Indicators without authorization token
+    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails when omitting the authorization token
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF.
     ...    Reference: section 4.5.3.3, 8.4.2.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators. The VNF requires the usage of access tokens for authorizing the API requests.
     ...    Post-Conditions: none
     Get all VNF indicators without authorization token
-    Check HTTP Response Status Code Is 40x
-    Check HTTP Response Body Json Schema Is   ProblemDetails
+    Check HTTP Response Status Code Is    401
+
+GET all VNF Indicators with expired or revoked authorization token
+    [Documentation]    Test ID: 6.3.2.1.6
+    ...    Test title: GET all VNF Indicators with expired or revoked authorization token
+    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails when using expired or revoked authorization token
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF.
+    ...    Reference: section 4.5.3.3, 8.4.2.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators. The VNF requires the usage of access tokens for authorizing the API requests.
+    ...    Post-Conditions: none
+    Get all VNF indicators with expired or revoked authorization token
+    Check HTTP Response Status Code Is    401
 
 Get all VNF Indicators with invalid resource endpoint
-    [Documentation]    Test ID: 6.3.2.1.6
+    [Documentation]    Test ID: 6.3.2.1.7
     ...    Test title: GET all VNF Indicators with invalid resource endpoint
-    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails when using invalid resource endpoint, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Test objective: The objective is to test that the retrieval of VNF indicators fails when using invalid resource endpoint
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF.
     ...    Reference: section 8.4.2.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators. 
     ...    Post-Conditions: none
     Get all VNF indicators with invalid resource endpoint
     Check HTTP Response Status Code Is    404
-    Check HTTP Response Body Json Schema Is   ProblemDetails
 
 POST all VNF Indicators - Method not implemented
-    [Documentation]    Test ID: 6.3.2.1.7
+    [Documentation]    Test ID: 6.3.2.1.8
     ...    Test title: POST all VNF Indicators - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create new VNF indicators
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF
@@ -99,7 +108,7 @@ POST all VNF Indicators - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PUT all VNF Indicators - Method not implemented
-    [Documentation]    Test ID: 6.3.2.1.8
+    [Documentation]    Test ID: 6.3.2.1.9
     ...    Test title: PUT all VNF Indicators - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF indicators
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF
@@ -111,7 +120,7 @@ PUT all VNF Indicators - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH all VNF Indicators - Method not implemented
-     [Documentation]    Test ID: 6.3.2.1.9
+     [Documentation]    Test ID: 6.3.2.1.10
     ...    Test title: POST all VNF Indicators - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF indicators
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF
@@ -123,7 +132,7 @@ PATCH all VNF Indicators - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE all VNF Indicators - Method not implemented
-    [Documentation]    Test ID: 6.3.2.1.10
+    [Documentation]    Test ID: 6.3.2.1.11
     ...    Test title: POST all VNF Indicators - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete VNF indicators
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF
@@ -165,7 +174,17 @@ Get VNF indicators with invalid filter
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
-Get all VNF indicators with invalid authorization token
+Get all VNF indicators with malformed authorization token
+    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as EM/VNF is not supporting authentication
+    Log    The GET method queries multiple VNF indicators using invalid token
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Authorization": "${BAD_AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get all VNF indicators with expired or revoked authorization token
     Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as EM/VNF is not supporting authentication
     Log    The GET method queries multiple VNF indicators using invalid token
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -230,10 +249,6 @@ Check HTTP Response Status Code Is
     ${status}=    Convert To Integer    ${expected_status}    
     Should Be Equal    ${response['status']}    ${status} 
     Log    Status code validated
-    
-Check HTTP Response Status Code Is 40x  
-    Should Contain Any    ${response['status']}    401    403
-    Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
@@ -251,6 +266,6 @@ Check Postcondition VNF Indicators Exist
     Get all VNF indicators
     Check HTTP Response Status Code Is    200
     
-Check HTTP Response Body Matches Attribute-Based Filter
+Check HTTP Response Body vnfIndicators Matches the requested attribute-based filter
     Log    Check Response includes VNF Indicators according to filter
     #todo

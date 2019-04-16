@@ -4,6 +4,7 @@ ${PRODUCER_PORT}    8081
 ${PRODUCER_SCHEMA}    https
 ${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
 ${NEG_AUTHORIZATION}    Bearer negativetoken
+${BAD_AUTHORIZATION}    Bear sometoken
 ${CONTENT_TYPE_JSON}    application/json
 ${EM-VNF_HOST}    localhost
 ${EM-VNF_PORT}    8002
