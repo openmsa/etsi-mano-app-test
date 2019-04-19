@@ -1,6 +1,4 @@
 *** Settings ***
-Documentation     This resource represents subscriptions. The client can use this resource to subscribe to notifications related to VNF
-...               performance management and to query its subscriptions.
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
@@ -88,7 +86,7 @@ PUT Individual VNF Performance Subscription - Method not implemented
     Check Postcondition VNF Performance Subscription is Unmodified (Implicit)
 
 PATCH Individual VNF Performance Subscription - Method not implemented
-    [Documentation]    Test ID: 7.3.4.7.6
+    [Documentation]    Test ID: 7.3.4.7.7
     ...    Test title: PATCH Individual VNF Performance Subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF Performance subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.

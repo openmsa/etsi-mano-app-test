@@ -1,6 +1,4 @@
 *** Settings ***
-Documentation     This resource represents subscriptions. The client can use this resource to subscribe to notifications related to VNF
-...               performance management and to query its subscriptions.
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
@@ -83,6 +81,7 @@ Create new VNF Performance subscription
 
 
 Create duplicated VNF Performance subscription with VNFM not creating duplicated subscriptions
+    [Tags]    no-duplicated-subs
     [Documentation]    Test ID 7.3.4.6.6
     ...    Test title: Create new VNF Performance subscription
     ...    Test objective: The objective is to test the creation of a duplicated VNF performance subscription and check that no new subscription is created
@@ -98,6 +97,7 @@ Create duplicated VNF Performance subscription with VNFM not creating duplicated
     Check Postcondition Subscription Resource URI Returned in Location Header Is Valid
 
 Create duplicated VNF Performance subscription with VNFM creating duplicated subscriptions
+    [Tags]    duplicated-subs
     [Documentation]    Test ID 7.3.4.6.7
     ...    Test title: Create new VNF Performance subscription
     ...    Test objective: The objective is to test the creation of a duplicated VNF performance subscription and perform a JSON schema and content validation of the returned duplicated subscription data structure
