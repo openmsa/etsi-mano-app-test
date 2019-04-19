@@ -51,6 +51,7 @@ Create duplicated VNF Performance subscription with duplication handler
     Check HTTP Response Status Code Is    303
     Check HTTP Response Body Is Empty
     Check HTTP Response Header Contains    Location
+    Check Postcondition VNF Performance Subscription Is Set    Location
 
 
 Create duplicated VNF Performance subscription without duplication handler

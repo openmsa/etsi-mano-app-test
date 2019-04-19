@@ -2,147 +2,86 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/subscriptions.txt
+Resource          VNFIndicatorsKeywords.robot
 Library           OperatingSystem
 Library           JSONLibrary
-Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
+Library           MockServerLibrary
+Library           Process
+Suite Setup       Create Sessions
+Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
-GET Subscription
-    Log    Trying to get the list of subscriptions
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    VnfIndicatorSubscriptions.schema.json    ${result}
-    Log    Validated VnfIndicatorSubscription schema
+GET All VNF Indicators Subscriptions
+    Get All VNF Indicators Subscriptions
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   VnfIndicatorSubscriptions
 
-GET Subscription - Filter
-    Log    Trying to get the list of subscriptions using filters
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${POS_FILTER}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Received a 200 OK as expected
-    ${result}=    Output    response body
-    Validate Json    VnfIndicatorSubscriptions.schema.json    ${result}
-    Log    Validated VnfIndicatorSubscriptions schema
 
-GET Subscription - Negative Filter
-    Log    Trying to get the list of subscriptions using filters with wrong attribute name
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${NEG_FILTER}
-    Integer    response status    400
-    Log    Received a 400 Bad Request as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET VNF Indicators Subscriptions with attribute-based filter
+    Get VNF Indicators Subscriptions with filter
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   VnfIndicatorSubscriptions
+    Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
 
-GET Subscription - Negative (Not Found)
-    Log    Trying to perform a request on a Uri which doesn't exist
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscription
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
 
-GET Subscription - Negative (Unauthorized: Wrong Token)
-    Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    401
-    Log    Received 401 Unauthorized as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET VNF Indicators Subscriptions with invalid attribute-based filter
+    Get VNF Indicators Subscriptions with invalid filter
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails 
+    
 
-POST Subscription
-    Log    Trying to create a new subscription
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response has header Location
-    ${result}=    Output    response body
-    Validate Json    VnfIndicatorSubscription.schema.json    ${result}
-    Log    Validation of VnfIndicatorSubscription OK
+GET VNF Indicators Subscriptions with invalid resource endpoint
+    Get VNF Indicators Subscriptions with invalid resource endpoint
+    Check HTTP Response Status Code Is    404
 
-POST Subscription - DUPLICATION
-    Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${VNFM_DUPLICATION} == 0    VNFM is not permitting duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response has header Location
-    ${result}=    Output    response body
-    Validate Json    VnfIndicatorSubscription.schema.json    ${result}
-    Log    Validation of VnfIndicatorSubscription OK
 
-POST Subscription - NO DUPLICATION
-    Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${VNFM_DUPLICATION} == 1    VNFM is permitting duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    303
-    Log    Received 303 See Other as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response has header Location
+GET VNF Indicators Subscriptions with invalid authentication token
+    Get VNF Indicators Subscriptions with invalid authentication token
+	Check HTTP Response Status Code Is    401
+    Check HTTP Response Body Json Schema Is   ProblemDetails 
 
-PUT Subscription - (Method not implemented)
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
 
-PATCH Subscription - (Method not implemented)
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+Create new VNF indicator subscription
+    Send Post Request for VNF Indicator Subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    VnfIndicatorSubscription
+    Check HTTP Response Body Matches the Subscription
+    Check Postcondition VNF Indicator Subscription Is Set
+    
+    
+ 
+Create duplicated VNF indicator subscription with duplication handler
+    Send Post Request for Duplicated VNF indicator Subscription
+    Check HTTP Response Status Code Is    303
+    Check HTTP Response Body Is Empty
+    Check HTTP Response Header Contains    Location
+    Check Postcondition VNF indicator Subscription Is Set    Location
 
-DELETE Subscription - (Method not implemented)
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+
+Create duplicated VNF indicator subscription without duplication handler
+    Send Post Request for Duplicated VNF indicator Subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    PmSubscription
+    Check HTTP Response Body Matches the Subscription
+    Check Postcondition VNF indicator Subscription Is Set        
+
+
+
+
+PUT VNF Indicator Subscriptions - Method not implemented
+    Send Put Request for VNF Indicator Subscriptions
+    Check HTTP Response Status Code Is    405
+
+
+
+PATCH VNF Indicator Subscriptions - Method not implemented
+    Send Patch Request for VNF Indicator Subscriptions
+    Check HTTP Response Status Code Is    405
+
+
+DELETE VNF Indicator Subscriptions - Method not implemented
+    Send Delete Request for VNF Indicator Subscriptions
+    Check HTTP Response Status Code Is    405
+
 

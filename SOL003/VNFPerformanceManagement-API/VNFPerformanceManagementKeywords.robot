@@ -205,8 +205,8 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Performance Management according to filter
-    Should Be Equal As Strings    ${response['body']['callbackUri']}    ${callbackUri}
-
+    # Should Be Equal As Strings    ${response['body']['callbackUri']}    ${callbackUri}
+    #TODO
 
 Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
@@ -217,11 +217,13 @@ Check HTTP Response Body Matches the Subscription
 
 
 Check Postcondition VNF Performance Subscription Is Set
+    [Arguments]    ${location}=""
     Log    Check Postcondition subscription exist
     Log    Trying to get the subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    Run Keyword If    Should Not Be Equal As Strings    ${location}    Location   GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    Run Keyword If    Should Be Equal As Strings    ${location}    Location   GET    ${response['headers']['Location']} 
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
@@ -234,6 +236,7 @@ Check HTTP Response Header Contains
 
 
 Create Sessions
+    Pass Execution If    ${VNFM_CHECKS_NOTIF_ENDPOINT} == 0   MockServer not necessary to run    
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}:${callback_port}
