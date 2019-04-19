@@ -13,5 +13,15 @@ ${apiRoot}        /
 ${apiVersion}     v1
 ${apiName}        vnfind
 
-${VNFM_DUPLICATION}     1
+${VNFM_CHECKS_NOTIF_ENDPOINT}    1        ## If true, during subscription, the FUT performs a get to the notification endpoint
 
+${VNFM_ALLOWS_DUPLICATE_SUBS}    1
+
+${response}
+
+${callback_port}    9091
+${callback_uri}    http://172.22.1.7:${callback_port}
+${callback_endpoint}    /vnfind/subscriptions
+${callback_endpoint_error}    /subs_404
+
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar

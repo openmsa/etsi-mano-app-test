@@ -2,132 +2,77 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/subscriptions.txt
+Resource          VNFPackageManagementKeywords.robot
 Library           OperatingSystem
 Library           JSONLibrary
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
+Library           MockServerLibrary
+Library           Process
+Suite Setup       Create Sessions
+Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
-GET Subscription
-    Log    Trying to get the list of subscriptions
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    ${result}=    Output    response body
-    Validate Json    PkgmSubscriptions.schema.json    ${result}
-    Log    Validated PkgmSubscription schema
+Get All VNF Package Subscriptions
+    Get all VNF Package Subscriptions
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    PkgmSubscriptions
 
-GET Subscription - Filter
-    Log    Trying to get the list of subscriptions using filters
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    ${result}=    Output    response body
-    Validate Json    PkgmSubscriptions.schema.json    ${result}
-    Log    Validated PkgmSubscription schema
 
-GET Subscription - Negative Filter
-    Log    Trying to get the list of subscriptions using filters with wrong attribute name
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ko}
-    Integer    response status    400
-    Log    Received a 400 Bad Request as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get VNF Package Subscriptions with attribute-based filter
+    Get VNF Package Subscriptions with attribute-based filters
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    PkgmSubscription
+    Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
 
-GET Subscription - Negative (Not Found)
-    Log    Trying to perform a request on a Uri which doesn't exist
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscription
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
 
-POST Subscription
-    Log    Trying to create a new subscription
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response has header Location
-    ${result}=    Output    response body
-    Validate Json    PkgmSubscription.schema.json    ${result}
-    Log    Validation of PkgmSubscription OK
+Get VNF Package Subscriptions with invalid attribute-based filter
+    Get VNF Package Subscriptions with invalid attribute-based filters
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails    
+    
+GET VNF Package Subscription with invalid resource endpoint
+    Get VNF Package Subscriptions with invalid resource endpoint
+    Check HTTP Response Status Code Is    404
 
-POST Subscription - DUPLICATION
-    Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NFVO_DUPLICATION} == 0    NFVO is not permitting duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response has header Location
-    ${result}=    Output    response body
-    Validate Json    PkgmSubscription.schema.json    ${result}
-    Log    Validation of PkgmSubscription OK
 
-POST Subscription - NO DUPLICATION
-    Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NFVO_DUPLICATION} == 1    NFVO is permitting duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    303
-    Log    Received 303 See Other as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response header contains Location
+Create new VNF Package subscription
+    Send Post Request for VNF Package Subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    PkgmSubscription
+    Check HTTP Response Body Matches the Subscription
+    Check Postcondition VNF Package Subscription Is Set 
 
-PUT Subscription - (Method not implemented)
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
 
-PATCH Subscription - (Method not implemented)
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+Create duplicated VNF Package subscription with duplication handler
+    Send Post Request for Duplicated VNF Package Subscription
+    Check HTTP Response Status Code Is    303
+    Check HTTP Response Body Is Empty
+    Check HTTP Response Header Contains    Location
+    Check Postcondition VNF Package Subscription Is Set    Location
 
-DELETE Subscription - (Method not implemented)
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+
+Create duplicated VNF Package subscription without duplication handler
+    Send Post Request for Duplicated VNF Package Subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    PmSubscription
+    Check HTTP Response Body Matches the Subscription
+    Check Postcondition VNF Package Subscription Is Set 
+
+
+
+PUT VNF Package Subscriptions - Method not implemented
+    Send Put Request for VNF Package Subscriptions
+    Check HTTP Response Status Code Is    405
+    
+    
+PATCH VNF Package Subscriptions - Method not implemented
+    Send Patch Request for VNF Package Subscriptions
+    Check HTTP Response Status Code Is    405
+    
+        
+DELETE VNF Package Subscriptions - Method not implemented
+    Send Delete Request for VNF Package Subscriptions
+    Check HTTP Response Status Code Is    405
+
+
+
