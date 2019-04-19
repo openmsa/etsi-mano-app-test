@@ -1,3 +1,3 @@
 {
-	"callbackUri": "http://127.0.0.1/subscribe"
+	"callbackUri": "http://172.22.1.7:9091/nsd/subscriptions"
 }

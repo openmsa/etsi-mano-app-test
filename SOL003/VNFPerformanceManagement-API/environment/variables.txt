@@ -25,4 +25,7 @@ ${callback_endpoint}    /vnfpm/subscriptions
 ${callback_endpoint_error}    /subs_404
 ${sleep_interval}    20s
 
+${total_polling_time}   2 min
+${polling_interval}     10 sec
+
 ${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar

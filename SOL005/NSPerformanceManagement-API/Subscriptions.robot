@@ -1,181 +1,81 @@
 *** Settings ***
 Documentation     This resource represents subscriptions. The client can use this resource to subscribe to notifications related to VNF
 ...               performance management and to query its subscriptions.
-Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
-Library           OperatingSystem
-Library           JSONLibrary
 Resource          environment/subscriptions.txt
+Resource          NSPerformanceManagementKeywords.robot
+Library           OperatingSystem
+Library           JSONSchemaLibrary    schemas/
+Library           JSONLibrary
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
+Library           MockServerLibrary
+Library           Process
+Suite Setup       Create Sessions
+Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
-GET Subscription
-    [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
-    ...    subscribed by the client.
-    ...    This method shall follow the provisions specified in the Tables 7.4.7.3.2-1 and 7.4.7.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    PmSubscriptions.schema.json    ${result}
-    Log    Validated PmSubscription schema
+Get All NSD Performance Subscriptions
+    Get all NSD Performance Subscriptions
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    PmSubscriptions
 
-GET Subscription - Filter
-    [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
-    ...    subscribed by the client.
-    ...    This method shall follow the provisions specified in the Tables 7.4.7.3.2-1 and 7.4.7.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    PmSubscriptions.schema.json    ${result}
-    Log    Validated PmSubscription schema
 
-GET Subscription - Negative Filter (Erroneous filter)
-    [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
-    ...    subscribed by the client.
-    ...    This method shall follow the provisions specified in the Tables 7.4.7.3.2-1 and 7.4.7.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ko}
-    Integer    response status    400
-    Log    Received a 400 Bad Request as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${result}
-    Log    Validated ProblemDetails schema
+Get NSD Performance Subscriptions with attribute-based filter
+    Get NSD Performance Subscriptions with attribute-based filters
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    PmSubscriptions
+    Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
 
-GET Subscription - Negative (Not Found)
-    [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
-    ...    subscribed by the client.
-    ...    This method shall follow the provisions specified in the Tables 7.4.7.3.2-1 and 7.4.7.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscription
-    Integer    response status    404
-    Log    Received a 404 Not found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${result}
-    Log    Validated ProblemDetails schema
 
-POST Subscription
-    [Documentation]    The POST method creates a new subscription
-    ...    This method shall follow the provisions specified in the Tables 7.4.7.3.1-1 and 7.4.7.3.1-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    ...    Creation of two subscription resources with the same callbackURI and the same filter can result in performance
-    ...    degradation and will provide duplicates of notifications to the OSS, and might make sense only in very rare use cases.
-    ...    Consequently, the NFVO may either allow creating a subscription resource if another subscription resource with the
-    ...    same filter and callbackUri already exists (in which case it shall return the "201 Created" response code), or may decide
-    ...    to not create a duplicate subscription resource (in which case it shall return a "303 See Other" response code referencing
-    ...    the existing subscription resource with the same filter and callbackUri).
-    Set headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body_request}=    Get File    jsons/subscriptions.json
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body_request}
-    Integer    response status    201
-    Log    Received a 201 Created as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    PmSubscription.schema.json    ${result}
-    Log    Validated PmSubscription schema
-    Log    Trying to validate the Location header
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
+Get NSD Performance Subscriptions with invalid attribute-based filter
+    Get NSD Performance Subscriptions with invalid attribute-based filters
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails 
 
-POST Subscription - DUPLICATION
-    [Documentation]    The POST method creates a new subscription
-    ...    This method shall follow the provisions specified in the Tables 7.4.7.3.1-1 and 7.4.7.3.1-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    ...    Creation of two subscription resources with the same callbackURI and the same filter can result in performance
-    ...    degradation and will provide duplicates of notifications to the OSS, and might make sense only in very rare use cases.
-    ...    Consequently, the NFVO may either allow creating a subscription resource if another subscription resource with the
-    ...    same filter and callbackUri already exists (in which case it shall return the "201 Created" response code), or may decide
-    ...    to not create a duplicate subscription resource (in which case it shall return a "303 See Other" response code referencing
-    ...    the existing subscription resource with the same filter and callbackUri).
-    Pass Execution If    ${NFVO_DUPLICATION} == 1    NFVO is permitting duplication. Skipping the test
-    Set headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body_request}=    Get File    jsons/subscriptions.json
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body_request}
-    Integer    response status    303
-    Log    Received a 303 See other as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Should Be Empty    ${result}
-    Log    Body is empty
-    Log    Trying to validate the Location header
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
 
-POST Subscription - NO DUPLICATION
-    [Documentation]    The POST method creates a new subscription
-    ...    This method shall follow the provisions specified in the Tables 7.4.7.3.1-1 and 7.4.7.3.1-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    ...    Creation of two subscription resources with the same callbackURI and the same filter can result in performance
-    ...    degradation and will provide duplicates of notifications to the OSS, and might make sense only in very rare use cases.
-    ...    Consequently, the NFVO may either allow creating a subscription resource if another subscription resource with the
-    ...    same filter and callbackUri already exists (in which case it shall return the "201 Created" response code), or may decide
-    ...    to not create a duplicate subscription resource (in which case it shall return a "303 See Other" response code referencing
-    ...    the existing subscription resource with the same filter and callbackUri).
-    Pass Execution If    ${NFVO_DUPLICATION} == 0    NFVO is not permitting duplication. Skipping the test
-    Set headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body_request}=    Get File    jsons/subscriptions.json
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body_request}
-    Integer    response status    201
-    Log    Received a 201 Created as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    PmSubscription.schema.json    ${result}
-    Log    Validated PmSubscription schema
-    Log    Trying to validate the Location header
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
+GET NSD Performance Subscription with invalid resource endpoint
+    Get NSD Performance Subscriptions with invalid resource endpoint
+    Check HTTP Response Status Code Is    404
+    
 
-PUT Subscription - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+Create new NSD Performance subscription
+    Send Post Request for NSD Performance Subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    PmSubscription
+    Check HTTP Response Body Matches the Subscription
+    Check Postcondition NSD Performance Subscription Is Set
+    
 
-PATCH Subscription - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+Create duplicated NSD Performance subscription with NFVO not creating duplicated subscriptions
+    [Tags]    no-duplicated-subs
+    Send Post Request for Duplicated NSD Performance Subscription
+    Check HTTP Response Status Code Is    303
+    Check HTTP Response Body Is Empty
+    Check HTTP Response Header Contains    Location
+    Check Postcondition Subscription Resource URI Returned in Location Header Is Valid
 
-DELETE Subscription - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+
+
+Create duplicated NSD Performance subscription with NFVO creating duplicated subscriptions
+    [Tags]    duplicated-subs
+    Send Post Request for Duplicated NSD Performance Subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    PmSubscription
+    Check HTTP Response Body Matches the Subscription
+    Check Postcondition NSD Performance Subscription Is Set 
+
+
+PUT NSD Performance Subscriptions - Method not implemented
+    Send Put Request for NSD Performance Subscriptions
+    Check HTTP Response Status Code Is    405
+    
+    
+PATCH NSD Performance Subscriptions - Method not implemented
+    Send Patch Request for NSD Performance Subscriptions
+    Check HTTP Response Status Code Is    405
+    
+        
+DELETE NSD Performance Subscriptions - Method not implemented
+    Send Delete Request for NSD Performance Subscriptions
+    Check HTTP Response Status Code Is    405
+

@@ -10,9 +10,10 @@ Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process
 
-
 *** Keywords ***
-Get all VNF Package Subscriptions
+Get all NS Descriptor Subscriptions
+    [Documentation]    This method shall support the URI query parameters, request and response data structures, and response codes, as
+    ...    specified in the Tables 5.4.8.3.2-1 and 5.4.8.3.2-2.
     Log    Trying to get the list of subscriptions
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -21,39 +22,36 @@ Get all VNF Package Subscriptions
     Set Suite Variable    ${response}    ${output}
 
 
-
-Get VNF Package Subscriptions with attribute-based filters
+Get NS Descriptor Subscriptions with attribute-based filters
     Log    Trying to get the list of subscriptions using filters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output}    
-  
+    Set Suite Variable    ${response}    ${output}
 
 
-
-Get VNF Package Subscriptions with invalid attribute-based filters
+Get NS Descriptor Subscriptions with invalid attribute-based filters
     Log    Trying to get the list of subscriptions using filters with wrong attribute name
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ko}
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Set Suite Variable    ${response}    ${output}
 
 
-
-Get VNF Package Subscriptions with invalid resource endpoint
+Get NS Descriptor Subscriptions with invalid resource endpoint
     Log    Trying to perform a request on a Uri which doesn't exist
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscription
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Set Suite Variable    ${response}    ${output}    
 
-    
-    
-Send Post Request for VNF Package Subscription
+
+Send Post Request for NS Descriptor Subscription
+    [Documentation]    This method shall support the URI query parameters, request and response data structures, and response codes, as
+    ...    specified in the Tables 5.4.8.3.1-1 and 5.4.8.3.1-2.
     Log    Trying to create a new subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
@@ -61,13 +59,12 @@ Send Post Request for VNF Package Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Set Suite Variable    ${response}    ${output}
     Run Keyword If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 1
-    ...       Check Notification Endpoint
+    ...    Check Notification Endpoint  
 
-    
 
-Send Post Request for Duplicated VNF Package Subscription
+Send Post Request for Duplicated NS Descriptor Subscription
     Log    Trying to create a subscription with an already created content
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
@@ -75,36 +72,41 @@ Send Post Request for Duplicated VNF Package Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Set Suite Variable    ${response}    ${output}
+    Run Keyword If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 1
+    ...    Check Notification Endpoint  
 
 
 
-Send Put Request for VNF Package Subscriptions
+Send Put Request for NS Descriptor Subscriptions
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Set Suite Variable    ${response}    ${output}
+    
 
-Send Patch Request for VNF Package Subscriptions
+Send Patch Request for NS Descriptor Subscriptions
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
-    
-    
-Send Delete Request for VNF Package Subscriptions
+    Set Suite Variable    ${response}    ${output}
+
+Send Delete Request for NS Descriptor Subscriptions
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Set Suite Variable    ${response}    ${output}
 
-    
+
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     Should Be Equal    ${response['status']}    ${expected_status}
@@ -137,18 +139,29 @@ Check HTTP Response Body Matches the Subscription
     Should Be Equal    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
 
 
-Check Postcondition VNF Package Subscription Is Set
-    [Arguments]    ${location}=""
+Check Postcondition NS Descriptor Subscription Is Set
     Log    Check Postcondition subscription exist
     Log    Trying to get the subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    Run Keyword If    Should Not Be Equal As Strings    ${location}    Location   GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
-    Run Keyword If    Should Be Equal As Strings    ${location}    Location   GET    ${response['headers']['Location']}  
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
     
+    
+Check Postcondition Subscription Resource URI Returned in Location Header Is Valid
+    Log    Going to check postcondition
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${response.headers['Location']}
+    Integer    response status    200
+    Log    Received a 200 OK as expected
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    ${result}=    Output    response body
+    Validate Json    NsdmSubscription.schema.json    ${result}
+    Log    Validated NsdmSubscription schema
+        
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
@@ -160,7 +173,7 @@ Create Sessions
     Pass Execution If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 0    MockServer not started as NFVO is not checking the notification endpoint
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
-    Create Mock Session  ${callback_uri}:${callback_port}
+    Create Mock Session  ${callback_uri}
     
     
 Check Notification Endpoint

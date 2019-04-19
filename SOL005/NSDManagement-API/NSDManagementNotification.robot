@@ -15,7 +15,7 @@ Check Notification Endpoint
     &{req}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Verify Mock Expectation  ${req}
     Clear Requests  ${callback_endpoint}
     
@@ -26,7 +26,7 @@ Post NSD Change Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -39,7 +39,7 @@ Post NSD Deletion Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -53,7 +53,7 @@ Post NSD Onboard Failure Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -66,7 +66,7 @@ Post NSD Onboard Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -80,7 +80,7 @@ Post PNFD Deletion Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -94,7 +94,7 @@ Post PNFD Onboard Failure Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -107,7 +107,7 @@ Post PNFD Onboard Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -121,7 +121,7 @@ Post Notification Negative 404
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint_error}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=404
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -134,7 +134,7 @@ PUT VNF Package Management Notification
     &{req}=  Create Mock Request Matcher	PUT  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -147,7 +147,7 @@ PATCH VNF Package Management Notification
     &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -160,7 +160,7 @@ DELETE VNF Package Management Notification
     &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint

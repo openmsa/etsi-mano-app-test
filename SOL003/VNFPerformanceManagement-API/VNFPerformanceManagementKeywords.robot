@@ -295,6 +295,7 @@ Check HTTP Response Body Matches the Subscription
 Check Postcondition VNF Performance Subscription Is Set
     Log    Check Postcondition subscription exist
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -302,6 +303,7 @@ Check Postcondition VNF Performance Subscription Is Set
 
 Check Postcondition Subscription Resource URI Returned in Location Header Is Valid
     Log    Going to check postcondition
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${response.headers['Location']}
     Integer    response status    200
     Log    Received a 200 OK as expected
