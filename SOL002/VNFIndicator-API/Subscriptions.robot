@@ -7,7 +7,7 @@ Library           JSONLibrary
 Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
 
 *** Test Cases ***
-GET VNF Indicators Subscriptions
+GET all VNF Indicators Subscriptions
     [Documentation]    Test ID: 6.3.2.4.1
     ...    Test title: GET VNF Indicators Subscriptions
     ...    Test objective: The objective is to test the retrieval of all VNF indicators subscriptions and perform a JSON schema validation of the returned subscriptions data structure
@@ -16,7 +16,7 @@ GET VNF Indicators Subscriptions
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none
-    Get VNF Indicators Subscriptions
+    Get All VNF Indicators Subscriptions
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   VnfIndicatorSubscriptions
 
@@ -111,7 +111,7 @@ DELETE VNF Indicator Subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
     
  *** Keywords ***
-Get VNF Indicators Subscriptions
+Get All VNF Indicators Subscriptions
     Log    Trying to get the list of subscriptions
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
