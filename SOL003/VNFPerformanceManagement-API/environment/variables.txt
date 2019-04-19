@@ -19,10 +19,6 @@ ${apiRoot}        /
 ${apiVersion}     v1
 ${apiName}        vnfpm
 
-
-${response}
-
-
 ${callback_port}    9091
 ${callback_uri}    http://172.22.1.7:${callback_port}
 ${callback_endpoint}    /vnfpm/subscriptions

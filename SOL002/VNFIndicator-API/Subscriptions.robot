@@ -101,7 +101,7 @@ PATCH VNF Indicator Subscriptions - Method not implemented
 DELETE VNF Indicator Subscriptions - Method not implemented
     [Documentation]    Test ID 6.3.2.4.8
     ...    Test title: DELETE VNF Indicator Subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to delete VNF indicator subscriptions
+    ...    Test objective: The objective is to test that DELETE method is not allowed to delete VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
     ...    Reference: section 8.4.5.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE

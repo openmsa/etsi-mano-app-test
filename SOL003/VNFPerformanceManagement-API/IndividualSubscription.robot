@@ -7,74 +7,96 @@ Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library           OperatingSystem
 Library           JSONLibrary
 Resource          environment/individualSubscription.txt
+Resource          VNFPerformanceManagementKeywords.robot
 
 *** Test Cases ***
-GET Individual Subscription
-    [Documentation]    The client can use this method for reading an individual subscription about Performance management notifications
-    ...    subscribed by the client.
-    ...    This method shall follow the provisions specified in the tables 6.4.8.3.2-1 and 6.4.8.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    PmSubscription.schema.json    ${result}
-    Log    Validated PmSubscription schema
+GET Individual VNF Performance Subscription
+    [Documentation]    Test ID: 7.3.4.7.1
+    ...    Test title: GET Individual VNF Performance Subscription
+    ...    Test objective: The objective is to test the retrieval of individual VNF performance subscription and perform a JSON schema and content validation of the returned subscription data structure
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
+    ...    Reference:  section 6.4.8.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get Individual VNF Performance Subscription
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   PmSubscription
+    Check HTTP Response Body Subscription Identifier matches the requested Subscription
 
-GET Individual Subscription - Negative (Not Found)
-    [Documentation]    The client can use this method for reading an individual subscription about Performance management notifications
-    ...    subscribed by the client.
-    ...    This method shall follow the provisions specified in the tables 6.4.8.3.2-1 and 6.4.8.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
-    Integer    response status    404
-    Log    Received a 404 Not found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${result}
-    Log    Validated ProblemDetails schema
+GET Individual VNF Performance Subscription with invalid resource identifier
+    [Documentation]    Test ID: 7.3.4.7.2
+    ...    Test title: GET Individual VNF Performance Subscription with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of an individual VNF performance subscription fails when using an invalid resource identifier
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
+    ...    Reference: section 6.4.8.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET individual VNF Performance Subscription with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
-POST Individual Subscription - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+DELETE Individual VNF Performance Subscription
+    [Documentation]    Test ID: 7.3.4.7.3
+    ...    Test title: DELETE Individual VNF Performance Subscription
+    ...    Test objective: The objective is to test the deletion of an individual VNF performance subscription
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
+    ...    Reference: section 6.4.8.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance Subscription is not available anymore in the VNFM    
+    Send Delete request for individual VNF Performance Subscription
+    Check HTTP Response Status Code Is    204
+    Check Postcondition VNF Performance Subscription is Deleted
 
-PUT Individual Subscription - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+DELETE Individual VNF Performance Subscription with invalid resource identifier
+    [Documentation]    Test ID: 7.3.4.7.4
+    ...    Test title: DELETE Individual VNF Performance Subscription with invalid resource identifier
+    ...    Test objective: The objective is to test that the deletion of an individual VNF performance subscription fails when using an invalid resource identifier
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
+    ...    Reference: section 6.4.8.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none   
+    Send Delete request for individual VNF Performance Subscription with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
-PATCH Individual Subscription - (Method not implemented)
-    [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+POST Individual VNF Performance Subscription - Method not implemented
+    [Documentation]    Test ID: 7.3.4.7.5
+    ...    Test title: POST Individual VNF Performance Subscription - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF Performance Subscription
+    ...    Pre-conditions: A VNF instance is instantiated
+    ...    Reference: section 6.4.8.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance Subscription is not created on the VNFM
+    Send Post request for individual VNF Performance Subscription
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Performance Subscription is not Created
 
-DELETE Individual Subscription - (Method not implemented)
-    [Documentation]    This method terminates an individual subscription.
-    ...    This method shall follow the provisions specified in the tables 6.4.8.3.5-1 and 6.4.8.3.5-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    204
-    Log    Received a 204 No Content as expected
-    ${body}=    Output    response body
-    Should Be Empty    ${body}
-    Log    Body of the response is empty
+PUT Individual VNF Performance Subscription - Method not implemented
+    [Documentation]    Test ID: 7.3.4.7.6
+    ...    Test title: PUT Individual VNF Performance Subscription - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF Performance subscription
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
+    ...    Reference: section 6.4.8.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance subscription is not modified by the operation
+    Send Put request for individual VNF Performance Threshold
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Performance Subscription is Unmodified (Implicit)
+
+PATCH Individual VNF Performance Subscription - Method not implemented
+    [Documentation]    Test ID: 7.3.4.7.6
+    ...    Test title: PATCH Individual VNF Performance Subscription - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF Performance subscription
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
+    ...    Reference: section 6.4.8.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Performance subscription is not modified by the operation
+    Send Patch request for individual VNF Performance Threshold
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Performance Subscription is Unmodified (Implicit)
 
