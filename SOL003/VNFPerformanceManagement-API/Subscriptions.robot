@@ -83,7 +83,7 @@ Create new VNF Performance subscription
 Create duplicated VNF Performance subscription with VNFM not creating duplicated subscriptions
     [Tags]    no-duplicated-subs
     [Documentation]    Test ID 7.3.4.6.6
-    ...    Test title: Create new VNF Performance subscription
+    ...    Test title: Create duplicated VNF Performance subscription with VNFM not creating duplicated subscriptions
     ...    Test objective: The objective is to test the creation of a duplicated VNF performance subscription and check that no new subscription is created
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
     ...    Reference: section 6.4.7.3.1 - SOL003 v2.4.1
@@ -99,7 +99,7 @@ Create duplicated VNF Performance subscription with VNFM not creating duplicated
 Create duplicated VNF Performance subscription with VNFM creating duplicated subscriptions
     [Tags]    duplicated-subs
     [Documentation]    Test ID 7.3.4.6.7
-    ...    Test title: Create new VNF Performance subscription
+    ...    Test title: Create duplicated VNF Performance subscription with VNFM creating duplicated subscriptions
     ...    Test objective: The objective is to test the creation of a duplicated VNF performance subscription and perform a JSON schema and content validation of the returned duplicated subscription data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
     ...    Reference: section 6.4.7.3.1 - SOL003 v2.4.1
@@ -144,7 +144,7 @@ DELETE VNF Performance Subscriptions - Method not implemented
     ...    Reference: section 6.4.7.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: The VNF performance thresholds are not deleted by the failed operation   
+    ...    Post-Conditions: The VNF performance subscriptions are not deleted by the failed operation   
     Send Delete Request for VNF Performance Subscriptions
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF Performance Subscriptions Exists
