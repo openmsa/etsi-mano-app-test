@@ -1,7 +1,5 @@
 *** Setting ***
 Resource	environment/variables.txt
-Suite Setup    Create Sessions
-Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
 Library    Process
 Library    OperatingSystem
@@ -10,107 +8,108 @@ Library    Collections
 Library    String
 
 
-*** Test Cases ***
+*** Keywords ***
 Check Notification Endpoint
     &{req}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
+    Sleep  ${sleep_interval}
     Verify Mock Expectation  ${req}
     Clear Requests  ${callback_endpoint}
     
-Post VNF Package Onboarding Notification
-    ${json}=	Get File	schemas/PackageOnboardingNotification.schema.json
+Post Performance Information Available Notification
+    ${json}=	Get File	schemas/PerformanceInformationAvailableNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
-    Log  Creating mock request and response to handle  VNF Package Onboarding Notification
+    Log  Creating mock request and response to handle Performance Information Available Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
+    Sleep  ${sleep_interval}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
     
 
-Post VNF Package Onboarding Notification Negative 404 
+Post Performance Information Available Notification Negative 404 
     ${json}=	Get File	schemas/ProblemDetails.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
-    Log  Creating mock request and response to handle VNF Package Onboarding Notification to handle 404 error
+    Log  Creating mock request and response to handle Performance Information Available Notification to handle 404 error
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint_error}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=404
     Create Mock Expectation  ${req}  ${rsp}
-    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
+    Sleep  ${sleep_interval}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
 
-Post VNF Package Change Notification
-    ${json}=	Get File	schema/PackageChangeNotification.schema.json
+Post Threshold Crossed Notification
+    ${json}=	Get File	schema/ThresholdCrossedNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
-    Log  Creating mock request and response to handle Package Change Notification
+    Log  Creating mock request and response to handle Threshold Crossed Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
+    Sleep  ${sleep_interval}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
     
 
-Post Package Change Notification Negative 404 
+Post Threshold Crossed Notification Negative 404 
     ${json}=	Get File	schemas/ProblemDetails.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
-    Log  Creating mock request and response to handle Package Change Notification to handle 404 error
+    Log  Creating mock request and response to handleThreshold Crossed Notification to handle 404 error
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint_error}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=404
     Create Mock Expectation  ${req}  ${rsp}
-    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
+    Sleep  ${sleep_interval}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
     
     
-PUT VNF Package Management Notification 
+PUT Performance Notification 
     Log  PUT Method not implemented
     &{req}=  Create Mock Request Matcher	PUT  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
+    Sleep  ${sleep_interval}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
     
     
-PATCH VNF Package Management Notification 
+PATCH Performance Notification 
     Log  PATCH Method not implemented
     &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
+    Sleep  ${sleep_interval}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
     
     
-DELETE VNF Package Management Notification 
+DELETE Performance Notification 
     Log  PATCH Method not implemented
     &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
+    Sleep  ${sleep_interval}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
+	
 
-*** Keywords ***
 Create Sessions
+    Pass Execution If    ${VNFM_CHECKS_NOTIF_ENDPOINT} == 0    VNFM is not checking notification endpoint.    
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}

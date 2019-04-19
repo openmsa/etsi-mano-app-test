@@ -1,4 +1,7 @@
 *** Variables ***
-${POS_FILTER}     callbackUri=http://127.0.0.1/subscribe
-${NEG_FILTER}     callback=http://127.0.0.1/subscribe
+${filter_ok}      callbackUri=${callbackUri}
+${filter_ko}      erroneousFilter=erroneous
+${callbackUri}    http://172.22.1.7:9091/vnfind/subscriptions
+${total_polling_time}   2 min
+${polling_interval}     10 sec
 

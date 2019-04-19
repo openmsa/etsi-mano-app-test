@@ -85,17 +85,17 @@ Create new VNF Performance subscription
 Create duplicated VNF Performance subscription with VNFM not creating duplicated subscriptions
     [Documentation]    Test ID 7.3.4.6.6
     ...    Test title: Create new VNF Performance subscription
-    ...    Test objective: The objective is to test the creation of a duplicated VNF performance subscription, check that no new subscription is created, and check that a link to the original subscription is returned 
+    ...    Test objective: The objective is to test the creation of a duplicated VNF performance subscription and check that no new subscription is created
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
     ...    Reference: section 6.4.7.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM does not support the creation of duplicated subscriptions
-    ...    Post-Conditions: none
+    ...    Post-Conditions: The existing VNF performance subscription returned is set and it is valid 
     Send Post Request for Duplicated VNF Performance Subscription
     Check HTTP Response Status Code Is    303
     Check HTTP Response Body Is Empty
     Check HTTP Response Header Contains    Location
-    Check HTTP Response Location Header Resource URI
+    Check Postcondition Subscription Resource URI Returned in Location Header Is Valid
 
 Create duplicated VNF Performance subscription with VNFM creating duplicated subscriptions
     [Documentation]    Test ID 7.3.4.6.7
