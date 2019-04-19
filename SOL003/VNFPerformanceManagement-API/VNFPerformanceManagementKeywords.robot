@@ -1,13 +1,14 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    environment/subscriptions.txt
-Resource    PerformanceManagementNotification.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
+Library    MockServerLibrary 
 Library    OperatingSystem
 Library    BuiltIn
 Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
+Library    Process    
 
 *** Keywords ***
 Get VNF Performance Management Subscriptions
@@ -230,3 +231,17 @@ Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response.headers}    ${CONTENT_TYPE}
     Log    Header is present
+
+
+Create Sessions
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${callback_uri}:${callback_port}
+    
+    
+Check Notification Endpoint
+    &{notification_request}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
+    Clear Requests  ${callback_endpoint}

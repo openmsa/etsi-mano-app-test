@@ -1,8 +1,8 @@
 *** Variables ***
-${callback_uri}    http://localhost
 ${callback_port}    9091
-${callback_endpoint}    /endpoint
-${callback_endpoint_error}    /endpoint_404
-${sleep_interval}    20s
-
+${callback_uri}    http://localhost:${callback_port}
+${callback_endpoint}    /vnfpm/subscriptios
+${callback_endpoint_error}    /subs_404
+${total_polling_time}   2 min
+${polling_interval}     10 sec
 ${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
