@@ -9,7 +9,7 @@ Resource          VNFPerformanceManagementKeywords.robot
 
 *** Test Cases ***
 GET Individual VNF Performance Subscription
-    [Documentation]    Test ID: 7.3.4.7.1
+    [Documentation]    Test ID: 6.3.3.7.1
     ...    Test title: GET Individual VNF Performance Subscription
     ...    Test objective: The objective is to test the retrieval of individual VNF performance subscription and perform a JSON schema and content validation of the returned subscription data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
@@ -23,7 +23,7 @@ GET Individual VNF Performance Subscription
     Check HTTP Response Body Subscription Identifier matches the requested Subscription
 
 GET Individual VNF Performance Subscription with invalid resource identifier
-    [Documentation]    Test ID: 7.3.4.7.2
+    [Documentation]    Test ID: 6.3.3.7.2
     ...    Test title: GET Individual VNF Performance Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual VNF performance subscription fails when using an invalid resource identifier
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
@@ -35,7 +35,7 @@ GET Individual VNF Performance Subscription with invalid resource identifier
     Check HTTP Response Status Code Is    404
 
 DELETE Individual VNF Performance Subscription
-    [Documentation]    Test ID: 7.3.4.7.3
+    [Documentation]    Test ID: 6.3.3.7.3
     ...    Test title: DELETE Individual VNF Performance Subscription
     ...    Test objective: The objective is to test the deletion of an individual VNF performance subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
@@ -48,7 +48,7 @@ DELETE Individual VNF Performance Subscription
     Check Postcondition VNF Performance Subscription is Deleted
 
 DELETE Individual VNF Performance Subscription with invalid resource identifier
-    [Documentation]    Test ID: 7.3.4.7.4
+    [Documentation]    Test ID: 6.3.3.7.4
     ...    Test title: DELETE Individual VNF Performance Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the deletion of an individual VNF performance subscription fails when using an invalid resource identifier
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
@@ -60,7 +60,7 @@ DELETE Individual VNF Performance Subscription with invalid resource identifier
     Check HTTP Response Status Code Is    404
 
 POST Individual VNF Performance Subscription - Method not implemented
-    [Documentation]    Test ID: 7.3.4.7.5
+    [Documentation]    Test ID: 6.3.3.7.5
     ...    Test title: POST Individual VNF Performance Subscription - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF Performance Subscription
     ...    Pre-conditions: A VNF instance is instantiated
@@ -73,7 +73,7 @@ POST Individual VNF Performance Subscription - Method not implemented
     Check Postcondition VNF Performance Subscription is not Created
 
 PUT Individual VNF Performance Subscription - Method not implemented
-    [Documentation]    Test ID: 7.3.4.7.6
+    [Documentation]    Test ID: 6.3.3.7.6
     ...    Test title: PUT Individual VNF Performance Subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF Performance subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
@@ -86,7 +86,7 @@ PUT Individual VNF Performance Subscription - Method not implemented
     Check Postcondition VNF Performance Subscription is Unmodified (Implicit)
 
 PATCH Individual VNF Performance Subscription - Method not implemented
-    [Documentation]    Test ID: 7.3.4.7.7
+    [Documentation]    Test ID: 6.3.3.7.7
     ...    Test title: PATCH Individual VNF Performance Subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF Performance subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
