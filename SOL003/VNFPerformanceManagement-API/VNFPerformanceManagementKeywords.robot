@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    environment/subscriptions.txt
+Resource    environment/individualSubscription.txt
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library    MockServerLibrary 
 Library    OperatingSystem
@@ -181,8 +182,85 @@ Send Delete Request for VNF Performance Subscriptions
     # Integer    response status    405
     # Log    Received 405 Method not implemented as expected
 
+Get Individual VNF Performance Subscription
+    Set headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
 
+GET individual VNF Performance Subscription with invalid resource identifier
+    Set headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
 
+Send Delete request for individual VNF Performance Subscription
+    Set headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send Delete request for individual VNF Performance Subscription with invalid resource identifier
+    Log    Trying to delete a subscription in the VNFM with invalid id
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+
+Send Post request for individual VNF Performance Subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+
+Send Put request for individual VNF Performance Threshold
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+    
+Send Patch request for individual VNF Performance Threshold
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+
+Check Postcondition VNF Performance Subscription is Unmodified (Implicit)
+    Log    Check postconidtion subscription not modified
+    GET individual VNF Performance Subscription
+    Log    Check Response matches original VNF Threshold
+    ${subscription}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origResponse['body']['id']}    ${subscription.id}
+    Should Be Equal    ${origResponse['body']['callbackUri']}    ${subscription.callbackUri}
+
+Check Postcondition VNF Performance Subscription is not Created
+    Log    Trying to get a new subscription
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+    Check HTTP Response Status Code Is    404 
+
+Check Postcondition VNF Performance Subscription is Deleted
+    Log    Check Postcondition Subscription is deleted
+    GET individual VNF Performance Subscription
+    Check HTTP Response Status Code Is    404 
+
+Check HTTP Response Body Subscription Identifier matches the requested Subscription
+    Log    Trying to check response ID
+    Should Be Equal    ${response['body']['id']}    ${subscriptionId} 
+    Log    Subscription identifier as expected
+    
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     Should Be Equal    ${response['status']}    ${expected_status}
@@ -214,8 +292,6 @@ Check HTTP Response Body Matches the Subscription
     ${subscription}=    evaluate    json.loads('''${body}''')    json
     Should Be Equal    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
 
-
-
 Check Postcondition VNF Performance Subscription Is Set
     Log    Check Postcondition subscription exist
     Log    Trying to get the subscription
@@ -226,18 +302,30 @@ Check Postcondition VNF Performance Subscription Is Set
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
     
+Check Postcondition VNF Performance Subscriptions Exists
+    Log    Checking that subscriptions exists
+    Get all VNF Performance Subscriptions         
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response.headers}    ${CONTENT_TYPE}
     Log    Header is present
 
+Check HTTP Response Location Header Resource URI
+    Log    Going to check
+    GET    ${response.headers['Location']}
+    Integer    response status    200
+    Log    Received a 200 OK as expected
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    ${result}=    Output    response body
+    Validate Json    PmSubscription.schema.json    ${result}
+    Log    Validated PmSubscription schema
 
 Create Sessions
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}:${callback_port}
-    
     
 Check Notification Endpoint
     &{notification_request}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
