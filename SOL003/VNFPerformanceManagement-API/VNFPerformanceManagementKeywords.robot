@@ -11,7 +11,7 @@ Library    JSONSchemaLibrary    schemas/
 Library    Process    
 
 *** Keywords ***
-Get VNF Performance Management Subscriptions
+Get all VNF Performance Subscriptions
     [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
     ...    subscribed by the client.
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
@@ -31,7 +31,7 @@ Get VNF Performance Management Subscriptions
     # Log    Validated PmSubscription schema
 
 
- Get VNF Performance Management Subscriptions with filters
+ Get VNF Performance Subscriptions with attribute-based filters
     [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
     ...    subscribed by the client.
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
@@ -51,7 +51,7 @@ Get VNF Performance Management Subscriptions
     
 
 
-Get VNF Performance Management Subscriptions with invalid filters
+Get VNF Performance Subscriptions with invalid attribute-based filters
     [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
     ...    subscribed by the client.
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
@@ -70,7 +70,7 @@ Get VNF Performance Management Subscriptions with invalid filters
     # Log    Validated ProblemDetails schema
     
     
-Get VNF Performance Management Subscriptions with invalid resource endpoint
+Get VNF Performance Subscriptions with invalid resource endpoint
     [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
     ...    subscribed by the client.
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
@@ -90,7 +90,7 @@ Get VNF Performance Management Subscriptions with invalid resource endpoint
 
 
 
-Send Post Request for VNF Performance Management Subscription
+Send Post Request for VNF Performance Subscription
     [Documentation]    The POST method creates a new subscription.
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.1-1 and 6.4.7.3.1-2 for URI query parameters,
     ...    request and response data structures, and response codes.
@@ -121,7 +121,7 @@ Send Post Request for VNF Performance Management Subscription
     # Should Contain    ${headers}    Location
 
 
-Send Post Request for Duplicated VNF Performance Management Subscription
+Send Post Request for Duplicated VNF Performance Subscription
     [Documentation]    The POST method creates a new subscription.
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.1-1 and 6.4.7.3.1-2 for URI query parameters,
     ...    request and response data structures, and response codes.
@@ -151,7 +151,7 @@ Send Post Request for Duplicated VNF Performance Management Subscription
     
 
 
-Send Put Request for VNF Performance Management Subscriptions
+Send Put Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -161,7 +161,7 @@ Send Put Request for VNF Performance Management Subscriptions
     # Integer    response status    405
     # Log    Received 405 Method not implemented as expected
 
-Send Patch Request for VNF Performance Management Subscriptions
+Send Patch Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -171,7 +171,7 @@ Send Patch Request for VNF Performance Management Subscriptions
     # Integer    response status    405
     # Log    Received 405 Method not implemented as expected
 
-Send Delete Request for VNF Performance Management Subscriptions
+Send Delete Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -198,7 +198,7 @@ Check HTTP Response Body Json Schema Is
     Log    Json Schema Validation OK  
 
 
-Check HTTP Response Body Json Schema Is Empty
+Check HTTP Response Body Is Empty
     Should Be Empty    ${response['body']}    
     Log    No json schema is provided. Validation OK  
 
@@ -216,7 +216,7 @@ Check HTTP Response Body Matches the Subscription
 
 
 
-Check Postcondition VNF Performance Management Subscription Is Set
+Check Postcondition VNF Performance Subscription Is Set
     Log    Check Postcondition subscription exist
     Log    Trying to get the subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
