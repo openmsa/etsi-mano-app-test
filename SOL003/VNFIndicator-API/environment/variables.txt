@@ -5,6 +5,7 @@ ${VNFM_SCHEMA}    https
 
 ${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
 ${NEG_AUTHORIZATION}    Bearer negativetoken
+${BAD_AUTHORIZATION}    Bear sometoken
 ${ACCEPT_JSON}    application/json
 ${AUTH_USAGE}     1
 ${CONTENT_TYPE_JSON}    application/json
