@@ -1,6 +1,10 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    environment/subscriptions.txt
+Resource    environment/vnfIndicators.txt
+Resource    environment/vnfIndicatorinVnfInstance.txt
+Resource    environment/individualVnfIndicator.txt
+Resource    environment/individualSubscription.txt
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library    MockServerLibrary 
 Library    OperatingSystem
@@ -161,14 +165,10 @@ Send Delete Request for VNF Indicator Subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
-    
-    
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     Should Be Equal    ${response['status']}    ${expected_status}
     Log    Status code validated 
-    
-    
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
@@ -177,23 +177,19 @@ Check HTTP Response Body Json Schema Is
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
 
-
 Check HTTP Response Body Is Empty
     Should Be Empty    ${response['body']}    
     Log    No json schema is provided. Validation OK  
 
-
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Performance Management according to filter
     #TODO
-
 
 Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
     Should Be Equal    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
-
 
 
 Check Postcondition VNF Indicator Subscription Is Set
@@ -207,13 +203,345 @@ Check Postcondition VNF Indicator Subscription Is Set
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
-    
+
+Check Postcondition Subscription Resource Returned in Location Header Is Available
+    Log    Going to check postcondition
+    GET    ${response.headers['Location']}
+    Integer    response status    200
+    Log    Received a 200 OK as expected
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    ${result}=    Output    response body
+    Validate Json    VnfIndicatorSubscription.schema.json    ${result}
+    Log    Validated VnfIndicatorSubscription schema
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response.headers}    ${CONTENT_TYPE}
     Log    Header is present
 
+Get all VNF indicators
+    Log    The GET method queries multiple VNF indicators
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    ${body}=    evaluate    json.loads('''${response.body}''')    json
+    Set Suite Variable    @{vnfIndicators}    ${body}
+    
+Get VNF indicators with filter
+    Log    The GET method queries multiple VNF indicators using Attribute-based filtering parameters
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators?${POS_FIELDS}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get VNF indicators with invalid filter
+    Log    The GET method queries multiple VNF indicators using invalid Attribute-based filtering parameters
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators?${NEG_FIELDS}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get all VNF indicators with malformed authorization token
+    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as EM/VNF is not supporting authentication
+    Log    The GET method queries multiple VNF indicators using invalid token
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Authorization": "${BAD_AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get all VNF indicators with expired or revoked authorization token
+    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as EM/VNF is not supporting authentication
+    Log    The GET method queries multiple VNF indicators using invalid token
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Authorization": "${NEG_AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get all VNF indicators without authorization token
+    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as EM/VNF is not supporting authentication
+    Log    The GET method queries multiple VNF indicators omitting token
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get all VNF indicators with invalid resource endpoint
+    Log    The GET method queries multiple VNF indicators omitting token
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send POST Request for all VNF indicators
+    log    Trying to perform a POST. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT_JSON}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send PUT Request for all VNF indicators
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT_JSON}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send PATCH Request for all VNF indicators
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT_JSON}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send DELETE Request for all VNF indicators
+    log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT_JSON}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition VNF Indicators Exist
+    Log    Check  Postcondition indicators exist
+    Get all VNF indicators
+    Check HTTP Response Status Code Is    200
+    
+Check HTTP Response Body vnfIndicators Matches the requested attribute-based filter
+    Log    Check Response includes VNF Indicators according to filter
+    #todo
+
+Get all indicators for a VNF instance
+    Log    This resource represents VNF indicators related to a VNF instance.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get all indicators for a VNF instance with filter  
+    Log    This resource represents VNF indicators related to a VNF instance.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}?${POS_FIELDS}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+       
+Get all indicators for a VNF instance with invalid filter
+    Log    This resource represents VNF indicators related to a VNF instance.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}?${NEG_FIELDS}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get all indicators for a VNF instance with invalid resource identifier
+    Log    Trying to perform a negative get, using wrong identifier
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${erroneousVnfInstanceId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send POST Request for indicators in VNF instance
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for indicators in VNF instance
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send PATCH Request for indicators in VNF instance
+    Log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+     
+Send DELETE Request for indicators in VNF instance
+    Log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Check HTTP Response Body Includes Requested VNF Instances ID
+    Log    Check Response includes Indicators according to resource identifier
+    #todo
+
+Check Postcondition Indicators for VNF instance Exist
+    Log    Check Response includes VNF Indicators according to filter
+    #todo
+
+Get Individual Indicator for a VNF instance
+    Log    This resource represents a VNF indicator related to a VNF instance.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get Individual Indicator for a VNF instance with invalid indicator identifier
+    Log    Trying to perform a negative get, using wrong identifier
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${erroneousIndicatorId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send POST Request for individual indicator in VNF instance
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${notAllowedIndicatorId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for individual indicator in VNF instance
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send PATCH Request for individual indicator in VNF instance
+    Log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+     
+Send DELETE Request for individual indicator in VNF instance
+    Log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}/${indicatorId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Check HTTP Response Body Includes Requested Indicator ID
+    Log    Check Response includes propoer VNF instance and Indicator identifiers
+    Should Be Equal    ${response['body']['id']}    ${indicatorId}
+
+Check HTTP Response Body Includes Requested VNF Instance ID
+    Log    Check Response includes propoer VNF instance and Indicator identifiers
+    Should Be Equal    ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
+
+Check Postcondition Indicator for VNF instance Exist
+    Log    Check Response includes VNF Indicator
+    Get Individual Indicator for a VNF instance
+    Should Be Equal    ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
+    Should Be Equal    ${response['body']['id']}    ${indicatorId}
+
+Check Postcondition VNF Indicator Subscriptions Exists
+    Log    Checking that subscriptions exists
+    Get all VNF Indicators Subscriptions  
+
+GET Individual VNF Indicator Subscription
+    Log    Trying to get a given subscription identified by subscriptionId
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET Individual VNF Indicator Subscription with invalid resource identifier
+    Log    Trying to perform a request on a subscriptionID which doesn't exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send Delete Request for Individual VNF Indicator Subscription
+    Log    Trying to perform a DELETE on a subscriptionId
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send Delete Request for Individual VNF Indicator Subscription with invalid resource identifier
+    Log    Trying to perform a DELETE on a subscriptionId which doesn't exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send Post Request for Individual VNF Indicator Subscription
+    Log    Trying to create a new subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}   
+
+Send Put Request for Individual VNF Indicator Subscription
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}   
+
+Send Patch Request for Individual VNF Indicator Subscription
+    Log    Trying to create a new subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition Individual VNF Indicator Subscription is Deleted
+    Log    Check Postcondition subscription is deleted
+    GET Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    404
+
+Check Postcondition VNF indicator subscription Unmodified (Implicit)
+    Log    Check Postcondition subscription is not modified
+    GET Individual VNF Indicator Subscription
+    Log    Check Response matches original subscription
+    ${subscription}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origResponse['body']['callbackUri']}    ${subscription.callbackUri}
+    
+Check Postcondition VNF indicator subscription is not created
+    Log    Check Postcondition subscription is not created
+    GET Individual VNF Indicator Subscription with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
 Create Sessions
     Pass Execution If    ${VNFM_CHECKS_NOTIF_ENDPOINT} == 0   MockServer not necessary to run    

@@ -1,16 +1,16 @@
 {
 	"id": "id",
-	"notificationType" : "ThresholdCrossedNotification",
+	"notificationType": "ThresholdCrossedNotification",
 	"subscriptionId ": "subscriptionId",
 	"timeStamp": "2012-04-21T18:25:43-05:00",
 	"thresholdId": "thresholdId",
 	"crossingDirection": "UP",
 	"objectInstanceId": "vnfID",
 	"performanceMetric": "performanceMetric",
-	"performanceValue": 7
+	"performanceValue": 7,
 	"_links": {
-			"subscription": "link to subscription",
-			"threshold": "link to threshold"
+		"subscription": "link to subscription",
+		"threshold": "link to threshold"
 	}
-	
+
 }

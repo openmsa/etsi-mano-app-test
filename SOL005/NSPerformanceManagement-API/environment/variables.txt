@@ -9,10 +9,22 @@ ${apiRoot}        /
 ${AUTH_USAGE}     1
 ${NEG_AUTHORIZATION}    Bearer negativetoken
 ${apiVersion}     v1
-${apiName}        vnfpm
+${apiName}        nspm
 ${FIELD_USAGE}    1
-${NFVO_DUPLICATION}    1
+${NFVO_CHECKS_NOTIF_ENDPOINT}    1
 
 ${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
 
 ${testOptionalMethods}    0
+
+${callback_port}    9091
+${callback_uri}    http://172.22.1.7:${callback_port}
+${callback_endpoint}    /nspm/subscriptions
+${callback_endpoint_error}    /subs_404
+${sleep_interval}    20s
+
+${total_polling_time}   2 min
+${polling_interval}     10 sec
+
+
+${response}

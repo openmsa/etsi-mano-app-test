@@ -5,6 +5,7 @@ ${VNFM_SCHEMA}    https
 
 ${AUTHORIZATION}    Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
 ${NEG_AUTHORIZATION}    Bearer negativetoken
+${BAD_AUTHORIZATION}    Bear sometoken
 ${ACCEPT_JSON}    application/json
 ${AUTH_USAGE}     1
 ${CONTENT_TYPE_JSON}    application/json
@@ -23,5 +24,6 @@ ${callback_port}    9091
 ${callback_uri}    http://172.22.1.7:${callback_port}
 ${callback_endpoint}    /vnfind/subscriptions
 ${callback_endpoint_error}    /subs_404
-
+${total_polling_time}   2 min
+${polling_interval}     10 sec
 ${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar

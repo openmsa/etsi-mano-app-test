@@ -2,91 +2,111 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/vnfIndicatorinVnfInstance.txt
+Resource          VNFIndicatorsKeywords.robot
 Library           JSONLibrary
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 
 *** Test Cases ***
-GET Indicators on VNF Instance
-    Log    This resource represents VNF indicators related to a VNF instance.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    vnfIndicators.schema.json    ${result}
-    Log    Validation OK
+*** Test Cases ***
+Get Indicators for VNF Instance
+    [Documentation]    Test ID: 7.3.6.2.1
+    ...    Test title: Get Indicators for VNF Instance
+    ...    Test objective: The objective is to test the retrieval of all indicators for a given VNF instance and perform a JSON schema validation of the returned indicators data structure
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF indicators are available in the VNFM for the given VNF instance.
+    ...    Reference:  section 8.4.3.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get all indicators for a VNF instance
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfIndicators
+    Check HTTP Response Body Includes Requested VNF Instances ID
 
-GET Indicators on VNF Instance - Filter
-    Log    This resource represents VNF indicators related to a VNF instance.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}?${POS_FIELDS}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate response
-    ${result}=    Output    response body
-   Validate Json    vnfIndicators.schema.json    ${result}
-    Log    Validation OK
+GET Indicators for VNF Instance with attribute-based filter
+    [Documentation]    Test ID: 7.3.6.2.2
+    ...    Test title: GET Indicators for VNF Instance with attribute-based filter
+    ...    Test objective: The objective is to test the retrieval of all indicators for a given VNF instance using attribute-based filter and perform a JSON schema validation of the returned indicators data structure
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF indicators are available in the VNFM for the given VNF instance.
+    ...    Reference: section 8.4.3.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get all indicators for a VNF instance with filter
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfIndicators
+    Check HTTP Response Body vnfIndicators Matches the requested attribute-based filter
 
-GET Indicators on VNF Instance - Negative Filter
-    Log    This resource represents VNF indicators related to a VNF instance.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}?${NEG_FIELDS}
-    Integer    response status    400
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get Indicators for VNF Instance with invalid attribute-based filter
+    [Documentation]    Test ID: 7.3.6.2.3
+    ...    Test title: Get Indicators for VNF Instance with invalid attribute-based filter
+    ...    Test objective: The objective is to test that the retrieval of all indicators for a given VNF instance fails using invalid attribute-based filter. The test also checks the JSON schema of the unsuccessful operation HTTP response.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF indicators are available in the VNFM for the given VNF instance.
+    ...    Reference: section 8.4.3.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get all indicators for a VNF instance with invalid filter
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails
 
-GET Indicators on VNF Instance - Negative (Not Found)
-    Log    Trying to perform a negative get, using wrong authorization bearer
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${erroneousVnfInstanceId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get Indicators for VNF Instance with invalid resource identifier
+    [Documentation]    Test ID: 7.3.6.2.4
+    ...    Test title: Get Indicators for VNF Instance with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of all indicators for a given VNF instance fails when using invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF indicators are available in the VNFM for the given VNF instance.
+    ...    Reference: section 8.4.3.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get all indicators for a VNF instance with invalid resource identifier
+    Check HTTP Response Status Code Is    404
+    Check HTTP Response Body Json Schema Is   ProblemDetails
 
-POST Indicators on VNF Instance - (Method not implemented)
-    Log    Trying to perform a POST (method should not be implemented)
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+POST Indicators for VNF instance - Method not implemented
+    [Documentation]    Test ID: 7.3.6.2.5
+    ...    Test title: POST Indicators for VNF instance - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create new indicators for a VNF instance
+    ...    Pre-conditions: A VNF instance is instantiated.
+    ...    Reference: section 8.4.3.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send POST Request for indicators in VNF instance
+    Check HTTP Response Status Code Is    405
 
-PUT Indicators on VNF Instance - (Method not implemented)
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PUT Indicators for VNF instance - Method not implemented
+    [Documentation]    Test ID: 7.3.6.2.6
+    ...    Test title: PUT Indicators for VNF instance - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify existing indicators for a VNF instance
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF indicators are available in the VNFM for the given VNF instance.
+    ...    Reference: section 8.4.3.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PUT Request for indicators in VNF instance
+    Check HTTP Response Status Code Is    405
 
-PATCH Indicators on VNF Instance - (Method not implemented)
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PATCH Indicators for VNF instance - Method not implemented
+    [Documentation]    Test ID: 7.3.6.2.7
+    ...    Test title: PATCH Indicators for VNF instance - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to update existing indicators for a VNF instance
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF indicators are available in the VNFM for the given VNF instance.
+    ...    Reference: section 8.4.3.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH Request for indicators in VNF instance
+    Check HTTP Response Status Code Is    405
 
-DELETE Indicators on VNF Instance - (Method not implemented)
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
-    Log    Received 405 Method not implemented as expected
-
+DELETE Indicators for VNF instance - Method not implemented
+    [Documentation]    Test ID: 7.3.6.2.8
+    ...    Test title: DELETE Indicators for VNF instance - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not allowed to delete indicators for a VNF instance
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF indicators are available in the VNFM for the given VNF instance.
+    ...    Reference: section 8.4.3.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The indicators for the VNF instance are not deleted by the unsuccessful operation
+    Send DELETE Request for indicators in VNF instance
+    Check HTTP Response Status Code Is    405
+    Check Postcondition Indicators for VNF instance Exist

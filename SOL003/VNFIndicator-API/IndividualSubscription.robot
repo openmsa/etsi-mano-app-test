@@ -2,94 +2,96 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/individualSubscription.txt
+Resource          VNFIndicatorsKeywords.robot
 Library           OperatingSystem
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 
 *** Test Cases ***
-GET Individual Subscription
-    Log    Trying to get a given subscription identified by subscriptionId
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${result}=    Output    response body
-    Log    Trying to validate result with VnfIndicatorSubscription schema
-    Validate Json    VnfIndicatorSubscription.schema.json    ${result}
-    Log    Validated VnfIndicatorSubscription schema
+GET Individual VNF Indicator Subscription
+    [Documentation]    Test ID: 7.3.6.5.1
+    ...    Test title: GET Individual VNF Indicator Subscription
+    ...    Test objective: The objective is to test the retrieval of individual VNF indicator subscription and perform a JSON schema validation of the returned subscription data structure
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
+    ...    Reference:  section 8.4.6.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   VnfIndicatorSubscription
 
-GET Subscription - Negative (Not Found)
-    Log    Trying to perform a request on a subscriptionID which doesn't exist
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${problemDetails}=    Output    response body
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET Individual VNF Indicator Subscription with invalid resource identifier
+    [Documentation]    Test ID: 7.3.6.5.2
+    ...    Test title: GET Individual VNF Indicator Subscription with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of individual VNF indicator subscription fails when using an invalid resource identifier.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
+    ...    Reference:  section 8.4.6.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Individual VNF Indicator Subscription with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
-GET Subscription - Negative (Unauthorized: Wrong Token)
-    Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as VNFM is not supporting authentication
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    401
-    Log    Received 401 Unauthorized as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+DELETE Individual VNF Indicator Subscription
+    [Documentation]    Test ID: 7.3.6.5.3
+    ...    Test title: DELETE Individual VNF Indicator Subscription
+    ...    Test objective: The objective is to test the deletion of an individual VNF indicator subscription.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
+    ...    Reference:  section 8.4.6.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The subscription to VNF indicators is deleted
+    Send Delete Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    204
+    Check Postcondition Individual VNF Indicator Subscription is Deleted
 
-DELETE Subscription
-    Log    Trying to perform a DELETE on a subscriptionId
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    204
-    Log    Received 204 No Content as expected
+DELETE Individual VNF Indicator Subscription with invalid resource identifier
+    [Documentation]    Test ID: 7.3.6.5.4
+    ...    Test title: DELETE Individual VNF Indicator Subscription with invalid resource identifier
+    ...    Test objective: The objective is to test that the deletion of an individual VNF indicator subscription fails when using an invalid resource identifier.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
+    ...    Reference:  section 8.4.6.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none   
+    Send Delete Request for Individual VNF Indicator Subscription with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
-DELETE Subscription - Negative (Not Found)
-    Log    Trying to perform a DELETE on a subscriptionId which doesn't exist
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
-    Integer    response status    404
-    Log    The subscriptionId is not present in database
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    ${problemDetails}=    Output
-    Log    Trying to validate ProblemDetails
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+PUT Individual VNF Indicator Subscription - Method not implemented
+    [Documentation]    Test ID: 7.3.6.5.5
+    ...    Test title: PUT Individual VNF Indicator Subscription - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify an individual VNF indicator subscription
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
+    ...    Reference: section 8.4.6.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
+    Send Put Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF indicator subscription Unmodified (Implicit)
 
-PUT Subscription - (Method not implemented)
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PATCH Individual VNF Indicator Subscription - Method not implemented
+    [Documentation]    Test ID: 7.3.6.5.6
+    ...    Test title: PATCH Individual VNF Indicator Subscription - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to update an individual VNF indicator subscription
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
+    ...    Reference: section 8.4.6.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
+    Send Patch Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF indicator subscription Unmodified (Implicit) 
 
-PATCH Subscription - (Method not implemented)
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
-
-POST Subscription - (Method not implemented)
-    Log    Trying to perform a POST. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+POST Individual VNF Indicator Subscription - Method not implemented
+    [Documentation]    Test ID: 7.3.6.5.7
+    ...    Test title: POST Individual VNF Indicator Subscription - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF indicator subscription
+    ...    Pre-conditions: A VNF instance is instantiated.
+    ...    Reference: section 8.4.6.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: The individual VNF indicator subscription is not created by the operation
+    Send Post Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF indicator subscription is not created  

@@ -2,139 +2,73 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/subscriptions.txt
+Resource          NSDManagementKeywords.robot
 Library           OperatingSystem
 Library           JSONLibrary
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           Process
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
+Suite Setup       Create Sessions
+Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
-GET Subscription
-    [Documentation]    This method shall support the URI query parameters, request and response data structures, and response codes, as
-    ...    specified in the Tables 5.4.8.3.2-1 and 5.4.8.3.2-2.
-    Log    Trying to get the list of subscriptions
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    ${result}=    Output    response body
-    Validate Json    NsdmSubscriptions.schema.json    ${result}
-    Log    Validated NsdmSubscription schema
+Get All NS Descriptor Subscriptions
+    Get all NS Descriptor Subscriptions
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    NsdmSubscriptions
+    
 
-GET Subscription - Filter
-    Log    Trying to get the list of subscriptions using filters
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    ${result}=    Output    response body
-    Validate Json    NsdmSubscriptions.schema.json    ${result}
-    Log    Validated NsdmSubscription schema
+Get NS Descriptor Subscriptions with attribute-based filter
+    Get NS Descriptor Subscriptions with attribute-based filters
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    NsdmSubscription
+    Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
+    
 
-GET Subscription - Negative Filter
-    Log    Trying to get the list of subscriptions using filters with wrong attribute name
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
-    Integer    response status    400
-    Log    Received a 400 Bad Request as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get NS Descriptor Subscriptions with invalid attribute-based filter
+    Get NS Descriptor Subscriptions with invalid attribute-based filters
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails 
 
-GET Subscription - Negative (Not Found)
-    Log    Trying to perform a request on a Uri which doesn't exist
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscription
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
 
-POST Subscription
-    [Documentation]    This method shall support the URI query parameters, request and response data structures, and response codes, as
-    ...    specified in the Tables 5.4.8.3.1-1 and 5.4.8.3.1-2.
-    Log    Trying to create a new subscription
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response has header Location
-    ${result}=    Output    response body
-    Validate Json    NsdmSubscription.schema.json    ${result}
-    Log    Validation of NsdmSubscription OK
+GET NS Descriptor Subscription with invalid resource endpoint
+    Get NS Descriptor Subscriptions with invalid resource endpoint
+    Check HTTP Response Status Code Is    404
+    
+    
+Create new NS Descriptor subscription
+    Send Post Request for NS Descriptor Subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    NsdmSubscription
+    Check HTTP Response Body Matches the Subscription
+    Check Postcondition NS Descriptor Subscription Is Set 
+    
 
-POST Subscription - DUPLICATION
-    Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NFVO_DUPLICATION} == 0    NFVO is not permitting duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response has header Location
-    ${result}=    Output    response body
-    Validate Json    NsdmSubscription.schema.json    ${result}
-    Log    Validation of NsdmSubscription OK
+Create duplicated NS Descriptor subscription with duplication handler
+    Send Post Request for Duplicated NS Descriptor Subscription
+    Check HTTP Response Status Code Is    303
+    Check HTTP Response Body Is Empty
+    Check HTTP Response Header Contains    Location
+    Check Postcondition Subscription Resource URI Returned in Location Header Is Valid
 
-POST Subscription - NO DUPLICATION
-    Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NFVO_DUPLICATION} == 1    NFVO is permitting duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    303
-    Log    Received 303 See Other as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response header contains Location
 
-PUT Subscription - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+Create duplicated NS Descriptor subscription without duplication handler
+    Send Post Request for Duplicated NS Descriptor Subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    PmSubscription
+    Check HTTP Response Body Matches the Subscription
+    Check Postcondition NS Descriptor Subscription Is Set 
 
-PATCH Subscription - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
 
-DELETE Subscription - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PUT NS Descriptor Subscriptions - Method not implemented
+    Send Put Request for NS Descriptor Subscriptions
+    Check HTTP Response Status Code Is    405
+    
+    
+PATCH NS Descriptor Subscriptions - Method not implemented
+    Send Patch Request for NS Descriptor Subscriptions
+    Check HTTP Response Status Code Is    405
+    
+        
+DELETE NS Descriptor Subscriptions - Method not implemented
+    Send Delete Request for NS Descriptor Subscriptions
+    Check HTTP Response Status Code Is    405

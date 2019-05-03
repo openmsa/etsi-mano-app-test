@@ -8,15 +8,7 @@ Library    Collections
 Library    String
 
 
-*** Keywords ***
-Check Notification Endpoint
-    &{req}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
-    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
-    Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
-    Verify Mock Expectation  ${req}
-    Clear Requests  ${callback_endpoint}
-    
+*** Test Cases ***
 Post Performance Information Available Notification
     ${json}=	Get File	schemas/PerformanceInformationAvailableNotification.schema.json
     ${BODY}=	evaluate	json.loads('''${json}''')	json
@@ -24,7 +16,7 @@ Post Performance Information Available Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -38,7 +30,7 @@ Post Performance Information Available Notification Negative 404
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint_error}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=404
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -51,7 +43,7 @@ Post Threshold Crossed Notification
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -65,7 +57,7 @@ Post Threshold Crossed Notification Negative 404
     &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint_error}  body_type="JSON_SCHEMA"    body=${BODY}
     &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=404
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -77,7 +69,7 @@ PUT Performance Notification
     &{req}=  Create Mock Request Matcher	PUT  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -89,7 +81,7 @@ PATCH Performance Notification
     &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
@@ -101,15 +93,15 @@ DELETE Performance Notification
     &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
     &{rsp}=  Create Mock Response  status_code=405
     Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${req}
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
 	
 
+*** Keywords ***
 Create Sessions
-    Pass Execution If    ${VNFM_CHECKS_NOTIF_ENDPOINT} == 0    VNFM is not checking notification endpoint.    
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
-    Create Mock Session  ${callback_uri}
+    Create Mock Session  ${callback_uri}:${callback_port}
