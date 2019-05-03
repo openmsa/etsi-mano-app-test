@@ -34,7 +34,7 @@ Get VNF Indicators with attribute-based filter
     Check HTTP Response Body Json Schema Is   vnfIndicators
     Check HTTP Response Body vnfIndicators Matches the requested attribute-based filter
 
-Get all VNF Indicators with invalid attribute-based filter
+Get VNF Indicators with invalid attribute-based filter
     [Documentation]    Test ID: 6.3.2.1.3
     ...    Test title: Get VNF Indicators with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF indicators fails when using invalid attribute-based filters, and perform the JSON schema validation of the failed operation HTTP response. 
@@ -121,7 +121,7 @@ PUT all VNF Indicators - Method not implemented
 
 PATCH all VNF Indicators - Method not implemented
      [Documentation]    Test ID: 6.3.2.1.10
-    ...    Test title: POST all VNF Indicators - Method not implemented
+    ...    Test title: PATCH all VNF Indicators - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF indicators
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF
     ...    Reference: section 8.4.2.3.4 - SOL002 v2.4.1
@@ -133,7 +133,7 @@ PATCH all VNF Indicators - Method not implemented
 
 DELETE all VNF Indicators - Method not implemented
     [Documentation]    Test ID: 6.3.2.1.11
-    ...    Test title: POST all VNF Indicators - Method not implemented
+    ...    Test title: DELETE all VNF Indicators - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete VNF indicators
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of VNF performance indicators are available in the VNF
     ...    Reference: section 8.4.2.3.5 - SOL002 v2.4.1
