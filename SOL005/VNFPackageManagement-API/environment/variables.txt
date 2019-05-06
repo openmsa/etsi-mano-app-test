@@ -26,3 +26,9 @@ ${callback_port}    9091
 ${callback_endpoint}    /endpoint
 ${callback_endpoint_error}    /endpoint_404
 ${sleep_interval}    20s
+${total_polling_time}   2 min
+${polling_interval}     10 sec
+
+${NFVO_CHECKS_NOTIF_ENDPOINT}    1
+
+${response}

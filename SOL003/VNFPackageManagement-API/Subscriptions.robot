@@ -44,6 +44,7 @@ Create new VNF Package subscription
 
 
 Create duplicated VNF Package subscription with duplication handler
+    [Tags]    no-duplicated-subs
     Send Post Request for Duplicated VNF Package Subscription
     Check HTTP Response Status Code Is    303
     Check HTTP Response Body Is Empty
@@ -52,6 +53,7 @@ Create duplicated VNF Package subscription with duplication handler
 
 
 Create duplicated VNF Package subscription without duplication handler
+    [Tags]    duplicated-subs
     Send Post Request for Duplicated VNF Package Subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    PmSubscription
