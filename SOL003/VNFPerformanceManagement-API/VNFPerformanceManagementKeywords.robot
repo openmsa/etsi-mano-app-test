@@ -301,7 +301,7 @@ Check Postcondition VNF Performance Subscription Is Set
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
 
-Check Postcondition Subscription Resource URI Returned in Location Header Is Valid
+Check Postcondition Subscription Resource Returned in Location Header Is Available
     Log    Going to check postcondition
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${response.headers['Location']}

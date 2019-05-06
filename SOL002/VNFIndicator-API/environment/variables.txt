@@ -14,3 +14,12 @@ ${AUTH_USAGE}     1
 ${apiRoot}        /
 ${apiVersion}     v1
 ${apiName}        vnfind
+
+
+${VNFM_CHECKS_NOTIF_ENDPOINT}    0
+
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
+${callback_uri}    http://localhost
+${callback_port}    9091
+${callback_endpoint}    /endpoint
+${callback_endpoint_error}    /endpoint_404

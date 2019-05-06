@@ -4,7 +4,11 @@ Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/subscriptions.txt
 Library           OperatingSystem
 Library           JSONLibrary
-Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
+Library           Process
+Library           MockServerLibrary    
+Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}    ssl_verify=false
+Suite Setup       Create Sessions
+Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 GET VNF Indicators Subscriptions
@@ -151,7 +155,9 @@ Send Post Request for VNF Indicator Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output}   
+    Set Suite Variable    ${response}    ${output}  
+    Run Keyword If    ${VNFM_CHECKS_NOTIF_ENDPOINT} == 1
+    ...       Check Notification Endpoint 
 
 Send Put Request for VNF Indicator Subscriptions
     Log    Trying to create a new subscription
@@ -215,3 +221,17 @@ Check Postcondition VNF Indicator Subscription Is Set
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Indicators according to filter
     #todo
+
+
+Create Sessions
+    Pass Execution If    ${VNFM_CHECKS_NOTIF_ENDPOINT} == 0   MockServer not necessary to run    
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${callback_uri}:${callback_port}
+    
+Check Notification Endpoint
+    &{notification_request}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+    Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
+    Clear Requests  ${callback_endpoint}
