@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
+Resource    VRQANOperationKeywords.robot 
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
