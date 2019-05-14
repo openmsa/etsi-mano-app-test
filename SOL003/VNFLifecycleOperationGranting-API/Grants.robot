@@ -114,7 +114,7 @@ Send Request Grant Request
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal    ${response[0]['status_code']}    ${expected_status}
     Log    Status code validated
 
 Check HTTP Response Header Contains
