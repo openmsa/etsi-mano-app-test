@@ -16,7 +16,7 @@ Get Information about an individual NS Instance
     Do POST individualNSInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    nsInstance.schema.json
+    Check HTTP Response Body Json Schema Is    NsInstance.schema.json
     
 PUT Individual NSInstance - Method not implemented 
     Do PUT IndividualNSInstance

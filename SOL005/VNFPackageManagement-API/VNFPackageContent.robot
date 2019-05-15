@@ -9,17 +9,17 @@ Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 *** Test Cases ***
 GET VNF Package Content
     Log    Trying to get a VNF Package Content
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/package_content
     Integer    response status    200
     ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_ZIP}
+    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
 
 GET VNF Package Content - Range
     Log    Trying to get a VNF Package Content using RANGE using an NFVO that can handle it
     Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Range": "${range}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/package_content
@@ -35,7 +35,7 @@ GET VNF Package Content - Range
 GET VNF Package Content - Negative Range
     Log    Trying to get a range of bytes of the limit of the VNF Package
     Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Range": "${erroneousRange}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/package_content
@@ -50,7 +50,7 @@ GET VNF Package Content - Negative Range
 
 GET VNF Package Content - Negative (Not Found)
     Log    Trying to perform a negative get, using an erroneous package ID
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${erroneousVnfPkgId}/package_content
     Integer    response status    404
@@ -64,7 +64,7 @@ GET VNF Package Content - Negative (Not Found)
 
 GET VNF Package Content - Negative (onboardingState issue)
     Log    Trying to get a VNF Package content present in the NFVO Catalogue, but not in ONBOARDED operationalStatus
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${onboardingStateVnfPkgId}/package_content
     Integer    response status    409
@@ -108,7 +108,7 @@ PUT VNF Package Content - Negative (Conflict on onboarding status not in CREATED
 POST VNF Package Content - (Method not implemented)
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a POST (method should not be implemented)
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Integer    response status    405
@@ -118,7 +118,7 @@ POST VNF Package Content - (Method not implemented)
 PATCH VNF Package Content - (Method not implemented)
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Integer    response status    405
@@ -127,7 +127,7 @@ PATCH VNF Package Content - (Method not implemented)
 DELETE VNF Package Content - (Method not implemented)
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
     Integer    response status    405
