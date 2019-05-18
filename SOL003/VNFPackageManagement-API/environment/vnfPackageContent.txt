@@ -2,6 +2,7 @@
 ${ACCEPT_ZIP}     application/zip
 ${NFVO_RANGE_OK}    1    # If 1 means that Range is supported by the NFVO
 ${range}          bytes=0-1023
+${length}          1024
 ${erroneousRange}    bytes=10000000-1000000000    # Requesting a out of range number of bytes
 ${erroneousVnfPkgId}    erroneousPkgId
 ${CONTENT_TYPE_ZIP}    application/zip
