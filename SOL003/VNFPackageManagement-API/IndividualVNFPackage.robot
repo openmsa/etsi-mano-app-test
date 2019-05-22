@@ -53,7 +53,7 @@ PUT Individual VNF Package - Method not implemented
     ...    Reference: section 10.4.3.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The VNF Package is not deleted by the failed operation
+    ...    Post-Conditions: none
     Send PUT Request for individual VNF Package
     Check HTTP Response Status Code Is    405
 
@@ -77,7 +77,7 @@ DELETE Individual VNF Package - Method not implemented
     ...    Reference: section 10.4.3.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: The VNF Package is not deleted by the failed operation
     Send DELETE Request for individual VNF Package
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF Package Exist

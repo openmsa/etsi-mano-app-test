@@ -50,10 +50,10 @@ GET VNF Packages with invalid attribute-based filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is   ProblemDetails
 
-GET all Packages - all_fields
+GET VNF Packages with "all_fields" attribute selector
     [Documentation]    Test ID: 7.3.3.1.4
-    ...    Test title: GET VNF Packages with all_fields attribute selector
-    ...    Test objective: The objective is to test the retrieval of VNF packages with all_fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued all_fileds selector
+    ...    Test title: GET VNF Packages with "all_fields" attribute selector
+    ...    Test objective: The objective is to test the retrieval of VNF packages with "all_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "all_fileds" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
     ...    Reference: section 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -64,10 +64,10 @@ GET all Packages - all_fields
     Check HTTP Response Body Json Schema Is   vnfPkgsInfo
     Check HTTP Response Body vnfPkgsInfo Matches the requested all_fields selector
 
-GET VNF Packages with exclude_default attribute selector
+GET VNF Packages with "exclude_default" attribute selector
     [Documentation]    Test ID: 7.3.3.1.5
     ...    Test title: GET VNF Packages with exclude_default attribute selector
-    ...    Test objective: The objective is to test the retrieval of VNF packages with exclude_default attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued exclude_default selector
+    ...    Test objective: The objective is to test the retrieval of VNF packages with "exclude_default" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_default" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
     ...    Reference: section 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -78,10 +78,10 @@ GET VNF Packages with exclude_default attribute selector
     Check HTTP Response Body Json Schema Is   vnfPkgsInfo
     Check HTTP Response Body vnfPkgsInfo Matches the requested exclude_default selector
 
-GET VNF Packages with fields attribute selector
+GET VNF Packages with "fields" attribute selector
     [Documentation]    Test ID: 7.3.3.1.6
     ...    Test title: GET VNF Packages with fields attribute selector
-    ...    Test objective: The objective is to test the retrieval of VNF packages with fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued fields selector
+    ...    Test objective: The objective is to test the retrieval of VNF packages with "fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "fields" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
     ...    Reference: section 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -92,10 +92,10 @@ GET VNF Packages with fields attribute selector
     Check HTTP Response Body Json Schema Is   vnfPkgsInfo
     Check HTTP Response Body vnfPkgsInfo Matches the requested fields selector
 
-GET VNF Packages with exclude_fields attribute selector
+GET VNF Packages with "exclude_fields" attribute selector
     [Documentation]    Test ID: 7.3.3.1.7
     ...    Test title: GET VNF Packages with exclude_fields attribute selector
-    ...    Test objective: The objective is to test the retrieval of VNF packages with exclude_fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued exclude_fields selector
+    ...    Test objective: The objective is to test the retrieval of VNF packages with "exclude_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_fields" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
     ...    Reference: section 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
