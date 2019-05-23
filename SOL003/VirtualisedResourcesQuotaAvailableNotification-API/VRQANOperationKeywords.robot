@@ -5,10 +5,15 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 #Suite Teardown    Terminate All Processes    kill=true
-
+Library    MockServerLibrary
 Library    Process
 
 *** Keywords ***
+Create Sessions
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${callback_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${callback_uri}:${callback_port} 
+    
 Check Individual Subscription existance
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -27,7 +32,8 @@ Check HTTP Response Header Contains
     Log    Header is present    
     
 Check HTTP Response Body Json Schema Is
-    [Arguments]    ${schema}
+    [Arguments]    ${input}
+    ${schema} =    Catenate    ${input}    .schema.json
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
     
@@ -77,7 +83,7 @@ Do Delete an individual subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do Post subscription
+ Send Post request for new Virtualised Resources Quota Available Notification subscription 
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -87,7 +93,7 @@ Do Post subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do Post subscription - DUPLICATION
+ Send Post request for new Virtualised Resources Quota Available Notification subscription - DUPLICATION
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${NFVO_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
@@ -98,7 +104,7 @@ Do Post subscription - DUPLICATION
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do Post subscription - NO-DUPLICATION
+Send Post request for new Virtualised Resources Quota Available Notification subscription - NO-DUPLICATION
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${NFVO_DUPLICATION} == 1    VNFM permits duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
@@ -109,7 +115,7 @@ Do Post subscription - NO-DUPLICATION
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do Get Subscriptions
+GET Virtualised Resources Quota Available Notification Subscriptions
     Log    Get the list of active subscriptions
     Set Headers  {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -118,7 +124,7 @@ Do Get Subscriptions
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
      
-Do Get Subscriptions - Filter
+GET Virtualised Resources Quota Available Notification Subscriptions with Filter
     Log    Get the list of active subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -127,7 +133,7 @@ Do Get Subscriptions - Filter
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-DO Get subscriptions - Bad Request Invalid attribute-based filtering parameters    
+Get Virtualised Resources Quota Available Notification subscriptions with Bad Request Invalid attribute-based filtering parameters    
      Log    Get the list of active subscriptions using an invalid filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -135,7 +141,7 @@ DO Get subscriptions - Bad Request Invalid attribute-based filtering parameters
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do Put subscription
+Send Put request for Virtualised Resources Quota Available Notification subscription 
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -144,8 +150,8 @@ Do Put subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse} 
     
-Do Patch subscription
-    log    Trying to perform a PUT. This method should not be implemented
+Send Patch request for Virtualised Resources Quota Available Notification subscription
+    log    Trying to perform a Patch. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -153,8 +159,8 @@ Do Patch subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}  
     
-Do Delete subscription
-    log    Trying to perform a PUT. This method should not be implemented
+Send Delete request for Virtualised Resources Quota Available Notification subscription
+    log    Trying to perform a Delete. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
