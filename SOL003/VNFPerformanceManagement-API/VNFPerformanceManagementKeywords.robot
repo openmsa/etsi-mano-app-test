@@ -286,7 +286,7 @@ Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filte
     # Should Be Equal As Strings    ${response['body']['callbackUri']}    ${callbackUri}
     #TODO
 
-Check HTTP Response Body Matches the Subscription
+Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json

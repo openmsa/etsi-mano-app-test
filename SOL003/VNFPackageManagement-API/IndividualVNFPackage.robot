@@ -2,65 +2,82 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/individualVnfPackage.txt
+Resource          VNFPackageManagementKeywords.robot  
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 
 *** Test Cases ***
 GET Individual VNF Package
-    Log    Trying to get a VNF Package present in the NFVO Catalogue
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate response
-    ${vnfPkgInfo}=    Output    response body
-    Validate Json    vnfPkgInfo.schema.json    ${vnfPkgInfo}
-    Log    Validation OK
+    [Documentation]    Test ID: 7.3.3.2.1
+    ...    Test title: GET Individual VNF Package
+    ...    Test objective: The objective is to test the retrieval of an individual VNF package information perform a JSON schema validation of the collected data structure
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 10.4.3.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Individual VNF Package
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfPkgInfo
+    Check HTTP Response Body vnfPkgInfo Identifier matches the requested VNF Package
 
-GET Individual VNF Package - Negative (Not Found)
-    Log    Trying to perform a negative get, using wrong authorization bearer
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${erroneousVnfPackageId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET Individual VNF Package with invalid resource identifier
+    [Documentation]    Test ID: 7.3.3.2.2
+    ...    Test title: GET Individual VNF Package with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of an individual VNF package fails when using an invalid resource identifier
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 10.4.3.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none    
+    GET Individual VNF Package with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
-POST Individual VNF Package - (Method not implemented)
-    Log    Trying to perform a POST (method should not be implemented)
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+POST Individual VNF Package - Method not implemented
+    [Documentation]    Test ID: 7.3.3.2.3
+    ...    Test title: POST Individual VNF Package - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create new VNF Package
+    ...    Pre-conditions: none
+    ...    Reference: section 10.4.3.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send POST Request for individual VNF Package
+    Check HTTP Response Status Code Is    405
 
-PUT Individual VNF Package - (Method not implemented)
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PUT Individual VNF Package - Method not implemented
+    [Documentation]    Test ID: 7.3.3.2.4
+    ...    Test title: PUT Individual VNF Package - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify a VNF Package
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 10.4.3.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PUT Request for individual VNF Package
+    Check HTTP Response Status Code Is    405
 
-PATCH Individual VNF Package - (Method not implemented)
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PATCH Individual VNF Package - Method not implemented
+    [Documentation]    Test ID: 7.3.3.2.5
+    ...    Test title: PATCH Individual VNF Package - Method not implemented
+    ...    Test objective: The objective is to test that PATCH  method is not allowed to update a VNF Package
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 10.4.3.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH Request for individual VNF Package
+    Check HTTP Response Status Code Is    405
 
-DELETE Individual VNF Package - (Method not implemented)
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+DELETE Individual VNF Package - Method not implemented
+    [Documentation]    Test ID: 7.3.3.2.6
+    ...    Test title: DELETE Individual VNF Package - Method not implemented
+    ...    Test objective: The objective is to test that DELETE  method is not allowed to delete a VNF Package
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 10.4.3.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Package is not deleted by the failed operation
+    Send DELETE Request for individual VNF Package
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Package Exist

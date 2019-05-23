@@ -1,6 +1,9 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    environment/subscriptions.txt
+Resource    environment/vnfPackages.txt
+Resource    environment/individualVnfPackage.txt
+Resource    environment/vnfPackageContent.txt
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library    MockServerLibrary 
 Library    OperatingSystem
@@ -12,6 +15,326 @@ Library    Process
 
 
 *** Keywords ***
+Get all VNF Packages
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}   
+
+Check HTTP Response Body Does Not Contain softwareImages
+    Log    Checking that field element is missing
+    ${softwareImages}=    Get Value From Json    ${response['body']}    $..softwareImages
+    Should Be Empty    ${softwareImages}
+    Log    Element is empty as expected
+    
+Check HTTP Response Body Does Not Contain additionalArtifacts
+    Log    Checking that field element is missing
+    ${additionalArtifacts}=    Get Value From Json    ${response['body']}    $..additionalArtifacts
+    Should Be Empty    ${additionalArtifacts}
+    Log    Element is empty as expected
+    
+Check HTTP Response Body Does Not Contain userDefinedData 
+    Log    Checking that field element is missing
+    ${userDefinedData}=    Get Value From Json    ${response['body']}    $..userDefinedData
+    Should Be Empty    ${userDefinedData}
+    Log    Element is empty as expected
+
+GET VNF Packages with attribute-based filter
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${POS_FILTER}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check HTTP Response Body VnfPkgsInfo Matches the requested Attribute-Based Filter
+    Log    Checking that attribute-based filter is matched
+    #todo
+
+GET VNF Packages with invalid attribute-based filter
+    Log    Trying to perform a negative get, filtering by the inexistent filter 'nfvId'
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${NEG_FILTER}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET VNF Packages with all_fields attribute selector
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?all_fields
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+   
+Check HTTP Response Body VnfPkgsInfo Matches the requested all_fields selector
+    Log    Trying to validate softwareImages schema
+    ${softwareImages}=    Get Value From Json    ${response['body']}    $..softwareImages
+    Validate Json    softwareImage.schema.json    ${softwareImages[0]}
+    Log    Validation for softwareImage schema OK
+    Log    Trying to validate additionalArtifacts schema
+    ${additional_artifacts}=    Get Value From Json    ${response['body']}    $..additionalArtifacts
+    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
+    Log    Validation for additionalArtifacts schema OK
+    ${links}=    Get Value From Json    ${response['body']}    $.._links
+    Validate Json    links.schema.json    ${links[0]}
+    Log    Validation for _links schema OK
+
+GET VNF Packages with exclude_default attribute selector
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using exclude_default filter.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exclude_default   
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check HTTP Response Body VnfPkgsInfo Matches the requested exclude_default selector
+    Log    Checking missing information for softwareImages element
+    ${softwareImages}=    Get Value From Json    ${response['body']}    $..softwareImages
+    Should Be Empty    ${softwareImages}
+    Log    softwareImages element is missing as excepted
+    Log    Checking missing information for additionalArtifact element
+    ${additional_artifacts}=    Get Value From Json    ${response['body']}    $..additionalArtifacts
+    Should Be Empty    ${additional_artifacts}
+    Log    additionalArtifact element is missing as excepted
+
+GET VNF Packages with fields attribute selector
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check HTTP Response Body vnfPkgsInfo Matches the requested fields selector
+    Log    Trying to validate softwareImages schema
+    ${softwareImages}=    Get Value From Json    ${response['body']}    $..softwareImages
+    Validate Json    softwareImage.schema.json    ${softwareImages[0]}
+    Log    Validation for softwareImage schema OK
+    Log    Trying to validate additionalArtifacts schema
+    ${additional_artifacts}=    Get Value From Json    ${response['body']}    $..additionalArtifacts
+    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
+    Log    Validation for additionalArtifacts schema OK
+    
+GET VNF Packages with exclude_fields attribute selector
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check HTTP Response Body vnfPkgsInfo Matches the requested exclude_fields selector
+    Log    Checking missing information for softwareImages element
+    ${softwareImages}=    Get Value From Json    ${response['body']}    $..softwareImages
+    Should Be Empty    ${softwareImages}
+    Log    softwareImages element is missing as excepted
+    Log    Checking missing information for additionalArtifact element
+    ${additional_artifacts}=    Get Value From Json    ${response['body']}    $..additionalArtifacts
+    Should Be Empty    ${additional_artifacts}
+    Log    additionalArtifact element is missing as excepted
+
+GET all VNF Packages with invalid resource endpoint
+    Log    Trying to perform a GET on a erroneous URI
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_package
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send POST Request for all VNF Packages
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for all VNF Packages
+    Log    Trying to perform a PUT (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PATCH Request for all VNF Packages
+    Log    Trying to perform a PATCH (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send DELETE Request for all VNF Packages
+    Log    Trying to perform a DELETE (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition VNF Packages Exist
+    Log    Checking that Pm Job still exists
+    GET all VNF Packages
+
+GET Individual VNF Package
+    Log    Trying to get a VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Check HTTP Response Body vnfPkgInfo Identifier matches the requested VNF Package
+    Log    Going to validate pacakge info retrieved
+    Should Be Equal    ${response['body']['id']}    ${vnfPackageId} 
+    Log    Pacakge identifier as expected
+
+GET Individual VNF Package with invalid resource identifier
+    Log    Trying to perform a negative get, using wrong authorization bearer
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${erroneousVnfPackageId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send POST Request for individual VNF Package
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for individual VNF Package
+    Log    Trying to perform a PUT (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+ 
+Send PATCH Request for individual VNF Package
+    Log    Trying to perform a PATCH (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send DELETE Request for individual VNF Package
+    Log    Trying to perform a DELETE (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition VNF Package Exist
+    Log    Checking that vnf pacakge still exists
+    GET Individual VNF Package
+    
+GET Individual VNF Package Content  
+    Log    Trying to get a VNF Package Content
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check HTTP Response Header Content-Type Is
+    [Arguments]   ${header}
+    Should Contain    ${response['headers']['Content-Type']}    ${header}
+
+GET Individual VNF Package Content with Range Request
+    Log    Trying to get a VNF Package Content using RANGE using an NFVO that can handle it
+    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Range": "${range}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check HTTP Response Header Content-Range Is Present and Matches the requested range
+    Log    Check Content-Range HTTP Header
+    Should Contain    ${response['headers']}    Content-Range
+    Should Be Equal As Strings    ${response['headers']['Content-Range']}    ${range}
+    Log    Header Content-Range is present
+    
+Check HTTP Response Header Content-Length Is Present and Matches the requested range length
+    Log    Check Content-Length HTTP Header
+    Should Contain    ${response['headers']}    Content-Length
+    Should Be Equal As Integers    ${response['headers']['Content-Length']}    ${length}
+    Log    Header Content-Length is present
+
+GET Individual VNF Package Content with invalid Range Request
+    Log    Trying to get a range of bytes of the limit of the VNF Package
+    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Range": "${erroneousRange}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET Individual VNF Package Content with invalid resource identifier
+    Log    Trying to perform a negative get, using an erroneous package ID
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${erroneousVnfPkgId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET Content for VNF Package in onboarding state different from ONBOARDED
+    Log    Trying to get a VNF Package content present in the NFVO Catalogue, but not in ONBOARDED operationalStatus
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${onboardingStateVnfPkgId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send POST Request for individual VNF Package Content
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for individual VNF Package Content
+    Log    Trying to perform a PUT (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+ 
+Send PATCH Request for individual VNF Package Content
+    Log    Trying to perform a PATCH (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send DELETE Request for individual VNF Package Content
+    Log    Trying to perform a DELETE (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition VNF Package Content Exist
+    Log    Checking that vnf pacakge still exists
+    GET Individual VNF Package Content
+
 Get all VNF Package Subscriptions
     Log    Trying to get the list of subscriptions
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -20,8 +343,6 @@ Get all VNF Package Subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
-
-
 Get VNF Package Subscriptions with attribute-based filters
     Log    Trying to get the list of subscriptions using filters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -29,9 +350,6 @@ Get VNF Package Subscriptions with attribute-based filters
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}    
-  
-
-
 
 Get VNF Package Subscriptions with invalid attribute-based filters
     Log    Trying to get the list of subscriptions using filters with wrong attribute name
@@ -40,9 +358,7 @@ Get VNF Package Subscriptions with invalid attribute-based filters
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ko}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
-
-
-
+    
 Get VNF Package Subscriptions with invalid resource endpoint
     Log    Trying to perform a request on a Uri which doesn't exist
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -51,8 +367,6 @@ Get VNF Package Subscriptions with invalid resource endpoint
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
 
-    
-    
 Send Post Request for VNF Package Subscription
     Log    Trying to create a new subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -110,8 +424,7 @@ Check HTTP Response Status Code Is
     Should Be Equal    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
-    
-    
+
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json

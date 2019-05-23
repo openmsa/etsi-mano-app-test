@@ -76,7 +76,7 @@ Create new VNF Performance subscription
     Send Post Request for VNF Performance Subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    PmSubscription
-    Check HTTP Response Body Matches the Subscription
+    Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription
     Check Postcondition VNF Performance Subscription Is Set 
 
 
@@ -109,7 +109,7 @@ Create duplicated VNF Performance subscription with VNFM creating duplicated sub
     Send Post Request for Duplicated VNF Performance Subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    PmSubscription
-    Check HTTP Response Body Matches the Subscription
+    Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription
     Check Postcondition VNF Performance Subscription Is Set 
 
 PUT VNF Performance Subscriptions - Method not implemented
