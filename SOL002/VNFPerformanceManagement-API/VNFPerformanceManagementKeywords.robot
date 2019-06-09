@@ -134,7 +134,7 @@ Send Post Request for Duplicated VNF Performance Subscription
     ...    the existing subscription resource with the same filter and callbackUri).
     Set headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body_request}=    Get File    jsons/subscriptions.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body_request}
     ${output}=    Output    response
@@ -155,7 +155,7 @@ Send Post Request for Duplicated VNF Performance Subscription
 Send Put Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -165,7 +165,7 @@ Send Put Request for VNF Performance Subscriptions
 Send Patch Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -175,7 +175,7 @@ Send Patch Request for VNF Performance Subscriptions
 Send Delete Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
     ...    Not Allowed" response as defined in clause 4.3.5.4.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -184,40 +184,40 @@ Send Delete Request for VNF Performance Subscriptions
 
 Get Individual VNF Performance Subscription
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 GET individual VNF Performance Subscription with invalid resource identifier
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual VNF Performance Subscription
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual VNF Performance Subscription with invalid resource identifier
     Log    Trying to delete a subscription in the VNFM with invalid id
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
     ${output}=    Output    response
     Set Suite Variable    @{response}    ${output}
 
 Send Post request for individual VNF Performance Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
     Set Suite Variable    @{response}    ${output}
 
 Send Put request for individual VNF Performance Threshold
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -226,7 +226,7 @@ Send Put request for individual VNF Performance Threshold
     Set Suite Variable    @{response}    ${output}
     
 Send Patch request for individual VNF Performance Threshold
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
