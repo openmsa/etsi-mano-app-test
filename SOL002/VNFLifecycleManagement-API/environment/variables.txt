@@ -15,6 +15,7 @@ ${apiVersion}     v1
 ${AUTH_USAGE}     1
 ${WRONG_AUTHORIZATION}    Bearer    XXXXXWRONGXXXXX
 ${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${badVnfInstanceId}       wrongId
 ${instantiatedVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f    #Change with an instantiated vnfInstanceID
 ${conflicVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${vnfInstanceName}    Test-VnfInstance
