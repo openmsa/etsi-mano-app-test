@@ -1,9 +1,12 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    environment/subscriptions.txt
+Resource    environment/IndividualSubscription.txt
 Resource    environment/vnfPackages.txt
 Resource    environment/individualVnfPackage.txt
 Resource    environment/vnfPackageContent.txt
+Resource    environment/vnfPackageArtifacts.txt
+Resource    environment/vnfdInIndividualVnfPackage.txt
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library    MockServerLibrary 
 Library    OperatingSystem
@@ -379,8 +382,6 @@ Send Post Request for VNF Package Subscription
     Run Keyword If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 1
     ...       Check Notification Endpoint
 
-    
-
 Send Post Request for Duplicated VNF Package Subscription
     Log    Trying to create a subscription with an already created content
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -390,8 +391,6 @@ Send Post Request for Duplicated VNF Package Subscription
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
-
-
 
 Send Put Request for VNF Package Subscriptions
     Log    Trying to perform a PUT. This method should not be implemented
@@ -408,8 +407,7 @@ Send Patch Request for VNF Package Subscriptions
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
-    
-    
+
 Send Delete Request for VNF Package Subscriptions
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -418,6 +416,199 @@ Send Delete Request for VNF Package Subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
 
+Check Postcondition VNF Package Subscriptions Exists
+    Log    Checking that subscriptions exists
+    Get all VNF Package Subscriptions    
+
+Get single file VNFD in Individual VNF Package in Plain Format
+    Log    Trying to get a VNFD from a given VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgPlainVNFD}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Get VNFD in Individual VNF Package in Zip Format
+    Log    Trying to get a VNFD from a given VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgZipVNFD}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Get single file VNFD in Individual VNF Package in Plain or Zip Format
+    Log    Trying to get a VNFD from a given VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgPlainVNFD}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get multi file VNFD in Individual VNF Package in Plain or Zip Format
+    Log    Trying to get a VNFD from a given VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgZipVNFD}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Check HTTP Response Header Content-Type Is Any of
+    [Arguments]   ${header1}    ${header2}
+    Should Contain Any  ${response['headers']['Content-Type']}    ${header1}    ${header2}
+
+Get multi file VNFD in Individual VNF Package in Plain Format
+    Log    Trying to get a negative case performing a get on a VNFD from a given VNF Package present in the NFVO Catalogue. Accept will be text/plain but VNFD is composed my multiple files.
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgZipVNFD}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Get VNFD in Individual VNF Package with invalid resource identifier
+    Log    Trying to perform a negative get, using an erroneous package ID
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${erroneousVnfPkgId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Get VNFD in Individual VNF Package Content with conflict due to onboarding state 
+    Log    Trying to get a VNFD from a given VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${onboardingStateVnfPkgId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send POST Request for VNFD in individual VNF Package
+    Log    Trying to perform a POST. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send PUT Request for VNFD in individual VNF Package
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+    
+Send PATCH Request for VNFD in individual VNF Package
+    Log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send DELETE Request for VNFD in individual VNF Package
+    Log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgZipVNFD}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Check Postcondition VNFD Exist
+    Log    Checking that vnf pacakge still exists
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgZipVNFD}/vnfd
+    Check HTTP Response Status Code Is    200
+
+GET Individual VNF Package Artifact
+    Log    Trying to get a VNF Package Artifact
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET Individual VNF Package Artifact in octet stream format  
+    Log    Trying to get a VNF Package Artifact
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageOctetStreamId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET Individual VNF Package Artifact with Range Request
+    Log    Trying to get an Artifact using RANGE Header and using an NFVO that can handle it
+    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
+    Set Headers    {"Range": "${range}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual VNF Package Artifact with invalid Range Request
+    Log    Trying to get a range of bytes of the limit of the VNF Package
+    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Range": "${erroneousRange}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+ 
+GET Individual VNF Package Artifact with invalid resource identifier
+    Log    Trying to perform a negative get, using an erroneous package ID
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${erroneousVnfPkgId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET Artifact for VNF Package in onboarding state different from ONBOARDED
+    Log    Trying to get a VNF Package artifact present in the NFVO Catalogue, but not in ONBOARDED operationalStatus
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${onboardingStateVnfPkgId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send POST Request for individual VNF Package Artifact
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for individual VNF Package Artifact
+    Log    Trying to perform a PUT (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+ 
+Send PATCH Request for individual VNF Package Artifact
+    Log    Trying to perform a PATCH (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send DELETE Request for individual VNF Package Artifact
+    Log    Trying to perform a DELETE (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition VNF Package Artifact Exist
+    Log    Checking that vnf pacakge still exists
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/artifacts/${artifactPath}
+    Check HTTP Response Status Code Is    200
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
@@ -443,7 +634,7 @@ Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filte
     #TODO
 
 
-Check HTTP Response Body Matches the Subscription
+Check HTTP Response Body PkgmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
@@ -461,13 +652,106 @@ Check Postcondition VNF Package Subscription Is Set
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
+
+Check Postcondition Subscription Resource Returned in Location Header Is Available
+    Log    Going to check postcondition
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${response.headers['Location']}
+    Integer    response status    200
+    Log    Received a 200 OK as expected
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    ${result}=    Output    response body
+    Validate Json    PkgmSubscription.schema.json    ${result}
+    Log    Validated PkgmSubscription schema   
+
+Get Individual VNF Package Subscription
+    Log    Trying to get a single subscription identified by subscriptionId
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
     
+GET individual VNF Package Subscription with invalid resource identifier
+    Log    Trying to perform a request on a subscriptionID which doesn't exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send Delete request for individual VNF Package Subscription
+    Log    Trying to perform a DELETE on a subscriptionId
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition VNF Package Subscription is Deleted
+    Log    Check Postcondition Subscription is deleted
+    GET individual VNF Package Subscription
+    Check HTTP Response Status Code Is    404 
+
+Send Delete request for individual VNF Package Subscription with invalid resource identifier
+    Log    Trying to perform a DELETE on a subscriptionId which doesn't exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send Post request for individual VNF Package Subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+
+Send Put request for individual VNF Package Subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+    
+Send Patch request for individual VNF Package Subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+   
+Check Postcondition VNF Package Subscription is Unmodified (Implicit)
+    Log    Check postconidtion subscription not modified
+    GET individual VNF Package Subscription
+    Log    Check Response matches original VNF Threshold
+    ${subscription}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origResponse['body']['id']}    ${subscription.id}
+    Should Be Equal    ${origResponse['body']['callbackUri']}    ${subscription.callbackUri}
+
+Check Postcondition VNF Package Subscription is not Created
+    Log    Trying to get a new subscription
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+    Check HTTP Response Status Code Is    404
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response.headers}    ${CONTENT_TYPE}
     Log    Header is present
 
+Check HTTP Response Body Subscription Identifier matches the requested Subscription
+    Log    Trying to check response ID
+    Should Be Equal    ${response['body']['id']}    ${subscriptionId} 
+    Log    Subscription identifier as expected
 
 Create Sessions
     Pass Execution If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 0    MockServer not started as NFVO is not checking the notification endpoint
