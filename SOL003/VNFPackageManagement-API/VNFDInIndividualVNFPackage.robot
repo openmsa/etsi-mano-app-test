@@ -9,7 +9,7 @@ Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 *** Test Cases ***
 Get single file VNFD in Individual VNF Package in Plain Format
     [Documentation]    Test ID: 7.3.3.4.1
-    ...    Test title: Get VNFD in Individual VNF Package in Plain Format
+    ...    Test title: Get single file VNFD in Individual VNF Package in Plain Format
     ...    Test objective: The objective is to test the retrieval of the VNFD in plain format for an individual VNF package and perform a validation that returned content is in plain format
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
     ...    Reference: section 10.4.4.3.2 - SOL003 v2.4.1
@@ -36,7 +36,7 @@ Get VNFD in Individual VNF Package in Zip Format
 Get single file VNFD in Individual VNF Package in Plain or Zip Format
     [Documentation]    Test ID: 7.3.3.4.3
     ...    Test title: Get single file VNFD in Individual VNF Package in Plain or Zip Format
-    ...    Test objective: The objective is to test the retrieval of the single file VNFD for an individual VNF package when requesting both Plain and Zip format to NFVO, and perform a validation that returned content is in plain or zip format
+    ...    Test objective: The objective is to test the retrieval of the single file VNFD for an individual VNF package when requesting Plain or Zip format to NFVO by including both formats in the request, and perform a validation that returned content is in Plain or Zip format
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
     ...    Reference: section 10.4.4.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -49,7 +49,7 @@ Get single file VNFD in Individual VNF Package in Plain or Zip Format
 Get multi file VNFD in Individual VNF Package in Plain or Zip Format
     [Documentation]    Test ID: 7.3.3.4.4
     ...    Test title: Get multi file VNFD in Individual VNF Package in Plain or Zip Format
-    ...    Test objective: The objective is to test the retrieval of the multi file VNFD for an individual VNF package when requesting both Plain and Zip format to NFVO, and perform a validation that returned content is in zip format
+    ...    Test objective: The objective is to test the retrieval of the multi file VNFD for an individual VNF package when requesting Plain or Zip format to NFVO by including both formats in the request, and perform a validation that returned content is in Zip format
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
     ...    Reference: section 10.4.4.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO

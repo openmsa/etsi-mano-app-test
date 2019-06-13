@@ -67,7 +67,7 @@ GET VNF Package Subscription with invalid resource endpoint
     Check HTTP Response Status Code Is    404
 
 Create new VNF Package subscription
-    [Documentation]    Test ID 7.3.3.6.5
+    [Documentation]    Test ID: 7.3.3.6.5
     ...    Test title: Create new VNF Package subscription
     ...    Test objective: The objective is to test the creation of a new VNF package subscription and perform a JSON schema and content validation of the returned subscription data structure
     ...    Pre-conditions: none
@@ -84,7 +84,7 @@ Create new VNF Package subscription
 
 Create duplicated VNF Package subscription with NFVO not creating duplicated subscriptions
     [Tags]    no-duplicated-subs
-    [Documentation]    Test ID 7.3.3.6.6
+    [Documentation]    Test ID: 7.3.3.6.6
     ...    Test title: Create duplicated VNF Package subscription with NFVO not creating duplicated subscriptions
     ...    Test objective: The objective is to test the attempt of a creation of a duplicated VNF package subscription and check that no new subscription is created by the NFVO and a link to the original subscription is returned
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
@@ -100,7 +100,7 @@ Create duplicated VNF Package subscription with NFVO not creating duplicated sub
 
 Create duplicated VNF Package subscription with NFVO creating duplicated subscriptions
     [Tags]    duplicated-subs
-    [Documentation]    Test ID 7.3.3.6.7
+    [Documentation]    Test ID: 7.3.3.6.7
     ...    Test title: Create duplicated VNF Package subscription with NFVO creating duplicated subscriptions
     ...    Test objective: The objective is to test the creation of a duplicated VNF package subscription and perform a JSON schema and content validation of the returned duplicated subscription data structure
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
@@ -115,7 +115,7 @@ Create duplicated VNF Package subscription with NFVO creating duplicated subscri
     Check Postcondition VNF Package Subscription Is Set 
 
 PUT VNF Package Subscriptions - Method not implemented
-    [Documentation]    Test ID 7.3.3.6.8
+    [Documentation]    Test ID: 7.3.3.6.8
     ...    Test title: PUT VNF Package Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF package subscriptions
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
@@ -127,7 +127,7 @@ PUT VNF Package Subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
     
 PATCH VNF Package Subscriptions - Method not implemented
-    [Documentation]    Test ID 7.3.3.6.9
+    [Documentation]    Test ID: 7.3.3.6.9
     ...    Test title: PATCH VNF Package Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF package subscriptions
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
@@ -140,7 +140,7 @@ PATCH VNF Package Subscriptions - Method not implemented
     
         
 DELETE VNF Package Subscriptions - Method not implemented
-    [Documentation]    Test ID 7.3.3.6.10
+    [Documentation]    Test ID: 7.3.3.6.10
     ...    Test title: DELETE VNF Package Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete VNF package subscriptions
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
