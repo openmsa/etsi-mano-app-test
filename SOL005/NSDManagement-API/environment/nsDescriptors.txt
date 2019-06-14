@@ -16,3 +16,5 @@ ${erroneousRange}    bytes=100000-1000000    # Requesting a out of range number 
 ${onboardingStateNsdInfoId}    b992a851-08b1-45a8-9282-a5f7a7df04a6
 ${contentFile}    files/nsdContent.zip
 ${creatingNsdInfoId}    71241932-994a-46e2-ad6c-1740674dda44
+${NEG_AUTHORIZATION}    Bearer negativetoken
+${BAD_AUTHORIZATION}    Bear sometoken
