@@ -42,6 +42,10 @@ Check HTTP Response Header ContentType is
     Log    Validate content type
     Should Be Equal    ${response[0]['headers']['Content-Type']}    ${expected_contentType}
     Log    Content Type validated 
+    
+Check Postcondition VNF Virtualised Resources Quota Available Notification Subscriptions Exists
+    Log    Checking that subscriptions exists
+    GET Virtualised Resources Quota Available Notification Subscriptions  
 
 Do Post Individual Subscription
     log    Trying to perform a POST. This method should not be implemented
