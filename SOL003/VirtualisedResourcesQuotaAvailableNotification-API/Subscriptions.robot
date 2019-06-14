@@ -97,7 +97,7 @@ PUT Virtualised Resources Quota Available Notification subscriptions - Method no
     [Documentation]    Test ID: 7.3.7.1.7
     ...    Test title: PUT Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update  existing subscriptions instance on VNF 
-    ...    Pre-conditions: A NFV instance is instantiated
+    ...    Pre-conditions: A VNF instance is instantiated
     ...    Reference:  section 11.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -109,7 +109,7 @@ PATCH Virtualised Resources Quota Available Notification subscriptions - Method 
     [Documentation]    Test ID: 7.3.7.1.8
     ...    Test title: PATCH Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify subscriptions instance on VNF 
-    ...    Pre-conditions: A NFV instance is instantiated
+    ...    Pre-conditions: A VNF instance is instantiated
     ...    Reference:  section 11.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -121,12 +121,13 @@ DELETE Virtualised Resources Quota Available Notification subscriptions - Method
     [Documentation]    Test ID: 7.3.7.1.9
     ...    Test title: DELETE Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to delete  subscriptions instance on VNF 
-    ...    Pre-conditions: A NFV instance is instantiated
+    ...    Pre-conditions: A VNF instance is instantiated
     ...    Reference:  section 11.4.3.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
     Send Delete request for Virtualised Resources Quota Available Notification subscription   
     Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Virtualised Resources Quota Available Notification Subscriptions Exists
 
     
