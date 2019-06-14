@@ -3,198 +3,192 @@ Documentation     This clause defines all the resources and methods provided by 
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
+Resource          NSDManagementKeywords.robot
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library           OperatingSystem
 
 *** Test Cases ***
-GET all Network Service Descriptors
-    [Documentation]   The GET method queries information about multiple NS descriptor resources.
-    ...    This method shall follow the provisions specified in the Tables 5.4.2.3.2-1 and 5.4.2.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    The GET method queries multiple NS descriptors
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log  Validation of Content-Type : OK
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    NsdInfos.schema.json    ${result}
-    Log    Validation OK
+GET all Network Service Descriptors Information
+    [Documentation]    Test ID: 5.3.1.1.1
+    ...    Test title: GET all Network Service Descriptors Information
+    ...    Test objective: The objective is to test the retrieval of all the Network Service Descriptors information and perform a JSON schema and content validation of the collected data structure
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all Network Service Descriptors Information
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfos
 
-GET all Network Service Descriptors - Filter
-    [Documentation]   The GET method queries information about multiple NS descriptor resources.
-    ...    This method shall follow the provisions specified in the Tables 5.4.2.3.2-1 and 5.4.2.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?${POS_FIELDS}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    NsdInfos.schema.json    ${result}
-    Log    Validation OK
+GET Network Service Descriptors Information with attribute-based filter
+    [Documentation]    Test ID: 5.3.1.1.2
+    ...    Test title: GET Network Service Descriptors Information with attribute-based filter
+    ...    Test objective: The objective is to test the retrieval of Network Service Descriptors information using attribute-based filter, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued attribute-based filter
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Network Service Descriptors Information with attribute-based filter
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfos
+    Check HTTP Response Body NsdInfos Matches the requested attribute-based filter
 
-GET all Network Service Descriptors - Negative (wronge filter name)
-    Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?${NEG_FIELDS}
-    Integer    response status    400
-    Log    Received 400 Bad Request as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET Network Service Descriptors Information with invalid attribute-based filter
+        [Documentation]    Test ID: 5.3.1.1.3
+    ...    Test title: GET Network Service Descriptors Information with invalid attribute-based filter
+    ...    Test objective: The objective is to test that the retrieval of Network Service Descriptors information fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Network Service Descriptors Information with invalid attribute-based filter
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails
 
-GET all Network Service Descriptors - Negative (Unauthorized: Wrong Token)
-    Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as NFVO is not supporting authentication
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Authorization": "${NEG_AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors
-    Integer    response status    401
-    Log    Received 401 Unauthorized as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get all Network Service Descriptors Information with malformed authorization token
+    [Documentation]    Test ID: 5.3.1.1.4
+    ...    Test title: Get all Network Service Descriptors Information with malformed authorization token
+    ...    Test objective: The objective is to test that the retrieval of Network Service Descriptors Information fails when using malformed authorization token
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 4.5.3.3, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
+    ...    Post-Conditions: none
+    Get all Network Service Descriptors Information with malformed authorization token
+    Check HTTP Response Status Code Is    400
 
-GET all Network Service Descriptors - Negative (Unauthorized: No Token)
-    Log    Trying to perform a negative get, using no authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as NFVO is not supporting authentication
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Authorization": "${NEG_AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors
-    Integer    response status    401
-    Log    Received 401 Unauthorized as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get all Network Service Descriptors Information without authorization token
+    [Documentation]    Test ID: 5.3.1.1.5
+    ...    Test title: Get all Network Service Descriptors Information without authorization token
+    ...    Test objective: The objective is to test that the retrieval of Network Service Descriptors Information fails when omitting the authorization token
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 4.5.3.3, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
+    ...    Post-Conditions: none
+    Get all Network Service Descriptors Information without authorization token
+    Check HTTP Response Status Code Is    401
 
-GET all Network Service Descriptors (Negative: Not found)
-    Log    Trying to perform a GET on a erroneous URI
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-    
-    
-GET all Network Service Descriptors - all_fields
-        [Documentation]   The GET method queries information about multiple NS descriptor resources.
-    ...    This method shall follow the provisions specified in the Tables 5.4.2.3.2-1 and 5.4.2.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters "all_fields"
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?all_fields
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    NsdInfos.schema.json    ${result}
-    Log    NsdInfo schema validated
-    ${links}=    Get Value From Json    ${result}    $.._links
-    Validate Json    links.schema.json    ${links[0]}
-    Log    Validation for _links schema OK
+GET all Network Service Descriptors Information with expired or revoked authorization token
+    [Documentation]    Test ID: 5.3.1.1.6
+    ...    Test title: GET all Network Service Descriptors Information with expired or revoked authorization token
+    ...    Test objective: The objective is to test that the retrieval of Network Service Descriptors Information fails when using expired or revoked authorization token
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 4.5.3.3, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
+    ...    Post-Conditions: none
+    Get all Network Service Descriptors Information with expired or revoked authorization token
+    Check HTTP Response Status Code Is    401
 
-GET all Network Service Descriptors - exclude_default
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using exclude_default filter.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?exclude_default
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    NsdInfos.schema.json    ${result}
-    Log    NsdInfo schema validated
-    Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${result}    $.._links
-    Should Be Empty    ${links}
-    Log    _links element is missing as excepted
+GET all Network Service Descriptors Information with all_fields attribute selector
+    [Documentation]    Test ID: 5.3.1.1.7
+    ...    Test title: GET all Network Service Descriptors Information with all_fields attribute selector
+    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with all_fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued all_fileds selector
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all Network Service Descriptors Information with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfos
+    Check HTTP Response Body NsdInfos Matches the requested all_fields selector
 
+GET all Network Service Descriptors Information with exclude_default attribute selector
+    [Documentation]    Test ID: 5.3.1.1.8
+    ...    Test title: GET all Network Service Descriptors Information with exclude_default attribute selector
+    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with exclude_default attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued exclude_default selector
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all Network Service Descriptors Information with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfos
+    Check HTTP Response Body NsdInfos Matches the requested exclude_default selector
 
-GET all Network Service Descriptors - exclude_fields
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
-    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use exclude_fields option
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?exclude_fields=${fields}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    NsdInfos.schema.json    ${result}
-    Log    NsdInfo schema validated
-    Log    Checking missing information for _links element
-    ${links}=    Get Value From Json    ${result}    $.._links
-    Should Be Empty    ${links}
-    Log    _links element is missing as excepted
-        
+GET all Network Service Descriptors Information with fields attribute selector
+    [Documentation]    Test ID: 5.3.1.1.9
+    ...    Test title: GET all Network Service Descriptors Information with fields attribute selector
+    ...    Test objective: The objective is to test the retrieval of allNetwork Service Descriptors Information fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued fields selector
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports the use of fields attribute selector
+    ...    Post-Conditions: none
+    GET all Network Service Descriptors Information with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfos
+    Check HTTP Response Body NsdInfos Matches the requested fields selector
 
-POST a new Network Service Descriptors
-    Log    Creating a new network service descriptor
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/createNsdInfoRequest.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors    ${body}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Response has header Location
-    ${result}=    Output    response body
-    Validate Json    NsdInfo.schema.json    ${result}
-    Log    Validation of NsdInfo OK
+GET all Network Service Descriptors Information with exclude_fields attribute selector
+    [Documentation]    Test ID: 5.3.1.1.10
+    ...    Test title: GET all Network Service Descriptors Information with exclude_fields attribute selector
+    ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring exclude_fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued exclude_fields selector
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports the use of exclude_fields attribute selector
+    ...    Post-Conditions: none
+    GET all Network Service Descriptors Information with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfos
+    Check HTTP Response Body NsdInfos Matches the requested exclude_fields selector  
 
-PUT all Network Service Descriptors (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+Create new Network Service Descriptor Resource
+    [Documentation]    Test ID: 5.3.1.1.11
+    ...    Test title:  Create new Network Service Descriptor Resource
+    ...    Test objective: The objective is to test the creation of a new Create new Network Service Descriptor resource and perform the JSON schema validation of the returned structure
+    ...    Pre-conditions: none
+    ...    Reference: section 5.4.2.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The Network Service Descriptor resource is successfully created on the NFVO
+    Send Post Request to create new Network Service Descriptor Resource
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is   NsdInfo
+    Check HTTP Response Header Contains    Location
+    Check Postcondition NsdInfo Exists
 
-PATCH all Network Service Descriptors (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PUT all Network Service Descriptors - Method not implemented
+    [Documentation]    Test ID: 5.3.1.1.12
+    ...    Test title: PUT all Network Service Descriptors Information - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify Network Service Descriptors Information
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.2.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PUT Request for all Network Service Descriptors
+    Check HTTP Response Status Code Is    405
 
-DELETE all Network Service Descriptors (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PATCH all Network Service Descriptors - Method not implemented
+    [Documentation]    Test ID: 5.3.1.1.13
+    ...    Test title: PATCH all Network Service Descriptors Information - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to update Network Service Descriptors Information
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.2.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH Request for all Network Service Descriptors
+    Check HTTP Response Status Code Is    405
+
+DELETE all Network Service Descriptors - Method not implemented
+    [Documentation]    Test ID: 5.3.1.1.14
+    ...    Test title: DELETE all Network Service Descriptors Information - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not allowed to delete Network Service Descriptors Information
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.2.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The Network Service Descriptors are not deleted by the failed operation
+    Send DELETE Request for all Network Service Descriptors
+    Check HTTP Response Status Code Is    405
+    Check Postcondition Network Service Descriptors Exist
