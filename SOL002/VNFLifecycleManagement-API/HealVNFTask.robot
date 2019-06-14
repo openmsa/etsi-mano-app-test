@@ -48,13 +48,12 @@ Heal a vnfInstance Not Found
     ...    Error: The API producer did not find a current representation for the target resource or is not willing to disclose that one exists. 
     ...    Specifically in case of this task resource, the response code 404 shall also returned if the task is not supported for the VNF instance represented by the parent resource, which means that the task resource consequently does not exist. 
     ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the �detail� attribute shall convey more information about the error.
-    [Setup]    Check heal not supported
     Log    Trying to heal a VNF instance, not exist
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/healVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${badVnfInstanceId}/heal    ${body}
     Integer    response status    404
     Log    Status code validated
     ${problemDetails}=    Output    response body
