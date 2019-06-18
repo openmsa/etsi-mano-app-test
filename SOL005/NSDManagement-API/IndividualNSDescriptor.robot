@@ -3,180 +3,157 @@ Documentation     This clause defines all the resources and methods provided by 
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
+Resource          NSDManagementKeywords.robot
 Library           OperatingSystem
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library    JSONSchemaLibrary    schemas/
 
-*** Variable ***
-${original_etag}    1234
-
 *** Test Cases ***
-GET Single Network Service Descriptor
-    [Documentation]   The GET method reads information about an individual NS descriptor.
-    ...    This method shall follow the provisions specified in the Tables 5.4.3.3.2-1 and 5.4.3.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    The GET method reads information about an individual NS descriptor
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log  Validation of Content-Type : OK
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    NsdInfo.schema.json    ${result}
-    Log    Validation OK
-    ${etag}    Output    response headers ETag
-    Set Suite Variable    &{original_etag}    ${etag}
+GET Individual Network Service Descriptor Information
+    [Documentation]    Test ID: 5.3.1.2.1
+    ...    Test title: GET Individual Network Service Descriptor Information
+    ...    Test objective: The objective is to test the retrieval of an individual Network Service Descriptor information and perform a JSON schema validation of the collected data structure
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.3.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Individual Network Service Descriptor Information
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfo
+    Check HTTP Response Header Contains ETag
+    Check HTTP Response Body NsdInfo Identifier matches the requested Network Service Descriptor Information
 
+GET Individual Network Service Descriptor Information with invalid resource identifier
+    [Documentation]    Test ID: 5.3.1.2.2
+    ...    Test title: GET Individual Network Service Descriptor Information with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of an individual Network Service Descriptor Information fails when using an invalid resource identifier
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.3.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Individual Network Service Descriptor Information with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
-GET Single Network Service Descriptor (Negative: Not found)
-    Log    Trying to perform a GET on an erroneous nsDescriptorInfoId
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${erroneous_nsdInfoId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Disable Individual Network Service Descriptor   
+    [Documentation]    Test ID: 5.3.1.2.3
+    ...    Test title: Disable Individual Network Service Descriptor  
+    ...    Test objective: The objective is to test the disabling of an individual Network Service Descriptor and perform a JSON schema and content validation of the collected data structure
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in enabled operational state.
+    ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The Network Service Descriptor is in operational state DISABLED and usage state is not modified
+    Send PATCH to disable Individual Network Service Descriptor
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfoModification
+    Check Postcondition Network Service Descriptor is in operational state    DISABLED
+    Check Postcondition Network Service Descriptor usage state is unmodified (Implicit)
 
+Enable Individual Network Service Descriptor
+    [Documentation]    Test ID: 5.3.1.2.4
+    ...    Test title: Enable Individual Network Service Descriptor
+    ...    Test objective: The objective is to test the enabling of an individual Network Service Descriptor and perform a JSON schema and content validation of the collected data structure
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in DISABLED operational state (Test ID 5.3.1.2.3).
+    ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The Network Service Descriptor is in operational state ENABLED and usage state is not modified
+    Send PATCH to enable Individual Network Service Descriptor
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   NsdInfoModification
+    Check Postcondition Network Service Descriptor is in operational state    ENABLED
+    Check Postcondition Network Service Descriptor usage state is unmodified (Implicit)   
 
-PATCH Single Network Service Descriptor - (Disabling a nsdInfo)
-    [Documentation]    The PATCH method modifies the operational state and/or user defined data of an individual NS descriptor resource.
-    ...    This method can be used to:
-    ...    
-    ...    1) Enable a previously disabled individual NS descriptor resource, allowing again its use for instantiation of new 
-    ...    network service with this descriptor. The usage state (i.e. "IN_USE/NOT_IN_USE") shall not change as a
-    ...    result.
-    ...    
-    ...    2) Disable a previously enabled individual NS descriptor resource, preventing any further use for instantiation of
-    ...    new network service(s) with this descriptor. The usage state (i.e. "IN_USE/NOT_IN_USE") shall not change
-    ...    as a result.
-    ...    
-    ...    3) Modify the user defined data of an individual NS descriptor resource.
-    ...    
-    Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in enabled operational state
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${original_etag[0]}"}
-    ${body}=    Get File    jsons/NsdInfoModificationDisable.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
-    Integer    response status    200
-    Log    Received 200 OK as expected
-    ${result}=    Output    response body
-    Validate Json    NsdInfoModification.schema.json    ${result}
-    Log    Validation of NsdInfoModifications OK
+Enable Individual Network Service Descriptor with conflict due to operational state ENABLED
+    [Documentation]    Test ID: 5.3.1.2.5
+    ...    Test title: Enable Individual Network Service Descriptor with conflict due to operational state ENABLED
+    ...    Test objective: The objective is to test that enabling an individual Network Service Descriptor that is already in ENABLED operational state failsand perform a JSON schema validation of the failder operation HTTP response
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
+    ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH to enable Individual Network Service Descriptor
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is   ProblemDetails
 
-PATCH Single Network Service Descriptor - (Enabling an previously disabled nsdInfo)
-    Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in disabled operational state
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/NsdInfoModificationEnable.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
-    Integer    response status    200
-    Log    Received 200 OK as expected
-    ${result}=    Output    response body
-    Validate Json    NsdInfoModification.schema.json    ${result}
-    Log    Validation of NsdInfoModifications OK
+Enable Individual Network Service Descriptor with conflict due to onboarding state
+    [Documentation]    Test ID: 5.3.1.2.6
+    ...    Test title: Enable Individual Network Service Descriptor with conflict due to onboarding state
+    ...    Test objective: The objective is to test that the retrieval of an Network Service Descriptor fails due to a conflict when the Network Service Descriptor is not in onboarding state ONBOARDED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in ENABLED operational state. The onboarding state of the Network Service Descriptor for which the enabling is requested is different from ONBOARDED.
+    ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none   
+    Send PATCH to enable Individual Network Service Descriptor in onboarding state different from ONBOARDED
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is   ProblemDetails
     
+ Enable Individual Network Service Descriptor with HTTP Etag precondition failure
+    [Documentation]    Test ID: 5.3.1.2.7
+    ...    Test title:  Enable Individual Network Service Descriptor with HTTP Etag precondition failure
+    ...    Test objective: The objective is to test that the retrieval of an Network Service Descriptor fails due to a precondition failure when using an uncorrect Http Etag identified.
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
+    ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH to enable Individual Network Service Descriptor with HTTP Etag precondition failure
+    Check HTTP Response Status Code Is    412
 
-PATCH Single Network Service Descriptor - NEGATIVE (Trying to enable a previously enabled nsdInfo)
-    Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in enabled operational state
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/NsdInfoModificationEnable.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${enabledNsdInfoId}    ${body}
-    Integer    response status    409
-    Log    Received 409 Conflict as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-    
-    
- PATCH Single Network Service Descriptor - NEGATIVE (Trying to get an ETag mismatch)
-    Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be modified by another entity
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${original_etag[0]}"}
-    ${body}=    Get File    jsons/NsdInfoModificationEnable.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${modifiedNsdInfoId}    ${body}
-    Integer    response status    412
-    Log    Received 412 Precondition failed as expected
-    ${returned_etag}=    Output    response headers ETag
-    Log    Verify different etags
-    Should Not Be Equal    ${Etag}    ${returned_etag}    
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK  
-    
+DELETE Individual Network Service Descriptor
+    [Documentation]    Test ID: 5.3.1.2.9
+    ...    Test title:  DELETE Individual Network Service Descriptor
+    ...    Test objective: The objective is to test the deletion of an individual Network Service Descriptor.
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in DISABLED operational state and NOT_IN_USE usage state.
+    ...    Reference: section 5.4.3.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The Network Service Descriptor is not available anymore in the NFVO 
+    Send DELETE Request for Individual Network Service Descriptor
+    Check HTTP Response Status Code Is    204
+    Check Postcondition Network Service Descriptor is Deleted
 
-DELETE Single Network Service Descriptor
-    [Documentation]    The DELETE method deletes an individual NS descriptor resource.
-    ...    An individual NS descriptor resource can only be deleted when there is no NS instance using it (i.e. usageState =
-    ...    NOT_IN_USE) and has been disabled already (i.e. operationalState = DISABLED). Otherwise, the DELETE method
-    ...    shall fail.
-    Log    Trying to perform a DELETE nsdInfo. The nsdInfo should be in "NOT_USED" usageState and in "DISABLED" operationalState.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}
-    Integer    response status    204
-    Log    Received 204 No Content as expected
+DELETE Individual Network Service Descriptor in operational state ENABLED
+    [Documentation]    Test ID: 5.3.1.2.10
+    ...    Test title:  DELETE Individual Network Service Descriptor in operational state ENABLED
+    ...    Test objective: The objective is to test that the deletion of an individual Network Service Descriptor in operational state ENABLED fails. The test also performs a JSON schema validation of the failed operation HTTP response.
+    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
+    ...    Reference: section 5.4.3.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The Network Service Descriptor is not deleted by the failed operation. 
+    Send DELETE Request for Individual Network Service Descriptor in operational state ENABLED
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is   ProblemDetails
+    Check Postcondition Network Service Descriptor Exists
 
+POST Individual Network Service Descriptor - Method not implemented
+    [Documentation]    Test ID: 5.3.1.2.11
+    ...    Test title: POST Individual Network Service Descriptor - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create a new Network Service Descriptor
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.3.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send POST Request for Individual Network Service Descriptor
+    Check HTTP Response Status Code Is    405
 
-DELETE Single Network Service Descriptor (Negative: Trying to delete an enabled nsdInfo)
-    [Documentation]    The DELETE method deletes an individual NS descriptor resource.
-    ...    An individual NS descriptor resource can only be deleted when there is no NS instance using it (i.e. usageState =
-    ...    NOT_IN_USE) and has been disabled already (i.e. operationalState = DISABLED). Otherwise, the DELETE method
-    ...    shall fail.
-    Log    Trying to perform a DELETE nsdInfo in ENABLED operational state
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${enabledNsdInfoId}
-    Integer    response status    409
-    Log    Received 409 Conflict as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-
-
-POST Single Network Service Descriptor (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.   
-    Log    Trying to perform a POST. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
-
-
-
-PUT Single Network Service Descriptor (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.   
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PUT Individual Network Service Descriptor - Method not implemented
+    [Documentation]    Test ID: 5.3.1.2.12
+    ...    Test title: PUT Individual Network Service Descriptor - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify a new Network Service Descriptor
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.3.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PUT Request for Individual Network Service Descriptor
+    Check HTTP Response Status Code Is    405
 
 
