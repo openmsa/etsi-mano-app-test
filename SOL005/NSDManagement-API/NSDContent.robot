@@ -3,206 +3,236 @@ Documentation     This clause defines the content of the individual NS descripto
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
+Resource          NSDManagementKeywords.robot
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library           OperatingSystem
 
 *** Test Cases ***
-GET NSD Content
-    [Documentation]   The GET method fetches the content of the NSD.
-    ...    The NSD can be implemented as a single file or as a collection of multiple files. If the NSD is implemented in the form
-    ...    of multiple files, a ZIP file embedding these files shall be returned. If the NSD is implemented as a single file, either
-    ...    that file or a ZIP file embedding that file shall be returned.
-    ...    
-    ...    The selection of the format is controlled by the "Accept" HTTP header passed in the GET request:
-    ...    
-    ...    - If the "Accept" header contains only "text/plain" and the NSD is implemented as a single file, the file shall be
-    ...    returned; otherwise, an error message shall be returned.
-    ...    
-    ...    - If the "Accept" header contains only "application/zip", the single file or the multiple files that make up the
-    ...    NSD shall be returned embedded in a ZIP file.
-    ...    
-    ...    - If the "Accept" header contains both "text/plain" and "application/zip", it is up to the NFVO to choose the
-    ...    format to return for a single-file NSD; for a multi-file NSD, a ZIP file shall be returned.
-    ...    
-    ...    NOTE: The structure of the NSD zip file is outside the scope of the present document.
-    ...    
-    ...    This method shall follow the provisions specified in the Tables 5.4.4.3.2-1 and 5.4.4.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    The GET method queries multiple NS descriptors
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_ZIP}
+Get single file NSD Content in Plain Format
+    [Documentation]    Test ID: 5.3.1.3.1
+    ...    Test title: Get single file NSD Content in Plain Format
+    ...    Test objective: The objective is to test the retrieval of the NSD Content in plain format and perform a validation that returned content is in plain format
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NSD is implemented as a single file
+    ...    Post-Conditions: none
+    Get single file NSD Content in Plain Format
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Header Content-Type Is    text/plain
 
+Get NSD Content in Zip Format
+    [Documentation]    Test ID: 5.3.1.3.2
+    ...    Test title: Get NSD Content in Zip Format
+    ...    Test objective: The objective is to test the retrieval of the NSD Content in zip format and perform a validation that returned content is in zip format
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get NSD Content in Zip Format
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Header Content-Type Is    application/zip
 
-GET NSD Content - Range
-    Log    Trying to get a NSD Content using RANGE using an NFVO that can handle it
-    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Set Headers    {"Range": "${range}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content
-    Integer    response status    206
-    Log    Received 206 Partial Content as expected.
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Content-Range
-    Log    Header Content-Range is present
-    Should Contain    ${headers}    Content-Length
-    Log    Header Content-Length is present
+Get single file NSD Content in Plain or Zip Format
+    [Documentation]    Test ID: 5.3.1.3.3
+    ...    Test title: Get single file NSD Content in Plain or Zip Format
+    ...    Test objective: The objective is to test the retrieval of the single file NSD Content when requesting Plain or Zip format to NFVO by including both formats in the request, and perform a validation that returned content is in Plain or Zip format
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NSD Content is implemented as a single file
+    ...    Post-Conditions: none
+    Get single file NSD Content in Plain or Zip Format
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Header Content-Type Is Any of   text/plain    application/zip
     
-    
+Get multi file NSD Content in Plain or Zip Format
+    [Documentation]    Test ID: 5.3.1.3.4
+    ...    Test title: Get multi file NSD Content in Plain or Zip Format
+    ...    Test objective: The objective is to test the retrieval of the multi file NSD Content when requesting Plain or Zip format to NFVO by including both formats in the request, and perform a validation that returned content is in Zip format
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NSD is implemented as a multi file
+    ...    Post-Conditions: none
+    Get multi file NSD Content in Plain or Zip Format
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Header Content-Type Is    application/zip
+
+Get multi file NSD Content in Plain Format
+    [Documentation]    Test ID: 5.3.1.3.5
+    ...    Test title: Get multi file NSD Content in Plain Format
+    ...    Test objective: The objective is to test that the retrieval of the multi file NSD Content fails when requesting it in Plain format, and perform a validation of the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NSD Content is implemented as a multi file
+    ...    Post-Conditions: none
+    Get multi file NSD Content in Plain Format
+    Check HTTP Response Status Code Is    406
+    Check HTTP Response Body Json Schema Is   ProblemDetails
+
+Get NSD Content with invalid resource identifier
+    [Documentation]    Test ID: 5.3.1.3.6
+    ...    Test title: Get NSD Content with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of the NSD Content fails when using an invalid resource identifier
+    ...    Pre-conditions: none
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get NSD Content with invalid resource identifier
+    Check HTTP Response Status Code Is    404
+
+Get NSD Content with conflict due to onboarding state
+    [Documentation]    Test ID: 5.3.1.3.7
+    ...    Test title: Get NSD Content with conflict due to onboarding state
+    ...    Test objective: The objective is to test that the retrieval of the NSD Content fails due to a conflict when the NSD is not in onboarding state ONBOARDED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: The onboarding state of the NSD for which the NSD Content is requested is different from ONBOARDED.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Get NSD Content with conflict due to onboarding state
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is   ProblemDetails
+
+GET NSD Content with Range Request and NFVO supporting Range Requests
+    [Documentation]    Test ID: 5.3.1.3.8
+    ...    Test title: GET NSD Content with Range Request and NFVO supporting Range Requests
+    ...    Test objective: The objective is to test the retrieval of NSD Content when using a range request to return single range of bytes from the file, with the NFVO supporting it. The test also perform a validation that returned content matches the issued range
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports range requests to return single range of bytes from the NSD file
+    ...    Post-Conditions: none
+    GET NSD Content with Range Request
+    Check HTTP Response Status Code Is    206
+    Check HTTP Response Header Content-Type Is    application/zip
+    Check HTTP Response Header Content-Range Is Present and Matches the requested range
+    Check HTTP Response Header Content-Length Is Present and Matches the requested range length
+
+GET NSD Content with Range Request and NFVO not supporting Range Requests
+    [Documentation]    Test ID: 5.3.1.3.9
+    ...    Test title: GET NSD Content with Range Request and NFVO not supporting Range Requests
+    ...    Test objective: The objective is to test that the retrieval of NSD Content, when using a range request to return single range of bytes from the file and the NFVO not supporting it, returns the full NSD file.
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO does not support range requests to return single range of bytes from the NSD file
+    ...    Post-Conditions: none    
+    GET NSD Content with Range Request
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Header Content-Type Is    application/zip    
+
+GET NSD Content with invalid Range Request
+    [Documentation]    Test ID: 5.3.1.3.10
+    ...    Test title: GET NSD Content with invalid Range Request
+    ...    Test objective: The objective is to test that the retrieval of NSD Content fails when using a range request that does not match any available byte range in the file.
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports range requests to return single range of bytes from the NSD file
+    ...    Post-Conditions: none      
+    GET NSD Content with invalid Range Request
+    Check HTTP Response Status Code Is    416     
         
-GET NSD Content - Negative Range
-    Log    Trying to get a range of bytes of the limit of the NSD Content
-    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Set Headers    {"Range": "${erroneousRange}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content
-    Integer    response status    416
-    Log    Received 416 Range not satisfiable as expected.
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK        
-        
-        
-
-
-GET NSD Content- Negative (Not Found)
-    Log    Trying to perform a negative get, using an erroneous package ID
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${erroneous_nsdInfoId}/nsd_content
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-
-  
-GET NSD Content - Negative (onboardingState issue)
-    Log    Trying to get a NSD content present in the NFVO Catalogue, but not in ONBOARDED operationalStatus
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${onboardingStateNsdInfoId}/nsd_content
-    Integer    response status    409
-    Log    Received 409 Conflict as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-      
-        
-PUT a NSD Content - Asynchronous mode
-    [Documentation]    The NSD to be uploaded can be implemented as a single file or as a collection of multiple files, as defined in
-    ...    clause 5.4.4.3.2. If the NSD is implemented in the form of multiple files, a ZIP file embedding these files shall be
-    ...    uploaded. If the NSD is implemented as a single file, either that file or a ZIP file embedding that file shall be uploaded.
-    ...    The "Content-Type" HTTP header in the PUT request shall be set accordingly based on the format selection of the
-    ...    NSD.
-    ...    
-    ...    - If the NSD to be uploaded is a text file, the "Content-Type" header is set to "text/plain".
-    ...    
-    ...    - If the NSD to be uploaded is a zip file, the "Content-Type" header is set to "application/zip".
-    ...    
-    ...    This method shall follow the provisions specified in the Tables 5.4.4.3.3-1 and 5.4.4.3.3-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    Trying to perform a PUT. This method upload the content of a NSD
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=  Get Binary File  ${contentFile}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content    ${body}
-    Integer    response status    202
-    Log    Received 202 Accepted as expected
-    ${response}=    Output    response body
-    Should Be Empty    ${response}    
+Upload NSD Content as Zip file in asynchronous mode
+    [Documentation]    Test ID: 5.3.1.3.11
+    ...    Test title: Upload NSD Content as Zip file in asynchronous mode
+    ...    Test objective: The objective is to test the upload of an NSD Content in Zip format when the NFVO supports the asynchronous upload mode.
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports supports the upload of NSD contents in asynchronous mode
+    ...    Post-Conditions: none
+    Send PUT Request to upload NSD Content as zip file file in asynchronous mode
+    Check HTTP Response Status Code Is    202
     
+Upload NSD Content as plain text file in asynchronous mode
+    [Documentation]    Test ID: 5.3.1.3.12
+    ...    Test title: Upload NSD Content as plain text file in asynchronous mode
+    ...    Test objective: The objective is to test the upload of an NSD Content in plain text format when the NFVO supports the asynchronous upload mode.
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports supports the upload of NSD contents in asynchronous mode
+    ...    Post-Conditions: none
+    Send PUT Request to upload NSD Content as plain text file in asynchronous mode
+    Check HTTP Response Status Code Is    202   
     
-PUT a NSD Content - Synchronous mode
-    [Documentation]    The NSD to be uploaded can be implemented as a single file or as a collection of multiple files, as defined in
-    ...    clause 5.4.4.3.2. If the NSD is implemented in the form of multiple files, a ZIP file embedding these files shall be
-    ...    uploaded. If the NSD is implemented as a single file, either that file or a ZIP file embedding that file shall be uploaded.
-    ...    The "Content-Type" HTTP header in the PUT request shall be set accordingly based on the format selection of the
-    ...    NSD.
-    ...    
-    ...    - If the NSD to be uploaded is a text file, the "Content-Type" header is set to "text/plain".
-    ...    
-    ...    - If the NSD to be uploaded is a zip file, the "Content-Type" header is set to "application/zip".
-    ...    
-    ...    This method shall follow the provisions specified in the Tables 5.4.4.3.3-1 and 5.4.4.3.3-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    Trying to perform a PUT. This method upload the content of a NSD
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=  Get Binary File  ${contentFile}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content    ${body}
-    Integer    response status    200
-    Log    Received 200 OK as expected
-    ${response}=    Output    response body
-    Should Be Empty    ${response}   
+Upload NSD Content as Zip file in synchronous mode
+    [Documentation]    Test ID: 5.3.1.3.13
+    ...    Test title: Upload NSD Content as Zip file in synchronous mode
+    ...    Test objective: The objective is to test the upload of an NSD Content in Zip format when the NFVO supports the synchronous upload mode.
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports supports the upload of NSD contents in synchronous mode
+    ...    Post-Conditions: none
+    Send PUT Request to upload NSD Content as zip file in synchronous mode
+    Check HTTP Response Status Code Is    204
     
-    
-PUT a NSD Content - Negative. Nsd in CREATING state
-    [Documentation]    The NSD to be uploaded can be implemented as a single file or as a collection of multiple files, as defined in
-    ...    clause 5.4.4.3.2. If the NSD is implemented in the form of multiple files, a ZIP file embedding these files shall be
-    ...    uploaded. If the NSD is implemented as a single file, either that file or a ZIP file embedding that file shall be uploaded.
-    ...    The "Content-Type" HTTP header in the PUT request shall be set accordingly based on the format selection of the
-    ...    NSD.
-    ...    
-    ...    - If the NSD to be uploaded is a text file, the "Content-Type" header is set to "text/plain".
-    ...    
-    ...    - If the NSD to be uploaded is a zip file, the "Content-Type" header is set to "application/zip".
-    ...    
-    ...    This method shall follow the provisions specified in the Tables 5.4.4.3.3-1 and 5.4.4.3.3-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    Trying to perform a PUT. This method upload the content of a NSD
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=  Get Binary File  ${contentFile}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${creatingNsdInfoId}/nsd_content    ${body}
-    Integer    response status    409
-    Log    Received 409 Conflict as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Upload NSD Content as plain text file in synchronous mode
+    [Documentation]    Test ID: 5.3.1.3.14
+    ...    Test title: Upload NSD Content as plain text file in synchronous mode
+    ...    Test objective: The objective is to test the upload of an NSD Content in plain text format when the NFVO supports the synchronous upload mode.
+    ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
+    ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports supports the upload of NSD contents in synchronous mode
+    ...    Post-Conditions: none
+    Send PUT Request to upload NSD Content as plain text file in synchronous mode
+    Check HTTP Response Status Code Is    204   
  
-        
+Upload NSD Content with conflict due to onboarding state
+   [Documentation]    Test ID: 5.3.1.3.15
+    ...    Test title: Upload NSD Content with conflict due to onboarding state
+    ...    Test objective: The objective is to test that the upload of the NSD Content fails due to a conflict when the NSD is not in onboarding state CREATED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: The onboarding state of the NSD for which the NSD Content is requested is different from ONBOARDED.
+    ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Send PUT Request to upload NSD Content with conflict due to onboarding state
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is   ProblemDetails             
 
-POST a NSD Content (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PUT. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+POST NSD Content - Method not implemented
+    [Documentation]    Test ID: 5.3.1.3.16
+    ...    Test title: POST NSD Content - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create a new Network Service Descriptor content
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.4.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send POST Request for NSD Content
+    Check HTTP Response Status Code Is    405
 
+PATCH NSD Content - Method not implemented
+    [Documentation]    Test ID: 5.3.1.3.16
+    ...    Test title: PATCH NSD Content - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to update Network Service Descriptor content
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.4.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH Request for NSD Content
+    Check HTTP Response Status Code Is    405
 
-
-PATCH a NSD Content (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
-
-DELETE a NSD Content (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}/nsd_content
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+DELETE NSD Content - Method not implemented
+    [Documentation]    Test ID: 5.3.1.3.17
+    ...    Test title: DELETE NSD Content - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not allowed to delete Network Service Descriptor content
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.4.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NSD content is not deleted by the failed operation
+    Send DELETE Request for NSD Content
+    Check HTTP Response Status Code Is    405
+    Check Postcondition NSD Content Exists

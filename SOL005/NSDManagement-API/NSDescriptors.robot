@@ -116,7 +116,7 @@ GET all Network Service Descriptors Information with exclude_default attribute s
 GET all Network Service Descriptors Information with fields attribute selector
     [Documentation]    Test ID: 5.3.1.1.9
     ...    Test title: GET all Network Service Descriptors Information with fields attribute selector
-    ...    Test objective: The objective is to test the retrieval of allNetwork Service Descriptors Information fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued fields selector
+    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued fields selector
     ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
     ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -130,7 +130,7 @@ GET all Network Service Descriptors Information with fields attribute selector
 GET all Network Service Descriptors Information with exclude_fields attribute selector
     [Documentation]    Test ID: 5.3.1.1.10
     ...    Test title: GET all Network Service Descriptors Information with exclude_fields attribute selector
-    ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring exclude_fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued exclude_fields selector
+    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with exclude_fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued exclude_fields selector
     ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
     ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
