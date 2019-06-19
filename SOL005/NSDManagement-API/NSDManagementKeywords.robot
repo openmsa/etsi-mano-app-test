@@ -615,7 +615,159 @@ Check Postcondition PNF Descriptors Exist
     Log    Checking that PNFD still exists
     GET all PNF Descriptors Information
 
-Get all NS Descriptor Subscriptions
+GET Individual PNF Descriptor Information
+    Log    The GET method reads information about an individual PNF descriptor
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check HTTP Response Body PnfdInfo Identifier matches the requested PNF Descriptor Information
+    Log    Going to validate info retrieved
+    Should Be Equal    ${response['body']['id']}    ${pnfdInfoId} 
+    Log    PNFD identifier as expected
+
+GET Individual PNF Descriptor Information with invalid resource identifier
+    Log    Trying to perform a GET on an erroneous nsDescriptorInfoId
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${erroneous_pnfdInfoId}
+    Integer    response status    404
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PATCH to update Individual PNF Descriptor
+    Log    Trying to perform a PATCH.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
+    Set Headers    {"If-Match": "${original_etag[0]}"}
+    ${body}=    Get File    jsons/PnfdInfoModification.json
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}    ${body}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    Set Suite Variable    ${body["userDefinedData"]}    ${userDefinedDataSet}
+
+Check Postcondition PNF Descriptor is modified according to the requested update
+    Log    Checking postcondition op status
+    Should Be Equal   ${response['body']['userDefinedData']}    ${userDefinedDataSet} 
+
+Send PATCH to update Individual PNF Descriptor with HTTP Etag precondition failure
+    Log    Trying to perform a PATCH. As prerequisite the pnfdInfo shall be modified by another entity
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
+    Set Headers    {"If-Match": "${wrong_etag[0]}"}
+    ${body}=    Get File    jsons/PnfdInfoModification.json
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}    ${body}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send DELETE Request for Individual PNF Descriptor
+    Log    Trying to perform a DELETE pnfdInfo.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition PNF Descriptor is Deleted
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
+    Integer    response status    404
+
+Send POST Request for Individual PNF Descriptor
+    Log    Trying to perform a POST. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for Individual PNF Descriptor
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get PNFD Content
+    Log    Trying to get a NSD present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}/pnfd_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Get PNFD Content with invalid resource identifier
+    Log    Trying to perform a negative get, using an erroneous package ID
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${erroneous_pnfdInfoId}/pnfd_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Get PNFD Content with conflict due to onboarding state
+    Log    Trying to get a PNFD present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${onboardingStatePnfdId}/pnfd_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send PUT Request to upload PNFD Content as plain text file
+    Log    Trying to perform a PUT. This method upload the content of a PNFD
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    ${body}=  Get File  ${contentFilePnfd}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}/pnfd_content    ${body}
+    ${response}=    Output    response body
+    Should Be Empty    ${response}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send PUT Request to upload PNFD Content with conflict due to onboarding state
+    Log    Trying to perform a PUT. This method upload the content of a PNFD
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    ${body}=  Get Binary File  ${contentFilePnfd}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${creatingNsdInfoId}/pnfd_content    ${body}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send POST Request for PNFD Content
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
+    Log    Trying to perform a POST. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}/nsd_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send PATCH Request for PNFD Content
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
+    Log    Trying to perform a PATCH. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}/nsd_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send DELETE Request for PNFD Content
+    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
+    Log    Trying to perform a DELETE. This method should not be implemented
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}/nsd_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Check Postcondition PNFD Content Exists
+    Get PNFD Content
+    
+Get all NSD Management Subscriptions
     [Documentation]    This method shall support the URI query parameters, request and response data structures, and response codes, as
     ...    specified in the Tables 5.4.8.3.2-1 and 5.4.8.3.2-2.
     Log    Trying to get the list of subscriptions
@@ -625,7 +777,7 @@ Get all NS Descriptor Subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     
-Get NS Descriptor Subscriptions with attribute-based filters
+Get NSD Management Subscriptions with attribute-based filters
     Log    Trying to get the list of subscriptions using filters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -634,7 +786,7 @@ Get NS Descriptor Subscriptions with attribute-based filters
     Set Suite Variable    ${response}    ${output}
 
 
-Get NS Descriptor Subscriptions with invalid attribute-based filters
+Get NSD Management Subscriptions with invalid attribute-based filters
     Log    Trying to get the list of subscriptions using filters with wrong attribute name
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -643,7 +795,7 @@ Get NS Descriptor Subscriptions with invalid attribute-based filters
     Set Suite Variable    ${response}    ${output}
 
 
-Get NS Descriptor Subscriptions with invalid resource endpoint
+Get NSD Management Subscriptions with invalid resource endpoint
     Log    Trying to perform a request on a Uri which doesn't exist
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -652,7 +804,7 @@ Get NS Descriptor Subscriptions with invalid resource endpoint
     Set Suite Variable    ${response}    ${output}    
 
 
-Send Post Request for NS Descriptor Subscription
+Send Post Request for NSD Management Subscription
     [Documentation]    This method shall support the URI query parameters, request and response data structures, and response codes, as
     ...    specified in the Tables 5.4.8.3.1-1 and 5.4.8.3.1-2.
     Log    Trying to create a new subscription
@@ -667,7 +819,7 @@ Send Post Request for NS Descriptor Subscription
     ...    Check Notification Endpoint  
 
 
-Send Post Request for Duplicated NS Descriptor Subscription
+Send Post Request for Duplicated NSD Management Subscription
     Log    Trying to create a subscription with an already created content
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
@@ -681,7 +833,7 @@ Send Post Request for Duplicated NS Descriptor Subscription
 
 
 
-Send Put Request for NS Descriptor Subscriptions
+Send Put Request for NSD Management Subscriptions
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -691,7 +843,7 @@ Send Put Request for NS Descriptor Subscriptions
     Set Suite Variable    ${response}    ${output}
     
 
-Send Patch Request for NS Descriptor Subscriptions
+Send Patch Request for NSD Management Subscriptions
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -700,7 +852,7 @@ Send Patch Request for NS Descriptor Subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
-Send Delete Request for NS Descriptor Subscriptions
+Send Delete Request for NSD Management Subscriptions
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -709,6 +861,9 @@ Send Delete Request for NS Descriptor Subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
+Check Postcondition NSD Management Subscriptions Exists
+    Log    Checking that subscriptions exists
+    Get all NSD Management Subscriptions    
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
@@ -735,14 +890,14 @@ Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filte
     #TODO
 
 
-Check HTTP Response Body Matches the Subscription
+Check HTTP Response Body NsdmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
     Should Be Equal    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
 
 
-Check Postcondition NS Descriptor Subscription Is Set
+Check Postcondition NSD Management Subscription Is Set
     Log    Check Postcondition subscription exist
     Log    Trying to get the subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -753,7 +908,7 @@ Check Postcondition NS Descriptor Subscription Is Set
     Check HTTP Response Status Code Is    200
     
     
-Check Postcondition Subscription Resource URI Returned in Location Header Is Valid
+Check Postcondition Subscription Resource Returned in Location Header Is Available
     Log    Going to check postcondition
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${response.headers['Location']}
