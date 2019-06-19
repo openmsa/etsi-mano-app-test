@@ -3,89 +3,99 @@ Documentation     This clause defines all the resources and methods provided by 
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/pnfDescriptors.txt    # Specific nsDescriptors Parameters
+Resource          NSDManagementKeywords.robot
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library           OperatingSystem
 
 *** Test Cases ***
-GET Single PNF Descriptor
-    [Documentation]   The GET method reads information about an individual PNF descriptor.
-    ...    This method shall follow the provisions specified in the Tables 5.4.6.3.2-1 and 5.4.6.3.2-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    The GET method reads information about an individual PNF descriptor
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log  Validation of Content-Type : OK
-   Log    Trying to validate response
-   ${result}=    Output    response body
-   Validate Json    PnfdInfo.schema.json    ${result}
-   Log    Validation OK
+GET Individual PNF Descriptor Information
+    [Documentation]    Test ID: 5.3.1.5.1
+    ...    Test title: GET Individual PNF Descriptor Information
+    ...    Test objective: The objective is to test the retrieval of an individual PNF Descriptor information and perform a JSON schema validation of the collected data structure
+    ...    Pre-conditions: One or more PNF Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.6.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Individual PNF Descriptor Information
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   PnfdInfo
+    Check HTTP Response Header Contains ETag
+    Check HTTP Response Body PnfdInfo Identifier matches the requested PNF Descriptor Information
+
+GET Individual PNF Descriptor Information with invalid resource identifier
+    [Documentation]    Test ID: 5.3.1.5.2
+    ...    Test title: GET Individual PNF Descriptor Information with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of an individual PNF Descriptor Information fails when using an invalid resource identifier
+    ...    Pre-conditions: One or more PNF Descriptors are set in the NFVO.
+    ...    Reference: section 5.4.6.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Individual PNF Descriptor Information with invalid resource identifier
+    Check HTTP Response Status Code Is    404
+
+Update Individual PNF Descriptor
+    [Documentation]    Test ID: 5.3.1.5.3
+    ...    Test title: Update Individual PNF Descriptor
+    ...    Test objective: The objective is to test the update of an individual PNF Descriptor and perform a JSON schema and content validation of the collected data structure
+    ...    Pre-conditions: One or more Update Individual PNF Descriptors are onboarded in the NFVO.
+    ...    Reference: section 5.4.6.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The PNF Descriptor is modified according to the update request
+    Send PATCH to update Individual PNF Descriptor
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   PnfdInfoModification
+    Check Postcondition PNF Descriptor is modified according to the requested update  
 
 
-GET Single PNF Descriptor (Negative: Not found)
-    Log    Trying to perform a GET on an erroneous pnfDescriptorInfoId
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${erroneous_pnfdInfoId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    application/json
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Update Individual PNF Descriptor with HTTP Etag precondition failure
+    [Documentation]    Test ID: 5.3.1.5.4
+    ...    Test title:  Update Individual PNF Descriptor with HTTP Etag precondition failure
+    ...    Test objective: The objective is to test that the update of a PNF Descriptor fails due to a precondition failure when using an uncorrect Http Etag identified.
+    ...    Pre-conditions: One or more Update Individual PNF Descriptors are onboarded in the NFVO.
+    ...    Reference: section 5.4.6.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH to update Individual PNF Descriptor with HTTP Etag precondition failure
+    Check HTTP Response Status Code Is    412
 
+POST Individual PNF Descriptor - Method not implemented
+    [Documentation]    Test ID: 5.3.1.5.5
+    ...    Test title: POST Individual PNF Descriptor - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create a new PNF Descriptor
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.6.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send POST Request for Individual PNF Descriptor
+    Check HTTP Response Status Code Is    405
 
-PATCH Single PNF Descriptor - (Disabling a nsdInfo)
-    [Documentation]   The PATCH method modifies the user defined data of an individual PNF descriptor resource.
-    ...    This method shall follow the provisions specified in the Tables 5.4.6.3.4-1 and 5.4.6.3.4-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    The PATCH method modifies the user defined data of an individual PNF descriptor resource.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/PnfdInfoModification.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}    ${body}
-    Integer    response status    200
-    Log    Received 200 OK as expected
-   ${result}=    Output    response body
-   Validate Json    PnfdInfoModification.schema.json    ${result}
-   Log    Validation of PnfdInfoModification OK
+PUT Individual PNF Descriptor - Method not implemented
+    [Documentation]    Test ID: 5.3.1.5.6
+    ...    Test title: PUT Individual PNF Descriptor - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify a new PNF Descriptor
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.6.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PUT Request for Individual PNF Descriptor
+    Check HTTP Response Status Code Is    405
 
-
-DELETE Single PNF Descriptor
-    Log    Trying to perform a DELETE pnfdInfo.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
-    Integer    response status    204
-    Log    Received 204 No Content as expected
-
-
-POST Single PNF Descriptor (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a POST. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
-
-
-
-PUT Single PNF Descriptor (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
-
-
+DELETE Individual PNF Descriptor
+    [Documentation]    Test ID: 5.3.1.5.7
+    ...    Test title:  DELETE Individual PNF Descriptor
+    ...    Test objective: The objective is to test the deletion of an individual PNF Descriptor.
+    ...    Pre-conditions: One or more Individual PNF Descriptors are onboarded in the NFVO.
+    ...    Reference: section 5.4.6.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The PNF Descriptor is not available anymore in the NFVO 
+    Send DELETE Request for Individual PNF Descriptor
+    Check HTTP Response Status Code Is    204
+    Check Postcondition PNF Descriptor is Deleted
