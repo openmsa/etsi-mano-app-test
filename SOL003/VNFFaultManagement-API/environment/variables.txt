@@ -25,9 +25,19 @@ ${apiRoot}        /
 ${apiName}        vnffm
 ${apiVersion}     v1
 
+
+${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
+
 ${AlarmNotification}    {}
 ${AlarmClearedNotification}    {}
 ${AlarmListRebuiltNotification}    {}
 
-${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${response}    {}
 
+${req_mock}    {}
+${resp_mock}    {}
+
+${alarm_filter}       nsInstanceId
+${nsInstanceId}    007c111c-38a1-42c0-a666-7475ecb1567c
+${invalid_alarm_filter}    badFilter 
+${invalidAlarmId}    invalidIdAlarm
