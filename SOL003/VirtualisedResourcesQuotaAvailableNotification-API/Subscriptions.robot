@@ -82,7 +82,7 @@ GET Virtualised Resources Quota Available Notification subscriptions - Bad Reque
     ...    Test title: GET Virtualised Resources Quota Available Notification subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to retrieve the list of active Virtualised Resources Quota Available Notification subscriptions with invalid attribute-based filtering parameters, and verify that problem details are returned 
     ...    Pre-conditions: none
-    ...    Reference: section 11.4.2 - SOL003 v2.4.1
+    ...    Reference: section 11.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none 
     ...    Post-Conditions: none
@@ -95,7 +95,7 @@ PUT Virtualised Resources Quota Available Notification subscriptions - Method no
     ...    Test title: PUT Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update existing Virtualised Resources Quota Available Notification subscriptions instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference:  section 11.4.3.3.4 - SOL003 v2.4.1
+    ...    Reference:  section 11.4.2.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -107,7 +107,7 @@ PATCH Virtualised Resources Quota Available Notification subscriptions - Method 
     ...    Test title: PATCH Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify Virtualised Resources Quota Available Notification subscriptions instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference:  section 11.4.3.3.4 - SOL003 v2.4.1
+    ...    Reference:  section 11.4.2.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -119,7 +119,7 @@ DELETE Virtualised Resources Quota Available Notification subscriptions - Method
     ...    Test title: DELETE Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to delete Virtualised Resources Quota Available Notification subscriptions instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference:  section 11.4.3.3.5 - SOL003 v2.4.1
+    ...    Reference:  section 11.4.2.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none

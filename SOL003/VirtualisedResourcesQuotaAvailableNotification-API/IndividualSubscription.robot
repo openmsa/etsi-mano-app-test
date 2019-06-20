@@ -10,9 +10,9 @@ Documentation    This resource represents an individual subscription. The client
 Suite Setup    Check Individual Subscription existance
 
 *** Test Cases ***
-Post Individual Subscription - Method not implemented
+Create new Virtualised Resources Quota Available Notification individual subscription
     [Documentation]    Test ID: 7.3.7.2.1
-    ...    Test title: Post Individual Subscription - Method not implemented
+    ...    Test title: Create new Virtualised Resources Quota Available Notification individual subscription
     ...    Test objective: The objective is to test that POST method is not allowed to create a new Virtualised Resources Quota Available Notification individual subscription instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
     ...    Reference:  section 11.4.3.3.1 - SOL003 v2.4.1
