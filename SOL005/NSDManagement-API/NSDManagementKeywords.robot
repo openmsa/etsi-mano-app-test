@@ -2,7 +2,8 @@
 Resource    environment/variables.txt
 Resource    environment/subscriptions.txt
 Resource    environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
-Resource    environment/pnfDescriptors.txt    # Specific nsDescriptors Parameters
+Resource    environment/pnfDescriptors.txt    # Specific pnfDescriptors Parameters
+Resource    environment/individualSubscription.txt
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library    MockServerLibrary 
 Library    OperatingSystem
@@ -114,7 +115,7 @@ Check HTTP Response Body NsdInfos Matches the requested fields selector
     Log    Validation for schema OK
 
 GET all Network Service Descriptors Information with exclude_fields attribute selector
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
+    Log    Trying to get all NSD Managements present in the NFVO Catalogue, using filter params
     Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use exclude_fields option
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -344,7 +345,7 @@ Get single file NSD Content in Plain or Zip Format
     Set Suite Variable    ${response}    ${output}
     
 Get multi file NSD Content in Plain or Zip Format
-    Log    Trying to get a VNFD from a given VNF Package present in the NFVO Catalogue
+    Log    Trying to get a VNFD from a given NSD Management present in the NFVO Catalogue
     Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -370,7 +371,7 @@ Get NSD Content with invalid resource identifier
     Set Suite Variable    ${response}    ${output} 
 
 Get NSD Content with conflict due to onboarding state
-    Log    Trying to get a VNFD from a given VNF Package present in the NFVO Catalogue
+    Log    Trying to get a VNFD from a given NSD Management present in the NFVO Catalogue
     Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -890,7 +891,7 @@ Check HTTP Response Body Is Empty
 
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
-    Log    Check Response includes VNF Package Management according to filter
+    Log    Check Response includes NSD Management Management according to filter
     #TODO
 
 
@@ -924,6 +925,88 @@ Check Postcondition Subscription Resource Returned in Location Header Is Availab
     Validate Json    NsdmSubscription.schema.json    ${result}
     Log    Validated NsdmSubscription schema
         
+Get Individual NSD Management Subscription
+    Log    Trying to get a single subscription identified by subscriptionId
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET individual NSD Management Subscription with invalid resource identifier
+    Log    Trying to perform a request on a subscriptionID which doesn't exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send Delete request for individual NSD Management Subscription
+    Log    Trying to perform a DELETE on a subscriptionId
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition NSD Management Subscription is Deleted
+    Log    Check Postcondition Subscription is deleted
+    GET individual NSD Management Subscription
+    Check HTTP Response Status Code Is    404 
+
+Send Delete request for individual NSD Management Subscription with invalid resource identifier
+    Log    Trying to perform a DELETE on a subscriptionId which doesn't exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send Post request for individual NSD Management Subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+
+Send Put request for individual NSD Management Subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+    
+Send Patch request for individual NSD Management Subscription
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${origOutput}=    Output    response
+    Set Suite Variable    ${origResponse}    ${origOutput}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+   
+Check Postcondition NSD Management Subscription is Unmodified (Implicit)
+    Log    Check postconidtion subscription not modified
+    GET individual NSD Management Subscription
+    Log    Check Response matches original VNF Threshold
+    ${subscription}=    evaluate    json.loads('''${response['body']}''')    json
+    Should Be Equal    ${origResponse['body']['id']}    ${subscription.id}
+    Should Be Equal    ${origResponse['body']['callbackUri']}    ${subscription.callbackUri}
+
+Check Postcondition NSD Management Subscription is not Created
+    Log    Trying to get a new subscription
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
+    ${output}=    Output    response
+    Set Suite Variable    @{response}    ${output}
+    Check HTTP Response Status Code Is    404
+
+Check HTTP Response Body Subscription Identifier matches the requested Subscription
+    Log    Trying to check response ID
+    Should Be Equal    ${response['body']['id']}    ${subscriptionId} 
+    Log    Subscription identifier as expected
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}

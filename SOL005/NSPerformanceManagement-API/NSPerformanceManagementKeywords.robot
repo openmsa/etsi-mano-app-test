@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    environment/subscriptions.txt
+Resource    environment/pmJobs.txt
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library    MockServerLibrary 
 Library    OperatingSystem
@@ -11,6 +12,170 @@ Library    JSONSchemaLibrary    schemas/
 Library    Process
 
 *** Keywords ***
+GET all NS Performance Monitoring Jobs
+    Log    Trying to get all PM Jobs present in the NFVO
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET NS Performance Monitoring Jobs with attribute-based filter
+    Log    Trying to get all PM Jobs present in the NFVO, using filter params
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?${POS_FILTER}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET NS Performance Monitoring Jobs with all_fields attribute selector
+    Log    Trying to get all PM Jobs present in the NFVO, using 'all_fields' filter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?all_fields
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET NS Performance Monitoring Jobs with exclude_default attribute selector
+    Log    Trying to get all NS Packages present in the NFVO, using filter params
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET NS Performance Monitoring Jobs with include attribute selector
+    Log    Trying to get all NS Packages present in the NFVO, using filter params
+    Pass Execution If    ${FIELD_USAGE} == 0    Skipping test as NFVO is not supporting 'fields'
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?include=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET NS Performance Monitoring Jobs with exclude attribute selector
+    Log    Trying to get all NS Packages present in the NFVO, using filter params
+    Pass Execution If    ${FIELD_USAGE} == 0    Skipping test as NFVO is not supporting 'fields'
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?exclude=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET NS Performance Monitoring Jobs with invalid attribute-based filter
+    Log    Trying to get all PM Jobs present in the NFVO, using an erroneous filter param
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs?${NEG_FILTER}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET NS Performance Monitoring Jobs with invalid resource endpoint    
+    Log    Trying to perform a GET on a erroneous URI
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_job    # wrong URI /pm_job instead of /pm_jobs
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send Post Request Create new NS Performance Monitoring Job
+    Log    Creating a new PM Job
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/CreatePmJobRequest.json
+    POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs    ${body}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for all NS Performance Monitoring Jobs 
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PATCH Request for all NS Performance Monitoring Jobs 
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send DELETE Request for all NS Performance Monitoring Jobs 
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition NS Performance Monitoring Jobs Exist
+    Log    Checking that Pm Job still exists
+    GET all NS Performance Monitoring Jobs
+    
+Check Postcondition PmJob Exists
+    Log    Checking that Pm Job exists
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${response['body']['id']}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    PmJob
+    
+Check HTTP Response Body PmJobs Matches the requested exclude selector
+    Log    Checking that reports element is missing
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
+    Should Be Empty    ${reports}
+    Log    Checking that reports element is missing
+    ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
+    Should Be Empty    ${criteria}
+    Log    Reports element is empty as expected
+
+Check HTTP Response Body PmJobs Matches the requested include selector
+    Log    Trying to validate criteria schema
+    ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
+    Validate Json    criteria.schema.json    ${criteria[0]}
+    Log    Validation for criteria schema OK
+    Log    Trying to validate criteria schema
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
+    Validate Json    reports.schema.json    ${reports[0]}
+    Log    Validation for reports schema OK
+    
+Check HTTP Response Body PmJobs Matches the requested exclude_default selector
+    Log    Checking that reports element is missing
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
+    Should Be Empty    ${reports}
+    Log    Reports element is empty as expected
+
+Check HTTP Response Body PmJobs Matches the requested all_fields selector
+    Log    Trying to validate criteria schema
+    ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
+    Validate Json    criteria.schema.json    ${criteria[0]}
+    Log    Validation for criteria schema OK
+    Log    Trying to validate criteria schema
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
+    Validate Json    reports.schema.json    ${reports[0]}
+    Log    Validation for reports schema OK
+    Log    Validating _links schema
+    ${links}=    Get Value From Json    ${response['body']}    $.._links
+    Validate Json    links.schema.json    ${links[0]}
+    Log    Validation for _links schema OK
+    
+Check HTTP Response Body PmJobs Matches the requested Attribute-Based Filter 
+    Log    Checking that attribute-based filter is matched
+    #todo
+
+Check HTTP Response Body PmJobs Do Not Contain reports
+    Log    Checking that field element is missing
+    ${reports}=    Get Value From Json    ${response['body']}    $..reports
+    Should Be Empty    ${reports}
+    Log    Reports element is empty as expected
+
+
 Get all NSD Performance Subscriptions
     [Documentation]    The client can use this method to query the list of active subscriptions to Performance management notifications
     ...    subscribed by the client.
@@ -153,7 +318,7 @@ Check HTTP Response Body Is Empty
 
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
-    Log    Check Response includes VNF Package Management according to filter
+    Log    Check Response includes NS Package Management according to filter
     #TODO
 
 
