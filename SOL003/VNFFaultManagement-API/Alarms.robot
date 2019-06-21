@@ -39,7 +39,7 @@ Get information about multiple alarms with filters
     ...    Test title: Get information about multiple alarms with filters 
     ...    Test objective: The objective is to retrieve information about the alarm list and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions: none 
-    ...    Reference: section 7.4.2 - SOL003 v2.4.1
+    ...    Reference: section 7.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ Get information about multiple alarms Bad Request Invalid attribute-based filter
     ...    Test title:  The objective is to try to retrieve information about the alarm list and perform a JSON schema and content validation of the returned problem details data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: section 7.4.2 - SOL003 v2.4.1
+    ...    Reference: section 7.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 

@@ -8,11 +8,22 @@ Library    OperatingSystem
 
 Library    Process
 
+*** Variables ***
+${original_etag}    1234
+
 *** Keywords ***
 Check Postcondition VNF fault management alarms Exists
-    Log    Checking that subscriptions exists
+    Log    Checking that alarms exists
     GET Fault Management Alarms
-    
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    Alarms
+
+Check Postcondition VNF fault management individual alarm Exists
+    Log    Checking that individual alarm exists
+    GET Fault Management Individual Alarm
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    alarm  
+      
 Check Individual Subscription existance
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -101,7 +112,7 @@ GET Fault Management Alarms With Invalid Filters
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do POST Individual Alarm
+Send POST request for fault management Individual Alarm
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -109,7 +120,7 @@ Do POST Individual Alarm
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do DELETE Individual Alarm
+DELETE Fault Management Individual Alarm
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -117,7 +128,7 @@ Do DELETE Individual Alarm
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PUT Individual Alarm
+PUT Fault Management Individual Alarm
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -125,17 +136,19 @@ Do PUT Individual Alarm
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
 
-Do GET Individual Alarm
-    Log    Query NFVO The GET method queries information about an alarm.
+GET Fault Management Individual Alarm
+    Log    Query VNF The GET method queries information about an alarm.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Execute Query 
+    Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
+    ${etag}    Output    response headers ETag
+    Set Suite Variable    &{original_etag}    ${etag}
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do GET Invalid Individual Alarm
+GET Fault Management Individual Alarm with invalid id
     Log    Query NFVO The GET method queries information about an invalid alarm. Should return does not exist
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -145,7 +158,7 @@ Do GET Invalid Individual Alarm
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
    
-Do PATCH Individual Alarm
+PATCH Fault Management Individual Alarm
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
@@ -154,8 +167,19 @@ Do PATCH Individual Alarm
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
+    
+PATCH Fault Management Individual Alarm - precondition failed
+    log    Trying to perform a PATCH. This method modifies an individual alarm resource
+    Set Headers  {"Accept":"${ACCEPT}"} 
+    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
+    Set Headers    {"If-Match": "${original_etag[0]}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/alarmModifications.json
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
    
-Do PATCH Individual Alarm Conflict
+PATCH Fault Management Individual Alarm Conflict
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
