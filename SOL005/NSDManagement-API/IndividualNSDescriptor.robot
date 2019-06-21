@@ -14,7 +14,7 @@ GET Individual Network Service Descriptor Information
     [Documentation]    Test ID: 5.3.1.2.1
     ...    Test title: GET Individual Network Service Descriptor Information
     ...    Test objective: The objective is to test the retrieval of an individual Network Service Descriptor information and perform a JSON schema validation of the collected data structure
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
     ...    Reference: section 5.4.3.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -29,7 +29,7 @@ GET Individual Network Service Descriptor Information with invalid resource iden
     [Documentation]    Test ID: 5.3.1.2.2
     ...    Test title: GET Individual Network Service Descriptor Information with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual Network Service Descriptor Information fails when using an invalid resource identifier
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
     ...    Reference: section 5.4.3.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -41,7 +41,7 @@ Disable Individual Network Service Descriptor
     [Documentation]    Test ID: 5.3.1.2.3
     ...    Test title: Disable Individual Network Service Descriptor  
     ...    Test objective: The objective is to test the disabling of an individual Network Service Descriptor and perform a JSON schema and content validation of the collected data structure
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in enabled operational state.
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO in enabled operational state.
     ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -56,7 +56,7 @@ Enable Individual Network Service Descriptor
     [Documentation]    Test ID: 5.3.1.2.4
     ...    Test title: Enable Individual Network Service Descriptor
     ...    Test objective: The objective is to test the enabling of an individual Network Service Descriptor and perform a JSON schema and content validation of the collected data structure
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in DISABLED operational state (Test ID 5.3.1.2.3).
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO in DISABLED operational state (Test ID 5.3.1.2.3).
     ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -71,7 +71,7 @@ Enable Individual Network Service Descriptor with conflict due to operational st
     [Documentation]    Test ID: 5.3.1.2.5
     ...    Test title: Enable Individual Network Service Descriptor with conflict due to operational state ENABLED
     ...    Test objective: The objective is to test that enabling an individual Network Service Descriptor that is already in ENABLED operational state failsand perform a JSON schema validation of the failder operation HTTP response
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
     ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -84,7 +84,7 @@ Enable Individual Network Service Descriptor with conflict due to onboarding sta
     [Documentation]    Test ID: 5.3.1.2.6
     ...    Test title: Enable Individual Network Service Descriptor with conflict due to onboarding state
     ...    Test objective: The objective is to test that the retrieval of an Network Service Descriptor fails due to a conflict when the Network Service Descriptor is not in onboarding state ONBOARDED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in ENABLED operational state. The onboarding state of the Network Service Descriptor for which the enabling is requested is different from ONBOARDED.
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO in ENABLED operational state. The onboarding state of the Network Service Descriptor for which the enabling is requested is different from ONBOARDED.
     ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -97,7 +97,7 @@ Enable Individual Network Service Descriptor with conflict due to onboarding sta
     [Documentation]    Test ID: 5.3.1.2.7
     ...    Test title:  Enable Individual Network Service Descriptor with HTTP Etag precondition failure
     ...    Test objective: The objective is to test that the retrieval of an Network Service Descriptor fails due to a precondition failure when using an uncorrect Http Etag identified.
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
     ...    Reference: section 5.4.3.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -109,7 +109,7 @@ DELETE Individual Network Service Descriptor
     [Documentation]    Test ID: 5.3.1.2.9
     ...    Test title:  DELETE Individual Network Service Descriptor
     ...    Test objective: The objective is to test the deletion of an individual Network Service Descriptor.
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in DISABLED operational state and NOT_IN_USE usage state.
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO in DISABLED operational state and NOT_IN_USE usage state.
     ...    Reference: section 5.4.3.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -122,7 +122,7 @@ DELETE Individual Network Service Descriptor in operational state ENABLED
     [Documentation]    Test ID: 5.3.1.2.10
     ...    Test title:  DELETE Individual Network Service Descriptor in operational state ENABLED
     ...    Test objective: The objective is to test that the deletion of an individual Network Service Descriptor in operational state ENABLED fails. The test also performs a JSON schema validation of the failed operation HTTP response.
-    ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
     ...    Reference: section 5.4.3.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none

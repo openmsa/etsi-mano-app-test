@@ -142,7 +142,7 @@ Check HTTP Response Body Json Schema Is
 Check HTTP Response Header ContentType is
     [Arguments]    ${expected_contentType}
     Log    Validate content type
-    Should Be Equal    ${response[0]['headers']['Content-Type']}    ${expected_contentType}
+    Should Be Equal as Strings   ${response[0]['headers']['Content-Type']}    ${expected_contentType}
     Log    Content Type validated 
 
 Do POST New nsInstance

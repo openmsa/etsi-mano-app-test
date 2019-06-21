@@ -146,9 +146,9 @@ Upload NSD Content as Zip file in asynchronous mode
     ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
     ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
-    ...    Applicability: The NFVO supports supports the upload of NSD contents in asynchronous mode
+    ...    Applicability: The NFVO supports the upload of NSD contents in asynchronous mode
     ...    Post-Conditions: none
-    Send PUT Request to upload NSD Content as zip file file in asynchronous mode
+    Send PUT Request to upload NSD Content as zip file in asynchronous mode
     Check HTTP Response Status Code Is    202
     
 Upload NSD Content as plain text file in asynchronous mode
@@ -158,7 +158,7 @@ Upload NSD Content as plain text file in asynchronous mode
     ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
     ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
-    ...    Applicability: The NFVO supports supports the upload of NSD contents in asynchronous mode
+    ...    Applicability: The NFVO supports the upload of NSD contents in asynchronous mode
     ...    Post-Conditions: none
     Send PUT Request to upload NSD Content as plain text file in asynchronous mode
     Check HTTP Response Status Code Is    202   
@@ -170,10 +170,11 @@ Upload NSD Content as Zip file in synchronous mode
     ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
     ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
-    ...    Applicability: The NFVO supports supports the upload of NSD contents in synchronous mode
-    ...    Post-Conditions: none
+    ...    Applicability: The NFVO supports the upload of NSD contents in synchronous mode
+    ...    Post-Conditions: The NSD content is successfully uploaded and available in the NFVO
     Send PUT Request to upload NSD Content as zip file in synchronous mode
     Check HTTP Response Status Code Is    204
+    Check Postcondition NSD Content is uploaded and available in the NFVO
     
 Upload NSD Content as plain text file in synchronous mode
     [Documentation]    Test ID: 5.3.1.3.14
@@ -182,10 +183,11 @@ Upload NSD Content as plain text file in synchronous mode
     ...    Pre-conditions: One or more NSDs are onboarded in the NFVO.
     ...    Reference: section 5.4.4.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
-    ...    Applicability: The NFVO supports supports the upload of NSD contents in synchronous mode
-    ...    Post-Conditions: none
+    ...    Applicability: The NFVO supports the upload of NSD contents in synchronous mode
+    ...    Post-Conditions: The NSD content is successfully uploaded and available in the NFVO
     Send PUT Request to upload NSD Content as plain text file in synchronous mode
-    Check HTTP Response Status Code Is    204   
+    Check HTTP Response Status Code Is    204 
+    Check Postcondition NSD Content is uploaded and available in the NFVO
  
 Upload NSD Content with conflict due to onboarding state
    [Documentation]    Test ID: 5.3.1.3.15

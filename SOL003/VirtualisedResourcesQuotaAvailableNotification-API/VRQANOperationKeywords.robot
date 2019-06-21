@@ -45,9 +45,14 @@ Check HTTP Response Header ContentType is
     
 Check Postcondition VNF Virtualised Resources Quota Available Notification Subscriptions Exists
     Log    Checking that subscriptions exists
-    GET Virtualised Resources Quota Available Notification Subscriptions  
-
-Do Post Individual Subscription
+    GET Virtualised Resources Quota Available Notification Subscriptions
+      
+Check Postcondition VNF Virtualised Resources Quota Available Notification individual Subscriptions is Deleted
+    Log    Check Postcondition Subscription is deleted
+    Get Virtualised Resources Quota Available Notification individual subscription
+    Check HTTP Response Status Code Is    404 
+    
+Send Post request for Virtualised Resources Quota Available Notification Individual Subscription
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -55,7 +60,7 @@ Do Post Individual Subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do Put Individual Subscription
+Put Virtualised Resources Quota Available Notification individual Subscription
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -63,7 +68,7 @@ Do Put Individual Subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do Patch Individual Subscription
+Patch Virtualised Resources Quota Available Notification individual subscription
     log    Trying to perform a Patch. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -71,7 +76,7 @@ Do Patch Individual Subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do Get individual subscription
+Get Virtualised Resources Quota Available Notification individual subscription 
     log    Trying to get information about an individual subscription
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -79,7 +84,7 @@ Do Get individual subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
       
-Do Delete an individual subscription
+Delete Virtualised Resources Quota Available Notification individual subscription
     log    Try to delete an individual subscription
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -87,7 +92,7 @@ Do Delete an individual subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
- Send Post request for new Virtualised Resources Quota Available Notification subscription 
+Send Post request for new Virtualised Resources Quota Available Notification subscription 
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -97,7 +102,7 @@ Do Delete an individual subscription
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
- Send Post request for new Virtualised Resources Quota Available Notification subscription - DUPLICATION
+Send Post request for new Virtualised Resources Quota Available Notification subscription - DUPLICATION
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${NFVO_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}

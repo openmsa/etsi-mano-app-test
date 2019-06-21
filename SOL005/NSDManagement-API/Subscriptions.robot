@@ -81,7 +81,7 @@ Create new NSD Management subscription
     Check Postcondition NSD Management Subscription Is Set 
     
 
-Create duplicated NSD Management subscription with duplication handler
+Create duplicated NSD Management subscription with NFVO not creating duplicated subscriptions
     [Tags]    no-duplicated-subs
     [Documentation]    Test ID: 5.3.1.7.6
     ...    Test title: Create duplicated NSD Management subscription with NFVO not creating duplicated subscriptions
@@ -98,7 +98,7 @@ Create duplicated NSD Management subscription with duplication handler
     Check Postcondition Subscription Resource Returned in Location Header Is Available
 
 
-Create duplicated NSD Management subscription without duplication handler
+Create duplicated NSD Management subscription with NFVO creating duplicated subscriptions
     [Tags]    duplicated-subs
     [Documentation]    Test ID: 5.3.1.7.7
     ...    Test title: Create duplicated NSD Management subscription with NFVO creating duplicated subscriptions

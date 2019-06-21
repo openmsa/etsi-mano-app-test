@@ -398,7 +398,7 @@ GET NSD Content with invalid Range Request
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
-Send PUT Request to upload NSD Content as zip file file in asynchronous mode
+Send PUT Request to upload NSD Content as zip file in asynchronous mode
     Log    Trying to perform a PUT. This method upload the content of a NSD
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -442,6 +442,10 @@ Send PUT Request to upload NSD Content as plain text file in synchronous mode
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
 
+Check Postcondition NSD Content is uploaded and available in the NFVO
+    Get single file NSD Content in Plain or Zip Format
+    Check HTTP Response Status Code Is    200
+ 
 Send PUT Request to upload NSD Content with conflict due to onboarding state
     Log    Trying to perform a PUT. This method upload the content of a NSD
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
