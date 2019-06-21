@@ -85,10 +85,10 @@ GET all Network Service Descriptors Information with expired or revoked authoriz
     Get all Network Service Descriptors Information with expired or revoked authorization token
     Check HTTP Response Status Code Is    401
 
-GET all Network Service Descriptors Information with all_fields attribute selector
+GET all Network Service Descriptors Information with "all_fields" attribute selector
     [Documentation]    Test ID: 5.3.1.1.7
-    ...    Test title: GET all Network Service Descriptors Information with all_fields attribute selector
-    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with all_fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued all_fileds selector
+    ...    Test title: GET all Network Service Descriptors Information with "all_fields" attribute selector
+    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with "all_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "all_fileds" selector
     ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
     ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -99,10 +99,10 @@ GET all Network Service Descriptors Information with all_fields attribute select
     Check HTTP Response Body Json Schema Is   NsdInfos
     Check HTTP Response Body NsdInfos Matches the requested all_fields selector
 
-GET all Network Service Descriptors Information with exclude_default attribute selector
+GET all Network Service Descriptors Information with "exclude_default" attribute selector
     [Documentation]    Test ID: 5.3.1.1.8
-    ...    Test title: GET all Network Service Descriptors Information with exclude_default attribute selector
-    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with exclude_default attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued exclude_default selector
+    ...    Test title: GET all Network Service Descriptors Information with "exclude_default" attribute selector
+    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with "exclude_default" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_default" selector
     ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
     ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -113,28 +113,28 @@ GET all Network Service Descriptors Information with exclude_default attribute s
     Check HTTP Response Body Json Schema Is   NsdInfos
     Check HTTP Response Body NsdInfos Matches the requested exclude_default selector
 
-GET all Network Service Descriptors Information with fields attribute selector
+GET all Network Service Descriptors Information with "fields" attribute selector
     [Documentation]    Test ID: 5.3.1.1.9
-    ...    Test title: GET all Network Service Descriptors Information with fields attribute selector
-    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued fields selector
+    ...    Test title: GET all Network Service Descriptors Information with "fields" attribute selector
+    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with "fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "fields" selector
     ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
     ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
-    ...    Applicability: The NFVO supports the use of fields attribute selector
+    ...    Applicability: The NFVO supports the use of "fields" attribute selector
     ...    Post-Conditions: none
     GET all Network Service Descriptors Information with fields attribute selector
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   NsdInfos
     Check HTTP Response Body NsdInfos Matches the requested fields selector
 
-GET all Network Service Descriptors Information with exclude_fields attribute selector
+GET all Network Service Descriptors Information with "exclude_fields" attribute selector
     [Documentation]    Test ID: 5.3.1.1.10
-    ...    Test title: GET all Network Service Descriptors Information with exclude_fields attribute selector
-    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with exclude_fields attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued exclude_fields selector
+    ...    Test title: GET all Network Service Descriptors Information with "exclude_fields" attribute selector
+    ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with "exclude_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_fields" selector
     ...    Pre-conditions: One or more Network Service Descriptors are set in the NFVO.
     ...    Reference: section 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
-    ...    Applicability: The NFVO supports the use of exclude_fields attribute selector
+    ...    Applicability: The NFVO supports the use of "exclude_fields" attribute selector
     ...    Post-Conditions: none
     GET all Network Service Descriptors Information with exclude_fields attribute selector
     Check HTTP Response Status Code Is    200
