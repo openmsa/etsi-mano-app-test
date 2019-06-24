@@ -12,6 +12,7 @@ Library    Process
 ${original_etag}    1234
 
 *** Keywords ***
+
 Check Postcondition VNF fault management alarms Exists
     Log    Checking that alarms exists
     GET Fault Management Alarms
@@ -29,6 +30,12 @@ Check Individual Subscription existance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
     Integer    response status    200
+    
+Check Individual Subscription deleted
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    Integer    response status    404
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}

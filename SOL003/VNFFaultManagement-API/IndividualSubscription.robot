@@ -1,71 +1,72 @@
 *** Settings ***
-Resource    environment/variables.txt 
+Resource    environment/variables.txt
+Resource    FaultManagement-APIKeyword.robot 
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
 Documentation    This resource represents an individual subscription for VNF alarms. 
 ...    The client can use this resource to read and to terminate a subscription to notifications related to VNF fault management.
-Suite Setup    Check resource existance
+Suite Setup    Check Individual Subscription existance
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented
-    log    Trying to perform a POST. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
-    Log    Validate Status code
-    Output    response
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.5.4.1
+    ...    Test title: Post Individual Subscription - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed for Fault management subscription on VNF  
+    ...    Pre-conditions: none
+    ...    Reference: section 7.4.5.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  none
+    ...    Post-Conditions:  none
+    POST Individual Subscription
+    Check HTTP Response Status Code Is    405
 
 Get Information about an individual subscription
-    [Documentation]    Test ID: 7.4.5.1
-    ...    Test title: Retrieve the alarm subscriptions
-    ...    Test objective: The objective is to read an individual subscription for VNF alarms subscribed by the client
+    [Documentation]    Test ID: 7.3.5.4.2
+    ...    Test title: Get Information about an individual subscription
+    ...    Test objective: The objective is to read an individual subscription for NFVO alarms subscribed by the client and perform a JSON schema and content validation of the returned fault management individual subscription data structure
     ...    Pre-conditions: The subscription with the given id exists
-    ...    Reference: section 7.4.5 - SOL003 v2.4.1
+    ...   Reference: section 7.4.5.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    log    Trying to get information about an individual subscription
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Log    Validate Status code
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-    Validate Json    FmSubscription.schema.json    ${result}
-    Log    Validation OK
+    ...    Applicability:   none
+    ...    Post-Conditions:  none
+    GET Individual Subscription
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    FmSubscription
 
 PUT an individual subscription - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.5.4.3
+    ...    Test title:PUT an individual subscription - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed for Fault management individual subscription on VNF  
+    ...    Pre-conditions:  none
+    ...    Reference: section 7.4.5.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  none
+    ...    Post-Conditions:  none
+    PUT Individual Subscription
+    Check HTTP Response Status Code Is    405
 
 PATCH an individual subscription - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.5.4.4
+    ...    Test title:PATCH an individual subscription - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed for Fault management individual subscription on VNF  
+    ...    Pre-conditions:  none
+    ...    Reference: section 7.4.5.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  none
+    ...    Post-Conditions:  none
+    PATCH Individual Subscription
+    Check HTTP Response Status Code Is    405
     
 DELETE an individual subscription
-    log    Try to delete an individual subscription
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Integer    response status    204
-
-*** Keywords ***
-Check resource existance
-    Set Headers    {"Accept":"${ACCEPT}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
-    Integer    response status    200
+    [Documentation]    Test ID: 7.3.5.4.5
+    ...    Test title:DELETE an individual subscription
+    ...    Test objective: The objective is to test that DELETE method removes individual subscription on VNF   
+    ...    Pre-conditions: The Subsbcription already exists
+    ...    Reference: section 7.4.5.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  none
+    ...    Post-Conditions:  none
+    DELETE Individual Subscription
+    Check HTTP Response Status Code Is    204
+    Check Individual Subscription deleted
