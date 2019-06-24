@@ -35,7 +35,7 @@ Get information about multiple alarms
     Check HTTP Response Body Json Schema Is    Alarms
 
 Get information about multiple alarms with filters 
-    [Documentation]    Test ID: 7.3.5.1.2
+    [Documentation]    Test ID: 7.3.5.1.3
     ...    Test title: Get information about multiple alarms with filters 
     ...    Test objective: The objective is to retrieve information about the alarm list and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions: none 
@@ -48,7 +48,7 @@ Get information about multiple alarms with filters
     Check HTTP Response Body Json Schema Is    Alarms
 
 Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
-    [Documentation]    Test ID: 7.3.5.1.2
+    [Documentation]    Test ID: 7.3.5.1.4
     ...    Test title:  The objective is to try to retrieve information about the alarm list and perform a JSON schema and content validation of the returned problem details data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
@@ -61,7 +61,7 @@ Get information about multiple alarms Bad Request Invalid attribute-based filter
     Check HTTP Response Body Json Schema Is    ProblemDetails
     
 PUT Alarms - Method not implemented
-    [Documentation]    Test ID: 7.3.5.1.3
+    [Documentation]    Test ID: 7.3.5.1.5
     ...    Test title: PUT Alarms - Method not implemented 
     ...    Test objective: The objective is to test that PUT method is not allowed to for Fault management alarms on VNF 
     ...    Pre-conditions: none
@@ -73,7 +73,7 @@ PUT Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Alarms - Method not implemented
-     [Documentation]    Test ID: 7.3.5.1.4
+     [Documentation]    Test ID: 7.3.5.1.6
     ...    Test title: PATCH Alarms - Method not implemented 
     ...    Test objective: The objective is to test that PATCH method is not allowed to for Fault management alarms on VNF 
     ...    Pre-conditions: none
@@ -85,7 +85,7 @@ PATCH Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Alarms - Method not implemented
-     [Documentation]    Test ID: 7.3.5.1.5
+     [Documentation]    Test ID: 7.3.5.1.7
     ...    Test title: POST Alarms - Method not implemented 
     ...    Test objective: The objective is to test that DELETE method is not allowed for Fault management alarms on VNF 
     ...    Pre-conditions: none
