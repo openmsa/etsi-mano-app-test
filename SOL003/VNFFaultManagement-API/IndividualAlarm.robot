@@ -28,7 +28,7 @@ Get information about an fault management individual alarm
     ...    Test title: Get information about an fault management individual alarm
     ...    Test objective: The objective is to retrieve information about an individual alarm and perform a JSON schema and content validation of the returned alarm data structure
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: section 7.4.3 - SOL003 v2.4.1
+    ...    Reference: section 7.4.3.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none 
@@ -49,7 +49,7 @@ PUT Alarm - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Fault Management Individual Alarm
-    [Documentation]    Test ID: 7.4.5.2.4
+    [Documentation]    Test ID: 7.3.5.2.4
     ...    Test title: PATCH Fault Management Individual Alarm
     ...    Test objective: The objective is to Modify an individual alarm resource and perform a JSON schema and content validation of the returned alarm data structure
     ...    Pre-conditions: The related alarm exists
@@ -63,7 +63,7 @@ PATCH Fault Management Individual Alarm
     Check HTTP Response Body Json Schema Is  alarmModification
 
 Modify an individual alarm resource - Precondition failed
-    [Documentation]    Test ID: 7.4.5.2.5
+    [Documentation]    Test ID: 7.3.5.2.5
     ...    Test title: Modify an individual alarm resource - Precondition failed
     ...    Test objective: The objective is to test that we cannot Modify an individual alarm resource if the alarm is already in the state that is requested to be set
     ...    Pre-conditions: The related alarm exists
@@ -77,7 +77,7 @@ Modify an individual alarm resource - Precondition failed
     Check HTTP Response Body Json Schema Is  ProblemDetails
 
 Modify an individual alarm resource - Conflict
-    [Documentation]    Test ID: 7.4.5.2.6
+    [Documentation]    Test ID: 7.3.5.2.6
     ...    Test title: Modify an individual alarm resource - Conflict
     ...    Test objective: The objective is to test that we cannot Modify an individual alarm resource if the resource was modified by another entity
     ...    Pre-conditions: The related alarm exists
