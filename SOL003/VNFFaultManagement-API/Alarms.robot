@@ -51,11 +51,11 @@ Get information about multiple alarms Bad Request Invalid attribute-based filter
     [Documentation]    Test ID: 7.3.5.1.4
     ...    Test title:  The objective is to try to retrieve information about the alarm list and perform a JSON schema and content validation of the returned problem details data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Test objective: The objective is to retrieve information about the alarm list
-    ...    Pre-conditions: 
+    ...    Pre-conditions: none
     ...    Reference: section 7.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Applicability: none
+    ...    Post-Conditions: none
     GET Fault Management Alarms With Invalid Filters 
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
