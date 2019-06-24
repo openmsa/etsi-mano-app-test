@@ -3,74 +3,97 @@ Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Resource          environment/IndividualPmJob.txt
+Resource          NSPerformanceManagementKeywords.robot
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 
 *** Test Cases ***
-GET Individual PM Job
-    Log    Trying to get a Pm Job present in the NFVO Catalogue
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    PmJob.schema.json    ${result}
-    Log    Validation OK
+GET individual NS Performance Job
+    [Documentation]    Test ID: 5.3.4.2.1
+    ...    Test title: Get individual NS Performance Job
+    ...    Test objective: The objective is to test the retrieval of an individual NS Performance monitoring job and perform a JSON schema and content validation of the collected job data structure
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS Performance jobs are set in the NFVO.
+    ...    Reference: section 7.4.3.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET individual NS Performance Job
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   PmJob
+    Check HTTP Response Body Pm Job Identifier matches the requested Pm Job
 
-GET Individual PM Job - Negative (Not Found)
-    Log    Trying to perform a negative get, using erroneous PM Job identifier
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${erroneousPmJobId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET individual NS Performance Job with invalid resource identifier
+    [Documentation]    Test ID: 5.3.4.2.2
+    ...    Test title: Get individual NS Performance Job with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of an individual NS Performance monitoring job fails when using an invalid resource identifier, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS Performance jobs are set in the NFVO.
+    ...    Reference: section 7.4.3.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET individual NS Performance Job with invalid resource identifier
+    Check HTTP Response Status Code Is    404
+    Check HTTP Response Body Json Schema Is   ProblemDetails
 
-DELETE Individual PM Job
-    Log    Trying to delete an existing PM Job
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
-    Integer    response status    204
-    Log    Received 204 No Content as expected
+DELETE Individual NS Performance Job with invalid resource identifier
+    [Documentation]    Test ID: 5.3.4.2.3
+    ...    Test title: Delete individual NS Performance Job with invalid resource identifier
+    ...    Test objective: The objective is to test that the deletion of an individual NS Performance monitoring job fails when using an invalid resource identifier
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS Performance jobs are set in the NFVO.
+    ...    Reference: section 7.4.3.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send Delete request for individual NS Performance Job with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
-DELETE Individual PM Job - Negative (Not Found)
-    Log    Trying to delete an existing PM Job
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${erroneousPmJobId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+POST Individual NS Performance Job - Method not implemented
+    [Documentation]    Test ID: 5.3.4.2.4
+    ...    Test title: POST Individual NS Performance Job - method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create a new NS Performance Monitoring Job
+    ...    Pre-conditions: A NS instance is instantiated
+    ...    Reference: section 7.4.3.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS Performance Job is not created on the NFVO
+    Send Post request for individual NS Performance Job
+    Check HTTP Response Status Code Is    405
+    Check Postcondition NS Performance Job is not Created
 
-POST Individual PM Job - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a POST (method should not be implemented)
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PUT Individual NS Performance Job - Method not implemented
+    [Documentation]    Test ID: 5.3.4.2.5
+    ...    Test title: PUT Individual NS Performance Job - method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to update an existing NS Performance Monitoring Job
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS Performance jobs are set in the NFVO.
+    ...    Reference: section 7.4.3.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS Performance Job is not modified by the operation
+    Send Put request for individual NS Performance Job
+    Check HTTP Response Status Code Is    405
+    Check Postcondition NS Performance Job is Unmodified (Implicit)
 
-PUT Individual PM Job - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PUT. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PATCH Individual NS Performance Job - Method not implemented
+    [Documentation]    Test ID: 5.3.4.2.6
+    ...    Test title: PATCH Individual NS Performance Job - method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing new NS Performance Monitoring Job
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
+    ...    Reference: section 6.4.3.3.4 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS Performance Job is not modified by the operation
+    Send Patch request for individual NS Performance Job
+    Check HTTP Response Status Code Is    405
+    Check Postcondition NS Performance Job is Unmodified (Implicit)
 
-PATCH Individual PM Job - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+DELETE Individual NS Performance Job
+    [Documentation]    Test ID: 5.3.4.2.7
+    ...    Test title: Delete Individual NS Performance Job
+    ...    Test objective: The objective is to test the deletion of an individual NS Performance monitoring job
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS Performance jobs are set in the NFVO.
+    ...    Reference: section 7.4.3.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS Performance Job is no more available in the NFVO    
+    Send Delete request for individual NS Performance Job
+    Check HTTP Response Status Code Is    204
+    Check Postcondition NS Pm Job is Deleted
