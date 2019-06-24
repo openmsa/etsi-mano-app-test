@@ -190,7 +190,8 @@ PATCH Fault Management Individual Alarm Conflict
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do POST Subscription
+    
+POST Subscription
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -199,8 +200,30 @@ Do POST Subscription
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
+    
+POST Subscription Duplication permitted
+    Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
+    Pass Execution If    ${VNFM_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/fmSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
 
-Do GET Subscriptions
+POST Subscription Duplication not permitted
+    Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
+    Pass Execution If    ${VNFM_DUPLICATION} == 1    NVFO is not permitting duplication. Skipping the test
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/fmSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
+    ${outputResponse}=    Output    response
+    Set Global Variable    @{response}    ${outputResponse}
+
+GET Subscriptions
     Log    Get the list of active subscriptions
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -208,7 +231,7 @@ Do GET Subscriptions
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
         
-Do GET Subscriptions with filter
+GET Subscriptions with filter
     Log    Get the list of active subscriptions using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -216,7 +239,7 @@ Do GET Subscriptions with filter
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}    
     
-Do GET Subscriptions with Invalid filter   
+GET Subscriptions with Invalid filter   
     Log    Get the list of active subscriptions using an invalid filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -224,7 +247,7 @@ Do GET Subscriptions with Invalid filter
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PUT Subscriptions
+PUT Subscriptions
     log    Trying to perform a PUT Subscriptions. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -232,7 +255,7 @@ Do PUT Subscriptions
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PATCH Subscriptions
+PATCH Subscriptions
     log    Trying to perform a PATCH Subscriptions. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -240,7 +263,7 @@ Do PATCH Subscriptions
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do DELETE Subscriptions
+DELETE Subscriptions
     log    Trying to perform a DELETE Subscriptions. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -248,7 +271,7 @@ Do DELETE Subscriptions
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do POST Individual Subscription
+POST Individual Subscription
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -256,7 +279,7 @@ Do POST Individual Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do GET Individual Subscription
+GET Individual Subscription
     log    Trying to get information about an individual subscription
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -264,7 +287,7 @@ Do GET Individual Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}   
     
-Do PUT Individual Subscription
+PUT Individual Subscription
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -272,7 +295,7 @@ Do PUT Individual Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PATCH Individual Subscription
+PATCH Individual Subscription
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -280,7 +303,7 @@ Do PATCH Individual Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
 
-Do DELETE Individual Subscription
+DELETE Individual Subscription
     log    Trying to perform a DELETE.
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
