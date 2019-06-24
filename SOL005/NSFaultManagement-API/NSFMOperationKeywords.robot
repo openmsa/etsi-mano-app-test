@@ -32,7 +32,8 @@ Check HTTP Response Header Contains
     Log    Header is present    
     
 Check HTTP Response Body Json Schema Is
-    [Arguments]    ${schema}
+    [Arguments]    ${input}
+    ${schema} =    Catenate    ${input}    .schema.json
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
     
@@ -50,7 +51,7 @@ Clean Endpoint
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
     
-Do POST Alarms
+POST Alarms
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -58,7 +59,7 @@ Do POST Alarms
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PATCH Alarms
+PATCH Alarms
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -66,7 +67,7 @@ Do PATCH Alarms
     ${outputResponse} =    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PUT Alarms
+PUT Alarms
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -74,7 +75,7 @@ Do PUT Alarms
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do DELETE Alarms
+DELETE Alarms
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -82,7 +83,7 @@ Do DELETE Alarms
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do GET Alarms
+GET Alarms
     Log    Query NFVO The GET method queries information about multiple alarms.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -91,7 +92,7 @@ Do GET Alarms
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do GET Alarms With Filters
+GET Alarms With Filters
 	Log    Query NFVO The GET method queries information about multiple alarms with filters.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -100,7 +101,7 @@ Do GET Alarms With Filters
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET Alarms With Invalid Filters
+GET Alarms With Invalid Filters
 	Log    Query NFVO The GET method queries information about multiple alarms with filters.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -109,7 +110,7 @@ Do GET Alarms With Invalid Filters
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do POST Individual Alarm
+POST Individual Alarm
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -117,7 +118,7 @@ Do POST Individual Alarm
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
     
-Do DELETE Individual Alarm
+DELETE Individual Alarm
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -125,7 +126,7 @@ Do DELETE Individual Alarm
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PUT Individual Alarm
+PUT Individual Alarm
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -133,7 +134,7 @@ Do PUT Individual Alarm
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
 
-Do GET Individual Alarm
+GET Individual Alarm
     Log    Query NFVO The GET method queries information about an alarm.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -143,7 +144,7 @@ Do GET Individual Alarm
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do GET Invalid Individual Alarm
+GET Invalid Individual Alarm
     Log    Query NFVO The GET method queries information about an invalid alarm. Should return does not exist
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -153,7 +154,7 @@ Do GET Invalid Individual Alarm
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
    
-Do PATCH Individual Alarm
+PATCH Individual Alarm
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
@@ -163,7 +164,7 @@ Do PATCH Individual Alarm
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
    
-Do PATCH Individual Alarm Conflict
+PATCH Individual Alarm Conflict
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
@@ -174,7 +175,7 @@ Do PATCH Individual Alarm Conflict
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do POST Subscription
+POST Subscription
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -184,7 +185,7 @@ Do POST Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
 
-Do GET Subscriptions
+GET Subscriptions
     Log    Get the list of active subscriptions
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -192,7 +193,7 @@ Do GET Subscriptions
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
         
-Do GET Subscriptions with filter
+GET Subscriptions with filter
     Log    Get the list of active subscriptions using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -200,7 +201,7 @@ Do GET Subscriptions with filter
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}    
     
-Do GET Subscriptions with Invalid filter   
+GET Subscriptions with Invalid filter   
     Log    Get the list of active subscriptions using an invalid filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -208,7 +209,7 @@ Do GET Subscriptions with Invalid filter
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PUT Subscriptions
+PUT Subscriptions
     log    Trying to perform a PUT Subscriptions. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -216,7 +217,7 @@ Do PUT Subscriptions
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PATCH Subscriptions
+PATCH Subscriptions
     log    Trying to perform a PATCH Subscriptions. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -224,7 +225,7 @@ Do PATCH Subscriptions
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do DELETE Subscriptions
+DELETE Subscriptions
     log    Trying to perform a DELETE Subscriptions. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -232,7 +233,7 @@ Do DELETE Subscriptions
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do POST Individual Subscription
+POST Individual Subscription
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -240,7 +241,7 @@ Do POST Individual Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do GET Individual Subscription
+GET Individual Subscription
     log    Trying to get information about an individual subscription
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -248,7 +249,7 @@ Do GET Individual Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}   
     
-Do PUT Individual Subscription
+PUT Individual Subscription
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -256,7 +257,7 @@ Do PUT Individual Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-Do PATCH Individual Subscription
+PATCH Individual Subscription
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -264,7 +265,7 @@ Do PATCH Individual Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
 
-Do DELETE Individual Subscription
+DELETE Individual Subscription
     log    Trying to perform a DELETE.
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

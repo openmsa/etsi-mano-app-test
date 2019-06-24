@@ -49,8 +49,8 @@ Get information about multiple alarms with filters
 
 Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 7.3.5.1.4
-    ...    Test title:  The objective is to try to retrieve information about the alarm list and perform a JSON schema and content validation of the returned problem details data structure, and verify that the retrieved information matches the issued attribute-based filters 
-    ...    Test objective: The objective is to retrieve information about the alarm list
+    ...    Test title:  Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is to try to retrieve information about the alarm list with invalid filters and perform a JSON schema and content validation of the returned problem details data structure
     ...    Pre-conditions: none
     ...    Reference: section 7.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
