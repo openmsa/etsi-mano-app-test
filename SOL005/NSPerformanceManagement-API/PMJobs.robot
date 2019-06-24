@@ -144,7 +144,7 @@ PUT all NS Performance Monitoring Jobs - Method not implemented
     Send PUT Request for all NS Performance Monitoring Jobs
     Check HTTP Response Status Code Is    405
     
-PATCH all NS Performance Monitoring Jobs - (Method not implemented)
+PATCH all NS Performance Monitoring Jobs - Method not implemented
     [Documentation]    Test ID: 5.3.4.1.11
     ...    Test title: PATCH all NS Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update NS Performance Monitoring Jobs
@@ -164,7 +164,7 @@ DELETE all NS Performance Monitoring Jobs - Method not implemented
     ...    Reference: section 7.4.2.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: The NS Performance Monitoring Jobs are not deleted by the failed operation
     Send PATCH Request for all NS Performance Monitoring Jobs
     Check HTTP Response Status Code Is    405
     Check Postcondition NS Performance Monitoring Jobs Exist
