@@ -2,62 +2,85 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/reports.txt
+Resource          NSPerformanceManagementKeywords.robot
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 
 *** Test Cases ***
-GET Report on Single PM Job
-    [Documentation]    The client can use this resource to read the performance report.
-    ...    The URI of this report can be obtained from a PerformanceInformationAvailableNotification
-    ...    (see clause 7.5.2.5) or from the representation of the "Individual PM job" resource
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate result with PerformanceReport schema
-    ${result}=    Output    response body
-    Validate Json    PerformanceReport.schema.json    ${result}
+Get Individual Performance Report
+    [Documentation]    Test ID: 5.3.4.3.1
+    ...    Test title: Get Individual Performance Report
+    ...    Test objective: The objective is to test the retrieval of an individual NS performance report associated to a monitoring job and perform a JSON schema validation of the collected report data structure
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
+    ...    Reference: section 7.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get Individual Performance Report
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   PerformanceReport
 
-GET Report on Single PM Job - Negative (Not Found)
-    [Documentation]    The client can use this resource to read the performance report.
-    ...    The URI of this report can be obtained from a PerformanceInformationAvailableNotification
-    ...    (see clause 7.5.2.5) or from the representation of the "Individual PM job" resource
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${erroneousReportId}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get Individual Performance Report with invalid resource endpoint
+    [Documentation]    Test ID: 5.3.4.3.2
+    ...    Test title: Get Individual Performance Report with invalid resource endpoint
+    ...    Test objective:  The objective is to test that the retrieval of an individual NS performance report associated to a monitoring job fails when using an invalid resource endpoint 
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
+    ...    Reference: section 7.4.4.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Get Individual Performance Report with invalid resource endpoint
+    Check HTTP Response Status Code Is    404
 
-POST Reports - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+POST Individual Performance Report - Method not implemented
+    [Documentation]    Test ID: 5.3.4.3.3
+    ...    Test title: POST Individual Performance Report - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create a new NS performance report within a monitoring job
+    ...    Pre-conditions: A NS instance is instantiated.
+    ...    Reference: section 7.4.4.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS performance report is not created on the NFVO
+    Send Post request for Individual Performance Report
+    Check HTTP Response Status Code Is    405
+    Check Postcondition NS Individual Performance Report is not Created
 
-PUT Reports - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PUT Individual Performance Report - Method not implemented
+    [Documentation]    Test ID: 5.3.4.3.4
+    ...    Test title: PUT Individual Performance Report - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to update an existing NS performance report within a monitoring job
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
+    ...    Reference: section 7.4.4.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS performance report is not modified by the operation
+    Send Put request for Individual Performance Report
+    Check HTTP Response Status Code Is    405
+    Check Postcondition NS Individual Performance Report is Unmodified (Implicit)
 
-PATCH Reports - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PATCH Individual Performance Report - Method not implemented
+    [Documentation]    Test ID: 5.3.4.3.5
+    ...    Test title: PATCH Individual Performance Report - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing NS performance report within a monitoring job
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
+    ...    Reference: section 7.4.4.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS performance report is not modified by the operation
+    Send Patch request for Individual Performance Report
+    Check HTTP Response Status Code Is    405
+    Check Postcondition NS Individual Performance Report is Unmodified (Implicit)
 
-DELETE Reports - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+DELETE Individual Performance Report - Method not implemented
+    [Documentation]    Test ID: 5.3.4.3.6
+    ...    Test title: DELETE Individual Performance Report - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not allowed to delete an existing NS performance report within a monitoring job
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
+    ...    Reference: section 7.4.4.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS performance report is not deleted by the operation
+    Send Delete request for Individual Performance Report
+    Check HTTP Response Status Code Is    405
+    Check Postcondition NS Individual Performance Report Exists
+
