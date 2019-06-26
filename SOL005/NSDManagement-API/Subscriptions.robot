@@ -36,7 +36,7 @@ Get NSD Management Subscriptions with attribute-based filter
     ...    Post-Conditions: none
     Get NSD Management Subscriptions with attribute-based filters
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    NsdmSubscription
+    Check HTTP Response Body Json Schema Is    NsdmSubscriptions
     Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     
 
@@ -110,7 +110,7 @@ Create duplicated NSD Management subscription with NFVO creating duplicated subs
     ...    Post-Conditions: The duplicated NSD Management subscription is successfully set and it matches the issued subscription    
     Send Post Request for Duplicated NSD Management Subscription
     Check HTTP Response Status Code Is    201
-    Check HTTP Response Body Json Schema Is    PmSubscription
+    Check HTTP Response Body Json Schema Is    NsdmSubscription
     Check HTTP Response Body NsdmSubscription Attributes Values Match the Issued Subscription
     Check Postcondition NSD Management Subscription Is Set 
 

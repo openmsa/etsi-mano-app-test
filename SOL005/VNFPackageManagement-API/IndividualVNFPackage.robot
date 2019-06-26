@@ -16,7 +16,7 @@ GET Individual VNF Package
     Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
     Log    Trying to validate response
     ${vnfPkgInfo}=    Output    response body
-    Validate Json    vnfPkgInfo.schema.json    ${vnfPackageId}
+    Validate Json    vnfPkgInfo.schema.json    ${vnfPkgInfo}
     Log    Validation OK
 
 GET Individual VNF Package - Negative (Not Found)

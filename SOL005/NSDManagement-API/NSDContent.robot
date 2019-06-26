@@ -162,7 +162,7 @@ Upload NSD Content as plain text file in asynchronous mode
     ...    Post-Conditions: none
     Send PUT Request to upload NSD Content as plain text file in asynchronous mode
     Check HTTP Response Status Code Is    202   
-    
+   
 Upload NSD Content as Zip file in synchronous mode
     [Documentation]    Test ID: 5.3.1.3.13
     ...    Test title: Upload NSD Content as Zip file in synchronous mode
@@ -188,6 +188,7 @@ Upload NSD Content as plain text file in synchronous mode
     Send PUT Request to upload NSD Content as plain text file in synchronous mode
     Check HTTP Response Status Code Is    204 
     Check Postcondition NSD Content is uploaded and available in the NFVO
+
  
 Upload NSD Content with conflict due to onboarding state
    [Documentation]    Test ID: 5.3.1.3.15

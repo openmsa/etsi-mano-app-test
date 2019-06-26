@@ -4,7 +4,6 @@
 		"performanceMetric": [],
 		"performanceMetricGroup": [],
 		"collectionPeriod": 10,
-		"reportingPeriod": 30,
-		
+		"reportingPeriod": 30
 	}
 }

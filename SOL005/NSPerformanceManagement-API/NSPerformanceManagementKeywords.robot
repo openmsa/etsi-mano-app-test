@@ -6,7 +6,7 @@ Resource    environment/IndividualPmJob.txt
 Resource    environment/reports.txt
 Resource    environment/thresholds.txt
 Resource    environment/individualThresholds.txt
-Resource          environment/individualSubscription.txt
+Resource    environment/individualSubscription.txt
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library    MockServerLibrary 
 Library    OperatingSystem
@@ -143,11 +143,11 @@ Check HTTP Response Body PmJobs Matches the requested exclude selector
 Check HTTP Response Body PmJobs Matches the requested include selector
     Log    Trying to validate criteria schema
     ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
-    Validate Json    criteria.schema.json    ${criteria[0]}
+    Validate Json    criteria.schema.json    ${criteria}
     Log    Validation for criteria schema OK
     Log    Trying to validate criteria schema
     ${reports}=    Get Value From Json    ${response['body']}    $..reports
-    Validate Json    reports.schema.json    ${reports[0]}
+    Validate Json    reports.schema.json    ${reports}
     Log    Validation for reports schema OK
     
 Check HTTP Response Body PmJobs Matches the requested exclude_default selector
@@ -159,15 +159,15 @@ Check HTTP Response Body PmJobs Matches the requested exclude_default selector
 Check HTTP Response Body PmJobs Matches the requested all_fields selector
     Log    Trying to validate criteria schema
     ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
-    Validate Json    criteria.schema.json    ${criteria[0]}
+    Validate Json    criteria.schema.json    ${criteria}
     Log    Validation for criteria schema OK
     Log    Trying to validate criteria schema
     ${reports}=    Get Value From Json    ${response['body']}    $..reports
-    Validate Json    reports.schema.json    ${reports[0]}
+    Validate Json    reports.schema.json    ${reports}
     Log    Validation for reports schema OK
     Log    Validating _links schema
     ${links}=    Get Value From Json    ${response['body']}    $.._links
-    Validate Json    links.schema.json    ${links[0]}
+    Validate Json    links.schema.json    ${links}
     Log    Validation for _links schema OK
     
 Check HTTP Response Body PmJobs Matches the requested Attribute-Based Filter 
@@ -641,7 +641,7 @@ Check HTTP Response Status Code Is
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
 
@@ -677,7 +677,7 @@ Check Postcondition NS Performance Subscription Is Set
 Check Postcondition Subscription Resource URI Returned in Location Header Is Available
     Log    Going to check postcondition
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${response.headers['Location']}
+    GET    ${response['headers']['Location']}
     Integer    response status    200
     Log    Received a 200 OK as expected
     ${contentType}=    Output    response headers Content-Type
@@ -771,7 +771,7 @@ Check HTTP Response Body Subscription Identifier matches the requested Subscript
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
 
 

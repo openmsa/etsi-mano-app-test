@@ -4,7 +4,7 @@ Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Resource          environment/vnfIndicators.txt
-Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
+Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}    ssl_verify=false
 
 *** Test Cases ***
 Get all VNF Indicators
@@ -153,8 +153,6 @@ Get all VNF indicators
     Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
-    ${body}=    evaluate    json.loads('''${response.body}''')    json
-    Set Suite Variable    @{vnfIndicators}    ${body}
     
 Get VNF indicators with filter
     Log    The GET method queries multiple VNF indicators using Attribute-based filtering parameters
@@ -208,7 +206,7 @@ Get all VNF indicators with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     Log    Execute Query and validate response
-    Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
+    Get    ${apiRoot}/${apiName}/${apiVersion}/indicator
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
@@ -249,6 +247,8 @@ Check HTTP Response Status Code Is
     ${status}=    Convert To Integer    ${expected_status}    
     Should Be Equal    ${response['status']}    ${status} 
     Log    Status code validated
+    Run Keyword If    ${status} == 401
+    ...    Check HTTP Response Header Contains    "WWW-Authenticate"    
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
@@ -258,11 +258,12 @@ Check HTTP Response Header Contains
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    Validate Json    ${schema}    ${response['body']}
+    ${jsonSchema}=    Catenate    SEPARATOR=    ${schema}    .schema.json
+    Validate Json    ${jsonSchema}    ${response['body']}
     Log    Json Schema Validation OK
 
 Check Postcondition VNF Indicators Exist
-    Log    Check  Postcondition indicators exist
+    Log    Check Postcondition indicators exist
     Get all VNF indicators
     Check HTTP Response Status Code Is    200
     

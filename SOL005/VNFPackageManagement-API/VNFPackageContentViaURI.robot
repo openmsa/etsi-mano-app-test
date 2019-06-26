@@ -13,7 +13,7 @@ POST VNF Package Content
     Log    Trying to perform a POST. The POST method provides the information for the NFVO to get the content of a VNF package.
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get Binary File    jsons/UploadVnfPkgFromUriRequest.json
+    ${body}=    Get File    jsons/UploadVnfPkgFromUriRequest.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPackageId}/package_content/upload_from_uri    ${body}
     Integer    response status    202
     Log    Received 202 Accepted as expected
@@ -27,7 +27,7 @@ POST VNF Package Content - Negative (VNF Package not in CREATED operational stat
     Log    Trying to perform a POST. The POST method provides the information for the NFVO to get the content of a VNF package.
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get Binary File    jsons/UploadVnfPkgFromUriRequest.json
+    ${body}=    Get File    jsons/UploadVnfPkgFromUriRequest.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${creatingVnfPackageId}/package_content/upload_from_uri    ${body}
     Integer    response status    409
     Log    Received 409 Conflict as expected

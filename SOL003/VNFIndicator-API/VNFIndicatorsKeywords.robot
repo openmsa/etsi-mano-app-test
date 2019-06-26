@@ -173,7 +173,7 @@ Check HTTP Response Status Code Is
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}	.schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
 
@@ -206,7 +206,7 @@ Check Postcondition VNF Indicator Subscription Is Set
 
 Check Postcondition Subscription Resource Returned in Location Header Is Available
     Log    Going to check postcondition
-    GET    ${response.headers['Location']}
+    GET    ${response['headers]['Location']}
     Integer    response status    200
     Log    Received a 200 OK as expected
     ${contentType}=    Output    response headers Content-Type
@@ -217,7 +217,7 @@ Check Postcondition Subscription Resource Returned in Location Header Is Availab
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
 
 Get all VNF indicators
@@ -228,8 +228,7 @@ Get all VNF indicators
     Get    ${apiRoot}/${apiName}/${apiVersion}/indicators
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
-    ${body}=    evaluate    json.loads('''${response.body}''')    json
-    Set Suite Variable    @{vnfIndicators}    ${body}
+    Set Suite Variable    ${vnfIndicators}    ${response['body']}
     
 Get VNF indicators with filter
     Log    The GET method queries multiple VNF indicators using Attribute-based filtering parameters
