@@ -100,14 +100,14 @@ GET all Packages - all_fields
     Log    Validation OK
     Log    Trying to validate softwareImages schema
     ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
-    Validate Json    softwareImage.schema.json    ${softwareImages[0]}
+    Validate Json    softwareImage.schema.json    ${softwareImages}
     Log    Validation for softwareImage schema OK
     Log    Trying to validate additionalArtifacts schema
     ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
-    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
+    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts}
     Log    Validation for additionalArtifacts schema OK
     ${links}=    Get Value From Json    ${vnfPkgInfos}    $.._links
-    Validate Json    links.schema.json    ${links[0]}
+    Validate Json    links.schema.json    ${links}
     Log    Validation for _links schema OK
 
 GET all Packages - exclude_default
@@ -147,11 +147,11 @@ GET all Packages - fields
     Log    Validation for vnfPkgInfo OK
     Log    Trying to validate softwareImages schema
     ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
-    Validate Json    softwareImage.schema.json    ${softwareImages[0]}
+    Validate Json    softwareImage.schema.json    ${softwareImages}
     Log    Validation for softwareImage schema OK
     Log    Trying to validate additionalArtifacts schema
     ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
-    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts[0]}
+    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts}
     Log    Validation for additionalArtifacts schema OK
 
 GET all Packages - exclude_fields

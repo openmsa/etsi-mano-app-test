@@ -1,11 +1,11 @@
 *** Settings ***
-Documentation     This clause defines all the resources and methods provided by the NS descriptors interface. \
+Documentation     This clause defines all the resources and methods provided by the NS descriptors interface.
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
 Resource          NSDManagementKeywords.robot
 Library           JSONLibrary
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library           OperatingSystem
 
 *** Test Cases ***

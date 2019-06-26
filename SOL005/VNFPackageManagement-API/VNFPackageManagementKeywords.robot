@@ -85,35 +85,11 @@ Send Post Request for VNF Package Subscription
     Set Suite Variable    ${response}    ${output}
     Run Keyword If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 1
     ...       Check Notification Endpoint
-    # Integer    response status    201
-    # Log    Received 201 Created as expected
-    # ${headers}=    Output    response headers
-    # Should Contain    ${headers}    Location
-    # Log    Response has header Location
-    # ${result}=    Output    response body
-    # Validate Json    PkgmSubscription.schema.json    ${result}
-    # Log    Validation of PkgmSubscription OK
+
 
 Send Post Request for Duplicated VNF Package Subscription
     Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${NFVO_DUPLICATION} == 0    NFVO is not permitting duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    ${body}=    Get File    jsons/subscriptions.json
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output}
-    Run Keyword If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 1
-    ...       Check Notification Endpoint
-    # Integer    response status    201
-    # Log    Received 201 Created as expected
-    # ${headers}=    Output    response headers
-    # Should Contain    ${headers}    Location
-    # Log    Response has header Location
-    # ${result}=    Output    response body
-    # Validate Json    PkgmSubscription.schema.json    ${result}
-    # Log    Validation of PkgmSubscription OK
+    Send Post Request for VNF Package Subscription
 
 
 Send Put Request for VNF Package Subscriptions
@@ -158,14 +134,14 @@ Create Sessions
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated
     
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
     
@@ -187,7 +163,7 @@ Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
-    Should Be Equal    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
+    Should Be Equal As Strings    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
     
     
 Check Postcondition VNF Package Subscription Is Set
@@ -196,8 +172,10 @@ Check Postcondition VNF Package Subscription Is Set
     Log    Trying to get the subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    Run Keyword If    Should Not Be Equal As Strings    ${location}    Location   GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
-    Run Keyword If    Should Be Equal As Strings    ${location}    Location   GET    ${response['headers']['Location']}  
+    Run Keyword If    ${location} == Location
+    ...    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    Run Keyword If    ${location} == Location
+    ...    GET    ${response['headers']['Location']}  
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
@@ -210,5 +188,5 @@ Check HTTP Response Body Is Empty
     
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present

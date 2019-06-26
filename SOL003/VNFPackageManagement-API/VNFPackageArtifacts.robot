@@ -19,6 +19,7 @@ GET Individual VNF Package Artifact
     GET Individual VNF Package Artifact
     Check HTTP Response Status Code Is    200
 
+
 GET Individual VNF Package Artifact in octet stream format
     [Documentation]    Test ID: 7.3.3.5.2
     ...    Test title: GET Individual VNF Package Artifact in octet stream format

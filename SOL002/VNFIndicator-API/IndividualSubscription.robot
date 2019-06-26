@@ -3,7 +3,7 @@ Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/individualSubscription.txt
 Library           OperatingSystem
-Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
+Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}    ssl_verify=false
 
 *** Test Cases ***
 GET Individual VNF Indicator Subscription
@@ -32,32 +32,6 @@ GET Individual VNF Indicator Subscription with invalid resource identifier
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is   ProblemDetails
     
-DELETE Individual VNF Indicator Subscription
-    [Documentation]    Test ID: 6.3.2.5.3
-    ...    Test title: Delete individual subscription to VNF performance indicators
-    ...    Test objective: The objective is to test the deletion of an individual VNF performance indicator subscription.
-    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference:  section 8.4.6.3.5 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
-    ...    Post-Conditions: The subscription to VNF performance indicators is deleted
-    Send Delete Request for Individual VNF Indicator Subscription
-    Check HTTP Response Status Code Is    204
-    Check Postcondition Individual VNF Indicator Subscription is Deleted
-
-DELETE Individual VNF Indicator Subscription with invalid resource identifier
-    [Documentation]    Test ID: 6.3.2.5.4
-    ...    Test title: Delete individual subscription to VNF performance indicators
-    ...    Test objective: The objective is to test that the deletion of an individual VNF performance indicator subscription fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
-    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference:  section 8.4.6.3.5 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
-    ...    Post-Conditions: none   
-    Send Delete Request for Individual VNF Indicator Subscription with invalid resource identifier
-    Check HTTP Response Status Code Is    404
-    Check HTTP Response Body Json Schema Is   ProblemDetails
-
 PUT Individual VNF Indicator Subscription - Method not implemented
     [Documentation]    Test ID 6.3.2.5.5
     ...    Test title: PUT individual VNF indicator subscription - Method not implemented
@@ -97,7 +71,33 @@ POST Individual VNF Indicator Subscription - Method not implemented
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF individual subscription is not created  
 
- *** Keywords ***
+DELETE Individual VNF Indicator Subscription
+    [Documentation]    Test ID: 6.3.2.5.3
+    ...    Test title: Delete individual subscription to VNF performance indicators
+    ...    Test objective: The objective is to test the deletion of an individual VNF performance indicator subscription.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference:  section 8.4.6.3.5 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
+    ...    Post-Conditions: The subscription to VNF performance indicators is deleted
+    Send Delete Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    204
+    Check Postcondition Individual VNF Indicator Subscription is Deleted
+
+DELETE Individual VNF Indicator Subscription with invalid resource identifier
+    [Documentation]    Test ID: 6.3.2.5.4
+    ...    Test title: Delete individual subscription to VNF performance indicators
+    ...    Test objective: The objective is to test that the deletion of an individual VNF performance indicator subscription fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference:  section 8.4.6.3.5 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
+    ...    Post-Conditions: none   
+    Send Delete Request for Individual VNF Indicator Subscription with invalid resource identifier
+    Check HTTP Response Status Code Is    404
+    Check HTTP Response Body Json Schema Is   ProblemDetails
+
+*** Keywords ***
 Get Individual VNF Indicator Subscription
     Log    Trying to get a given subscription identified by subscriptionId
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -173,7 +173,7 @@ Check HTTP Response Header Contains
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
@@ -186,8 +186,7 @@ Check Postcondition VNF individual subscription Unmodified (Implicit)
     Log    Check Postcondition subscription is not modified
     GET Individual VNF Indicator Subscription
     Log    Check Response matches original subscription
-    ${subscription}=    evaluate    json.loads('''${response['body']}''')    json
-    Should Be Equal    ${origResponse['body']['callbackUri']}    ${subscription.callbackUri}
+    Should Be Equal As Strings    ${origResponse['body']['callbackUri']}    ${response['body']['callbackUri']}
     
 Check Postcondition VNF individual subscription is not created
     Log    Check Postcondition subscription is not created

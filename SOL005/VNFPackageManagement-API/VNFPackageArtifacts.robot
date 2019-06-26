@@ -13,7 +13,6 @@ GET VNF Package Artifact
     Integer    response status    200
     Log    Received a 200 OK as expected
     ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_OCTET}
 
 GET VNF Package Artifact - Range
     Log    Trying to get an Artifact using RANGE Header and using an NFVO that can handle it

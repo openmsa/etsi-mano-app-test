@@ -12,6 +12,7 @@ ${response}    {}
 
 *** Test Cases ***
 Request a new Grant - Synchronous mode
+    [Tags]    synchronous-mode
     [Documentation]    Test ID: 9.4.2.1
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Synchronous mode
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
@@ -29,6 +30,7 @@ Request a new Grant - Synchronous mode
     Log    Validation OK
 
 Request a new Grant - Asynchronous mode
+    [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 9.4.2.2
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
@@ -42,7 +44,7 @@ Request a new Grant - Asynchronous mode
     Send Request Grant Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
-    Check HTTP Response Body Json Schema Is    grant.schema.json
+    #Check HTTP Response Body Json Schema Is    grant.schema.json
     Wait Until Keyword Succeeds    2 min   10 sec    Get an individual grant - Successful
     Log    Validation OK
 
@@ -108,33 +110,35 @@ Send Request Grant Request
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body}=    Get File    jsons/grantRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
-    ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}    allow_redirects=false
+    ${resp}    Output    response
+    ${result}=    evaluate    json.loads(json.dumps(${resp}))    json
+    Log  ${result}
+    Set Suite Variable    ${response}    ${result}
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal as Strings   ${response[0]['status_code']}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response[0]['headers']}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${schema}
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
     
 Get an individual grant - Successful
     log    Trying to read an individual grant
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${response[0]['headers']['Location']}
+    Get    ${response['headers']['Location']}
     Log    Validate Status code
     Integer    response status    200
-    ${result}=    Output    response body
+    ${result}    Output    response body
     Validate Json    grant.schema.json    ${result}
     Log    Validation OK
 

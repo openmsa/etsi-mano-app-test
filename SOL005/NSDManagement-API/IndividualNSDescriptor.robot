@@ -25,6 +25,7 @@ GET Individual Network Service Descriptor Information
     Check HTTP Response Header Contains ETag
     Check HTTP Response Body NsdInfo Identifier matches the requested Network Service Descriptor Information
 
+
 GET Individual Network Service Descriptor Information with invalid resource identifier
     [Documentation]    Test ID: 5.3.1.2.2
     ...    Test title: GET Individual Network Service Descriptor Information with invalid resource identifier
@@ -36,6 +37,8 @@ GET Individual Network Service Descriptor Information with invalid resource iden
     ...    Post-Conditions: none
     GET Individual Network Service Descriptor Information with invalid resource identifier
     Check HTTP Response Status Code Is    404
+
+
 
 Disable Individual Network Service Descriptor   
     [Documentation]    Test ID: 5.3.1.2.3
@@ -155,5 +158,3 @@ PUT Individual Network Service Descriptor - Method not implemented
     ...    Post-Conditions: none
     Send PUT Request for Individual Network Service Descriptor
     Check HTTP Response Status Code Is    405
-
-

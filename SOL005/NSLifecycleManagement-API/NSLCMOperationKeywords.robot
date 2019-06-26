@@ -254,6 +254,15 @@ Do DELETE IndividualNSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 	
 	
+
+Do DELETE IndividualNSInstance Conflict
+    log    Trying to delete an individual VNF instance
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${ConflictNsInstanceId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse} 	
+
+
 Do DELETE Instantiate NSInstance
     log    Trying to delete an instantiate NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

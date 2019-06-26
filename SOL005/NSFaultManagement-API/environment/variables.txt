@@ -13,7 +13,7 @@ ${apiName}        nsfm
 ${apiVersion}     v1
 ${CONTENT_TYPE}    application/json
 
-${NFVO_DUPLICATION}     0
+${NFVO_ALLOWS_DUPLICATE_SUBS}     0
 
 ${alarmId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
 ${invalidAlarmId}    invalidAlramID

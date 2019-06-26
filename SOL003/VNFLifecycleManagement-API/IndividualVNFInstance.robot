@@ -38,7 +38,7 @@ Get Information about an individual VNF Instance
     Validate Json    vnfInstance.schema.json    ${result}
     Log    Validation OK
     ${etag}    Output    response headers ETag
-    Set Suite Variable    &{original_etag}    ${etag}
+    Set Suite Variable    ${original_etag}    ${etag}
     
 PUT Individual VNFInstance - Method not implemented 
     log    Trying to perform a PUT. This method should not be implemented
@@ -57,12 +57,11 @@ PATCH Individual VNFInstance
     log    Trying to modify an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
-    Set Headers    {"If-Match": "${original_etag[0]}"}
+    Set Headers    {"If-Match": "${original_etag}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/patchBodyRequest.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
     Log    Validate Status code
-    ${Etag_modified}=    Output    response headers ETag
     Integer    response status    202
     ${headers}=    Output    response headers
     Should Contain    ${headers}    Location
@@ -77,7 +76,7 @@ PATCH Individual VNFInstance Precondition failed
     log    Trying to modify an individual VNF instance Precondition failed
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
-    Set Headers    {"If-Match": "${original_etag[0]}"}
+    Set Headers    {"If-Match": "${original_etag}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/patchBodyRequest.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}
