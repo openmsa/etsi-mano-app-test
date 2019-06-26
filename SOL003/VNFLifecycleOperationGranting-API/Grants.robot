@@ -41,15 +41,15 @@ Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
     Check HTTP Response Body Json Schema Is    grant
     Wait Until Keyword Succeeds    2 min   10 sec    Get an individual grant - Successful
 
-Request a new Grant - Forbidden
+Requests a grant for a particular VNF lifecycle operation - Forbidden 
     [Documentation]    Test ID: 7.3.2.1.3
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Forbidden 
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and check the content of the problem details data structure returned
     ...    Pre-conditions: The grant should not be accorded
     ...    Reference: section 9.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Applicability: none
+    ...    Post-Conditions: none
     Send Request a new Grant Forbiden
     Check HTTP Response Status Code Is    403
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -57,7 +57,7 @@ Request a new Grant - Forbidden
 GET Grants - Method not implemented
     [Documentation]    Test ID: 7.3.2.1.4
     ...    Test title: GET Grants - Method not implemented
-    ...    Test objective: The objective is to test that GET method is not allowed to for Life cycle operation granting 
+    ...    Test objective: The objective is to test that GET method is not allowed for Life cycle operation granting 
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -69,7 +69,7 @@ GET Grants - Method not implemented
 PUT Grants - Method not implemented
      [Documentation]    Test ID: 7.3.2.1.5
     ...    Test title: PUT Grants - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to for Life cycle operation granting 
+    ...    Test objective: The objective is to test that PUT method is not allowed for Life cycle operation granting 
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -81,7 +81,7 @@ PUT Grants - Method not implemented
 PATCH Grants - Method not implemented
     [Documentation]    Test ID: 7.3.2.1.6
     ...    Test title: PATCH Grants - Method not implemented
-    ...    Test objective: The objective is to test that PATCH method is not allowed to for Life cycle operation granting  
+    ...    Test objective: The objective is to test that PATCH method is not allowed for Life cycle operation granting  
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -93,7 +93,7 @@ PATCH Grants - Method not implemented
 DELETE Grants - Method not implemented
     [Documentation]    Test ID: 7.3.2.1.7
     ...    Test title: DELETE Grants - Method not implemented
-    ...    Test objective: The objective is to test that DELETE method is not allowed to for Life cycle operation granting  
+    ...    Test objective: The objective is to test that DELETE method is not allowed for Life cycle operation granting  
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -182,7 +182,7 @@ Get Grants
     Set Suite Variable    &{response}    ${body}
     
 Put Grants
-    Log    Trying to perform a GET. This method should not be implemented
+    Log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/grants
@@ -190,7 +190,7 @@ Put Grants
     Set Suite Variable    &{response}    ${body}
     
 Patch Grants
-    Log    Trying to perform a GET. This method should not be implemented
+    Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/grants
@@ -199,7 +199,7 @@ Patch Grants
     
     
 Delete Grants
-    Log    Trying to perform a GET. This method should not be implemented
+    Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/grants
