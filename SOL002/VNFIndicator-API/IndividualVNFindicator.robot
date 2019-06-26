@@ -146,20 +146,20 @@ Check HTTP Response Header Contains
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
 Check HTTP Response Body Includes Requested Indicator ID
     Log    Check Response includes propoer VNF instance and Indicator identifiers
-    Should Be Equal    ${response['body']['id']}    ${indicatorId}
+    Should Be Equal As Strings   ${response['body']['id']}    ${indicatorId}
 
 Check HTTP Response Body Includes Requested VNF Instance ID
     Log    Check Response includes propoer VNF instance and Indicator identifiers
-    Should Be Equal    ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
+    Should Be Equal As Strings   ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
 
 Check Postcondition Indicator for VNF instance Exist
     Log    Check Response includes VNF Indicator
     Get Individual Indicator for a VNF instance
-    Should Be Equal    ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
-    Should Be Equal    ${response['body']['id']}    ${indicatorId}
+    Should Be Equal As Strings   ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
+    Should Be Equal As Strings   ${response['body']['id']}    ${indicatorId}

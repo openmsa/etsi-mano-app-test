@@ -295,7 +295,7 @@ Check HTTP Response Body PmJobs Matches the requested exclude_fields selector
 Check HTTP Response Body PmJobs Matches the requested fields selector
     Log    Trying to validate criteria schema
     ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
-    Validate Json    criteria.schema.json    ${criteria[0]}
+    Validate Json    criteria.schema.json    ${criteria}
     Log    Validation for criteria schema OK
     Log    Trying to validate criteria schema
     ${reports}=    Get Value From Json    ${response['body']}    $..reports
@@ -311,7 +311,7 @@ Check HTTP Response Body PmJobs Matches the requested exclude_default selector
 Check HTTP Response Body PmJobs Matches the requested all_fields selector
     Log    Trying to validate criteria schema
     ${criteria}=    Get Value From Json    ${response['body']}    $..criteria
-    Validate Json    criteria.schema.json    ${criteria[0]}
+    Validate Json    criteria.schema.json    ${criteria}
     Log    Validation for criteria schema OK
     Log    Trying to validate criteria schema
     ${reports}=    Get Value From Json    ${response['body']}    $..reports
@@ -350,6 +350,6 @@ Check HTTP Response Header Contains
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK

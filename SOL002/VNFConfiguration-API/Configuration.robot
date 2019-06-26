@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
-Library    REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}
+Library    REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}    ssl_verify=false
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
@@ -121,14 +121,13 @@ Send VNF configuration
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/vnfConfigModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}
-    Set Suite Variable    &{etag}    ${response['headers']['ETag']}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${status}
+    Should Be Equal As Strings    ${response['status']}    ${status}
     Log    Status code validated
 
 Check HTTP Response Header Contains
@@ -139,8 +138,8 @@ Check HTTP Response Header Contains
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    Should Contain    ${response['headers']['Content-Type']}    application/problem+json
+    ${schema}=    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
       
@@ -157,14 +156,14 @@ Check Postcondition VNF Is Configured
     Get VNF configuration
     ${input_file}=    Get File    jsons/vnfConfigModifications.json
     ${input}=    evaluate    json.loads('''${input_file}''')    json
-    Should Be Equal  ${response['body']}    ${input} 
+    Should Be Equal As Strings  ${response['body']}    ${input} 
 
 Send Duplicated VNF configuration
     Depends On Test    Send VNF configuration    # If the previous test scceeded, it means that Etag has been modified
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"}
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Set Headers    {"If-Match": "${etag[0]}"}
+    Set Headers    {"If-Match": "${etag}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/vnfConfigModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/configuration    ${body}

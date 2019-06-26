@@ -13,7 +13,7 @@ Post Individual VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 Get Information about an individual NS Instance
-    Do POST individualNSInstance
+    Do GET IndividualNSInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
     Check HTTP Response Body Json Schema Is    NsInstance.schema.json

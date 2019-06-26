@@ -11,13 +11,15 @@ ${EM-VNF_SCHEMA}    https
 ${ACCEPT}         application/json
 ${AUTH_USAGE}     1
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+
 ${CONTENT_TYPE}    application/json
+
 ${apiRoot}        /
 ${apiName}        vnfconfig
 ${apiVersion}     v1
+
 ${WRONG_AUTHORIZATION}    Bearer    XXXXXWRONGXXXXX
-${alarm_filter}       managedObjectId
-${managedObjectId}    007c111c-38a1-42c0-a666-7475ecb1567c
-${invalid_alarm_filter}    badFilter
-${alarmId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
+
+
+
 

@@ -5,7 +5,7 @@ Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/pnfDescriptors.txt    # Specific PNFDescriptors Parameters
 Resource          NSDManagementKeywords.robot
 Library           JSONLibrary
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library           OperatingSystem
 
 *** Test Cases ***
@@ -47,6 +47,7 @@ Get PNFD Content with conflict due to onboarding state
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is   ProblemDetails
 
+
 Upload PNFD Content as plain text file
     [Documentation]    Test ID: 5.3.1.6.4
     ...    Test title: Upload PNFD Content as plain text file
@@ -59,6 +60,7 @@ Upload PNFD Content as plain text file
     Send PUT Request to upload PNFD Content as plain text file
     Check HTTP Response Status Code Is    204
     Check Postcondition PNFD Content Exists
+
  
 Upload PNFD Content with conflict due to onboarding state
    [Documentation]    Test ID: 5.3.1.6.5

@@ -239,8 +239,8 @@ Check Postcondition VNF Performance Subscription is Unmodified (Implicit)
     GET individual VNF Performance Subscription
     Log    Check Response matches original VNF Threshold
     ${subscription}=    evaluate    json.loads('''${response['body']}''')    json
-    Should Be Equal    ${origResponse['body']['id']}    ${subscription.id}
-    Should Be Equal    ${origResponse['body']['callbackUri']}    ${subscription.callbackUri}
+    Should Be Equal As Strings    ${origResponse['body']['id']}    ${subscription.id}
+    Should Be Equal As Strings    ${origResponse['body']['callbackUri']}    ${subscription.callbackUri}
 
 Check Postcondition VNF Performance Subscription is not Created
     Log    Trying to get a new subscription
@@ -258,12 +258,12 @@ Check Postcondition VNF Performance Subscription is Deleted
 
 Check HTTP Response Body Subscription Identifier matches the requested Subscription
     Log    Trying to check response ID
-    Should Be Equal    ${response['body']['id']}    ${subscriptionId} 
+    Should Be Equal As Strings    ${response['body']['id']}    ${subscriptionId} 
     Log    Subscription identifier as expected
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings   ${response['status']}    ${expected_status}
     Log    Status code validated 
     
     
@@ -271,7 +271,7 @@ Check HTTP Response Status Code Is
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
 
@@ -290,7 +290,7 @@ Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subsc
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
-    Should Be Equal    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
+    Should Be Equal As Strings    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
 
 Check Postcondition VNF Performance Subscription Is Set
     Log    Check Postcondition subscription exist
@@ -302,7 +302,7 @@ Check Postcondition VNF Performance Subscription Is Set
 
 Check Postcondition Subscription Resource Returned in Location Header Is Available
     Log    Going to check postcondition
-    GET    ${response.headers['Location']}
+    GET    ${response['headers']['Location']}
     Integer    response status    200
     Log    Received a 200 OK as expected
     ${contentType}=    Output    response headers Content-Type
@@ -317,12 +317,12 @@ Check Postcondition VNF Performance Subscriptions Exists
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
 
 Check HTTP Response Location Header Resource URI
     Log    Going to check
-    GET    ${response.headers['Location']}
+    GET    ${response['headers']['Location']}
     Integer    response status    200
     Log    Received a 200 OK as expected
     ${contentType}=    Output    response headers Content-Type

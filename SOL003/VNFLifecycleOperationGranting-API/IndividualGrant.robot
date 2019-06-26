@@ -39,6 +39,7 @@ Get an individual grant - Successful
     Log    Validation OK
     
 Get an individual grant - Process ongoing
+    [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 9.4.3.2
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Process ongoing
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
@@ -48,6 +49,7 @@ Get an individual grant - Process ongoing
     ...    Applicability: 
     ...    Post-Conditions: 
     log    Trying to read an individual grant
+    Pass Execution If    ${SYNC_MODE} == 1   Skipping. Synchronous mode is supported    
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}
@@ -55,6 +57,7 @@ Get an individual grant - Process ongoing
     Integer    response status    202
 
 Get an individual grant - grant rejected
+    [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 9.4.3.3
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - grant rejected
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 

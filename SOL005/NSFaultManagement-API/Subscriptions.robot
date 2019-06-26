@@ -33,7 +33,7 @@ Create a new alarm subscription - DUPLICATION
     ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: none
     Depends On Test    Create a new subscription
-    Pass Execution If    ${NFVO_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
+    Pass Execution If    ${NFVO_ALLOWS_DUPLICATE_SUBS} == 0    NVFO is not permitting duplication. Skipping the test
     POST Subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
@@ -49,7 +49,7 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
     ...    Post-Conditions: none
     Depends On Test    Create a new subscription
-    Pass Execution If    ${NFVO_DUPLICATION} == 1    NFVO permits duplication. Skipping the test
+    Pass Execution If    ${NFVO_ALLOWS_DUPLICATE_SUBS} == 1    NFVO permits duplication. Skipping the test
     POST Subscription
     Check HTTP Response Status Code Is    303
     Check HTTP Response Header Contains    Location

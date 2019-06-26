@@ -34,7 +34,7 @@ Scale a vnfInstance to level Conflict (Not-Instantiated)
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/scale_to_level    ${body}
     Integer    response status    409
     Log    Status code validated
     ${problemDetails}=    Output    response body

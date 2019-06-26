@@ -198,7 +198,7 @@ Check HTTP Response Header Contains
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}	.schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
@@ -206,7 +206,7 @@ Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
-    Should Be Equal    ${response['body']['callbackUri']}    ${subscription.callbackUri}
+    Should Be Equal    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
 
 Check Postcondition VNF Indicator Subscription Is Set
     Log    Check Postcondition subscription exist

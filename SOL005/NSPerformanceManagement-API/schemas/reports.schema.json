@@ -1,26 +1,32 @@
 {
-	"description": "Information about available reports collected by this PM job.\n",
-	"type": "object",
-	"required": ["href", "readyTime"],
-	"properties": {
-		"href": {
-			"description": "The Uri where the report can be obtained.\n",
-			"type": "string",
-			"format": "url"
-		},
-		"readyTime": {
-			"description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
-			"type": "string",
-			"format": "date-time"
-		},
-		"expiryTime": {
-			"description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
-			"type": "string",
-			"format": "date-time"
-		},
-		"fileSize": {
-			"description": "The size of the report file in bytes, if known.\n",
-			"type": "integer"
-		}
-	}
+  "type": "array",
+  "items": {
+    "description": "Information about available reports collected by this PM job.\n",
+    "type": "object",
+    "required": [
+      "href",
+      "readyTime"
+    ],
+    "properties": {
+      "href": {
+        "description": "The Uri where the report can be obtained.\n",
+        "type": "string",
+        "format": "url"
+      },
+      "readyTime": {
+        "description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
+        "type": "string",
+        "format": "date-time"
+      },
+      "expiryTime": {
+        "description": "Date-time stamp.  Representation: String formatted according to IETF RFC 3339.\n",
+        "type": "string",
+        "format": "date-time"
+      },
+      "fileSize": {
+        "description": "The size of the report file in bytes, if known.\n",
+        "type": "integer"
+      }
+    }
+  }
 }

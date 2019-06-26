@@ -619,7 +619,7 @@ Check HTTP Response Status Code Is
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
 
@@ -647,8 +647,10 @@ Check Postcondition VNF Package Subscription Is Set
     Log    Trying to get the subscription
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    Run Keyword If    Should Not Be Equal As Strings    ${location}    Location   GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
-    Run Keyword If    Should Be Equal As Strings    ${location}    Location   GET    ${response['headers']['Location']}  
+    Run Keyword If    ${location} == Location
+    ...    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    Run Keyword If    ${location} == Location
+    ...    GET    ${response['headers']['Location']}  
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
@@ -656,7 +658,7 @@ Check Postcondition VNF Package Subscription Is Set
 Check Postcondition Subscription Resource Returned in Location Header Is Available
     Log    Going to check postcondition
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${response.headers['Location']}
+    GET    ${response['headers']['Location']}
     Integer    response status    200
     Log    Received a 200 OK as expected
     ${contentType}=    Output    response headers Content-Type
@@ -745,7 +747,7 @@ Check Postcondition VNF Package Subscription is not Created
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
 
 Check HTTP Response Body Subscription Identifier matches the requested Subscription

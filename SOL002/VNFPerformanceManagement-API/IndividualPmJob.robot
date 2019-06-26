@@ -200,7 +200,7 @@ Check HTTP Response Header Contains
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}	.schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 

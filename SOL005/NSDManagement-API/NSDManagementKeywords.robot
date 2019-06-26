@@ -81,7 +81,7 @@ GET all Network Service Descriptors Information with all_fields attribute select
 
 Check HTTP Response Body NsdInfos Matches the requested all_fields selector
     Log    Validating user defined data schema
-    ${user}=    Get Value From Json    ${response['body']}    $..UserDefinedData
+    ${user}=    Get Value From Json    ${response['body']}    $..userDefinedData
     Validate Json    UserDefinedData.schema.json    ${user[0]}
     Log    Validation for schema OK
 
@@ -95,7 +95,7 @@ GET all Network Service Descriptors Information with exclude_default attribute s
 
 Check HTTP Response Body NsdInfos Matches the requested exclude_default selector
     Log    Checking that element is missing
-    ${user}=    Get Value From Json    ${response['body']}    $..UserDefinedData
+    ${user}=    Get Value From Json    ${response['body']}    $..userDefinedData
     Should Be Empty    ${user}
     Log    Reports element is empty as expected
 
@@ -110,7 +110,7 @@ GET all Network Service Descriptors Information with fields attribute selector
 
 Check HTTP Response Body NsdInfos Matches the requested fields selector
     Log    Validating user defined data schema
-    ${user}=    Get Value From Json    ${response['body']}    $..UserDefinedData
+    ${user}=    Get Value From Json    ${response['body']}    $..userDefinedData
     Validate Json    UserDefinedData.schema.json    ${user[0]}
     Log    Validation for schema OK
 
@@ -125,7 +125,7 @@ GET all Network Service Descriptors Information with exclude_fields attribute se
 
 Check HTTP Response Body NsdInfos Matches the requested exclude_fields selector
     Log    Checking that element is missing
-    ${user}=    Get Value From Json    ${response['body']}    $..UserDefinedData
+    ${user}=    Get Value From Json    ${response['body']}    $..userDefinedData
     Should Be Empty    ${user}
     Log    Reports element is empty as expected   
 
@@ -207,7 +207,7 @@ Send PATCH to disable Individual Network Service Descriptor
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in enabled operational state
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${original_etag[0]}"}
+    Set Headers    {"If-Match": "${original_etag}"}
     ${body}=    Get File    jsons/NsdInfoModificationDisable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
@@ -227,7 +227,7 @@ Send PATCH to enable Individual Network Service Descriptor
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be in disabled operational state
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${original_etag[0]}"}
+    Set Headers    {"If-Match": "${original_etag}"}
     ${body}=    Get File    jsons/NsdInfoModificationEnable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
@@ -238,7 +238,7 @@ Send PATCH to enable Individual Network Service Descriptor in onboarding state d
     Log    Trying to patch a NSD present in the NFVO Catalogue, but not in ONBOARDED operationalStatus
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${original_etag[0]}"}
+    Set Headers    {"If-Match": "${original_etag}"}
     ${body}=    Get File    jsons/NsdInfoModificationEnable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${notOnboardedNsdInfoId}    ${body}
@@ -249,7 +249,7 @@ Send PATCH to enable Individual Network Service Descriptor in onboarding state d
     Log    Trying to perform a PATCH. As prerequisite the nsdInfo shall be modified by another entity
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${wrong_etag[0]}"}
+    Set Headers    {"If-Match": "${wrong_etag}"}
     ${body}=    Get File    jsons/NsdInfoModificationEnable.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}    ${body}
@@ -646,7 +646,7 @@ Send PATCH to update Individual PNF Descriptor
     Log    Trying to perform a PATCH.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${original_etag[0]}"}
+    Set Headers    {"If-Match": "${original_etag}"}
     ${body}=    Get File    jsons/PnfdInfoModification.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}    ${body}
@@ -662,7 +662,7 @@ Send PATCH to update Individual PNF Descriptor with HTTP Etag precondition failu
     Log    Trying to perform a PATCH. As prerequisite the pnfdInfo shall be modified by another entity
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
-    Set Headers    {"If-Match": "${wrong_etag[0]}"}
+    Set Headers    {"If-Match": "${wrong_etag}"}
     ${body}=    Get File    jsons/PnfdInfoModification.json
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}    ${body}
@@ -872,7 +872,7 @@ Check Postcondition NSD Management Subscriptions Exists
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings     ${response['status']}    ${expected_status}
     Log    Status code validated 
     
     
@@ -880,7 +880,7 @@ Check HTTP Response Status Code Is
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
 
@@ -899,7 +899,7 @@ Check HTTP Response Body NsdmSubscription Attributes Values Match the Issued Sub
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
-    Should Be Equal    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
+    Should Be Equal As Strings    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
 
 
 Check Postcondition NSD Management Subscription Is Set
@@ -916,7 +916,7 @@ Check Postcondition NSD Management Subscription Is Set
 Check Postcondition Subscription Resource Returned in Location Header Is Available
     Log    Going to check postcondition
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${response.headers['Location']}
+    GET    ${response['headers']['Location']}
     Integer    response status    200
     Log    Received a 200 OK as expected
     ${contentType}=    Output    response headers Content-Type
@@ -1010,13 +1010,13 @@ Check HTTP Response Body Subscription Identifier matches the requested Subscript
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
 
 Check HTTP Response Header Contains Etag
-    Should Contain    ${response.headers}    Etag
+    Should Contain    ${response['headers']}    Etag
     Log    Header is present
-    Set Suite Variable    &{original_etag}    ${response.headers['Etag']}
+    Set Suite Variable    ${original_etag}    ${response['headers]['ETag']}
 
 
 Create Sessions
