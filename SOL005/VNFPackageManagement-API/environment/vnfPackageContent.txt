@@ -6,4 +6,7 @@ ${erroneousVnfPkgId}    erroneousPkgId
 ${vnfPkgId}       788106a2-d692-44f3-a86d-384f0ce35e42
 ${erroneousRange}    bytes=100000-1000000    # Requesting a out of range number of bytes
 ${range}          bytes=0-1023
+${length}          1024
 ${creatingVnfPackageId}    d246ccdd-71aa-402f-b256-6a80ee54be3d
+${newVnfPackageId}    d246ccdd-71aa-402f-b256-6a80ee54be3d
+

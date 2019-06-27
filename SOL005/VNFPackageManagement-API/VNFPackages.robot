@@ -2,233 +2,196 @@
 Resource          environment/vnfPackages.txt    # VNF Packages specific parameters
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
+Resource          VNFPackageManagementKeywords.robot    
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 
 *** Test Cases ***
-GET all Packages
-    [Documentation]    This method shall follow the provisions specified in the Tables 9.4.2.3.1-1 and 9.4.2.3.1-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    vnfPkgsInfo.schema.json    ${result}
-    Log    Validation OK
-    Log    Checking missing information for softwareImages element
-    ${softwareImages}=    Get Value From Json    ${result}    $..softwareImages
-    Should Be Empty    ${softwareImages}
-    Log    softwareImages element is missing as excepted
-    Log    Checking missing information for additionalArtifact element
-    ${additional_artifacts}=    Get Value From Json    ${result}    $..additionalArtifacts
-    Should Be Empty    ${additional_artifacts}
-    Log    additionalArtifact element is missing as excepted
+GET all VNF Packages
+    [Documentation]    Test ID: 5.3.5.1.1
+    ...    Test title: GET all VNF Packages
+    ...    Test objective: The objective is to test the retrieval of all the available VNF packages information and perform a JSON schema and content validation of the collected data structure
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all VNF Packages
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfPkgsInfo
+    Check HTTP Response Body Does Not Contain softwareImages
+    Check HTTP Response Body Does Not Contain additionalArtifacts
+    Check HTTP Response Body Does Not Contain userDefinedData
+    Check HTTP Response Body Does Not Contain checksum
 
+GET VNF Packages with attribute-based filter
+    [Documentation]    Test ID: 5.3.5.1.2
+    ...    Test title: GET VNF Packages with attribute-based filter
+    ...    Test objective: The objective is to test the retrieval of VNF packages using attribute-based filter, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued attribute-based filter
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET VNF Packages with attribute-based filter
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfPkgsInfo
+    Check HTTP Response Body VnfPkgsInfo Matches the requested attribute-based filter
 
-GET all Packages - Filter
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${POS_FIELDS}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate response
-    ${result}=    Output    response body
-    Validate Json    vnfPkgsInfo.schema.json    ${result}
-    Log    Validation OK
+GET VNF Packages with invalid attribute-based filter
+    [Documentation]    Test ID: 5.3.5.1.3
+    ...    Test title: GET VNF Packages with invalid attribute-based filter
+    ...    Test objective: The objective is to test that the retrieval of VNF packages fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET VNF Packages with invalid attribute-based filter
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails
 
-GET all Packages - Negative (wronge filter name)
-    Log    Trying to perform a negative get, filtering by the inexistent field 'nfvId'
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?${NEG_FIELDS}
-    Integer    response status    400
-    Log    Received 400 Bad Request as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get all VNF Packages with malformed authorization token
+    [Documentation]    Test ID: 5.3.5.1.4
+    ...    Test title: Get all VNF Packages Information with malformed authorization token
+    ...    Test objective: The objective is to test that the retrieval of VNF Packages fails when using malformed authorization token
+    ...    Pre-conditions: One or more VNF Packages are onboarded in the NFVO.
+    ...    Reference: section 4.5.3.3, 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
+    ...    Post-Conditions: none
+    Get all VNF Packages with malformed authorization token
+    Check HTTP Response Status Code Is    400
 
-GET all Packages - Negative (Unauthorized: Wrong Token)
-    Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as NFVO is not supporting authentication
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Set Headers    {"Authorization": "${NEG_AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
-    Integer    response status    401
-    Log    Received 401 Unauthorized as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get all VNF Packages without authorization token
+    [Documentation]    Test ID: 5.3.1.1.5
+    ...    Test title: Get all VNF Packages without authorization token
+    ...    Test objective: The objective is to test that the retrieval of VNF Packages fails when omitting the authorization token
+    ...    Pre-conditions: One or more VNF Packages are onboarded in the NFVO.
+    ...    Reference: section 4.5.3.3, 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
+    ...    Post-Conditions: none
+    Get all VNF Packages without authorization token
+    Check HTTP Response Status Code Is    401
 
-GET all Packages - Negative (Unauthorized: No Token)
-    Log    Trying to perform a negative get, using wrong authorization bearer
-    Pass Execution If    ${AUTH_USAGE} == 0    Skipping test as NFVO is not supporting authentication
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
-    Integer    response status    401
-    Log    Received 401 Unauthorized as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET VNF Packages with "all_fields" attribute selector
+    [Documentation]    Test ID: 5.3.5.1.6
+    ...    Test title: GET VNF Packages with "all_fields" attribute selector
+    ...    Test objective: The objective is to test the retrieval of VNF packages with "all_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "all_fileds" selector
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 4.3.3.2.1, 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none    
+    GET VNF Packages with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfPkgsInfo
+    Check HTTP Response Body vnfPkgsInfo Matches the requested all_fields selector
 
-GET all Packages - all_fields
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?all_fields
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    ${vnfPkgInfos}=    Output    response body
-    Log    Trying to validate response
-    Validate Json    vnfPkgsInfo.schema.json    ${vnfPkgInfos}
-    Log    Validation OK
-    Log    Trying to validate softwareImages schema
-    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
-    Validate Json    softwareImage.schema.json    ${softwareImages}
-    Log    Validation for softwareImage schema OK
-    Log    Trying to validate additionalArtifacts schema
-    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
-    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts}
-    Log    Validation for additionalArtifacts schema OK
-    ${links}=    Get Value From Json    ${vnfPkgInfos}    $.._links
-    Validate Json    links.schema.json    ${links}
-    Log    Validation for _links schema OK
+GET VNF Packages with "exclude_default" attribute selector
+    [Documentation]    Test ID: 5.3.5.1.7
+    ...    Test title: GET VNF Packages with exclude_default attribute selector
+    ...    Test objective: The objective is to test the retrieval of VNF packages with "exclude_default" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_default" selector
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 4.3.3.2.1, 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none        
+    GET VNF Packages with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfPkgsInfo
+    Check HTTP Response Body vnfPkgsInfo Matches the requested exclude_default selector
 
-GET all Packages - exclude_default
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using exclude_default filter.
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exclude_default
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    ${vnfPkgInfos}=    Output    response body
-    Log    Trying to validate response
-    Validate Json    vnfPkgsInfo.schema.json    ${vnfPkgInfos}
-    Log    Validation OK
-    Log    Checking missing information for softwareImages element
-    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
-    Should Be Empty    ${softwareImages}
-    Log    softwareImages element is missing as excepted
-    Log    Checking missing information for additionalArtifact element
-    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
-    Should Be Empty    ${additional_artifacts}
-    Log    additionalArtifact element is missing as excepted
+GET VNF Packages with "fields" attribute selector
+    [Documentation]    Test ID: 5.3.5.1.8
+    ...    Test title: GET VNF Packages with fields attribute selector
+    ...    Test objective: The objective is to test the retrieval of VNF packages with "fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "fields" selector
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 4.3.3.2.1, 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The VNFM supports the use of fields attribute selector
+    ...    Post-Conditions: none
+    GET VNF Packages with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfPkgsInfo
+    Check HTTP Response Body vnfPkgsInfo Matches the requested fields selector
 
+GET VNF Packages with "exclude_fields" attribute selector
+    [Documentation]    Test ID: 5.3.5.1.9
+    ...    Test title: GET VNF Packages with exclude_fields attribute selector
+    ...    Test objective: The objective is to test the retrieval of VNF packages with "exclude_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_fields" selector
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 4.3.3.2.1, 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The VNFM supports the use of exclude_fields attribute selector
+    ...    Post-Conditions: none
+    GET VNF Packages with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   vnfPkgsInfo
+    Check HTTP Response Body vnfPkgsInfo Matches the requested exclude_fields selector   
 
-GET all Packages - fields
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
-    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?fields=${fields}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    ${vnfPkgInfos}=    Output    response body
-    Log    Trying to validate response, checking vnfPkgInfo and other complex attributes included in the vnfPkgInfo
-    Validate Json    vnfPkgsInfo.schema.json    ${vnfPkgInfos}
-    Log    Validation for vnfPkgInfo OK
-    Log    Trying to validate softwareImages schema
-    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
-    Validate Json    softwareImage.schema.json    ${softwareImages}
-    Log    Validation for softwareImage schema OK
-    Log    Trying to validate additionalArtifacts schema
-    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
-    Validate Json    additionalArtifacts.schema.json    ${additional_artifacts}
-    Log    Validation for additionalArtifacts schema OK
+GET all VNF Packages with invalid resource endpoint
+    [Documentation]    Test ID: 5.3.5.1.10
+    ...    Test title: GET VNF Packages with invalid resource endpoint
+    ...    Test objective: The objective is to test that the retrieval of VNF packages fails when using invalid resource endpoint
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all VNF Packages with invalid resource endpoint
+    Check HTTP Response Status Code Is    404
 
-GET all Packages - exclude_fields
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using filter params
-    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use exclude_fields option
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages?exclude_fields=${fields}
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    ${vnfPkgInfos}=    Output    response body
-    Log    Checking missing information for softwareImages element
-    ${softwareImages}=    Get Value From Json    ${vnfPkgInfos}    $..softwareImages
-    Should Be Empty    ${softwareImages}
-    Log    softwareImages element is missing as excepted
-    Log    Checking missing information for additionalArtifact element
-    ${additional_artifacts}=    Get Value From Json    ${vnfPkgInfos}    $..additionalArtifacts
-    Should Be Empty    ${additional_artifacts}
-    Log    additionalArtifact element is missing as excepted
+Create new VNF Package Resource
+    [Documentation]    Test ID: 5.3.5.1.11
+    ...    Test title: Create new VNF Package Resource
+    ...    Test objective: The objective is to test the creation of a new VNF Package Resource and perform the JSON schema validation of the returned structure
+    ...    Pre-conditions: none
+    ...    Reference: section 9.4.2.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Package Resource is successfully created on the NFVO
+    Send Post Request to create new VNF Package Resource
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is   vnfPkgInfo
+    Check HTTP Response Header Contains    Location
+    Check Postcondition VNF Package Resource Exists
 
-GET all PACKAGE (Negative: Not found)
-    Log    Trying to perform a GET on a erroneous URI
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_package
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+PUT all VNF Packages - Method not implemented
+    [Documentation]    Test ID: 5.3.5.1.12
+    ...    Test title: PUT all VNF Packages - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify existing VNF Packages
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.2.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PUT Request for all VNF Packages
+    Check HTTP Response Status Code Is    405
 
-POST all VNF PACKAGE
-    [Documentation]    This method shall follow the provisions specified in the Tables 9.4.2.3.1-1 and 9.4.2.3.1-2 for URI query parameters,
-    ...    request and response data structures, and response codes.
-    Log    Trying to perform a POST to create a new individual VNF package resource
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Load JSON From File    jsons/CreateVnfPkgInfoRequest.json
-    POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages    ${body}
-    Integer    response status    201
-    Log    Received 201 Created as expected
-    Log    Trying to get Location from the header
-    ${location}=    Output    response headers Location
-    Should Not Be Empty    ${location}
-    Log    Validation of Location headers OK
-    Log    Validation of the vnfPkgInfo schema
-    ${vnfPkgInfo}=    Output    response body
-    Log    Trying to validate response
-    Validate Json    vnfPkgInfo.schema.json    ${vnfPkgInfo}
+PATCH all VNF Packages - Method not implemented
+    [Documentation]    Test ID: 5.3.5.1.13
+    ...    Test title: PATCH all VNF Packages - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to update existing VNF Packages
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.2.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH Request for all VNF Packages
+    Check HTTP Response Status Code Is    405
 
-PUT all PACKAGE (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PUT. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
-
-PATCH all PACKAGE (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
-
-DELETE all PACKAGE (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+DELETE all VNF Packages - Method not implemented
+    [Documentation]    Test ID: 5.3.5.1.14
+    ...    Test title: DELETE all VNF Packages - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not allowed to delete existing VNF Packages
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.2.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Packages are not deleted by the failed operation
+    Send DELETE Request for all VNF Packages
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Packages Exist
+    
