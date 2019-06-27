@@ -2,100 +2,144 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/vnfPackageArtifacts.txt
+Resource          VNFPackageManagementKeywords.robot 
 Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 
 *** Test Cases ***
-GET VNF Package Artifact
-    Log    Trying to get a VNF Package Artifact
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${contentType}=    Output    response headers Content-Type
+GET Individual VNF Package Artifact
+    [Documentation]    Test ID: 5.3.5.6.1
+    ...    Test title: GET Individual VNF Package Artifact
+    ...    Test objective: The objective is to test the retrieval of an individual VNF package artifact
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Individual VNF Package Artifact
+    Check HTTP Response Status Code Is    200
 
-GET VNF Package Artifact - Range
-    Log    Trying to get an Artifact using RANGE Header and using an NFVO that can handle it
-    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
-    Set Headers    {"Range": "${range}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    206
-    Log    Received 206 Partial Content as expected.
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Content-Range
-    Should Contain    ${headers}    Content-Length
+GET Individual VNF Package Artifact in octet stream format
+    [Documentation]    Test ID: 5.3.5.6.2
+    ...    Test title: GET Individual VNF Package Artifact in octet stream format
+    ...    Test objective: The objective is to test the retrieval of an individual VNF package artifact when the NFVO cannot determine the artifact content type. The test performs a validation that the returned artifcat in is octet-stream format 
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO cannot determine the content type of the artifact
+    ...    Post-Conditions: none
+    GET Individual VNF Package Artifact in octet stream format
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Header Content-Type Is    application/octet-stream
 
+GET Individual VNF Package Artifact with Range Request and NFVO supporting Range Requests
+    [Documentation]    Test ID: 5.3.5.6.3
+    ...    Test title: GET Individual VNF Package Artifact with Range Request and NFVO supporting Range Requests
+    ...    Test objective: The objective is to test the retrieval of an individual VNF package artifact when using a range request to return single range of bytes from the file, with the NFVO supporting it. The test also perform a validation that returned content matches the issued range
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports range requests to return single range of bytes from the VNF package artifact
+    ...    Post-Conditions: none
+    GET Individual VNF Package Artifact with Range Request
+    Check HTTP Response Status Code Is    206
+    Check HTTP Response Header Content-Range Is Present and Matches the requested range
+    Check HTTP Response Header Content-Length Is Present and Matches the requested range length
 
-GET VNF Package Artifact - Negative Range
-    Log    Trying to get a range of bytes of the limit of the VNF Package
-    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
-    Set Headers    {"Range": "${erroneousRange}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    416
-    Log    Received 416 Range not satisfiable as expected.
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET Individual VNF Package Artifact with Range Request and NFVO not supporting Range Requests
+    [Documentation]    Test ID: 5.3.5.6.4
+    ...    Test title: GET Individual VNF Package Artifact with Range Request and NFVO not supporting Range Requests
+    ...    Test objective: The objective is to test that the retrieval of an individual VNF package artifact, when using a range request to return single range of bytes from the file and the NFVO not supporting it, returns the full VNF Package artifact.
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO does not support range requests to return single range of bytes from the VNF package artifact
+    ...    Post-Conditions: none    
+    GET Individual VNF Package Artifact with Range Request
+    Check HTTP Response Status Code Is    200
 
-GET VNF Package Artifact- Negative (Not Found)
-    Log    Trying to perform a negative get, using an erroneous package ID
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${erroneousVnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    404
-    Log    Received 404 Not Found as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET Individual VNF Package Artifact with invalid Range Request
+    [Documentation]    Test ID: 5.3.5.6.5
+    ...    Test title: GET Individual VNF Package Artifact with invalid Range Request
+    ...    Test objective: The objective is to test that the retrieval of an individual VNF package artifact fails when using a range request that does not match any available byte range in the file.
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: The NFVO supports range requests to return single range of bytes from the VNF package artifact
+    ...    Post-Conditions: none      
+    GET Individual VNF Package Artifact with invalid Range Request
+    Check HTTP Response Status Code Is    416
 
-GET VNF Package Artifact - Negative (onboardingState issue)
-    Log    Trying to get a VNF Package artifact present in the NFVO Catalogue, but not in ONBOARDED operationalStatus
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${onboardingStateVnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    409
-    Log    Received 409 Conflict as expected
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE_JSON}
-    Log    Trying to validate ProblemDetails
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+GET Individual VNF Package Artifact with invalid resource identifier
+    [Documentation]    Test ID: 5.3.5.6.6
+    ...    Test title: GET Individual VNF Package Artifact with invalid resource identifier
+    ...    Test objective: The objective is to test that the retrieval of an individual VNF package artifact fails when using an invalid resource identifier
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none    
+    GET Individual VNF Package Artifact with invalid resource identifier
+    Check HTTP Response Status Code Is    404
 
-POST VNF Package Artifact - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a POST (method should not be implemented)
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+GET Individual VNF Package Artifact with conflict due to onboarding state
+    [Documentation]    Test ID: 5.3.5.6.7
+    ...    Test title: GET Individual VNF Package Artifact with conflict due to onboarding state
+    ...    Test objective: The objective is to test that the retrieval of an individual VNF package artifact fails due to a conflict when the VNF Package is not in onboarding state ONBOARDED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: The onboarding state of the VNF package for which the content is requested is different from ONBOARDED.
+    ...    Reference: section 9.4.7.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none   
+    GET Artifact for VNF Package in onboarding state different from ONBOARDED
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is   ProblemDetails
 
-PUT VNF Package Artifact - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PUT. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+POST Individual VNF Package Artifact - Method not implemented
+    [Documentation]    Test ID: 5.3.5.6.8
+    ...    Test title: POST Individual VNF Package Artifact - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not allowed to create new VNF Package artifact
+    ...    Pre-conditions: none
+    ...    Reference: section 9.4.7.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send POST Request for individual VNF Package Artifact
+    Check HTTP Response Status Code Is    405
 
-PATCH VNF Package Artifact - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a PATCH. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PUT Individual VNF Package Artifact - Method not implemented
+    [Documentation]    Test ID: 5.3.5.6.9
+    ...    Test title: PUT Individual VNF Package Artifact - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify a VNF Package artifact
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PUT Request for individual VNF Package Artifact
+    Check HTTP Response Status Code Is    405
 
-DELETE VNF Package Artifact - (Method not implemented)
-    Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
-    Log    Trying to perform a DELETE. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/vnf_packages/${vnfPkgId}/artifacts/${artifactPath}
-    Integer    response status    405
-    Log    Received 405 Method not implemented as expected
+PATCH Individual VNF Package Artifact - Method not implemented
+    [Documentation]    Test ID: 5.3.5.6.10
+    ...    Test title: PATCH Individual VNF Package Artifact - Method not implemented
+    ...    Test objective: The objective is to test that PATCH  method is not allowed to update a VNF Package artifact
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    Send PATCH Request for individual VNF Package Artifact
+    Check HTTP Response Status Code Is    405
+
+DELETE Individual VNF Package Artifact - Method not implemented
+    [Documentation]    Test ID: 5.3.5.6.11
+    ...    Test title: DELETE Individual VNF Package Artifact - Method not implemented
+    ...    Test objective: The objective is to test that DELETE  method is not allowed to delete a VNF Package artifact
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: section 9.4.7.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The VNF Package artifact is not deleted by the failed operation
+    Send DELETE Request for individual VNF Package Artifact
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF Package Artifact Exist

@@ -9,30 +9,30 @@ Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Individual VNFInstance - Method not implemented
-    Do POST IndividualNSInstance
+    POST IndividualNSInstance
     Check HTTP Response Status Code Is    405
 
 Get Information about an individual NS Instance
-    Do GET IndividualNSInstance
+    GET IndividualNSInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
     Check HTTP Response Body Json Schema Is    NsInstance.schema.json
     
 PUT Individual NSInstance - Method not implemented 
-    Do PUT IndividualNSInstance
+    PUT IndividualNSInstance
     Check HTTP Response Status Code Is    405
 
 PATCH Individual NSInstance - Method not implemented 
-    Do PATCH IndividualNSInstance
+    PATCH IndividualNSInstance
     Check HTTP Response Status Code Is    405
 
 DELETE Individual NSInstance
-    Do DELETE IndividualNSInstance    
+    DELETE IndividualNSInstance    
     Check HTTP Response Status Code Is    204
 
 DELETE Individual NSInstance Conflict
     [Setup]    Check resource instantiated
-    Do DELETE IndividualNSInstance
+    DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
     Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json

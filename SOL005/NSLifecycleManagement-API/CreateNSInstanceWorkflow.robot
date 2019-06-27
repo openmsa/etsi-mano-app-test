@@ -9,7 +9,7 @@ Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
 NS Instance Creation
-    Do POST New nsInstance
+    POST New nsInstance
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
     Check HTTP Response Body Json Schema Is    NsIdentifierCreationNotification.schema.json

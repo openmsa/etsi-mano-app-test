@@ -9,31 +9,31 @@ Suite Setup    Check resource existance
 
 *** Test Cases ***
 Update a NSInstance
-    Do POST Update NSInstance
+    POST Update NSInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
 
 Update a NSInstance Conflict
     [Setup]    Check resource not_instantiated
-    Do POST Update NSInstance
+    POST Update NSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Header Contains    ${CONTENT_TYPE}
     Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
     
 GET Update NSInstance- Method not implemented
-    Do GET Update NSInstance
+    GET Update NSInstance
     Check HTTP Response Status Code Is    405
     
 PUT Update NSInstance - Method not implemented
-    Do PUT Update NSInstance
+    PUT Update NSInstance
     Check HTTP Response Status Code Is    405
     
 PATCH Update NSInstance - Method not implemented
-    Do PATCH Update NSInstance
+    PATCH Update NSInstance
     Check HTTP Response Status Code Is    405
 
 DELETE Update NSInstance - Method not implemented
-    Do DELETE Update NSInstance
+    DELETE Update NSInstance
     Check HTTP Response Status Code Is    405
     
     

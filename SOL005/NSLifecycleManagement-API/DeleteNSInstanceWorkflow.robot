@@ -10,7 +10,7 @@ Suite Setup    Check resource existance
 *** Test Cases ***
 NS Instance Deletion
     Check resource not_instantiated
-    Do DELETE IndividualNSInstance
+    DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    204
     Check HTTP Response Body Json Schema Is    NsIdentifierDeletionNotification.schema.json
    

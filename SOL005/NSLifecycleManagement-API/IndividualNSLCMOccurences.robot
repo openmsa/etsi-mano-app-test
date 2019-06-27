@@ -8,23 +8,23 @@ Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
 Post Individual NS LCM occurences - Method not implemented
-	Do POST Individual NS LCM OP Occurence
+	POST Individual NS LCM OP Occurence
 	Check HTTP Response Status Code Is    405
 
 PUT stauts information about Individual NS LCM OP OCC - Method not implemented
-    Do PUT Individual NS LCM OP Occurence
+    PUT Individual NS LCM OP Occurence
     Check HTTP Response Status Code Is    405
 
 PATCH stauts information about Individual NS LCM OP OCC - Method not implemented
-    Do PATCH Individual NS LCM OP Occurence
+    PATCH Individual NS LCM OP Occurence
     Check HTTP Response Status Code Is    405
 
 DELETE stauts information about Individual NS LCM OP OCC - Method not implemented
-    Do DELETE Individual NS LCM OP Occurence
+    DELETE Individual NS LCM OP Occurence
     Check HTTP Response Status Code Is    405
     
 Get stauts information about Individual NS LCM OP OCC   
-	Do GET Individual NS LCN OP Occurence
+	GET Individual NS LCN OP Occurence
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
 	Check HTTP Response Body Json Schema Is    NsLcmOpOcc.schema.json
