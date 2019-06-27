@@ -145,7 +145,7 @@ Check HTTP Response Header ContentType is
     Should Be Equal as Strings   ${response[0]['headers']['Content-Type']}    ${expected_contentType}
     Log    Content Type validated 
 
-Do POST New nsInstance
+POST New nsInstance
     Log    Create NS instance by POST to ${apiRoot}/${apiName}/${apiVersion}/ns_instances
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -155,7 +155,7 @@ Do POST New nsInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}     
 
-Do GET NsInstances
+GET NsInstances
     Log    Query NS The GET method queries information about multiple NS instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -165,7 +165,7 @@ Do GET NsInstances
 	Set Global Variable    @{response}    ${outputResponse}
 	
 
-Do GET NsInstance Invalid Attribute-Based filtering parameter
+GET NsInstance Invalid Attribute-Based filtering parameter
     Log    Query NS The GET method queries information about multiple NS instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -174,7 +174,7 @@ Do GET NsInstance Invalid Attribute-Based filtering parameter
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET NsInstance Invalid Attribute Selector
+GET NsInstance Invalid Attribute Selector
     Log    Query NS The GET method queries information about multiple NS instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -183,7 +183,7 @@ Do GET NsInstance Invalid Attribute Selector
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}  
 	
-Do PUT NSInstances
+PUT NSInstances
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -192,7 +192,7 @@ Do PUT NSInstances
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}   
 	
-Do PATCH NSInstances
+PATCH NSInstances
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -201,7 +201,7 @@ Do PATCH NSInstances
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}  
 	
-Do DELETE NSInstances
+DELETE NSInstances
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -210,7 +210,7 @@ Do DELETE NSInstances
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 
-DO POST IndividualNSInstance
+POST IndividualNSInstance
     Log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -219,7 +219,7 @@ DO POST IndividualNSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do GET IndividualNSInstance
+GET IndividualNSInstance
     Log    Trying to get information about an individual NS instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
@@ -229,7 +229,7 @@ Do GET IndividualNSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 
-DO PUT IndividualNSInstance
+PUT IndividualNSInstance
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -238,7 +238,7 @@ DO PUT IndividualNSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 	
 	
-DO PATCH IndividualNSInstance
+PATCH IndividualNSInstance
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -247,7 +247,7 @@ DO PATCH IndividualNSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 	
 	
-Do DELETE IndividualNSInstance
+DELETE IndividualNSInstance
     log    Trying to delete an individual VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
@@ -255,7 +255,7 @@ Do DELETE IndividualNSInstance
 	Set Global Variable    @{response}    ${outputResponse} 	
 	
 
-Do DELETE IndividualNSInstance Conflict
+DELETE IndividualNSInstance Conflict
     log    Trying to delete an individual VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${ConflictNsInstanceId}
@@ -263,14 +263,14 @@ Do DELETE IndividualNSInstance Conflict
 	Set Global Variable    @{response}    ${outputResponse} 	
 
 
-Do DELETE Instantiate NSInstance
+DELETE Instantiate NSInstance
     log    Trying to delete an instantiate NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/instantiate
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
- Do PATCH Instantiate NSInstance
+ PATCH Instantiate NSInstance
     log    Trying to patch an instantiate NS instance. This method should not be implemented 
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -279,7 +279,7 @@ Do DELETE Instantiate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
-Do PUT Instantiate NSInstance
+PUT Instantiate NSInstance
     log    Trying to put an instantiate NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -288,7 +288,7 @@ Do PUT Instantiate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do GET Instantiate NSInstance
+GET Instantiate NSInstance
     log    Trying to get an instantiate NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -297,7 +297,7 @@ Do GET Instantiate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
- Do POST Instatiate nsInstance
+ POST Instatiate nsInstance
     Log    Trying to Instantiate a ns Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -307,14 +307,14 @@ Do GET Instantiate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE Scale NSInstance
+DELETE Scale NSInstance
     log    Trying to delete an Scale NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/scale
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
- Do PATCH Scale NSInstance
+ PATCH Scale NSInstance
     log    Trying to patch an Scale NS instance. This method should not be implemented 
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -323,7 +323,7 @@ Do DELETE Scale NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
-Do PUT Scale NSInstance
+PUT Scale NSInstance
     log    Trying to put an Scale NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -332,7 +332,7 @@ Do PUT Scale NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do GET Scale NSInstance
+GET Scale NSInstance
     log    Trying to get an Scale NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -341,7 +341,7 @@ Do GET Scale NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do POST scale nsInstance
+POST scale nsInstance
 	Log    Trying to Instantiate a scale NS Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -351,14 +351,14 @@ Do POST scale nsInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do DELETE Update NSInstance
+DELETE Update NSInstance
     log    Trying to delete an Update NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/update
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
- Do PATCH Update NSInstance
+ PATCH Update NSInstance
     log    Trying to patch an Update NS instance. This method should not be implemented 
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -367,7 +367,7 @@ Do DELETE Update NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
-Do PUT Update NSInstance
+PUT Update NSInstance
     log    Trying to put an Update NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -376,7 +376,7 @@ Do PUT Update NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do GET Update NSInstance
+GET Update NSInstance
     log    Trying to get an Update NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -385,7 +385,7 @@ Do GET Update NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do POST Update NSInstance
+POST Update NSInstance
 	Log    Trying to Instantiate a Update NS Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -395,14 +395,14 @@ Do POST Update NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do DELETE Heal NSInstance
+DELETE Heal NSInstance
     log    Trying to Delete an Heal NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/heal
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
- Do PATCH Heal NSInstance
+ PATCH Heal NSInstance
     log    Trying to patch an Heal NS instance. This method should not be implemented 
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -411,7 +411,7 @@ Do DELETE Heal NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
-Do PUT Heal NSInstance
+PUT Heal NSInstance
     log    Trying to put an Heal NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -420,7 +420,7 @@ Do PUT Heal NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do GET Heal NSInstance
+GET Heal NSInstance
     log    Trying to get an Heal NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -429,7 +429,7 @@ Do GET Heal NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do POST Heal NSInstance
+POST Heal NSInstance
 	Log    Trying to Instantiate a Heal NS Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -439,14 +439,14 @@ Do POST Heal NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do DELETE Terminate NSInstance
+DELETE Terminate NSInstance
     log    Trying to Delete an Terminate NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/terminate
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
-Do PATCH Terminate NSInstance
+PATCH Terminate NSInstance
     log    Trying to patch an Terminate NS instance. This method should not be implemented 
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -455,7 +455,7 @@ Do PATCH Terminate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
  
-Do PUT Terminate NSInstance
+PUT Terminate NSInstance
     log    Trying to put an Terminate NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -464,7 +464,7 @@ Do PUT Terminate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do GET Terminate NSInstance
+GET Terminate NSInstance
     log    Trying to Get an Terminate NS instance. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}  
@@ -473,7 +473,7 @@ Do GET Terminate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
-Do POST Terminate NSInstance
+POST Terminate NSInstance
 	Log    Trying to Instantiate a Terminate NS Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -483,7 +483,7 @@ Do POST Terminate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 		
-Do POST NS LCM OP Occurences
+POST NS LCM OP Occurences
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -491,7 +491,7 @@ Do POST NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PUT NS LCM OP Occurences
+PUT NS LCM OP Occurences
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -499,7 +499,7 @@ Do PUT NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PATCH NS LCM OP Occurences
+PATCH NS LCM OP Occurences
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -507,7 +507,7 @@ Do PATCH NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE NS LCM OP Occurences
+DELETE NS LCM OP Occurences
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -515,7 +515,7 @@ Do DELETE NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET NS LCN OP Occurences
+GET NS LCN OP Occurences
     Log    Query status information about multiple NS lifecycle management operation occurrences.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -524,7 +524,7 @@ Do GET NS LCN OP Occurences
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
  
-Do GET NS LCN OP Occurences Invalid attribute-based filtering parameters
+GET NS LCN OP Occurences Invalid attribute-based filtering parameters
     Log    Query status information about multiple NS lifecycle management operation occurrences.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
@@ -532,7 +532,7 @@ Do GET NS LCN OP Occurences Invalid attribute-based filtering parameters
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET NS LCN OP Occurences Invalid attribute selector
+GET NS LCN OP Occurences Invalid attribute selector
     Log    Query NS The GET method queries information about multiple NS instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
@@ -540,7 +540,7 @@ Do GET NS LCN OP Occurences Invalid attribute selector
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 
-Do POST Individual NS LCM OP Occurence
+POST Individual NS LCM OP Occurence
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -548,7 +548,7 @@ Do POST Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PUT Individual NS LCM OP Occurence
+PUT Individual NS LCM OP Occurence
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -556,7 +556,7 @@ Do PUT Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PATCH Individual NS LCM OP Occurence
+PATCH Individual NS LCM OP Occurence
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -564,7 +564,7 @@ Do PATCH Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE Individual NS LCM OP Occurence
+DELETE Individual NS LCM OP Occurence
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -572,7 +572,7 @@ Do DELETE Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET Individual NS LCN OP Occurence
+GET Individual NS LCN OP Occurence
     Log    Query status information about individual NS lifecycle management operation occurrence.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -581,35 +581,35 @@ Do GET Individual NS LCN OP Occurence
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
 	
-Do GET Retry operation task
+GET Retry operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PUT Retry operation task
+PUT Retry operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  		
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PATCH Retry operation task
+PATCH Retry operation task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE Retry operation task
+DELETE Retry operation task
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do POST Retry operation task
+POST Retry operation task
     Log    Retry a NS lifecycle operation if that operation has experienced a temporary failure
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
@@ -617,35 +617,35 @@ Do POST Retry operation task
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET Rollback operation task
+GET Rollback operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PUT Rollback operation task
+PUT Rollback operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  		
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PATCH Rollback operation task
+PATCH Rollback operation task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE Rollback operation task
+DELETE Rollback operation task
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do POST Rollback operation task
+POST Rollback operation task
     Log    Rollback a NS lifecycle operation task
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
@@ -653,35 +653,35 @@ Do POST Rollback operation task
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET Continue operation task
+GET Continue operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PUT Continue operation task
+PUT Continue operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  		
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PATCH Continue operation task
+PATCH Continue operation task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE Continue operation task
+DELETE Continue operation task
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do POST Continue operation task
+POST Continue operation task
     Log    Continue a NS lifecycle operation task
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
@@ -689,35 +689,35 @@ Do POST Continue operation task
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 
-Do GET Fail operation task
+GET Fail operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PUT Fail operation task
+PUT Fail operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  		
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PATCH Fail operation task
+PATCH Fail operation task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE Fail operation task
+DELETE Fail operation task
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do POST Fail operation task
+POST Fail operation task
     Log    Fail a NS lifecycle operation task
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
@@ -725,35 +725,35 @@ Do POST Fail operation task
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET Cancel operation task
+GET Cancel operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PUT Cancel operation task
+PUT Cancel operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  		
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PATCH Cancel operation task
+PATCH Cancel operation task
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE Cancel operation task
+DELETE Cancel operation task
     Log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do POST Cancel operation task
+POST Cancel operation task
     Log    Cancel a NS lifecycle operation task
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Log    Execute Query and validate response
@@ -761,7 +761,7 @@ Do POST Cancel operation task
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PUT subscriptions
+PUT subscriptions
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -770,7 +770,7 @@ Do PUT subscriptions
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do PATCH subscriptions
+PATCH subscriptions
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -779,7 +779,7 @@ Do PATCH subscriptions
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE subscriptions
+DELETE subscriptions
     Log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -788,7 +788,7 @@ Do DELETE subscriptions
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do POST subscriptions
+POST subscriptions
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -798,7 +798,7 @@ Do POST subscriptions
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do POST subscriptions DUPLICATION
+POST subscriptions DUPLICATION
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${NFVO_DUPLICATION} == 0    NFVO is not permitting duplication. Skipping the test
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -809,7 +809,7 @@ Do POST subscriptions DUPLICATION
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do POST subscriptions NO DUPLICATION
+POST subscriptions NO DUPLICATION
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${NFVO_DUPLICATION} == 1    NFVO is permitting duplication.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -821,7 +821,7 @@ Do POST subscriptions NO DUPLICATION
 	Set Global Variable    @{response}    ${outputResponse}
 	
 
-Do GET Subscriptions
+GET Subscriptions
     Log    Get the list of active subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -831,7 +831,7 @@ Do GET Subscriptions
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do GET Subscriptions with filter
+GET Subscriptions with filter
     Log    Get the list of active subscriptions using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -839,7 +839,7 @@ Do GET Subscriptions with filter
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 
-Do POST Individual Subscription
+POST Individual Subscription
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -848,7 +848,7 @@ Do POST Individual Subscription
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}  
 	
-Do PUT Individual Subscription
+PUT Individual Subscription
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -857,7 +857,7 @@ Do PUT Individual Subscription
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}  
 	
-Do PATCH Individual Subscription
+PATCH Individual Subscription
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -866,7 +866,7 @@ Do PATCH Individual Subscription
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 
-Do GET Individual subscription
+GET Individual subscription
     log    Trying to get information about an individual subscription
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -874,7 +874,7 @@ Do GET Individual subscription
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-Do DELETE Individual subscription
+DELETE Individual subscription
     log    Try to delete an individual subscription
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

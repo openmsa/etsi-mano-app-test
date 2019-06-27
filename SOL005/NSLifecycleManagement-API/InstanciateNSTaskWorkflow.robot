@@ -12,7 +12,7 @@ Suite Teardown    Terminate All Processes    kill=true
 Instantiate Flow of NS lifecycle management operations
     Check resource existance
     Check resource not_instantiated
-    Do POST Instatiate nsInstance
+    POST Instatiate nsInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
     Check Operation Notification Status is    START

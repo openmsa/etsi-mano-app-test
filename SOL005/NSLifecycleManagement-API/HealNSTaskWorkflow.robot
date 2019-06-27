@@ -11,7 +11,7 @@ Suite Teardown    Terminate All Processes    kill=true
 *** Test Cases ***
 Heal Flow of NS lifecycle management operations
     Check resource instantiated
-    Do POST Heal NSInstance
+    POST Heal NSInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
     Check Operation Notification Status is    START
