@@ -1,3 +1,5 @@
 *** Variables ***
 ${erroneousVnfPackageId}    erroneousVnfPackageId    # Given ID for vnfPkg not present in database
 ${disabledVnfPackageId}    87a2c9d3-00ea-4032-8c67-a5106d001868
+${vnfPackageId}  788106a2-d692-44f3-a86d-384f0ce35e42
+${instantiatedVnfPackageId}  0b79bab50daca910b000d4f1a2b675d604257e42
