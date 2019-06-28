@@ -17,13 +17,13 @@ Post Continue operation task Not Found
     [Setup]    Check Continue not supported
 	POST Continue operation task
 	Check HTTP Response Status Code Is    404
-	Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+	Check HTTP Response Body Json Schema Is    ProblemDetails
 		
 Post Continue operation task Conflict
     Depends on test failure  Check resource FAILED_TEMP
 	POST Continue operation task
 	Check HTTP Response Status Code Is    409
-	Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+	Check HTTP Response Body Json Schema Is    ProblemDetails
 	
 PUT Continue operation task - Method not implemented
     PUT Continue operation task

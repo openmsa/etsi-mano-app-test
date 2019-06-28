@@ -17,13 +17,13 @@ Post Cancel operation task Not Found
     [Setup]    Check Cancel not supported
 	POST Cancel operation task
 	Check HTTP Response Status Code Is    404
-	Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+	Check HTTP Response Body Json Schema Is    ProblemDetails
 		
 Post Cancel operation task Conflict
     Depends on test failure      Check resource FAILED_TEMP
 	POST Cancel operation task
 	Check HTTP Response Status Code Is    409
-	Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+	Check HTTP Response Body Json Schema Is    ProblemDetails
 	
 PUT Cancel operation task - Method not implemented
     PUT Cancel operation task

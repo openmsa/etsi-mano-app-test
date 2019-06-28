@@ -27,7 +27,7 @@ Get stauts information about Individual NS LCM OP OCC
 	GET Individual NS LCN OP Occurence
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-	Check HTTP Response Body Json Schema Is    NsLcmOpOcc.schema.json
+	Check HTTP Response Body Json Schema Is    NsLcmOpOcc
 
 
 	

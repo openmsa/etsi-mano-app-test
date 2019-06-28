@@ -16,7 +16,7 @@ Post Individual Subscription - Method not implemented
 Get Information about an individual subscription
     GET Individual subscription
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   subscription.schema.json
+    Check HTTP Response Body Json Schema Is   subscription
 
 PUT an individual subscription - Method not implemented
     PUT Individual Subscription

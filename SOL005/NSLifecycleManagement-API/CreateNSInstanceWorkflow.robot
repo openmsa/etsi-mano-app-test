@@ -12,7 +12,7 @@ NS Instance Creation
     POST New nsInstance
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
-    Check HTTP Response Body Json Schema Is    NsIdentifierCreationNotification.schema.json
+    Check HTTP Response Body Json Schema Is    NsIdentifierCreationNotification
     Check resource not_instantiated
     
     

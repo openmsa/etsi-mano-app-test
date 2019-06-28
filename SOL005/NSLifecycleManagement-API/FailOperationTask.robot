@@ -17,13 +17,13 @@ Post Fail operation task Not Found
     [Setup]    Check Fail not supported
 	POST Fail operation task
 	Check HTTP Response Status Code Is    404
-	Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+	Check HTTP Response Body Json Schema Is    ProblemDetails
 		
 Post Fail operation task Conflict
     Depends on test failure      Check resource FAILED_TEMP
 	POST Fail operation task
 	Check HTTP Response Status Code Is    409
-	Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+	Check HTTP Response Body Json Schema Is    ProblemDetails
 	
 PUT Fail operation task - Method not implemented
     PUT Fail operation task

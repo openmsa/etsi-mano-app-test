@@ -11,32 +11,29 @@ Create a new subscription
     POST subscriptions
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
-    Check HTTP Response Header ContentType is  ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    subscription.schema.json
+    Check HTTP Response Body Json Schema Is    subscription
     
 
 Create a new Subscription - DUPLICATION
     POST subscriptions DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
-    Check HTTP Response Header ContentType is  ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    subscription.schema.json
+    Check HTTP Response Body Json Schema Is    subscription
 
 Create a new Subscription - NO-DUPLICATION
     POST subscriptions NO DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
-    Check HTTP Response Header ContentType is  ${CONTENT_TYPE}
 
 GET Subscriptions
     GET Subscriptions
     Check HTTP Response Status Code Is  200
-    Check HTTP Response Body Json Schema Is  subscriptions.schema.json
+    Check HTTP Response Body Json Schema Is  subscriptions
 
 GET Subscription - Filter
     GET Subscriptions with filter
     Check HTTP Response Status Code Is  200
-    Check HTTP Response Body Json Schema Is  subscriptions.schema.json
+    Check HTTP Response Body Json Schema Is  subscriptions
     
 PUT subscriptions - Method not implemented
     PUT subscriptions

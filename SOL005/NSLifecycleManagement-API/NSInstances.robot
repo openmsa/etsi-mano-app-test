@@ -11,26 +11,22 @@ Create a new NsInstance
     POST New nsInstance
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
-    Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    NsInstance.schema.json
+    Check HTTP Response Body Json Schema Is    NsInstance
 
 Get information about multiple NS instances  
     GET NsInstances
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    NsInstances.schema.json  
+    Check HTTP Response Body Json Schema Is    NsInstances  
     
 Get information about multiple NS instances Bad Request Invalid attribute-based filtering parameters
     GET NsInstance Invalid Attribute-Based filtering parameter
     Check HTTP Response Status Code Is    400
-    Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+    Check HTTP Response Body Json Schema Is    ProblemDetails
     
 Get information about multiple NS instances Bad Request Invalid attribute selector
     GET NsInstance Invalid Attribute Selector
     Check HTTP Response Status Code Is    400
-    Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+    Check HTTP Response Body Json Schema Is    ProblemDetails
     
 PUT NSInstances - Method not implemented
     PUT NSInstances
