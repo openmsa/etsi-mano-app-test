@@ -8,6 +8,7 @@ Library    JSONSchemaLibrary    schemas/
 
 
 *** Test Cases ***
+
 NS Instance Creation
     POST New nsInstance
     Check HTTP Response Status Code Is    201
