@@ -135,7 +135,8 @@ Check HTTP Response Header Contains
     Log    Header is present    
     
 Check HTTP Response Body Json Schema Is
-    [Arguments]    ${schema}
+    [Arguments]    ${input}
+    ${schema} =    Catenate    ${input}    .schema.json
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
     

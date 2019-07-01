@@ -18,7 +18,7 @@ Heal a NSInstance Conflict
     POST Heal NSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Header Contains    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+    Check HTTP Response Body Json Schema Is    ProblemDetails
     
 GET Heal NSInstance- Method not implemented
     GET Heal NSInstance

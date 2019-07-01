@@ -16,7 +16,7 @@ Get Information about an individual NS Instance
     GET IndividualNSInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    NsInstance.schema.json
+    Check HTTP Response Body Json Schema Is    NsInstance
     
 PUT Individual NSInstance - Method not implemented 
     PUT IndividualNSInstance
@@ -35,4 +35,4 @@ DELETE Individual NSInstance Conflict
     DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+    Check HTTP Response Body Json Schema Is    ProblemDetails

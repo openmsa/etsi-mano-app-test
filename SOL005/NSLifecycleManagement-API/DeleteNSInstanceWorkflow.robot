@@ -12,7 +12,4 @@ NS Instance Deletion
     Check resource not_instantiated
     DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    204
-    Check HTTP Response Body Json Schema Is    NsIdentifierDeletionNotification.schema.json
-   
-    
-    
+    Check HTTP Response Body Json Schema Is    NsIdentifierDeletionNotification

@@ -924,6 +924,10 @@ Check Postcondition Subscription Resource Returned in Location Header Is Availab
     ${result}=    Output    response body
     Validate Json    NsdmSubscription.schema.json    ${result}
     Log    Validated NsdmSubscription schema
+    ${body}=    Get File    jsons/subscriptions.json
+    ${subscription}=    evaluate    json.loads('''${body}''')    json
+    Should Be Equal    ${result['callbackUri']}    ${subscription['callbackUri']}
+    Log    Validated Issued subscription is same as original
         
 Get Individual NSD Management Subscription
     Log    Trying to get a single subscription identified by subscriptionId

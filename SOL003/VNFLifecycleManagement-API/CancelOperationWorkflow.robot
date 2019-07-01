@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Cancel a VNF LCM Operation - STARTING
-    [Documentation]    Test ID: 5.x.x.x
+    [Documentation]    Test ID: 7.3.1.2.1
     ...    Test title: Cancel a VNF LCM Operation
     ...    Test objective: The objective is to test the workflow for Cancelling a VNF LCM Operation
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in STARTING state. NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
@@ -32,7 +32,7 @@ Cancel a VNF LCM Operation - STARTING
     Check Postcondition VNF Cancel - STARTING
 
 Cancel a VNF LCM Operation - PROCESSING - ROLLING_BACK
-    [Documentation]    Test ID: 5.x.x.x
+    [Documentation]    Test ID: 7.3.1.2.2
     ...    Test title: Cancel a VNF LCM Operation
     ...    Test objective: The objective is to test the workflow for Cancelling a VNF LCM Operation
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in PROCESSING or ROLLING_BACK state. NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)

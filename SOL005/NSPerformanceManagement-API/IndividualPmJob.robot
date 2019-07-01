@@ -54,10 +54,9 @@ POST Individual NS Performance Job - Method not implemented
     ...    Reference: section 7.4.3.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS Performance Job is not created on the NFVO
+    ...    Post-Conditions: none
     Send Post request for individual NS Performance Job
     Check HTTP Response Status Code Is    405
-    Check Postcondition NS Performance Job is not Created
 
 PUT Individual NS Performance Job - Method not implemented
     [Documentation]    Test ID: 5.3.4.2.5
@@ -67,10 +66,9 @@ PUT Individual NS Performance Job - Method not implemented
     ...    Reference: section 7.4.3.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS Performance Job is not modified by the operation
+    ...    Post-Conditions: none
     Send Put request for individual NS Performance Job
     Check HTTP Response Status Code Is    405
-    Check Postcondition NS Performance Job is Unmodified (Implicit)
 
 PATCH Individual NS Performance Job - Method not implemented
     [Documentation]    Test ID: 5.3.4.2.6
@@ -80,10 +78,9 @@ PATCH Individual NS Performance Job - Method not implemented
     ...    Reference: section 6.4.3.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS Performance Job is not modified by the operation
+    ...    Post-Conditions: none
     Send Patch request for individual NS Performance Job
     Check HTTP Response Status Code Is    405
-    Check Postcondition NS Performance Job is Unmodified (Implicit)
 
 DELETE Individual NS Performance Job
     [Documentation]    Test ID: 5.3.4.2.7

@@ -115,7 +115,7 @@ Upload VNF Package Content with conflict due to onboarding state
    [Documentation]    Test ID: 5.3.5.4.9
     ...    Test title: Upload VNF Package Content with conflict due to onboarding state
     ...    Test objective: The objective is to test that the upload of the VNF Package Content fails due to a conflict when the VNF Package is not in onboarding state CREATED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
-    ...    Pre-conditions: The onboarding state of the VNF Package for which the content is requested is different from ONBOARDED.
+    ...    Pre-conditions: The onboarding state of the VNF Package for which the content is requested is different from CREATED.
     ...    Reference: section 9.4.5.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none

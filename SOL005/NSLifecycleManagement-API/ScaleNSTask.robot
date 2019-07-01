@@ -17,8 +17,7 @@ Instantiate a nsInstance Conflict
     [Setup]    Check resource not_instantiated
     POST scale nsInstance
     Check HTTP Response Status Code Is    409
-    Check HTTP Response Header Contains    ${CONTENT_TYPE}
-    Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+    Check HTTP Response Body Json Schema Is    ProblemDetails
     
 GET Scale NSInstance- Method not implemented
     GET scale NSInstance

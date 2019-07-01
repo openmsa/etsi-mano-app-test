@@ -73,8 +73,8 @@ Disable Individual VNF Package
 
 Disable Individual VNF Package with conflict due to operational state DISABLED
     [Documentation]    Test ID: 5.3.5.2.6
-    ...    Test title: Disable Individual VNF Package with conflict due to operational state ENABLED
-    ...    Test objective: The objective is to test that disabling an individual VNF Package that is already in ENABLED operational state fails and perform a JSON schema validation of the failed operation HTTP response
+    ...    Test title: Disable Individual VNF Package with conflict due to operational state DISABLED
+    ...    Test objective: The objective is to test that disabling an individual VNF Package that is already in DISABLED operational state fails and perform a JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: One or more VNF Packages are onboarded in the NFVO in DISABLED operational state (Test ID 5.3.5.2.5).
     ...    Reference: section 9.4.3.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

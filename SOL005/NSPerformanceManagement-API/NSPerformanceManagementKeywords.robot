@@ -685,6 +685,10 @@ Check Postcondition Subscription Resource URI Returned in Location Header Is Ava
     ${result}=    Output    response body
     Validate Json    PmSubscriptions.schema.json    ${result}
     Log    Validated PmSubscriptions schema
+    ${body}=    Get File    jsons/subscriptions.json
+    ${subscription}=    evaluate    json.loads('''${body}''')    json
+    Should Be Equal    ${result['callbackUri']}    ${subscription['callbackUri']}
+    Log    Validated Issued subscription is same as original
         
 Get Individual NS Performance Subscription
     Log    Trying to get a single subscription identified by subscriptionId

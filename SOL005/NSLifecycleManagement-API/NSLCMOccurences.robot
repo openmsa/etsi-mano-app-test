@@ -26,16 +26,15 @@ DELETE stauts information about multiple NS LCM OP OCC - Method not implemented
 Get stauts information about multiple NS LCM OP OCC   
 	GET NS LCN OP Occurences
 	Check HTTP Response Status Code Is    200
-	Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
-	Check HTTP Response Body Json Schema Is    NsLcmOpOccs.schema.json
+	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
 Get stauts information about multiple NS LCM OP OCC Bad Request Invalid attribute-based filtering parameters
 	GET NS LCN OP Occurences Invalid attribute-based filtering parameters
 	Check HTTP Response Status Code Is    400
-	Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+	Check HTTP Response Body Json Schema Is    ProblemDetails
 
 Get stauts information about multiple NS LCM OP OCC Bad Request Invalid attribute selector
 	GET NS LCN OP Occurences Invalid attribute selector
 	Check HTTP Response Status Code Is    400
-	Check HTTP Response Body Json Schema Is    ProblemDetails.schema.json
+	Check HTTP Response Body Json Schema Is    ProblemDetails
 	

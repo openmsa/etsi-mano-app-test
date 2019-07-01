@@ -54,10 +54,9 @@ POST Individual VNF Package Subscription - Method not implemented
     ...    Reference:  section 9.4.8.9.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The VNF Package Subscription is not created on the NFVO
+    ...    Post-Conditions: none
     Send Post request for individual VNF Package Subscription
     Check HTTP Response Status Code Is    405
-    Check Postcondition VNF Package Subscription is not Created
 
 PUT Individual VNF Package Subscription - Method not implemented
     [Documentation]    Test ID: 5.3.5.8.5
@@ -67,10 +66,9 @@ PUT Individual VNF Package Subscription - Method not implemented
     ...    Reference:  section 9.4.8.9.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The VNF Package subscription is not modified by the operation
+    ...    Post-Conditions: none
     Send Put request for individual VNF Package Subscription
     Check HTTP Response Status Code Is    405
-    Check Postcondition VNF Package Subscription is Unmodified (Implicit)
 
 PATCH Individual VNF Package Subscription - Method not implemented
     [Documentation]    Test ID: 5.3.5.8.6
@@ -80,10 +78,9 @@ PATCH Individual VNF Package Subscription - Method not implemented
     ...    Reference:  section 9.4.8.9.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The VNF Package subscription is not modified by the operation
+    ...    Post-Conditions: none
     Send Patch request for individual VNF Package Subscription
     Check HTTP Response Status Code Is    405
-    Check Postcondition VNF Package Subscription is Unmodified (Implicit)
 
 DELETE Individual VNF Package Subscription
     [Documentation]    Test ID: 5.3.5.8.7
