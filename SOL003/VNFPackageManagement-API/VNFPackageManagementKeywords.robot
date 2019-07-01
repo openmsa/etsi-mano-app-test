@@ -665,7 +665,11 @@ Check Postcondition Subscription Resource Returned in Location Header Is Availab
     Should Contain    ${contentType}    application/json
     ${result}=    Output    response body
     Validate Json    PkgmSubscription.schema.json    ${result}
-    Log    Validated PkgmSubscription schema   
+    Log    Validated PkgmSubscription schema
+    ${body}=    Get File    jsons/subscriptions.json
+    ${subscription}=    evaluate    json.loads('''${body}''')    json
+    Should Be Equal    ${result['callbackUri']}    ${subscription['callbackUri']}
+    Log    Validated Issued subscription is same as original
 
 Get Individual VNF Package Subscription
     Log    Trying to get a single subscription identified by subscriptionId

@@ -214,6 +214,10 @@ Check Postcondition Subscription Resource Returned in Location Header Is Availab
     ${result}=    Output    response body
     Validate Json    VnfIndicatorSubscription.schema.json    ${result}
     Log    Validated VnfIndicatorSubscription schema
+    ${body}=    Get File    jsons/subscriptions.json
+    ${subscription}=    evaluate    json.loads('''${body}''')    json
+    Should Be Equal    ${result['callbackUri']}    ${subscription['callbackUri']}
+    Log    Validated Issued subscription is same as original
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}

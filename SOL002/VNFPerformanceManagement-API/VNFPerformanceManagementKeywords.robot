@@ -310,6 +310,10 @@ Check Postcondition Subscription Resource Returned in Location Header Is Availab
     ${result}=    Output    response body
     Validate Json    PmSubscription.schema.json    ${result}
     Log    Validated PmSubscription schema
+    ${body}=    Get File    jsons/subscriptions.json
+    ${subscription}=    evaluate    json.loads('''${body}''')    json
+    Should Be Equal    ${result['callbackUri']}    ${subscription['callbackUri']}
+    Log    Validated Issued subscription is same as original
  
 Check Postcondition VNF Performance Subscriptions Exists
     Log    Checking that subscriptions exists
