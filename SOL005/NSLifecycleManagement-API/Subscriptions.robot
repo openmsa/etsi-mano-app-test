@@ -8,6 +8,14 @@ Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
 Create a new subscription
+    [Documentation]    Test ID: 5.3.2.15.1
+    ...    Test title: POST Create a new subscription
+    ...    Test objective: The objective is to test that POST method create a subscription
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none     
     POST subscriptions
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
@@ -15,34 +23,90 @@ Create a new subscription
     
 
 Create a new Subscription - DUPLICATION
+    [Documentation]    Test ID: 5.3.2.15.2
+    ...    Test title: POST Create a new subscription
+    ...    Test objective: The objective is to test that POST method create a duplicate subscription
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
     POST subscriptions DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
     Check HTTP Response Body Json Schema Is    subscription
 
 Create a new Subscription - NO-DUPLICATION
+    [Documentation]    Test ID: 5.3.2.15.3
+    ...    Test title: POST Create a new subscription
+    ...    Test objective: The objective is to test that POST method create a duplicate subscription
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
     POST subscriptions NO DUPLICATION
-    Check HTTP Response Status Code Is    201
+    Check HTTP Response Status Code Is    303
     Check HTTP Response Header Contains    Location
 
 GET Subscriptions
+    [Documentation]    Test ID: 5.3.2.15.4
+    ...    Test title: GET retrive the list of existing subscriptions
+    ...    Test objective: The objective is to test that GET method  retrive the list of existing subscriptions
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none    
     GET Subscriptions
     Check HTTP Response Status Code Is  200
     Check HTTP Response Body Json Schema Is  subscriptions
 
 GET Subscription - Filter
+    [Documentation]    Test ID: 5.3.2.15.5
+    ...    Test title: GET retrive the list of existing subscriptions
+    ...    Test objective: The objective is to test that GET method  retrive the list of existing subscriptions
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none    
     GET Subscriptions with filter
     Check HTTP Response Status Code Is  200
     Check HTTP Response Body Json Schema Is  subscriptions
     
 PUT subscriptions - Method not implemented
+     [Documentation]    Test ID: 5.3.2.15.6
+    ...    Test title: PUT Individual NS lifecycle management subscription - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify a NS lifecycle management subscription
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS lifecycle management subscription is not modified by the operation
     PUT subscriptions
     Check HTTP Response Status Code Is    405
 
 PATCH subscriptions - Method not implemented
+    [Documentation]    Test ID: 5.3.2.15.7
+    ...    Test title: PUT Individual NS lifecycle management subscription - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify a NS lifecycle management subscription
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS lifecycle management subscription is not modified by the operation
     PATCH subscriptions
     Check HTTP Response Status Code Is    405
 
 DELETE subscriptions - Method not implemented
+    [Documentation]    Test ID: 5.3.2.15.6
+    ...    Test title: DELETE Individual NS lifecycle management subscription - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not allowed to modify a NS lifecycle management subscription
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: The NS lifecycle management subscription is not deleted by the operation
     DELETE subscriptions
     Check HTTP Response Status Code Is    405

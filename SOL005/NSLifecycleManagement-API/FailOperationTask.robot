@@ -9,38 +9,92 @@ Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
 Post Fail operation task
+    [Documentation]    Test ID: 5.3.2.13.1
+    ...    Test title: POST Fail a NS lifecycle operation
+    ...    Test objective: The objective is to test that POST method trigger a state change to "finally failed" on the LCM operation
+    ...    Pre-conditions: NS instance status equal to FAILED_TEMP
+    ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none 
     Depends on test    Check resource FAILED_TEMP
 	POST Fail operation task
 	Check HTTP Response Status Code Is    202
 	
 Post Fail operation task Not Found
+    [Documentation]    Test ID: 5.3.2.13.2
+    ...    Test title: POST Fail a NS lifecycle operation
+    ...    Test objective: The objective is to test that POST method fail if the LCM operation is not found
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none 
     [Setup]    Check Fail not supported
 	POST Fail operation task
 	Check HTTP Response Status Code Is    404
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 		
 Post Fail operation task Conflict
+    [Documentation]    Test ID: 5.3.2.13.3
+    ...    Test title: POST Fail a NS lifecycle operation
+    ...    Test objective: The objective is to test that POST method fail in case of status conflict on the LCM operation
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none 
     Depends on test failure      Check resource FAILED_TEMP
 	POST Fail operation task
 	Check HTTP Response Status Code Is    409
 	Check HTTP Response Body Json Schema Is    ProblemDetails
+
+GET Fail operation task - Method not implemented 
+     [Documentation]    Test ID: 5.3.2.13.4
+    ...    Test title: GET Continue NS lifecycle operation - Method not implemented
+    ...    Test objective: The objective is to test that GET method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.14.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+	GET Fail operation task
+	Check HTTP Response Status Code Is    405
 	
 PUT Fail operation task - Method not implemented
+    [Documentation]    Test ID: 5.3.2.13.5
+    ...    Test title: PUT Continue NS lifecycle operation - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.14.3.3 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
     PUT Fail operation task
     Check HTTP Response Status Code Is    405
 
 PATCH Fail operation task - Method not implemented
+     [Documentation]    Test ID: 5.3.2.13.6
+    ...    Test title: PATCH Continue NS lifecycle operation - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.14.3.4 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
     PATCH Fail operation task
     Check HTTP Response Status Code Is    405
 
 DELETE Fail operation task - Method not implemented
+     [Documentation]    Test ID: 5.3.2.13.7
+    ...    Test title: DELETE Continue NS lifecycle operation - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.14.3.5 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none    
     DELETE Fail operation task
     Check HTTP Response Status Code Is    405
     
-GET Fail operation task - Method not implemented 
-	GET Fail operation task
-	Check HTTP Response Status Code Is    405
-
-
-
 	
