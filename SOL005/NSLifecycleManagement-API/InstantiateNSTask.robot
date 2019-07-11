@@ -8,9 +8,9 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Instantiate a nsInstance
+Post Instantiate a nsInstance
     [Documentation]    Test ID: 5.3.2.3.1
-    ...    Test title: POST Individual NS instance
+    ...    Test title: Post Instantiate a nsInstance
     ...    Test objective: The objective is to test that POST method allow to create a new NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.4.3.1 - SOL005 v2.4.1
@@ -21,9 +21,9 @@ Instantiate a nsInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
 
-Instantiate a nsInstance Conflict
+Post Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.3.2
-    ...    Test title: POST Individual NS instance
+    ...    Test title: Post Instantiate a nsInstance Conflict
     ...    Test objective: The objective is to test that the operation can't be performed due to a conflict with the state of resource
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.4.3.1 - SOL005 v2.4.1
@@ -37,7 +37,7 @@ Instantiate a nsInstance Conflict
     
 GET Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.3
-    ...    Test title: GET Individual NS instance - Method not implemented
+    ...    Test title: GET Instantiate NSInstance - Method not implemented
     ...    Test objective: The objective is to test that the operation can't be performed due because method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.4.3.2 - SOL005 v2.4.1
@@ -49,7 +49,7 @@ GET Instantiate NSInstance - Method not implemented
     
 PUT Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.4
-    ...    Test title: PUT Individual NS instance - Method not implemented
+    ...    Test title: PUT Instantiate NSInstance - Method not implemented
     ...    Test objective: The objective is to test that the operation can't be performed due because method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.4.3.3 - SOL005 v2.4.1
@@ -61,7 +61,7 @@ PUT Instantiate NSInstance - Method not implemented
     
 PATCH Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.5
-    ...    Test title: PATCH Individual NS instance - Method not implemented
+    ...    Test title: PATCH Instantiate NSInstance - Method not implemented
     ...    Test objective: The objective is to test that the operation can't be performed due because method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.4.3.4 - SOL005 v2.4.1
@@ -73,7 +73,7 @@ PATCH Instantiate NSInstance - Method not implemented
 
 DELETE Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.6
-    ...    Test title: DELETE Individual NS instance - Method not implemented
+    ...    Test title: DELETE Instantiate NSInstance - Method not implemented
     ...    Test objective: The objective is to test that the operation can't be performed due because method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.4.3.5 - SOL005 v2.4.1

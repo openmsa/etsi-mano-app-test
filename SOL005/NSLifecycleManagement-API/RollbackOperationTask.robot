@@ -10,7 +10,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 Post Rollback operation task
      [Documentation]    Test ID: 5.3.2.11.1
-    ...    Test title: POST Rollback a NS lifecycle operation
+    ...    Test title: Post Rollback operation task
     ...    Test objective: The objective is to test that POST method trigger a rollback on the LCM operation
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
     ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
@@ -24,7 +24,7 @@ Post Rollback operation task
 	
 Post Rollback operation task Not Found
     [Documentation]    Test ID: 5.3.2.11.2
-    ...    Test title: POST Rollback a NS lifecycle operation
+    ...    Test title: Post Rollback operation task Not Found
     ...    Test objective: The objective is to test that POST method fail if operation is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
@@ -38,7 +38,7 @@ Post Rollback operation task Not Found
 		
 Post Rollback operation task Conflict
     [Documentation]    Test ID: 5.3.2.11.3
-    ...    Test title: POST Rollback a NS lifecycle operation
+    ...    Test title: Post Rollback operation task Conflict
     ...    Test objective: The objective is to test that POST method fail in case of operation status conflict
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
@@ -52,7 +52,7 @@ Post Rollback operation task Conflict
 
 GET Rollback operation task - Method not implemented 
     [Documentation]    Test ID: 5.3.2.11.4
-    ...    Test title: GET Rollback NS lifecycle operation - Method not implemented
+    ...    Test title: GET Rollback operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.12.3.2 - SOL005 v2.4.1
@@ -64,7 +64,7 @@ GET Rollback operation task - Method not implemented
 	
 PUT Rollback operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.11.5
-    ...    Test title: PUT Rollback NS lifecycle operation - Method not implemented
+    ...    Test title: PUT Rollback operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.12.3.3 - SOL005 v2.4.1
@@ -76,7 +76,7 @@ PUT Rollback operation task - Method not implemented
 
 PATCH Rollback operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.11.6
-    ...    Test title: PATCH Rollback NS lifecycle operation - Method not implemented
+    ...    Test title: PATCH Rollback operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.12.3.4 - SOL005 v2.4.1
@@ -88,7 +88,7 @@ PATCH Rollback operation task - Method not implemented
 
 DELETE Rollback operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.11.7
-    ...    Test title: DELETE Rollback NS lifecycle operation - Method not implemented
+    ...    Test title: DELETE Rollback operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.12.3.5 - SOL005 v2.4.1

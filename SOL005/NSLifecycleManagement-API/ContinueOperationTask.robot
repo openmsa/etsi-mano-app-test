@@ -10,7 +10,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 Post Continue operation task
      [Documentation]    Test ID: 5.3.2.12.1
-    ...    Test title: POST Continue a NS lifecycle operation
+    ...    Test title: Post Continue operation task
     ...    Test objective: The objective is to test that POST method trigger a continue on the LCM operation
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1
@@ -23,7 +23,7 @@ Post Continue operation task
 	
 Post Continue operation task Not Found
     [Documentation]    Test ID: 5.3.2.12.2
-    ...    Test title: POST Continue a NS lifecycle operation
+    ...    Test title: Post Continue operation task Not Found
     ...    Test objective: The objective is to test that POST method fail if operation is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1
@@ -37,7 +37,7 @@ Post Continue operation task Not Found
 		
 Post Continue operation task Conflict
      [Documentation]    Test ID: 5.3.2.12.3
-    ...    Test title: POST Continue a NS lifecycle operation
+    ...    Test title: Post Continue operation task Conflict
     ...    Test objective: The objective is to test that POST method fail in case of operation status conflict
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1
@@ -51,7 +51,7 @@ Post Continue operation task Conflict
 	
 GET Continue operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.10.4
-    ...    Test title: GET Continue NS lifecycle operation - Method not implemented
+    ...    Test title: GET Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.2 - SOL005 v2.4.1
@@ -63,7 +63,7 @@ GET Continue operation task - Method not implemented
 	
 PUT Continue operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.10.5
-    ...    Test title: PUT Continue NS lifecycle operation - Method not implemented
+    ...    Test title: PUT Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.13.3.3 - SOL005 v2.4.1
@@ -75,10 +75,10 @@ PUT Continue operation task - Method not implemented
 
 PATCH Continue operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.10.5
-    ...    Test title: PATCH Continue NS lifecycle operation - Method not implemented
+    ...    Test title: PATCH Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.14.3.3 - SOL005 v2.4.1
+    ...    Reference:  section 6.4.14.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -87,10 +87,10 @@ PATCH Continue operation task - Method not implemented
 
 DELETE Continue operation task - Method not implemented
         [Documentation]    Test ID: 5.3.2.10.5
-    ...    Test title: DELETE Continue NS lifecycle operation - Method not implemented
+    ...    Test title: DELETE Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.14.3.3 - SOL005 v2.4.1
+    ...    Reference:  section 6.4.14.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none

@@ -9,7 +9,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 Post Individual NS LCM occurences - Method not implemented
     [Documentation]    Test ID: 5.3.2.9.1
-    ...    Test title: POST Individual NS LCM occurrences - Method not implemented
+    ...    Test title: Post Individual NS LCM occurences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.1 - SOL005 v2.4.1
@@ -21,7 +21,7 @@ Post Individual NS LCM occurences - Method not implemented
 
 Get stauts information about Individual NS LCM OP OCC   
     [Documentation]    Test ID: 5.3.2.9.2
-    ...    Test title: GET NS LCM Occurrences
+    ...    Test title: Get stauts information about Individual NS LCM OP OCC
     ...    Test objective: The objective is to test that GET method return the LCM occurrence of the NS
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.2 - SOL005 v2.4.1
@@ -35,7 +35,7 @@ Get stauts information about Individual NS LCM OP OCC
 	
 PUT stauts information about Individual NS LCM OP OCC - Method not implemented
      [Documentation]    Test ID: 5.3.2.9.3
-    ...    Test title: PUT Individual NS LCM occurrences - Method not implemented
+    ...    Test title: PUT stauts information about Individual NS LCM OP OCC - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.3 - SOL005 v2.4.1
@@ -47,7 +47,7 @@ PUT stauts information about Individual NS LCM OP OCC - Method not implemented
 
 PATCH stauts information about Individual NS LCM OP OCC - Method not implemented
      [Documentation]    Test ID: 5.3.2.9.4
-    ...    Test title: PATCH Individual NS LCM occurrences - Method not implemented
+    ...    Test title: PATCH stauts information about Individual NS LCM OP OCC - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.4 - SOL005 v2.4.1
@@ -59,7 +59,7 @@ PATCH stauts information about Individual NS LCM OP OCC - Method not implemented
 
 DELETE stauts information about Individual NS LCM OP OCC - Method not implemented
          [Documentation]    Test ID: 5.3.2.9.5
-    ...    Test title: DELETE Individual NS LCM occurrences - Method not implemented
+    ...    Test title: DELETE stauts information about Individual NS LCM OP OCC - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.5 - SOL005 v2.4.1

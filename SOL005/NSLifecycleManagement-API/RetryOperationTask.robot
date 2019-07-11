@@ -10,7 +10,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 Post Retry operation task
      [Documentation]    Test ID: 5.3.2.10.1
-    ...    Test title: POST Retry a NS lifecycle operation
+    ...    Test title: Post Retry operation task
     ...    Test objective: The objective is to test that POST method trigger a retry of NS lifecycle operation in case of temporary failure
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
     ...    Reference:  section 6.4.11.3.1 - SOL005 v2.4.1
@@ -24,7 +24,7 @@ Post Retry operation task
 	
 Post Retry operation task Not Found
     [Documentation]    Test ID: 5.3.2.10.2
-    ...    Test title: POST Retry a NS lifecycle operation
+    ...    Test title: Post Retry operation task Not Found
     ...    Test objective: The objective is to test that POST method fail in case of NS lifecycle operation not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.11.3.1 - SOL005 v2.4.1
@@ -38,7 +38,7 @@ Post Retry operation task Not Found
 		
 Post Retry operation task Conflict
     [Documentation]    Test ID: 5.3.2.10.3
-    ...    Test title: POST Retry a NS lifecycle operation
+    ...    Test title: Post Retry operation task Conflict
     ...    Test objective: The objective is to test that POST method fail in case of NS lifecycle operation status conflict
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.11.3.1 - SOL005 v2.4.1
@@ -52,7 +52,7 @@ Post Retry operation task Conflict
 
 GET Retry operation task - Method not implemented 
     [Documentation]    Test ID: 5.3.2.10.4
-    ...    Test title: GET Retry NS lifecycle operation - Method not implemented
+    ...    Test title: GET Retry operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.11.3.2 - SOL005 v2.4.1
@@ -64,7 +64,7 @@ GET Retry operation task - Method not implemented
 	
 PUT Retry operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.10.5
-    ...    Test title: PUT Retry NS lifecycle operation - Method not implemented
+    ...    Test title: PUT Retry operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.11.3.3 - SOL005 v2.4.1
@@ -76,7 +76,7 @@ PUT Retry operation task - Method not implemented
 
 PATCH Retry operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.10.6
-    ...    Test title: PATCH Retry NS lifecycle operation - Method not implemented
+    ...    Test title: PATCH Retry operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.11.3.4 - SOL005 v2.4.1
@@ -88,7 +88,7 @@ PATCH Retry operation task - Method not implemented
 
 DELETE Retry operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.10.7
-    ...    Test title: DELETE Retry NS lifecycle operation - Method not implemented
+    ...    Test title: DELETE Retry operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.11.3.5 - SOL005 v2.4.1

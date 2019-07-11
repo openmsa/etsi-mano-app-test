@@ -7,7 +7,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Create a new subscription
+POST Create a new subscription
     [Documentation]    Test ID: 5.3.2.15.1
     ...    Test title: POST Create a new subscription
     ...    Test objective: The objective is to test that POST method create a subscription
@@ -22,9 +22,9 @@ Create a new subscription
     Check HTTP Response Body Json Schema Is    subscription
     
 
-Create a new Subscription - DUPLICATION
+POST Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.2
-    ...    Test title: POST Create a new subscription
+    ...    Test title: POST Create a new subscription - DUPLICATION
     ...    Test objective: The objective is to test that POST method create a duplicate subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
@@ -36,9 +36,9 @@ Create a new Subscription - DUPLICATION
     Check HTTP Response Header Contains    Location
     Check HTTP Response Body Json Schema Is    subscription
 
-Create a new Subscription - NO-DUPLICATION
+POST Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.3
-    ...    Test title: POST Create a new subscription
+    ...    Test title: POST Create a new subscription - NO-DUPLICATION
     ...    Test objective: The objective is to test that POST method create a duplicate subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
@@ -51,7 +51,7 @@ Create a new Subscription - NO-DUPLICATION
 
 GET Subscriptions
     [Documentation]    Test ID: 5.3.2.15.4
-    ...    Test title: GET retrive the list of existing subscriptions
+    ...    Test title: GET Subscriptions
     ...    Test objective: The objective is to test that GET method  retrive the list of existing subscriptions
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.2 - SOL005 v2.4.1
@@ -64,7 +64,7 @@ GET Subscriptions
 
 GET Subscription - Filter
     [Documentation]    Test ID: 5.3.2.15.5
-    ...    Test title: GET retrive the list of existing subscriptions
+    ...    Test title: GET Subscription - Filter
     ...    Test objective: The objective is to test that GET method  retrive the list of existing subscriptions
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.2 - SOL005 v2.4.1
@@ -77,7 +77,7 @@ GET Subscription - Filter
     
 PUT subscriptions - Method not implemented
      [Documentation]    Test ID: 5.3.2.15.6
-    ...    Test title: PUT Individual NS lifecycle management subscription - Method not implemented
+    ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify a NS lifecycle management subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.3 - SOL005 v2.4.1
@@ -89,7 +89,7 @@ PUT subscriptions - Method not implemented
 
 PATCH subscriptions - Method not implemented
     [Documentation]    Test ID: 5.3.2.15.7
-    ...    Test title: PUT Individual NS lifecycle management subscription - Method not implemented
+    ...    Test title: PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify a NS lifecycle management subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.4 - SOL005 v2.4.1
@@ -101,7 +101,7 @@ PATCH subscriptions - Method not implemented
 
 DELETE subscriptions - Method not implemented
     [Documentation]    Test ID: 5.3.2.15.6
-    ...    Test title: DELETE Individual NS lifecycle management subscription - Method not implemented
+    ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to modify a NS lifecycle management subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.5 - SOL005 v2.4.1

@@ -8,9 +8,9 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Scale a nsInstance
+POST Scale a nsInstance
     [Documentation]    Test ID: 5.3.2.4.1
-    ...    Test title: POST Individual Scale NS instance
+    ...    Test title: POST Scale a nsInstance
     ...    Test objective: The objective is to test that POST method allow to create a Scale NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.5.3.1 - SOL005 v2.4.1
@@ -21,9 +21,9 @@ Scale a nsInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
 
-Instantiate a nsInstance Conflict
+POST Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.4.2
-    ...    Test title: POST Individual Scale NS instance
+    ...    Test title: POST Instantiate a nsInstance Conflict
     ...    Test objective: The objective is to test that POST method allow to create a Scale NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.5.3.1 - SOL005 v2.4.1
@@ -37,7 +37,7 @@ Instantiate a nsInstance Conflict
     
 GET Scale NSInstance- Method not implemented
      [Documentation]    Test ID: 5.3.2.4.3
-    ...    Test title: GET Individual Scale NS instance - Method not implemented
+    ...    Test title: GET Scale NSInstance- Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.5.3.2 - SOL005 v2.4.1
@@ -49,7 +49,7 @@ GET Scale NSInstance- Method not implemented
     
 PUT Scale NSInstance - Method not implemented
      [Documentation]    Test ID: 5.3.2.4.4
-    ...    Test title: PUT Individual Scale NS instance - Method not implemented
+    ...    Test title: PUT Scale NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.5.3.3 - SOL005 v2.4.1
@@ -61,7 +61,7 @@ PUT Scale NSInstance - Method not implemented
     
 PATCH Scale NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.4.5
-    ...    Test title: PATCH Individual Scale NS instance - Method not implemented
+    ...    Test title: PATCH Scale NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.5.3.4 - SOL005 v2.4.1
@@ -73,7 +73,7 @@ PATCH Scale NSInstance - Method not implemented
 
 DELETE Scale NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.4.6
-    ...    Test title: DELETE Individual Scale NS instance - Method not implemented
+    ...    Test title: DELETE Scale NSInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.5.3.5 - SOL005 v2.4.1

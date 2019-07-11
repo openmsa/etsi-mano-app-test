@@ -10,7 +10,7 @@ Suite Setup    Check resource existance
 *** Test Cases ***
 Post Individual NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.2.1
-    ...    Test title: POST Individual NS instance - Method not implemented
+    ...    Test title: Post Individual NSInstance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.1 - SOL005 v2.4.1
@@ -22,7 +22,7 @@ Post Individual NSInstance - Method not implemented
 
 Get Information about an individual NS Instance
     [Documentation]    Test ID: 5.3.2.2.2
-    ...    Test title: GET Individual NS instance
+    ...    Test title: Get Information about an individual NS Instance
     ...    Test objective: The objective is to test that GET method allow to query an NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.2 - SOL005 v2.4.1
@@ -36,7 +36,7 @@ Get Information about an individual NS Instance
     
 PUT Individual NSInstance - Method not implemented 
     [Documentation]    Test ID: 5.3.2.2.3
-    ...    Test title: PUT Individual NS instance - Method not implemented
+    ...    Test title: PUT Individual NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to create a new NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.3 - SOL005 v2.4.1
@@ -48,7 +48,7 @@ PUT Individual NSInstance - Method not implemented
 
 PATCH Individual NSInstance - Method not implemented 
     [Documentation]    Test ID: 5.3.2.2.4
-    ...    Test title: PATCH Individual NS instance - Method not implemented
+    ...    Test title: PATCH Individual NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to create a new NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.4 - SOL005 v2.4.1
@@ -60,7 +60,7 @@ PATCH Individual NSInstance - Method not implemented
 
 DELETE Individual NSInstance
      [Documentation]    Test ID: 5.3.2.2.5
-    ...    Test title: DELETE Individual NS instance
+    ...    Test title: DELETE Individual NSInstance
     ...    Test objective: The objective is to test that DELETE method is allowed to delete a NS instance
     ...    Pre-conditions: none.
     ...    Reference:  section 6.4.3.3.5 - SOL005 v2.4.1
@@ -72,7 +72,7 @@ DELETE Individual NSInstance
 
 DELETE Individual NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.2.5
-    ...    Test title: DELETE Individual NS instance
+    ...    Test title: DELETE Individual NSInstance Conflict
     ...    Test objective: The objective is to test that DELETE method is allowed to delete a NS instance
     ...    Pre-conditions: At least one running instance of a NS
     ...    Reference:  section 6.4.3.3.5 - SOL005 v2.4.1

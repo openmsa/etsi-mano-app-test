@@ -10,7 +10,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 Post Fail operation task
     [Documentation]    Test ID: 5.3.2.13.1
-    ...    Test title: POST Fail a NS lifecycle operation
+    ...    Test title: Post Fail operation task
     ...    Test objective: The objective is to test that POST method trigger a state change to "finally failed" on the LCM operation
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
     ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
@@ -23,7 +23,7 @@ Post Fail operation task
 	
 Post Fail operation task Not Found
     [Documentation]    Test ID: 5.3.2.13.2
-    ...    Test title: POST Fail a NS lifecycle operation
+    ...    Test title: Post Fail operation task Not Found
     ...    Test objective: The objective is to test that POST method fail if the LCM operation is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
@@ -37,7 +37,7 @@ Post Fail operation task Not Found
 		
 Post Fail operation task Conflict
     [Documentation]    Test ID: 5.3.2.13.3
-    ...    Test title: POST Fail a NS lifecycle operation
+    ...    Test title: Post Fail operation task Conflict
     ...    Test objective: The objective is to test that POST method fail in case of status conflict on the LCM operation
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
@@ -51,7 +51,7 @@ Post Fail operation task Conflict
 
 GET Fail operation task - Method not implemented 
      [Documentation]    Test ID: 5.3.2.13.4
-    ...    Test title: GET Continue NS lifecycle operation - Method not implemented
+    ...    Test title: GET Fail operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.14.3.2 - SOL005 v2.4.1
@@ -63,7 +63,7 @@ GET Fail operation task - Method not implemented
 	
 PUT Fail operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.13.5
-    ...    Test title: PUT Continue NS lifecycle operation - Method not implemented
+    ...    Test title: PUT Fail operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.14.3.3 - SOL005 v2.4.1
@@ -75,7 +75,7 @@ PUT Fail operation task - Method not implemented
 
 PATCH Fail operation task - Method not implemented
      [Documentation]    Test ID: 5.3.2.13.6
-    ...    Test title: PATCH Continue NS lifecycle operation - Method not implemented
+    ...    Test title: PATCH Fail operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.14.3.4 - SOL005 v2.4.1
@@ -87,7 +87,7 @@ PATCH Fail operation task - Method not implemented
 
 DELETE Fail operation task - Method not implemented
      [Documentation]    Test ID: 5.3.2.13.7
-    ...    Test title: DELETE Continue NS lifecycle operation - Method not implemented
+    ...    Test title: DELETE Fail operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.14.3.5 - SOL005 v2.4.1

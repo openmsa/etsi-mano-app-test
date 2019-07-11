@@ -10,7 +10,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 Post Cancel operation task
     [Documentation]    Test ID: 5.3.2.14.1
-    ...    Test title: POST Cancel a NS lifecycle operation
+    ...    Test title: Post Cancel operation task
     ...    Test objective: The objective is to test that POST method cancel an LCM operation
     ...    Pre-conditions: NS instance status equal to STARTING, PROCESSING or ROLLING_BACK
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1
@@ -23,7 +23,7 @@ Post Cancel operation task
 	
 Post Cancel operation task Not Found
     [Documentation]    Test ID: 5.3.2.14.2
-    ...    Test title: POST Cancel a NS lifecycle operation
+    ...    Test title: Post Cancel operation task Not Found
     ...    Test objective: The objective is to test that POST method fail if LCM operation not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1
@@ -37,7 +37,7 @@ Post Cancel operation task Not Found
 		
 Post Cancel operation task Conflict
     [Documentation]    Test ID: 5.3.2.14.3
-    ...    Test title: POST Cancel a NS lifecycle operation
+    ...    Test title: Post Cancel operation task Conflict
     ...    Test objective: The objective is to test that POST method fail if a status conflict exist on LCM operation
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1
@@ -51,7 +51,7 @@ Post Cancel operation task Conflict
 
 GET Cancel operation task - Method not implemented 
     [Documentation]    Test ID: 5.3.2.14.4
-    ...    Test title: GET Cancel NS lifecycle operation - Method not implemented
+    ...    Test title: GET Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.15.3.2 - SOL005 v2.4.1
@@ -63,7 +63,7 @@ GET Cancel operation task - Method not implemented
 	
 PUT Cancel operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.14.5
-    ...    Test title: PUT Cancel NS lifecycle operation - Method not implemented
+    ...    Test title: PUT Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.15.3.3 - SOL005 v2.4.1
@@ -75,7 +75,7 @@ PUT Cancel operation task - Method not implemented
 
 PATCH Cancel operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.14.6
-    ...    Test title: PATCH Cancel NS lifecycle operation - Method not implemented
+    ...    Test title: PATCH Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.15.3.4 - SOL005 v2.4.1
@@ -87,7 +87,7 @@ PATCH Cancel operation task - Method not implemented
 
 DELETE Cancel operation task - Method not implemented
     [Documentation]    Test ID: 5.3.2.14.7
-    ...    Test title: DELETE Cancel NS lifecycle operation - Method not implemented
+    ...    Test title: DELETE Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.15.3.5 - SOL005 v2.4.1
