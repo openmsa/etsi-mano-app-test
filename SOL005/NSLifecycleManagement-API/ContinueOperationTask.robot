@@ -50,11 +50,11 @@ Post Continue operation task Conflict
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 	
 GET Continue operation task - Method not implemented
-    [Documentation]    Test ID: 5.3.2.10.4
+    [Documentation]    Test ID: 5.3.2.12.4
     ...    Test title: GET Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.10.3.2 - SOL005 v2.4.1
+    ...    Reference:  section 6.4.13.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -62,7 +62,7 @@ GET Continue operation task - Method not implemented
 	Check HTTP Response Status Code Is    405	
 	
 PUT Continue operation task - Method not implemented
-    [Documentation]    Test ID: 5.3.2.10.5
+    [Documentation]    Test ID: 5.3.2.13.5
     ...    Test title: PUT Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -74,7 +74,7 @@ PUT Continue operation task - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Continue operation task - Method not implemented
-    [Documentation]    Test ID: 5.3.2.10.5
+    [Documentation]    Test ID: 5.3.2.13.5
     ...    Test title: PATCH Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -86,7 +86,7 @@ PATCH Continue operation task - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Continue operation task - Method not implemented
-        [Documentation]    Test ID: 5.3.2.10.5
+        [Documentation]    Test ID: 5.3.2.13.5
     ...    Test title: DELETE Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
