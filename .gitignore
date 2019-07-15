@@ -1,3 +1,5 @@
 /.project
 /.pydevproject
 /red.xml
+build/
+dist/
