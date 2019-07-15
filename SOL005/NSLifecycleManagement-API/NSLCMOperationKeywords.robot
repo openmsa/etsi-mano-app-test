@@ -882,3 +882,88 @@ DELETE Individual subscription
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
+
+POST Operation occurrence
+    log    The POST method delivers a notification from the server to the client.
+    ${json}=	Get File	schemas/NsLcmOperationOccurrenceNotification.schema.json
+    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    Log  Creating mock request and response to handle NSLcmOperationOccurrenceNotification
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint} 
+ 
+POST Id creation
+    log    The POST method delivers a notification from the server to the client.
+    ${json}=	Get File	schemas/NsIdentifierCreationNotification.schema.json
+    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    Log  Creating mock request and response to handle NsIdentifierCreationNotification
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}
+
+POST Id deletion
+    log    The POST method delivers a notification from the server to the client.
+    ${json}=	Get File	schemas/NsIdentifierDeletionNotification.schema.json
+    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    Log  Creating mock request and response to handle NsIdentifierDeletionNotification
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}   
+
+GET Notification endpoint
+    log    The GET method allows the server to test the notification endpoint
+    &{req}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Verify Mock Expectation  ${req}
+    Clear Requests  ${callback_endpoint}
+    
+PUT notification
+    Log  PUT Method not implemented
+    &{req}=  Create Mock Request Matcher	PUT  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}    
+
+PATCH subscriptions
+    Log  PATCH Method not implemented
+    &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}  
+
+DELETE subscriptions
+    Log  DELETE Method not implemented
+    &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
+    &{rsp}=  Create Mock Response  status_code=405
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}      
+        
