@@ -20,6 +20,14 @@ ${callback_port}    9091
 ${callback_uri}    http://172.22.1.7:${callback_port}
 ${callback_endpoint}    /nsd/subscriptions
 ${callback_endpoint_error}    /subs_404
+${callback_endpoint_fwd}    /endpoint/check
+${callback_endpoint_error}    /endpoint_404
+${sleep_interval}    20s
+${total_polling_time}   2 min
+${polling_interval}     10 sec
+
+${notification_request}    []
+${notification_response}    []
 
 ${testOptionalMethods}    0
 
