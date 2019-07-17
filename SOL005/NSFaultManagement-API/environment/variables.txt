@@ -28,12 +28,6 @@ ${sub_filter_invalid}    filter_invalid
 
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
 
-${callback_uri}    http://localhost
-${callback_port}    9091
-${callback_endpoint}    /endpoint
-${callback_endpoint_error}    /endpoint_404
-${sleep_interval}    20s
-
 ${AlarmNotification}    {}
 ${AlarmClearedNotification}    {}
 ${AlarmListRebuiltNotification}    {}
@@ -43,4 +37,14 @@ ${response}    {}
 ${req_mock}    {}
 ${resp_mock}    {}
 
+${callback_uri}    http://localhost
+${callback_port}    9091
+${callback_endpoint}    /endpoint
+${callback_endpoint_fwd}    /endpoint/check
+${callback_endpoint_error}    /endpoint_404
+${sleep_interval}    20s
+${total_polling_time}   2 min
+${polling_interval}     10 sec
 
+${notification_request}    []
+${notification_response}    []
