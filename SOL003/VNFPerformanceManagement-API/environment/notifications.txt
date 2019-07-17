@@ -1,5 +1,4 @@
 *** Variables ***
-
 ${callback_uri}    http://localhost
 ${callback_port}    9091
 ${callback_endpoint}    /endpoint
@@ -11,5 +10,3 @@ ${polling_interval}     10 sec
 
 ${notification_request}    []
 ${notification_response}    []
-
-${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
