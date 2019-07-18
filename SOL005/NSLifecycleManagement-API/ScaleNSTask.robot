@@ -12,7 +12,7 @@ POST Scale a nsInstance
     [Documentation]    Test ID: 5.3.2.4.1
     ...    Test title: POST Scale a nsInstance
     ...    Test objective: The objective is to test that POST method allow to create a Scale NS instance
-    ...    Pre-conditions: none
+    ...    Pre-conditions: the resource is in NOT_INSTANTIATED state
     ...    Reference:  section 6.4.5.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -24,13 +24,12 @@ POST Scale a nsInstance
 POST Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.4.2
     ...    Test title: POST Instantiate a nsInstance Conflict
-    ...    Test objective: The objective is to test that POST method allow to create a Scale NS instance
-    ...    Pre-conditions: none
+    ...    Test objective: The objective is to test that POST method can't Scale NS instance because of conflict in resource status (i.e. because the resource is in not in NOT_INSTANTIATED state)
+    ...    Pre-conditions: the resource is in not in NOT_INSTANTIATED state
     ...    Reference:  section 6.4.5.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The Scale NS instance is not created on the NFVO
-    [Setup]    Check resource not_instantiated
     POST scale nsInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails

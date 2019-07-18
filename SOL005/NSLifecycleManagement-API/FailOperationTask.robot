@@ -17,20 +17,20 @@ Post Fail operation task
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Depends on test    Check resource FAILED_TEMP
 	POST Fail operation task
 	Check HTTP Response Status Code Is    202
+	Check resource not   FAILED_TEMP
+	
 	
 Post Fail operation task Not Found
     [Documentation]    Test ID: 5.3.2.13.2
     ...    Test title: Post Fail operation task Not Found
-    ...    Test objective: The objective is to test that POST method fail if the LCM operation is not found
+    ...    Test objective: The objective is to test that POST method fail if the LCM NS resource is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
-    [Setup]    Check Fail not supported
 	POST Fail operation task
 	Check HTTP Response Status Code Is    404
 	Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -38,13 +38,12 @@ Post Fail operation task Not Found
 Post Fail operation task Conflict
     [Documentation]    Test ID: 5.3.2.13.3
     ...    Test title: Post Fail operation task Conflict
-    ...    Test objective: The objective is to test that POST method fail in case of status conflict on the LCM operation
-    ...    Pre-conditions: none
+    ...    Test objective: The objective is to test that POST method fail in case of status conflict on the LCM NS operation (i.e NS instance status not equal to FAILED_TEMP)
+    ...    Pre-conditions: NS instance status not equal to FAILED_TEMP
     ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Depends on test failure      Check resource FAILED_TEMP
 	POST Fail operation task
 	Check HTTP Response Status Code Is    409
 	Check HTTP Response Body Json Schema Is    ProblemDetails

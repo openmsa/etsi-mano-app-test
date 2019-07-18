@@ -5,115 +5,123 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
+Resource    VnfLcmMntOperationKeywords.robot
+
 
 *** Test Cases ***
-Create a new subscription
-    Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/lccnSubscriptionRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    201
-    Log    Status code validated
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-    Validate Json    Subscription.schema.json    ${result}
-    Log    Validation OK
-
+POST Create a new subscription
+    [Documentation]    Test ID: 7.3.1.17.1
+    ...    Test title: POST Create a new subscription
+    ...    Test objective: The POST method creates a new subscription
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: in response header Location should not be null
+    ...    POST Cancel operation task
+    Post Create subscription
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    Subscription
 Create a new Subscription - DUPLICATION
-    Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${VNFM_DUPLICATION} == 0    VNFM is not permitting duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/lccnSubscriptionRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    201
-    Log    Status code validated
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-    Validate Json    Subscription.schema.json    ${result}
-    Log    Validation OK
+    [Documentation]    Test ID: 7.3.1.17.2
+    ...    Test title: POST Create a new subscription - DUPLICATION
+    ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: in response header Location should not be null
+    ...    POST Cancel operation task
+    Post Create subscription - DUPLICATION
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    Subscription
 
 Create a new Subscription - NO-DUPLICATION
-    Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${VNFM_DUPLICATION} == 1    VNFM permits duplication. Skipping the test
-    Set Headers    {"Accept": "${ACCEPT}"}
-    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/lccnSubscriptionRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
-    Integer    response status    303
-    Log    Status code validated
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Validation OK
-
+    [Documentation]    Test ID: 7.3.1.17.3
+    ...    Test title: POST Create a new subscription - NO-DUPLICATION
+    ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: in response header Location should not be null
+    ...    POST Cancel operation task
+    Post Create subscription - NO-DUPLICATION
+    Check HTTP Response Status Code Is    303
+    Check Operation Occurrence Id
+    
 GET Subscriptions
-    Log    Get the list of active subscriptions
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Execute Query and validate response
-    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Log    Validate Status code
-    Integer    response status    200
-    ${result}=    Output    response body
-    Validate Json    Subscriptions.schema.json    ${result}
-    Log    Validation OK
+     [Documentation]    Test ID: 7.3.1.17.4
+    ...    Test title: GET Subscriptions
+    ...    Test objective: The objective is Get the list of active subscriptions
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Get subscriptions
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    Subscriptions
 
 GET Subscription - Filter
-    Log    Get the list of active subscriptions using a filter
-    Set Headers    {"Accept": "${ACCEPT}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
-    Integer    response status    200
-    Log    Received a 200 OK as expected
-    ${result}=    Output    response body
-    Validate Json    Subscriptions.schema.json    ${result}
-    Log    Validation OK
+    [Documentation]    Test ID: 7.3.1.17.5
+    ...    Test title: GET Subscriptions - Filter
+    ...    Test objective: The objective is Get the list of active subscriptions using a filter
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Get subscriptions - filter
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    Subscriptions
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
-    Log    Get the list of active subscriptions using an invalid filter
-    Set Headers    {"Accept": "${ACCEPT}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
-    Integer    response status    400
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    [Documentation]    Test ID: 7.3.1.17.6
+    ...    Test title: GET Subscriptions - Filter
+    ...    Test objective: The objective is Get the list of active subscriptions using a filter
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Get subscriptions - invalid filter
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails
     
 PUT subscriptions - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.17.7
+    ...    Test title: PUT subscriptions - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    PUT subscriptions
+	Check HTTP Response Status Code Is    405
 
 PATCH subscriptions - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.17.8
+    ...    Test title: PATCH subscriptions - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    PATCH subscriptions
+	Check HTTP Response Status Code Is    405
 
 DELETE subscriptions - Method not implemented
-    log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.17.9
+    ...    Test title: DELETE subscriptions - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.18.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    DELETE subscriptions
+	Check HTTP Response Status Code Is    405
     

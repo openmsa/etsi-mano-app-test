@@ -11,26 +11,25 @@ Library    JSONSchemaLibrary    schemas/
 Post Cancel operation task
     [Documentation]    Test ID: 5.3.2.14.1
     ...    Test title: Post Cancel operation task
-    ...    Test objective: The objective is to test that POST method cancel an LCM operation
+    ...    Test objective: The objective is to test that POST method cancel the NS LCM operation
     ...    Pre-conditions: NS instance status equal to STARTING, PROCESSING or ROLLING_BACK
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none     
-    Depends on test    Check resource FAILED_TEMP
+    ...    Post-Conditions: NS instance status equal to FAILED_TEMP     
 	POST Cancel operation task
 	Check HTTP Response Status Code Is    202
+	Check resource FAILED_TEMP
 	
 Post Cancel operation task Not Found
     [Documentation]    Test ID: 5.3.2.14.2
     ...    Test title: Post Cancel operation task Not Found
-    ...    Test objective: The objective is to test that POST method fail if LCM operation not found
+    ...    Test objective: The objective is to test that POST method fail completing the Cancel NS LCM operation if the resource is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none       
-    [Setup]    Check Cancel not supported
 	POST Cancel operation task
 	Check HTTP Response Status Code Is    404
 	Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -38,13 +37,12 @@ Post Cancel operation task Not Found
 Post Cancel operation task Conflict
     [Documentation]    Test ID: 5.3.2.14.3
     ...    Test title: Post Cancel operation task Conflict
-    ...    Test objective: The objective is to test that POST method fail if a status conflict exist on LCM operation
-    ...    Pre-conditions: none
+    ...    Test objective: The objective is to test that POST method fail if a status conflict exist on the NS LCM operation. (i.e. NS instance status not equal to STARTING, PROCESSING or ROLLING_BACK)
+    ...    Pre-conditions: NS instance status not equal to STARTING, PROCESSING or ROLLING_BACK
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Depends on test failure      Check resource FAILED_TEMP
 	POST Cancel operation task
 	Check HTTP Response Status Code Is    409
 	Check HTTP Response Body Json Schema Is    ProblemDetails

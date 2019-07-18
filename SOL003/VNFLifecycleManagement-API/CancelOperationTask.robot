@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    environment/configuration.txt
 Resource    environment/variables.txt
+Resource    VnfLcmMntOperationKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 Library    DependencyLibrary
 Library    JSONLibrary
@@ -9,80 +10,92 @@ Documentation    This task resource represents the "Cancel operation" operation.
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Post Cancel operation task  
-    [Documentation]    The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e.
-    ...    the related "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
-    Log    Cancel an ongoing VNF lifecycle operation
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Cancel a VNF lifecycle operation
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel    ${CancelMode}
-    Log    Validate Status code
-    Integer    response status    202
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Validation OK
-
+Post Cancel operation task
+    [Documentation]    Test ID: 7.3.1.16.1
+    ...    Test title: POST Cancel operation task
+    ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the related "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: in response header Location should not be null    
+    POST Cancel operation task
+    Check HTTP Response Status Code Is    202
+    
 Post Cancel operation task Conflict
-    [Documentation]    Conflict. 
-    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that the VNF instance resource is not in STARTING, PROCESSING or ROLLING_BACK state, 
-    ...    or another error handling action is starting, such as retry or rollback. 
-    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
+    [Documentation]    Test ID: 7.3.1.16.2
+    ...    Test title: POST Cancel operation task
+    ...    Test objective: The POST method is NOT cancelling an ongoing VNF lifecycle operation due to the fact that the VNF instance resource is not in STARTING, PROCESSING or ROLLING_BACK state
+    ...    Pre-conditions: operation is not in STARTING, PROCESSING or ROLLING_BACK state
+    ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: in response header Location should not be null  
     Depends on test  Check resource FAILED_TEMP
-    Log    Cancel an operation
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
-    Integer    response status    409
-    Log    Status code validated
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    POST Cancel operation task
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is    ProblemDetails
 
 Post Cancel operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
-    [Documentation]    Not Found
-    ...    Error: The API producer did not find a current representation for the target resource or is not willing to disclose that one exists. 
-    ...    Specifically in case of this task resource, the response code 404 shall also be returned 
-    ...    if the task is not supported for the VNF LCM operation occurrence represented by the parent resource, 
-    ...    which means that the task resource consequently does not exist. 
-    ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the �detail� attribute shall convey more information about the error.
+     [Documentation]    Test ID: 7.3.1.16.2
+    ...    Test title: POST Cancel operation task
+    ...    Test objective: The objective is to test that POST method cannot cancel a VNF lifecycle operation because the operation is not supported
+    ...    Pre-conditions: 
+    ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: in response header Location should not be null  
     [Setup]    Check Fail not supported
-    log    Final fail an operation
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel
-    Log    Validate Status code
-    Integer    response status    409
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-
+    POST Cancel operation task
+    Check HTTP Response Status Code Is    404
 GET Cancel operation task - Method not implemented
-    log    Trying to perform a GET. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.16.3
+    ...    Test title: GET Cancel operation task - Method not implemented
+    ...    Test objective: The objective is to test that GET method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.17.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    GET Cancel operation task
+	Check HTTP Response Status Code Is    405
 
 PUT Cancel operation task - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.16.3
+    ...    Test title: PUT Cancel operation task - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.17.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    PUT Cancel operation task
+	Check HTTP Response Status Code Is    405
 
 PATCH Cancel operation task - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.16.4
+    ...    Test title: PATCH Cancel operation task - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.17.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    PATCH Cancel operation task
+	Check HTTP Response Status Code Is    405
     
 DELETE Cancel operation task - Method not implemented
-    log    Trying to perform a DELETE. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/cancel
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.16.5
+    ...    Test title: DELETE Cancel operation task - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.17.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    DELETE Cancel operation task
+	Check HTTP Response Status Code Is    405
 
 *** Keywords ***
 Check resource existance

@@ -60,6 +60,12 @@ Check resource FAILED_TEMP
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 
     String    response body operationState    FAILED_TEMP
 
+Check resource not 
+    [Arguments]   ${status}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 
+    Should Not Be Equal As Strings  response body operationState    ${status}
+
 Check Operation Notification Status is
     [Arguments]    ${status}
     Check Operation Notification    NsLcmOperationOccurrenceNotification   ${status}

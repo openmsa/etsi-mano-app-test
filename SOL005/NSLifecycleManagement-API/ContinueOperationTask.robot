@@ -16,21 +16,20 @@ Post Continue operation task
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none 
-    Depends on test    Check resource FAILED_TEMP
+    ...    Post-Conditions: NS instance status not equal to FAILED_TEMP 
 	POST Continue operation task
 	Check HTTP Response Status Code Is    202
+	Check resource not   FAILED_TEMP
 	
 Post Continue operation task Not Found
     [Documentation]    Test ID: 5.3.2.12.2
     ...    Test title: Post Continue operation task Not Found
-    ...    Test objective: The objective is to test that POST method fail if operation is not found
+    ...    Test objective: The objective is to test that POST method cannot perform a continue operation task because the resource is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
-    [Setup]    Check Continue not supported
 	POST Continue operation task
 	Check HTTP Response Status Code Is    404
 	Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -38,13 +37,12 @@ Post Continue operation task Not Found
 Post Continue operation task Conflict
      [Documentation]    Test ID: 5.3.2.12.3
     ...    Test title: Post Continue operation task Conflict
-    ...    Test objective: The objective is to test that POST method fail in case of operation status conflict
-    ...    Pre-conditions: none
+    ...    Test objective: The objective is to test that POST method fail in case of operation status conflict (i.e. NS instance status not equal to FAILED_TEMP )
+    ...    Pre-conditions: NS instance status not equal to FAILED_TEMP 
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none     
-    Depends on test failure  Check resource FAILED_TEMP
+    ...    Post-Conditions: none      
 	POST Continue operation task
 	Check HTTP Response Status Code Is    409
 	Check HTTP Response Body Json Schema Is    ProblemDetails

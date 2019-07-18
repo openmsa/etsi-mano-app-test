@@ -3,13 +3,14 @@
 Resource    environment/configuration.txt
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Resource    VnfLcmMntOperationKeywords.robot
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Create a new vnfInstance
-    [Documentation]    Test ID: 5.4.2.1
+POST Create a new vnfInstance
+    [Documentation]    Test ID: 7.3.1.1.1
     ...    Test title: Create a VNF instance
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: VNF instance with the given vnfInstanceId doesn't exist 
@@ -17,25 +18,12 @@ Create a new vnfInstance
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: VNF instance created
-    Log    Create VNF instance by POST to /vnf_instances
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/createVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    ${body}
-    Integer    response status    201
-    Log    Status code validated 
-    ${headers}=    Output    response headers
-#    Should Contain    ${headers}    Location
-#    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-#    ${json}=    evaluate    json.loads('''${result}''')    json
-    Validate Json    vnfInstance.schema.json    ${result}
-    Log    Validation OK
+    POST Create a new vnfInstance
+    Check HTTP Response Status Code Is    201
+    Check HTTP Response Body Json Schema Is    vnfInstance
 
 Get information about multiple VNF instances  
-    [Documentation]    Test ID: 5.4.2.2
+    [Documentation]    Test ID: 7.3.1.1.2
     ...    Test title: Get information about multiple VNF instances
     ...    Test objective: The objective is to query information about multiple VNF instances
     ...    Pre-conditions:  
@@ -43,22 +31,12 @@ Get information about multiple VNF instances
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    Log    Query VNF The GET method queries information about multiple VNF instances.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Execute Query and validate response
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
-    Log    Validate Status code
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-    Validate Json    vnfInstances.schema.json    ${result}
-    Log    Validation OK
+    GET multiple vnfInstances
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances
 
 Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
-    [Documentation]    Test ID: 5.4.2.2-1
+    [Documentation]    Test ID: 7.3.1.1.3
     ...    Test title: Get information about multiple VNF instances - Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute-based filtering parameters
     ...    Pre-conditions:  
@@ -66,20 +44,13 @@ Get information about multiple VNF instances Bad Request Invalid attribute-based
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    Log    Query VNF The GET method queries information about multiple VNF instances.
-    Log    Query VNF The GET method queries information about multiple VNF instances.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?attribute_not_exist=some_value
-    Log    Validate Status code
-    Integer    response status    400
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    GET multiple vnfInstances with bad attribute
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails
+    
 
 Get information about multiple VNF instances Bad Request Invalid attribute selector
-    [Documentation]    Test ID: 5.4.2.2-1
+    [Documentation]    Test ID: 7.3.1.1.4
     ...    Test title: Get information about multiple VNF instances - Invalid attribute selector
     ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute selector
     ...    Pre-conditions:  
@@ -87,40 +58,42 @@ Get information about multiple VNF instances Bad Request Invalid attribute selec
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    Log    Query VNF The GET method queries information about multiple VNF instances.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?fields=wrong_field
-    Log    Validate Status code
-    Integer    response status    400
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    GET multiple vnfInstances with bad filter
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails
     
-PUT VNFInstances - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances   
-    Log    Validate Status code
-    Integer    response status    405
-
-PATCH VNFInstances - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances    
-    Log    Validate Status code
-    Integer    response status    405
+PUT multiples VNFInstances - Method not implemented
+    [Documentation]    Test ID: 7.3.1.1.5
+    ...    Test title: PUT multiples VNFInstances - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not implemented
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    PUT multiple vnfInstances
+	Check HTTP Response Status Code Is    405
+	
+PATCH multiples VNFInstances - Method not implemented
+    [Documentation]    Test ID: 7.3.1.1.6
+    ...    Test title: PATCH multiples VNFInstances - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not implemented
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    PATCH multiple vnfInstances
+	Check HTTP Response Status Code Is    405
 
 DELETE VNFInstances - Method not implemented
-    log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.1.7
+    ...    Test title: DELETE multiples VNFInstances - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not implemented
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    DELETE multiple vnfInstances
+	Check HTTP Response Status Code Is    405
