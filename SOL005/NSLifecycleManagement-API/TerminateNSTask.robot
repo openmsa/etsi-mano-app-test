@@ -20,17 +20,17 @@ POST Terminate a NSInstance
     POST Terminate NSInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
-
+    Check resource     NOT_INSTANTIATED
+    
 POST Terminate a NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.7.2
     ...    Test title: POST Terminate a NSInstance Conflict
-    ...    Test objective: The objective is to test that POST method can't terminate the NS because the resource is not in INSTANTIATED state 
-    ...    Pre-conditions: none
+    ...    Test objective: The objective is to test that POST method can't terminate the NS because of conflict in resource status (i.e. the resource is not in INSTANTIATED state) 
+    ...    Pre-conditions: the resource is not in INSTANTIATED state 
     ...    Reference:  section 6.4.8.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    [Setup]    Check resource not_instantiated
     POST Terminate NSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails

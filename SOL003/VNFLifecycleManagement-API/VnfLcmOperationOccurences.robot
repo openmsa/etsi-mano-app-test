@@ -4,74 +4,92 @@ Resource    environment/variables.txt
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Documentation    This resource represents VNF lifecycle management operation occurrences. The client can use this resource to query
-...    status information about multiple VNF lifecycle management operation occurrences.
+Resource    VnfLcmMntOperationKeywords.robot
 
 *** Test Cases ***
 Post VNF LCM OP occurences - Method not implemented
-    log    Trying to perform a POST. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs 
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 7.3.1.11.1
+    ...    Test title: Post VNF LCM OP occurences - Method not implemented
+    ...    Test objective: The objective is to test that POST method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.12.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Post VNF LCM OP occurences
+    Check HTTP Response Status Code Is    405
 
-Get stauts information about multiple VNF LCM OP OCC   
-    Log    Query status information about multiple VNF lifecycle management operation occurrences.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Execute Query and validate response
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs
-    Log    Validate Status code
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-    Validate Json    VnfLcmOpOccs.schema.json    ${result}
-    Log    Validation OK
+Get status information about multiple VNF LCM OP OCC 
+    [Documentation]    Test ID: 7.3.1.11.2
+    ...    Test title: Get status information about multiple VNF LCM OP OCC
+    ...    Test objective: The objective is to test that GET method retrieve Query status information about multiple VNF lifecycle management operation occurrences.
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none   
+    GET VNF LCM OP occurences
+    Check HTTP Response Status Code Is    202
+    Check HTTP Response Body Json Schema Is    VnfLcmOpOccs 
 
-Get stauts information about multiple VNF LCM OP OCC Bad Request Invalid attribute-based filtering parameters
-    Log    Query status information about multiple VNF lifecycle management operation occurrences.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?attribute_not_exist=some_value
-    Log    Validate Status code
-    Integer    response status    400
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribute-based filtering parameters
+    [Documentation]    Test ID: 7.3.1.11.3
+    ...    Test title: Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is to test that GET method fail retrieving status information about multiple VNF lifecycle management operation occurrences because attribute is invalid.
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none   
+    GET VNF LCM OP occurences invalid attribute
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails
 
-Get stauts information about multiple VNF LCM OP OCC Bad Request Invalid attribute selector
-    Log    Query VNF The GET method queries information about multiple VNF instances.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
-    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?fields=wrong_field
-    Log    Validate Status code
-    Integer    response status    400
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribute selector
+    [Documentation]    Test ID: 7.3.1.11.4
+    ...    Test title: Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribute selector
+    ...    Test objective: The objective is to test that GET method fail retrieving status information about multiple VNF lifecycle management operation occurrences because attribute is invalid.
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    GET VNF LCM OP occurences invalid filter
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails
     
-PUT stauts information about multiple VNF LCM OP OCC - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs
-    Log    Validate Status code
-    Integer    response status    405
+PUT status information about multiple VNF LCM OP OCC - Method not implemented
+     [Documentation]    Test ID: 7.3.1.11.5
+    ...    Test title: PUT status information about multiple VNF LCM OP OCC - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.12.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    PUT VNF LCM OP occurences
+    Check HTTP Response Status Code Is    405
 
-PATCH stauts information about multiple VNF LCM OP OCC - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs
-    Log    Validate Status code
-    Integer    response status    405
+PATCH status information about multiple VNF LCM OP OCC - Method not implemented
+    [Documentation]    Test ID: 7.3.1.11.6
+    ...    Test title: PATCH status information about multiple VNF LCM OP OCC - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.12.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    PUT VNF LCM OP occurences
+    Check HTTP Response Status Code Is    405
 
-DELETE stauts information about multiple VNF LCM OP OCC - Method not implemented
-    log    Trying to perform a DELETE. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs
-    Log    Validate Status code
-    Integer    response status    405
+DELETE status information about multiple VNF LCM OP OCC - Method not implemented
+    [Documentation]    Test ID: 7.3.1.11.7
+    ...    Test title: DELETE status information about multiple VNF LCM OP OCC - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.12.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    DELETE VNF LCM OP occurences
+    Check HTTP Response Status Code Is    405

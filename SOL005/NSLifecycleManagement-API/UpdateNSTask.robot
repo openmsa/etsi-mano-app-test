@@ -25,12 +25,11 @@ POST Update a NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.5.2
     ...    Test title: POST Update a NSInstance Conflict
     ...    Test objective: The objective is to test that POST method fail if a scale Instance is not existing or is not in NOT_INSTANTIATED state
-    ...    Pre-conditions: an existing Scale Instance 
+    ...    Pre-conditions: an existing NS Scale Instance 
     ...    Reference:  section 6.4.6.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The Scale NS instance is not updated on the NFVO
-    [Setup]    Check resource not_instantiated
     POST Update NSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails

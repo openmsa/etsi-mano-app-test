@@ -16,11 +16,11 @@ Post Retry operation task
     ...    Reference:  section 6.4.11.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
-    Depends on test    Check resource FAILED_TEMP
+    ...    Post-Conditions: NS instance status not equal to FAILED_TEMP
 	POST Retry operation task
 	Check HTTP Response Status Code Is    202
 	Check HTTP Response Header Contains    Location
+	Check resource not    FAILED_TEMP
 	
 Post Retry operation task Not Found
     [Documentation]    Test ID: 5.3.2.10.2
@@ -31,7 +31,6 @@ Post Retry operation task Not Found
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    [Setup]    Check retry not supported
 	POST Retry operation task
 	Check HTTP Response Status Code Is    404
 	Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -39,13 +38,12 @@ Post Retry operation task Not Found
 Post Retry operation task Conflict
     [Documentation]    Test ID: 5.3.2.10.3
     ...    Test title: Post Retry operation task Conflict
-    ...    Test objective: The objective is to test that POST method fail in case of NS lifecycle operation status conflict
-    ...    Pre-conditions: none
+    ...    Test objective: The objective is to test that POST method fail in case of NS lifecycle operation status conflict (i.e.  NS instance status not equal to FAILED_TEMP)
+    ...    Pre-conditions:  NS instance status not equal to FAILED_TEMP
     ...    Reference:  section 6.4.11.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Depends on test failure  Check resource FAILED_TEMP
 	POST Retry operation task
 	Check HTTP Response Status Code Is    409
 	Check HTTP Response Body Json Schema Is    ProblemDetails
