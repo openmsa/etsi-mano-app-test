@@ -74,12 +74,11 @@ DELETE Individual NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.2.5
     ...    Test title: DELETE Individual NSInstance Conflict
     ...    Test objective: The objective is to test that DELETE method is allowed to delete a NS instance
-    ...    Pre-conditions: At least one running instance of a NS
+    ...    Pre-conditions: At least one instantiated instance of a NS
     ...    Reference:  section 6.4.3.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS instance is deleted from the NFVO
-    [Setup]    Check resource instantiated
     DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Header ContentType is    ${CONTENT_TYPE}

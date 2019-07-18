@@ -689,4 +689,374 @@ DELETE Heal VNF
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}		
 	
- 	
+Post VNF LCM OP occurences
+    log    Trying to perform a POST. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs  	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+GET VNF LCM OP occurences
+    Log    Query status information about multiple VNF lifecycle management operation occurrences.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+GET VNF LCM OP occurences invalid attribute
+    Log    Query status information about multiple VNF lifecycle management operation occurrences.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?attribute_not_exist=some_value	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+GET VNF LCM OP occurences invalid filter
+    Log    Query status information about multiple VNF lifecycle management operation occurrences.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?fields=wrong_field	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+PUT VNF LCM OP occurences	
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+PATCH VNF LCM OP occurences	
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}			
+DELETE VNF LCM OP occurences	
+    log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Post Individual VNF LCM OP occurences
+    log    Trying to perform a POST. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Get multiple VNF instances	
+    Log    Query status information about multiple VNF lifecycle management operation occurrences.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Put multiple VNF instances	
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Patch multiple VNF instances	
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Delete multiple VNF instances    
+	log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Post Retry operation
+    Log    Retry a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	    
+Get Retry operation	
+    Log    Trying to perform a GET. This method should not be implemented.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Put Retry operation	
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Patch Retry operation	
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Delete Retry operation    
+	log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Post Rollback operation
+    Log    Rollback a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	    
+Get Rollback operation	
+    Log    Trying to perform a GET. This method should not be implemented.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Put Rollback operation	
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Patch Rollback operation	
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Delete Rollback operation    
+	log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Post Fail operation
+    Log    mark as Failed a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	    
+Get Fail operation	
+    Log    Trying to perform a GET. This method should not be implemented.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Put Fail operation	
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Patch Fail operation	
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Delete Fail operation    
+	log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Post Create subscription
+    Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/lccnSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}				
+Post Create subscription - DUPLICATION
+    Log    Trying to create a subscription with an already created content
+    Pass Execution If    ${VNFM_DUPLICATION} == 0    VNFM is not permitting duplication. Skipping the test
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/lccnSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}		
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}			
+Post Create subscription - NO-DUPLICATION	
+    Log    Trying to create a subscription with an already created content
+    Pass Execution If    ${VNFM_DUPLICATION} == 1    VNFM permits duplication. Skipping the test
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/lccnSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Get subscriptions
+    Log    Get the list of active subscriptions
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Get subscriptions - filter
+    Log    Get the list of active subscriptions using a filter
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Get subscriptions - invalid filter  
+    Log    Get the list of active subscriptions using an invalid filter
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}   
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+PUT subscriptions
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions  	   
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+PATCH subscriptions
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions  	   
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+DELETE subscriptions
+    log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions  	   
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Post Create Individual subscription
+    log    Trying to perform a POST. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Get Individual subscription	
+    log    Trying to get information about an individual subscription
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Put Individual subscription	
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Patch Individual subscription	
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	    
+Delete Individual subscription
+    log    Try to delete an individual subscription
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+Put Notification subscription
+    log    Trying to perform a PUT. This method should not be implemented
+    Put    ${callback_endpoint}	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+Patch Notification subscription
+    log    Trying to perform a PATCH. This method should not be implemented
+    Patch    ${callback_endpoint}	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+Delete Notification subscription
+    log    Trying to perform a DELETE. This method should not be implemented
+    Delete    ${callback_endpoint}	
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+POST Operation occurrence
+    log    The POST method delivers a notification from the server to the client.
+    ${json}=	Get File	schemas/NsLcmOperationOccurrenceNotification.schema.json
+    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    Log  Creating mock request and response to handle NSLcmOperationOccurrenceNotification
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint} 
+POST Id creation
+    log    The POST method delivers a notification from the server to the client.
+    ${json}=	Get File	schemas/vnfIdentifierCreationNotification.schema.json
+    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    Log  Creating mock request and response to handle vnfLcmOperationOccurrenceNotification
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}
+POST Id deletion
+    log    The POST method delivers a notification from the server to the client.
+    ${json}=	Get File	schemas/vnfIdentifierCreationNotification.schema.json
+    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    Log  Creating mock request and response to handle vnfLcmOperationOccurrenceNotification
+    &{req}=  Create Mock Request Matcher	POST  ${callback_endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Log  Verifying results
+    Verify Mock Expectation  ${req}
+    Log  Cleaning the endpoint
+    Clear Requests  ${callback_endpoint}    
+GET test endpoint
+    log    The GET method allows the server to test the notification endpoint
+    &{req}=  Create Mock Request Matcher	GET  ${callback_endpoint}
+    &{rsp}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${req}  ${rsp}
+    Sleep  ${sleep_interval}
+    Verify Mock Expectation  ${req}
+    Clear Requests  ${callback_endpoint}    	    	

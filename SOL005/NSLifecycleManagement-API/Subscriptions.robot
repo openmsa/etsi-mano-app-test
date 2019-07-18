@@ -25,8 +25,8 @@ POST Create a new subscription
 POST Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.2
     ...    Test title: POST Create a new subscription - DUPLICATION
-    ...    Test objective: The objective is to test that POST method create a duplicate subscription
-    ...    Pre-conditions: none
+    ...    Test objective: The objective is to test that POST method create a duplicate subscription if  NFVO is permitting duplication
+    ...    Pre-conditions: a subscription have already to exist
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -39,7 +39,7 @@ POST Create a new Subscription - DUPLICATION
 POST Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
-    ...    Test objective: The objective is to test that POST method create a duplicate subscription
+    ...    Test objective: The objective is to test that POST method can't create a duplicate subscription if  NFVO is not permitting duplication
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

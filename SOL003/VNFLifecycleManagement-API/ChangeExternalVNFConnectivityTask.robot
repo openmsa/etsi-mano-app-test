@@ -10,7 +10,7 @@ Suite Setup    Check resource existance
 
 *** Test Cases ***
 POST Change external VNF connectivity 
-    [Documentation]    Test ID: 7.3.1.14.1
+    [Documentation]    Test ID: 7.3.1.10.1
     ...    Test title: POST Change external VNF connectivity
     ...    Test objective: The objective is to test that POST method trigger a change in VNF external connectivity
     ...    Pre-conditions: none
@@ -23,7 +23,7 @@ POST Change external VNF connectivity
     Check Operation Occurrence Id
     
 GET Change external VNF connectivity - Method not implemented
-    [Documentation]    Test ID: 7.3.1.14.2
+    [Documentation]    Test ID: 7.3.1.10.2
     ...    Test title: GET Change external VNF connectivity - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
@@ -35,7 +35,7 @@ GET Change external VNF connectivity - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PUT Change external VNF connectivity - Method not implemented
-    [Documentation]    Test ID: 7.3.1.14.3
+    [Documentation]    Test ID: 7.3.1.10.3
     ...    Test title: PUT Change external VNF connectivity - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -47,7 +47,7 @@ PUT Change external VNF connectivity - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Change external VNF connectivity - Method not implemented
-    [Documentation]    Test ID: 7.3.1.14.4
+    [Documentation]    Test ID: 7.3.1.10.4
     ...    Test title: PATCH Change external VNF connectivity - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -59,7 +59,7 @@ PATCH Change external VNF connectivity - Method not implemented
     Check HTTP Response Status Code Is    405
     
 DELETE Change external VNF connectivity - Method not implemented
-    [Documentation]    Test ID: 7.3.1.14.5
+    [Documentation]    Test ID: 7.3.1.10.5
     ...    Test title: DELETE Change external VNF connectivity - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none

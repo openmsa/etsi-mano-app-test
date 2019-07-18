@@ -20,17 +20,17 @@ Post Instantiate a nsInstance
     POST Instatiate nsInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
+    Check resource INSTANTIATED
 
 Post Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.3.2
     ...    Test title: Post Instantiate a nsInstance Conflict
-    ...    Test objective: The objective is to test that the operation can't be performed due to a conflict with the state of resource
-    ...    Pre-conditions: none
+    ...    Test objective: The objective is to test that the operation can't be performed due to a conflict with the state of resource (i.e. the resource is in INSTANTIATED state)
+    ...    Pre-conditions: resource is in INSTANTIATED state
     ...    Reference:  section 6.4.4.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS instance is not instantiated on the NFVO
-    [Setup]    Check resource instantiated
     POST Instatiate nsInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails

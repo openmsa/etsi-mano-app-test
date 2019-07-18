@@ -12,11 +12,11 @@ POST Heal a NSInstance
     [Documentation]    Test ID: 5.3.2.6.1
     ...    Test title: POST Heal a NSInstance
     ...    Test objective: The objective is to test that POST method allow to create a Heal NS instance
-    ...    Pre-conditions: none
+    ...    Pre-conditions: resource status have to be NOT_INSTANTIATED
     ...    Reference:  section 6.4.7.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The Heal NS instance is created on the NFVO
+    ...    Post-Conditions: none
     POST Heal NSInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
@@ -25,12 +25,11 @@ POST Heal a NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.6.2
     ...    Test title: POST Heal a NSInstance Conflict
     ...    Test objective: The objective is to test that POST method fail if NS instance is not in NOT_INSTANTIATE state 
-    ...    Pre-conditions: none
+    ...    Pre-conditions: resource status have not to be NOT_INSTANTIATED
     ...    Reference:  section 6.4.7.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The Heal NS instance is not created on the NFVO
-    [Setup]    Check resource not_instantiated
+    ...    Post-Conditions: none
     POST Heal NSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Header Contains    ${CONTENT_TYPE}
