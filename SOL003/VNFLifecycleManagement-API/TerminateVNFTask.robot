@@ -32,7 +32,6 @@ Terminate a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
-    [Setup]    Check resource not instantiated
     POST Terminate VNF  
     Check HTTP Response Status Code Is    202
     Check HTTP Response Body Json Schema Is    ProblemDetails

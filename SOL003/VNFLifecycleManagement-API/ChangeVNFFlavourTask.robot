@@ -6,7 +6,6 @@ Resource    VnfLcmMntOperationKeywords.robot
 Library     OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 POST Change deployment flavour of a vnfInstance
@@ -18,7 +17,7 @@ POST Change deployment flavour of a vnfInstance
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location should not be null  
-    POST Change VNF deployment flavour   ${vnfInstanceId}
+    POST Change VNF deployment flavour   
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
@@ -31,8 +30,7 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  
-    [Setup]    Check resource not instantiated   
-    POST Change VNF deployment flavour   ${instantiatedVnfInstanceId}
+    POST Change VNF deployment flavour   
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -47,8 +45,7 @@ Change deployment flavour of a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  
-    [Setup]    Check change flavour not supported
-    POST Change VNF deployment flavour   ${notFoundVnfInstanceId}
+    POST Change VNF deployment flavour  
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails
    

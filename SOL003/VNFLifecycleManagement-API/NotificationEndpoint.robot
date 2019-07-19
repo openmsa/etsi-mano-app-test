@@ -16,8 +16,7 @@ ${sleep_interval}    20s
 Deliver a notification - Operation Occurence
     [Documentation]    Test ID: 7.3.1.19.1
     ...    Test title: POST Deliver a notification - Operation Occurence
-    ...    Test objective: The objective is to test that POST method trigger a notification about lifecycle changes triggered by a VNF LCM
-operation occurrence
+    ...    Test objective: The objective is to test that POST method trigger a notification about lifecycle changes triggered by a VNF LCM operation occurrence
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.20.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

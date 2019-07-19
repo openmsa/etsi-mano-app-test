@@ -1,8 +1,5 @@
 *** Variables ***
 ${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
-${instantiatedVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f    #Change with an instantiated vnfInstanceID
-${notInstantiatedVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f    #Change with an instantiated vnfInstanceID
-${notFoundVnfInstanceId}    xxxxxxx-yyyyyyy-tttt-az98-uuuuuu    #Change with an instantiated vnfInstanceID
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
 ${callback_endpoint}    /notification

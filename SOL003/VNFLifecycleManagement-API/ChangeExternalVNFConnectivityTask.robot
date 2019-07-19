@@ -6,7 +6,6 @@ Resource    VnfLcmMntOperationKeywords.robot
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 POST Change external VNF connectivity 
