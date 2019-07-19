@@ -12,13 +12,13 @@ Upload VNF Package Content from URI
     [Documentation]    Test ID: 5.3.5.5.1
     ...    Test title: Upload VNF Package Content from URI
     ...    Test objective: The objective is to test the upload of a VNF Package Content from URI.
-    ...    Pre-conditions: One or more VNF Packages are onboarded in the NFVO.
+    ...    Pre-conditions: One or more VNF Packages are in onboarding state CREATED in the NFVO.
     ...    Reference: section 9.4.6.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
     Send POST Request to upload VNF Package Content from URI
-    Check HTTP Response Status Code Is    204
+    Check HTTP Response Status Code Is    202
     Check HTTP Response Body is Empty
 
 Upload VNF Package Content from URI with conflict due to onboarding state
