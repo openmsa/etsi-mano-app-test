@@ -18,7 +18,7 @@ POST Scale a vnfInstance
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    POST Scale vnfInstance   ${instantiatedVnfInstanceId}
+    POST Scale vnfInstance  
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
@@ -32,8 +32,7 @@ POST Scale a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    [Setup]    Check resource not instantiated
-    POST Scale vnfInstance   ${notInstantiatedVnfInstanceId}
+    POST Scale vnfInstance  
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
     
@@ -47,8 +46,7 @@ POST Scale a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    [Setup]    Check scale not supported
-    POST Scale vnfInstance    ${notFoundVnfInstanceId}
+    POST Scale vnfInstance  
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails 
    

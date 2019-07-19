@@ -19,7 +19,6 @@ Post Rollback operation task
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Depends on test    Check resource FAILED_TEMP
     Post Rollback operation
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
@@ -34,7 +33,6 @@ Post Rollback operation task Conflict (Not-FAILED_TEMP)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Depends on test failure  Check resource FAILED_TEMP
     Post Rollback operation
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -50,7 +48,6 @@ Post Rollback operation task Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    [Setup]    Check Rollback not supported
     Post Rollback operation
     Check HTTP Response Status Code Is    404
 

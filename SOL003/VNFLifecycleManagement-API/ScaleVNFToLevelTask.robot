@@ -6,7 +6,6 @@ Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 POST Scale a vnfInstance to level
@@ -18,7 +17,7 @@ POST Scale a vnfInstance to level
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:
-    POST Scale vnfInstance to level       ${instantiatedVnfInstanceId}     
+    POST Scale vnfInstance to level     
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
@@ -32,8 +31,7 @@ POST Scale a vnfInstance to level Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:
-    [Setup]    Check resource not instantiated
-    POST Scale vnfInstance to level     ${notInstantiatedInstanceId}
+    POST Scale vnfInstance to level   
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
 
@@ -48,8 +46,7 @@ Scale a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:
-    [Setup]    Check scale to level not supported
-    POST Scale vnfInstance to level     ${notFoundInstanceId}
+    POST Scale vnfInstance to level    
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
    

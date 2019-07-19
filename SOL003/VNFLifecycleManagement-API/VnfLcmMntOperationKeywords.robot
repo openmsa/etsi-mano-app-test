@@ -306,40 +306,39 @@ DELETE Change External VNF Connectivity
 	Set Global Variable    @{response}    ${outputResponse}  
 	
 POST Change VNF deployment flavour
-    [Arguments]    ${instanceId}
     Log    Trying to change the deployment flavour of a VNF instance.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/changeVnfFlavourRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId}/change_flavour    ${body} 
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body} 
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}  	 
 GET Change External VNF Connectivity
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId}/change_flavour 	
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
 PUT Change External VNF Connectivity
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId}/change_flavour 	
+    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
 PATCH Change External VNF Connectivity
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId}/change_flavour   	 	
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour   	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
 DELETE Change External VNF Connectivity
     Log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId}/change_flavour   	 	
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour   	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	 	
@@ -538,13 +537,12 @@ DELETE Scale vnfInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 	
 POST Scale vnfInstance to level
-    [Arguments]    ${instanceId}
     Log    Trying to scale a vnf Instance to level
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId}/scale_to_level    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 GET Scale vnfInstance to level
