@@ -19,7 +19,7 @@ Post Fail operation task
     ...    Post-Conditions: none 
 	POST Fail operation task
 	Check HTTP Response Status Code Is    202
-	Check resource not   FAILED_TEMP
+	Check resource is finally failed
 	
 	
 Post Fail operation task Not Found

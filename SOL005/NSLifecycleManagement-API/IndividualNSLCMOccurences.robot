@@ -19,9 +19,9 @@ Post Individual NS LCM occurences - Method not implemented
 	POST Individual NS LCM OP Occurence
 	Check HTTP Response Status Code Is    405
 
-Get stauts information about Individual NS LCM OP OCC   
+Get status information about Individual NS LCM OP OCC   
     [Documentation]    Test ID: 5.3.2.9.2
-    ...    Test title: Get stauts information about Individual NS LCM OP OCC
+    ...    Test title: Get status information about Individual NS LCM OP OCC
     ...    Test objective: The objective is to test that GET method return the LCM occurrence of the NS
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.2 - SOL005 v2.4.1
@@ -30,12 +30,11 @@ Get stauts information about Individual NS LCM OP OCC
     ...    Post-Conditions: none
 	GET Individual NS LCN OP Occurence
 	Check HTTP Response Status Code Is    200
-	Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
 	Check HTTP Response Body Json Schema Is    NsLcmOpOcc
 	
-PUT stauts information about Individual NS LCM OP OCC - Method not implemented
+PUT status information about Individual NS LCM OP OCC - Method not implemented
      [Documentation]    Test ID: 5.3.2.9.3
-    ...    Test title: PUT stauts information about Individual NS LCM OP OCC - Method not implemented
+    ...    Test title: PUT status information about Individual NS LCM OP OCC - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.3 - SOL005 v2.4.1
@@ -45,9 +44,9 @@ PUT stauts information about Individual NS LCM OP OCC - Method not implemented
     PUT Individual NS LCM OP Occurence
     Check HTTP Response Status Code Is    405
 
-PATCH stauts information about Individual NS LCM OP OCC - Method not implemented
+PATCH status information about Individual NS LCM OP OCC - Method not implemented
      [Documentation]    Test ID: 5.3.2.9.4
-    ...    Test title: PATCH stauts information about Individual NS LCM OP OCC - Method not implemented
+    ...    Test title: PATCH status information about Individual NS LCM OP OCC - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.4 - SOL005 v2.4.1
@@ -57,9 +56,9 @@ PATCH stauts information about Individual NS LCM OP OCC - Method not implemented
     PATCH Individual NS LCM OP Occurence
     Check HTTP Response Status Code Is    405
 
-DELETE stauts information about Individual NS LCM OP OCC - Method not implemented
+DELETE status information about Individual NS LCM OP OCC - Method not implemented
          [Documentation]    Test ID: 5.3.2.9.5
-    ...    Test title: DELETE stauts information about Individual NS LCM OP OCC - Method not implemented
+    ...    Test title: DELETE status information about Individual NS LCM OP OCC - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.5 - SOL005 v2.4.1

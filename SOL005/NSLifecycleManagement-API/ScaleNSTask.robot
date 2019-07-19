@@ -20,7 +20,8 @@ POST Scale a nsInstance
     POST scale nsInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
-
+    Check resource existance
+    
 POST Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.4.2
     ...    Test title: POST Instantiate a nsInstance Conflict
