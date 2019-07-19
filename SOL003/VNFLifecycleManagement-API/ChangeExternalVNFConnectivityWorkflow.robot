@@ -16,11 +16,11 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Operate a VNF Instance
-    [Documentation]    Test ID: 7.3.5.4.1
+    [Documentation]    Test ID: 7.3.1.24
     ...    Test title: Change the external connectivity of a VNF instance
     ...    Test objective: The objective is to change the external connectivity of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.a.b.c)
-    ...    Reference: section 5.3.3 - SOL003 v2.4.1
+    ...    Reference: section 5.4.11 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM. Change the external connectivity of a VNF instance is supported for the VNF (as capability in the VNFD)
     ...    Post-Conditions: VNF instance still in INSTANTIATED state and external connectivity of the VNF is changed

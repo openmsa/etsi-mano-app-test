@@ -75,11 +75,11 @@ PUT Scale VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Scale VNFInstance - Method not implemented
-    [Documentation]    Test ID: 7.3.1.4.4
+    [Documentation]    Test ID: 7.3.1.4.6
     ...    Test title: PATCH Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: section 5.4.5.3.2 - SOL003 v2.4.1
+    ...    Reference: section 5.4.5.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -87,11 +87,11 @@ PATCH Scale VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
     
 DELETE Scale VNFInstance - Method not implemented
-    [Documentation]    Test ID: 7.3.1.4.4
+    [Documentation]    Test ID: 7.3.1.4.7
     ...    Test title: DELETE Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: section 5.4.5.3.2 - SOL003 v2.4.1
+    ...    Reference: section 5.4.5.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 

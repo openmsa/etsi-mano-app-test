@@ -5,7 +5,6 @@ Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 POST Terminate a NSInstance
@@ -20,7 +19,7 @@ POST Terminate a NSInstance
     POST Terminate NSInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
-    Check resource     NOT_INSTANTIATED
+    Check resource not_instantiated
     
 POST Terminate a NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.7.2

@@ -10,13 +10,11 @@ Library    BuiltIn
 Library    Collections
 Library    JSONLibrary
 Library    Process
-Suite Setup    Initialize System
-Suite Teardown    Terminate All Processes    kill=true
 
 
 *** Test Cases ***
 Terminate a VNF Instance
-    [Documentation]    Test ID: 5.x.y.x
+    [Documentation]    Test ID: 7.3.1.33
     ...    Test title: Terminate a VNF Instance
     ...    Test objective: The objective is to terminate a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.a.b.c)
