@@ -18,7 +18,7 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 
 *** Test Cases ***
 VNF Instantiation
-    [Documentation]    Test ID: 5.4.4.1
+    [Documentation]    Test ID: 7.3.1.23
     ...    Test title: VNF Instantiation worflow
     ...    Test objective: The objective is to test the workflow for the instantiation of a VNF instance
     ...    Pre-conditions: VNF instance resources is already created (Test ID: 5.4.2.1). NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)

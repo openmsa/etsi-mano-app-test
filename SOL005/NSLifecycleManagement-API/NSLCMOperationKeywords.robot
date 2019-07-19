@@ -114,6 +114,27 @@ Check resource not_instantiated
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
     String    response body instantiationState    NOT_INSTANTIATED
 
+Check resource has a temporary failure
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    String    response body instantiationState    FAILED_TEMP 
+
+Check resource has not a temporary failure
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    String    response body instantiationState  !=  FAILED_TEMP
+
+Check resource is finally failed
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    String    response body instantiationState    FINALLY_FAILED 
+
 Launch another LCM operation
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
