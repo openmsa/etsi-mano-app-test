@@ -6,7 +6,6 @@ Library     OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 POST Heal a vnfInstance
@@ -32,7 +31,6 @@ Heal a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
-    [Setup]    Check resource not instantiated
     POST Terminate VNF
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
@@ -49,7 +47,6 @@ Heal a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
-    [Setup]    Check heal not supported
     POST Terminate VNF
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails 

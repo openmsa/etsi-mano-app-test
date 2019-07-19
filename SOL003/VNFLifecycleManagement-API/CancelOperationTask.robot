@@ -6,21 +6,20 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Documentation    This task resource represents the "Cancel operation" operation. The client can use this resource to cancel an ongoing VNF lifecycle operation.
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Cancel operation task
     [Documentation]    Test ID: 7.3.1.16.1
     ...    Test title: POST Cancel operation task
     ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the related "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
-    ...    Pre-conditions: none
+    ...    Pre-conditions: the related "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
     ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location should not be null    
     POST Cancel operation task
     Check HTTP Response Status Code Is    202
+    Check resource FAILED_TEMP
     
 Post Cancel operation task Conflict
     [Documentation]    Test ID: 7.3.1.16.2
@@ -31,7 +30,6 @@ Post Cancel operation task Conflict
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location should not be null  
-    Depends on test  Check resource FAILED_TEMP
     POST Cancel operation task
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -40,15 +38,15 @@ Post Cancel operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
      [Documentation]    Test ID: 7.3.1.16.2
     ...    Test title: POST Cancel operation task
-    ...    Test objective: The objective is to test that POST method cannot cancel a VNF lifecycle operation because the operation is not supported
+    ...    Test objective: The objective is to test that POST method cannot cancel a VNF lifecycle operation because the resource is not found
     ...    Pre-conditions: 
     ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location should not be null  
-    [Setup]    Check Fail not supported
     POST Cancel operation task
     Check HTTP Response Status Code Is    404
+    
 GET Cancel operation task - Method not implemented
     [Documentation]    Test ID: 7.3.1.16.3
     ...    Test title: GET Cancel operation task - Method not implemented

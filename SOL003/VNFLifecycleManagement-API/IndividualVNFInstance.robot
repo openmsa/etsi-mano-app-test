@@ -8,9 +8,6 @@ Library    OperatingSystem
 Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Documentation    This resource represents an individual VNF instance. The client can use this resource to modify and delete the 
-...    underlying VNF instance, and to read information about the VNF instance.
-Suite Setup    Check resource existance
 
 *** Variables ***
 ${original_etag}    1234
@@ -76,7 +73,6 @@ PATCH Individual VNFInstance Precondition failed
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    Depends On Test    PATCH Individual VNFInstance    # If the previous test scceeded, it means that Etag has been modified
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    412
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -90,8 +86,6 @@ PATCH Individual VNFInstance Conflict
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    # TODO: Need to set the pre-condition of the test
-    [Setup]    Launch another LCM operation
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -118,8 +112,6 @@ DELETE Individual VNFInstance Conflict
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    # TODO: Need to set the pre-condition of the test. The VnfInstance shall in INSTANTIATED state
-    [Setup]    Check resource instantiated
     DELETE individual vnfInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails

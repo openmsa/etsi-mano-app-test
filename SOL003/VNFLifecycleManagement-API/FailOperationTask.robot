@@ -6,11 +6,6 @@ Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
-Documentation    This task resource represents the "Fail operation" operation. 
-...    The client can use this resource to mark a VNF lifecycle management operation occurrence as "finally failed", 
-...    i.e. change the state of the related VNF LCM operation occurrence resource to "FAILED", if it is not assumed that a subsequent retry or rollback will succeed. 
-...    Once the operation is marked as "finally failed", it cannot be retried or rolled back anymore.
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Fail operation task  
@@ -22,7 +17,6 @@ Post Fail operation task
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Depends on test    Check resource FAILED_TEMP
     Post Fail operation
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
@@ -37,7 +31,6 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none     
-    Depends on test failure  Check resource FAILED_TEMP
     Post Fail operation
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -52,7 +45,6 @@ Post Fail operation task Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  
-    [Setup]    Check Fail not supported
     Post Fail operation
     Check HTTP Response Status Code Is    404
 
