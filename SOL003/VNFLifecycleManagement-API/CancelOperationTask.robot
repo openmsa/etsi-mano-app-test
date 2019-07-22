@@ -19,7 +19,7 @@ Post Cancel operation task
     ...    Post-Conditions: in response header Location should not be null    
     POST Cancel operation task
     Check HTTP Response Status Code Is    202
-    Check resource FAILED_TEMP
+    Check resource has a temporary failure
     
 Post Cancel operation task Conflict
     [Documentation]    Test ID: 7.3.1.16.2
@@ -111,7 +111,6 @@ Check Fail not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     # how to check if Fail is not supported?
-    
 
 Check resource FAILED_TEMP
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
+Resource    VnfLcmOperationKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 Library    OperatingSystem
 Library    JSONLibrary
@@ -8,85 +9,92 @@ Suite Setup    Check resource existance
 
 *** Test Cases ***
 Scale a vnfInstance
-    [Documentation]    Instantiate VNF The POST method instantiates a VNF instance.
-    Log    Trying to Instantiate a vnf Instance
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/scaleVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
-    Integer    response status    202
-    Log    Status code validated
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.4.1
+    ...    Test title: POST Scale a vnfInstance
+    ...    Test objective: The objective is to scale a VNF instance
+    ...    Pre-conditions: none
+    ...    Reference: section 5.4.5.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    POST Scale vnfInstance  
+    Check HTTP Response Status Code Is    202
+    Check Operation Occurrence Id
 
 Scale a vnfInstance Conflict (Not-Instantiated)
-    # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
-    [Documentation]    Conflict. 
-    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, or that another lifecycle management operation is ongoing. 
-    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    [Setup]    Check resource not instantiated    ${vnfInstanceId}
-    Log    Trying to Scale a vnf Instance
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/scaleVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
-    Integer    response status    409
-    Log    Status code validated
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.4.2
+    ...    Test title: POST Scale a vnfInstance Conflict (Not-Instantiated)
+    ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Pre-conditions:  VNF instance resource is in NOT-INSTANTIATED state
+    ...    Reference: section 5.4.5.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    POST Scale vnfInstance  
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is    ProblemDetails 
 
     
 Scale a vnfInstance Not Found
-    # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
-    [Documentation]    Not Found
-    ...    Error: The API producer did not find a current representation for the target resource or is not willing to disclose that one exists. 
-    ...    Specifically in case of this task resource, the response code 404 shall also returned if the task is not supported for the VNF instance represented by the parent resource, which means that the task resource consequently does not exist. 
-    ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the �detail� attribute shall convey more information about the error.
-    [Setup]    Check scale not supported
-    Log    Trying to scale a vnf Instance, not exist
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/scaleVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
-    Integer    response status    404
-    Log    Status code validated
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.4.3
+    ...    Test title: POST Scale a vnfInstance Not Found
+    ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.5.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    POST Scale vnfInstance  
+    Check HTTP Response Status Code Is    404
+    Check HTTP Response Body Json Schema Is    ProblemDetails 
    
 GET Scale VNFInstance - Method not implemented
-    log    Trying to perform a GET. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.4.4
+    ...    Test title: GET Scale VNFInstance - Method not implemented
+    ...    Test objective: The objective is to verify that the method is not implemented
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.5.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET Scale vnfInstance
+    Check HTTP Response Status Code Is    405
 
 PUT Scale VNFInstance - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.4.5
+    ...    Test title: PUT Scale VNFInstance - Method not implemented
+    ...    Test objective: The objective is to verify that the method is not implemented
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.5.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    PUT Scale vnfInstance
+    Check HTTP Response Status Code Is    405
 
 PATCH Scale VNFInstance - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
-    Log    Validate Status code
-    Integer    response status    405
+     [Documentation]    Test ID: 6.3.5.4.6
+    ...    Test title: PATCH Scale VNFInstance - Method not implemented
+    ...    Test objective: The objective is to verify that the method is not implemented
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.5.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    PATCH Scale vnfInstance
+    Check HTTP Response Status Code Is    405
     
 DELETE Scale VNFInstance - Method not implemented
-    log    Trying to perform a DELETE. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.4.7
+    ...    Test title: DELETE Scale VNFInstance - Method not implemented
+    ...    Test objective: The objective is to verify that the method is not implemented
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.5.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    DELETE Scale vnfInstance
+    Check HTTP Response Status Code Is    405
 
 *** Keywords ***
 Check resource existance

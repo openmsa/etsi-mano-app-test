@@ -7,7 +7,6 @@ Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
-Suite Setup    Check resource existance
 
 
 *** Test Cases ***

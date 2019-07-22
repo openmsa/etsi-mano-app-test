@@ -39,7 +39,7 @@ POST Scale a vnfInstance to level Conflict (Not-Instantiated)
 Scale a vnfInstance Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 7.3.1.5.3
-    ...    Test title: POST Scale a vnfInstance to level
+    ...    Test title: Scale a vnfInstance Not Found
     ...    Test objective: The objective is to verify that the operation cannot be executed , because the VNF instance resource can't be found.
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: section 5.4.6.3.1 - SOL003 v2.4.1

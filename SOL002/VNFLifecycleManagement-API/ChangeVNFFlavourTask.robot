@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
+Resource    VnfLcmOperationKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 Library     OperatingSystem
 Library    JSONLibrary
@@ -8,87 +9,93 @@ Suite Setup    Check resource existance
 
 *** Test Cases ***
 Change deployment flavour of a vnfInstance
-    [Documentation]    Changes the deployment flavour of a VNF instance..
-    Log    Trying to change the deployment flavour of a VNF instance.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
-    Integer    response status    202
-    Log    Status code validated
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.6.1
+    ...    Test title: POST Change deployment flavour of a vnfInstance
+    ...    Test objective: The objective is to test that POST method trigger a change in VNF deployment flavour
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: in response header Location should not be null  
+    POST Change VNF deployment flavour   
+    Check HTTP Response Status Code Is    202
+    Check Operation Occurrence Id
 
 Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
-    # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
-    [Documentation]    Conflict. 
-    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that the VNF instance resource is in NOT-INSTANTIATED state, 
-    ...    or that another lifecycle management operation is ongoing. 
-    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    [Setup]    Check resource not instantiated    ${vnfInstanceId}
-    Log    Trying to change the deployment flavour of a VNF instance.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
-    Integer    response status    409
-    Log    Status code validated
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.6.2
+    ...    Test title: POST Change deployment flavour of a vnfInstance
+    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. 
+    ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
+    ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none  
+    POST Change VNF deployment flavour   
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is    ProblemDetails
 
     
 Change deployment flavour of a vnfInstance Not Found
-    # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
-    [Documentation]    Not Found
-    ...    Error: The API producer did not find a current representation for the target resource or is not willing to disclose that one exists. 
-    ...    Specifically in case of this task resource, the response code 404 shall also returned if the task is not supported for the VNF instance represented by the parent resource, which means that the task resource consequently does not exist. 
-    ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the �detail� attribute shall convey more information about the error.
-    [Setup]    Check change flavour not supported
-    Log    Trying to change the deployment flavour of a VNF instance, not exist
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body}
-    Integer    response status    404
-    Log    Status code validated
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.6.3
+    ...    Test title: POST Change deployment flavour of a vnfInstance
+    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
+    ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
+    ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none  
+    POST Change VNF deployment flavour  
+    Check HTTP Response Status Code Is    404
+    Check HTTP Response Body Json Schema Is    ProblemDetails
    
     
 GET Change deployment flavour VNFInstance - Method not implemented
-    log    Trying to perform a GET. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.16.4
+    ...    Test title: GET Cancel operation task - Method not implemented
+    ...    Test objective: The objective is to test that GET method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.7.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    GET Change VNF deployment flavour   
+    Check HTTP Response Status Code Is    405
 
 PUT Change deployment flavour VNFInstance - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.16.5
+    ...    Test title: PUT Cancel operation task - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.7.3.3 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    PUT Change VNF deployment flavour   
+    Check HTTP Response Status Code Is    405
 
 PATCH Change deployment flavour VNFInstance - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.16.6
+    ...    Test title: PATCH Cancel operation task - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.7.3.4 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    PATCH Change VNF deployment flavour   
+    Check HTTP Response Status Code Is    405
     
 DELETE Change deployment flavour VNFInstance - Method not implemented
-    log    Trying to perform a DELETE. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.16.7
+    ...    Test title: DELETE Cancel operation task - Method not implemented
+    ...    Test objective: The objective is to test that DELETE method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.7.3.5 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    DELETE Change VNF deployment flavour   
+    Check HTTP Response Status Code Is    405
 
 *** Keywords ***
 Check resource existance

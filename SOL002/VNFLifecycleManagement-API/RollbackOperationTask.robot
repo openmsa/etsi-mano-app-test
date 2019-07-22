@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
+Resource    VnfLcmOperationKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 Library    DependencyLibrary
 Library    JSONLibrary
@@ -9,83 +10,93 @@ Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Rollback operation task  
-    [Documentation]    The POST method initiates rolling back a VNF lifecycle operation if that operation has experienced a temporary failure, 
-    ...    i.e. the related �VNF LCM operation occurrence� resource is in �FAILED_TEMP� state.
-    Depends on test    Check resource FAILED_TEMP
-    Log    Rollback a VNF lifecycle operation if that operation has experienced a temporary failure
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Execute Query and validate response
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
-    Log    Validate Status code
-    Integer    response status    202
-    ${headers}=    Output    response headers
-    Should Contain    ${headers}    Location
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.14.1
+    ...    Test title: Post Rollback operation task
+    ...    Test objective: The objective is to test that POST method The POST method initiates rollback a VNF lifecycle operation if that operation has experienced a temporary failure
+    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
+    ...    Reference:  section 5.4.15.3.1 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Post Rollback operation
+    Check HTTP Response Status Code Is    202
+    Check Operation Occurrence Id
 
 Post Rollback operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
-    [Documentation]    Conflict. 
-    ...    The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
-    ...    Typically, this is due to the fact that the VNF instance resource is not in FAILED_TEMP state, 
-    ...    or another error handling action is starting, such as retry or fail. 
-    ...    The response body shall contain a ProblemDetails structure, in which the �detail� attribute should convey more information about the error.
-    Depends on test failure  Check resource FAILED_TEMP
-    Log    Rollback an operation
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
-    Integer    response status    409
-    Log    Status code validated
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.14.2
+    ...    Test title: Post Rollback operation task
+    ...    Test objective: The objective is to test that POST method The POST method initiates rollback a VNF lifecycle operation if that operation has experienced a temporary failure
+    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
+    ...    Reference:  section 5.4.15.3.1 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Post Rollback operation
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is    ProblemDetails
 
 
 Post Rollback operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
-    [Documentation]    Not Found
-    ...    Error: The API producer did not find a current representation for the target resource or is not willing to disclose that one exists. 
-    ...    Specifically in case of this task resource, the response code 404 shall also be returned 
-    ...    if the task is not supported for the VNF LCM operation occurrence represented by the parent resource, 
-    ...    which means that the task resource consequently does not exist. 
-    ...    In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which the �detail� attribute shall convey more information about the error.
-    [Setup]    Check Rollback not supported
-    log    Rollback an operation
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
-    Log    Validate Status code
-    Output    response
-    Integer    response status    409
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
+    [Documentation]    Test ID: 6.3.5.14.3
+    ...    Test title: Post Rollback operation task
+    ...    Test objective: The objective is to test that the retry operation cannot be executed because the operation is not supported
+    ...    Pre-conditions: 
+    ...    Reference:  section 5.4.15.3.1 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Post Rollback operation
+    Check HTTP Response Status Code Is    404
 
 GET Rollback operation task - Method not implemented
-    log    Trying to perform a GET. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/rollback    
-    Log    Validate Status code
-    Integer    response status    405
-
+    [Documentation]    Test ID: 6.3.5.14.4
+    ...    Test title: GET Retry operation task- Method not implemented
+    ...    Test objective: The objective is to verify that the method is not implemented 
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.15.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: 
+    Get Rollback operation
+    Check HTTP Response Status Code Is    405
+    
 PUT Rollback operation task - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/rollback    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.14.5
+    ...    Test title: PUT Retry operation task- Method not implemented
+    ...    Test objective: The objective is to verify that the method is not implemented 
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.15.3.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: 
+    Put Rollback operation
+    Check HTTP Response Status Code Is    405
 
 PATCH Rollback operation task - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/rollback    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.14.6
+    ...    Test title: PATCH Retry operation task- Method not implemented
+    ...    Test objective: The objective is to verify that the method is not implemented 
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.15.3.4 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: 
+    Patch Rollback operation
+    Check HTTP Response Status Code Is    405
     
 DELETE Rollback operation task - Method not implemented
-    log    Trying to perform a DELETE. This method should not be implemented
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfInstanceId}/rollback    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.14.7
+    ...    Test title: DELETE Retry operation task- Method not implemented
+    ...    Test objective: The objective is to verify that the method is not implemented 
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.15.3.5 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: 
+    Delete Rollback operation
+    Check HTTP Response Status Code Is    405
 
 *** Keywords ***
 Check resource existance

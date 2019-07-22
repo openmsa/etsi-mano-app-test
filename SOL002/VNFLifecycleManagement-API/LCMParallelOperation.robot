@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
+Resource    VnfLcmOperationKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 Library    OperatingSystem
 Library    JSONLibrary

@@ -24,7 +24,6 @@ POST Operate a vnfInstance
     Check Operation Occurrence Id
 
 POST Operate a vnfInstance Conflict (Not-Instantiated)
-    # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 7.3.1.9.2
     ...    Test title: POST Operate a vnfInstance
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
@@ -39,7 +38,6 @@ POST Operate a vnfInstance Conflict (Not-Instantiated)
 
     
 POST Operate a vnfInstance Not Found
-    # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 7.3.1.9.3
     ...    Test title: POST Operate a vnfInstance
     ...    Test objective: The objective is to test that the operation cannot be executed currently, because the resource is not existing
