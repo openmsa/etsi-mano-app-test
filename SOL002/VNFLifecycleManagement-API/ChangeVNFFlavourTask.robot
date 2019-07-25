@@ -16,7 +16,7 @@ Change deployment flavour of a vnfInstance
     ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null  
+    ...    Post-Conditions: in response header Location shall not be null  
     POST Change VNF deployment flavour   
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id

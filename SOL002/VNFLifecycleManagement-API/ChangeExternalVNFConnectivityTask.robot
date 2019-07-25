@@ -16,7 +16,7 @@ POST Change external VNF connectivity
     ...    Reference:  section 5.4.11.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null         
+    ...    Post-Conditions: in response header Location shall not be null         
     POST Change External VNF Connectivity
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id

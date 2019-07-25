@@ -15,7 +15,7 @@ POST Create a new subscription
     ...    Reference:  section 5.4.18.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null
+    ...    Post-Conditions: in response header Location shall not be null
     ...    POST Cancel operation task
     Post Create subscription
     Check HTTP Response Status Code Is    201
@@ -28,7 +28,7 @@ Create a new Subscription - DUPLICATION
     ...    Reference:  section 5.4.18.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null
+    ...    Post-Conditions: in response header Location shall not be null
     ...    POST Cancel operation task
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
@@ -42,7 +42,7 @@ Create a new Subscription - NO-DUPLICATION
     ...    Reference:  section 5.4.18.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null
+    ...    Post-Conditions: in response header Location shall not be null
     ...    POST Cancel operation task
     Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303

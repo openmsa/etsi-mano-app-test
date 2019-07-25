@@ -17,7 +17,7 @@ Post Cancel operation task
     ...    Reference:  section 5.4.17.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null    
+    ...    Post-Conditions: none    
     POST Cancel operation task
     Check HTTP Response Status Code Is    202
     Check resource has a temporary failure
@@ -30,7 +30,7 @@ Post Cancel operation task Conflict
     ...    Reference:  section 5.4.17.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null  
+    ...    Post-Conditions: none  
     POST Cancel operation task
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -44,7 +44,7 @@ Post Cancel operation task Not Found
     ...    Reference:  section 5.4.17.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null  
+    ...    Post-Conditions: none  
     POST Cancel operation task
     Check HTTP Response Status Code Is    404
     
