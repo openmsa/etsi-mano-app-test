@@ -11,15 +11,15 @@ Library    JSONSchemaLibrary    schemas/
 Post Cancel operation task
     [Documentation]    Test ID: 7.3.1.16.1
     ...    Test title: POST Cancel operation task
-    ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the related "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
+    ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
     ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null    
+    ...    Post-Conditions: VNF instance status equal to FAILED_TEMP     
     POST Cancel operation task
     Check HTTP Response Status Code Is    202
-    Check resource FAILED_TEMP
+    Check resource has a temporary failure
     
 Post Cancel operation task Conflict
     [Documentation]    Test ID: 7.3.1.16.2
@@ -29,7 +29,7 @@ Post Cancel operation task Conflict
     ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null  
+    ...    Post-Conditions: none
     POST Cancel operation task
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -43,7 +43,7 @@ Post Cancel operation task Not Found
     ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null  
+    ...    Post-Conditions: none
     POST Cancel operation task
     Check HTTP Response Status Code Is    404
     
@@ -111,7 +111,6 @@ Check Fail not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     # how to check if Fail is not supported?
-    
 
 Check resource FAILED_TEMP
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

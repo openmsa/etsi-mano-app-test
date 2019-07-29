@@ -11,7 +11,7 @@ Suite Setup    Check resource existance
 POST Update a NSInstance
     [Documentation]    Test ID: 5.3.2.5.1
     ...    Test title: POST Update a NSInstance
-    ...    Test objective: The objective is to test that POST method allow to update a Scale NS instance
+    ...    Test objective: The objective is to test that POST method update a Scale NS instance
     ...    Pre-conditions: an existing Scale Instance 
     ...    Reference:  section 6.4.6.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -54,7 +54,7 @@ PUT Update NSInstance - Method not implemented
     ...    Reference:  section 6.4.6.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: The Scale NS instance is not updated on the NFVO
     PUT Update NSInstance
     Check HTTP Response Status Code Is    405
     
@@ -66,7 +66,7 @@ PATCH Update NSInstance - Method not implemented
     ...    Reference:  section 6.4.6.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: The Scale NS instance is not updated on the NFVO
     PATCH Update NSInstance
     Check HTTP Response Status Code Is    405
 
@@ -78,7 +78,7 @@ DELETE Update NSInstance - Method not implemented
     ...    Reference:  section 6.4.6.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: The Scale NS instance is not deleted on the NFVO
     DELETE Update NSInstance
     Check HTTP Response Status Code Is    405
     

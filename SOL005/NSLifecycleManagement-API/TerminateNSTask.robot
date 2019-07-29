@@ -10,7 +10,7 @@ Library    JSONSchemaLibrary    schemas/
 POST Terminate a NSInstance
     [Documentation]    Test ID: 5.3.2.7.1
     ...    Test title: POST Terminate a NSInstance
-    ...    Test objective: The objective is to test that POST method allow to terminate the NS
+    ...    Test objective: The objective is to test that POST method terminate the NS
     ...    Pre-conditions: NS instance in INSTANTIATED state
     ...    Reference:  section 6.4.8.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -29,7 +29,7 @@ POST Terminate a NSInstance Conflict
     ...    Reference:  section 6.4.8.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: NS instance is in NOT_INSTANTIATED state
     POST Terminate NSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -54,7 +54,7 @@ PUT Terminate NSInstance - Method not implemented
     ...    Reference:  section 6.4.8.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: resurce state not modified
     PUT Terminate NSInstance
     Check HTTP Response Status Code Is    405
     
@@ -66,7 +66,7 @@ PATCH Terminate NSInstance - Method not implemented
     ...    Reference:  section 6.4.8.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: resurce state not modified
     PATCH Terminate NSInstance
     Check HTTP Response Status Code Is    405
 
@@ -78,7 +78,7 @@ DELETE Terminate NSInstance - Method not implemented
     ...    Reference:  section 6.4.8.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: resurce state not modified
     DELETE Terminate NSInstance
     Check HTTP Response Status Code Is    405
     

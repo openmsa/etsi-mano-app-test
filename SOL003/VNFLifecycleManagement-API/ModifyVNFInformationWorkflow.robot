@@ -16,10 +16,10 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Modify info of a VNF Instance
-    [Documentation]    Test ID: 5.x.y.x
+    [Documentation]    Test ID: 7.3.1.24
     ...    Test title: Update information about a VNF instance
     ...    Test objective: The objective is to update information about a VNF instance.
-    ...    Pre-conditions: VNF instance is created (Test ID: 5.a.b.c)
+    ...    Pre-conditions: VNF instance is created 
     ...    Reference: section 5.3.6 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM. Update information of a VNF instance is supported for the VNF (as capability in the VNFD)

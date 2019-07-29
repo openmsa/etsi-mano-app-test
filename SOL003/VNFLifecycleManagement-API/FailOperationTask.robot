@@ -12,7 +12,7 @@ Post Fail operation task
     [Documentation]    Test ID: 7.3.1.15.1
     ...    Test title: Post Fail operation task
     ...    Test objective: The objective is to test that POST method mark as "finally failed" a VNF lifecycle operation if that operation has experienced a temporary failure
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.16.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -26,7 +26,7 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
     [Documentation]    Test ID: 7.3.1.15.2
     ...    Test title: Post Fail operation task
     ...    Test objective: The objective is to test that POST method cannot mark as "finally failed" a VNF lifecycle operation if that operation has experienced a temporary failure
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.16.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -113,7 +113,3 @@ Check Fail not supported
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     # how to check if Fail is not supported?
 
-Check resource FAILED_TEMP
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId} 
-    String    response body operationState    FAILED_TEMP

@@ -26,7 +26,7 @@ POST Scale a vnfInstance Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 7.3.1.4.2
     ...    Test title: POST Scale a vnfInstance Conflict (Not-Instantiated)
-    ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. (VNF instance resource is in NOT-INSTANTIATED state.) 
     ...    Pre-conditions:  VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: section 5.4.5.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -40,7 +40,7 @@ POST Scale a vnfInstance Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
      [Documentation]    Test ID: 7.3.1.4.3
     ...    Test title: POST Scale a vnfInstance Not Found
-    ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Test objective: The objective is to verify that the operation cannot be executed currently, because the VNF instance resource is not found. 
     ...    Pre-conditions:  
     ...    Reference: section 5.4.5.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM

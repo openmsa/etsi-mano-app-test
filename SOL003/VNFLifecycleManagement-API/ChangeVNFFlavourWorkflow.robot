@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Change VNF External Connectivity
-    [Documentation]    Test ID: 5.4.7.1
+    [Documentation]    Test ID: 7.3.1.28
     ...    Test title: Change VNF Flavour Workflow
     ...    Test objective: The objective is to test the workflow for a change flavour of an existing VNF instance
     ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.4.4.1). NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)

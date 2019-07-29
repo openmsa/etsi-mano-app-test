@@ -14,8 +14,8 @@ Suite Setup    Check resource existance
 Post Retry operation task  
     [Documentation]    Test ID: 7.3.1.13.1
     ...    Test title: Post Retry operation task
-    ...    Test objective: The objective is to test that POST method The POST method initiates retrying a VNF lifecycle operation if that operation has experienced a temporary failure
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
+    ...    Test objective: The objective is to test that POST method The POST method initiates retrying a VNF lifecycle operation if the operation has experienced a temporary failure
+    ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.14.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -29,7 +29,7 @@ Post Retry operation task Conflict (Not-FAILED_TEMP)
     [Documentation]    Test ID: 7.3.1.13.2
     ...    Test title: Post Retry operation task
     ...    Test objective: The objective is to test that the retry operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. (i.e. the VNF instance resource is not in FAILED_TEMP state)
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.14.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -57,7 +57,7 @@ GET Retry operation task - Method not implemented
     ...    Test title: GET Retry operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.9.14.2 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.14.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -69,7 +69,7 @@ PUT Retry operation task - Method not implemented
     ...    Test title: PUT Retry operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.9.14.3 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.14.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -81,7 +81,7 @@ PATCH Retry operation task - Method not implemented
     ...    Test title: PATCH Retry operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.9.14.4 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.14.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -93,7 +93,7 @@ DELETE Retry operation task - Method not implemented
     ...    Test title: DELETE Retry operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.9.14.5 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.14.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -117,7 +117,3 @@ Check retry not supported
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     # how to check if retry is not supported?
 
-Check resource FAILED_TEMP
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId} 
-    String    response body operationState    FAILED_TEMP

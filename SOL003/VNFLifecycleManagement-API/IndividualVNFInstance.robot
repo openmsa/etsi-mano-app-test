@@ -22,7 +22,7 @@ Post Individual VNFInstance - Method not implemented
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    POST vnfInstance
+    POST individual vnfInstance
 	Check HTTP Response Status Code Is    405
 
 Get Information about an individual VNF Instance
@@ -55,7 +55,7 @@ PATCH Individual VNFInstance
      [Documentation]    Test ID: 7.3.1.2.4
     ...    Test title: PATCH Individual VNFInstance
     ...    Test objective: This method modifies an individual VNF instance resource
-    ...    Pre-conditions: none
+    ...    Pre-conditions: the VNF instance resource is existing
     ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -95,7 +95,7 @@ DELETE Individual VNFInstance
      [Documentation]    Test ID: 7.3.1.2.7
     ...    Test title: DELETE Individual VNFInstance
     ...    Test objective: The objective is to delete a VNF instance
-    ...    Pre-conditions: none
+    ...    Pre-conditions: the VNF instance resource is existing
     ...    Reference: section 5.4.3.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
