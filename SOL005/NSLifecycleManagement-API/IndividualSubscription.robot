@@ -12,7 +12,7 @@ Suite Setup    Check subscription existance
 Post Individual Subscription - Method not implemented
     [Documentation]    Test ID: 5.3.2.16.1
     ...    Test title: Post Individual Subscription - Method not implemented
-    ...    Test objective: The objective is to test that POST method is not allowed to create a new NS lifecycle management subscription
+    ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.17.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -37,7 +37,7 @@ Get Information about an individual subscription
 PUT an individual subscription - Method not implemented
      [Documentation]    Test ID: 5.3.2.16.3
     ...    Test title: PUT an individual subscription - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to modify a NS lifecycle management subscription
+    ...    Test objective: TThe objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.17.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -49,7 +49,7 @@ PUT an individual subscription - Method not implemented
 PATCH an individual subscription - Method not implemented
      [Documentation]    Test ID: 5.3.2.16.4
     ...    Test title: PATCH an individual subscription - Method not implemented
-    ...    Test objective: The objective is to test that PATCH method is not allowed to modify a new NS lifecycle management subscription
+    ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.17.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -61,7 +61,7 @@ PATCH an individual subscription - Method not implemented
 DELETE an individual subscription
      [Documentation]    Test ID: 5.3.2.16.5
     ...    Test title: DELETE an individual subscription
-    ...    Test objective: The objective is to test the deletion of an individual NS lifecycle management subscription
+    ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: At least one lifecycle management subscription is available in the NFVO
     ...    Reference:  section 6.4.17.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

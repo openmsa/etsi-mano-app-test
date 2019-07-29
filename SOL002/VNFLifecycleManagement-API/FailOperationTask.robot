@@ -11,7 +11,7 @@ Post Fail operation task
     [Documentation]    Test ID: 6.3.5.15.1
     ...    Test title: Post Fail operation task
     ...    Test objective: The objective is to test that POST method mark as "finally failed" a VNF lifecycle operation if that operation has experienced a temporary failure
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.16.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
@@ -25,7 +25,7 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
     [Documentation]    Test ID: 6.3.5.15.2
     ...    Test title: Post Fail operation task
     ...    Test objective: The objective is to test that POST method cannot mark as "finally failed" a VNF lifecycle operation if that operation has experienced a temporary failure
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.16.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none

@@ -15,7 +15,7 @@ POST Create a new subscription
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none     
+    ...    Post-Conditions: subscription is created in the NFVO     
     POST subscriptions
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
@@ -30,7 +30,7 @@ POST Create a new Subscription - DUPLICATION
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: duplicate subscription is created in the NFVO     
     POST subscriptions DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Header Contains    Location
@@ -40,11 +40,11 @@ POST Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
     ...    Test objective: The objective is to test that POST method can't create a duplicate subscription if  NFVO is not permitting duplication
-    ...    Pre-conditions: none
+    ...    Pre-conditions: a subscription have already to exist
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: duplicate subscription is not created in the NFVO     
     POST subscriptions NO DUPLICATION
     Check HTTP Response Status Code Is    303
     Check HTTP Response Header Contains    Location

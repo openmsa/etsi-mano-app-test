@@ -12,8 +12,8 @@ Suite Setup    Check resource existance
 Post Cancel operation task
     [Documentation]    Test ID: 6.3.5.16.1
     ...    Test title: POST Cancel operation task
-    ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the related "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
+    ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
     ...    Reference:  section 5.4.17.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none

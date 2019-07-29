@@ -11,7 +11,7 @@ Library    JSONSchemaLibrary    schemas/
 POST Change external VNF connectivity 
     [Documentation]    Test ID: 7.3.1.10.1
     ...    Test title: POST Change external VNF connectivity
-    ...    Test objective: The objective is to test that POST method trigger a change in VNF external connectivity
+    ...    Test objective: The objective is to test that POST method trigger a change in VNF external connectivity. Supported types of changes that this operation are: 1. Disconnect the external CPs that are connected to a particular external VL, and connect them to a different external VL. 2. Change the connectivity parameters of the existing external CPs, including changing addresses.
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.11.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM

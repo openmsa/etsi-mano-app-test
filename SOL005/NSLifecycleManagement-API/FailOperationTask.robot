@@ -11,7 +11,7 @@ Library    JSONSchemaLibrary    schemas/
 Post Fail operation task
     [Documentation]    Test ID: 5.3.2.13.1
     ...    Test title: Post Fail operation task
-    ...    Test objective: The objective is to test that POST method trigger a state change to "finally failed" on the LCM operation
+    ...    Test objective: The objective is to test that POST method trigger a state change to "finally failed" on the NS LCM operation
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
     ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -25,7 +25,7 @@ Post Fail operation task
 Post Fail operation task Not Found
     [Documentation]    Test ID: 5.3.2.13.2
     ...    Test title: Post Fail operation task Not Found
-    ...    Test objective: The objective is to test that POST method fail if the LCM NS resource is not found
+    ...    Test objective: The objective is to test that POST method fail if the LCM resource is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -38,7 +38,7 @@ Post Fail operation task Not Found
 Post Fail operation task Conflict
     [Documentation]    Test ID: 5.3.2.13.3
     ...    Test title: Post Fail operation task Conflict
-    ...    Test objective: The objective is to test that POST method fail in case of status conflict on the LCM NS operation (i.e NS instance status not equal to FAILED_TEMP)
+    ...    Test objective: The objective is to test that POST method fail in case of status conflict on the NS LCM operation (i.e NS instance status not equal to FAILED_TEMP)
     ...    Pre-conditions: NS instance status not equal to FAILED_TEMP
     ...    Reference:  section 6.4.14.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

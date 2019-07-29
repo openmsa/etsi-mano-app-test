@@ -22,7 +22,7 @@ POST Deliver a notification - Operation Occurence
 POST Deliver a notification - Id Creation
     [Documentation]    Test ID: 5.3.2.17.2
     ...    Test title: POST Deliver a notification - Id Creation
-    ...    Test objective: The objective is to test that POST method trigger a notification about the creation of a NS identifier and the related NS instance resource
+    ...    Test objective: The objective is to test that POST method trigger a notification about the creation of a NS instance resource
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.18.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -32,7 +32,7 @@ POST Deliver a notification - Id Creation
 POST Deliver a notification - Id deletion
     [Documentation]    Test ID: 5.3.2.17.3
     ...    Test title: POST Deliver a notification - Id deletion
-    ...    Test objective: The objective is to test that POST method trigger a notification about the deletion of a NS identifier and the related NS instance resource
+    ...    Test objective: The objective is to test that POST method trigger a notification about the deletion of a NS instance resource
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.18.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

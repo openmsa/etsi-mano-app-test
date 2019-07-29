@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    environment/configuration.txt
-# Suite setup     Expect spec    SOL002-VNFLifecycleManagement-API.yaml
+# Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}  
 Resource    VnfLcmMntOperationKeywords.robot
@@ -18,7 +18,7 @@ Post Individual VNFInstance - Method not implemented
     ...    Test title: Post Individual VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: section 5.4.3.3.1 - SOL002 v2.4.1
+    ...    Reference: section 5.4.3.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -30,7 +30,7 @@ Get Information about an individual VNF Instance
     ...    Test title: Get Information about an individual VNF Instance
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: none
-    ...    Reference: section 5.4.3.3.2 - SOL002 v2.4.1
+    ...    Reference: section 5.4.3.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -44,7 +44,7 @@ PUT Individual VNFInstance - Method not implemented
     ...    Test title: PUT Individual VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: section 5.4.3.3.3 - SOL002 v2.4.1
+    ...    Reference: section 5.4.3.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -55,8 +55,8 @@ PATCH Individual VNFInstance
      [Documentation]    Test ID: 7.3.1.2.4
     ...    Test title: PATCH Individual VNFInstance
     ...    Test objective: This method modifies an individual VNF instance resource
-    ...    Pre-conditions: none
-    ...    Reference: section 5.4.3.3.4 - SOL002 v2.4.1
+    ...    Pre-conditions: the VNF instance resource is existing
+    ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -69,7 +69,7 @@ PATCH Individual VNFInstance Precondition failed
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions:  A precondition given in an HTTP request header is not fulfilled. Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity
-    ...    Reference: section 5.4.3.3.4 - SOL002 v2.4.1
+    ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -82,7 +82,7 @@ PATCH Individual VNFInstance Conflict
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: none
-    ...    Reference: section 5.4.3.3.4 - SOL002 v2.4.1
+    ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -95,8 +95,8 @@ DELETE Individual VNFInstance
      [Documentation]    Test ID: 7.3.1.2.7
     ...    Test title: DELETE Individual VNFInstance
     ...    Test objective: The objective is to delete a VNF instance
-    ...    Pre-conditions: none
-    ...    Reference: section 5.4.3.3.5 - SOL002 v2.4.1
+    ...    Pre-conditions: the VNF instance resource is existing
+    ...    Reference: section 5.4.3.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -108,7 +108,7 @@ DELETE Individual VNFInstance Conflict
     ...    Test title: DELETE Individual VNFInstance
     ...    Test objective: The objective is to verify that The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
-    ...    Reference: section 5.4.3.3.5 - SOL002 v2.4.1
+    ...    Reference: section 5.4.3.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 

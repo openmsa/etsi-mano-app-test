@@ -13,7 +13,7 @@ Post Rollback operation task
     [Documentation]    Test ID: 6.3.5.14.1
     ...    Test title: Post Rollback operation task
     ...    Test objective: The objective is to test that POST method The POST method initiates rollback a VNF lifecycle operation if that operation has experienced a temporary failure
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.15.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
@@ -27,7 +27,7 @@ Post Rollback operation task Conflict (Not-FAILED_TEMP)
     [Documentation]    Test ID: 6.3.5.14.2
     ...    Test title: Post Rollback operation task
     ...    Test objective: The objective is to test that POST method The POST method initiates rollback a VNF lifecycle operation if that operation has experienced a temporary failure
-    ...    Pre-conditions: the related "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
+    ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.15.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none

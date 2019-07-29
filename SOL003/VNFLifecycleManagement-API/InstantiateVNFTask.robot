@@ -14,7 +14,7 @@ Instantiate a vnfInstance
     [Documentation]    Test ID: 7.3.1.3.1
     ...    Test title: Post Instantiate Individual VNFInstance 
     ...    Test objective: The objective is to instantiate a VNF instance
-    ...    Pre-conditions: none
+    ...    Pre-conditions: an existing VNF 
     ...    Reference: section 5.4.4.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 

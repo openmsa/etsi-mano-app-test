@@ -27,7 +27,7 @@ Deliver a notification - Operation Occurence
 Deliver a notification - Id Creation
      [Documentation]    Test ID: 7.3.1.19.2
     ...    Test title: Deliver a notification - Id Creation
-    ...    Test objective: The objective is to test that POST method trigger a notification about the creation of a VNF identifier and the related to a VNF instance resource.
+    ...    Test objective: The objective is to test that POST method trigger a notification about the creation a VNF instance resource.
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.20.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

@@ -7,16 +7,16 @@ Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
 
 *** Test Cases ***
-Post Individual VNF LCM OP occurences - Method not implemented
+Post Individual VNF LCM Operation occurences - Method not implemented
     [Documentation]    Test ID: 7.3.1.12.1
-    ...    Test title: Post Individual VNF LCM OP occurences - Method not implemented
+    ...    Test title: Post Individual VNF LCM Operation occurences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.13.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Post Individual VNF LCM OP occurences
+    Post Individual VNF LCM Operation occurences
     Check HTTP Response Status Code Is    405
     
 Get status information about multiple VNF instances 
@@ -34,7 +34,7 @@ Get status information about multiple VNF instances
 
 PUT status information about multiple VNF instances - Method not implemented
     [Documentation]    Test ID: 7.3.1.12.3
-    ...    Test title: Put Individual VNF LCM OP occurences - Method not implemented
+    ...    Test title: Put Individual VNF LCM Operation occurences - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.13.3.3 - SOL003 v2.4.1
@@ -44,9 +44,9 @@ PUT status information about multiple VNF instances - Method not implemented
     Put multiple VNF instances
     Check HTTP Response Status Code Is    405
 
-PATCH status information about multiple VNF instances - Method not implemented 
+PATCH status information about VNF instances - Method not implemented 
     [Documentation]    Test ID: 7.3.1.12.4
-    ...    Test title: Patch Individual VNF LCM OP occurences - Method not implemented
+    ...    Test title: Patch Individual VNF LCM Operation occurences - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.13.3.4 - SOL003 v2.4.1
@@ -58,7 +58,7 @@ PATCH status information about multiple VNF instances - Method not implemented
     
 DELETE status information about multiple VNF instances - Method not implemented 
     [Documentation]    Test ID: 7.3.1.12.5
-    ...    Test title: Delete Individual VNF LCM OP occurences - Method not implemented
+    ...    Test title: Delete Individual VNF LCM Operation occurences - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.13.3.5 - SOL003 v2.4.1
