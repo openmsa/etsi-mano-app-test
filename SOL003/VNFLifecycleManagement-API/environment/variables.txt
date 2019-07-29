@@ -2,18 +2,12 @@
 ${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
-${callback_endpoint}    /notification
-${callback_endpoint_fwd}    /notification/check
-${callback_port}    9091
-${callback_uri}    http://localhost
 ${conflicVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
 
 ${VnfLcmOperationOccurrenceNotification}    {}
 ${VnfIdentifierCreationNotification}    {}
 ${VnfIdentifierDeletionNotification}    {}
 ${response}    {}
-${notification_request}    []
-${notification_response}    []
 ${json}    {}
 ${requestedFlavour}    test
 
@@ -30,9 +24,21 @@ ${vnfInstanceDescription_Update}    Updated description vnf
 ${vnfPkgId_processing}    007c111c-38a1-42c0-a666-7475ecb1567c
 
 ${changeVnfFlavourRequest}    {}
-${requestedFlavour}    test
 ${changeVnfOperateRequest}    {}
 ${requestedState}   test
 ${changeVnfExtConnectivityRequest}    {}
 ${patchBodyRequest}   {}
 
+${callback_uri}    http://localhost
+${callback_port}    9091
+${callback_endpoint}    /endpoint
+${callback_endpoint_fwd}    /endpoint/check
+${callback_endpoint_error}    /endpoint_404
+${sleep_interval}    20s
+${total_polling_time}   2 min
+${polling_interval}     10 sec
+
+${notification_request}    []
+${notification_response}    []
+
+${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
