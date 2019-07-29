@@ -2,7 +2,6 @@
 Resource    environment/configuration.txt
 Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
-Library    MockServerLibrary
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    OperatingSystem
 Library    BuiltIn
@@ -320,28 +319,28 @@ POST Change VNF deployment flavour
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body} 
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}  	 
-GET Change VNF deployment flavour
+GET Change External VNF Connectivity
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-PUT Change VNF deployment flavour
+PUT Change External VNF Connectivity
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-PATCH Change VNF deployment flavour
+PATCH Change External VNF Connectivity
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour   	 	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-DELETE Change VNF deployment flavour
+DELETE Change External VNF Connectivity
     Log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour   	 	
@@ -415,7 +414,7 @@ DELETE VNFInstances - Method not implemented
     Log    Validate Status code
     Integer    response status    405	  
     
-POST individual vnfInstance
+POST vnfInstances 
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -617,7 +616,7 @@ DELETE Terminate VNF
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
 
-POST Heal VNF
+POST Terminate VNF
     Log    Trying to heal a VNF instance.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -665,42 +664,42 @@ POST Operate VNF
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
 
-GET Operate VNF
+GET Heal VNF
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate  
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}		
 
-PUT Operate VNF
+PUT Heal VNF
     log    Trying to perform a PUT. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate 
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}		
 
-PATCH Operate VNF
+PATCH Heal VNF
     log    Trying to perform a PATCH. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate 
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
 	
-DELETE Operate VNF
+DELETE Heal VNF
     log    Trying to perform a PATCH. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate 
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}		
 	
-Post VNF LCM Operation occurrences
+Post VNF LCM OP occurences
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs  	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}		
-GET VNF LCM Operation occurrences
+GET VNF LCM OP occurences
     Log    Query status information about multiple VNF lifecycle management operation occurrences.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -708,42 +707,42 @@ GET VNF LCM Operation occurrences
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
-GET VNF LCM Operation occurrences invalid attribute
+GET VNF LCM OP occurences invalid attribute
     Log    Query status information about multiple VNF lifecycle management operation occurrences.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?attribute_not_exist=some_value	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
-GET VNF LCM Operation occurrences invalid filter
+GET VNF LCM OP occurences invalid filter
     Log    Query status information about multiple VNF lifecycle management operation occurrences.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?fields=wrong_field	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
-PUT VNF LCM Operation occurences	
+PUT VNF LCM OP occurences	
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
-PATCH VNF LCM Operation occurrences	
+PATCH VNF LCM OP occurences	
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}			
-DELETE VNF LCM Operation occurrences	
+DELETE VNF LCM OP occurences	
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
-Post Individual VNF LCM Operation occurrences 
+Post Individual VNF LCM OP occurences
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

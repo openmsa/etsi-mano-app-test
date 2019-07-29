@@ -11,7 +11,7 @@ Suite Setup    Check resource existance
 Post Individual NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.2.1
     ...    Test title: Post Individual NSInstance - Method not implemented
-    ...    Test objective: The objective is to test that POST method is not allowed to create a new NS instance
+    ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -37,7 +37,7 @@ Get Information about an individual NS Instance
 PUT Individual NSInstance - Method not implemented 
     [Documentation]    Test ID: 5.3.2.2.3
     ...    Test title: PUT Individual NSInstance - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to create a new NS instance
+    ...    Test objective: TThe objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -49,7 +49,7 @@ PUT Individual NSInstance - Method not implemented
 PATCH Individual NSInstance - Method not implemented 
     [Documentation]    Test ID: 5.3.2.2.4
     ...    Test title: PATCH Individual NSInstance - Method not implemented
-    ...    Test objective: The objective is to test that PATCH method is not allowed to create a new NS instance
+    ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -61,7 +61,7 @@ PATCH Individual NSInstance - Method not implemented
 DELETE Individual NSInstance
      [Documentation]    Test ID: 5.3.2.2.5
     ...    Test title: DELETE Individual NSInstance
-    ...    Test objective: The objective is to test that DELETE method is allowed to delete a NS instance
+    ...    Test objective: The objective is to test that DELETE method delete a not INSTANTIATED NS instance
     ...    Pre-conditions: none.
     ...    Reference:  section 6.4.3.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -71,15 +71,14 @@ DELETE Individual NSInstance
     Check HTTP Response Status Code Is    204
 
 DELETE Individual NSInstance Conflict
-    [Documentation]    Test ID: 5.3.2.2.5
+    [Documentation]    Test ID: 5.3.2.2.6
     ...    Test title: DELETE Individual NSInstance Conflict
-    ...    Test objective: The objective is to test that DELETE method is allowed to delete a NS instance
-    ...    Pre-conditions: At least one instantiated instance of a NS
+    ...    Test objective: The objective is to test that DELETE method can't delete an INSTANTIATED NS instance
+    ...    Pre-conditions: At least one instance of a NS in INSTANTIATED state
     ...    Reference:  section 6.4.3.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is deleted from the NFVO
+    ...    Post-Conditions: The NS instance is not deleted from the NFVO
     DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    409
-    Check HTTP Response Header ContentType is    ${CONTENT_TYPE}
     Check HTTP Response Body Json Schema Is    ProblemDetails

@@ -1,58 +1,71 @@
 *** Settings ***
 Resource    environment/variables.txt 
+Resource    VnfLcmOperationKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
-...    subscription to notifications related to VNF lifecycle management
-Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented
-    log    Trying to perform a POST. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.18.1
+    ...    Test title: Post Individual Subscription - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.19.3.1 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Post Create Individual subscription
+	Check HTTP Response Status Code Is    405
 
-Get Information about an individual subscription
-    log    Trying to get information about an individual subscription
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Log    Validate Status code
-    Integer    response status    200
-    ${result}=    Output    response body
-    Validate Json    subscription.schema.json    ${result}
-    Log    Validation OK
+GET Individual Subscription
+    [Documentation]    Test ID: 6.3.5.18.2
+    ...    Test title: GET Individual Subscription
+    ...    Test objective: The objective is Get the an individual subscription
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.19.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Get Individual Subscription
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    Subscription
 
 PUT an individual subscription - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.18.3
+    ...    Test title: PUT Individual Subscription - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.19.3.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Put Individual subscription
+	Check HTTP Response Status Code Is    405
 
 PATCH an individual subscription - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.5.18.4
+    ...    Test title: PATCH Individual Subscription - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.19.3.4 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Patch Individual subscription
+	Check HTTP Response Status Code Is    405    
     
 DELETE an individual subscription
-    log    Try to delete an individual subscription
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Integer    response status    204
+     [Documentation]    Test ID: 6.3.5.18.5
+    ...    Test title: DELETE Individual Subscription - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: none
+    ...    Reference:  section 5.4.19.3.5 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Delete Individual subscription
+	Check HTTP Response Status Code Is    405
 
 *** Keywords ***
 Check resource existance

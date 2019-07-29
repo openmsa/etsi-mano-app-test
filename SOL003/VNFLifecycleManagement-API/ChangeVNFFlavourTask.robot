@@ -12,11 +12,11 @@ POST Change deployment flavour of a vnfInstance
     [Documentation]    Test ID: 7.3.1.6.1
     ...    Test title: POST Change deployment flavour of a vnfInstance
     ...    Test objective: The objective is to test that POST method trigger a change in VNF deployment flavour
-    ...    Pre-conditions: none
+    ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: in response header Location should not be null  
+    ...    Post-Conditions: in response header Location shall not be null  
     POST Change VNF deployment flavour   
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
@@ -24,8 +24,8 @@ POST Change deployment flavour of a vnfInstance
 Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 7.3.1.6.2
     ...    Test title: POST Change deployment flavour of a vnfInstance
-    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. 
-    ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
+    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. (VNF instance resource is not in NOT-INSTANTIATED state)
+    ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -40,7 +40,7 @@ Change deployment flavour of a vnfInstance Not Found
     [Documentation]    Test ID: 7.3.1.6.3
     ...    Test title: POST Change deployment flavour of a vnfInstance
     ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
-    ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
+    ...    Pre-conditions: the VNF instance resource is not existing
     ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none

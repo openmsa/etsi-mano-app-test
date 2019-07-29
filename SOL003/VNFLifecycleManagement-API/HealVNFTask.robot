@@ -12,7 +12,7 @@ POST Heal a vnfInstance
      [Documentation]    Test ID: 7.3.1.8.1
     ...    Test title: POST Heal a vnfInstance
     ...    Test objective: The objective is to test that POST method heal a VNF instance
-    ...    Pre-conditions: none
+    ...    Pre-conditions: the VNF instance resource is not in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.9.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none

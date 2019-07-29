@@ -19,7 +19,7 @@ Operate a VNF Instance
     [Documentation]    Test ID: 7.3.1.27
     ...    Test title: Operate a VNF Instance
     ...    Test objective: The objective is to change the operational state of a VNF instance.
-    ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.a.b.c)
+    ...    Pre-conditions: VNF instance in INSTANTIATED state 
     ...    Reference: section 5.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: change the operational state of a VNF instance is supported for the VNF (as capability in the VNFD)

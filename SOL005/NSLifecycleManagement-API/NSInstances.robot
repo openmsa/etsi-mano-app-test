@@ -11,7 +11,7 @@ POST Create a new NsInstance
     [Documentation]    Test ID: 5.3.2.1.1
     ...    Test title: POST Create a new NsInstance
     ...    Test objective: The objective is to test the creation of a new Ns Instances and perform a JSON schema validation of the collected instance data structure
-    ...    Pre-conditions: none.
+    ...    Pre-conditions: an NSD onboarded.
     ...    Reference:  section 6.4.2.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
@@ -25,11 +25,11 @@ Get information about multiple NS instances
     [Documentation]    Test ID: 5.3.2.1.2
     ...    Test title: Get information about multiple NS instances
     ...    Test objective: The objective is to test the retrieval of all the available NS Instances and perform a JSON schema and content validation of the collected instance data structure
-    ...    Pre-conditions: A Ns instance is instantiated.
+    ...    Pre-conditions: An existing Ns instance.
     ...    Reference:  section 6.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
-    ...    Post-Conditions: A Ns instance is instantiated.
+    ...    Post-Conditions: none.
     GET NsInstances
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    NsInstances  
@@ -38,7 +38,7 @@ Get information about multiple NS instances Bad Request Invalid attribute-based 
     [Documentation]    Test ID: 5.3.2.1.3
     ...    Test title: Get information about multiple NS instances Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to test the retrieval of all the available NS Instances using attribute-based filter and perform a JSON schema and content validation of the collected instance data structure
-    ...    Pre-conditions: A Ns instance is instantiated.
+    ...    Pre-conditions: A Ns instance is instantiated, a bad filter parameter.
     ...    Reference:  section 6.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
@@ -51,7 +51,7 @@ Get information about multiple NS instances Bad Request Invalid attribute select
     [Documentation]    Test ID: 5.3.2.1.4
     ...    Test title: Get information about multiple NS instances Bad Request Invalid attribute selector
     ...    Test objective: The objective is to test the retrieval of all the available NS Instances using attribute-based filter and perform a JSON schema and content validation of the collected instance data structure
-    ...    Pre-conditions: A Ns instance is instantiated.
+    ...    Pre-conditions: A Ns instance is instantiated,  a bad attribute selector.
     ...    Reference:  section 6.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
@@ -63,7 +63,7 @@ Get information about multiple NS instances Bad Request Invalid attribute select
 PUT NSInstances - Method not implemented
     [Documentation]    Test ID: 5.3.2.1.5
     ...    Test title: PUT Individual NS instance - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to modify a NS instance
+    ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.2.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -75,7 +75,7 @@ PUT NSInstances - Method not implemented
 PATCH NSInstances - Method not implemented
      [Documentation]    Test ID: 5.3.2.1.6
     ...    Test title: PUT NSInstances - Method not implemented
-    ...    Test objective: The objective is to test that PATCH method is not allowed to modify a NS instance
+    ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.2.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -87,11 +87,11 @@ PATCH NSInstances - Method not implemented
 DELETE NSInstances - Method not implemented
      [Documentation]    Test ID: 5.3.2.1.7
     ...    Test title: DELETE NSInstances - Method not implemented
-    ...    Test objective: The objective is to test that DELETE method is not allowed to modify a list of NS instance
+    ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.2.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is not modified by the operation
+    ...    Post-Conditions: The NS instance is not deleted by the operation
     DELETE NSInstances
     Check HTTP Response Status Code Is    405
