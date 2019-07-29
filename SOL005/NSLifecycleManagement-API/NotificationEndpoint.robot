@@ -2,84 +2,189 @@
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
 Resource    environment/variables.txt
-Resource   NSLCMOperationKeywords.robot   
 Library    MockServerLibrary
 Library    Process
 Library    OperatingSystem
-
+Library    Collections
 
 *** Test Cases ***
-POST Deliver a notification - Operation Occurence
+NS LCM Operation Occurrence Start Notification
     [Documentation]    Test ID: 5.3.2.17.1
-    ...    Test title: POST Deliver a notification - Operation Occurence
-    ...    Test objective: The objective is to test that POST method trigger a notification about lifecycle changes triggered by a NS LCM operation occurrence
-    ...    Pre-conditions: none
+    ...    Test title: NS LCM Operation Occurrence Start Notification
+    ...    Test objective: The objective is to test the dispatch of NS LCM Operation Occurrence Start Notification when a new NS LCM operation is started in the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Pre-conditions: A subscription for NS LCM Operation Occurrence notifications is available in the NFVO.
     ...    Reference:  section 6.4.18.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
-    POST Operation occurrence
-POST Deliver a notification - Id Creation
+    ...    Post-Conditions: none 
+    Trigger a NS LCM operation (external action) 
+    Check NS LCM Operation Occurrence Start Notification Http POST Request Body Json Schema Is    NsLcmOperationOccurrenceNotification
+    Check NS LCM Operation Occurrence Start Notification Http POST Request Body notificationType attribute Is    NsLcmOperationOccurrenceNotification
+    Check NS LCM Operation Occurrence Start Notification Http POST Request Body notificationStatus attribute Is    START
+    
+NS LCM Operation Occurrence Result Notification
     [Documentation]    Test ID: 5.3.2.17.2
-    ...    Test title: POST Deliver a notification - Id Creation
-    ...    Test objective: The objective is to test that POST method trigger a notification about the creation of a NS instance resource
-    ...    Pre-conditions: none
+    ...    Test title: NS LCM Operation Occurrence Result Notification
+    ...    Test objective: The objective is to test the dispatch of NS LCM Operation Occurrence Result Notification when a NS LCM operation is completed in the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Pre-conditions: An NS LCM operation is in progress, and a subscription for NS LCM Operation Occurrence notifications is available in the NFVO.
     ...    Reference:  section 6.4.18.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none    
-    POST Id creation
-POST Deliver a notification - Id deletion
+    ...    Post-Conditions: none 
+    Trigger the completion of an NS LCM operation (external action)
+    Check NS LCM Operation Occurrence Result Notification Http POST Request Body Json Schema Is    NsLcmOperationOccurrenceNotification
+    Check NS LCM Operation Occurrence Result Notification Http POST Request Body notificationType attribute Is    NsLcmOperationOccurrenceNotification
+    Check NS LCM Operation Occurrence Start Notification Http POST Request Body notificationStatus attribute Is    RESULT
+    
+NS Identifier Creation Notification
     [Documentation]    Test ID: 5.3.2.17.3
-    ...    Test title: POST Deliver a notification - Id deletion
-    ...    Test objective: The objective is to test that POST method trigger a notification about the deletion of a NS instance resource
-    ...    Pre-conditions: none
+    ...    Test title: NS Identifier Creation Notification
+    ...    Test objective: The objective is to test the dispatch of NS Identifier Creation Notification when a new NS instance resource is created in the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Pre-conditions: A subscription for NS identifier creation notifications is available in the NFVO.
     ...    Reference:  section 6.4.18.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none    
-    POST Id deletion
-
-GET a notification end point
-    [Documentation]    Test ID: 5.3.2.17.4 
-    ...    Test title: GET a notification end point
-    ...    Test objective: The objective is to test that GET method successfully test the notification endpoint
-    ...    Pre-conditions: none
-    ...    Reference:  section 6.4.18.3.2 - SOL005 v2.4.1
+    ...    Post-Conditions: none 
+    Trigger the creation of a NS instance resource (external action)
+    Check NS Identifier Creation Notification Http POST Request Body Json Schema Is    NsIdentifierDeletionNotification
+    Check NS Identifier Creation Notification Http POST Request Body notificationType attribute Is    NsIdentifierDeletionNotification
+    
+NS Identifier Deletion Notification
+    [Documentation]    Test ID: 5.3.2.17.4
+    ...    Test title: NS Identifier Deletion Notification
+    ...    Test objective: The objective is to test the dispatch of NS Identifier Deletion Notification when a NS instance resource is deleted in the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Pre-conditions: A NS instance resource is created, and a subscription for NS identifier creation notifications is available in the NFVO.
+    ...    Reference:  section 6.4.18.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
-    GET notification endpoint
+    Trigger the deletion of a NS instance resource (external action)
+    Check NS Identifier Deletion Notification Http POST Request Body Json Schema Is    NsIdentifierCreationNotification
+    Check NS Identifier Deletion Notification Http POST Request Body notificationType attribute Is    NsIdentifierCreationNotification
+    
+*** Keywords ***
+Trigger a NS LCM operation (external action) 
+    #do nothing
+    Log    do nothing
 
-PUT notification - Method not implemented
-    [Documentation]    Test ID: 5.3.2.17.5
-    ...    Test title: PUT notification - Method not implemented
-    ...    Test objective: The objective is to test that the PUT method is not implemented
-    ...    Pre-conditions: none
-    ...    Reference:  section 6.4.18.3.3 - SOL005 v2.4.1
-    ...    Config ID: Config_prod_NFVO
-    ...    Applicability: none
-    ...    Post-Conditions: none 
-    PUT notification
+Trigger the completion of an NS LCM operation (external action)
+    #do nothing
+    Log    do nothing   
+    
+Trigger the creation of a NS instance resource (external action)
+    #do nothing
+    Log    do nothing     
+  
+Trigger the deletion of a NS instance resource (external action)
+    #do nothing
+    Log    do nothing     
+    
+Check NS LCM Operation Occurrence Start Notification Http POST Request Body Json Schema Is  
+    [Arguments]    ${element}
+    ${schema}=	Get File	schemas/${element}.schema.json
+    Configure Notification Forward    ${schema}    ${callback_endpoint}    ${callback_endpoint_fwd}
 
-PATCH subscriptions - Method not implemented
-    [Documentation]    Test ID: 5.3.2.17.6
-    ...    Test title: PATCH subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that the PATCH method is not implemented
-    ...    Pre-conditions: none
-    ...    Reference:  section 6.4.18.3.4 - SOL005 v2.4.1
-    ...    Config ID: Config_prod_NFVO
-    ...    Applicability: none
-    ...    Post-Conditions: none     
-    PATCH subscriptions
+Check NS LCM Operation Occurrence Start Notification Http POST Request Body notificationType attribute Is
+    [Arguments]    ${type}
+    Configure Notification NS LCM Operation Occurrence Start Handler    ${callback_endpoint_fwd}    ${type}    START
+    Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
+    Clear Requests    ${callback_endpoint}
+    Clear Requests    ${callback_endpoint_fwd}
+    
+Configure Notification NS LCM Operation Occurrence Start Handler
+    [Arguments]    ${endpoint}    ${type}    ${status}
+    ${json}=    evaluate    {}
+    set to dictionary   ${json}    notificationType    ${type}    changeType    ${status}
+    ${BODY}=    evaluate    json.dumps(${json})    json
+    Log  Creating mock request and response to handle status notification
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
 
-DELETE subscriptions - Method not implemented
-    [Documentation]    Test ID: 5.3.2.17.7
-    ...    Test title: DELETE subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that the DELETE method is not implemented
-    ...    Pre-conditions: none
-    ...    Reference:  section 6.4.18.3.5 - SOL005 v2.4.1
-    ...    Config ID: Config_prod_NFVO
-    ...    Applicability: none
-    ...    Post-Conditions: none 
-    DELETE subscriptions
+Check NS LCM Operation Occurrence Result Notification Http POST Request Body Json Schema Is  
+    [Arguments]    ${element}
+    ${schema}=	Get File	schemas/${element}.schema.json
+    Configure Notification Forward    ${schema}    ${callback_endpoint}    ${callback_endpoint_fwd}
+
+Check NS LCM Operation Occurrence Result Notification Http POST Request Body notificationType attribute Is
+    [Arguments]    ${type}
+    Configure Notification NS LCM Operation Occurrence Result Handler    ${callback_endpoint_fwd}    ${type}    RESULT
+    Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
+    Clear Requests    ${callback_endpoint}
+    Clear Requests    ${callback_endpoint_fwd}
+    
+Configure Notification NS LCM Operation Occurrence Result Handler
+    [Arguments]    ${endpoint}    ${type}    ${status}
+    ${json}=    evaluate    {}
+    set to dictionary   ${json}    notificationType    ${type}    changeType    ${status}
+    ${BODY}=    evaluate    json.dumps(${json})    json
+    Log  Creating mock request and response to handle status notification
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+
+Check NS Identifier Creation Notification Http POST Request Body Json Schema Is  
+    [Arguments]    ${element}
+    ${schema}=	Get File	schemas/${element}.schema.json
+    Configure Notification Forward    ${schema}    ${callback_endpoint}    ${callback_endpoint_fwd}
+
+Check NS Identifier Creation Notification Http POST Request Body notificationType attribute Is
+    [Arguments]    ${type}
+    Configure Notification NS Identifier Creation Handler    ${callback_endpoint_fwd}    ${type}
+    Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
+    Clear Requests    ${callback_endpoint}
+    Clear Requests    ${callback_endpoint_fwd}
+
+Configure Notification NS Identifier Creation Handler
+    [Arguments]    ${endpoint}    ${type}
+    ${json}=    evaluate    {}
+    set to dictionary   ${json}    notificationType    ${type}
+    ${BODY}=    evaluate    json.dumps(${json})    json
+    Log  Creating mock request and response to handle status notification
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+    
+Check NS Identifier Deletion Notification Http POST Request Body Json Schema Is  
+    [Arguments]    ${element}
+    ${schema}=	Get File	schemas/${element}.schema.json
+    Configure Notification Forward    ${schema}    ${callback_endpoint}    ${callback_endpoint_fwd}
+
+Check NS Identifier Deletion Notification Http POST Request Body notificationType attribute Is
+    [Arguments]    ${type}
+    Configure Notification NS Identifier Deletion Handler    ${callback_endpoint_fwd}    ${type}
+    Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
+    Clear Requests    ${callback_endpoint}
+    Clear Requests    ${callback_endpoint_fwd}
+
+Configure Notification NS Identifier Deletion Handler
+    [Arguments]    ${endpoint}    ${type}
+    ${json}=    evaluate    {}
+    set to dictionary   ${json}    notificationType    ${type}
+    ${BODY}=    evaluate    json.dumps(${json})    json
+    Log  Creating mock request and response to handle status notification
+    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
+    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    Create Mock Expectation  ${notification_request}  ${notification_response}
+
+Check NS LCM Operation Occurrence Start Notification Http POST Request Body notificationStatus attribute Is
+    [Arguments]    ${type}
+    #do nothing
+    Log    do nothing
+    
+Check NS LCM Operation Occurrence Result Notification Http POST Request Body notificationStatus attribute Is
+    [Arguments]    ${type}
+    #do nothing
+    Log    do nothing
+
+Configure Notification Forward
+    [Arguments]    ${schema}    ${endpoint}    ${endpoint_fwd}    
+    Log  Creating mock Http POST forward to handle ${schema}
+    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${schema}
+    &{notification_fwd}=  Create Mock Http Forward	${endpoint_fwd}
+    Create Mock Expectation With Http Forward  ${notification_tmp}  ${notification_fwd}
+
+Create Sessions
+    Start Process  java  -jar  ${MOCK_SERVER_JAR}  -serverPort  ${callback_port}  alias=mockInstance
+    Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
+    Create Mock Session  ${callback_uri}:${callback_port}
