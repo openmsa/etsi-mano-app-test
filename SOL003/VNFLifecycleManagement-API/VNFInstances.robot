@@ -13,7 +13,7 @@ POST Create a new vnfInstance
     [Documentation]    Test ID: 7.3.1.1.1
     ...    Test title: Create a VNF instance
     ...    Test objective: The objective is to create a new VNF instance resource
-    ...    Pre-conditions: VNF instance with the given vnfInstanceId doesn't exist 
+    ...    Pre-conditions: an onboarded VNFD  
     ...    Reference: section 5.4.2.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 

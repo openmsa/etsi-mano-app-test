@@ -55,7 +55,7 @@ PATCH Individual VNFInstance
      [Documentation]    Test ID: 7.3.1.2.4
     ...    Test title: PATCH Individual VNFInstance
     ...    Test objective: This method modifies an individual VNF instance resource
-    ...    Pre-conditions: the VNF instance resource is existing
+    ...    Pre-conditions: an existing VNF instance resource
     ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
