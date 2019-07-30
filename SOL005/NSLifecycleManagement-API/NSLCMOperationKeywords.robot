@@ -114,7 +114,7 @@ Check resource not_instantiated
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
     String    response body instantiationState    NOT_INSTANTIATED
 
-Check resource has a temporary failure
+Check operation resource state is FAILED_TEMP    
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

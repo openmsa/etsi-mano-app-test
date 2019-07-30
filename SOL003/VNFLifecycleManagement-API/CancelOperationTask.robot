@@ -19,7 +19,7 @@ Post Cancel operation task
     ...    Post-Conditions: VNF instance status equal to FAILED_TEMP     
     POST Cancel operation task
     Check HTTP Response Status Code Is    202
-    Check resource has a temporary failure
+    Check operation resource state is FAILED_TEMP
     
 Post Cancel operation task Conflict
     [Documentation]    Test ID: 7.3.1.16.2

@@ -20,7 +20,7 @@ Post Cancel operation task
     ...    Post-Conditions: none    
     POST Cancel operation task
     Check HTTP Response Status Code Is    202
-    Check resource has a temporary failure
+    Check operation resource state is FAILED_TEMP
     
 Post Cancel operation task Conflict
     [Documentation]    Test ID: 6.3.5.16.2

@@ -58,11 +58,16 @@ Check VNF Status
     Should Be Equal As Strings    ${current}    ${expected}
     Log    VNF Status in the correct status
 
-Check resource has a temporary failure
+Check operation resource state is FAILED_TEMP
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId} 
-    String    response body instantiationState    FAILED_TEMP     
-    
+    String    response body instantiationState    FAILED_TEMP   
+
+Check operation resource state is FINALLY_FAILED      
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId} 
+    String    response body instantiationState    FINALLY_FAILED  
+     
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response.headers}    ${CONTENT_TYPE}

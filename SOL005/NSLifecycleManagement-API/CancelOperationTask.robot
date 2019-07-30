@@ -19,7 +19,7 @@ Post Cancel operation task
     ...    Post-Conditions: NS instance status equal to FAILED_TEMP     
 	POST Cancel operation task
 	Check HTTP Response Status Code Is    202
-	Check resource has a temporary failure
+	Check operation resource state is FAILED_TEMP
 	
 Post Cancel operation task Not Found
     [Documentation]    Test ID: 5.3.2.14.2
