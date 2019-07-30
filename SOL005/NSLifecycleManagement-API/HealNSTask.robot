@@ -11,7 +11,7 @@ Suite Setup    Check resource existance
 POST Heal a NSInstance
     [Documentation]    Test ID: 5.3.2.6.1
     ...    Test title: POST Heal a NSInstance
-    ...    Test objective: The objective is to test that POST method allow to trigger a Heal NS instance
+    ...    Test objective: The objective is to test that POST method trigger a Heal NS instance
     ...    Pre-conditions: resource status is not in NOT_INSTANTIATED state
     ...    Reference:  section 6.4.7.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -32,7 +32,6 @@ POST Heal a NSInstance Conflict
     ...    Post-Conditions: none
     POST Heal NSInstance
     Check HTTP Response Status Code Is    409
-    Check HTTP Response Header Contains    ${CONTENT_TYPE}
     Check HTTP Response Body Json Schema Is    ProblemDetails
     
 GET Heal NSInstance- Method not implemented

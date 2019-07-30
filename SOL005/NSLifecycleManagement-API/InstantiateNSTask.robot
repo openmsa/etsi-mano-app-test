@@ -11,12 +11,12 @@ Suite Setup    Check resource existance
 Post Instantiate a nsInstance
     [Documentation]    Test ID: 5.3.2.3.1
     ...    Test title: Post Instantiate a nsInstance
-    ...    Test objective: The objective is to test that POST method allow to create a new NS instance
+    ...    Test objective: The objective is to test that POST method instantiate a new NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.4.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is created on the NFVO
+    ...    Post-Conditions: The NS instance is instantiated on the NFVO
     POST Instatiate nsInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location

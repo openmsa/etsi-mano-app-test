@@ -18,20 +18,18 @@ POST Create a new subscription
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
 Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 7.3.1.17.2
     ...    Test title: POST Create a new subscription - DUPLICATION
-    ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
+    ...    Test objective: The POST method creates a duplicate subscription 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.18.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
@@ -39,13 +37,12 @@ Create a new Subscription - DUPLICATION
 Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 7.3.1.17.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
-    ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
+    ...    Test objective: The POST method can't create a duplicate subscription
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.18.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id
@@ -79,7 +76,7 @@ GET Subscription - Filter
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 7.3.1.17.6
     ...    Test title: GET Subscriptions - Filter
-    ...    Test objective: The objective is Get the list of active subscriptions using a filter
+    ...    Test objective: The objective is Get the list of active subscriptions using an invalid filter
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.18.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -97,7 +94,7 @@ PUT subscriptions - Method not implemented
     ...    Reference:  section 5.4.18.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: subscription not modified
     PUT subscriptions
 	Check HTTP Response Status Code Is    405
 
@@ -109,7 +106,7 @@ PATCH subscriptions - Method not implemented
     ...    Reference:  section 5.4.18.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: subscription not modified
     PATCH subscriptions
 	Check HTTP Response Status Code Is    405
 
@@ -121,7 +118,7 @@ DELETE subscriptions - Method not implemented
     ...    Reference:  section 5.4.18.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: subscription not deleted
     DELETE subscriptions
 	Check HTTP Response Status Code Is    405
     
