@@ -14,7 +14,7 @@ NS Instance Creation
     ...    Test title: NS Instance Creation
     ...    Test objective: The objective is to test the workflow for Creating a NS instance
     ...    Pre-conditions: none
-    ...    Reference: section 6.4.2 - SOL003 v2.4.1
+    ...    Reference: section 6.4.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS lifecycle management operation occurrence is in NOT_ISTANTIATED state

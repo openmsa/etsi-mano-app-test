@@ -13,7 +13,7 @@ Terminate a vnfInstance
     ...    Test title: POST Terminate a vnfInstance
     ...    Test objective: The objective is to test that POST method terminate a VNF instance
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.8.3.1 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.8.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -26,7 +26,7 @@ Terminate a vnfInstance Conflict (Not-Instantiated)
     ...    Test title: POST Terminate a vnfInstance
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions:  VNF instance resource is in NOT-INSTANTIATED state
-    ...    Reference:  section 5.4.8.3.1 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.8.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -40,7 +40,7 @@ GET Terminate VNFInstance - Method not implemented
     ...    Test title:  GET Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
-    ...    Reference:  section 5.4.8.3.2 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.8.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ PUT Terminate VNFInstance - Method not implemented
     ...    Test title:  GET Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
-    ...    Reference:  section 5.4.8.3.3 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.8.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -64,7 +64,7 @@ PATCH Terminate VNFInstance - Method not implemented
     ...    Test title:  GET Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
-    ...    Reference:  section 5.4.8.3.4 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.8.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -76,7 +76,7 @@ DELETE Terminate VNFInstance - Method not implemented
     ...    Test title:  GET Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
-    ...    Reference:  section 5.4.8.3.5 - SOL003 v2.4.1
+    ...    Reference:  section 5.4.8.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none

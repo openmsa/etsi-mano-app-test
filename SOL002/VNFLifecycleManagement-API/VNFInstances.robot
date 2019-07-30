@@ -1,5 +1,4 @@
 *** Settings ***
-# Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt  
 Resource    VnfLcmOperationKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
@@ -66,7 +65,7 @@ PUT VNFInstances - Method not implemented
     ...    Test title: PUT multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: section 5.4.2.3.3 - SOL003 v2.4.1
+    ...    Reference: section 5.4.2.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -78,7 +77,7 @@ PATCH VNFInstances - Method not implemented
     ...    Test title: PATCH multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: section 5.4.2.3.4 - SOL003 v2.4.1
+    ...    Reference: section 5.4.2.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -90,7 +89,7 @@ DELETE VNFInstances - Method not implemented
     ...    Test title: PUT multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: section 5.4.2.3.5 - SOL003 v2.4.1
+    ...    Reference: section 5.4.2.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
