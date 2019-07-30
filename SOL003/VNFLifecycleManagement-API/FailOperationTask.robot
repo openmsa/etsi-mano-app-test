@@ -16,10 +16,11 @@ Post Fail operation task
     ...    Reference:  section 5.4.16.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: VNF resource state is FINALLY_FAILED
     Post Fail operation
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
+    Check operation resource state is FINALLY_FAILED
 
 Post Fail operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state

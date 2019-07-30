@@ -19,6 +19,7 @@ Post Fail operation task
     Post Fail operation
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
+    Check operation resource state is FINALLY_FAILED
 
 Post Fail operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
