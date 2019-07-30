@@ -25,7 +25,7 @@ POST Create a new subscription
 POST Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.2
     ...    Test title: POST Create a new subscription - DUPLICATION
-    ...    Test objective: The objective is to test that POST method create a duplicate subscription if  NFVO is permitting duplication
+    ...    Test objective: The objective is to test that POST method create a duplicate subscription 
     ...    Pre-conditions: a subscription have already to exist
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -39,7 +39,7 @@ POST Create a new Subscription - DUPLICATION
 POST Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
-    ...    Test objective: The objective is to test that POST method can't create a duplicate subscription if  NFVO is not permitting duplication
+    ...    Test objective: The objective is to test that POST method can't create a duplicate subscription 
     ...    Pre-conditions: a subscription have already to exist
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -78,7 +78,7 @@ GET Subscription - Filter
 PUT subscriptions - Method not implemented
      [Documentation]    Test ID: 5.3.2.15.6
     ...    Test title: PUT subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to modify a NS lifecycle management subscription
+    ...    Test objective: The objective is to test that PUT method can't modify a NS lifecycle management subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -90,7 +90,7 @@ PUT subscriptions - Method not implemented
 PATCH subscriptions - Method not implemented
     [Documentation]    Test ID: 5.3.2.15.7
     ...    Test title: PATCH subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to modify a NS lifecycle management subscription
+    ...    Test objective: The objective is to test that PUT method can't modify a NS lifecycle management subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -102,7 +102,7 @@ PATCH subscriptions - Method not implemented
 DELETE subscriptions - Method not implemented
     [Documentation]    Test ID: 5.3.2.15.6
     ...    Test title: DELETE subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that DELETE method is not allowed to modify a NS lifecycle management subscription
+    ...    Test objective: The objective is to test that DELETE method can't modify a NS lifecycle management subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

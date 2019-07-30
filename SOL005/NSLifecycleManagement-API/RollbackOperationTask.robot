@@ -24,7 +24,7 @@ Post Rollback operation task
 Post Rollback operation task Not Found
     [Documentation]    Test ID: 5.3.2.11.2
     ...    Test title: Post Rollback operation task Not Found
-    ...    Test objective: The objective is to test that POST method fail if operation is not found
+    ...    Test objective: The objective is to test that POST method fail if  NS LCM operation is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -37,7 +37,7 @@ Post Rollback operation task Not Found
 Post Rollback operation task Conflict
     [Documentation]    Test ID: 5.3.2.11.3
     ...    Test title: Post Rollback operation task Conflict
-    ...    Test objective: The objective is to test that POST method fail in case of operation status conflict (i.e. NS instance status not equal to FAILED_TEMP)
+    ...    Test objective: The objective is to test that POST method fail in case of NS LCM operation status conflict (i.e. NS instance status not equal to FAILED_TEMP)
     ...    Pre-conditions: NS instance status not equal to FAILED_TEMP
     ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

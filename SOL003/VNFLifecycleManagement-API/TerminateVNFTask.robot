@@ -23,10 +23,9 @@ POST Terminate a vnfInstance
     Check Operation Occurrence Id
 
 Terminate a vnfInstance Conflict (Not-Instantiated)
-    # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 7.3.1.7.2
     ...    Test title: POST Terminate a vnfInstance
-    ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Test objective: The objective is to test that the vnf Instance can't be terminated 
     ...    Pre-conditions:  VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.8.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
