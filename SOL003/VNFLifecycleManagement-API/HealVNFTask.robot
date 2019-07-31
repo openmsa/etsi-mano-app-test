@@ -38,7 +38,6 @@ Heal a vnfInstance Conflict (Not-Instantiated)
 
     
 Heal a vnfInstance Not Found
-    # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 7.3.1.8.3
     ...    Test title: POST Heal a vnfInstance (Not-Instantiated)
     ...    Test objective: The objective is to test that the operation cannot be executed because the VNF instance resource is not found. 

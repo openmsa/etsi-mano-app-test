@@ -11,12 +11,12 @@ Suite Setup    Check resource existance
 POST Scale a nsInstance
     [Documentation]    Test ID: 5.3.2.4.1
     ...    Test title: POST Scale a nsInstance
-    ...    Test objective: The objective is to test that POST method create a Scale NS instance
+    ...    Test objective: The objective is to test that POST method scales NS instance
     ...    Pre-conditions: the resource is in NOT_INSTANTIATED state
     ...    Reference:  section 6.4.5.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The Scale NS is not triggered on the NFVO
+    ...    Post-Conditions: none
     POST scale nsInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
@@ -25,12 +25,12 @@ POST Scale a nsInstance
 POST Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.4.2
     ...    Test title: POST Instantiate a nsInstance Conflict
-    ...    Test objective: The objective is to test that POST method can't Scale NS instance because of conflict in resource status (i.e. because the resource is in not in NOT_INSTANTIATED state)
+    ...    Test objective: The objective is to test that POST method can't scale NS instance because of conflict in resource status (i.e. because the resource is in not in NOT_INSTANTIATED state)
     ...    Pre-conditions: the resource is in not in NOT_INSTANTIATED state
     ...    Reference:  section 6.4.5.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The Scale NS is not triggered on the NFVO
+    ...    Post-Conditions: The Scale NS operation is not triggered on the NFVO
     POST scale nsInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails

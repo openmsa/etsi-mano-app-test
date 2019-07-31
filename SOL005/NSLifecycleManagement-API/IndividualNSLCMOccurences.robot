@@ -22,7 +22,7 @@ Post Individual NS LCM occurences - Method not implemented
 Get status information about Individual NS LCM OCC   
     [Documentation]    Test ID: 5.3.2.9.2
     ...    Test title: Get status information about Individual NS LCM OCC
-    ...    Test objective: The objective is to test that GET method return the LCM occurrence of the NS
+    ...    Test objective: The objective is to test that GET method returns the LCM occurrence of the NS
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.10.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

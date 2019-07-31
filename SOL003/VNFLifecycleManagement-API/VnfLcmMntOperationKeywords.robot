@@ -30,6 +30,10 @@ Check Operation Occurrence Id
     ${vnfLcmOpOccId}=    Get Value From Json    ${response.headers}    $..Location
     Should Not Be Empty    ${vnfLcmOpOccId}
 
+Check Operation Occurrence Id existence
+    ${vnfLcmOpOccId}=    Get Value From Json    ${response.headers}    $..Location
+    Should Not Be Empty    ${vnfLcmOpOccId}
+    
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     ${schema} =    Catenate    ${input}    .schema.json

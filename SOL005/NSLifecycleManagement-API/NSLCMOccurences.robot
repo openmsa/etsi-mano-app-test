@@ -16,16 +16,13 @@ Post NS LCM occurences - Method not implemented
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    POST Terminate NSInstance
-    Check HTTP Response Status Code Is    202
-    Check HTTP Response Header Contains    Location
 	POST NS LCM OP Occurences
 	Check HTTP Response Status Code Is    405
 
 Get status information about multiple NS LCM OCC   
      [Documentation]    Test ID: 5.3.2.8.2
     ...    Test title: Get status information about multiple NS LCM OCC
-    ...    Test objective: The objective is to test that GET method return a list of LCM occurrences of the NS
+    ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM OCC available in the NFVO
     ...    Reference:  section 6.4.9.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
