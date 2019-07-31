@@ -68,7 +68,7 @@ PATCH Individual VNFInstance Precondition failed
      [Documentation]    Test ID: 7.3.1.2.5
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
-    ...    Pre-conditions:  A precondition given in an HTTP request header is not fulfilled. Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity
+    ...    Pre-conditions:  ETag mismatch
     ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -80,7 +80,7 @@ PATCH Individual VNFInstance Precondition failed
 PATCH Individual VNFInstance Conflict
      [Documentation]    Test ID: 7.3.1.2.6
     ...    Test title: PATCH Individual VNFInstance Precondition failed
-    ...    Test objective: The objective is to create a new VNF instance resource
+    ...    Test objective: The objective is to test the conflict while modifying a VNF instance resource
     ...    Pre-conditions: none
     ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -89,7 +89,6 @@ PATCH Individual VNFInstance Conflict
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
-    #[Teardown]    #We cannot know if the "scale" operation is finished easily because the 202 indicates only whether the operation has been accepted, not whether the operation has been finished
 
 DELETE Individual VNFInstance
      [Documentation]    Test ID: 7.3.1.2.7
@@ -105,8 +104,8 @@ DELETE Individual VNFInstance
 
 DELETE Individual VNFInstance Conflict
      [Documentation]    Test ID: 7.3.1.2.8
-    ...    Test title: DELETE Individual VNFInstance
-    ...    Test objective: The objective is to verify that The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Test title: DELETE Individual VNFInstance Conflict
+    ...    Test objective: The objective is to verify that the deletion cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
     ...    Reference: section 5.4.3.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM

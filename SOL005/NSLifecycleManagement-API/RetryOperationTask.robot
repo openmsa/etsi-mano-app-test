@@ -20,7 +20,7 @@ Post Retry operation task
 	POST Retry operation task
 	Check HTTP Response Status Code Is    202
 	Check HTTP Response Header Contains    Location
-	Check resource has not a temporary failure
+	Check operation resource state is not FAILED_TEMP
 	
 Post Retry operation task Not Found
     [Documentation]    Test ID: 5.3.2.10.2

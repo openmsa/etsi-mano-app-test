@@ -24,8 +24,8 @@ POST Scale a vnfInstance to level
 POST Scale a vnfInstance to level Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 7.3.1.5.2
-    ...    Test title: POST Scale a vnfInstance to level
-    ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Test title: POST Scale a vnfInstance to level Conflict (Not-Instantiated)
+    ...    Test objective: The objective is to verify that the scale operation cannot be executed 
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: section 5.4.6.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -65,7 +65,7 @@ GET Scale to level VNFInstance - Method not implemented
 
 PUT Scale to level VNFInstance - Method not implemented
     [Documentation]    Test ID: 7.3.1.5.5
-    ...    Test title: GET Scale to level VNFInstance - Method not implemented
+    ...    Test title: PUT Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.6.3.3 - SOL003 v2.4.1
@@ -77,7 +77,7 @@ PUT Scale to level VNFInstance - Method not implemented
 
 PATCH Scale to level VNFInstance - Method not implemented
     [Documentation]    Test ID: 7.3.1.5.6
-    ...    Test title: GET Scale to level VNFInstance - Method not implemented
+    ...    Test title: PATCH Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.6.3.4 - SOL003 v2.4.1

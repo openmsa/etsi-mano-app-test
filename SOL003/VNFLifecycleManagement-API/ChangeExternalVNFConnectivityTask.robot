@@ -19,8 +19,8 @@ POST Change external VNF connectivity
     ...    Post-Conditions: in response header Location shall not be null         
     POST Change External VNF Connectivity
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
-    
+    Check Operation Occurrence Id existence
+        
 GET Change external VNF connectivity - Method not implemented
     [Documentation]    Test ID: 7.3.1.10.2
     ...    Test title: GET Change external VNF connectivity - Method not implemented

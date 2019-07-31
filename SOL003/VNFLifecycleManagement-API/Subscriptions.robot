@@ -75,7 +75,7 @@ GET Subscription - Filter
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 7.3.1.17.6
-    ...    Test title: GET Subscriptions - Filter
+    ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is Get the list of active subscriptions using an invalid filter
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.18.3.2 - SOL003 v2.4.1
@@ -94,7 +94,7 @@ PUT subscriptions - Method not implemented
     ...    Reference:  section 5.4.18.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: subscription not modified
+    ...    Post-Conditions: none
     PUT subscriptions
 	Check HTTP Response Status Code Is    405
 

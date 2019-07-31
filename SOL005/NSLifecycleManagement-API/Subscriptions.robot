@@ -65,7 +65,7 @@ GET Subscriptions
 GET Subscription - Filter
     [Documentation]    Test ID: 5.3.2.15.5
     ...    Test title: GET Subscription - Filter
-    ...    Test objective: The objective is to test that GET method  retrive the list of existing subscriptions
+    ...    Test objective: The objective is to test that GET method  retrive the list of existing subscriptions filtered
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -83,7 +83,7 @@ PUT subscriptions - Method not implemented
     ...    Reference:  section 6.4.16.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS lifecycle management subscription is not modified by the operation
+    ...    Post-Conditions: none
     PUT subscriptions
     Check HTTP Response Status Code Is    405
 
@@ -95,18 +95,18 @@ PATCH subscriptions - Method not implemented
     ...    Reference:  section 6.4.16.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS lifecycle management subscription is not modified by the operation
+    ...    Post-Conditions: none
     PATCH subscriptions
     Check HTTP Response Status Code Is    405
 
 DELETE subscriptions - Method not implemented
-    [Documentation]    Test ID: 5.3.2.15.6
+    [Documentation]    Test ID: 5.3.2.15.8
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method can't modify a NS lifecycle management subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS lifecycle management subscription is not deleted by the operation
+    ...    Post-Conditions: none
     DELETE subscriptions
     Check HTTP Response Status Code Is    405
