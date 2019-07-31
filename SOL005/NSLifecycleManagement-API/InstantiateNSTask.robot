@@ -34,6 +34,7 @@ Post Instantiate a nsInstance Conflict
     POST Instatiate nsInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
+    Check resource not_instantiated
     
 GET Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.3
@@ -55,7 +56,7 @@ PUT Instantiate NSInstance - Method not implemented
     ...    Reference:  section 6.4.4.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is not modified on the NFVO
+    ...    Post-Conditions: none.
     PUT Instantiate NSInstance
     Check HTTP Response Status Code Is    405
     
@@ -67,7 +68,7 @@ PATCH Instantiate NSInstance - Method not implemented
     ...    Reference:  section 6.4.4.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is not modified on the NFVO
+    ...    Post-Conditions: none.
     PATCH Instantiate NSInstance
     Check HTTP Response Status Code Is    405
 
@@ -79,6 +80,6 @@ DELETE Instantiate NSInstance - Method not implemented
     ...    Reference:  section 6.4.4.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is not deleted from the NFVO
+    ...    Post-Conditions: none.
     DELETE Instantiate NSInstance
     Check HTTP Response Status Code Is    405

@@ -23,7 +23,7 @@ Post Individual NSInstance - Method not implemented
 Get Information about an individual NS Instance
     [Documentation]    Test ID: 5.3.2.2.2
     ...    Test title: Get Information about an individual NS Instance
-    ...    Test objective: The objective is to test that GET method return an individual NS instance
+    ...    Test objective: The objective is to test that GET method returns an individual NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -61,7 +61,7 @@ DELETE Individual NSInstance
      [Documentation]    Test ID: 5.3.2.2.5
     ...    Test title: DELETE Individual NSInstance
     ...    Test objective: The objective is to test that DELETE method delete a not INSTANTIATED NS instance
-    ...    Pre-conditions: a not INSTANTIATED NS instance.
+    ...    Pre-conditions: NS instance is not INSTANTIATED .
     ...    Reference:  section 6.4.3.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none

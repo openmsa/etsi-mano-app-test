@@ -19,7 +19,7 @@ Post Continue operation task
     ...    Post-Conditions: NS instance status not equal to FAILED_TEMP 
 	POST Continue operation task
 	Check HTTP Response Status Code Is    202
-	Check resource has not a temporary failure
+	Check operation resource state is not FAILED_TEMP
 	
 Post Continue operation task Not Found
     [Documentation]    Test ID: 5.3.2.12.2

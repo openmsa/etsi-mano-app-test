@@ -120,13 +120,13 @@ Check operation resource state is FAILED_TEMP
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
     String    response body instantiationState    FAILED_TEMP 
-
-Check resource has not a temporary failure
+Check operation resource state is not FAILED_TEMP
+    Check operation resource state is FAILED_TEMP    
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
-    String    response body instantiationState  !=  FAILED_TEMP
+    String    response body instantiationState   !=   FAILED_TEMP 
 
 Check resource is finally failed
     Set Headers    {"Accept":"${ACCEPT}"}  
