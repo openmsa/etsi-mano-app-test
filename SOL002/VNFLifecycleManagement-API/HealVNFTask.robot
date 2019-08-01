@@ -66,7 +66,7 @@ PUT Heal VNFInstance - Method not implemented
     ...    Test title: PUT Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.9.3.2 - SOL002 v2.4.1
+    ...    Reference:  section 5.4.9.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -74,11 +74,11 @@ PUT Heal VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Heal VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.8.4
+    [Documentation]    Test ID: 6.3.5.8.5
     ...    Test title: PATCH Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.9.3.2 - SOL002 v2.4.1
+    ...    Reference:  section 5.4.9.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -86,11 +86,11 @@ PATCH Heal VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
     
 DELETE Heal VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.8.4
+    [Documentation]    Test ID: 6.3.5.8.6
     ...    Test title: DELETE Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.9.3.2 - SOL002 v2.4.1
+    ...    Reference:  section 5.4.9.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
