@@ -8,7 +8,7 @@ Library    OperatingSystem
 
 *** Test Cases ***
 POST Alarms - Method not implemented
-    [Documentation]    Test ID: 6.3.4.2.1
+    [Documentation]    Test ID: 6.3.4.1.1
     ...    Test title: POST Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -20,7 +20,7 @@ POST Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 Get information about multiple alarms 
-    [Documentation]    Test ID: 6.3.4.2.2
+    [Documentation]    Test ID: 6.3.4.1.2
     ...    Test title: Get information about multiple alarms
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
@@ -33,7 +33,7 @@ Get information about multiple alarms
     Check HTTP Response Body Json Schema Is    alarms
 
 Get information about multiple alarms with filters 
-    [Documentation]    Test ID: 6.3.4.2.3
+    [Documentation]    Test ID: 6.3.4.1.3
     ...    Test title: Get information about multiple alarms - with filters
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
@@ -46,7 +46,7 @@ Get information about multiple alarms with filters
     Check HTTP Response Body Json Schema Is    alarms
 
 Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
-    [Documentation]    Test ID: 6.3.4.2.4
+    [Documentation]    Test ID: 6.3.4.1.4
     ...    Test title: Get information about multiple alarms - with Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
@@ -59,7 +59,7 @@ Get information about multiple alarms Bad Request Invalid attribute-based filter
     Check HTTP Response Body Json Schema Is    ProblemDetails
     
 PUT Alarms - Method not implemented
-    [Documentation]    Test ID: 6.3.4.2.5
+    [Documentation]    Test ID: 6.3.4.1.5
     ...    Test title: PUT Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -71,7 +71,7 @@ PUT Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Alarms - Method not implemented
-    [Documentation]    Test ID: 6.3.4.2.6
+    [Documentation]    Test ID: 6.3.4.1.6
     ...    Test title: PATCH Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -83,7 +83,7 @@ PATCH Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Alarms - Method not implemented
-    [Documentation]    Test ID: 6.3.4.2.7
+    [Documentation]    Test ID: 6.3.4.1.7
     ...    Test title: DELETE Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
