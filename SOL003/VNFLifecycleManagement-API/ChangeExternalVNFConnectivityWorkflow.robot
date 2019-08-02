@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Operate a VNF Instance
-    [Documentation]    Test ID: 7.3.1.27
+    [Documentation]    Test ID: 7.3.1.21
     ...    Test title: Change the external connectivity of a VNF instance
     ...    Test objective: The objective is to change the external connectivity of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 

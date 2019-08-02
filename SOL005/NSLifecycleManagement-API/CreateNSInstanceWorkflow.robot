@@ -10,7 +10,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 
 NS Instance Creation
-    [Documentation]    Test ID: 5.3.2.18
+    [Documentation]    Test ID: 5.3.2.17
     ...    Test title: NS Instance Creation
     ...    Test objective: The objective is to test the workflow for Creating a NS instance
     ...    Pre-conditions: none

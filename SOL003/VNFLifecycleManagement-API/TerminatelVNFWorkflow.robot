@@ -27,7 +27,6 @@ Terminate a VNF Instance
     Check HTTP Response Header Contains    Location 
     Check Operation Occurrence Id
     Check Operation Notification For Terminate    STARTING
-    #Create a new Grant - Sync - OPERATE
     Check Operation Notification For Terminate    PROCESSING
     Check Operation Notification For Terminate    COMPLETED
     Check Postcondition VNF Terminate
