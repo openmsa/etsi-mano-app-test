@@ -17,7 +17,7 @@ Terminate a VNF Instance
     [Documentation]    Test ID: 7.3.1.34
     ...    Test title: Terminate a VNF Instance
     ...    Test objective: The objective is to terminate a VNF instance.
-    ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.a.b.c)
+    ...    Pre-conditions: VNF instance in INSTANTIATED state 
     ...    Reference: section 5.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM. 

@@ -9,66 +9,122 @@ Suite Setup    Check resource existance
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented
-    log    Trying to perform a POST. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
-    Log    Validate Status code
-    Output    response
-    Integer    response status    405
-
+    [Documentation]    Test ID: 6.3.4.5.1
+    ...    Test title: Post Individual Subscription - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.6.3.1 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    Post Create individual subscription
+    Check HTTP Response Status Code Is    405
+    
 Get Information about an individual subscription
-    [Documentation]    Test ID: 7.4.6.1
-    ...    Test title: Retrieve the alarm subscriptions
+    [Documentation]    Test ID: 6.3.4.5.2
+    ...    Test title: Get Information about an individual subscription
     ...    Test objective: The objective is to read an individual subscription for VNF alarms subscribed by the client
     ...    Pre-conditions: The subscription with the given id exists
-    ...    Reference: section 7.4.6 - SOL002 v2.4.1
+    ...    Reference: section 7.4.6.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
-    log    Trying to get information about an individual subscription
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
-    Log    Validate Status code
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-    Validate Json    FmSubscription.schema.json    ${result}
-    Log    Validation OK
+    Get individual subscription
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscription
 
 PUT an individual subscription - Method not implemented
-    log    Trying to perform a PUT. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Output    response
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.4.5.3
+    ...    Test title: Put Individual Subscription - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.6.3.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    Put individual subscription
+    Check HTTP Response Status Code Is    405
+    
 
 PATCH an individual subscription - Method not implemented
-    log    Trying to perform a PATCH. This method should not be implemented
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Output    response
-    Integer    response status    405
+    [Documentation]    Test ID: 6.3.4.5.4
+    ...    Test title: Patch Individual Subscription - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.6.3.4 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    Patch individual subscription
+    Check HTTP Response Status Code Is    405
+    
     
 DELETE an individual subscription
-    log    Try to delete an individual subscription
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
-    Log    Validate Status code
-    Output    response
-    Integer    response status    204
-
+    [Documentation]    Test ID: 6.3.4.5.5
+    ...    Test title: Delete an Individual Subscription
+    ...    Test objective: The objective is to test that the deletion of a subscription
+    ...    Pre-conditions: an existing subscription
+    ...    Reference: section 7.4.6.3.5 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: the subscription is deleted
+    Check resource existance
+    Delete individual subscription
+    Check HTTP Response Status Code Is    204
+    
 *** Keywords ***
 Check resource existance
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
     Integer    response status    200
+Post Create individual subscription
+    log    Trying to perform a POST. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}				
+Get individual subscription
+    log    Trying to get information about an individual subscription
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+Get individual subscription - filter
+    Log    Get the list of active individual subscription using a filter
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+Get individual subscription - invalid filter  
+    Log    Get the list of active individual subscription using an invalid filter
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+PUT individual subscription
+    log    Trying to perform a PUT. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}        
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+PATCH individual subscription
+    log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}		
+DELETE individual subscription
+    log    Try to delete an individual subscription
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    	   
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	      
