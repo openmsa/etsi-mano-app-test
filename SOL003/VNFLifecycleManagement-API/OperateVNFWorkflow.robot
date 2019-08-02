@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Operate a VNF Instance
-    [Documentation]    Test ID: 7.3.1.29
+    [Documentation]    Test ID: 7.3.1.28
     ...    Test title: Operate a VNF Instance
     ...    Test objective: The objective is to test the workflow of operational change of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 

@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Heal a VNF Instance
-    [Documentation]    Test ID: 7.3.1.26
+    [Documentation]    Test ID: 7.3.1.25
     ...    Test title: Heal a VNF Instance
     ...    Test objective: The objective is to heal a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
