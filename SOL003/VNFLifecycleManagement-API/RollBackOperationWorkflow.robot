@@ -15,11 +15,11 @@ Suite Teardown    Terminate All Processes    kill=true
 
 
 *** Test Cases ***
-Roll back a VNF LCM Operation - Successful
+Rollback a VNF LCM Operation - Successful
     [Documentation]    Test ID: 7.3.1.31.1
-    ...    Test title: Roll back VNF LCM Operation - Successful
+    ...    Test title: Rollback VNF LCM Operation - Successful
     ...    Test objective: The objective is to test the workflow for a Rolling Back a VNF LCM Operation and the operation is successful
-    ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
+    ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
     ...    Reference: section 5.3.11 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
@@ -32,11 +32,11 @@ Roll back a VNF LCM Operation - Successful
     Check Operation Notification For Roll Back    ROLLED_BACK
     Check Postcondition VNF Roll Back Successful
 
-Retry VNF LCM Operation - Unsuccessful
+Rollback VNF LCM Operation - Unsuccessful
     [Documentation]    Test ID: 7.3.1.31.2
-    ...    Test title: Retry VNF LCM Operation - Unsuccessful
-    ...    Test objective: The objective is to test the workflow for a Retry VNF LCM Operation and the operation is not successful
-    ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
+    ...    Test title: Rollback VNF LCM Operation - Unsuccessful
+    ...    Test objective: The objective is to test the workflow for a Rollback VNF LCM Operation and the operation is not successful
+    ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
     ...    Reference: section 5.3.10 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
