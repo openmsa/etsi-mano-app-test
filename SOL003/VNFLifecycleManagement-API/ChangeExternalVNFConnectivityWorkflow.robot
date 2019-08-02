@@ -22,14 +22,13 @@ Operate a VNF Instance
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
     ...    Reference: section 5.4.11 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: NFVO is able to receive notifications from VNFM. Change the external connectivity of a VNF instance is supported for the VNF (as capability in the VNFD)
+    ...    Applicability: NFVO is able to receive notifications from VNFM. The VNFD supports the external connectivity change
     ...    Post-Conditions: VNF instance still in INSTANTIATED state and external connectivity of the VNF is changed
     Send Change Ext Connectivity Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
     Check Operation Occurrence Id
     Check Operation Notification For Change Ext Connectivity    STARTING
-    #Create a new Grant - Sync - OPERATE
     Check Operation Notification For Change Ext Connectivity    PROCESSING
     Check Operation Notification For Change Ext Connectivity    COMPLETED
     Check Postcondition VNF Change Ext Connectivity
