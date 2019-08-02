@@ -15,11 +15,11 @@ Suite Teardown    Terminate All Processes    kill=true
 
 
 *** Test Cases ***
-Fail VNF LCM Operation
+Fail a VNF LCM Operation Workflow
     [Documentation]    Test ID: 7.3.1.22
-    ...    Test title: Fail a VNF LCM Operation
+    ...    Test title: Fail a VNF LCM Operation Workflow
     ...    Test objective: The objective is to test the workflow for a Fail VNF LCM Operation
-    ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
+    ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
     ...    Reference: section 5.4.16 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
@@ -47,4 +47,5 @@ Check Postcondition VNF Fail
 Check Operation Notification For Fail 
     [Arguments]    ${status}
     Check Operation Notification    VnfLcmOperationOccurrenceNotification   ${status}
+    
     
