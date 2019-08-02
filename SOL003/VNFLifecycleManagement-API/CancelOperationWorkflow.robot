@@ -35,7 +35,7 @@ Cancel a VNF LCM Operation - PROCESSING - ROLLING_BACK
     [Documentation]    Test ID: 7.3.1.20
     ...    Test title: Cancel a VNF LCM Operation - PROCESSING - ROLLING_BACK
     ...    Test objective: The objective is to test the workflow for Cancelling a VNF LCM Operation being either in the PROCESSIONG or ROLLING_BACK state
-    ...    Pre-conditions: The VNF lifecycle management operation occurrence is in PROCESSING or ROLLING_BACK state. NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
+    ...    Pre-conditions: The VNF lifecycle management operation occurrence is in PROCESSING or ROLLING_BACK state. NFVO is subscribed to VNF LCM Operation Occurrence notifications
     ...    Reference: section 5.3.10 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM

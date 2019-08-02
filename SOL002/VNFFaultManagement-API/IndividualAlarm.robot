@@ -14,58 +14,114 @@ ${original_etag}    1234
 
 *** Test Cases ***
 POST Alarm - Method not implemented
+    [Documentation]    Test ID: 6.3.4.2.1
+    ...    Test title: POST Alarms - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.3.3.1 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: none
+    POST Alarm Task
+    Check HTTP Response Status Code Is    405
+
+
+Get information about an individual alarm
+    [Documentation]    Test ID: 6.3.4.2.2
+    ...    Test title: Get information about an individual alarm
+    ...    Test objective: The objective is to read an individual alarm.
+    ...    Pre-conditions: The related alarm exists
+    ...    Reference: section 7.4.3.3.2  - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions:   
+    GET Alarm Task
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    alarm
+    
+
+
+PUT Alarm - Method not implemented
+     [Documentation]    Test ID: 6.3.4.2.3
+    ...    Test title: PUT Alarms - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.3.3.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: none
+    PUT Alarm Task
+    Check HTTP Response Status Code Is    405
+
+
+PATCH Alarm
+    [Documentation]    Test ID: 6.3.4.2.3
+    ...    Test title: PUT Alarms - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.3.3.4 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: none
+    PUT Alarm Task
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is     alarmModifications
+    
+PATCH Alarm - Precondition failed
+    [Documentation]    Test ID: 6.3.4.2.4
+    ...    Test title: Modify an individual alarm resource - Precondition failed
+    ...    Test objective: The objective is to Modify an individual alarm resource
+    ...    Pre-conditions: The related alarm exists
+    ...    Reference: section 7.4.3.3.4 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: The alarm resource is not modified
+    PUT Alarm Task
+    Check HTTP Response Status Code Is    412
+    Check HTTP Response Body Json Schema Is     ProblemDetails
+    
+PATCH Alarm - Conflict
+    [Documentation]    Test ID: 6.3.4.2.5
+    ...    Test title: Modify an individual alarm resource - Precondition failed
+    ...    Test objective: The objective is to Modify an individual alarm resource
+    ...    Pre-conditions: The related alarm exists
+    ...    Reference: section 7.4.3.3.4 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: The alarm resource is not modified
+    PUT Alarm Task
+    Check HTTP Response Status Code Is    409
+    Check HTTP Response Body Json Schema Is     ProblemDetails
+    
+
+DELETE Alarm - Method not implemented
+    [Documentation]    Test ID: 6.3.4.2.6
+    ...    Test title: DELETE Alarm - Method not implemented
+    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.3.3.5 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    DELETE Alarm Task
+    Check HTTP Response Status Code Is    405
+
+*** Keywords ***
+POST Alarm Task
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
-    Log    Validate Status code
-    Integer    response status    405
-
-
-Get information about a configuration
-    [Documentation]    Test ID: 7.4.3.1
-    ...    Test title: Get information about an alarm
-    ...    Test objective: The objective is to read an individual alarm.
-    ...    Pre-conditions: The related alarm exists
-    ...    Reference: section 7.4.3 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions:   
-    Log    Query VNF The GET method queries information about an alarm.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Execute Query and validate response
-    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
-    Log    Validate Status code
-    Integer    response status    200
-    ${etag}    Output    response headers ETag
-    Set Suite Variable    &{original_etag}    ${etag}
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-    Validate Json    alarm.schema.json    ${result}
-    Log    Validation OK
-
-
-PUT Alarm - Method not implemented
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+PUT Alarm Task
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
-    Log    Validate Status code
-    Integer    response status    405
-
-
-PATCH Alarm
-    [Documentation]    Test ID: 7.4.3.2
-    ...    Test title: Modify an individual alarm resource
-    ...    Test objective: The objective is to Modify an individual alarm resource
-    ...    Pre-conditions: The related alarm exists
-    ...    Reference: section 7.4.3 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: 
+    Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}     ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+PATCH Alarm Task
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
     Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"}
@@ -73,66 +129,38 @@ PATCH Alarm
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
-    Log    Validate Status code
-    Integer    response status    200
-    ${contentType}=    Output    response headers Content-Type
-    Should Contain    ${contentType}    ${CONTENT_TYPE}
-    ${result}=    Output    response body
-    Validate Json    alarmModifications.schema.json    ${result}
-    Log    Validation OK
-    
-
-
-
-PATCH Alarm - Precondition failed
-    [Documentation]    Test ID: 7.4.3.2-1
-    ...    Test title: Modify an individual alarm resource - Precondition failed
-    ...    Test objective: The objective is to Modify an individual alarm resource
-    ...    Pre-conditions: The related alarm exists
-    ...    Reference: section 7.4.3 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: The alarm resource is not modified
-    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
-    log    Trying to perform a PATCH. This method modifies an individual alarm resource
-    Set Headers  {"Accept":"${ACCEPT}"} 
-    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
-    Set Headers    {"If-Match": "${original_etag[0]}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/alarmModifications.json
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
-    Log    Validate Status code
-    Integer    response status    412
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-
-PATCH Alarm - Conflict
-    [Documentation]    Test ID: 7.4.3.2-1
-    ...    Test title: Modify an individual alarm resource - Conflict
-    ...    Test objective: The objective is to Modify an individual alarm resource
-    ...    Pre-conditions: The related alarm exists
-    ...    Reference: section 7.4.3 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: 
-    ...    Post-Conditions: The alarm resource is not modified
-    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that the alarm is in ackownledged state
-    log    Trying to perform a PATCH. This method modifies an individual alarm resource
-    Set Headers  {"Accept":"${ACCEPT}"}
-    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"} 
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/alarmModifications.json
-    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
-    Log    Validate Status code
-    Integer    response status    409
-    ${problemDetails}=    Output    response body
-    Validate Json    ProblemDetails.schema.json    ${problemDetails}
-    Log    Validation OK
-
-DELETE Alarm - Method not implemented
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+DELETE Alarm Task
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
-    Log    Validate Status code
-    Integer    response status    405   
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}			
+GET Alarm Task	
+	Log    Query VNF The GET method queries information about individual alarm.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
+    ${etag}    Output    response headers ETag
+    Set Suite Variable    &{original_etag}    ${etag}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+GET Alarm Task with filter
+	Log    Query VNF The GET method queries information about individual alarm with filters.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${alarm_filter}=${managedObjectId} 
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+GET Alarm Task with invalid filter
+	Log    Query VNF The GET method queries information about individual alarm with filters.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${managedObjectId} 
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	

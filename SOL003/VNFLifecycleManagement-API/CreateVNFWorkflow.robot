@@ -19,7 +19,7 @@ Create VNF Instance Resource
     [Documentation]    Test ID: 7.3.1.23
     ...    Test title: Create VNF Instance workflow
     ...    Test objective: The objective is to test the workflow for the creation of a new VNF instance resource.
-    ...    Pre-conditions: NFVO is subscribed to VNF Identifier Creation notifications (Test ID: 5.4.20.2)
+    ...    Pre-conditions: NFVO is subscribed to VNF Identifier Creation notifications 
     ...    Reference: section 5.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
