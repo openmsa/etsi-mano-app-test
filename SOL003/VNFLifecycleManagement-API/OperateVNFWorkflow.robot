@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Operate a VNF Instance
-    [Documentation]    Test ID: 7.3.1.27
+    [Documentation]    Test ID: 7.3.1.29
     ...    Test title: Operate a VNF Instance
     ...    Test objective: The objective is to change the operational state of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
@@ -29,7 +29,6 @@ Operate a VNF Instance
     Check HTTP Response Header Contains    Location 
     Check Operation Occurrence Id
     Check Operation Notification For Operate    STARTING
-    #Create a new Grant - Sync - OPERATE
     Check Operation Notification For Operate    PROCESSING
     Check Operation Notification For Operate    COMPLETED
     Check Postcondition VNF OPERATE

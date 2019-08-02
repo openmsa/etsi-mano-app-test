@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Delete VNF Instance Resource
-    [Documentation]    Test ID: 7.3.1.21
+    [Documentation]    Test ID: 7.3.1.24
     ...    Test title: Delete VNF Instance workflow
     ...    Test objective: The objective is to test the workflow for the deleteion of an existing VNF instance resource
     ...    Pre-conditions: The VNF Instance resource is in NOT_INSTANTIATED state. NFVO is subscribed to VNF Identifier Creation notifications (Test ID: 5.4.20.2)

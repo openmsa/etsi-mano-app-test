@@ -10,7 +10,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Terminate Flow of NS lifecycle management operations
-    [Documentation]    Test ID: 5.3.2.23
+    [Documentation]    Test ID: 5.3.2.22
     ...    Test title: Terminate Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Terminate a NS instance
     ...    Pre-conditions: the resource is in INSTANTIATED state
