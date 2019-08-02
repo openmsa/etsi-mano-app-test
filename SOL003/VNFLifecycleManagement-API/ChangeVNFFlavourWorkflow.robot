@@ -15,11 +15,11 @@ Suite Teardown    Terminate All Processes    kill=true
 
 
 *** Test Cases ***
-Change VNF External Connectivity
+Change VNF Flavour Workflow
     [Documentation]    Test ID: 7.3.1.28
     ...    Test title: Change VNF Flavour Workflow
     ...    Test objective: The objective is to test the workflow for a change flavour of an existing VNF instance
-    ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.4.4.1). NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
+    ...    Pre-conditions: VNF instance in INSTANTIATED state . NFVO is subscribed to VNF LCM Operation Occurrence notifications 
     ...    Reference: section 5.4.7 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: Multiple flavours are supported for the VNF (as capability in the VNFD). NFVO is able to receive notifications from VNFM
