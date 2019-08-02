@@ -14,7 +14,7 @@ Library    Process
 
 *** Test Cases ***
 VNF Instance Scale To Level
-   [Documentation]    Test ID: 7.3.1.32
+   [Documentation]    Test ID: 7.3.1.31
     ...    Test title: VNF Instance Scale To Level worflow
     ...    Test objective: The objective is to test the workflow for the scale to level of a VNF instance
     ...    Pre-conditions: VNF instance in INSTANTIATED state . NFVO is subscribed to VNF LCM Operation Occurrence notifications 

@@ -14,7 +14,7 @@ Library    Process
 
 *** Test Cases ***
 Retry VNF LCM Operation - Successful
-    [Documentation]    Test ID: 7.3.1.30.1
+    [Documentation]    Test ID: 7.3.1.29.1
     ...    Test title: Retry VNF LCM Operation - Successful
     ...    Test objective: The objective is to test the workflow for a successful Retry VNF LCM Operation and the status notifications
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
@@ -31,7 +31,7 @@ Retry VNF LCM Operation - Successful
     Check Postcondition VNF Retry Successful
 
 Retry VNF LCM Operation - Unsuccessful
-    [Documentation]    Test ID: 7.3.1.30.2
+    [Documentation]    Test ID: 7.3.1.29.2
     ...    Test title: Retry VNF LCM Operation - Unsuccessful
     ...    Test objective: The objective is to test the workflow for an unsuccesful Retry VNF LCM Operation and the status notifications
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 

@@ -14,7 +14,7 @@ Library    Process
 
 *** Test Cases ***
 Terminate a VNF Instance
-    [Documentation]    Test ID: 7.3.1.34
+    [Documentation]    Test ID: 7.3.1.33
     ...    Test title: Terminate a VNF Instance
     ...    Test objective: The objective is to terminate a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
