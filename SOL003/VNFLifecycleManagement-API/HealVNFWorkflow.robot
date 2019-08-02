@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Heal a VNF Instance
-    [Documentation]    Test ID: 7.3.1.22
+    [Documentation]    Test ID: 7.3.1.26
     ...    Test title: Heal a VNF Instance
     ...    Test objective: The objective is to heal a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
@@ -29,7 +29,6 @@ Heal a VNF Instance
     Check HTTP Response Header Contains    Location 
     Check Operation Occurrence Id
     Check Operation Notification For Heal    STARTING
-    #Create a new Grant - Sync - OPERATE
     Check Operation Notification For Heal    PROCESSING
     Check Operation Notification For Heal    COMPLETED
     Check Postcondition VNF Heal

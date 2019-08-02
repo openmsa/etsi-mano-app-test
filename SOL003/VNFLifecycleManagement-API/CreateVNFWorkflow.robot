@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Create VNF Instance Resource
-    [Documentation]    Test ID: 7.3.1.20
+    [Documentation]    Test ID: 7.3.1.23
     ...    Test title: Create VNF Instance workflow
     ...    Test objective: The objective is to test the workflow for the creation of a new VNF instance resource.
     ...    Pre-conditions: NFVO is subscribed to VNF Identifier Creation notifications (Test ID: 5.4.20.2)

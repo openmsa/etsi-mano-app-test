@@ -14,7 +14,7 @@ Library    Process
 
 *** Test Cases ***
 VNF Instance Scale Out
-   [Documentation]    Test ID: 7.3.1.32
+   [Documentation]    Test ID: 7.3.1.33
     ...    Test title: VNF Instance Scale Out worflow
     ...    Test objective: The objective is to test the workflow for the scaling out a VNF instance
     ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.4.4.1). NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
