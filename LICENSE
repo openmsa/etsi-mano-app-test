@@ -1,25 +1,23 @@
-ETSI Software License
+Copyright 2019 ETSI
 
-As long as the hereunder conditions are respected, non-exclusive permission is 
-hereby granted, free of charge, to use, reproduce and modify this software 
-source code, under the following conditions:
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, 
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, 
+   this list of conditions and the following disclaimer in the documentation 
+   and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors 
+   may be used to endorse or promote products derived from this software without 
+   specific prior written permission.
 
-- This source code is provided “AS IS” with no warranties, express or implied, 
-  including but not limited to, the warranties of merchantability, fitness for 
-  a particular purpose and warranties for non-infringement of intellectual 
-  property rights. ETSI shall not be held liable in any event for any direct or 
-  indirect damages whatsoever (including, without limitation, damages for loss 
-  of profits, business interruption, loss of information, or any other pecuniary 
-  loss) arising out of or related to the use of or inability to use the 
-  source code.
-  
-- This permission is granted to facilitate the implementation of the related 
-  ETSI standard, provided that ETSI is given the right to use, reproduce and 
-  amend the modified source code under the same conditions as the 
-  present permission.
-  
-- This permission does not apply to any documentation associated with this 
-  source code for which ETSI keeps all rights reserved. 
-  
-The present ETSI Source Code license shall be included in all copies of whole 
-or part of this source code and shall not imply any sub-license right.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+OF THE POSSIBILITY OF SUCH DAMAGE.
