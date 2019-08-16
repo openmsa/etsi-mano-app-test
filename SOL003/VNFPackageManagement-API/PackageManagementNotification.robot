@@ -14,7 +14,7 @@ Library    String
 VNF Package Onboarding Notification
     [Documentation]    Test ID: 7.3.3.8.1
     ...    Test title: VNF Package Onboarding Notification
-    ...    Test objective: The objective is to test the dispatch of VNF Package Onboarding notification when the VNF package onboarding operation is successfully completed, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF Package Onboarding notification when the VNF package onboarding operation is successfully completed, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF package subscription for onboarding notifications is available in the NFVO.
     ...    Reference:  section 10.4.9.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -27,7 +27,7 @@ VNF Package Onboarding Notification
 VNF Package Operational State Change Notification
     [Documentation]    Test ID: 7.3.3.8.2
     ...    Test title: VNF Package Operational State Change Notification
-    ...    Test objective: The objective is to test the dispatch of VNF Package Change notification when the VNF package operational state is modified, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF Package Change notification when the VNF package operational state is modified, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF package subscription for change notifications is available in the NFVO.
     ...    Reference:  section 10.4.9.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -41,7 +41,7 @@ VNF Package Operational State Change Notification
 VNF Package Deletion Notification
     [Documentation]    Test ID: 7.3.3.8.3
     ...    Test title: VNF Package Deletion Notification
-    ...    Test objective: The objective is to test the dispatch of VNF Package Change notification when the VNF package is deleted on the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF Package Change notification when the VNF package is deleted on the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF package subscription for change notifications is available in the NFVO.
     ...    Reference:  section 10.4.9.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO

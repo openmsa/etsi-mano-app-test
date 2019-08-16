@@ -13,7 +13,7 @@ Suite Teardown    Terminate All Processes    kill=true
 VNF Fault Alarm Notification
     [Documentation]    Test ID: 6.3.4.6.1
     ...    Test title: VNF Fault Alarm Notification
-    ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm Notification when a virtualised resource within an VNF instance fails, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm Notification when a virtualised resource within an VNF instance fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF instance is instantiated, and a subscription for fault alarm notifications is available in the VNFM.
     ...    Reference:  section 7.4.7.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -26,20 +26,20 @@ VNF Fault Alarm Notification
 VNF Fault Alarm Cleared Notification
     [Documentation]    Test ID: 6.3.4.6.2
     ...    Test title: VNF Fault Alarm Cleared Notification
-    ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm Cleared Notification when a faulty virtualised resource within an VNF instance is cleared, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm Cleared Notification when a faulty virtualised resource within an VNF instance is cleared, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF instance is instantiated, a virtualised resource is in faulty state, and a subscription for fault alarm cleared notifications is available in the VNFM.
     ...    Reference:  section 7.4.7.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Trigger the fault cleared of a virtualised resource in the VNF instance (external action) 
+    Trigger the clear of a faulty virtualised resource in the VNF instance (external action)
     Check Alarm cleared Notification Http POST Request Body Json Schema Is    alarmClearedNotification
     Check Alarm cleared Notification Http POST Request Body notificationType attribute Is    alarmClearedNotification
 
 VNF Fault Alarm List Rebuilt Notification 
     [Documentation]    Test ID: 6.3.4.6.3
     ...    Test title: VNF Fault Alarm List Rebuilt Notification 
-    ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm List Rebuilt Notification when the VNFM decides to rebuild the list of its VNF alarms, e.g. due to a corruption in the alarm storage, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm List Rebuilt Notification when the VNFM decides to rebuild the list of its VNF alarms, e.g. due to a corruption in the alarm storage, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF instance is instantiated, one or more virtualised resource are in faulty state, and a subscription for fault alarm list rebuilt notifications is available in the VNFM.
     ...    Reference:  section 7.4.7.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -55,7 +55,7 @@ Trigger the fault of a virtualised resource in the VNF instance (external action
     #do nothing
     Log    do nothing
 
-Trigger the fault cleared of a virtualised resource in the VNF instance (external action) 
+Trigger the clear of a faulty virtualised resource in the VNF instance (external action)
     #do nothing
     Log    do nothing   
 

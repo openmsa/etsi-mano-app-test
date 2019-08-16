@@ -15,7 +15,7 @@ Library    String
 NS Performance Information Availability Notification
     [Documentation]    Test ID: 5.3.4.8.1
     ...    Test title: NS Performance Information Availability Notification
-    ...    Test objective: The objective is to test the dispatch of NS Performance Information Availability Notification when new NS perfomance information is available in the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of NS Performance Information Availability Notification when new NS performance information is available in the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NS performance job is created, and a subscription for information availability notifications is available in the NFVO.
     ...    Reference:  section 7.4.9.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -28,7 +28,7 @@ NS Performance Information Availability Notification
 NS Threshold Crossed Notification
     [Documentation]    Test ID: 5.3.4.8.2
     ...    Test title: NS Threshold Crossed Notification
-    ...    Test objective: The objective is to test the dispatch of NS Threshold Crossed Notification when a previously set NS perfomance metric threshold is crossed, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of NS Threshold Crossed Notification when a previously set NS performance metric threshold is crossed, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NS performance job is created, and a threshold subscription is available in the NFVO.
     ...    Reference:  section 7.4.9.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
