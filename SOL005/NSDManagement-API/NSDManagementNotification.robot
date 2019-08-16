@@ -14,7 +14,7 @@ Library    String
 NSD Onboarding Notification
     [Documentation]    Test ID: 5.3.1.9.1
     ...    Test title: NSD Onboarding Notification
-    ...    Test objective: The objective is to test the dispatch of NSD Onboarding notification when the NSD onboarding operation is successfully completed, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of NSD Onboarding notification when the NSD onboarding operation is successfully completed, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NSD management subscription for onboarding notifications is available in the NFVO.
     ...    Reference:  section 5.4.10.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -27,7 +27,7 @@ NSD Onboarding Notification
 NSD Onboarding Failure Notification
     [Documentation]    Test ID: 5.3.1.9.2
     ...    Test title: NSD Onboarding Failure Notification
-    ...    Test objective: The objective is to test the dispatch of NSD Onboarding faulure notification when the NSD onboarding operation fails, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of NSD Onboarding faulure notification when the NSD onboarding operation fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NSD management subscription for onboarding failure notifications is available in the NFVO.
     ...    Reference:  section 5.4.10.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -40,20 +40,20 @@ NSD Onboarding Failure Notification
 NSD Operational State Change Notification
     [Documentation]    Test ID: 5.3.1.9.3
     ...    Test title: NSD Operational State Change Notification
-    ...    Test objective: The objective is to test the dispatch of NSD Operational State Change notification when the NSD operational status change in the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of NSD Operational State Change notification when the NSD operational status change in the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NSD management subscription for operational state change notifications is available in the NFVO.
     ...    Reference:  section 5.4.10.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Trigger the cross of NSD Operational State Change (external action) 
+    Trigger the change of NSD Operational State (external action) 
     Check NSD Operational State Change Notification Http Request Body Json Schema Is    NsdChangeNotification
     Check NSD Operational State Change Notification Http Request Body notificationType attribute Is    NsdChangeNotification
 
 NSD Deletion Notification
     [Documentation]    Test ID: 5.3.1.9.4
     ...    Test title: NSD Deletion Notification
-    ...    Test objective: The objective is to test the dispatch of NSD Deletion notification when the NSD is deleted from the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of NSD Deletion notification when the NSD is deleted from the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NSD management subscription for deletion notifications is available in the NFVO.
     ...    Reference:  section 5.4.10.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -66,7 +66,7 @@ NSD Deletion Notification
 PNFD Onboarding Notification
     [Documentation]    Test ID: 5.3.1.9.5
     ...    Test title: PNFD Onboarding Notification
-    ...    Test objective: The objective is to test the dispatch of PNFD Onboarding notification when the PNFD onboarding operation is successfully completed, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of PNFD Onboarding notification when the PNFD onboarding operation is successfully completed, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A PNFD management subscription for onboarding notifications is available in the NFVO.
     ...    Reference:  section 5.4.10.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -79,7 +79,7 @@ PNFD Onboarding Notification
 PNFD Onboarding Failure Notification
     [Documentation]    Test ID: 5.3.1.9.6
     ...    Test title: PNFD Onboarding Failure Notification
-    ...    Test objective: The objective is to test the dispatch of PNFD Onboarding faulure notification when the PNFD onboarding operation fails, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of PNFD Onboarding faulure notification when the PNFD onboarding operation fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A PNFD management subscription for onboarding failure notifications is available in the NFVO.
     ...    Reference:  section 5.4.10.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -92,7 +92,7 @@ PNFD Onboarding Failure Notification
 PNFD Deletion Notification
     [Documentation]    Test ID: 5.3.1.9.7
     ...    Test title: PNFD Deletion Notification
-    ...    Test objective: The objective is to test the dispatch of PNFD Deletion notification when the PNFD is deleted from the NFVO, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of PNFD Deletion notification when the PNFD is deleted from the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A PNFD management subscription for deletion notifications is available in the NFVO.
     ...    Reference:  section 5.4.10.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -112,7 +112,7 @@ Trigger the failure of NSD Onboarding (external action)
     #do nothing
     Log    do nothing   
 
-Trigger the cross of NSD Operational State Change (external action) 
+Trigger the change of NSD Operational State (external action) 
     #do nothing
     Log    do nothing
  
