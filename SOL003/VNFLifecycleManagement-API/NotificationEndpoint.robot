@@ -11,7 +11,7 @@ Library    Collections
 VNF LCM Operation Occurrence Start Notification
     [Documentation]    Test ID: 7.3.1.19.1
     ...    Test title: VNF LCM Operation Occurrence Start Notification
-    ...    Test objective: The objective is to test the dispatch of VNF LCM Operation Occurrence Start Notification when a new VNF LCM operation is started in the VNFM, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF LCM Operation Occurrence Start Notification when a new VNF LCM operation is started in the VNFM, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A subscription for VNF LCM Operation Occurrence notifications is available in the VNFM.
     ...    Reference:  section 5.4.20.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -25,7 +25,7 @@ VNF LCM Operation Occurrence Start Notification
 VNF LCM Operation Occurrence Result Notification
     [Documentation]    Test ID: 7.3.1.19.2
     ...    Test title: VNF LCM Operation Occurrence Result Notification
-    ...    Test objective: The objective is to test the dispatch of VNF LCM Operation Occurrence Result Notification when a VNF LCM operation is completed in the VNFM, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF LCM Operation Occurrence Result Notification when a VNF LCM operation is completed in the VNFM, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: An VNF LCM operation is in progress, and a subscription for VNF LCM Operation Occurrence notifications is available in the VNFM.
     ...    Reference:  section 5.4.20.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -39,7 +39,7 @@ VNF LCM Operation Occurrence Result Notification
 VNF Identifier Creation Notification
     [Documentation]    Test ID: 7.3.1.19.3
     ...    Test title: VNF Identifier Creation Notification
-    ...    Test objective: The objective is to test the dispatch of VNF Identifier Creation Notification when a new VNF instance resource is created in the VNFM, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF Identifier Creation Notification when a new VNF instance resource is created in the VNFM, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A subscription for VNF identifier creation notifications is available in the VNFM.
     ...    Reference:  section 5.4.20.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -52,7 +52,7 @@ VNF Identifier Creation Notification
 VNF Identifier Deletion Notification
     [Documentation]    Test ID: 7.3.1.19.4
     ...    Test title: VNF Identifier Deletion Notification
-    ...    Test objective: The objective is to test the dispatch of VNF Identifier Deletion Notification when a VNF instance resource is deleted in the VNFM, and perform a JSON schema and content validation of the delivered notification
+    ...    Test objective: The objective is to test the dispatch of VNF Identifier Deletion Notification when a VNF instance resource is deleted in the VNFM, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF instance resource is created, and a subscription for VNF identifier creation notifications is available in the VNFM.
     ...    Reference:  section 6.4.18.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
