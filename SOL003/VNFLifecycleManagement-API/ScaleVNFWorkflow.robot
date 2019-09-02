@@ -25,7 +25,7 @@ VNF Instance Scale Out
     Send VNF Scale Out Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Scale   STARTING
     Check Operation Notification For Scale    PROCESSING
     Check Operation Notification For Scale    COMPLETED

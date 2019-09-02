@@ -8,9 +8,9 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Post Continue operation task
+POST Continue operation task
      [Documentation]    Test ID: 5.3.2.12.1
-    ...    Test title: Post Continue operation task
+    ...    Test title: POST Continue operation task
     ...    Test objective: The objective is to test that POST method trigger a continue on the LCM operation
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1
@@ -21,9 +21,9 @@ Post Continue operation task
 	Check HTTP Response Status Code Is    202
 	Check operation resource state is not FAILED_TEMP
 	
-Post Continue operation task Not Found
+POST Continue operation task Not Found
     [Documentation]    Test ID: 5.3.2.12.2
-    ...    Test title: Post Continue operation task Not Found
+    ...    Test title: POST Continue operation task Not Found
     ...    Test objective: The objective is to test that POST method cannot perform a continue operation task because the resource is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1
@@ -34,9 +34,9 @@ Post Continue operation task Not Found
 	Check HTTP Response Status Code Is    404
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 		
-Post Continue operation task Conflict
+POST Continue operation task Conflict
      [Documentation]    Test ID: 5.3.2.12.3
-    ...    Test title: Post Continue operation task Conflict
+    ...    Test title: POST Continue operation task Conflict
     ...    Test objective: The objective is to test that POST method fail in case of operation status conflict (i.e. NS instance status not equal to FAILED_TEMP )
     ...    Pre-conditions: NS instance status not equal to FAILED_TEMP 
     ...    Reference:  section 6.4.13.3.1 - SOL005 v2.4.1

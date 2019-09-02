@@ -7,9 +7,9 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Post Fail operation task  
+POST Fail operation task  
     [Documentation]    Test ID: 6.3.5.15.1
-    ...    Test title: Post Fail operation task
+    ...    Test title: POST Fail operation task
     ...    Test objective: The objective is to test that POST method mark as "finally failed" a VNF lifecycle operation if that operation has experienced a temporary failure
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.16.3.1 - SOL002 v2.4.1
@@ -21,10 +21,10 @@ Post Fail operation task
     Check Operation Occurrence Id
     Check operation resource state is FINALLY_FAILED
 
-Post Fail operation task Conflict (Not-FAILED_TEMP)
+POST Fail operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 6.3.5.15.2
-    ...    Test title: Post Fail operation task
+    ...    Test title: POST Fail operation task Conflict (Not-FAILED_TEMP)
     ...    Test objective: The objective is to test that POST method cannot mark as "finally failed" a VNF lifecycle operation if that operation has experienced a temporary failure
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.16.3.1 - SOL002 v2.4.1
@@ -35,10 +35,10 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
-Post Fail operation task Not Found
+POST Fail operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 6.3.5.15.3
-    ...    Test title: Post Fail operation task
+    ...    Test title: POST Fail operation task Not Found
     ...    Test objective: The objective is to test that POST method cannot mark as "finally failed" a VNF lifecycle operation because the operation is not supported
     ...    Pre-conditions: 
     ...    Reference:  section 5.4.16.3.1 - SOL002 v2.4.1
@@ -74,7 +74,7 @@ PUT Fail operation task - Method not implemented
 
 PATCH Fail operation task - Method not implemented
      [Documentation]    Test ID: 6.3.5.15.6
-    ...    Test title: GET Fail operation task- Method not implemented
+    ...    Test title: PATCH Fail operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.16.3.4 - SOL002 v2.4.1
@@ -92,7 +92,7 @@ DELETE Fail operation task - Method not implemented
     ...    Reference:  section 5.4.16.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance not deleted
     Delete Fail operation
     Check HTTP Response Status Code Is    405
 

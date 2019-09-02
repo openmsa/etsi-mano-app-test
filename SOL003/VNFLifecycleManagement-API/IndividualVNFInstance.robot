@@ -59,10 +59,10 @@ PATCH Individual VNFInstance
     ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: VNFInstance modified
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
 PATCH Individual VNFInstance Precondition failed
      [Documentation]    Test ID: 7.3.1.2.5
@@ -72,20 +72,20 @@ PATCH Individual VNFInstance Precondition failed
     ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: VNFInstance not modified
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    412
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
 PATCH Individual VNFInstance Conflict
      [Documentation]    Test ID: 7.3.1.2.6
-    ...    Test title: PATCH Individual VNFInstance Precondition failed
+    ...    Test title: PATCH Individual VNFInstance Conflict
     ...    Test objective: The objective is to test the conflict while modifying a VNF instance resource
-    ...    Pre-conditions: none
+    ...    Pre-conditions: another LCM operation is ongoing
     ...    Reference: section 5.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: VNFInstance not modified
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -98,7 +98,7 @@ DELETE Individual VNFInstance
     ...    Reference: section 5.4.3.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: VNFInstance deleted
     DELETE individual vnfInstance
     Check HTTP Response Status Code Is    204
 

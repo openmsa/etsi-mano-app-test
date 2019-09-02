@@ -26,11 +26,11 @@ Check HTTP Response Status Code Is
     Should Be Equal    ${response.status_code}    ${expected_status}
     Log    Status code validated 
 
-Check Operation Occurrence Id
+Check Operation Occurrence IdS
     ${vnfLcmOpOccId}=    Get Value From Json    ${response.headers}    $..Location
     Should Not Be Empty    ${vnfLcmOpOccId}
 
-Check Operation Occurrence Id existence
+Check Operation Occurrence Id existence 
     ${vnfLcmOpOccId}=    Get Value From Json    ${response.headers}    $..Location
     Should Not Be Empty    ${vnfLcmOpOccId}
     
@@ -730,7 +730,7 @@ GET VNF LCM Operation occurrences invalid filter
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?fields=wrong_field	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
-PUT VNF LCM Operation occurences	
+PUT VNF LCM Operation occurrences	
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

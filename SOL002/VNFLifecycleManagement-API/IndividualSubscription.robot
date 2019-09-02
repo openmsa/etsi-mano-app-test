@@ -6,9 +6,9 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Post Individual Subscription - Method not implemented
+POST Individual Subscription - Method not implemented
     [Documentation]    Test ID: 6.3.5.18.1
-    ...    Test title: Post Individual Subscription - Method not implemented
+    ...    Test title: POST Individual Subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.19.3.1 - SOL002 v2.4.1

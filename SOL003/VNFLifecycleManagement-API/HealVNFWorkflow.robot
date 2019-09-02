@@ -27,7 +27,7 @@ Heal a VNF Instance
     Send Heal VNF Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Heal    STARTING
     Check Operation Notification For Heal    PROCESSING
     Check Operation Notification For Heal    COMPLETED

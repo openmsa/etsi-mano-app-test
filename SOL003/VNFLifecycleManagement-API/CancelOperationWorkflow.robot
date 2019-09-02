@@ -27,7 +27,7 @@ Cancel a VNF LCM Operation - STARTING
     Send Cancel Operation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Cancel    ROLLED_BACK
     Check Postcondition VNF Cancel - STARTING
 
@@ -43,7 +43,7 @@ Cancel a VNF LCM Operation - PROCESSING - ROLLING_BACK
     Send Cancel Operation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Cancel    FAILED_TEMP
     Check Postcondition VNF Cancel - PROCESSING - ROLLING_BACK
 

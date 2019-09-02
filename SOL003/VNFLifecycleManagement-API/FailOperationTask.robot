@@ -8,9 +8,9 @@ Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
 
 *** Test Cases ***
-Post Fail operation task  
+POST Fail operation task  
     [Documentation]    Test ID: 7.3.1.15.1
-    ...    Test title: Post Fail operation task
+    ...    Test title: POST Fail operation task
     ...    Test objective: The objective is to test that POST method mark as "finally failed" a VNF lifecycle operation 
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.16.3.1 - SOL003 v2.4.1
@@ -19,7 +19,7 @@ Post Fail operation task
     ...    Post-Conditions: VNF resource state is FINALLY_FAILED
     Post Fail operation
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check operation resource state is FINALLY_FAILED
 
 Post Fail operation task Conflict (Not-FAILED_TEMP)

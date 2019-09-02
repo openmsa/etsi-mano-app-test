@@ -7,9 +7,9 @@ Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
 
 *** Test Cases ***
-Post Individual Subscription - Method not implemented
+POST Individual Subscription - Method not implemented
     [Documentation]    Test ID: 7.3.1.18.1
-    ...    Test title: Post Individual Subscription - Method not implemented
+    ...    Test title: POST Individual Subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.19.3.1 - SOL003 v2.4.1
@@ -34,7 +34,7 @@ GET Individual Subscription
 
 PUT an individual subscription - Method not implemented
     [Documentation]    Test ID: 7.3.1.18.3
-    ...    Test title: PUT Individual Subscription - Method not implemented
+    ...    Test title: PUT an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.19.3.3 - SOL003 v2.4.1
@@ -46,7 +46,7 @@ PUT an individual subscription - Method not implemented
 
 PATCH an individual subscription - Method not implemented
     [Documentation]    Test ID: 7.3.1.18.4
-    ...    Test title: PATCH Individual Subscription - Method not implemented
+    ...    Test title: PATCH an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.19.3.4 - SOL003 v2.4.1
@@ -58,13 +58,13 @@ PATCH an individual subscription - Method not implemented
     
 DELETE an individual subscription
      [Documentation]    Test ID: 7.3.1.18.5
-    ...    Test title: DELETE Individual Subscription - Method not implemented
+    ...    Test title: DELETE an individual subscription
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.19.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: subscription deleted from VNFM
     Delete Individual subscription
 	Check HTTP Response Status Code Is    405
 

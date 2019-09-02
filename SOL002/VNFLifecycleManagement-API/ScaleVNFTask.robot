@@ -8,7 +8,7 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Scale a vnfInstance
+POST Scale a vnfInstance
     [Documentation]    Test ID: 6.3.5.4.1
     ...    Test title: POST Scale a vnfInstance
     ...    Test objective: The objective is to scale a VNF instance
@@ -21,7 +21,7 @@ Scale a vnfInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
-Scale a vnfInstance Conflict (Not-Instantiated)
+POST Scale a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 6.3.5.4.2
     ...    Test title: POST Scale a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
@@ -35,7 +35,7 @@ Scale a vnfInstance Conflict (Not-Instantiated)
     Check HTTP Response Body Json Schema Is    ProblemDetails 
 
     
-Scale a vnfInstance Not Found
+POST Scale a vnfInstance Not Found
     [Documentation]    Test ID: 6.3.5.4.3
     ...    Test title: POST Scale a vnfInstance Not Found
     ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 

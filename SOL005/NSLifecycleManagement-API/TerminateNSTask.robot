@@ -55,7 +55,7 @@ PUT Terminate NSInstance - Method not implemented
     ...    Reference:  section 6.4.8.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: resurce state not modified
+    ...    Post-Conditions: resource state not modified
     PUT Terminate NSInstance
     Check HTTP Response Status Code Is    405
     
@@ -67,7 +67,7 @@ PATCH Terminate NSInstance - Method not implemented
     ...    Reference:  section 6.4.8.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: resurce state not modified
+    ...    Post-Conditions: resource state not modified
     PATCH Terminate NSInstance
     Check HTTP Response Status Code Is    405
 
@@ -79,7 +79,7 @@ DELETE Terminate NSInstance - Method not implemented
     ...    Reference:  section 6.4.8.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: resurce state not modified
+    ...    Post-Conditions: resource state not modified
     DELETE Terminate NSInstance
     Check HTTP Response Status Code Is    405
     

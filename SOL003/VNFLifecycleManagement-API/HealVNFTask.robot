@@ -19,12 +19,12 @@ POST Heal a vnfInstance
     ...    Post-Conditions: 
     POST Terminate VNF
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
-Heal a vnfInstance Conflict (Not-Instantiated)
+POST Heal a vnfInstance Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
      [Documentation]    Test ID: 7.3.1.8.2
-    ...    Test title: POST Heal a vnfInstance (Not-Instantiated)
+    ...    Test title: POST Heal a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: the VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.9.3.1 - SOL003 v2.4.1
@@ -37,9 +37,9 @@ Heal a vnfInstance Conflict (Not-Instantiated)
 
 
     
-Heal a vnfInstance Not Found
+POST Heal a vnfInstance Not Found
     [Documentation]    Test ID: 7.3.1.8.3
-    ...    Test title: POST Heal a vnfInstance (Not-Instantiated)
+    ...    Test title: POST Heal a vnfInstance Not Found
     ...    Test objective: The objective is to test that the operation cannot be executed because the VNF instance resource is not found. 
     ...    Pre-conditions: the VNF instance resource is not existing
     ...    Reference:  section 5.4.9.3.1 - SOL003 v2.4.1

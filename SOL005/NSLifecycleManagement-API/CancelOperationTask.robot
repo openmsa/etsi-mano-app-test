@@ -8,9 +8,9 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Post Cancel operation task
+POST Cancel operation task
     [Documentation]    Test ID: 5.3.2.14.1
-    ...    Test title: Post Cancel operation task
+    ...    Test title: POST Cancel operation task
     ...    Test objective: The objective is to test that POST method cancel the NS LCM operation
     ...    Pre-conditions: NS instance status equal to STARTING, PROCESSING or ROLLING_BACK
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1
@@ -21,9 +21,9 @@ Post Cancel operation task
 	Check HTTP Response Status Code Is    202
 	Check operation resource state is FAILED_TEMP
 	
-Post Cancel operation task Not Found
+POST Cancel operation task Not Found
     [Documentation]    Test ID: 5.3.2.14.2
-    ...    Test title: Post Cancel operation task Not Found
+    ...    Test title: POST Cancel operation task Not Found
     ...    Test objective: The objective is to test that POST method fail completing the Cancel NS LCM operation if the resource is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1
@@ -34,9 +34,9 @@ Post Cancel operation task Not Found
 	Check HTTP Response Status Code Is    404
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 		
-Post Cancel operation task Conflict
+POST Cancel operation task Conflict
     [Documentation]    Test ID: 5.3.2.14.3
-    ...    Test title: Post Cancel operation task Conflict
+    ...    Test title: POST Cancel operation task Conflict
     ...    Test objective: The objective is to test that POST method fail if a status conflict exist on the NS LCM operation. (i.e. NS instance status not equal to STARTING, PROCESSING or ROLLING_BACK)
     ...    Pre-conditions: NS instance status not equal to STARTING, PROCESSING or ROLLING_BACK
     ...    Reference:  section 6.4.15.3.1 - SOL005 v2.4.1

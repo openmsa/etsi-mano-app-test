@@ -29,7 +29,7 @@ VNF Instantiation
     Send VNF Instantiation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Instantiation  STARTING
     Check Operation Notification For Instantiation  PROCESSING
     Check Operation Notification For Instantiation  COMPLETED

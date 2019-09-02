@@ -25,7 +25,7 @@ Retry VNF LCM Operation - Successful
     Send Retry Operation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Retry    PROCESSING
     Check Operation Notification For Retry    COMPLETED
     Check Postcondition VNF Retry Successful
@@ -42,7 +42,7 @@ Retry VNF LCM Operation - Unsuccessful
     Send Retry Operation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Retry    PROCESSING
     Check Operation Notification For Retry    FAILED_TEMP
     Check Postcondition VNF Retry Unsuccessful

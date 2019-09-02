@@ -10,9 +10,9 @@ Suite Setup    Check resource existance
 
 
 *** Test Cases ***
-Instantiate a vnfInstance
+POST Instantiate a vnfInstance
     [Documentation]    Test ID: 6.3.5.3.1
-    ...    Test title: Post Instantiate Individual VNFInstance 
+    ...    Test title: POST Instantiate a vnfInstance
     ...    Test objective: The objective is to instantiate a VNF instance
     ...    Pre-conditions: none
     ...    Reference: section 5.4.4.3.1 - SOL002 v2.4.1
@@ -23,9 +23,9 @@ Instantiate a vnfInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
-Instantiate a vnfInstance Conflict
+POST Instantiate a vnfInstance Conflict
     [Documentation]    Test ID: 6.3.5.3.2
-    ...    Test title: Post Instantiate Individual VNFInstance 
+    ...    Test title: POST Instantiate a vnfInstance Conflict
     ...    Test objective: The objective is to verify that the instantiation of the vnf cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
     ...    Reference: section 5.4.4.3.1 - SOL002 v2.4.1
@@ -38,7 +38,7 @@ Instantiate a vnfInstance Conflict
     
 GET Instantiate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.3.3
-    ...    Test title: GET Instantiate Individual VNFInstance - Method not implemented
+    ...    Test title: GET Instantiate VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.4.3.2  - SOL002 v2.4.1
@@ -50,37 +50,37 @@ GET Instantiate VNFInstance - Method not implemented
     
 PUT Instantiate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.3.4
-    ...    Test title: PUT Instantiate Individual VNFInstance  - Method not implemented
+    ...    Test title: PUT Instantiate VNFInstance  - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.4.3.3  - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance not modified
     PUT instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
 
 PATCH Instantiate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.3.5
-    ...    Test title: PATCH Instantiate Individual VNFInstance  - Method not implemented
+    ...    Test title: PATCH Instantiate VNFInstance  - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.4.3.4  - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance not modified
     PATCH instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
     
 DELETE Instantiate VNFInstance - Method not implemented
      [Documentation]    Test ID: 6.3.5.3.6
-    ...    Test title: DELETE Instantiate Individual VNFInstance  - Method not implemented
+    ...    Test title: DELETE Instantiate VNFInstance  - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.4.3.5  - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance not deleted
     DELETE instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
 

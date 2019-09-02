@@ -13,9 +13,9 @@ Library    JSONSchemaLibrary    schemas/
 ${original_etag}    1234
 
 *** Test Cases ***
-Post Individual VNFInstance - Method not implemented
+POST Individual VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.2.1
-    ...    Test title: Post Individual VNFInstance - Method not implemented
+    ...    Test title: POST Individual VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference: section 5.4.3.3.1 - SOL002 v2.4.1
@@ -25,9 +25,9 @@ Post Individual VNFInstance - Method not implemented
     POST individual vnfInstance
     Check HTTP Response Status Code Is    405
     
-Get Information about an individual VNF Instance
+GET Information about an individual VNF Instance
     [Documentation]    Test ID: 6.3.5.2.2
-    ...    Test title: Get Information about an individual VNF Instance
+    ...    Test title: GET Information about an individual VNF Instance
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: none
     ...    Reference: section 5.4.3.3.2 - SOL002 v2.4.1
@@ -47,7 +47,7 @@ PUT Individual VNFInstance - Method not implemented
     ...    Reference: section 5.4.3.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance not modified
     PUT individual vnfInstance
     Check HTTP Response Status Code Is    405
 
@@ -59,7 +59,7 @@ PATCH Individual VNFInstance
     ...    Reference: section 5.4.3.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance modified
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
@@ -72,20 +72,20 @@ PATCH Individual VNFInstance Precondition failed
     ...    Reference: section 5.4.3.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance not modified
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    412
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
 PATCH Individual VNFInstance Conflict
     [Documentation]    Test ID: 6.3.5.2.6
-    ...    Test title: PATCH Individual VNFInstance Precondition failed
+    ...    Test title: PATCH Individual VNFInstance Conflict
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: none
     ...    Reference: section 5.4.3.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance not modified
      PATCH individual vnfInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -98,7 +98,7 @@ DELETE Individual VNFInstance
     ...    Reference: section 5.4.3.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance deleted
     DELETE individual vnfInstance
     Check HTTP Response Status Code Is    204
 

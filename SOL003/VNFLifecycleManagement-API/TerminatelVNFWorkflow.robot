@@ -25,7 +25,7 @@ Terminate a VNF Instance
     Send Terminate VNF Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Terminate    STARTING
     Check Operation Notification For Terminate    PROCESSING
     Check Operation Notification For Terminate    COMPLETED
