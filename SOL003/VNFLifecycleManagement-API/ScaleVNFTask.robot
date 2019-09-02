@@ -20,7 +20,7 @@ POST Scale a vnfInstance
     ...    Post-Conditions: 
     POST Scale vnfInstance  
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
 POST Scale a vnfInstance Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state

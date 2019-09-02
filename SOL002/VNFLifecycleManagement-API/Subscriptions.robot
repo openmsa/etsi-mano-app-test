@@ -20,7 +20,7 @@ POST Create a new subscription
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
-Create a new Subscription - DUPLICATION
+POST Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 6.3.5.17.2
     ...    Test title: POST Create a new subscription - DUPLICATION
     ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
@@ -34,7 +34,7 @@ Create a new Subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
 
-Create a new Subscription - NO-DUPLICATION
+POST Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 6.3.5.17.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
     ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
@@ -76,7 +76,7 @@ GET Subscription - Filter
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 6.3.5.17.6
-    ...    Test title: GET Subscriptions - Filter
+    ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is Get the list of active subscriptions using a filter
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.18.3.2 - SOL002 v2.4.1

@@ -9,9 +9,9 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check subscription existance 
 
 *** Test Cases ***
-Post Individual Subscription - Method not implemented
+POST Individual Subscription - Method not implemented
     [Documentation]    Test ID: 5.3.2.16.1
-    ...    Test title: Post Individual Subscription - Method not implemented
+    ...    Test title: POST Individual Subscription - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.17.3.1 - SOL005 v2.4.1
@@ -21,9 +21,9 @@ Post Individual Subscription - Method not implemented
     POST Individual Subscription
     Check HTTP Response Status Code Is    405
 
-Get Information about an individual subscription
+GET Information about an individual subscription
      [Documentation]    Test ID: 5.3.2.16.2
-    ...    Test title: Get Information about an individual subscription
+    ...    Test title: GET Information about an individual subscription
     ...    Test objective: The objective is to test the retrieval of NS lifecycle management subscription and perform a JSON schema validation of the returned subscription data structure
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.17.3.2 - SOL005 v2.4.1

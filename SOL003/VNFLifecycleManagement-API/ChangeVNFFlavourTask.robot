@@ -19,11 +19,11 @@ POST Change deployment flavour of a vnfInstance
     ...    Post-Conditions: in response header Location shall not be null  
     POST Change VNF deployment flavour   
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
-Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
+POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 7.3.1.6.2
-    ...    Test title: POST Change deployment flavour of a vnfInstance
+    ...    Test title: POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. (VNF instance resource is not in NOT-INSTANTIATED state)
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
@@ -35,10 +35,10 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
   
-Change deployment flavour of a vnfInstance Not Found
+POST Change deployment flavour of a vnfInstance Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 7.3.1.6.3
-    ...    Test title: POST Change deployment flavour of a vnfInstance
+    ...    Test title: POST Change deployment flavour of a vnfInstance Not Found
     ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
     ...    Pre-conditions: the VNF instance resource is not existing
     ...    Reference:  section 5.4.7.3.1 - SOL003 v2.4.1
@@ -52,7 +52,7 @@ Change deployment flavour of a vnfInstance Not Found
     
 GET Change deployment flavour VNFInstance - Method not implemented
     [Documentation]    Test ID: 7.3.1.16.4
-    ...    Test title: GET Cancel operation task - Method not implemented
+    ...    Test title: GET Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.7.3.2 - SOL003 v2.4.1
@@ -64,7 +64,7 @@ GET Change deployment flavour VNFInstance - Method not implemented
 
 PUT Change deployment flavour VNFInstance - Method not implemented
     [Documentation]    Test ID: 7.3.1.16.5
-    ...    Test title: PUT Cancel operation task - Method not implemented
+    ...    Test title: PUT Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.7.3.3 - SOL003 v2.4.1
@@ -76,7 +76,7 @@ PUT Change deployment flavour VNFInstance - Method not implemented
 
 PATCH Change deployment flavour VNFInstance - Method not implemented
     [Documentation]    Test ID: 7.3.1.16.6
-    ...    Test title: PATCH Cancel operation task - Method not implemented
+    ...    Test title: PATCH Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.7.3.4 - SOL003 v2.4.1
@@ -88,7 +88,7 @@ PATCH Change deployment flavour VNFInstance - Method not implemented
     
 DELETE Change deployment flavour VNFInstance - Method not implemented
     [Documentation]    Test ID: 7.3.1.16.7
-    ...    Test title: DELETE Cancel operation task - Method not implemented
+    ...    Test title: DELETE Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.7.3.5 - SOL003 v2.4.1

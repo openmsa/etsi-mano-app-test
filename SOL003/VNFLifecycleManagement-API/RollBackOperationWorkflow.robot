@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Rollback a VNF LCM Operation - Successful
-    [Documentation]    Test ID: 7.3.1.31.1
+    [Documentation]    Test ID: 7.3.1.30.1
     ...    Test title: Rollback VNF LCM Operation - Successful
     ...    Test objective: The objective is to test the workflow for a Rolling Back a VNF LCM Operation and the operation is successful
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
@@ -27,13 +27,13 @@ Rollback a VNF LCM Operation - Successful
     Send Roll back Operation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Roll Back    ROLLING_BACK
     Check Operation Notification For Roll Back    ROLLED_BACK
     Check Postcondition VNF Roll Back Successful
 
 Rollback VNF LCM Operation - Unsuccessful
-    [Documentation]    Test ID: 7.3.1.31.2
+    [Documentation]    Test ID: 7.3.1.30.2
     ...    Test title: Rollback VNF LCM Operation - Unsuccessful
     ...    Test objective: The objective is to test the workflow for a Rollback VNF LCM Operation and the operation is not successful
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
@@ -44,7 +44,7 @@ Rollback VNF LCM Operation - Unsuccessful
     Send Roll back Operation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Roll Back    ROLLING_BACK
     Check Operation Notification For Roll Back    FAILED_TEMP
     Check Postcondition VNF Roll Back UnSuccessful

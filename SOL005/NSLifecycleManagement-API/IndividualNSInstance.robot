@@ -8,9 +8,9 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Post Individual NSInstance - Method not implemented
+POST Individual NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.2.1
-    ...    Test title: Post Individual NSInstance - Method not implemented
+    ...    Test title: POST Individual NSInstance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.1 - SOL005 v2.4.1
@@ -20,9 +20,9 @@ Post Individual NSInstance - Method not implemented
     POST IndividualNSInstance
     Check HTTP Response Status Code Is    405
 
-Get Information about an individual NS Instance
+GET Information about an individual NS Instance
     [Documentation]    Test ID: 5.3.2.2.2
-    ...    Test title: Get Information about an individual NS Instance
+    ...    Test title: GET Information about an individual NS Instance
     ...    Test objective: The objective is to test that GET method returns an individual NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.3.3.2 - SOL005 v2.4.1

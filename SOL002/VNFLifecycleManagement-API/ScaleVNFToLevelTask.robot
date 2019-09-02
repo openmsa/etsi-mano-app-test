@@ -7,7 +7,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Scale a vnfInstance to level
+POST Scale a vnfInstance to level
     [Documentation]    Test ID: 6.3.5.5.1
     ...    Test title: POST Scale a vnfInstance to level
     ...    Test objective: The objective is to scale a VNF instance to a target level.
@@ -20,10 +20,10 @@ Scale a vnfInstance to level
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
-Scale a vnfInstance to level Conflict (Not-Instantiated)
+POST Scale a vnfInstance to level Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 6.3.5.5.2
-    ...    Test title: POST Scale a vnfInstance to level
+    ...    Test title: POST Scale a vnfInstance to level Conflict (Not-Instantiated)
     ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: section 5.4.6.3.1 - SOL002 v2.4.1
@@ -35,9 +35,9 @@ Scale a vnfInstance to level Conflict (Not-Instantiated)
     Check HTTP Response Body Json Schema Is    ProblemDetails 
 
     
-Scale a vnfInstance Not Found
+POST Scale a vnfInstance Not Found
     [Documentation]    Test ID: 6.3.5.5.3
-    ...    Test title: Scale a vnfInstance Not Found
+    ...    Test title: POST Scale a vnfInstance Not Found
     ...    Test objective: The objective is to verify that the operation cannot be executed , because the VNF instance resource can't be found.
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: section 5.4.6.3.1 - SOL002 v2.4.1
@@ -63,7 +63,7 @@ GET Scale to level VNFInstance - Method not implemented
 
 PUT Scale to level VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.5.5
-    ...    Test title: GET Scale to level VNFInstance - Method not implemented
+    ...    Test title: PUT Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.6.3.3 - SOL002 v2.4.1
@@ -75,7 +75,7 @@ PUT Scale to level VNFInstance - Method not implemented
 
 PATCH Scale to level VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.5.6
-    ...    Test title: GET Scale to level VNFInstance - Method not implemented
+    ...    Test title: PATCH Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.6.3.4 - SOL002 v2.4.1

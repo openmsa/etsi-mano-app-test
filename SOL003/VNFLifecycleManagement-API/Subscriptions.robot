@@ -28,7 +28,7 @@ Create a new Subscription - DUPLICATION
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.18.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: none
+    ...    Applicability: The VNFM support the creation of duplicated subscriptions
     ...    Post-Conditions: in response header Location shall not be null
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
@@ -41,11 +41,11 @@ Create a new Subscription - NO-DUPLICATION
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.18.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: none
+    ...    Applicability: The VNFM does not support the creation of duplicated subscriptions
     ...    Post-Conditions: in response header Location shall not be null
     Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     
 GET Subscriptions
      [Documentation]    Test ID: 7.3.1.17.4
@@ -72,6 +72,7 @@ GET Subscription - Filter
     Get subscriptions - filter
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    Subscriptions
+
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 7.3.1.17.6

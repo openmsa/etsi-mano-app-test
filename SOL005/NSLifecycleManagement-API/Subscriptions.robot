@@ -29,7 +29,7 @@ POST Create a new Subscription - DUPLICATION
     ...    Pre-conditions: a subscription have already to exist
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
-    ...    Applicability: none
+    ...    Applicability: duplication supported by NFVO
     ...    Post-Conditions: duplicate subscription is created in the NFVO     
     POST subscriptions DUPLICATION
     Check HTTP Response Status Code Is    201
@@ -43,7 +43,7 @@ POST Create a new Subscription - NO-DUPLICATION
     ...    Pre-conditions: a subscription have already to exist
     ...    Reference:  section 6.4.16.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
-    ...    Applicability: none
+    ...    Applicability: duplication NOT supported by NFVO
     ...    Post-Conditions: duplicate subscription is not created in the NFVO     
     POST subscriptions NO DUPLICATION
     Check HTTP Response Status Code Is    303
@@ -52,7 +52,7 @@ POST Create a new Subscription - NO-DUPLICATION
 GET Subscriptions
     [Documentation]    Test ID: 5.3.2.15.4
     ...    Test title: GET Subscriptions
-    ...    Test objective: The objective is to test that GET method  retrive the list of existing subscriptions
+    ...    Test objective: The objective is to test that GET method  retrieve the list of existing subscriptions
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -65,7 +65,7 @@ GET Subscriptions
 GET Subscription - Filter
     [Documentation]    Test ID: 5.3.2.15.5
     ...    Test title: GET Subscription - Filter
-    ...    Test objective: The objective is to test that GET method  retrive the list of existing subscriptions filtered
+    ...    Test objective: The objective is Get the list of active subscriptions using a filter
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -75,8 +75,21 @@ GET Subscription - Filter
     Check HTTP Response Status Code Is  200
     Check HTTP Response Body Json Schema Is  subscriptions
     
+GET subscriptions - Bad Request Invalid attribute-based filtering parameters
+    [Documentation]    Test ID: 5.3.2.15.6
+    ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is Get the list of active subscriptions using an invalid filter
+    ...    Pre-conditions: none
+    ...    Reference:  section 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+    Get subscriptions - invalid filter
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails
+        
 PUT subscriptions - Method not implemented
-     [Documentation]    Test ID: 5.3.2.15.6
+     [Documentation]    Test ID: 5.3.2.15.7
     ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method can't modify a NS lifecycle management subscription
     ...    Pre-conditions: none
@@ -88,7 +101,7 @@ PUT subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH subscriptions - Method not implemented
-    [Documentation]    Test ID: 5.3.2.15.7
+    [Documentation]    Test ID: 5.3.2.15.8
     ...    Test title: PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method can't modify a NS lifecycle management subscription
     ...    Pre-conditions: none
@@ -100,13 +113,13 @@ PATCH subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE subscriptions - Method not implemented
-    [Documentation]    Test ID: 5.3.2.15.8
+    [Documentation]    Test ID: 5.3.2.15.9
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method can't modify a NS lifecycle management subscription
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.16.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: Subscription is not deleted
     DELETE subscriptions
     Check HTTP Response Status Code Is    405

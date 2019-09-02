@@ -8,7 +8,7 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Change deployment flavour of a vnfInstance
+POST Change deployment flavour of a vnfInstance
     [Documentation]    Test ID: 6.3.5.6.1
     ...    Test title: POST Change deployment flavour of a vnfInstance
     ...    Test objective: The objective is to test that POST method trigger a change in VNF deployment flavour
@@ -21,9 +21,9 @@ Change deployment flavour of a vnfInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
-Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
+POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 6.3.5.6.2
-    ...    Test title: POST Change deployment flavour of a vnfInstance
+    ...    Test title: POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.7.3.1 - SOL002 v2.4.1
@@ -35,9 +35,9 @@ Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
     
-Change deployment flavour of a vnfInstance Not Found
+POST Change deployment flavour of a vnfInstance Not Found
     [Documentation]    Test ID: 6.3.5.6.3
-    ...    Test title: POST Change deployment flavour of a vnfInstance
+    ...    Test title: POST Change deployment flavour of a vnfInstance Not Found
     ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
     ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.7.3.1 - SOL002 v2.4.1
@@ -50,8 +50,8 @@ Change deployment flavour of a vnfInstance Not Found
    
     
 GET Change deployment flavour VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.16.4
-    ...    Test title: GET Cancel operation task - Method not implemented
+    [Documentation]    Test ID: 6.3.5.6.4
+    ...    Test title: GET Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.7.3.2 - SOL002 v2.4.1
@@ -62,8 +62,8 @@ GET Change deployment flavour VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PUT Change deployment flavour VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.16.5
-    ...    Test title: PUT Cancel operation task - Method not implemented
+    [Documentation]    Test ID: 6.3.5.6.5
+    ...    Test title: PUT Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.7.3.3 - SOL002 v2.4.1
@@ -74,7 +74,7 @@ PUT Change deployment flavour VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Change deployment flavour VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.16.6
+    [Documentation]    Test ID: 6.3.5.6.6
     ...    Test title: PATCH Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -86,8 +86,8 @@ PATCH Change deployment flavour VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
     
 DELETE Change deployment flavour VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.16.7
-    ...    Test title: DELETE Cancel operation task - Method not implemented
+    [Documentation]    Test ID: 6.3.5.6.7
+    ...    Test title: DELETE Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.7.3.5 - SOL002 v2.4.1

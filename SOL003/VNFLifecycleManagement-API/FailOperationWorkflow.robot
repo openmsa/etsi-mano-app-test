@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Fail a VNF LCM Operation Workflow
-    [Documentation]    Test ID: 7.3.1.25
+    [Documentation]    Test ID: 7.3.1.24
     ...    Test title: Fail a VNF LCM Operation Workflow
     ...    Test objective: The objective is to test the workflow for a Fail VNF LCM Operation
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 

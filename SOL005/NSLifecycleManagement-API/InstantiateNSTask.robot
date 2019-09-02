@@ -8,9 +8,9 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Post Instantiate a nsInstance
+POST Instantiate a nsInstance
     [Documentation]    Test ID: 5.3.2.3.1
-    ...    Test title: Post Instantiate a nsInstance
+    ...    Test title: POST Instantiate a nsInstance
     ...    Test objective: The objective is to test that POST method instantiate a new NS instance
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.4.3.1 - SOL005 v2.4.1
@@ -22,9 +22,9 @@ Post Instantiate a nsInstance
     Check HTTP Response Header Contains    Location
     Check resource INSTANTIATED
 
-Post Instantiate a nsInstance Conflict
+POST Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.3.2
-    ...    Test title: Post Instantiate a nsInstance Conflict
+    ...    Test title: POST Instantiate a nsInstance Conflict
     ...    Test objective: The objective is to test that the operation can't be performed due to a conflict with the state of resource (i.e. the resource is in INSTANTIATED state)
     ...    Pre-conditions: resource is in INSTANTIATED state
     ...    Reference:  section 6.4.4.3.1 - SOL005 v2.4.1

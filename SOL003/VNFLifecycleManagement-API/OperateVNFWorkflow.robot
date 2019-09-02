@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Operate a VNF Instance
-    [Documentation]    Test ID: 7.3.1.29
+    [Documentation]    Test ID: 7.3.1.28
     ...    Test title: Operate a VNF Instance
     ...    Test objective: The objective is to test the workflow of operational change of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
@@ -27,7 +27,7 @@ Operate a VNF Instance
     Send Change VNF Operational State Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Operate    STARTING
     Check Operation Notification For Operate    PROCESSING
     Check Operation Notification For Operate    COMPLETED

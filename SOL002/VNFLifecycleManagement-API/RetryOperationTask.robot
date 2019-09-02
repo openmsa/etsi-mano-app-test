@@ -9,9 +9,9 @@ Documentation    This task resource represents the "Retry operation" operation. 
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Post Retry operation task  
+POST Retry operation task  
     [Documentation]    Test ID: 6.3.5.13.1
-    ...    Test title: Post Retry operation task
+    ...    Test title: POST Retry operation task
     ...    Test objective: The objective is to test that POST method The POST method initiates retrying a VNF lifecycle operation if that operation has experienced a temporary failure
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.14.3.1 - SOL002 v2.4.1
@@ -22,10 +22,10 @@ Post Retry operation task
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
-Post Retry operation task Conflict (Not-FAILED_TEMP)
+POST Retry operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 6.3.5.13.2
-    ...    Test title: Post Retry operation task
+    ...    Test title: POST Retry operation task Conflict (Not-FAILED_TEMP)
     ...    Test objective: The objective is to test that the retry operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. (i.e. the VNF instance resource is not in FAILED_TEMP state)
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.14.3.1 - SOL002 v2.4.1
@@ -37,10 +37,10 @@ Post Retry operation task Conflict (Not-FAILED_TEMP)
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
 
-Post Retry operation task Not Found
+POST Retry operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 6.3.5.13.3
-    ...    Test title: Post Retry operation task
+    ...    Test title: POST Retry operation task Not Found
     ...    Test objective: The objective is to test that the retry operation cannot be executed because the operation is not supported
     ...    Pre-conditions: 
     ...    Reference:  section 5.4.14.3.1 - SOL002 v2.4.1

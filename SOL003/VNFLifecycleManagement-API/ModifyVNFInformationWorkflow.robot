@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Modify info of a VNF Instance
-    [Documentation]    Test ID: 7.3.1.28
+    [Documentation]    Test ID: 7.3.1.27
     ...    Test title: Update information about a VNF instance
     ...    Test objective: The objective is to update information about a VNF instance.
     ...    Pre-conditions: VNF instance is created 
@@ -27,7 +27,7 @@ Modify info of a VNF Instance
     Send Info Modification Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Modify Info    start   #need more info about the notification content
     Check Operation Notification For Modify Info    result  #need more info about the notification content, how the result is presented
     Check Postcondition VNF Modify Info

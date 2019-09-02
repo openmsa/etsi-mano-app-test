@@ -8,9 +8,9 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Post Rollback operation task
+POST Rollback operation task
      [Documentation]    Test ID: 5.3.2.11.1
-    ...    Test title: Post Rollback operation task
+    ...    Test title: POST Rollback operation task
     ...    Test objective: The objective is to test that POST method triggers a rollback on the NS LCM operation
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
     ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
@@ -21,9 +21,9 @@ Post Rollback operation task
 	Check HTTP Response Status Code Is    202
 	Check operation resource state is not FAILED_TEMP 
 	
-Post Rollback operation task Not Found
+POST Rollback operation task Not Found
     [Documentation]    Test ID: 5.3.2.11.2
-    ...    Test title: Post Rollback operation task Not Found
+    ...    Test title: POST Rollback operation task Not Found
     ...    Test objective: The objective is to test that POST method fails if  NS LCM operation is not found
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
@@ -34,9 +34,9 @@ Post Rollback operation task Not Found
 	Check HTTP Response Status Code Is    404
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 		
-Post Rollback operation task Conflict
+POST Rollback operation task Conflict
     [Documentation]    Test ID: 5.3.2.11.3
-    ...    Test title: Post Rollback operation task Conflict
+    ...    Test title: POST Rollback operation task Conflict
     ...    Test objective: The objective is to test that POST method fail in case of NS LCM operation status conflict (i.e. NS instance status not equal to FAILED_TEMP)
     ...    Pre-conditions: NS instance status not equal to FAILED_TEMP
     ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
