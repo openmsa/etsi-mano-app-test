@@ -27,7 +27,7 @@ Operate a VNF Instance
     Send Change VNF Operational State Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Operate    STARTING
     Check Operation Notification For Operate    PROCESSING
     Check Operation Notification For Operate    COMPLETED

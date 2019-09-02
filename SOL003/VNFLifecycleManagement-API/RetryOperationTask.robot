@@ -22,7 +22,7 @@ Post Retry operation task
     ...    Post-Conditions: none 
     Post Retry operation
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
 Post Retry operation task Conflict (Not-FAILED_TEMP)
     [Documentation]    Test ID: 7.3.1.13.2

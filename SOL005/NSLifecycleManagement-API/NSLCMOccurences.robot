@@ -7,9 +7,9 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Post NS LCM occurences - Method not implemented
+POST NS LCM occurrences - Method not implemented
     [Documentation]    Test ID: 5.3.2.8.1
-    ...    Test title: Post NS LCM occurences - Method not implemented
+    ...    Test title: POST NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.9.3.1 - SOL005 v2.4.1
@@ -19,9 +19,9 @@ Post NS LCM occurences - Method not implemented
 	POST NS LCM OP Occurences
 	Check HTTP Response Status Code Is    405
 
-Get status information about multiple NS LCM OCC   
+GET status information about multiple NS LCM OCC   
      [Documentation]    Test ID: 5.3.2.8.2
-    ...    Test title: Get status information about multiple NS LCM OCC
+    ...    Test title: GET status information about multiple NS LCM OCC
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM OCC available in the NFVO
     ...    Reference:  section 6.4.9.3.2 - SOL005 v2.4.1
@@ -32,10 +32,10 @@ Get status information about multiple NS LCM OCC
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
-Get status information about multiple NS LCM OCC Bad Request Invalid attribute-based filtering parameters
+GET status information about multiple NS LCM OCC Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 5.3.2.8.3
-    ...    Test title: Get status information about multiple NS LCM OCC Bad Request Invalid attribute-based filtering parameters
-    ...    Test objective: The objective is to test that GET method fail because the query parameter is not existing
+    ...    Test title: GET status information about multiple NS LCM OCC Bad Request Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is to test that GET method fail because of wrong query parameter
     ...    Pre-conditions: At least one LCM OCC available in the NFVO, Invalid filter parameter
     ...    Reference:  section 6.4.9.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -45,10 +45,10 @@ Get status information about multiple NS LCM OCC Bad Request Invalid attribute-b
 	Check HTTP Response Status Code Is    400
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 
-Get status information about multiple NS LCM OCC Bad Request Invalid attribute selector
+GET status information about multiple NS LCM OCC Bad Request Invalid attribute selector
     [Documentation]    Test ID: 5.3.2.8.4
-    ...    Test title: Get status information about multiple NS LCM OCC Bad Request Invalid attribute selector
-    ...    Test objective: The objective is to test that GET method fail because the attributes selector is not existing
+    ...    Test title: GET status information about multiple NS LCM OCC Bad Request Invalid attribute selector
+    ...    Test objective: The objective is to test that GET method fail because of wrong attributes selector
     ...    Pre-conditions: At least one LCM OCC available in the NFVO, Invalid attribute selector
     ...    Reference:  section 6.4.9.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO

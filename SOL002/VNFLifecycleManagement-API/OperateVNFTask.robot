@@ -8,7 +8,7 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Operate a vnfInstance
+POST Operate a vnfInstance
     [Documentation]    Test ID: 6.3.5.9.1
     ...    Test title: POST Operate a vnfInstance
     ...    Test objective: The objective is to test that POST method operate a VNF instance
@@ -23,7 +23,7 @@ Operate a vnfInstance
 
 POST Operate a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 6.3.5.9.2
-    ...    Test title: POST Operate a vnfInstance
+    ...    Test title: POST Operate a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: the VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.10.3.1 - SOL002 v2.4.1
@@ -37,7 +37,7 @@ POST Operate a vnfInstance Conflict (Not-Instantiated)
     
 POST Operate a vnfInstance Not Found
     [Documentation]    Test ID: 6.3.5.9.3
-    ...    Test title: POST Operate a vnfInstance
+    ...    Test title: POST Operate a vnfInstance Not Found
     ...    Test objective: The objective is to test that the operation cannot be executed currently, because the resource is not existing
     ...    Pre-conditions: the VNF instance resource is in  not existing
     ...    Reference:  section 5.4.10.3.1 - SOL002 v2.4.1
@@ -50,7 +50,7 @@ POST Operate a vnfInstance Not Found
    
 GET Operate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.9.4
-    ...    Test title: GET Operate a vnfInstance - Method not implemented
+    ...    Test title: GET Operate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.10.3.2 - SOL002 v2.4.1
@@ -62,7 +62,7 @@ GET Operate VNFInstance - Method not implemented
 
 PUT Operate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.9.5
-    ...    Test title: PUT Operate a vnfInstance - Method not implemented
+    ...    Test title: PUT Operate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.10.3.3 - SOL002 v2.4.1
@@ -74,7 +74,7 @@ PUT Operate VNFInstance - Method not implemented
 
 PATCH Operate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.9.6
-    ...    Test title: PATCH Operate a vnfInstance - Method not implemented
+    ...    Test title: PATCH Operate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.10.3.4 - SOL002 v2.4.1
@@ -86,7 +86,7 @@ PATCH Operate VNFInstance - Method not implemented
     
 DELETE Operate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.9.7
-    ...    Test title: DELETE Operate a vnfInstance - Method not implemented
+    ...    Test title: DELETE Operate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.10.3.5 - SOL002 v2.4.1

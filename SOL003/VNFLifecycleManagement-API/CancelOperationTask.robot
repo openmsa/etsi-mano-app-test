@@ -8,7 +8,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Post Cancel operation task
+POST Cancel operation task
     [Documentation]    Test ID: 7.3.1.16.1
     ...    Test title: POST Cancel operation task
     ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
@@ -21,9 +21,9 @@ Post Cancel operation task
     Check HTTP Response Status Code Is    202
     Check operation resource state is FAILED_TEMP
     
-Post Cancel operation task Conflict
+POST Cancel operation task Conflict
     [Documentation]    Test ID: 7.3.1.16.2
-    ...    Test title: POST Cancel operation task
+    ...    Test title: POST Cancel operation task Conflict
     ...    Test objective: The POST method is NOT cancelling an ongoing VNF lifecycle operation due to the fact that the VNF instance resource is not in STARTING, PROCESSING or ROLLING_BACK state
     ...    Pre-conditions: operation is not in STARTING, PROCESSING or ROLLING_BACK state
     ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
@@ -34,10 +34,10 @@ Post Cancel operation task Conflict
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
-Post Cancel operation task Not Found
+POST Cancel operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
-     [Documentation]    Test ID: 7.3.1.16.2
-    ...    Test title: POST Cancel operation task
+     [Documentation]    Test ID: 7.3.1.16.3
+    ...    Test title: POST Cancel operation task Not Found
     ...    Test objective: The objective is to test that POST method cannot cancel a VNF lifecycle operation because the resource is not found
     ...    Pre-conditions: 
     ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
@@ -48,7 +48,7 @@ Post Cancel operation task Not Found
     Check HTTP Response Status Code Is    404
     
 GET Cancel operation task - Method not implemented
-    [Documentation]    Test ID: 7.3.1.16.3
+    [Documentation]    Test ID: 7.3.1.16.4
     ...    Test title: GET Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
@@ -60,7 +60,7 @@ GET Cancel operation task - Method not implemented
 	Check HTTP Response Status Code Is    405
 
 PUT Cancel operation task - Method not implemented
-    [Documentation]    Test ID: 7.3.1.16.3
+    [Documentation]    Test ID: 7.3.1.16.5
     ...    Test title: PUT Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -72,7 +72,7 @@ PUT Cancel operation task - Method not implemented
 	Check HTTP Response Status Code Is    405
 
 PATCH Cancel operation task - Method not implemented
-    [Documentation]    Test ID: 7.3.1.16.4
+    [Documentation]    Test ID: 7.3.1.16.6
     ...    Test title: PATCH Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -84,7 +84,7 @@ PATCH Cancel operation task - Method not implemented
 	Check HTTP Response Status Code Is    405
     
 DELETE Cancel operation task - Method not implemented
-    [Documentation]    Test ID: 7.3.1.16.5
+    [Documentation]    Test ID: 7.3.1.16.7
     ...    Test title: DELETE Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none

@@ -27,7 +27,7 @@ Modify info of a VNF Instance
     Send Info Modification Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Modify Info    start   #need more info about the notification content
     Check Operation Notification For Modify Info    result  #need more info about the notification content, how the result is presented
     Check Postcondition VNF Modify Info

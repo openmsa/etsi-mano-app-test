@@ -8,9 +8,9 @@ Documentation    This resource represents VNF lifecycle management operation occ
 ...    status information about multiple VNF lifecycle management operation occurrences.
 
 *** Test Cases ***
-Post VNF LCM OP occurences - Method not implemented
+POST VNF LCM operation occurences - Method not implemented
     [Documentation]    Test ID: 6.3.5.11.1
-    ...    Test title: Post VNF LCM OP occurences - Method not implemented
+    ...    Test title: POST VNF LCM operation occurences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.12.3.1 - SOL002 v2.4.1
@@ -20,9 +20,9 @@ Post VNF LCM OP occurences - Method not implemented
     Post VNF LCM OP occurences
     Check HTTP Response Status Code Is    405
 
-Get status information about multiple VNF LCM OP OCC 
+GET status information about multiple VNF LCM operation occurrences 
     [Documentation]    Test ID: 6.3.5.11.2
-    ...    Test title: Get status information about multiple VNF LCM OP OCC
+    ...    Test title: GET status information about multiple VNF LCM operation occurrences
     ...    Test objective: The objective is to test that GET method retrieve Query status information about multiple VNF lifecycle management operation occurrences.
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.12.3.2 - SOL002 v2.4.1
@@ -33,9 +33,9 @@ Get status information about multiple VNF LCM OP OCC
     Check HTTP Response Status Code Is    202
     Check HTTP Response Body Json Schema Is    VnfLcmOpOccs 
 
-Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribute-based filtering parameters
+GET status information about multiple VNF LCM operation occurrences Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 6.3.5.11.3
-    ...    Test title: Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribute-based filtering parameters
+    ...    Test title: GET status information about multiple VNF LCM operation occurrences Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to test that GET method fail retrieving status information about multiple VNF lifecycle management operation occurrences because attribute is invalid.
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.12.3.2 - SOL002 v2.4.1
@@ -46,9 +46,9 @@ Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribu
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
-Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribute selector
+GET status information about multiple VNF LCM Operation occurrences Bad Request Invalid attribute selector
     [Documentation]    Test ID: 6.3.5.11.4
-    ...    Test title: Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribute selector
+    ...    Test title: GET status information about multiple VNF LCM Operation occurrences Bad Request Invalid attribute selector
     ...    Test objective: The objective is to test that GET method fail retrieving status information about multiple VNF lifecycle management operation occurrences because attribute is invalid.
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.12.3.2 - SOL002 v2.4.1
@@ -59,9 +59,9 @@ Get status information about multiple VNF LCM OP OCC Bad Request Invalid attribu
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
     
-PUT status information about multiple VNF LCM OP OCC - Method not implemented
+PUT status information about multiple VNF LCM operation occurrences - Method not implemented
      [Documentation]    Test ID: 6.3.5.11.5
-    ...    Test title: PUT status information about multiple VNF LCM OP OCC - Method not implemented
+    ...    Test title: PUT status information about multiple VNF LCM operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.12.3.3 - SOL002 v2.4.1
@@ -71,9 +71,9 @@ PUT status information about multiple VNF LCM OP OCC - Method not implemented
     PUT VNF LCM OP occurences
     Check HTTP Response Status Code Is    405
 
-PATCH status information about multiple VNF LCM OP OCC - Method not implemented
+PATCH status information about multiple VNF LCM operation occurrences - Method not implemented
     [Documentation]    Test ID: 6.3.5.11.6
-    ...    Test title: PATCH status information about multiple VNF LCM OP OCC - Method not implemented
+    ...    Test title: PATCH status information about multiple VNF LCM operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.12.3.4 - SOL002 v2.4.1
@@ -83,9 +83,9 @@ PATCH status information about multiple VNF LCM OP OCC - Method not implemented
     PUT VNF LCM OP occurences
     Check HTTP Response Status Code Is    405
 
-DELETE status information about multiple VNF LCM OP OCC - Method not implemented
+DELETE status information about multiple VNF LCM operation occurrences - Method not implemented
     [Documentation]    Test ID: 6.3.5.11.7
-    ...    Test title: DELETE status information about multiple VNF LCM OP OCC - Method not implemented
+    ...    Test title: DELETE status information about multiple VNF LCM operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.12.3.5 - SOL002 v2.4.1

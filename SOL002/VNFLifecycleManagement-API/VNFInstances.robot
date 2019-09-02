@@ -7,9 +7,9 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
-Create a new vnfInstance
+POST Create a new vnfInstance
     [Documentation]    Test ID: 6.3.5.1.1
-    ...    Test title: Create a new vnfInstance
+    ...    Test title: POST Create a new vnfInstance
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: 
     ...    Reference: section 5.4.2.3.1 - SOL002 v2.4.1
@@ -20,9 +20,9 @@ Create a new vnfInstance
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    vnfInstance
 
-Get information about multiple VNF instances  
+GET information about multiple VNF instances  
     [Documentation]    Test ID: 6.3.5.1.2
-    ...    Test title: Get information about multiple VNF instances
+    ...    Test title: GET information about multiple VNF instances
     ...    Test objective: The objective is to get informations about multiples VNF instances
     ...    Pre-conditions: 
     ...    Reference: section 5.4.2.3.2 - SOL002 v2.4.1
@@ -34,9 +34,9 @@ Get information about multiple VNF instances
     Check HTTP Response Body Json Schema Is    vnfInstances
     
 
-Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
+GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 6.3.5.1.3
-    ...    Test title: Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
+    ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to get informations about multiples VNF instances with Invalid attribute-based filtering parameters
     ...    Pre-conditions: 
     ...    Reference: section 5.4.2.3.2 - SOL002 v2.4.1
@@ -47,9 +47,9 @@ Get information about multiple VNF instances Bad Request Invalid attribute-based
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is   ProblemDetails
 
-Get information about multiple VNF instances Bad Request Invalid attribute selector
+GET information about multiple VNF instances Bad Request Invalid attribute selector
     [Documentation]    Test ID: 6.3.5.1.4
-    ...    Test title: Get information about multiple VNF instances Bad Request Invalid attribute selector
+    ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute selector
     ...    Test objective: The objective is to get informations about multiples VNF instances with Invalid attribute-based filtering parameters
     ...    Pre-conditions: 
     ...    Reference: section 5.4.2.3.2 - SOL002 v2.4.1
@@ -62,7 +62,7 @@ Get information about multiple VNF instances Bad Request Invalid attribute selec
     
 PUT VNFInstances - Method not implemented
     [Documentation]    Test ID: 6.3.5.1.5
-    ...    Test title: PUT multiples VNFInstances - Method not implemented
+    ...    Test title: PUT VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.2.3.3 - SOL002 v2.4.1
@@ -74,7 +74,7 @@ PUT VNFInstances - Method not implemented
 
 PATCH VNFInstances - Method not implemented
     [Documentation]    Test ID: 6.3.5.1.6
-    ...    Test title: PATCH multiples VNFInstances - Method not implemented
+    ...    Test title: PATCH VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.2.3.4 - SOL002 v2.4.1
@@ -86,12 +86,12 @@ PATCH VNFInstances - Method not implemented
 
 DELETE VNFInstances - Method not implemented
     [Documentation]    Test ID: 6.3.5.1.7
-    ...    Test title: PUT multiples VNFInstances - Method not implemented
+    ...    Test title: DELETE VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.2.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: vnf instance not deleted
     DELETE multiple vnfInstances
     Check HTTP Response Status Code Is    405

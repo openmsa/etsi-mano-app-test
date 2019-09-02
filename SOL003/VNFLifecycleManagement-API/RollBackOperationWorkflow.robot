@@ -27,7 +27,7 @@ Rollback a VNF LCM Operation - Successful
     Send Roll back Operation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Roll Back    ROLLING_BACK
     Check Operation Notification For Roll Back    ROLLED_BACK
     Check Postcondition VNF Roll Back Successful
@@ -44,7 +44,7 @@ Rollback VNF LCM Operation - Unsuccessful
     Send Roll back Operation Request
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
     Check Operation Notification For Roll Back    ROLLING_BACK
     Check Operation Notification For Roll Back    FAILED_TEMP
     Check Postcondition VNF Roll Back UnSuccessful

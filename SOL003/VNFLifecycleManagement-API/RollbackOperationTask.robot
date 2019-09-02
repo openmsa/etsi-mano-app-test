@@ -21,12 +21,12 @@ Post Rollback operation task
     ...    Post-Conditions: none 
     Post Rollback operation
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
-Post Rollback operation task Conflict (Not-FAILED_TEMP)
+POST Rollback operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 7.3.1.14.2
-    ...    Test title: Post Rollback operation task Conflict (Not-FAILED_TEMP)
+    ...    Test title: POST Rollback operation task Conflict (Not-FAILED_TEMP)
     ...    Test objective: The objective is to test that POST method initiates a rollback on a VNF lifecycle operation 
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
     ...    Reference:  section 5.4.15.3.1 - SOL003 v2.4.1
@@ -38,9 +38,9 @@ Post Rollback operation task Conflict (Not-FAILED_TEMP)
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
 
-Post Rollback operation task Not Found
+POST Rollback operation task Not Found
     [Documentation]    Test ID: 7.3.1.14.3
-    ...    Test title: Post Rollback operation task Not Found
+    ...    Test title: POST Rollback operation task Not Found
     ...    Test objective: The objective is to test that the retry operation cannot be executed because the operation is not supported
     ...    Pre-conditions: 
     ...    Reference:  section 5.4.15.3.1 - SOL003 v2.4.1
@@ -52,7 +52,7 @@ Post Rollback operation task Not Found
 
 GET Rollback operation task - Method not implemented
     [Documentation]    Test ID: 7.3.1.14.4
-    ...    Test title: GET Retry operation task- Method not implemented
+    ...    Test title: GET Rollback operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.15.3.2 - SOL003 v2.4.1
@@ -64,7 +64,7 @@ GET Rollback operation task - Method not implemented
     
 PUT Rollback operation task - Method not implemented
     [Documentation]    Test ID: 7.3.1.14.5
-    ...    Test title: PUT Retry operation task- Method not implemented
+    ...    Test title: PUT Rollback operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.15.3.3 - SOL003 v2.4.1
@@ -76,7 +76,7 @@ PUT Rollback operation task - Method not implemented
 
 PATCH Rollback operation task - Method not implemented
     [Documentation]    Test ID: 7.3.1.14.6
-    ...    Test title: PATCH Retry operation task- Method not implemented
+    ...    Test title: PATCH Rollback operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.15.3.4 - SOL003 v2.4.1
@@ -88,7 +88,7 @@ PATCH Rollback operation task - Method not implemented
     
 DELETE Rollback operation task - Method not implemented
     [Documentation]    Test ID: 7.3.1.14.7
-    ...    Test title: DELETE Retry operation task- Method not implemented
+    ...    Test title: DELETE Rollback operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference:  section 5.4.15.3.5 - SOL003 v2.4.1

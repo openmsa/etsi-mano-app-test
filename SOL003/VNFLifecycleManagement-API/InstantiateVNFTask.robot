@@ -21,7 +21,7 @@ Instantiate a vnfInstance
     ...    Post-Conditions: 
     POST instantiate individual vnfInstance
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
 Instantiate a vnfInstance Conflict
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state

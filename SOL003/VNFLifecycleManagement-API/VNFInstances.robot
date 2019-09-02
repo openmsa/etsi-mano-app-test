@@ -11,7 +11,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 POST Create a new vnfInstance
     [Documentation]    Test ID: 7.3.1.1.1
-    ...    Test title: Create a VNF instance
+    ...    Test title: POST Create a new vnfInstance
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: none
     ...    Reference: section 5.4.2.3.1 - SOL003 v2.4.1
@@ -22,9 +22,9 @@ POST Create a new vnfInstance
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    vnfInstance
 
-Get information about multiple VNF instances  
+GET information about multiple VNF instances  
     [Documentation]    Test ID: 7.3.1.1.2
-    ...    Test title: Get information about multiple VNF instances
+    ...    Test title: GET information about multiple VNF instances
     ...    Test objective: The objective is to query information about multiple VNF instances
     ...    Pre-conditions:  
     ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
@@ -35,11 +35,11 @@ Get information about multiple VNF instances
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    vnfInstances
 
-Get information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
+GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 7.3.1.1.3
-    ...    Test title: Get information about multiple VNF instances - Invalid attribute-based filtering parameters
+    ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute-based filtering parameters
-    ...    Pre-conditions:  
+    ...    Pre-conditions:  A VNF is instantiated,  a bad filter selector (filter selectors are listed in Table 5.4.2.3.2-1  - SOL003 v2.4.1).
     ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -49,11 +49,11 @@ Get information about multiple VNF instances Bad Request Invalid attribute-based
     Check HTTP Response Body Json Schema Is    ProblemDetails
     
 
-Get information about multiple VNF instances Bad Request Invalid attribute selector
+GET information about multiple VNF instances Bad Request Invalid attribute selector
     [Documentation]    Test ID: 7.3.1.1.4
-    ...    Test title: Get information about multiple VNF instances - Invalid attribute selector
+    ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute selector
     ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute selector
-    ...    Pre-conditions:  
+    ...    Pre-conditions:  A VNF is instantiated,  a bad attribute selector (attribute selectors are listed in Table 5.4.2.3.2-1  - SOL003 v2.4.1).
     ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 

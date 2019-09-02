@@ -11,7 +11,7 @@ POST Create a new NsInstance
     [Documentation]    Test ID: 5.3.2.1.1
     ...    Test title: POST Create a new NsInstance
     ...    Test objective: The objective is to test the creation of a new Ns Instances and perform a JSON schema validation of the collected instance data structure
-    ...    Pre-conditions: an NSD onboarded.
+    ...    Pre-conditions: None.
     ...    Reference:  section 6.4.2.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
@@ -21,9 +21,9 @@ POST Create a new NsInstance
     Check HTTP Response Header Contains    Location
     Check HTTP Response Body Json Schema Is    NsInstance
 
-Get information about multiple NS instances  
+GET information about multiple NS instances  
     [Documentation]    Test ID: 5.3.2.1.2
-    ...    Test title: Get information about multiple NS instances
+    ...    Test title: GET information about multiple NS instances
     ...    Test objective: The objective is to test the retrieval of all the available NS Instances and perform a JSON schema and content validation of the collected instance data structure
     ...    Pre-conditions: An existing Ns instance.
     ...    Reference:  section 6.4.2.3.2 - SOL005 v2.4.1
@@ -34,11 +34,11 @@ Get information about multiple NS instances
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    NsInstances  
     
-Get information about multiple NS instances Bad Request Invalid attribute-based filtering parameters
+GET information about multiple NS instances Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 5.3.2.1.3
-    ...    Test title: Get information about multiple NS instances Bad Request Invalid attribute-based filtering parameters
+    ...    Test title: GET information about multiple NS instances Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to test the retrieval of all the available NS Instances using attribute-based filter and perform a JSON schema and content validation of the collected instance data structure
-    ...    Pre-conditions: A Ns instance is instantiated, a bad filter parameter.
+    ...    Pre-conditions: A Ns instance is instantiated, a bad filter parameter (filter parameters are listed in Table 6.4.2.3.2-1  - SOL005 v2.4.1).
     ...    Reference:  section 6.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
@@ -47,11 +47,11 @@ Get information about multiple NS instances Bad Request Invalid attribute-based 
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
     
-Get information about multiple NS instances Bad Request Invalid attribute selector
+GET information about multiple NS instances Bad Request Invalid attribute selector
     [Documentation]    Test ID: 5.3.2.1.4
-    ...    Test title: Get information about multiple NS instances Bad Request Invalid attribute selector
+    ...    Test title: GET information about multiple NS instances Bad Request Invalid attribute selector
     ...    Test objective: The objective is to test the retrieval of all the available NS Instances using attribute-based filter and perform a JSON schema and content validation of the collected instance data structure
-    ...    Pre-conditions: A Ns instance is instantiated,  a bad attribute selector.
+    ...    Pre-conditions: A Ns instance is instantiated,  a bad attribute selector (attribute selectors are listed in Table 6.4.2.3.2-1  - SOL005 v2.4.1).
     ...    Reference:  section 6.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
@@ -74,7 +74,7 @@ PUT NSInstances - Method not implemented
     
 PATCH NSInstances - Method not implemented
      [Documentation]    Test ID: 5.3.2.1.6
-    ...    Test title: PUT NSInstances - Method not implemented
+    ...    Test title: PATCH NSInstances - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference:  section 6.4.2.3.4 - SOL005 v2.4.1

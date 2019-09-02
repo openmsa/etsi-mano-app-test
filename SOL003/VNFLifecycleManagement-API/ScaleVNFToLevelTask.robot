@@ -19,13 +19,13 @@ POST Scale a vnfInstance to level
     ...    Post-Conditions:
     POST Scale vnfInstance to level     
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
 POST Scale a vnfInstance to level Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 7.3.1.5.2
     ...    Test title: POST Scale a vnfInstance to level Conflict (Not-Instantiated)
-    ...    Test objective: The objective is to verify that the scale operation cannot be executed 
+    ...    Test objective: The objective is to verify that the scale operation cannot be executed because the resource is not instantiated
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: section 5.4.6.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM

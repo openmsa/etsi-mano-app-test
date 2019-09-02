@@ -8,7 +8,7 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Heal a vnfInstance
+POST Heal a vnfInstance
      [Documentation]    Test ID: 6.3.5.8.1
     ...    Test title: POST Heal a vnfInstance
     ...    Test objective: The objective is to test that POST method heal a VNF instance
@@ -21,7 +21,7 @@ Heal a vnfInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
     
-Heal a vnfInstance Conflict (Not-Instantiated)
+POST Heal a vnfInstance Conflict (Not-Instantiated)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
    [Documentation]    Test ID: 6.3.5.8.2
     ...    Test title: POST Heal a vnfInstance (Not-Instantiated)
@@ -36,9 +36,9 @@ Heal a vnfInstance Conflict (Not-Instantiated)
     Check HTTP Response Body Json Schema Is    ProblemDetails 
 
     
-Heal a vnfInstance Not Found
+POST Heal a vnfInstance Not Found
    [Documentation]    Test ID: 6.3.5.8.3
-    ...    Test title: POST Heal a vnfInstance (Not-Instantiated)
+    ...    Test title: POST Heal a vnfInstance Not Found
     ...    Test objective: The objective is to test that the operation cannot be executed because the VNF instance resource is not found. 
     ...    Pre-conditions: the VNF instance resource is not existing
     ...    Reference:  section 5.4.9.3.1 - SOL002 v2.4.1
@@ -62,7 +62,7 @@ GET Heal VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PUT Heal VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.8.4
+    [Documentation]    Test ID: 6.3.5.8.5
     ...    Test title: PUT Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
@@ -74,7 +74,7 @@ PUT Heal VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Heal VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.8.5
+    [Documentation]    Test ID: 6.3.5.8.6
     ...    Test title: PATCH Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
@@ -86,7 +86,7 @@ PATCH Heal VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
     
 DELETE Heal VNFInstance - Method not implemented
-    [Documentation]    Test ID: 6.3.5.8.6
+    [Documentation]    Test ID: 6.3.5.8.7
     ...    Test title: DELETE Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none

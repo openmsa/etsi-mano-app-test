@@ -8,7 +8,7 @@ Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Terminate a vnfInstance
+POST Terminate a vnfInstance
     [Documentation]    Test ID: 6.3.5.7.1
     ...    Test title: POST Terminate a vnfInstance
     ...    Test objective: The objective is to test that POST method terminate a VNF instance
@@ -21,9 +21,9 @@ Terminate a vnfInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
-Terminate a vnfInstance Conflict (Not-Instantiated)
+POST Terminate a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 6.3.5.7.2
-    ...    Test title: POST Terminate a vnfInstance
+    ...    Test title: POST Terminate a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions:  VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.8.3.1 - SOL005 v2.4.1
@@ -49,7 +49,7 @@ GET Terminate VNFInstance - Method not implemented
 
 PUT Terminate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.7.4
-    ...    Test title:  GET Terminate VNFInstance - Method not implemented
+    ...    Test title:  PUT Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
     ...    Reference:  section 5.4.8.3.3 - SOL005 v2.4.1
@@ -61,7 +61,7 @@ PUT Terminate VNFInstance - Method not implemented
 
 PATCH Terminate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.7.5
-    ...    Test title:  GET Terminate VNFInstance - Method not implemented
+    ...    Test title:  PATCH Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
     ...    Reference:  section 5.4.8.3.4 - SOL005 v2.4.1
@@ -73,7 +73,7 @@ PATCH Terminate VNFInstance - Method not implemented
     
 DELETE Terminate VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.7.6
-    ...    Test title:  GET Terminate VNFInstance - Method not implemented
+    ...    Test title:  DELETE Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
     ...    Reference:  section 5.4.8.3.5 - SOL005 v2.4.1

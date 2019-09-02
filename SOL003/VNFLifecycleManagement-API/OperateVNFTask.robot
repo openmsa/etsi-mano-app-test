@@ -21,11 +21,11 @@ POST Operate a vnfInstance
     ...    Post-Conditions: 
     POST Operate VNF
     Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id
+    Check Operation Occurrence Id existence
 
 POST Operate a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 7.3.1.9.2
-    ...    Test title: POST Operate a vnfInstance
+    ...    Test title: POST Operate a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: the VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference:  section 5.4.10.3.1 - SOL003 v2.4.1
@@ -39,7 +39,7 @@ POST Operate a vnfInstance Conflict (Not-Instantiated)
     
 POST Operate a vnfInstance Not Found
     [Documentation]    Test ID: 7.3.1.9.3
-    ...    Test title: POST Operate a vnfInstance
+    ...    Test title: POST Operate a vnfInstance Not Found
     ...    Test objective: The objective is to test that the operation cannot be executed currently, because the resource is not existing
     ...    Pre-conditions: the VNF instance resource is in  not existing
     ...    Reference:  section 5.4.10.3.1 - SOL003 v2.4.1
