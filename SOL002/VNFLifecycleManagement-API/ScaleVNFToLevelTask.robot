@@ -13,7 +13,7 @@ POST Scale a vnfInstance to level
     ...    Test objective: The objective is to scale a VNF instance to a target level.
     ...    Pre-conditions: none
     ...    Reference: section 5.4.6.3.1 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions:
     POST Scale vnfInstance to level     
@@ -27,7 +27,7 @@ POST Scale a vnfInstance to level Conflict (Not-Instantiated)
     ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: section 5.4.6.3.1 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions:
     POST Scale vnfInstance to level   
@@ -41,7 +41,7 @@ POST Scale a vnfInstance Not Found
     ...    Test objective: The objective is to verify that the operation cannot be executed , because the VNF instance resource can't be found.
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: section 5.4.6.3.1 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions:
     POST Scale vnfInstance to level    
@@ -55,7 +55,7 @@ GET Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.6.3.2 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
     GET Scale vnfInstance to level
@@ -67,7 +67,7 @@ PUT Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.6.3.3 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
     PUT Scale vnfInstance to level
@@ -79,7 +79,7 @@ PATCH Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.6.3.4 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
     PATCH Scale vnfInstance to level
@@ -91,7 +91,7 @@ DELETE Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
     ...    Reference: section 5.4.6.3.5 - SOL002 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
     DELETE Scale vnfInstance to level
