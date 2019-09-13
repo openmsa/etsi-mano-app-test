@@ -8,7 +8,7 @@ Library    JSONSchemaLibrary    schemas/
 *** Test Cases ***
 Create a new subscription
     [Documentation]    Test ID: 6.3.4.4.1
-    ...    Test title: Create a new alarm subscription
+    ...    Test title: Create a new subscription
     ...    Test objective: The objective is to create a new subscription.
     ...    Pre-conditions: no subscription with the same filter and callbackUri exists
     ...    Reference: section 7.4.5.3.1 - SOL002 v2.4.1
@@ -21,12 +21,12 @@ Create a new subscription
 
 Create a new Subscription - DUPLICATION
      [Documentation]    Test ID: 6.3.4.4.2
-    ...    Test title: Create a new alarm subscription - DUPLICATION
+    ...    Test title: Create a new Subscription - DUPLICATION
     ...    Test objective: The objective is to create a duplicate subscription.
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
     ...    Reference: section 7.4.5.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: the VNFM allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
+    ...    Applicability: the VNFM does not allow creation of a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: 
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
@@ -34,19 +34,19 @@ Create a new Subscription - DUPLICATION
     
 Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 6.3.4.4.3
-    ...    Test title: Create a new alarm subscription - NO DUPLICATION
-    ...    Test objective: The objective is to create a new subscription.
+    ...    Test title: Create a new Subscription - NO-DUPLICATION
+    ...    Test objective: The objective is to create a subscription in case of not allowed DUPLICATION.
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
     ...    Reference: section 7.4.5.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: the VNFM decides to not create a duplicate subscription resource 
+    ...    Applicability: the VNFM does not allow creation of a duplicate subscription resource 
     ...    Post-Conditions:
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    303
 
 GET Subscriptions
     [Documentation]    Test ID: 6.3.4.4.5
-    ...    Test title: Retrieve a list of alarm subscriptions
+    ...    Test title: GET Subscriptions
     ...    Test objective: The objective is to retrieve the list of active subscriptions
     ...    Pre-conditions: 
     ...    Reference: section 7.4.5.3.2 - SOL002 v2.4.1
@@ -59,7 +59,7 @@ GET Subscriptions
 
 GET Subscription - Filter
     [Documentation]    Test ID: 6.3.4.4.6
-    ...    Test title: Retrieve a list of alarm subscriptions
+    ...    Test title: GET Subscription - Filter
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter
     ...    Pre-conditions: 
     ...    Reference: section 7.4.5.3.2 - SOL002 v2.4.1
@@ -72,7 +72,7 @@ GET Subscription - Filter
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 6.3.4.4.7
-    ...    Test title: Retrieve a list of alarm subscriptions
+    ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to retrieve the list of active subscriptions with Invalid attribute-based filtering parameters
     ...    Pre-conditions: 
     ...    Reference: section 7.4.5.3.2 - SOL002 v2.4.1
@@ -115,7 +115,7 @@ DELETE subscriptions - Method not implemented
     ...    Reference: section 7.4.5.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
-    ...    Post-Conditions: 
+    ...    Post-Conditions: subscription not deleted
     DELETE subscriptions
     Check HTTP Response Status Code Is    405
 
