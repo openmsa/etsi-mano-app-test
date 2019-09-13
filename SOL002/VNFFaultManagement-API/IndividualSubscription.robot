@@ -8,9 +8,9 @@ Documentation    This resource represents an individual subscription for VNF ala
 Suite Setup    Check resource existance
 
 *** Test Cases ***
-Post Individual Subscription - Method not implemented
+POST Individual Subscription - Method not implemented
     [Documentation]    Test ID: 6.3.4.5.1
-    ...    Test title: Post Individual Subscription - Method not implemented
+    ...    Test title: POST Individual Subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.6.3.1 - SOL002 v2.4.1
@@ -20,9 +20,9 @@ Post Individual Subscription - Method not implemented
     Post Create individual subscription
     Check HTTP Response Status Code Is    405
     
-Get Information about an individual subscription
+GET Information about an individual subscription
     [Documentation]    Test ID: 6.3.4.5.2
-    ...    Test title: Get Information about an individual subscription
+    ...    Test title: GET Information about an individual subscription
     ...    Test objective: The objective is to read an individual subscription for VNF alarms subscribed by the client
     ...    Pre-conditions: The subscription with the given id exists
     ...    Reference: section 7.4.6.3.2 - SOL002 v2.4.1
@@ -35,7 +35,7 @@ Get Information about an individual subscription
 
 PUT an individual subscription - Method not implemented
     [Documentation]    Test ID: 6.3.4.5.3
-    ...    Test title: Put Individual Subscription - Method not implemented
+    ...    Test title: PUT an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.6.3.3 - SOL002 v2.4.1
@@ -48,7 +48,7 @@ PUT an individual subscription - Method not implemented
 
 PATCH an individual subscription - Method not implemented
     [Documentation]    Test ID: 6.3.4.5.4
-    ...    Test title: Patch Individual Subscription - Method not implemented
+    ...    Test title: PATCH an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.6.3.4 - SOL002 v2.4.1
@@ -61,7 +61,7 @@ PATCH an individual subscription - Method not implemented
     
 DELETE an individual subscription
     [Documentation]    Test ID: 6.3.4.5.5
-    ...    Test title: Delete an Individual Subscription
+    ...    Test title: DELETE an individual subscription
     ...    Test objective: The objective is to test that the deletion of a subscription
     ...    Pre-conditions: an existing subscription
     ...    Reference: section 7.4.6.3.5 - SOL002 v2.4.1

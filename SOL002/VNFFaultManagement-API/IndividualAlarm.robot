@@ -15,7 +15,7 @@ ${original_etag}    1234
 *** Test Cases ***
 POST Alarm - Method not implemented
     [Documentation]    Test ID: 6.3.4.2.1
-    ...    Test title: POST Alarms - Method not implemented
+    ...    Test title: POST Alarm - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.3.3.1 - SOL002 v2.4.1
@@ -26,9 +26,9 @@ POST Alarm - Method not implemented
     Check HTTP Response Status Code Is    405
 
 
-Get information about an individual alarm
+GET information about an individual alarm
     [Documentation]    Test ID: 6.3.4.2.2
-    ...    Test title: Get information about an individual alarm
+    ...    Test title: GET information about an individual alarm
     ...    Test objective: The objective is to read an individual alarm.
     ...    Pre-conditions: The related alarm exists
     ...    Reference: section 7.4.3.3.2  - SOL002 v2.4.1
@@ -43,7 +43,7 @@ Get information about an individual alarm
 
 PUT Alarm - Method not implemented
      [Documentation]    Test ID: 6.3.4.2.3
-    ...    Test title: PUT Alarms - Method not implemented
+    ...    Test title: PUT Alarm - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.3.3.3 - SOL002 v2.4.1
@@ -55,10 +55,10 @@ PUT Alarm - Method not implemented
 
 
 PATCH Alarm
-    [Documentation]    Test ID: 6.3.4.2.3
-    ...    Test title: PUT Alarms - Method not implemented
-    ...    Test objective: The objective is to test that the method is not implemented
-    ...    Pre-conditions: 
+    [Documentation]    Test ID: 6.3.4.2.4
+    ...    Test title: PATCH Alarm
+    ...    Test objective: The objective is to Modify an individual alarm resource
+    ...    Pre-conditions: The related alarm exists
     ...    Reference: section 7.4.3.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -68,41 +68,41 @@ PATCH Alarm
     Check HTTP Response Body Json Schema Is     alarmModifications
     
 PATCH Alarm - Precondition failed
-    [Documentation]    Test ID: 6.3.4.2.4
-    ...    Test title: Modify an individual alarm resource - Precondition failed
+    [Documentation]    Test ID: 6.3.4.2.5
+    ...    Test title: PATCH Alarm - Precondition failed
     ...    Test objective: The objective is to Modify an individual alarm resource
     ...    Pre-conditions: The related alarm exists
     ...    Reference: section 7.4.3.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: The alarm resource is not modified
-    PUT Alarm Task
+    PATCH Alarm Task with wrong precondition
     Check HTTP Response Status Code Is    412
     Check HTTP Response Body Json Schema Is     ProblemDetails
     
 PATCH Alarm - Conflict
-    [Documentation]    Test ID: 6.3.4.2.5
-    ...    Test title: Modify an individual alarm resource - Precondition failed
+    [Documentation]    Test ID: 6.3.4.2.6
+    ...    Test title: PATCH Alarm - Conflict
     ...    Test objective: The objective is to Modify an individual alarm resource
     ...    Pre-conditions: The related alarm exists
     ...    Reference: section 7.4.3.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: The alarm resource is not modified
-    PUT Alarm Task
+    PATCH Alarm Task
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is     ProblemDetails
     
 
 DELETE Alarm - Method not implemented
-    [Documentation]    Test ID: 6.3.4.2.6
+    [Documentation]    Test ID: 6.3.4.2.7
     ...    Test title: DELETE Alarm - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.3.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: alarm not deleted
     DELETE Alarm Task
     Check HTTP Response Status Code Is    405
 
@@ -131,6 +131,15 @@ PATCH Alarm Task
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
+PATCH Alarm Task with wrong precondition
+    log    Trying to perform a PATCH. This method modifies an individual alarm resource
+    Set Headers  {"Accept":"${ACCEPT}"} 
+    Set Headers  {"Content-Type": "${CONTENT_TYPE_PATCH}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/alarmModifications.json
+    Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
 DELETE Alarm Task
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  

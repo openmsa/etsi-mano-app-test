@@ -19,9 +19,9 @@ POST Alarms - Method not implemented
     POST Alarms Task
     Check HTTP Response Status Code Is    405
 
-Get information about multiple alarms 
+GET information about multiple alarms 
     [Documentation]    Test ID: 6.3.4.1.2
-    ...    Test title: Get information about multiple alarms
+    ...    Test title: GET information about multiple alarms
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
     ...    Reference: section 7.4.2.3.2 - SOL002 v2.4.1
@@ -32,9 +32,9 @@ Get information about multiple alarms
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    alarms
 
-Get information about multiple alarms with filters 
+GET information about multiple alarms with filters 
     [Documentation]    Test ID: 6.3.4.1.3
-    ...    Test title: Get information about multiple alarms - with filters
+    ...    Test title: GET information about multiple alarms - with filters
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
     ...    Reference: section 7.4.2.3.3 - SOL002 v2.4.1
@@ -45,16 +45,16 @@ Get information about multiple alarms with filters
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    alarms
 
-Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
+GET information about multiple alarms Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 6.3.4.1.4
-    ...    Test title: Get information about multiple alarms - with Invalid attribute-based filtering parameters
+    ...    Test title: GET information about multiple alarms Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
     ...    Reference: section 7.4.2.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    GET Alarms Task with filter
+    GET Alarms Task with invalid filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
     
@@ -90,7 +90,7 @@ DELETE Alarms - Method not implemented
     ...    Reference: section 7.4.2.3.6 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: none
+    ...    Post-Conditions: the alarm is not deleted
     DELETE Alarms Task
     Check HTTP Response Status Code Is    405
 

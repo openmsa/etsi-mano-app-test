@@ -19,7 +19,7 @@ Escalate the perceived severity
 GET Escalate the perceived severity - Method not implemented
     [Documentation]    Test ID: 6.3.4.3.2
     ...    Test title: GET Escalate the perceived severity - Method not implemented
-    ...    Test objective: to thest that the method is not implemented
+    ...    Test objective: to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.4.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -31,7 +31,7 @@ GET Escalate the perceived severity - Method not implemented
 PUT Escalate the perceived severity - Method not implemented
     [Documentation]    Test ID: 6.3.4.3.3
     ...    Test title: PUT Escalate the perceived severity - Method not implemented
-    ...    Test objective: to thest that the method is not implemented
+    ...    Test objective: to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.4.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -43,7 +43,7 @@ PUT Escalate the perceived severity - Method not implemented
 PATCH Escalate the perceived severity - Method not implemented
     [Documentation]    Test ID: 6.3.4.3.4
     ...    Test title: PATCH Escalate the perceived severity - Method not implemented
-    ...    Test objective: to thest that the method is not implemented
+    ...    Test objective: to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.4.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -55,8 +55,8 @@ PATCH Escalate the perceived severity - Method not implemented
     
 DELETE Escalate the perceived severity - Method not implemented
     [Documentation]    Test ID: 6.3.4.3.5
-    ...    Test title: PATCH Escalate the perceived severity - Method not implemented
-    ...    Test objective: to thest that the method is not implemented
+    ...    Test title: DELETE Escalate the perceived severity - Method not implemented
+    ...    Test objective: to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: section 7.4.4.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
