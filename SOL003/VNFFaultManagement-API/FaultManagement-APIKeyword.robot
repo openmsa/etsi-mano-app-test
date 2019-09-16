@@ -12,7 +12,9 @@ Library    Process
 ${original_etag}    1234
 
 *** Keywords ***
-
+Check Operation Occurrence Id
+    ${opOccId}=    Get Value From Json    ${response.headers}    $..Location
+    Should Not Be Empty    ${opOccId}
 Check Postcondition VNF fault management alarms Exists
     Log    Checking that alarms exists
     GET Fault Management Alarms

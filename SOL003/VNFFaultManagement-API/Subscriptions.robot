@@ -16,10 +16,10 @@ Create a new Fault Management alarm subscription
     ...    Reference: section 7.4.4.3.1 - SOL003 v2.4.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: subscription is created
     POST Subscription
     Check HTTP Response Status Code Is    201
-    Check HTTP Response Header Contains    Location
+    Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
   
 
@@ -31,11 +31,10 @@ Create a new alarm subscription - DUPLICATION
     ...    Reference: section 7.4.4.3.1 - SOL003 v2.4.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
-    ...    Post-Conditions: none
-    Depends On Test    Create a new subscription
+    ...    Post-Conditions: duplicated subscription is created
     POST Subscription Duplication permitted
     Check HTTP Response Status Code Is    201
-    Check HTTP Response Header Contains    Location
+    Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
 
 Create a new alarm subscription - NO DUPLICATION
@@ -46,11 +45,10 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Reference: section 7.4.4.3.1 - SOL003 v2.4.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
-    ...    Post-Conditions: none
-    Depends On Test    Create a new subscription
+    ...    Post-Conditions: duplicated subscription is not created
     POST Subscription Duplication not permitted
     Check HTTP Response Status Code Is    303
-    Check HTTP Response Header Contains    Location
+    Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
 
 Retrieve a list of alarm subscriptions
@@ -118,12 +116,12 @@ PATCH subscriptions - Method not implemented
 
 DELETE subscriptions - Method not implemented
     [Documentation]    Test ID: 7.3.5.3.9
-    ...    Test title:DELETE subscriptions - Method not implemented
+    ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to for Fault management subscriptions on VNF  
     ...    Pre-conditions: none 
     ...    Reference: section 7.4.4.3.5 - SOL003 v2.4.1
     ...    Config ID:  Config_prod_VNFM
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: subscription is not deleted
     DELETE Subscriptions
     Check HTTP Response Status Code Is    405
