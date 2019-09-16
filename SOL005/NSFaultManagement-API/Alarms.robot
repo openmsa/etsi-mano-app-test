@@ -15,13 +15,13 @@ POST Alarms - Method not implemented
     ...    Reference: section 8.4.2.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none 
-    ...    Post-Conditions:  none
+    ...    Post-Conditions:  alarm not created
     POST Alarms
     Check HTTP Response Status Code Is    405
 
-Get information about multiple alarms
+GET information about multiple alarms
     [Documentation]    Test ID: 5.3.3.1.2
-    ...    Test title: Get information about multiple alarms
+    ...    Test title: GET information about multiple alarms
     ...    Test objective: The objective is to retrieve information about the alarm list and perform a JSON schema and content validation of the returned alarms data structure
     ...    Pre-conditions:  none
     ...    Reference: section 8.4.2.3.2 - SOL005 v2.4.1
@@ -32,22 +32,22 @@ Get information about multiple alarms
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    alarms
 
-Get information about multiple alarms with filters
+GET information about multiple alarms with filters
      [Documentation]    Test ID: 5.3.3.1.3
-    ...    Test title: Get information about multiple alarms with filters
+    ...    Test title: GET information about multiple alarms with filters
     ...    Test objective: The objective is to retrieve information about the alarm list and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
     ...    Reference: section 8.4.2.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
-    ...    Post-Conditions:   none
+    ...    Post-Conditions: none
     GET Alarms With Filters
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    alarms
     
-Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
+GET information about multiple alarms Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 5.3.3.1.4
-    ...    Test title: Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
+    ...    Test title: GET information about multiple alarms Bad Request Invalid attribute-based filtering parameters
     ...    Test objective:  The objective is to try to retrieve information about the alarm list with invalid filters and perform a JSON schema and content validation of the returned problem details data structure
     ...    Pre-conditions:  none
     ...    Reference: section 8.4.2.3.2 - SOL005 v2.4.1
@@ -66,7 +66,7 @@ PUT Alarms - Method not implemented
     ...    Reference: section 8.4.2.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
-    ...    Post-Conditions:   none
+    ...    Post-Conditions: none
     PUT Alarms
     Check HTTP Response Status Code Is    405
     
@@ -79,7 +79,7 @@ PATCH Alarms - Method not implemented
     ...    Reference: section 8.4.2.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
-    ...    Post-Conditions:   none
+    ...    Post-Conditions: none
     PATCH Alarms
     Check HTTP Response Status Code Is    405
 
@@ -91,7 +91,7 @@ DELETE Alarms - Method not implemented
     ...    Reference: section 8.4.2.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
-    ...    Post-Conditions:   none
+    ...    Post-Conditions: alarm not deleted
     DELETE Alarms
     Check HTTP Response Status Code Is    405
     

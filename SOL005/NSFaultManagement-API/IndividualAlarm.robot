@@ -17,7 +17,7 @@ POST Individual Alarm - Method not implemented
     ...    Reference: section 8.4.3.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions:  none
+    ...    Post-Conditions:  alarm is not created
     POST Individual Alarm
     Check HTTP Response Status Code Is    405
 
@@ -81,7 +81,6 @@ PATCH Alarm - Conflict
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: none
-    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that the alarm is in ackownledged state
     PATCH Individual Alarm
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -95,8 +94,7 @@ PATCH Alarm - Precondition failed
     ...    Reference: section 8.4.3.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
-    ...    Post-Conditions: The alarm resource is not modified
-    Depends On Test    PATCH Alarm    # If the previous test scceeded, it means that Etag has been modified
+    ...    Post-Conditions: 
     PATCH Individual Alarm Conflict
     Check HTTP Response Status Code Is    412
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -109,6 +107,6 @@ DELETE Individual Alarm - Method not implemented
     ...    Reference: section 8.4.3.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
-    ...    Post-Conditions:   none
+    ...    Post-Conditions: alarm not deleted
     DELETE Individual Alarm
     Check HTTP Response Status Code Is    405
