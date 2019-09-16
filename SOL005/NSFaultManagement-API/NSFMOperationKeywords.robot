@@ -50,6 +50,10 @@ Check Alarm notification Endpoint has been delivered
 Clean Endpoint   
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}
+
+Check Operation Occurrence Id
+    ${occId}=    Get Value From Json    ${response.headers}    $..Location
+    Should Not Be Empty    ${occId}    
     
 POST Alarms
     log    Trying to perform a POST. This method should not be implemented
@@ -185,6 +189,28 @@ POST Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
 
+Post Create subscription - DUPLICATION
+    Log    Trying to create a subscription with an already created content
+    Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 0    NVFO is not permitting duplication. Skipping the test
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/fmSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}		
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+	
+Post Create subscription - NO-DUPLICATION	
+    Log    Trying to create a subscription with an already created content
+    Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 1    NVFO permits duplication. Skipping the test
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/fmSubscriptionRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+	
 GET Subscriptions
     Log    Get the list of active subscriptions
     Set Headers    {"Accept": "${ACCEPT}"}
