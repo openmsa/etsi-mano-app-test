@@ -14,7 +14,7 @@ Create a new subscription
     ...    Reference: section 7.4.5.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: subscription is created
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    FmSubscription
@@ -27,7 +27,7 @@ Create a new Subscription - DUPLICATION
     ...    Reference: section 7.4.5.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: the VNFM does not allow creation of a subscription resource if another subscription resource with the same filter and callbackUri already exists
-    ...    Post-Conditions: 
+    ...    Post-Conditions: duplicated subscription is created
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    FmSubscription
@@ -40,7 +40,7 @@ Create a new Subscription - NO-DUPLICATION
     ...    Reference: section 7.4.5.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: the VNFM does not allow creation of a duplicate subscription resource 
-    ...    Post-Conditions:
+    ...    Post-Conditions: duplicated subscription is not created
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    303
 
@@ -52,7 +52,7 @@ GET Subscriptions
     ...    Reference: section 7.4.5.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
-    ...    Post-Conditions: 
+    ...    Post-Conditions: subscription is not deleted
     Get subscriptions
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   FmSubscriptions 
