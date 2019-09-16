@@ -12,55 +12,55 @@ Documentation    This resource represents an individual grant. The client can us
 ${response}    {}
 
 *** Test Cases ***
-Post Individual Grant - Method not implemented
+POST Individual Grant - Method not implemented
     [Documentation]    Test ID: 7.3.2.2.1
-    ...    Test title: Post Individual Grant - Method not implemented
+    ...    Test title: POST Individual Grant - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed for Life cycle operation granting  
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.4 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
     Post individual Grant
     Check HTTP Response Status Code Is    405
 
-Get an individual grant - Successful
+GET an individual grant - Successful
     [Documentation]    Test ID: 7.3.2.2.2
-    ...    Test title: Requests a grant for a particular VNF lifecycle operation - Successful  and perform a JSON schema validation on the returned grant data structure
+    ...    Test title: GET an individual grant - Successful
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
-    ...    Pre-conditions: The related grant information is available to the VNFM
+    ...    Pre-conditions: The  grant information is available to the VNFM
     ...    Reference: section 9.4.3.3.2 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
     Get individual grant success
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    grant
     
-Get an individual grant - Process ongoing
+GET an individual grant - Process ongoing
     [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 7.3.2.2.3
-    ...    Test title: Requests a grant for a particular VNF lifecycle operation - Process ongoing
+    ...    Test title: GET an individual grant - Process ongoing
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
     ...    Pre-conditions: The process of creating the grant is ongoing, no grant is available yet.
     ...    Reference: section 9.4.3.3.2 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
     Get individual grant on-going
     Check HTTP Response Status Code Is    202
     Check HTTP Response Body Json Schema Is    grant
     
-Get an individual grant - grant rejected
+GET an individual grant - grant rejected
     [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 7.3.2.2.4
-    ...    Test title: Requests a grant for a particular VNF lifecycle operation - grant rejected
+    ...    Test title: GET an individual grant - grant rejected
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
-    ...    Pre-conditions: The related grant is rejected
+    ...    Pre-conditions: 
     ...    Reference: section 9.4.3.3.2 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: The grant is rejected
     Get individual grant rejected
     Check HTTP Response Status Code Is    403
 	Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -71,7 +71,7 @@ PUT an individual grant - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to for Life cycle operation granting  
     ...    Pre-conditions: none
     ...    Reference: section 9.4.3.3.3 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
     PUT individual Grant
@@ -83,7 +83,7 @@ PATCH an individual grant - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to for Life cycle operation granting  
     ...    Pre-conditions: none
     ...    Reference: section 9.4.3.3.4 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
     Patch individual Grant
@@ -95,9 +95,9 @@ DELETE an individual grant - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to for Life cycle operation granting  
     ...    Pre-conditions: none
     ...    Reference: section 9.4.3.3.5 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: grant not deleted
     Delete individual Grant
     Check HTTP Response Status Code Is    405
 
