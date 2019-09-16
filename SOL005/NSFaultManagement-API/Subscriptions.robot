@@ -19,7 +19,7 @@ Create a new alarm subscription
     ...    Post-Conditions: none
     POST Subscription
     Check HTTP Response Status Code Is    201
-    Check HTTP Response Header Contains    Location
+    Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
   
 
@@ -32,11 +32,9 @@ Create a new alarm subscription - DUPLICATION
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: none
-    Depends On Test    Create a new subscription
-    Pass Execution If    ${NFVO_ALLOWS_DUPLICATE_SUBS} == 0    NVFO is not permitting duplication. Skipping the test
-    POST Subscription
+    Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
-    Check HTTP Response Header Contains    Location
+    Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
 
 Create a new alarm subscription - NO DUPLICATION
@@ -48,11 +46,9 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
     ...    Post-Conditions: none
-    Depends On Test    Create a new subscription
-    Pass Execution If    ${NFVO_ALLOWS_DUPLICATE_SUBS} == 1    NFVO permits duplication. Skipping the test
-    POST Subscription
+    Post Create subscription - NO DUPLICATION
     Check HTTP Response Status Code Is    303
-    Check HTTP Response Header Contains    Location
+    Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
 
 Retrieve a list of alarm subscriptions
@@ -120,12 +116,12 @@ PATCH subscriptions - Method not implemented
 
 DELETE subscriptions - Method not implemented
     [Documentation]   Test ID: 5.3.3.3.9
-    ...    Test title:DELETE subscriptions - Method not implemented
+    ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to for Fault management subscriptions on NFV 
     ...    Pre-conditions:  none
     ...    Reference: section 8.4.4.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: subscription is not deleted
     DELETE Subscriptions
     Check HTTP Response Status Code Is    405

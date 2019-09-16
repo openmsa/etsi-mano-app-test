@@ -5,10 +5,6 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}   
 
-Documentation    This resource represents an individual subscription for NFVO alarms. 
-...    The client can use this resource to read and to terminate a subscription to notifications related to NFVO fault management.
-Suite Setup    Check Individual Subscription existance
-
 *** Test Cases ***
 Post Individual Subscription - Method not implemented
     [Documentation]    Test ID: 5.3.3.4.1
@@ -18,7 +14,7 @@ Post Individual Subscription - Method not implemented
     ...    Reference: section 8.4.5.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: subscription is not created
     POST Individual Subscription
     Check HTTP Response Status Code Is    405
 
@@ -67,7 +63,7 @@ DELETE an individual subscription
     ...    Reference: section 8.4.5.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: subscription is not deleted
     DELETE Individual Subscription
     Check HTTP Response Status Code Is    204
     
