@@ -9,6 +9,7 @@ Documentation    This resource represents grants. The client can use this resour
 
 *** Variables ***
 ${response}    {}
+${wait_time}   2 min   10 sec
 
 *** Test Cases ***
 Requests a grant for a particular VNF lifecycle operation - Synchronous mode
@@ -17,12 +18,12 @@ Requests a grant for a particular VNF lifecycle operation - Synchronous mode
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation  and perform a JSON schema validation on the returned grant data structure
     ...    Pre-conditions: 
     ...    Reference: section 9.4.2.3.1 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO can decide immediately what to respond to a grant request
     ...    Post-Conditions: The grant information is available to the VNFM.
     Send Request Grant Request in Synchronous mode
     Check HTTP Response Status Code Is    201
-    Check HTTP Response Header Contains    Location
+    Check Operation Occurrence Id existence 
     Check HTTP Response Body Json Schema Is    grant
 
 
@@ -32,14 +33,14 @@ Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
     ...    Pre-conditions: 
     ...    Reference: section 9.4.2.3.1 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO can not decide immediately what to respond to a grant request
     ...    Post-Conditions: The grant information is available to the VNFM.
     Send Request Grant Request in Asynchronous mode
     Check HTTP Response Status Code Is    202
-    Check HTTP Response Header Contains    Location
+    Check Operation Occurrence Id existence 
     Check HTTP Response Body Json Schema Is    grant
-    Wait Until Keyword Succeeds    2 min   10 sec    Get an individual grant - Successful
+    Wait for individual grant successful notification 
 
 Requests a grant for a particular VNF lifecycle operation - Forbidden 
     [Documentation]    Test ID: 7.3.2.1.3
@@ -47,7 +48,7 @@ Requests a grant for a particular VNF lifecycle operation - Forbidden
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and check the content of the problem details data structure returned
     ...    Pre-conditions: The grant should not be accorded
     ...    Reference: section 9.4.2.3.2 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
     Send Request a new Grant Forbiden
@@ -60,7 +61,7 @@ GET Grants - Method not implemented
     ...    Test objective: The objective is to test that GET method is not allowed for Life cycle operation granting 
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.2 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions:   none
     Get Grants
@@ -72,7 +73,7 @@ PUT Grants - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed for Life cycle operation granting 
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.3 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
     Put Grants
@@ -84,7 +85,7 @@ PATCH Grants - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed for Life cycle operation granting  
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.4 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
     Patch Grants
@@ -96,13 +97,15 @@ DELETE Grants - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed for Life cycle operation granting  
     ...    Pre-conditions: none
     ...    Reference: section 9.4.2.3.5 - SOL003 v2.4.1
-    ...    Config ID: Config_prod_VNFM
+    ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
     Delete Grants
     Check HTTP Response Status Code Is    405
     
 *** Keywords ***
+Wait for individual grant successful notification
+    Wait Until Keyword Succeeds    ${wait_time}    Get an individual grant - Successful
 Send Request Grant Request in Synchronous mode
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Pass Execution If    ${SYNC_MODE} == 0    The Granting process is asynchronous mode. Skipping the test
@@ -151,6 +154,10 @@ Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated
+
+Check Operation Occurrence Id existence 
+    ${occId}=    Get Value From Json    ${response.headers}    $..Location
+    Should Not Be Empty    ${occId}
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
