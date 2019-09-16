@@ -4,9 +4,6 @@ Resource    FaultManagement-APIKeyword.robot
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
-Documentation    This resource represents an individual subscription for VNF alarms. 
-...    The client can use this resource to read and to terminate a subscription to notifications related to VNF fault management.
-Suite Setup    Check Individual Subscription existance
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented
@@ -17,7 +14,7 @@ Post Individual Subscription - Method not implemented
     ...    Reference: section 7.4.5.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  none
-    ...    Post-Conditions:  none
+    ...    Post-Conditions:  subscription is not created
     POST Individual Subscription
     Check HTTP Response Status Code Is    405
 
@@ -66,7 +63,7 @@ DELETE an individual subscription
     ...    Reference: section 7.4.5.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  none
-    ...    Post-Conditions:  none
+    ...    Post-Conditions:  subscription is not deleted
     DELETE Individual Subscription
     Check HTTP Response Status Code Is    204
     Check Individual Subscription deleted
