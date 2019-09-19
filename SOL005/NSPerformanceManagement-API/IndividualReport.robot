@@ -4,7 +4,7 @@ Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/reports.txt
 Resource          NSPerformanceManagementKeywords.robot
 Library           JSONLibrary
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 
 *** Test Cases ***
 Get Individual Performance Report

@@ -4,7 +4,7 @@ Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/vnfIndicatorinVnfInstance.txt
 Resource          VNFIndicatorsKeywords.robot
 Library           JSONLibrary
-Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 
 *** Test Cases ***
 *** Test Cases ***

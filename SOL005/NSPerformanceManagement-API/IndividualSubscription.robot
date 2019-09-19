@@ -5,7 +5,7 @@ Documentation     This resource represents an individual subscription for notifi
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          NSPerformanceManagementKeywords.robot
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library           OperatingSystem
 Library           JSONLibrary
 Resource          environment/individualSubscription.txt
