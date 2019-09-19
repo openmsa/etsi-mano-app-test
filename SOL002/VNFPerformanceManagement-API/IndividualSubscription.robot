@@ -1,7 +1,7 @@
 *** Settings ***
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
-Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library           OperatingSystem
 Library           JSONLibrary
 Resource          environment/individualSubscription.txt

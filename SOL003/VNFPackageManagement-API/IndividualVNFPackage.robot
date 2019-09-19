@@ -4,7 +4,7 @@ Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/individualVnfPackage.txt
 Resource          VNFPackageManagementKeywords.robot  
 Library           JSONLibrary
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 
 *** Test Cases ***
 GET Individual VNF Package

@@ -4,7 +4,7 @@ Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Resource          environment/IndividualPmJob.txt
 Resource          NSPerformanceManagementKeywords.robot
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 
 *** Test Cases ***
 GET individual NS Performance Job

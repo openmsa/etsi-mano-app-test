@@ -5,7 +5,7 @@ Resource          NSPerformanceManagementKeywords.robot
 Library           JSONLibrary
 Library           OperatingSystem
 Resource          environment/pmJobs.txt
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library           MockServerLibrary
 
 *** Test Cases ***

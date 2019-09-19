@@ -5,7 +5,7 @@ Resource          environment/vnfPackageContentViaUri.txt
 Resource          VNFPackageManagementKeywords.robot
 Library           JSONLibrary
 Library           OperatingSystem    
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 
 *** Test Cases ***
 Upload VNF Package Content from URI

@@ -4,7 +4,7 @@ Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/individualSubscription.txt
 Resource          VNFIndicatorsKeywords.robot
 Library           OperatingSystem
-Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 
 *** Test Cases ***
 GET Individual VNF Indicator Subscription

@@ -3,7 +3,7 @@ Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Resource          environment/IndividualPmJob.txt
-Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 
 *** Test Cases ***
 GET individual VNF Performance Job

@@ -5,7 +5,7 @@ Resource          environment/individualSubscription.txt
 Resource          VNFPackageManagementKeywords.robot
 Library           OperatingSystem
 Library           JSONLibrary
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 
 *** Test Cases ***
 GET Individual VNF Package Subscription

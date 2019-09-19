@@ -6,7 +6,7 @@ Resource          environment/nsDescriptors.txt    # Specific nsDescriptors Para
 Resource          NSDManagementKeywords.robot
 Library           OperatingSystem
 Library           JSONLibrary
-Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
