@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    environment/variables.txt
+Resource   environment/variables.txt
 Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library    JSONLibrary
 Library    Process
@@ -556,7 +556,7 @@ GET NS LCN OP Occurences Invalid attribute-based filtering parameters
     Log    Query status information about multiple NS lifecycle management operation occurrences.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
-	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?attribute_not_exist=some_value
+	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?${NEG_FILTER}
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
@@ -564,7 +564,7 @@ GET NS LCN OP Occurences Invalid attribute selector
     Log    Query NS The GET method queries information about multiple NS instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
-	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?fields=wrong_field
+	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?${NEG_SELECTOR}
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 
