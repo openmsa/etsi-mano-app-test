@@ -61,7 +61,59 @@ GET information about multiple VNF instances Bad Request Invalid attribute selec
     GET multiple vnfInstances with bad filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
+
+GET information about multiple VNF instances with "all_fields" attribute selector
+    [Documentation]    Test ID: 7.3.1.1.5
+    ...    Test title: GET information about multiple VNF instances with "all_fields" attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET multiple vnfInstances with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances
+
+GET information about multiple VNF instances with "exclude_default" attribute selector
+    [Documentation]    Test ID: 7.3.1.1.6
+    ...    Test title: GET information about multiple VNF instances with "exclude_default" attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET multiple vnfInstances with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances
     
+GET information about multiple VNF instances with "fields" attribute selector
+    [Documentation]    Test ID: 7.3.1.1.7
+    ...    Test title: GET information about multiple VNF instances with "fields" attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET multiple vnfInstances with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances
+
+GET information about multiple VNF instances with "exclude_fields" attribute selector
+    [Documentation]    Test ID: 7.3.1.1.7
+    ...    Test title: GET information about multiple VNF instances with "exclude_fields" attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET multiple vnfInstances with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances  
+  
 PUT multiples VNFInstances - Method not implemented
     [Documentation]    Test ID: 7.3.1.1.5
     ...    Test title: PUT multiples VNFInstances - Method not implemented
