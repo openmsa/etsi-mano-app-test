@@ -59,9 +59,61 @@ GET information about multiple VNF instances Bad Request Invalid attribute selec
     GET multiple vnfInstances with bad filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is   ProblemDetails
-    
-PUT VNFInstances - Method not implemented
+
+GET information about multiple VNF instances with "all_fields" attribute selector
     [Documentation]    Test ID: 6.3.5.1.5
+    ...    Test title: GET information about multiple VNF instances with "all_fields" attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET multiple vnfInstances with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances
+
+GET information about multiple VNF instances with "exclude_default" attribute selector
+    [Documentation]    Test ID: 6.3.5.1.6
+    ...    Test title: GET information about multiple VNF instances with "exclude_default" attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET multiple vnfInstances with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances
+    
+GET information about multiple VNF instances with "fields" attribute selector
+    [Documentation]    Test ID: 6.3.5.1.7
+    ...    Test title: GET information about multiple VNF instances with "fields" attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET multiple vnfInstances with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances
+
+GET information about multiple VNF instances with "exclude_fields" attribute selector
+    [Documentation]    Test ID: 6.3.5.1.8
+    ...    Test title: GET information about multiple VNF instances with "exclude_fields" attribute selector
+    ...    Test objective: The objective is to query information about multiple VNF instances
+    ...    Pre-conditions:  
+    ...    Reference: section 5.4.2.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET multiple vnfInstances with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances  
+        
+PUT VNFInstances - Method not implemented
+    [Documentation]    Test ID: 6.3.5.1.9
     ...    Test title: PUT VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
@@ -73,7 +125,7 @@ PUT VNFInstances - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH VNFInstances - Method not implemented
-    [Documentation]    Test ID: 6.3.5.1.6
+    [Documentation]    Test ID: 6.3.5.1.10
     ...    Test title: PATCH VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions:  
@@ -85,7 +137,7 @@ PATCH VNFInstances - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE VNFInstances - Method not implemented
-    [Documentation]    Test ID: 6.3.5.1.7
+    [Documentation]    Test ID: 6.3.5.1.11
     ...    Test title: DELETE VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
