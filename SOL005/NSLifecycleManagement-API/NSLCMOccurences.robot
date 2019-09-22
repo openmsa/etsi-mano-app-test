@@ -57,7 +57,58 @@ GET status information about multiple NS LCM occurrences Bad Request Invalid att
 	GET NS LCN OP Occurences Invalid attribute selector
 	Check HTTP Response Status Code Is    400
 	Check HTTP Response Body Json Schema Is    ProblemDetails
-	
+
+GET status information about multiple NS LCM occurrences with "all_fields"   
+     [Documentation]    Test ID: 5.3.2.8.5
+    ...    Test title: GET status information about multiple NS LCM occurrences with "all_fields"
+    ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
+    ...    Pre-conditions: At least one LCM occurrences available in the NFVO
+    ...    Reference:  section 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+	Get NS LCN OP Occurences with all_fields attribute selector
+	Check HTTP Response Status Code Is    200
+	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
+
+GET status information about multiple NS LCM occurrences with "exclude_default"   
+     [Documentation]    Test ID: 5.3.2.8.6
+    ...    Test title: GET status information about multiple NS LCM occurrences with "exclude_default"
+    ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
+    ...    Pre-conditions: At least one LCM occurrences available in the NFVO
+    ...    Reference:  section 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+	Get NS LCN OP Occurences with exclude_default attribute selector
+	Check HTTP Response Status Code Is    200
+	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
+
+GET status information about multiple NS LCM occurrences with "fields"   
+     [Documentation]    Test ID: 5.3.2.8.7
+    ...    Test title: GET status information about multiple NS LCM occurrences with "fields"
+    ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
+    ...    Pre-conditions: At least one LCM occurrences available in the NFVO
+    ...    Reference:  section 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+	Get NS LCN OP Occurences with fields attribute selector
+	Check HTTP Response Status Code Is    200
+	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
+
+GET status information about multiple NS LCM occurrences with "exclude_fields"   
+     [Documentation]    Test ID: 5.3.2.8.8
+    ...    Test title: GET status information about multiple NS LCM occurrences with "exclude_fields"
+    ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
+    ...    Pre-conditions: At least one LCM occurrences available in the NFVO
+    ...    Reference:  section 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+	Get NS LCN OP Occurences with exclude_fields attribute selector
+	Check HTTP Response Status Code Is    200
+	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
 PUT status information about multiple NS LCM occurrences - Method not implemented
     [Documentation]    Test ID: 5.3.2.8.5

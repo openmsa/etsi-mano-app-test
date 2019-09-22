@@ -82,7 +82,61 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Get subscriptions - invalid filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is   ProblemDetails 
-    
+
+GET subscriptions with "all_fields" attribute selector
+    [Documentation]    Test ID: 6.3.4.4.8
+    ...    Test title: GET subscriptions with "all_fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.5.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions 
+
+GET subscriptions with "exclude_default" attribute selector
+    [Documentation]    Test ID: 6.3.4.4.9
+    ...    Test title: GET subscriptions with "exclude_default" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.5.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+
+GET subscriptions with "fields" attribute selector
+    [Documentation]    Test ID: 6.3.4.4.10
+    ...    Test title: GET subscriptions with "fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.5.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+
+GET subscriptions with "exclude_fields" attribute selector
+    [Documentation]    Test ID: 6.3.4.4.11
+    ...    Test title: GET subscriptions with "exclude_fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.5.3.2 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions    
+
+
+        
 PUT subscriptions - Method not implemented
     [Documentation]    Test ID: 6.3.4.4.8
     ...    Test title: PUT subscriptions - Method not implemented
@@ -172,6 +226,34 @@ Get subscriptions - invalid filter
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}		
+Get subscriptions with all_fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get subscriptions with exclude_default attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get subscriptions with fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+Get subscriptions with exclude_fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 	
 PUT subscriptions
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  

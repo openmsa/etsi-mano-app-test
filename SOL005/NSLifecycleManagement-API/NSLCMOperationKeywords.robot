@@ -207,10 +207,39 @@ GET NsInstance Invalid Attribute Selector
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?fields=wrong_field	
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances?fields=wrong_field	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}  
 	
+Get NSInstances with all_fields attribute selector
+    Log    Get the list of NSInstances, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_instances?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get NSInstances with exclude_default attribute selector
+    Log    Get the list of NSInstances, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_instances?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get NSInstances with fields attribute selector
+    Log    Get the list of NSInstances, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_instances?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+Get NSInstances with exclude_fields attribute selector
+    Log    Get the list of NSInstances, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_instances?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+    	
 PUT NSInstances
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -257,6 +286,7 @@ GET IndividualNSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 
+    
 PUT IndividualNSInstance
     Log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -561,13 +591,41 @@ GET NS LCN OP Occurences Invalid attribute-based filtering parameters
 	Set Global Variable    @{response}    ${outputResponse}
 	
 GET NS LCN OP Occurences Invalid attribute selector
-    Log    Query NS The GET method queries information about multiple NS instances.
+    Log    Query status information about multiple NS lifecycle management operation occurrences.
     Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
 	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?${NEG_SELECTOR}
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
-
+Get NS LCN OP Occurences with all_fields attribute selector
+    Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get NS LCN OP Occurences with exclude_default attribute selector
+    Log    Query status information about multiple NS lifecycle management operation occurrences using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get NS LCN OP Occurences with fields attribute selector
+    Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+Get NS LCN OP Occurences with exclude_fields attribute selector
+    Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+    
 POST Individual NS LCM OP Occurence
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -858,8 +916,37 @@ GET Subscriptions
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
+
+Get subscriptions with all_fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?all_fields
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get subscriptions with exclude_default attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get subscriptions with fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+Get subscriptions with exclude_fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}     
 	
-GET Subscriptions with filter
+GET subscriptions with filter  
     Log    Get the list of active subscriptions using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
