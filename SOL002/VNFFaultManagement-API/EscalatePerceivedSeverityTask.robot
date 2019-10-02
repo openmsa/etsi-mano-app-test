@@ -50,7 +50,7 @@ PATCH Escalate the perceived severity - Method not implemented
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
-    Put escalate severity
+    PATCH escalate severity
     Check HTTP Response Status Code Is    405
     
     

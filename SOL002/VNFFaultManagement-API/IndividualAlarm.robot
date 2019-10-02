@@ -63,7 +63,7 @@ PATCH Alarm
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
-    PUT Alarm Task
+    PATCH Alarm Task
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is     alarmModifications
     
