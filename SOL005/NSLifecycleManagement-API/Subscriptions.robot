@@ -87,6 +87,58 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Get subscriptions - invalid filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
+
+GET subscriptions with "all_fields" attribute selector
+    [Documentation]    Test ID: 5.3.2.15.7
+    ...    Test title: GET subscriptions with "all_fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions 
+
+GET subscriptions with "exclude_default" attribute selector
+    [Documentation]    Test ID: 5.3.2.15.8
+    ...    Test title: GET subscriptions with "exclude_default" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+
+GET subscriptions with "fields" attribute selector
+    [Documentation]    Test ID: 5.3.2.15.9
+    ...    Test title: GET subscriptions with "fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+
+GET subscriptions with "exclude_fields" attribute selector
+    [Documentation]    Test ID: 5.3.2.15.10
+    ...    Test title: GET subscriptions with "exclude_fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions  
         
 PUT subscriptions - Method not implemented
      [Documentation]    Test ID: 5.3.2.15.7

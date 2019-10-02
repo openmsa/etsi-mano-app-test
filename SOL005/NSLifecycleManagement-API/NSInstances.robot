@@ -59,9 +59,60 @@ GET information about multiple NS instances Bad Request Invalid attribute select
     GET NsInstance Invalid Attribute Selector
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
-    
-PUT NSInstances - Method not implemented
+GET NSInstances with "all_fields" attribute selector
     [Documentation]    Test ID: 5.3.2.1.5
+    ...    Test title: GET NSInstances with "all_fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active NSInstances with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 6.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get NSInstances with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions 
+
+GET NSInstances with "exclude_default" attribute selector
+    [Documentation]    Test ID: 5.3.2.1.6
+    ...    Test title: GET NSInstances with "exclude_default" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active NSInstances with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 6.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get NSInstances with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+
+GET NSInstances with "fields" attribute selector
+    [Documentation]    Test ID: 5.3.2.1.7
+    ...    Test title: GET NSInstances with "fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active NSInstances with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 6.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get NSInstances with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+
+GET NSInstances with "exclude_fields" attribute selector
+    [Documentation]    Test ID: 5.3.2.1.8
+    ...    Test title: GET NSInstances with "exclude_fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active NSInstances with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: section 6.4.2.3.2 - SOL005 v2.4.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get NSInstances with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+        
+PUT NSInstances - Method not implemented
+    [Documentation]    Test ID: 5.3.2.1.9
     ...    Test title: PUT Individual NS instance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -73,7 +124,7 @@ PUT NSInstances - Method not implemented
     Check HTTP Response Status Code Is    405
     
 PATCH NSInstances - Method not implemented
-     [Documentation]    Test ID: 5.3.2.1.6
+     [Documentation]    Test ID: 5.3.2.1.10
     ...    Test title: PATCH NSInstances - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -85,7 +136,7 @@ PATCH NSInstances - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE NSInstances - Method not implemented
-     [Documentation]    Test ID: 5.3.2.1.7
+     [Documentation]    Test ID: 5.3.2.1.11
     ...    Test title: DELETE NSInstances - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none

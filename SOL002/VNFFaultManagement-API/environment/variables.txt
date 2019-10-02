@@ -45,3 +45,4 @@ ${AlarmNotification}    {}
 ${AlarmClearedNotification}    {}
 ${AlarmListRebuiltNotification}    {}
 
+${fields}         softwareImages,additionalArtifacts

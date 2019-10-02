@@ -30,11 +30,11 @@ GET information about multiple alarms
     ...    Post-Conditions:  
     GET Alarms Task
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms
+    Check HTTP Response Body Json Schema Is    alarms    
 
-GET information about multiple alarms with filters 
+GET information about multiple alarms with attribute-based filter
     [Documentation]    Test ID: 6.3.4.1.3
-    ...    Test title: GET information about multiple alarms - with filters
+    ...    Test title: GET information about multiple alarms with attribute-based filter
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
     ...    Reference: section 7.4.2.3.3 - SOL002 v2.4.1
@@ -44,10 +44,10 @@ GET information about multiple alarms with filters
     GET Alarms Task with filter
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    alarms
-
-GET information about multiple alarms Bad Request Invalid attribute-based filtering parameters
+    
+GET information about multiple alarms with invalid attribute-based filter
     [Documentation]    Test ID: 6.3.4.1.4
-    ...    Test title: GET information about multiple alarms Bad Request Invalid attribute-based filtering parameters
+    ...    Test title: GET information about multiple alarms with invalid attribute-based filter
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
     ...    Reference: section 7.4.2.3.4 - SOL002 v2.4.1
@@ -56,10 +56,63 @@ GET information about multiple alarms Bad Request Invalid attribute-based filter
     ...    Post-Conditions: 
     GET Alarms Task with invalid filter
     Check HTTP Response Status Code Is    400
-    Check HTTP Response Body Json Schema Is    ProblemDetails
+    Check HTTP Response Body Json Schema Is    ProblemDetails   
+
+GET information about multiple alarms with "all_fields" attribute selector
+    [Documentation]    Test ID: 6.3.4.1.5
+    ...    Test title: GET information about multiple alarms with "all_fields" attribute selector
+    ...    Test objective: The objective is to retrieve information about the alarm list
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.2.3.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET Alarms Task with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    alarms
+    
+GET information about multiple alarms with exclude_default attribute selector
+    [Documentation]    Test ID: 6.3.4.1.6
+    ...    Test title: GET information about multiple alarms with "exclude_default" attribute selector
+    ...    Test objective: The objective is to retrieve information about the alarm list
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.2.3.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET Alarms Task with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    alarms
+
+    
+GET information about multiple alarms with fields attribute selector
+    [Documentation]    Test ID: 6.3.4.1.7
+    ...    Test title: GET information about multiple alarms with fields attribute selector
+    ...    Test objective: The objective is to retrieve information about the alarm list
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.2.3.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: 
+    GET Alarms Task with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    alarms
+     
+GET information about multiple alarms with "exclude_fields" attribute selector
+    [Documentation]    Test ID: 6.3.4.1.8
+    ...    Test title: GET information about multiple alarms with "exclude_fields" attribute selector
+    ...    Test objective: The objective is to retrieve information about the alarm list
+    ...    Pre-conditions: 
+    ...    Reference: section 7.4.2.3.3 - SOL002 v2.4.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: 
+    ...    Post-Conditions: none
+    GET Alarms Task with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    alarms  
     
 PUT Alarms - Method not implemented
-    [Documentation]    Test ID: 6.3.4.1.5
+    [Documentation]    Test ID: 6.3.4.1.9
     ...    Test title: PUT Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -71,7 +124,7 @@ PUT Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Alarms - Method not implemented
-    [Documentation]    Test ID: 6.3.4.1.6
+    [Documentation]    Test ID: 6.3.4.1.10
     ...    Test title: PATCH Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -83,7 +136,7 @@ PATCH Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Alarms - Method not implemented
-    [Documentation]    Test ID: 6.3.4.1.7
+    [Documentation]    Test ID: 6.3.4.1.11
     ...    Test title: DELETE Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -138,7 +191,7 @@ GET Alarms Task with filter
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${alarm_filter}=${managedObjectId} 
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    @{response}    ${outputResponse}	   	
 GET Alarms Task with invalid filter
 	Log    Query VNF The GET method queries information about multiple alarms with filters.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -147,8 +200,35 @@ GET Alarms Task with invalid filter
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${managedObjectId} 
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
+GET Alarms Task with all_fields attribute selector
+    Log    Query VNF The GET method queries information about multiple alarms, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+GET Alarms Task with exclude_default attribute selector
+    Log    Query VNF The GET method queries information about multiple alarms, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+GET Alarms Task with fields attribute selector
+    Log    Query VNF The GET method queries information about multiple alarms, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+GET Alarms Task with exclude_fields attribute selector
+    Log    Query VNF The GET method queries information about multiple alarms, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}    
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     Should Be Equal    ${response.status_code}    ${expected_status}
     Log    Status code validated 
-

@@ -120,7 +120,38 @@ GET Fault Management Alarms With Invalid Filters
 	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${nsInstanceId}
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
-	
+GET Alarms Task with all_fields attribute selector
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+GET Alarms Task with exclude_default attribute selector
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+GET VNF Packages with fields attribute selector
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+GET Alarms Task with exclude_fields attribute selector
+    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 	
 Send POST request for fault management Individual Alarm
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -255,7 +286,34 @@ GET Subscriptions with Invalid filter
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
-    
+Get subscriptions with all_fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get subscriptions with exclude_default attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get subscriptions with fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+Get subscriptions with exclude_fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}     
 PUT Subscriptions
     log    Trying to perform a PUT Subscriptions. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  

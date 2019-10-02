@@ -395,6 +395,35 @@ GET multiple vnfInstances with bad filter
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?attribute_not_exist=some_value  
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 	
+
+GET multiple vnfInstances with all_fields attribute selector
+    Log    Query status information about multiple VNF instances, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+GET multiple vnfInstances with exclude_default attribute selector
+    Log    Query status information about multiple VNF instances using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+GET multiple vnfInstances with fields attribute selector
+    Log    Query status information about multiple VNF instances, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+GET multiple vnfInstances with exclude_fields attribute selector
+    Log    Query status information about multiple VNF instances, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 	
 	     		     	
 PUT VNFInstances - Method not implemented
     log    Trying to perform a PUT. This method should not be implemented
@@ -730,6 +759,34 @@ GET VNF LCM Operation occurrences invalid filter
     GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?fields=wrong_field	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
+Get VNF LCM Operation occurrences with all_fields attribute selector
+    Log    Query status information about multiple VNF lifecycle management operation occurrences, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get VNF LCM Operation occurrences with exclude_default attribute selector
+    Log    Query status information about multiple VNF lifecycle management operation occurrences using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get VNF LCM Operation occurrences with fields attribute selector
+    Log    Query status information about multiple VNF lifecycle management operation occurrences, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+Get VNF LCM Operation occurrences with exclude_fields attribute selector
+    Log    Query status information about multiple VNF lifecycle management operation occurrences, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 	
 PUT VNF LCM Operation occurrences	
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -947,7 +1004,35 @@ Get subscriptions - invalid filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}   
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    @{response}    ${outputResponse}	
+Get subscriptions with all_fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get subscriptions with exclude_default attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+Get subscriptions with fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}	
+Get subscriptions with exclude_fields attribute selector
+    Log    Get the list of active subscriptions, using fields
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}     		
 PUT subscriptions
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
