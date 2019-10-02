@@ -1,7 +1,7 @@
 *** Settings ***
-Resource    environment/configuration.txt
+#Resource    environment/configuration.txt
 Resource    environment/variables.txt
-Resource    environment/scaleVariables.txt
+#Resource    environment/scaleVariables.txt
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    OperatingSystem
 Library    BuiltIn
@@ -319,7 +319,7 @@ POST Change VNF deployment flavour
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body} 
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}  	 
-GET Change External VNF Connectivity
+GET Change External VNF Flavour
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour 	

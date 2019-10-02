@@ -131,7 +131,7 @@ PATCH status information about multiple VNF LCM Operation OCC - Method not imple
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
-    PUT VNF LCM Operation occurrences
+    PATCH VNF LCM Operation occurrences
     Check HTTP Response Status Code Is    405
 
 DELETE status information about multiple VNF LCM Operation OCC - Method not implemented

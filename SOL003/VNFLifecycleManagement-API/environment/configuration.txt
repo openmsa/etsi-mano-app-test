@@ -3,6 +3,7 @@ ${VNFM_HOST}      localhost    # Hostname of the VNFM
 ${VNFM_PORT}      8080    # Listening port of the VNFM
 ${VNFM_SCHEMA}    https
 ${ACCEPT}         application/json
+${ACCEPT_JSON}         application/json
 ${CONTENT_TYPE}    application/json
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ${AUTH_USAGE}     1

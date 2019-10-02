@@ -366,6 +366,15 @@ POST Create a new vnfInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 	
 
+Get multiple VNF instances	
+    Log    Query status information about multiple VNF lifecycle management operation occurrences.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	
+
 GET multiple vnfInstances	
     Log    Query VNF The GET method queries information about multiple VNF instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -534,13 +543,12 @@ DELETE instantiate individual vnfInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 	
 POST Scale vnfInstance	
-    [Arguments]    ${instanceId}
     Log    Trying to Instantiate a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/scaleVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId}/scale    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 GET Scale vnfInstance				
@@ -815,14 +823,7 @@ Post Individual VNF LCM Operation occurrences
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}	
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
-Get multiple VNF instances	
-    Log    Query status information about multiple VNF lifecycle management operation occurrences.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Execute Query and validate response
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
-    ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+
 Put multiple VNF instances	
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  

@@ -118,6 +118,7 @@ PUT Alarm Task
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/alarmModifications.json
     Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}     ${body}
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
@@ -173,3 +174,14 @@ GET Alarm Task with invalid filter
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${managedObjectId} 
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}	
+Check HTTP Response Status Code Is
+    [Arguments]    ${expected_status}    
+    Should Be Equal    ${response.status_code}    ${expected_status}
+    Log    Status code validated 
+    
+Check HTTP Response Body Json Schema Is
+    [Arguments]    ${input}
+    Should Contain    ${response['headers']['Content-Type']}    application/json
+    ${schema} =    Catenate    SEPARATOR=    ${input}	.schema.json
+    Validate Json    ${schema}    ${response['body']}
+    Log    Json Schema Validation OK

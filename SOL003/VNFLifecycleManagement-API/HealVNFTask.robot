@@ -17,7 +17,7 @@ POST Heal a vnfInstance
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
-    POST Terminate VNF
+    POST Heal VNF
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id existence
 
@@ -31,7 +31,7 @@ POST Heal a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
-    POST Terminate VNF
+    POST Heal VNF
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
 
@@ -46,7 +46,7 @@ POST Heal a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
-    POST Terminate VNF
+    POST Heal VNF
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails 
     
