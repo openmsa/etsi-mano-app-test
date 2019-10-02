@@ -5,6 +5,7 @@ ${VNFM_SCHEMA}    https
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ${CONTENT_TYPE}    application/json
 ${ACCEPT}         application/json
+${ACCEPT_JSON}         application/json
 ${AUTH_USAGE}     1
 
 ${alarm_filter}       managedObjectId
@@ -20,6 +21,8 @@ ${Etag_modified}=    a modified etag
 ${VNFM_DUPLICATION}    1
 ${sub_filter}    filter
 ${sub_filter_invalid}    filter_invalid
+
+${NFVO_FIELDS}    1
 
 ${apiRoot}        /
 ${apiName}        vnffm
@@ -41,3 +44,5 @@ ${alarm_filter}       nsInstanceId
 ${nsInstanceId}    007c111c-38a1-42c0-a666-7475ecb1567c
 ${invalid_alarm_filter}    badFilter 
 ${invalidAlarmId}    invalidIdAlarm
+
+${fields}         criteria,objectInstanceIds

@@ -117,7 +117,7 @@ Check resource instantiated
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instantiatedVnfInstanceId} 
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId} 
     String    response body instantiationState    INSTANTIATED    
 
 Check change flavour not supported

@@ -44,7 +44,7 @@ GET Terminate VNFInstance - Method not implemented
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
-    GET Scale vnfInstance to level
+    GET Terminate VNF
     Check HTTP Response Status Code Is    405
 
 PUT Terminate VNFInstance - Method not implemented
@@ -56,7 +56,7 @@ PUT Terminate VNFInstance - Method not implemented
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
-    PUT Scale vnfInstance to level
+    PUT Terminate VNF
     Check HTTP Response Status Code Is    405
 
 PATCH Terminate VNFInstance - Method not implemented
@@ -68,7 +68,7 @@ PATCH Terminate VNFInstance - Method not implemented
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
-    PATCH Scale vnfInstance to level
+    PATCH Terminate VNF
     Check HTTP Response Status Code Is    405
     
 DELETE Terminate VNFInstance - Method not implemented
@@ -80,7 +80,7 @@ DELETE Terminate VNFInstance - Method not implemented
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
-    DELETE Scale vnfInstance to level
+    DELETE Terminate VNF
     Check HTTP Response Status Code Is    405
 
 *** Keywords ***

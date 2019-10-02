@@ -4,6 +4,7 @@ ${VNFM_PORT}      8080    # Listening port of the VNFM
 ${VNFM_SCHEMA}    https
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ${ACCEPT}         application/json
+${ACCEPT_JSON}         application/json
 ${AUTH_USAGE}     1
 ${alarm_filter}       managedObjectId
 ${managedObjectId}    007c111c-38a1-42c0-a666-7475ecb1567c
@@ -46,3 +47,5 @@ ${AlarmClearedNotification}    {}
 ${AlarmListRebuiltNotification}    {}
 
 ${fields}         softwareImages,additionalArtifacts
+
+${response}=    httpresponse

@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library    JSONSchemaLibrary
 Suite Setup    Check resource existance
 
 *** Test Cases ***
@@ -104,3 +105,15 @@ DELETE escalate severity
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}/escalate  
      ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
+	
+Check HTTP Response Status Code Is
+    [Arguments]    ${expected_status}    
+    Should Be Equal    ${response.status_code}    ${expected_status}
+    Log    Status code validated 
+    
+Check HTTP Response Body Json Schema Is
+    [Arguments]    ${input}
+    Should Contain    ${response['headers']['Content-Type']}    application/json
+    ${schema} =    Catenate    SEPARATOR=    ${input}	.schema.json
+    Validate Json    ${schema}    ${response['body']}
+    Log    Json Schema Validation OK

@@ -132,7 +132,7 @@ PATCH status information about multiple VNF LCM operation occurrences - Method n
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
-    PUT VNF LCM OP occurences
+    PATCH VNF LCM OP occurences
     Check HTTP Response Status Code Is    405
 
 DELETE status information about multiple VNF LCM operation occurrences - Method not implemented
