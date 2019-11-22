@@ -9,6 +9,7 @@ ${NFVO_SCHEMA}    https
 ${AUTHORIZATION}    Bearer    QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ${CONTENT_TYPE}    application/json
 ${CONTENT_TYPE_PATCH}    application/merge-patch+json
+${ACCEPT_JSON}         application/json
 ${ACCEPT}         application/json
 ${apiRoot}        /
 ${apiName}        nslcm
@@ -16,6 +17,7 @@ ${apiVersion}     v1
 ${AUTH_USAGE}     1
 ${WRONG_AUTHORIZATION}    Bearer    XXXXXWRONGXXXXX
 ${nsInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${ConflictNsInstanceId}    007c111c-e602-4afa-8e13-962fb5a7d81d
 ${nsInstanceName}    Test-nsInstance
 ${nsInstanceDescription}    description ns
 ${nsInstanceDescription_Update}    Updated description ns
@@ -31,6 +33,7 @@ ${CancelMode}    GRACEFUL
 ${NFVO_DUPLICATION}    0
 ${sub_filter}    filter
 ${sub_filter_invalid}    filter_invalid
+${fields}         criteria,objectInstanceIds
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${VnfLcmOperationOccurrenceNotification}    {}
 ${VnfIdentifierCreationNotification}    {}

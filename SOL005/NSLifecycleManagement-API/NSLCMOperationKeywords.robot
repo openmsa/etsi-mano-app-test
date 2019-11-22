@@ -126,7 +126,7 @@ Check operation resource state is not FAILED_TEMP
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
-    String    response body instantiationState   !=   FAILED_TEMP 
+    String  response body instantiationState  not  FAILED_TEMP
 
 Check resource is finally failed
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -954,6 +954,14 @@ GET subscriptions with filter
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 
+Get subscriptions - invalid filter
+    Log    Get the list of active subscriptions using an invalid filter
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid} 
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+
 POST Individual Subscription
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -1057,27 +1065,5 @@ PUT notification
     Log  Verifying results
     Verify Mock Expectation  ${req}
     Log  Cleaning the endpoint
-    Clear Requests  ${callback_endpoint}    
-
-PATCH subscriptions
-    Log  PATCH Method not implemented
-    &{req}=  Create Mock Request Matcher	PATCH  ${callback_endpoint}
-    &{rsp}=  Create Mock Response  status_code=405
-    Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
-    Log  Verifying results
-    Verify Mock Expectation  ${req}
-    Log  Cleaning the endpoint
-    Clear Requests  ${callback_endpoint}  
-
-DELETE subscriptions
-    Log  DELETE Method not implemented
-    &{req}=  Create Mock Request Matcher	DELETE  ${callback_endpoint}
-    &{rsp}=  Create Mock Response  status_code=405
-    Create Mock Expectation  ${req}  ${rsp}
-    Sleep  ${sleep_interval}
-    Log  Verifying results
-    Verify Mock Expectation  ${req}
-    Log  Cleaning the endpoint
-    Clear Requests  ${callback_endpoint}      
+    Clear Requests  ${callback_endpoint}         
         

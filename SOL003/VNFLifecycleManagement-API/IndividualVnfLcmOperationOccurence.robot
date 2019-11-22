@@ -67,3 +67,13 @@ PATCH Individual VNF LCM Operation occurrences - Method not implemented
     ...    Post-Conditions: none  
     Delete multiple VNF instances
     Check HTTP Response Status Code Is    405
+    
+*** Keywords ***
+Get multiple VNF instances	
+    Log    Query status information about multiple VNF lifecycle management operation occurrences.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}	

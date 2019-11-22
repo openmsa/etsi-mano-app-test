@@ -46,7 +46,7 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
     ...    Post-Conditions: none
-    Post Create subscription - NO DUPLICATION
+    Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription

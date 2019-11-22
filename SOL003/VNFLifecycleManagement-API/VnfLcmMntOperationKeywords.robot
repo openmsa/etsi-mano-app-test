@@ -366,15 +366,6 @@ POST Create a new vnfInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 	
 
-Get multiple VNF instances	
-    Log    Query status information about multiple VNF lifecycle management operation occurrences.
-    Set Headers  {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Log    Execute Query and validate response
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
-    ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
-
 GET multiple vnfInstances	
     Log    Query VNF The GET method queries information about multiple VNF instances.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -492,7 +483,6 @@ PATCH individual vnfInstance
     log    Trying to modify an individual VNF instance
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE_PATCH}"}
-    Set Headers    {"If-Match": "${original_etag}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/patchBodyRequest.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}	

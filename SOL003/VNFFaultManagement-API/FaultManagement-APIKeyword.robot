@@ -136,8 +136,8 @@ GET Alarms Task with exclude_default attribute selector
     GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?exclude_default
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
-GET VNF Packages with fields attribute selector
-    Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
+GET Alarms Task with fields attribute selector
+    Log    Trying to get all alarms present in the NFVO Catalogue, using fields
     Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
