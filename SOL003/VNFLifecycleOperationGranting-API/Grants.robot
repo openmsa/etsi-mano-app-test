@@ -9,7 +9,8 @@ Documentation    This resource represents grants. The client can use this resour
 
 *** Variables ***
 ${response}    {}
-${wait_time}   2 min   10 sec
+${retry}   2 min
+${polling}    10 sec
 
 *** Test Cases ***
 Requests a grant for a particular VNF lifecycle operation - Synchronous mode
@@ -105,7 +106,7 @@ DELETE Grants - Method not implemented
     
 *** Keywords ***
 Wait for individual grant successful notification
-    Wait Until Keyword Succeeds    ${wait_time}    Get an individual grant - Successful
+    Wait Until Keyword Succeeds    ${retry}   ${polling}    Get an individual grant - Successful
 Send Request Grant Request in Synchronous mode
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Pass Execution If    ${SYNC_MODE} == 0    The Granting process is asynchronous mode. Skipping the test

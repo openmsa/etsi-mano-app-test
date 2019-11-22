@@ -227,7 +227,8 @@ GET Alarms Task with exclude_fields attribute selector
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/alarms?exclude_fields=${fields}
     ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output}    
+    Set Suite Variable    ${response}    ${output}
+    
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
     Should Be Equal    ${response.status_code}    ${expected_status}

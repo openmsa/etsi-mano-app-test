@@ -243,13 +243,12 @@ DELETE instantiate individual vnfInstance
 	Set Global Variable    @{response}    ${outputResponse} 	
 	
 POST Scale vnfInstance	
-    [Arguments]    ${instanceId}
     Log    Trying to Instantiate a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/scaleVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instanceId}/scale    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 GET Scale vnfInstance				

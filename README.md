@@ -21,7 +21,8 @@ including the scope of the test cases, are still under development.
 
 The Test Specification is built as a collection of [Robot Framework](robotframework.org/) Test Description. [Robot Framework](robotframework.org/) is a generic test automation framework for acceptance testing and acceptance test-driven development.
 
-**IMPORTANT: This repository and the NFV API Conformance Test Specification is Work in Progress. The current version focuses on conformance tests of individual SOL002 and SOL003 resource endpoints. The [Robot Framework](robotframework.org/) Test Descriptions are expected to be consolidated and reviewed in the short term, and possibly re-organized to ease automation of NFV workflows testing. SOL005 Test Descriptions are under development and will be contributed during Q1-2019.**
+**IMPORTANT: This repository and the NFV API Conformance Test Specification is Work in Progress. The current version focuses on conformance tests of individual SOL002, SOL003 and SOL005 resource endpoints. The [Robot Framework](robotframework.org/) Test 
+Descriptions are expected to be consolidated and reviewed in the short term, and possibly re-organized to ease automation of NFV workflows testing.**
 
 More information at [NFV API Conformance Test Specification wiki](https://forge.etsi.org/gitlab/nfv/api-tests/wikis/NFV-API-Conformance-Test-Specification).
 
