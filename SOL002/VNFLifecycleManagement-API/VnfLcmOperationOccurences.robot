@@ -143,6 +143,6 @@ DELETE status information about multiple VNF LCM operation occurrences - Method 
     ...    Reference: clause 5.4.12.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: none
-    DELETE VNF LCM OP occurrences
+    ...    Post-Conditions: Verify that resources are not deleted
+    DELETE VNF LCM OP occurences
     Check HTTP Response Status Code Is    405

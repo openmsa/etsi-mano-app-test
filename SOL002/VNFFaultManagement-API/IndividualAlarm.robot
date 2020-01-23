@@ -70,7 +70,7 @@ PATCH Individual Alarm
 PATCH Individual Alarm - Precondition failed
     [Documentation]    Test ID: 6.3.4.2.5
     ...    Test title: PATCH Individual Alarm - Precondition failed
-    ...    Test objective: The objective is to attempt to Modify an individual alarm resource, where the precondition was not met because Alarm was already modified by another entity.
+    ...    Test objective: The objective is to attempt to Modify an individual alarm resource, where the precondition was not met
     ...    Pre-conditions: The related alarm exists
     ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM

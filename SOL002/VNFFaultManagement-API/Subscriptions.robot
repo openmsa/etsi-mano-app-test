@@ -18,7 +18,7 @@ Create a new subscription
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    FmSubscription
-    Check resource existance
+    Check resource existence
 
 Create a new Subscription - DUPLICATION
      [Documentation]    Test ID: 6.3.4.4.2
@@ -289,7 +289,7 @@ Check HTTP Response Body Json Schema Is
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
     
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
