@@ -14,10 +14,11 @@ Create a new subscription
     ...    Reference: clause 7.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: subscription is created
+    ...    Post-Conditions: Resource created successfully
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    FmSubscription
+    Check resource existance
 
 Create a new Subscription - DUPLICATION
      [Documentation]    Test ID: 6.3.4.4.2
@@ -287,3 +288,10 @@ Check HTTP Response Body Json Schema Is
     ${schema} =    Catenate    SEPARATOR=    ${input}	.schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
+    
+Check resource existance
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    Integer    response status    200
+

@@ -37,7 +37,6 @@ GET Information about an individual VNF Instance
     GET individual vnfInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    vnfInstance
-    SET etag
     
 PUT Individual VNFInstance - Method not implemented 
      [Documentation]    Test ID: 6.3.5.2.3
@@ -136,7 +135,4 @@ Launch another LCM operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
-    Integer    response status    202
-SET etag
-    ${etag}    Output    response headers ETag
-    Set Suite Variable    ${original_etag}    ${etag}   
+    Integer    response status    202 
