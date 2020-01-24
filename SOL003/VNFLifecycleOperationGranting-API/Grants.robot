@@ -47,7 +47,7 @@ Requests a grant for a particular VNF lifecycle operation - Forbidden
     [Documentation]    Test ID: 7.3.2.1.3
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Forbidden 
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and check the content of the problem details data structure returned
-    ...    Pre-conditions: The grant should not be accorded
+    ...    Pre-conditions: none
     ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -100,9 +100,10 @@ DELETE Grants - Method not implemented
     ...    Reference: clause 9.4.2.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions:  resources are not deleted
     Delete Grants
     Check HTTP Response Status Code Is    405
+    Get an individual grant - Successful
     
 *** Keywords ***
 Wait for individual grant successful notification

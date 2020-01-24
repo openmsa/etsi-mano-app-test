@@ -37,7 +37,6 @@ Get Information about an individual VNF Instance
     GET individual vnfInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    vnfInstance
-    SET etag
     
 PUT Individual VNFInstance - Method not implemented 
     [Documentation]    Test ID: 7.3.1.2.3
@@ -68,7 +67,7 @@ PATCH Individual VNFInstance Precondition failed
      [Documentation]    Test ID: 7.3.1.2.5
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
-    ...    Pre-conditions:  ETag mismatch
+    ...    Pre-conditions:  VNF Instance created (Test ID 7.3.1.2.2)
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -110,10 +109,11 @@ DELETE Individual VNFInstance Conflict
     ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: Resources are not deleted
     DELETE individual vnfInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
+    Check resource existence
     
 *** Keywords ***
 Check resource existence

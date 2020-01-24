@@ -13,7 +13,7 @@ POST Scale a vnfInstance
     [Documentation]    Test ID: 7.3.1.4.1
     ...    Test title: POST Scale a vnfInstance
     ...    Test objective: The objective is to scale a VNF instance
-    ...    Pre-conditions: none
+    ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
     ...    Reference: clause 5.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -94,9 +94,10 @@ DELETE Scale VNFInstance - Method not implemented
     ...    Reference: clause 5.4.5.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: Resource are not deleted
     DELETE Scale vnfInstance
     Check HTTP Response Status Code Is    405
+    Check resource existence
 
 *** Keywords ***
 Check resource existence

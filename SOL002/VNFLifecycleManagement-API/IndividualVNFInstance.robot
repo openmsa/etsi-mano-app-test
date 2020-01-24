@@ -67,7 +67,7 @@ PATCH Individual VNFInstance Precondition failed
     [Documentation]    Test ID: 6.3.5.2.5
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
-    ...    Pre-conditions:  A precondition given in an HTTP request header is not fulfilled. Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity
+    ...    Pre-conditions: VNF Instance is Created
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 

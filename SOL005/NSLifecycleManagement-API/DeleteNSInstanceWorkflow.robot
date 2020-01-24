@@ -8,14 +8,14 @@ Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
 NS Instance Deletion
-    [Documentation]    Test ID: 5.3.2.18
+    [Documentation]    Test ID: 5.3.2.18.2
     ...    Test title: NS Instance Deletion
     ...    Test objective: The objective is to test the workflow for Deleting a NS instance
     ...    Pre-conditions: the resource is in NOT_INSTANTIATED state
     ...    Reference: clause 6.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: Resource should be deleted
     Check resource not_instantiated
     DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    204

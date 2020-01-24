@@ -12,7 +12,7 @@ POST Scale a vnfInstance to level
     [Documentation]    Test ID: 7.3.1.5.1
     ...    Test title: POST Scale a vnfInstance to level
     ...    Test objective: The objective is to scale a VNF instance to a target level.
-    ...    Pre-conditions: none
+    ...    Pre-conditions: VNF is Instantiated
     ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -95,9 +95,10 @@ DELETE Scale to level VNFInstance - Method not implemented
     ...    Reference: clause 5.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: Resources are not deleted
     DELETE Scale vnfInstance to level
     Check HTTP Response Status Code Is    405
+    Check resource existence
 
 *** Keywords ***
 Check resource existence

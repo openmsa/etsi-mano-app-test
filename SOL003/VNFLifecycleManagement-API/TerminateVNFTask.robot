@@ -13,7 +13,7 @@ POST Terminate a vnfInstance
     [Documentation]    Test ID: 7.3.1.7.1
     ...    Test title: POST Terminate a vnfInstance
     ...    Test objective: The objective is to test that POST method terminate a VNF instance
-    ...    Pre-conditions: none
+    ...    Pre-conditions: Resource state is INSTANTIATED
     ...    Reference: clause 5.4.8.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none

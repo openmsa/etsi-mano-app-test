@@ -27,7 +27,7 @@ POST Create a new Subscription - DUPLICATION
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: none
+    ...    Applicability: SUT should support duplication of subscription creation
     ...    Post-Conditions: in response header Location shall not be null
     ...    POST Cancel operation task
     Post Create subscription - DUPLICATION
@@ -41,7 +41,7 @@ POST Create a new Subscription - NO-DUPLICATION
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: none
+    ...    Applicability: SUT should not support duplication of subscription creation
     ...    Post-Conditions: in response header Location shall not be null
     ...    POST Cancel operation task
     Post Create subscription - NO-DUPLICATION
@@ -170,7 +170,7 @@ DELETE subscriptions - Method not implemented
     ...    Reference: clause 5.4.18.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: check that resources are not deleted
     DELETE subscriptions
 	Check HTTP Response Status Code Is    405
     

@@ -1147,4 +1147,8 @@ GET test endpoint
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Verify Mock Expectation  ${req}
-    Clear Requests  ${callback_endpoint}    	    	
+    Clear Requests  ${callback_endpoint}    	 
+Verify Resources not Deleted  
+    GET multiple vnfInstances
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances 	

@@ -102,7 +102,7 @@ GET information about multiple VNF instances with "fields" attribute selector
     Check HTTP Response Body Json Schema Is    vnfInstances
 
 GET information about multiple VNF instances with "exclude_fields" attribute selector
-    [Documentation]    Test ID: 7.3.1.1.7
+    [Documentation]    Test ID: 7.3.1.1.8
     ...    Test title: GET information about multiple VNF instances with "exclude_fields" attribute selector
     ...    Test objective: The objective is to query information about multiple VNF instances
     ...    Pre-conditions:  
@@ -115,7 +115,7 @@ GET information about multiple VNF instances with "exclude_fields" attribute sel
     Check HTTP Response Body Json Schema Is    vnfInstances  
   
 PUT multiples VNFInstances - Method not implemented
-    [Documentation]    Test ID: 7.3.1.1.5
+    [Documentation]    Test ID: 7.3.1.1.9
     ...    Test title: PUT multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
@@ -127,7 +127,7 @@ PUT multiples VNFInstances - Method not implemented
 	Check HTTP Response Status Code Is    405
 	
 PATCH multiples VNFInstances - Method not implemented
-    [Documentation]    Test ID: 7.3.1.1.6
+    [Documentation]    Test ID: 7.3.1.1.10
     ...    Test title: PATCH multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions:  
@@ -139,13 +139,16 @@ PATCH multiples VNFInstances - Method not implemented
 	Check HTTP Response Status Code Is    405
 
 DELETE VNFInstances - Method not implemented
-    [Documentation]    Test ID: 7.3.1.1.7
+    [Documentation]    Test ID: 7.3.1.1.11
     ...    Test title: DELETE multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions:  
     ...    Reference: clause 5.4.2.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: resources are not deleted
     DELETE multiple vnfInstances
 	Check HTTP Response Status Code Is    405
+	Verify Resources not Deleted
+	
+	
