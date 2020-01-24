@@ -46,9 +46,9 @@ Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
 Requests a grant for a particular VNF lifecycle operation - Forbidden 
     [Documentation]    Test ID: 7.3.2.1.3
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Forbidden 
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and the grant is rejected
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and check the content of the problem details data structure returned
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -178,6 +178,9 @@ Get an individual grant - Successful
     Get    ${response['headers']['Location']}
     Log    Validate Status code
     Integer    response status    200
+    ${result}    Output    response body
+    Validate Json    grant.schema.json    ${result}
+    Log    Validation OK
     
 Get Grants
     Log    Trying to perform a GET. This method should not be implemented

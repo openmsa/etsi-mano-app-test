@@ -12,7 +12,7 @@ POST Scale a vnfInstance to level
     [Documentation]    Test ID: 7.3.1.5.1
     ...    Test title: POST Scale a vnfInstance to level
     ...    Test objective: The objective is to scale a VNF instance to a target level.
-    ...    Pre-conditions: VNF is Instantiated
+    ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
     ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 

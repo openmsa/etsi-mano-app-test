@@ -1148,11 +1148,7 @@ GET test endpoint
     Sleep  ${sleep_interval}
     Verify Mock Expectation  ${req}
     Clear Requests  ${callback_endpoint}    	 
-Verify Resources not Deleted  	
-    log    Trying to get information about an individual VNF instance
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${response['body']['id']} 		
-    ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+Verify Resources not Deleted  
+    GET multiple vnfInstances
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    vnfInstances 	
