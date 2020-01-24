@@ -20,7 +20,7 @@ Heal a VNF Instance
     ...    Test title: Heal a VNF Instance
     ...    Test objective: The objective is to heal a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
-    ...    Reference: section 5.4.9 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.9 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM. Heal a VNF instance is supported for the VNF (as capability in the VNFD)
     ...    Post-Conditions: VNF instance still in INSTANTIATED state 

@@ -12,7 +12,7 @@ GET Individual VNF Package
     ...    Test title: GET Individual VNF Package
     ...    Test objective: The objective is to test the retrieval of an individual VNF package information perform a JSON schema validation of the collected data structure
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.3.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.3.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -26,7 +26,7 @@ GET Individual VNF Package with invalid resource identifier
     ...    Test title: GET Individual VNF Package with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual VNF package fails when using an invalid resource identifier
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.3.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.3.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -38,7 +38,7 @@ POST Individual VNF Package - Method not implemented
     ...    Test title: POST Individual VNF Package - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create new VNF Package
     ...    Pre-conditions: none
-    ...    Reference: section 10.4.3.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.3.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -50,7 +50,7 @@ PUT Individual VNF Package - Method not implemented
     ...    Test title: PUT Individual VNF Package - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify a VNF Package
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.3.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.3.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -62,7 +62,7 @@ PATCH Individual VNF Package - Method not implemented
     ...    Test title: PATCH Individual VNF Package - Method not implemented
     ...    Test objective: The objective is to test that PATCH  method is not allowed to update a VNF Package
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.3.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.3.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -74,7 +74,7 @@ DELETE Individual VNF Package - Method not implemented
     ...    Test title: DELETE Individual VNF Package - Method not implemented
     ...    Test objective: The objective is to test that DELETE  method is not allowed to delete a VNF Package
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.3.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.3.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package is not deleted by the failed operation

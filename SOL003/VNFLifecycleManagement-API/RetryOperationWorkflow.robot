@@ -18,7 +18,7 @@ Retry VNF LCM Operation - Successful
     ...    Test title: Retry VNF LCM Operation - Successful
     ...    Test objective: The objective is to test the workflow for a successful Retry VNF LCM Operation and the status notifications
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
-    ...    Reference: section 5.3.10 - SOL003 v2.4.1
+    ...    Reference: clause 5.3.10 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in COMPLETED state
@@ -35,7 +35,7 @@ Retry VNF LCM Operation - Unsuccessful
     ...    Test title: Retry VNF LCM Operation - Unsuccessful
     ...    Test objective: The objective is to test the workflow for an unsuccesful Retry VNF LCM Operation and the status notifications
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
-    ...    Reference: section 5.3.10 - SOL003 v2.4.1
+    ...    Reference: clause 5.3.10 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state

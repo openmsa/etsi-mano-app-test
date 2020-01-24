@@ -13,7 +13,7 @@ POST Rollback operation task
     ...    Test title: POST Rollback operation task
     ...    Test objective: The objective is to test that POST method triggers a rollback on the NS LCM operation
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
-    ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.12.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: NS instance status not equal to FAILED_TEMP    
@@ -26,7 +26,7 @@ POST Rollback operation task Not Found
     ...    Test title: POST Rollback operation task Not Found
     ...    Test objective: The objective is to test that POST method fails if  NS LCM operation is not found
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.12.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none  
@@ -39,7 +39,7 @@ POST Rollback operation task Conflict
     ...    Test title: POST Rollback operation task Conflict
     ...    Test objective: The objective is to test that POST method fail in case of NS LCM operation status conflict (i.e. NS instance status not equal to FAILED_TEMP)
     ...    Pre-conditions: NS instance status not equal to FAILED_TEMP
-    ...    Reference:  section 6.4.12.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.12.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none      
@@ -52,7 +52,7 @@ GET Rollback operation task - Method not implemented
     ...    Test title: GET Rollback operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.12.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.12.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -64,7 +64,7 @@ PUT Rollback operation task - Method not implemented
     ...    Test title: PUT Rollback operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.12.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.12.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -76,7 +76,7 @@ PATCH Rollback operation task - Method not implemented
     ...    Test title: PATCH Rollback operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.12.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.12.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -88,7 +88,7 @@ DELETE Rollback operation task - Method not implemented
     ...    Test title: DELETE Rollback operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.12.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.12.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
