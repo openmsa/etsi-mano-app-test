@@ -30,6 +30,13 @@ Check subscription existence
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
     Integer    response status    200
     
+Check Instance Deleted
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
+    Integer    response status    400
+    
 Check Fail not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}

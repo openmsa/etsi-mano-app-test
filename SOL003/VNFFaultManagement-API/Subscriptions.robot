@@ -21,6 +21,7 @@ Create a new Fault Management alarm subscription
     Check HTTP Response Status Code Is    201
     Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
+    Check created Subscription existance 
   
 
 Create a new alarm subscription - DUPLICATION
@@ -50,6 +51,7 @@ Create a new alarm subscription - NO DUPLICATION
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
+    Check created Subscription existance 
 
 Retrieve a list of alarm subscriptions
     [Documentation]    Test ID: 7.3.5.3.4

@@ -20,3 +20,4 @@ NS Instance Deletion
     DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    204
     Check HTTP Response Body Json Schema Is    NsIdentifierDeletionNotification
+    Check Instance Deleted

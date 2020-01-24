@@ -12,6 +12,12 @@ Library    Process
 ${original_etag}    1234
 
 *** Keywords ***
+Check created Subscription existance
+    ${subscriptionId} = ${response['body']['id']}
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    Integer    response status    200
 Check Operation Occurrence Id
     ${opOccId}=    Get Value From Json    ${response.headers}    $..Location
     Should Not Be Empty    ${opOccId}
