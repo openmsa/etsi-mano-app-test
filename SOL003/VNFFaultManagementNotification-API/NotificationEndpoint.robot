@@ -15,7 +15,7 @@ VNF Fault Alarm Notification
     ...    Test title: VNF Fault Alarm Notification
     ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm Notification when a virtualised resource within an VNF instance fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF instance is instantiated, and a subscription for fault alarm notifications is available in the VNFM.
-    ...    Reference:  section 7.4.6.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 7.4.6.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -28,7 +28,7 @@ VNF Fault Alarm Cleared Notification
     ...    Test title: VNF Fault Alarm Cleared Notification
     ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm Cleared Notification when a faulty virtualised resource within an VNF instance is cleared, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF instance is instantiated, a virtualised resource is in faulty state, and a subscription for fault alarm cleared notifications is available in the VNFM.
-    ...    Reference:  section 7.4.6.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 7.4.6.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -41,7 +41,7 @@ VNF Fault Alarm List Rebuilt Notification
     ...    Test title: VNF Fault Alarm List Rebuilt Notification 
     ...    Test objective: The objective is to test the dispatch of VNF Fault Alarm List Rebuilt Notification when the VNFM decides to rebuild the list of its VNF alarms, e.g. due to a corruption in the alarm storage, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF instance is instantiated, one or more virtualised resource are in faulty state, and a subscription for fault alarm list rebuilt notifications is available in the VNFM.
-    ...    Reference:  section 7.4.6.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 7.4.6.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 

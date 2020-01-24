@@ -13,7 +13,7 @@ POST Cancel operation task
     ...    Test title: POST Cancel operation task
     ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
     ...    Pre-conditions: the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
-    ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.17.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: VNF instance status equal to FAILED_TEMP     
@@ -26,7 +26,7 @@ POST Cancel operation task Conflict
     ...    Test title: POST Cancel operation task Conflict
     ...    Test objective: The POST method is NOT cancelling an ongoing VNF lifecycle operation due to the fact that the VNF instance resource is not in STARTING, PROCESSING or ROLLING_BACK state
     ...    Pre-conditions: operation is not in STARTING, PROCESSING or ROLLING_BACK state
-    ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.17.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -40,7 +40,7 @@ POST Cancel operation task Not Found
     ...    Test title: POST Cancel operation task Not Found
     ...    Test objective: The objective is to test that POST method cannot cancel a VNF lifecycle operation because the resource is not found
     ...    Pre-conditions: 
-    ...    Reference:  section 5.4.17.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.17.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ GET Cancel operation task - Method not implemented
     ...    Test title: GET Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.17.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.17.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -64,7 +64,7 @@ PUT Cancel operation task - Method not implemented
     ...    Test title: PUT Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.17.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.17.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -76,7 +76,7 @@ PATCH Cancel operation task - Method not implemented
     ...    Test title: PATCH Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.17.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.17.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -88,7 +88,7 @@ DELETE Cancel operation task - Method not implemented
     ...    Test title: DELETE Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.17.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.17.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 

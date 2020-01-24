@@ -20,7 +20,7 @@ Change VNF Flavour Workflow
     ...    Test title: Change VNF Flavour Workflow
     ...    Test objective: The objective is to test the workflow for a change flavour of an existing VNF instance
     ...    Pre-conditions: VNF instance in INSTANTIATED state . NFVO is subscribed to VNF LCM Operation Occurrence notifications 
-    ...    Reference: section 5.4.7 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.7 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: Multiple flavours are supported for the VNF (as capability in the VNFD). NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: VNF instance still in INSTANTIATED state and the flavour is changed

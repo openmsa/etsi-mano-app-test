@@ -12,7 +12,7 @@ Post Individual VNF LCM Operation occurrences - Method not implemented
     ...    Test title: Post Individual VNF LCM Operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.13.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.13.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -24,7 +24,7 @@ Get information about multiple VNF instances
     ...    Test title: Get information about multiple VNF instances
     ...    Test objective: The objective is to test that this method retrieve information about a VNF lifecycle management operation occurrence 
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.13.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.13.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -37,7 +37,7 @@ PUT Individual VNF LCM Operation occurrences - Method not implemented
     ...    Test title: PUT Individual VNF LCM Operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.13.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.13.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  
@@ -49,7 +49,7 @@ PATCH Individual VNF LCM Operation occurrences - Method not implemented
     ...    Test title: PATCH Individual VNF LCM Operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.13.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.13.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none      
@@ -61,7 +61,7 @@ PATCH Individual VNF LCM Operation occurrences - Method not implemented
     ...    Test title: DELETE Individual VNF LCM Operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.13.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.13.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  

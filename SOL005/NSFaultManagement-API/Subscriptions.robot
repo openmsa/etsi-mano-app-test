@@ -13,7 +13,7 @@ Create a new alarm subscription
     ...    Test title: Create a new alarm subscription
     ...    Test objective: The objective is to create a new Fault management alarm subscriptions and perform a JSON schema and content validation of the returned fault management alarms subscription data structure
     ...    Pre-conditions: no subscription with the same filter and callbackUri exists
-    ...    Reference: section 8.4.4.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -28,7 +28,7 @@ Create a new alarm subscription - DUPLICATION
     ...    Test title: Create a new alarm subscription - DUPLICATION
     ...    Test objective: The objective is to create a new subscription with the NFV allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure..
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: section 8.4.4.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: none
@@ -42,7 +42,7 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Test title: Create a new alarm subscription - NO DUPLICATION
     ...    Test objective: The objective is to create a new subscription with the NFV not allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: section 8.4.4.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
     ...    Post-Conditions: none
@@ -56,7 +56,7 @@ Retrieve a list of alarm subscriptions
     ...    Test title: Retrieve a list of alarm subscriptions
     ...    Test objective: The objective is to retrieve the list of active subscriptions and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: none
-    ...    Reference: section 8.4.4.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -69,7 +69,7 @@ Retrieve a list of alarm subscriptions - Filter
     ...    Test title: Retrieve a list of alarm subscriptions - Filter
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: none
-    ...    Reference: section 8.4.4.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -82,7 +82,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective:The objective is to retrieve the list of active subscriptions with Invalid attribute-based filtering parameters and perform a JSON schema and content validation of the returned problem details data structure.
     ...    Pre-conditions:  none
-    ...    Reference: section 8.4.4.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:   none
     ...    Post-Conditions: none     
@@ -95,7 +95,7 @@ GET subscriptions with "all_fields" attribute selector
     ...    Test title: GET subscriptions with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: section 8.4.4.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -108,7 +108,7 @@ GET subscriptions with "exclude_default" attribute selector
     ...    Test title: GET subscriptions with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: section 8.4.4.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -121,7 +121,7 @@ GET subscriptions with "fields" attribute selector
     ...    Test title: GET subscriptions with "fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: section 8.4.4.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -134,7 +134,7 @@ GET subscriptions with "exclude_fields" attribute selector
     ...    Test title: GET subscriptions with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: section 8.4.4.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -147,7 +147,7 @@ PUT subscriptions - Method not implemented
     ...    Test title:PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to for Fault management subscriptions on NFV 
     ...    Pre-conditions:  none
-    ...    Reference: section 8.4.4.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:   none
@@ -159,7 +159,7 @@ PATCH subscriptions - Method not implemented
     ...    Test title:PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to for Fault management subscriptions on NFV  
     ...    Pre-conditions:  none
-    ...    Reference: section 8.4.4.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:   none
@@ -171,7 +171,7 @@ DELETE subscriptions - Method not implemented
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to for Fault management subscriptions on NFV 
     ...    Pre-conditions:  none
-    ...    Reference: section 8.4.4.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.4.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: subscription is not deleted

@@ -20,7 +20,7 @@ Modify info of a VNF Instance
     ...    Test title: Update information about a VNF instance
     ...    Test objective: The objective is to update information about a VNF instance.
     ...    Pre-conditions: VNF instance is created 
-    ...    Reference: section 5.3.6 - SOL003 v2.4.1
+    ...    Reference: clause 5.3.6 - SOL003 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM. Update information of a VNF instance is supported for the VNF (as capability in the VNFD)
     ...    Post-Conditions: VNF instance info is updated

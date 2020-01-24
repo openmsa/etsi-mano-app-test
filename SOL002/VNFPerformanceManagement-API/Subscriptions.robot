@@ -17,7 +17,7 @@ GET all VNF Performance Subscriptions
     ...    Test title: GET all VNF Performance Subscriptions
     ...    Test objective: The objective is to test the retrieval of all VNF performance subscriptions and perform a JSON schema validation of the returned subscriptions data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference:  section 6.4.7.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -30,7 +30,7 @@ GET VNF Performance Subscriptions with attribute-based filter
     ...    Test title: GET VNF Performance Subscriptions with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of VNF performance subscriptions using attribute-based filter, perform a JSON schema validation of the collected indicators data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference:  section 6.4.7.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -44,7 +44,7 @@ GET VNF Performance Management Subscriptions with invalid attribute-based filter
     ...    Test title: GET VNF Performance Management Subscriptions with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF performance subscriptions fails when using invalid attribute-based filters, and perform the JSON schema validation of the failed operation HTTP response. 
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference:  section 6.4.7.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -57,7 +57,7 @@ GET VNF Performance Subscriptions with invalid resource endpoint
     ...    Test title: GET VNF Performance Subscriptions with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of all VNF performance subscriptions fails when using invalid resource endpoint.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference:  section 6.4.7.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -69,7 +69,7 @@ Create new VNF Performance subscription
     ...    Test title: Create new VNF Performance subscription
     ...    Test objective: The objective is to test the creation of a new VNF performance subscription and perform a JSON schema and content validation of the returned subscription data structure
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: section 6.4.7.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF performance subscription is successfully set and it matches the issued subscription    
@@ -86,7 +86,7 @@ Create duplicated VNF Performance subscription with VNFM not creating duplicated
     ...    Test title: Create duplicated VNF Performance subscription with VNFM not creating duplicated subscriptions
     ...    Test objective: The objective is to test the attempt of a creation of a duplicated VNF performance subscription and check that no new subscription is created by the VNFM and a link to the original subscription is returned
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference: section 6.4.7.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM does not support the creation of duplicated subscriptions
     ...    Post-Conditions: The existing VNF performance subscription returned is available in the VNFM 
@@ -102,7 +102,7 @@ Create duplicated VNF Performance subscription with VNFM creating duplicated sub
     ...    Test title: Create duplicated VNF Performance subscription with VNFM creating duplicated subscriptions
     ...    Test objective: The objective is to test the creation of a duplicated VNF performance subscription and perform a JSON schema and content validation of the returned duplicated subscription data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference: section 6.4.7.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM supports the creation of duplicated subscriptions
     ...    Post-Conditions: The duplicated VNF performance subscription is successfully set and it matches the issued subscription
@@ -117,7 +117,7 @@ PUT VNF Performance Subscriptions - Method not implemented
     ...    Test title: PUT VNF Performance Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF performance subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference: section 6.4.7.3.3 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -129,7 +129,7 @@ PATCH VNF Performance Subscriptions - Method not implemented
     ...    Test title: PATCH VNF Performance Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF performance subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference: section 6.4.7.3.4 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -141,7 +141,7 @@ DELETE VNF Performance Subscriptions - Method not implemented
     ...    Test title: DELETE VNF Performance Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete VNF performance subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF performance subscription is available in the VNFM.
-    ...    Reference: section 6.4.7.3.5 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.7.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF performance subscriptions are not deleted by the failed operation   

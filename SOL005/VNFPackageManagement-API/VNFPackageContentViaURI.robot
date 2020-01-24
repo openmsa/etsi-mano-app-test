@@ -13,7 +13,7 @@ Upload VNF Package Content from URI
     ...    Test title: Upload VNF Package Content from URI
     ...    Test objective: The objective is to test the upload of a VNF Package Content from URI.
     ...    Pre-conditions: One or more VNF Packages are in onboarding state CREATED in the NFVO.
-    ...    Reference: section 9.4.6.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 9.4.6.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -26,7 +26,7 @@ Upload VNF Package Content from URI with conflict due to onboarding state
     ...    Test title: Upload VNF Package Content from URI with conflict due to onboarding state
     ...    Test objective: The objective is to test that the upload of the VNF Package Content from URI fails due to a conflict when the VNF Package is not in onboarding state CREATED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: The onboarding state of the VNF Package for which the content is requested is different from CREATED.
-    ...    Reference: section 9.4.6.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 9.4.6.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -40,7 +40,7 @@ GET Individual VNF Package Content from URI - Method not implemented
     ...    Test title: GET Individual VNF Package Content from URI - Method not implemented
     ...    Test objective: The objective is to test that GET  method is not allowed to retrieve a VNF Package content from URI
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 9.4.6.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 9.4.6.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ PUT Individual VNF Package Content from URI - Method not implemented
     ...    Test title: PUT Individual VNF Package Content from URI - Method not implemented
     ...    Test objective: The objective is to test that PUT  method is not allowed to modify a VNF Package content from URI
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 9.4.6.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 9.4.6.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -64,7 +64,7 @@ PATCH Individual VNF Package Content from URI - Method not implemented
     ...    Test title: PATCH Individual VNF Package Content - Method not implemented
     ...    Test objective: The objective is to test that PATCH  method is not allowed to update a VNF Package content from URI
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 9.4.6.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 9.4.6.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -76,7 +76,7 @@ DELETE Individual VNF Package Content from URI - Method not implemented
     ...    Test title: DELETE Individual VNF Package Content - Method not implemented
     ...    Test objective: The objective is to test that DELETE  method is not allowed to delete a VNF Package content from URI
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 9.4.6.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 9.4.6.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package content is not deleted by the failed operation

@@ -16,7 +16,7 @@ GET Individual NS Performance Subscription
     ...    Test title: GET Individual NS Performance Subscription
     ...    Test objective: The objective is to test the retrieval of individual NS Performance subscription and perform a JSON schema and content validation of the returned subscription data structure
     ...    Pre-conditions: At least one NS Performance subscription is available in the NFVO.
-    ...    Reference:  section 7.4.8.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.8.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -30,7 +30,7 @@ GET Individual NS Performance Subscription with invalid resource identifier
     ...    Test title: GET Individual NS Performance Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual NS Performance subscription fails when using an invalid resource identifier
     ...    Pre-conditions: At least one NS Performance subscription is available in the NFVO.
-    ...    Reference:  section 7.4.8.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.8.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -42,7 +42,7 @@ DELETE Individual NS Performance Subscription with invalid resource identifier
     ...    Test title: DELETE Individual NS Performance Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the deletion of an individual NS Performance subscription fails when using an invalid resource identifier
     ...    Pre-conditions: At least one NS Performance subscription is available in the NFVO.
-    ...    Reference:  section 7.4.8.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.8.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -54,7 +54,7 @@ POST Individual NS Performance Subscription - Method not implemented
     ...    Test title: POST Individual NS Performance Subscription - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new NS Performance Subscription
     ...    Pre-conditions: none
-    ...    Reference:  section 7.4.8.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.8.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS Performance Subscription is not created on the NFVO
@@ -67,7 +67,7 @@ PUT Individual NS Performance Subscription - Method not implemented
     ...    Test title: PUT Individual NS Performance Subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing NS Performance subscription
     ...    Pre-conditions: At least one NS Performance subscription is available in the NFVO.
-    ...    Reference:  section 7.4.8.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.8.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS Performance subscription is not modified by the operation
@@ -80,7 +80,7 @@ PATCH Individual NS Performance Subscription - Method not implemented
     ...    Test title: PATCH Individual NS Performance Subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing NS Performance subscription
     ...    Pre-conditions: At least one NS Performance subscription is available in the NFVO.
-    ...    Reference:  section 7.4.8.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.8.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS Performance subscription is not modified by the operation
@@ -93,7 +93,7 @@ DELETE Individual NS Performance Subscription
     ...    Test title: DELETE Individual NS Performance Subscription
     ...    Test objective: The objective is to test the deletion of an individual NS Performance subscription
     ...    Pre-conditions: At least one NS Performance subscription is available in the NFVO.
-    ...    Reference:  section 7.4.8.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.8.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS Performance Subscription is not available anymore in the NFVO    

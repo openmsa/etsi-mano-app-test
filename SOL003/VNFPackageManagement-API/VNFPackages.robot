@@ -12,7 +12,7 @@ GET all VNF Packages
     ...    Test title: GET all VNF Packages
     ...    Test objective: The objective is to test the retrieval of all the available VNF packages information and perform a JSON schema and content validation of the collected data structure
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -28,7 +28,7 @@ GET VNF Packages with attribute-based filter
     ...    Test title: GET VNF Packages with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of VNF packages using attribute-based filter, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued attribute-based filter
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -42,7 +42,7 @@ GET VNF Packages with invalid attribute-based filter
     ...    Test title: GET VNF Packages with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF packages fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -55,7 +55,7 @@ GET VNF Packages with "all_fields" attribute selector
     ...    Test title: GET VNF Packages with "all_fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of VNF packages with "all_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "all_fileds" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -69,7 +69,7 @@ GET VNF Packages with "exclude_default" attribute selector
     ...    Test title: GET VNF Packages with exclude_default attribute selector
     ...    Test objective: The objective is to test the retrieval of VNF packages with "exclude_default" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_default" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none        
@@ -83,7 +83,7 @@ GET VNF Packages with "fields" attribute selector
     ...    Test title: GET VNF Packages with fields attribute selector
     ...    Test objective: The objective is to test the retrieval of VNF packages with "fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "fields" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The VNFM supports the use of fields attribute selector
     ...    Post-Conditions: none
@@ -97,7 +97,7 @@ GET VNF Packages with "exclude_fields" attribute selector
     ...    Test title: GET VNF Packages with exclude_fields attribute selector
     ...    Test objective: The objective is to test the retrieval of VNF packages with "exclude_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_fields" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 4.3.3.2.1, 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The VNFM supports the use of exclude_fields attribute selector
     ...    Post-Conditions: none
@@ -111,7 +111,7 @@ GET all VNF Packages with invalid resource endpoint
     ...    Test title: GET VNF Packages with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of VNF packages fails when using invalid resource endpoint
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.2.3.2 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -123,7 +123,7 @@ POST all VNF Packages - Method not implemented
     ...    Test title: POST all VNF Packages - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create new VNF Packages
     ...    Pre-conditions: none
-    ...    Reference: section 10.4.2.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.2.3.1 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -135,7 +135,7 @@ PUT all VNF Packages - Method not implemented
     ...    Test title: PUT all VNF Packages - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify existing VNF Packages
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.2.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.2.3.3 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -147,7 +147,7 @@ PATCH all VNF Packages - Method not implemented
     ...    Test title: PATCH all VNF Packages - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update existing VNF Packages
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.2.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.2.3.4 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -159,7 +159,7 @@ DELETE all VNF Packages - Method not implemented
     ...    Test title: DELETE all VNF Packages - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete existing VNF Packages
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: section 10.4.2.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 10.4.2.3.5 - SOL003 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Packages are not deleted by the failed operation

@@ -12,7 +12,7 @@ POST Create a new subscription
     ...    Test title: POST Create a new subscription
     ...    Test objective: The POST method creates a new subscription
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
@@ -25,7 +25,7 @@ POST Create a new Subscription - DUPLICATION
     ...    Test title: POST Create a new subscription - DUPLICATION
     ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
@@ -39,7 +39,7 @@ POST Create a new Subscription - NO-DUPLICATION
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
     ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.1 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
@@ -53,7 +53,7 @@ GET Subscriptions
     ...    Test title: GET Subscriptions
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -66,7 +66,7 @@ GET Subscription - Filter
     ...    Test title: GET Subscriptions - Filter
     ...    Test objective: The objective is Get the list of active subscriptions using a filter
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -79,7 +79,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is Get the list of active subscriptions using a filter
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -91,7 +91,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions with all_fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -104,7 +104,7 @@ GET subscriptions with exclude_default attribute selector
     ...    Test title: GET subscriptions with exclude_default attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -117,7 +117,7 @@ GET subscriptions with fields attribute selector
     ...    Test title: GET subscriptions with fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -130,7 +130,7 @@ GET subscriptions with exclude_fields attribute selector
     ...    Test title: GET subscriptions with exclude_fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.2 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -143,7 +143,7 @@ PUT subscriptions - Method not implemented
     ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.3 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.3 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -155,7 +155,7 @@ PATCH subscriptions - Method not implemented
     ...    Test title: PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.4 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.4 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -167,7 +167,7 @@ DELETE subscriptions - Method not implemented
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 5.4.18.3.5 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.18.3.5 - SOL002 v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 

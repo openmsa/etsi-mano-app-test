@@ -13,7 +13,7 @@ POST Scale a nsInstance
     ...    Test title: POST Scale a nsInstance
     ...    Test objective: The objective is to test that POST method scales NS instance
     ...    Pre-conditions: the resource is in NOT_INSTANTIATED state
-    ...    Reference:  section 6.4.5.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.5.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -27,7 +27,7 @@ POST Instantiate a nsInstance Conflict
     ...    Test title: POST Instantiate a nsInstance Conflict
     ...    Test objective: The objective is to test that POST method can't scale NS instance because of conflict in resource status (i.e. because the resource is in not in NOT_INSTANTIATED state)
     ...    Pre-conditions: the resource is in not in NOT_INSTANTIATED state
-    ...    Reference:  section 6.4.5.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.5.3.1 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The Scale NS operation is not triggered on the NFVO
@@ -40,7 +40,7 @@ GET Scale NSInstance- Method not implemented
     ...    Test title: GET Scale NSInstance- Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.5.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.5.3.2 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ PUT Scale NSInstance - Method not implemented
     ...    Test title: PUT Scale NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.5.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.5.3.3 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -64,7 +64,7 @@ PATCH Scale NSInstance - Method not implemented
     ...    Test title: PATCH Scale NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.5.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.5.3.4 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -76,7 +76,7 @@ DELETE Scale NSInstance - Method not implemented
     ...    Test title: DELETE Scale NSInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference:  section 6.4.5.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.5.3.5 - SOL005 v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
