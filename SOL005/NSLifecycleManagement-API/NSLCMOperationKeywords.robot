@@ -158,7 +158,7 @@ Check resource existence
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
     Integer    response status    200
     
-Check Postcondition NS Instance is not crerated
+Check Postcondition NS Instance is not created
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
