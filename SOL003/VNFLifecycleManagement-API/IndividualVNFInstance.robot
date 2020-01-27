@@ -67,7 +67,7 @@ PATCH Individual VNFInstance Precondition failed
      [Documentation]    Test ID: 7.3.1.2.5
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
-    ...    Pre-conditions:  VNF Instance created (Test ID 7.3.1.2.2)
+    ...    Pre-conditions:  VNF Instance is created (Test ID 7.3.1.2.2)
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
