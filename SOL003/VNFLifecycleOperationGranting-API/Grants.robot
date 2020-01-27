@@ -178,9 +178,6 @@ Get an individual grant - Successful
     Get    ${response['headers']['Location']}
     Log    Validate Status code
     Integer    response status    200
-    ${result}    Output    response body
-    Validate Json    grant.schema.json    ${result}
-    Log    Validation OK
     
 Get Grants
     Log    Trying to perform a GET. This method should not be implemented
