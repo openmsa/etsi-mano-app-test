@@ -68,6 +68,18 @@ Check HTTP Response Header ContentType is
     Should Be Equal    ${response[0]['headers']['Content-Type']}    ${expected_contentType}
     Log    Content Type validated 
     
+Check Postcondition Subscription Resource Returned in Location Header Is Available
+    Log    Going to check postcondition
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${response['headers']['Location']}
+    Integer    response status    200
+    Log    Received a 200 OK as expected
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    ${result}=    Output    response body
+    Validate Json    FMSubscription.schema.json    ${result}
+    Log    Validated FMSubscription schema
+    
 Send POST request for fault management Alarms
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
