@@ -49,7 +49,6 @@ Create a new alarm subscription - NO DUPLICATION
     Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id
-    Check HTTP Response Body Json Schema Is  FmSubscription
 
 Retrieve a list of alarm subscriptions
     [Documentation]    Test ID: 5.3.3.3.4

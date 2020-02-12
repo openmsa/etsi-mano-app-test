@@ -70,7 +70,7 @@ GET NSInstances with "all_fields" attribute selector
     ...    Post-Conditions: 
     Get NSInstances with all_fields attribute selector
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions 
+    Check HTTP Response Body Json Schema Is   NsInstances 
 
 GET NSInstances with "exclude_default" attribute selector
     [Documentation]    Test ID: 5.3.2.1.6
@@ -83,7 +83,7 @@ GET NSInstances with "exclude_default" attribute selector
     ...    Post-Conditions: 
     Get NSInstances with exclude_default attribute selector
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions
+    Check HTTP Response Body Json Schema Is   NsInstances
 
 GET NSInstances with "fields" attribute selector
     [Documentation]    Test ID: 5.3.2.1.7
@@ -96,7 +96,7 @@ GET NSInstances with "fields" attribute selector
     ...    Post-Conditions: 
     Get NSInstances with fields attribute selector
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions
+    Check HTTP Response Body Json Schema Is   NsInstances
 
 GET NSInstances with "exclude_fields" attribute selector
     [Documentation]    Test ID: 5.3.2.1.8
@@ -109,7 +109,7 @@ GET NSInstances with "exclude_fields" attribute selector
     ...    Post-Conditions: 
     Get NSInstances with exclude_fields attribute selector
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions
+    Check HTTP Response Body Json Schema Is   NsInstances
         
 PUT NSInstances - Method not implemented
     [Documentation]    Test ID: 5.3.2.1.9

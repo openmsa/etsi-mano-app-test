@@ -32,7 +32,7 @@ GET Network Service Descriptors Information with attribute-based filter
     
 Check HTTP Response Body NsdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    
 
 GET Network Service Descriptors Information with invalid attribute-based filter
     Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -421,6 +421,17 @@ Send PUT Request to upload NSD Content as plain text file in asynchronous mode
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
 
+Check Post Condition NSD Content has been Uploaded
+    Log Checking NsdOnboardingNotification Recieved
+    Wait Untill Keyword Succeeds    ${retry}    ${interval}  Check Response is NsdOnboardingNotification
+    
+Check Response is NsdOnboardingNotification
+    ${response}=    Output    response body
+    Should Contain    ${response['headers']['Content-Type']}    application/json
+    ${schema} =    NsdOnboardingNotification.schema.json
+    Validate Json    ${schema}    ${response['body']}
+    Log    Json Schema Validation OK
+
 Send PUT Request to upload NSD Content as zip file in synchronous mode
     Log    Trying to perform a PUT. This method upload the content of a NSD
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
@@ -501,7 +512,6 @@ GET PNF Descriptors Information with attribute-based filter
     
 Check HTTP Response Body PnfdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
 
 GET PNF Descriptors Information with invalid attribute-based filter
     Log    The GET method queries multiple PNF descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -888,12 +898,10 @@ Check HTTP Response Body Json Schema Is
 Check HTTP Response Body Is Empty
     Should Be Empty    ${response['body']}    
     Log    No json schema is provided. Validation OK  
-
-
+    
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes NSD Management Management according to filter
-    #TODO
-
+    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${filter_ok['callbackUri']}
 
 Check HTTP Response Body NsdmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription

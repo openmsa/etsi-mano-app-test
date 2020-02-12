@@ -220,7 +220,7 @@ Check Postcondition VNF Indicator Subscription Is Set
     
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Indicators according to filter
-    #todo
+    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${POS_FILTER['callbackUri']}
 
 
 Create Sessions

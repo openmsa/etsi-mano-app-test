@@ -324,7 +324,7 @@ Check HTTP Response Body Matches all_fields selector
     
 Check HTTP Response Body Matches filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    Should Be Equal As Strings    ${response[0]['body']['objectInstanceIds']}    ${POS_FILTER['objectInstanceIds']}
 
 Check HTTP Response Body Does Not Contain reports
     Log    Checking that field element is missing

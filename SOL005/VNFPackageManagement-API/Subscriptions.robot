@@ -37,7 +37,7 @@ Get VNF Package Subscriptions with attribute-based filter
     ...    Post-Conditions: none
     Get VNF Package Subscriptions with attribute-based filters
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    PkgmSubscription
+    Check HTTP Response Body Json Schema Is    PkgmSubscriptions
     Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
 
 

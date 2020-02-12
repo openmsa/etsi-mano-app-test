@@ -183,7 +183,7 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Performance Management according to filter
-    #TODO
+    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${filter_ok['callbackUri']}
 
 Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
@@ -329,7 +329,7 @@ Check Postcondition VNF Indicators Exist
     
 Check HTTP Response Body vnfIndicators Matches the requested attribute-based filter
     Log    Check Response includes VNF Indicators according to filter
-    #todo
+    Should Be True     "${response[0]['body']['name']}"=="${POS_FIELDS['name']}" and "${response[0]['body']['vnfInstanceId']}"=="${POS_FIELDS['vnfInstanceId']}"
 
 Get all indicators for a VNF instance
     Log    This resource represents VNF indicators related to a VNF instance.
@@ -397,11 +397,15 @@ Send DELETE Request for indicators in VNF instance
 
 Check HTTP Response Body Includes Requested VNF Instances ID
     Log    Check Response includes Indicators according to resource identifier
-    #todo
+    Should Be Equal As Strings   ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
 
 Check Postcondition Indicators for VNF instance Exist
-    Log    Check Response includes VNF Indicators according to filter
-    #todo
+    Log    Check Postcondition Indicators for VNF instance Exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
+    Should Be Equal    ${response.status_code}    200
+    
 
 Get Individual Indicator for a VNF instance
     Log    This resource represents a VNF indicator related to a VNF instance.

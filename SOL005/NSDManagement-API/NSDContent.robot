@@ -147,9 +147,11 @@ Upload NSD Content as Zip file in asynchronous mode
     ...    Reference: clause 5.4.4.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports the upload of NSD contents in asynchronous mode
-    ...    Post-Conditions: none
+    ...    Post-Conditions: NSD Uploaded
     Send PUT Request to upload NSD Content as zip file in asynchronous mode
     Check HTTP Response Status Code Is    202
+    Check Post Condition NSD Content has been Uploaded
+    
     
 Upload NSD Content as plain text file in asynchronous mode
     [Documentation]    Test ID: 5.3.1.3.12
@@ -162,6 +164,7 @@ Upload NSD Content as plain text file in asynchronous mode
     ...    Post-Conditions: none
     Send PUT Request to upload NSD Content as plain text file in asynchronous mode
     Check HTTP Response Status Code Is    202   
+    Check Post Condition NSD Content has been Uploaded
    
 Upload NSD Content as Zip file in synchronous mode
     [Documentation]    Test ID: 5.3.1.3.13

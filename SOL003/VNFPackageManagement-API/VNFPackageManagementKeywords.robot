@@ -54,7 +54,7 @@ GET VNF Packages with attribute-based filter
 
 Check HTTP Response Body VnfPkgsInfo Matches the requested Attribute-Based Filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    Should Be True     "${response[0]['body']['vnfdId']}"=="${POS_FILTER['vnfdId']}" and "${response[0]['body']['vnfProvider']}"=="${POS_FILTER['vnfProvider']}" 
 
 GET VNF Packages with invalid attribute-based filter
     Log    Trying to perform a negative get, filtering by the inexistent filter 'nfvId'
@@ -631,7 +631,7 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Package Management according to filter
-    #TODO
+    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${filter_ok['callbackUri']}
 
 
 Check HTTP Response Body PkgmSubscription Attributes Values Match the Issued Subscription

@@ -172,7 +172,9 @@ Check HTTP Response Body PmJobs Matches the requested all_fields selector
     
 Check HTTP Response Body PmJobs Matches the requested Attribute-Based Filter 
     Log    Checking that attribute-based filter is matched
-    #todo
+    ${user}=    Get Value From Json    ${response['body']}    $..userDefinedData
+    Validate Json    UserDefinedData.schema.json    ${user[0]}
+    Log    Validation for schema OK
 
 Check HTTP Response Body PmJobs Do Not Contain reports
     Log    Checking that field element is missing
@@ -420,7 +422,8 @@ Check Postcondition Threshold Exists
         
 Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    Should Be Equal As Strings    ${response[0]['body']['objectInstanceId']}    ${filter_ok['objectInstanceId']}
+    
 
 GET Individual NS performance Threshold
     Log    Trying to get a Threhsold present in the NFVO
@@ -653,7 +656,7 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes NS Package Management according to filter
-    #TODO
+    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${filter_ok['callbackUri']}
 
 
 Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription

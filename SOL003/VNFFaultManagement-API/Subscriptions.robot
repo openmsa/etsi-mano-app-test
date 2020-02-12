@@ -37,7 +37,7 @@ Create a new alarm subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
     Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
-     Check created Subscription existance 
+    Check Postcondition FaultManagement Subscription Is Set
 
 Create a new alarm subscription - NO DUPLICATION
     [Documentation]    Test ID: 7.3.5.3.3

@@ -17,7 +17,14 @@ Check created Subscription existance
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
-    Integer    response status    200
+    Integer    response status    200  
+Check Postcondition FaultManagement Subscription Is Set
+    Log    Check Postcondition subscription exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    Check HTTP Response Status Code Is    200
 Check Operation Occurrence Id
     ${opOccId}=    Get Value From Json    ${response.headers}    $..Location
     Should Not Be Empty    ${opOccId}
