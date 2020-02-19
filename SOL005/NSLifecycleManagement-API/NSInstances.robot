@@ -25,7 +25,7 @@ GET information about multiple NS instances
     [Documentation]    Test ID: 5.3.2.1.2
     ...    Test title: GET information about multiple NS instances
     ...    Test objective: The objective is to test the retrieval of all the available NS Instances and perform a JSON schema and content validation of the collected instance data structure
-    ...    Pre-conditions: An existing Ns instance.
+    ...    Pre-conditions: An NS Instance is already created
     ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
