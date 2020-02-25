@@ -29,3 +29,5 @@ ${wrong_etag}    abcd
 ${usageState}    state
 ${length}          1024
 ${createdNsdInfoId}    f27200b1-1d8b-48c2-9d98-a993b8ab117f
+${NSD_NAME}     nsdName=onBoardedNSD
+${PNFD_NAME}     pnfdName=onBoardedPNFD

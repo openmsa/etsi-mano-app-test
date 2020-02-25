@@ -16,7 +16,7 @@ ${polling}    10 sec
 Requests a grant for a particular VNF lifecycle operation - Synchronous mode
     [Documentation]    Test ID: 7.3.2.1.1
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Synchronous mode
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation  and perform a JSON schema validation on the returned grant data structure
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and perform a JSON schema validation on the returned grant data structure
     ...    Pre-conditions: 
     ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -31,7 +31,7 @@ Requests a grant for a particular VNF lifecycle operation - Synchronous mode
 Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
     [Documentation]    Test ID: 7.3.2.1.2
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and perform a JSON schema validation on the returned grant data structure
     ...    Pre-conditions: 
     ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -52,7 +52,7 @@ Requests a grant for a particular VNF lifecycle operation - Forbidden
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Send Request a new Grant Forbidden
+    Send Request a new Grant Forbidden Operation
     Check HTTP Response Status Code Is    403
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -130,7 +130,7 @@ Send Request Grant Request in Asynchronous mode
     ${body}=    Output    response
     Set Suite Variable    &{response}    ${body}
     
-Send Request a new Grant Forbidden    
+Send Request a new Grant Forbidden Operation   
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Log    The grant request should be rejected
     Set Headers    {"Accept": "${ACCEPT}"}

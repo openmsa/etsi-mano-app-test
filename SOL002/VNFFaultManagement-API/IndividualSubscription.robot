@@ -68,7 +68,6 @@ DELETE an individual subscription
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: the subscription is deleted
-    Check resource existence
     Delete individual subscription
     Check HTTP Response Status Code Is    204
     

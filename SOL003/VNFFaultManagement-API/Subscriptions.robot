@@ -33,7 +33,7 @@ Create a new alarm subscription - DUPLICATION
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: duplicated subscription is created
-    POST Subscription Duplication permitted
+    Send POST Request for duplicated subscription
     Check HTTP Response Status Code Is    201
     Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
@@ -48,7 +48,7 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
     ...    Post-Conditions: duplicated subscription is not created
-    POST Subscription Duplication not permitted
+    Send POST Request for duplicated subscription not permitted
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id
     Check Postcondition Subscription Resource Returned in Location Header Is Available

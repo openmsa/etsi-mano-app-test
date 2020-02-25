@@ -24,7 +24,7 @@ Post Cancel operation task
     
 Post Cancel operation task Conflict
     [Documentation]    Test ID: 6.3.5.16.2
-    ...    Test title: POST Cancel operation task
+    ...    Test title: POST Cancel operation task Conflict
     ...    Test objective: The POST method is NOT cancelling an ongoing VNF lifecycle operation due to the fact that the VNF instance resource is not in STARTING, PROCESSING or ROLLING_BACK state
     ...    Pre-conditions: operation is not in STARTING, PROCESSING or ROLLING_BACK state
     ...    Reference: clause 5.4.17.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1

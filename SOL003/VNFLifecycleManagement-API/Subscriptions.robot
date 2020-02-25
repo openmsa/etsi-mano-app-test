@@ -21,14 +21,15 @@ POST Create a new subscription
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
+    
 Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 7.3.1.17.2
     ...    Test title: POST Create a new subscription - DUPLICATION
-    ...    Test objective: The POST method creates a duplicate subscription 
+    ...    Test objective: The objective is to test that POST method create a duplicate (same cakkbackurl and filter) subscription
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: The VNFM support the creation of duplicated subscriptions
+    ...    Applicability: duplication is supported by SUT
     ...    Post-Conditions: in response header Location shall not be null
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
@@ -37,11 +38,11 @@ Create a new Subscription - DUPLICATION
 Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 7.3.1.17.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
-    ...    Test objective: The POST method cannot create a duplicate subscription
+    ...    Test objective: The objective is to test that POST method does not create a duplicate (same callbackurl and filter) subscription
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: The VNFM does not support the creation of duplicated subscriptions
+    ...    Applicability: duplication is not supported by SUT
     ...    Post-Conditions: in response header Location shall not be null
     Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303

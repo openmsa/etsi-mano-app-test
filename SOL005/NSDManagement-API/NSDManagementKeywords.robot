@@ -26,13 +26,13 @@ GET Network Service Descriptors Information with attribute-based filter
     Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?${POS_FIELDS}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?${NSD_NAME}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     
 Check HTTP Response Body NsdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    
+    Should Be Equal As Strings    ${response['body'][0]['nsdName']}    ${NSD_NAME['nsdName']}
 
 GET Network Service Descriptors Information with invalid attribute-based filter
     Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -422,7 +422,7 @@ Send PUT Request to upload NSD Content as plain text file in asynchronous mode
     Set Suite Variable    ${response}    ${output} 
 
 Check Post Condition NSD Content has been Uploaded
-    Log Checking NsdOnboardingNotification Recieved
+    Log    Checking NsdOnboardingNotification Recieved
     Wait Untill Keyword Succeeds    ${retry}    ${interval}  Check Response is NsdOnboardingNotification
     
 Check Response is NsdOnboardingNotification
@@ -506,12 +506,13 @@ GET PNF Descriptors Information with attribute-based filter
     Log    The GET method queries multiple PNF descriptors using Attribute-based filtering parameters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors?${POS_FIELDS}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors?${PNFD_NAME}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     
 Check HTTP Response Body PnfdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
+    Should Be Equal As Strings    ${response['body'][0]['pnfdName']}    ${PNFD_NAME['pnfdName']}
 
 GET PNF Descriptors Information with invalid attribute-based filter
     Log    The GET method queries multiple PNF descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -901,7 +902,7 @@ Check HTTP Response Body Is Empty
     
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes NSD Management Management according to filter
-    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${filter_ok['callbackUri']}
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    ${filter_ok['callbackUri']}
 
 Check HTTP Response Body NsdmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription

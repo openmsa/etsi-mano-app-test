@@ -196,7 +196,7 @@ Check HTTP Response Body Json Schema Is
 
 Check HTTP Response Body Includes Requested VNF Instance ID
     Log    Check Response includes Indicators according to resource identifier
-    Should Be Equal As Strings   ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
+    Should Be Equal As Strings   ${response['body'][0]['vnfInstanceId']}    ${vnfInstanceId}
     
 Check HTTP Response Body Matches Attribute-Based Filter
     Log    Check Response includes VNF Indicators according to filter

@@ -16,7 +16,6 @@ POST Create a new subscription
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
@@ -29,7 +28,6 @@ POST Create a new Subscription - DUPLICATION
     ...    Config ID: Config_prod_VE
     ...    Applicability: SUT should support duplication of subscription creation
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
@@ -43,7 +41,6 @@ POST Create a new Subscription - NO-DUPLICATION
     ...    Config ID: Config_prod_VE
     ...    Applicability: SUT should not support duplication of subscription creation
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id

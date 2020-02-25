@@ -266,7 +266,7 @@ POST Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-POST Subscription Duplication permitted
+Send POST Request for duplicated subscription
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Pass Execution If    ${VNFM_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -277,7 +277,7 @@ POST Subscription Duplication permitted
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
 
-POST Subscription Duplication not permitted
+Send POST Request for duplicated subscription not permitted
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Pass Execution If    ${VNFM_DUPLICATION} == 1    NVFO is not permitting duplication. Skipping the test
     Set Headers  {"Accept":"${ACCEPT}"}  
