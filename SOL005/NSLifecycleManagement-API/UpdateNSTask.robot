@@ -12,7 +12,7 @@ POST Update a NSInstance
     [Documentation]    Test ID: 5.3.2.5.1
     ...    Test title: POST Update a NSInstance
     ...    Test objective: The objective is to test that POST method update a NS instance
-    ...    Pre-conditions: an existing NS Instance 
+    ...    Pre-conditions: An Ns Instance is already created. 
     ...    Reference: clause 6.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
@@ -25,7 +25,7 @@ POST Update a NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.5.2
     ...    Test title: POST Update a NSInstance Conflict
     ...    Test objective: The objective is to test that POST method fail if a NS Instance is not existing or is not in NOT_INSTANTIATED state
-    ...    Pre-conditions: an existing NS  Instance 
+    ...    Pre-conditions: An Ns Instance is already created
     ...    Reference: clause 6.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
