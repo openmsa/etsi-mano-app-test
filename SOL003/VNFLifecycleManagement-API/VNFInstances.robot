@@ -38,7 +38,7 @@ GET information about multiple VNF instances
 GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 7.3.1.1.3
     ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
-    ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is to test that the retrieval of VNF Instances fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions:  A VNF is instantiated,  a bad filter selector (filter selectors are listed in Table 5.4.2.3.2-1  - ETSI GS NFV-SOL 003 [1] v2.4.1).
     ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -52,9 +52,8 @@ GET information about multiple VNF instances Bad Request Invalid attribute-based
 GET information about multiple VNF instances Bad Request Invalid attribute selector
     [Documentation]    Test ID: 7.3.1.1.4
     ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute selector
-    ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute selector
-    ...    Pre-conditions:  A VNF is instantiated,  a bad attribute selector (attribute selectors are listed in Table 5.4.2.3.2-1  - ETSI GS NFV-SOL 003 [1] v2.4.1).
-    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Test objective: The objective is to test that the retrieval of VNF Instances fails when using invalid attribute selector, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions:  A VNF is instantiated,  a bad attribute selector (attribute selectors are listed in Table 5.4.2.3.2-1  - SOL003 v2.4.1).    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
