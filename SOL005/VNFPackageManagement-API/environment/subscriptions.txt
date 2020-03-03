@@ -4,3 +4,4 @@ ${filter_ko}      nfvId=f9f130e4-05eb-4082-a676-4c97d13a883d    # Not existant f
 ${callbackUri}    http://172.22.1.7:9091/vnfpkgm/subscriptions
 ${total_polling_time}   2 min
 ${polling_interval}     10 sec
+${SEPERATOR}      =

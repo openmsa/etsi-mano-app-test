@@ -21,7 +21,7 @@ Create a new Fault Management alarm subscription
     Check HTTP Response Status Code Is    201
     Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
-    Check created Subscription existance 
+    Check created Subscription existence 
   
 
 Create a new alarm subscription - DUPLICATION

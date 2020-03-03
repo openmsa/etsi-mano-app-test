@@ -220,9 +220,9 @@ Check Postcondition VNF Indicator Subscription Is Set
     
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Indicators according to filter
-    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${POS_FILTER['callbackUri']}
-
-
+    @{words} =  Split String    ${POS_FILTER}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
+    
 Create Sessions
     Pass Execution If    ${VNFM_CHECKS_NOTIF_ENDPOINT} == 0   MockServer not necessary to run    
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance

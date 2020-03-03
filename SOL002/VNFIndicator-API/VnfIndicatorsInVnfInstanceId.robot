@@ -200,7 +200,8 @@ Check HTTP Response Body Includes Requested VNF Instance ID
     
 Check HTTP Response Body Matches Attribute-Based Filter
     Log    Check Response includes VNF Indicators according to filter
-    Should Be Equal As Strings    ${response[0]['body']['name']}    ${POS_FIELDS['name']}
+    @{words} =  Split String    ${POS_FIELDS}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['name']}    @{words}[1]
 
 Check Postcondition Indicators for VNF instance Exist
     Log    Check Postcondition Indicators for VNF instance Exist

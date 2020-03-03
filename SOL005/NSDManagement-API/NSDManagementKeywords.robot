@@ -32,7 +32,8 @@ GET Network Service Descriptors Information with attribute-based filter
     
 Check HTTP Response Body NsdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    Should Be Equal As Strings    ${response['body'][0]['nsdName']}    ${NSD_NAME['nsdName']}
+    @{words} =  Split String    ${NSD_NAME}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['nsdName']}    @{words}[1]
 
 GET Network Service Descriptors Information with invalid attribute-based filter
     Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -503,9 +504,8 @@ GET PNF Descriptors Information with attribute-based filter
     
 Check HTTP Response Body PnfdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-==== BASE ====
-    #todo
-==== BASE ====
+    @{words} =  Split String    ${PNFD_NAME}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['pnfdName']}    @{words}[1]
 
 GET PNF Descriptors Information with invalid attribute-based filter
     Log    The GET method queries multiple PNF descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -895,10 +895,8 @@ Check HTTP Response Body Is Empty
     
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes NSD Management Management according to filter
-==== BASE ====
-    #TODO
-
-==== BASE ====
+    @{words} =  Split String    ${filter_ok}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
 
 Check HTTP Response Body NsdmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription

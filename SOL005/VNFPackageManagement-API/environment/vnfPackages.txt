@@ -6,3 +6,5 @@ ${fields}         softwareImages,additionalArtifacts
 ${response}       httpresponse
 ${NEG_AUTHORIZATION}    Bearer negativetoken
 ${BAD_AUTHORIZATION}    Bear sometoken
+${SEPERATOR}      =
+${VAR_SEPERATOR}    &

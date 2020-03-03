@@ -3,3 +3,5 @@ ${POS_FIELDS}     name=vnfIndicator&vnfInstanceId=80b0deba-c398-445b-bef0-ac0fe7
 ${NEG_FIELDS}     wrongName=wrongValue
 ${response}       some_response_object
 ${vnfIndicators}  
+${SEPERATOR}      =
+${VAR_SEPERATOR}    &

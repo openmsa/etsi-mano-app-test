@@ -4,3 +4,4 @@ ${erroneousVnfInstanceId}    erroneousVnfInstanceId
 ${POS_FIELDS}     name=vnfIndicator
 ${NEG_FIELDS}     wrongName=any_value
 ${response}=    httpresponse
+${SEPERATOR}      =

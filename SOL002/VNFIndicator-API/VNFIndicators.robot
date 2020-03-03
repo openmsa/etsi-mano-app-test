@@ -269,5 +269,7 @@ Check Postcondition VNF Indicators Exist
     
 Check HTTP Response Body vnfIndicators Matches the requested attribute-based filter
     Log    Check Response includes VNF Indicators according to filter
-    Should Be True     "${response[0]['body']['name']}"=="${POS_FILTER['name']}" and "${response[0]['body']['vnfInstanceId']}"=="${POS_FILTER['vnfInstanceId']}"
-    
+    @{attr} =  Split String    ${POS_FILTER}       ,${VAR_SEPERATOR} 
+    @{var_name} = Split String    @{attr}[0]       ,${SEPERATOR}
+    @{var_id} = Split String    @{attr}[1]       ,${SEPERATOR}
+    Should Be True     "${response['body'][0]['name']}"=="@{var_name}[1]" and "${response['body'][0]['vnfInstanceId']}"=="@{var_id}[1]"

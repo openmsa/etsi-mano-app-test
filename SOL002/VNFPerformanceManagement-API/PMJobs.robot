@@ -324,7 +324,8 @@ Check HTTP Response Body Matches all_fields selector
     
 Check HTTP Response Body Matches filter
     Log    Checking that attribute-based filter is matched
-    Should Be Equal As Strings    ${response[0]['body']['objectInstanceIds']}    ${POS_FILTER['objectInstanceIds']}
+    @{words} =  Split String    ${POS_FILTER}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceIds']}    @{words}[1]
 
 Check HTTP Response Body Does Not Contain reports
     Log    Checking that field element is missing

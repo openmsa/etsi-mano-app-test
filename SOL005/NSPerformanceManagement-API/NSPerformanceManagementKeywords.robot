@@ -351,7 +351,7 @@ GET Performance Thresholds with attribute-based filter
     Log    Trying to get thresholds present in the NFVO with filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK_Threshold}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
@@ -422,7 +422,8 @@ Check Postcondition Threshold Exists
         
 Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    Should Be Equal As Strings    ${response[0]['body']['objectInstanceId']}    ${filter_ok['objectInstanceId']}
+    @{words} =  Split String    ${FILTER_OK_Threshold}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceId']}    @{words}[1]
     
 
 GET Individual NS performance Threshold
@@ -656,8 +657,8 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes NS Package Management according to filter
-    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${filter_ok['callbackUri']}
-
+    @{words} =  Split String    ${filter_ok}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
 
 Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription

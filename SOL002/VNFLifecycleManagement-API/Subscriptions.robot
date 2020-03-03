@@ -61,7 +61,7 @@ GET Subscriptions
 GET Subscription - Filter
     [Documentation]    Test ID: 6.3.5.17.5
     ...    Test title: GET Subscriptions - Filter
-    ...    Test objective: The objective is Get the list of active subscriptions using a filter
+    ...    Test objective: The objective is Get the list of active subscriptions using a "filter"
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE

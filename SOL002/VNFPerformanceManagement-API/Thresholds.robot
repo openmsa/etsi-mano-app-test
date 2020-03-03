@@ -195,7 +195,8 @@ Check Postcondition Threshold Exists
         
 Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    Should Be Equal As Strings    ${response[0]['body']['objectInstanceId']}    ${FILTER_OK['objectInstanceId']}
+    @{words} =  Split String    ${FILTER_OK}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceId']}    @{words}[1]
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
