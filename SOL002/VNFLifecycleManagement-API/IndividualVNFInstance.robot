@@ -116,7 +116,7 @@ DELETE Individual VNFInstance Conflict
     Check HTTP Response Body Json Schema Is    ProblemDetails
     
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

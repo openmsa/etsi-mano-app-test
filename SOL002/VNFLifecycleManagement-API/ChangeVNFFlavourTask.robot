@@ -5,7 +5,7 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library     OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 POST Change deployment flavour of a vnfInstance
@@ -24,7 +24,7 @@ POST Change deployment flavour of a vnfInstance
 POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 6.3.5.6.2
     ...    Test title: POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
-    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. 
+    ...    Test objective: The objective is to test that POST method cannot trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
     ...    Reference: clause 5.4.7.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
@@ -38,7 +38,7 @@ POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
 POST Change deployment flavour of a vnfInstance Not Found
     [Documentation]    Test ID: 6.3.5.6.3
     ...    Test title: POST Change deployment flavour of a vnfInstance Not Found
-    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
+    ...    Test objective: The objective is to test that POST method cannot trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
     ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
     ...    Reference: clause 5.4.7.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
@@ -98,7 +98,7 @@ DELETE Change deployment flavour VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

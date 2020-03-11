@@ -5,7 +5,7 @@ Library    JSONSchemaLibrary    schemas/
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
 Documentation    This resource represents an individual subscription for VNF alarms. 
 ...    The client can use this resource to read and to terminate a subscription to notifications related to VNF fault management.
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 POST Individual Subscription - Method not implemented
@@ -68,12 +68,12 @@ DELETE an individual subscription
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: the subscription is deleted
-    Check resource existance
+    Check resource existence
     Delete individual subscription
     Check HTTP Response Status Code Is    204
     
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 

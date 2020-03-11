@@ -8,16 +8,16 @@ Documentation    This resource represents VNF lifecycle management operation occ
 ...    status information about multiple VNF lifecycle management operation occurrences.
 
 *** Test Cases ***
-POST VNF LCM operation occurences - Method not implemented
+POST VNF LCM operation occurrences - Method not implemented
     [Documentation]    Test ID: 6.3.5.11.1
-    ...    Test title: POST VNF LCM operation occurences - Method not implemented
+    ...    Test title: POST VNF LCM operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.12.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Post VNF LCM OP occurences
+    Post VNF LCM OP occurrences
     Check HTTP Response Status Code Is    405
 
 GET status information about multiple VNF LCM operation occurrences 
@@ -29,7 +29,7 @@ GET status information about multiple VNF LCM operation occurrences
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none   
-    GET VNF LCM OP occurences
+    GET VNF LCM OP occurrences
     Check HTTP Response Status Code Is    202
     Check HTTP Response Body Json Schema Is    VnfLcmOpOccs 
 
@@ -42,7 +42,7 @@ GET status information about multiple VNF LCM operation occurrences Bad Request 
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none   
-    GET VNF LCM OP occurences invalid attribute
+    GET VNF LCM OP occurrences invalid attribute
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -55,7 +55,7 @@ GET status information about multiple VNF LCM Operation occurrences Bad Request 
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
-    GET VNF LCM OP occurences invalid filter
+    GET VNF LCM OP occurrences invalid filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -120,7 +120,7 @@ PUT status information about multiple VNF LCM operation occurrences - Method not
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
-    PUT VNF LCM OP occurences
+    PUT VNF LCM OP occurrences
     Check HTTP Response Status Code Is    405
 
 PATCH status information about multiple VNF LCM operation occurrences - Method not implemented
@@ -132,7 +132,7 @@ PATCH status information about multiple VNF LCM operation occurrences - Method n
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
-    PATCH VNF LCM OP occurences
+    PATCH VNF LCM OP occurrences
     Check HTTP Response Status Code Is    405
 
 DELETE status information about multiple VNF LCM operation occurrences - Method not implemented
@@ -144,5 +144,5 @@ DELETE status information about multiple VNF LCM operation occurrences - Method 
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
-    DELETE VNF LCM OP occurences
+    DELETE VNF LCM OP occurrences
     Check HTTP Response Status Code Is    405

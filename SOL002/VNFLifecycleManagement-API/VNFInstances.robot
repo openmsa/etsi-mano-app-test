@@ -23,7 +23,7 @@ POST Create a new vnfInstance
 GET information about multiple VNF instances  
     [Documentation]    Test ID: 6.3.5.1.2
     ...    Test title: GET information about multiple VNF instances
-    ...    Test objective: The objective is to get informations about multiples VNF instances
+    ...    Test objective: The objective is to get information about multiples VNF instances
     ...    Pre-conditions: 
     ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
@@ -37,7 +37,7 @@ GET information about multiple VNF instances
 GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 6.3.5.1.3
     ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
-    ...    Test objective: The objective is to get informations about multiples VNF instances with Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is to get information about multiples VNF instances with Invalid attribute-based filtering parameters
     ...    Pre-conditions: 
     ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
@@ -50,7 +50,7 @@ GET information about multiple VNF instances Bad Request Invalid attribute-based
 GET information about multiple VNF instances Bad Request Invalid attribute selector
     [Documentation]    Test ID: 6.3.5.1.4
     ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute selector
-    ...    Test objective: The objective is to get informations about multiples VNF instances with Invalid attribute-based filtering parameters
+    ...    Test objective: The objective is to get information about multiples VNF instances with Invalid attribute-based filtering parameters
     ...    Pre-conditions: 
     ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE

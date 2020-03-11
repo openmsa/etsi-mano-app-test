@@ -6,7 +6,7 @@ Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This task resource represents the "Retry operation" operation. The client can use this resource to initiate retrying a VNF lifecycle operation.
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 POST Retry operation task  
@@ -98,7 +98,7 @@ DELETE Retry operation task - Method not implemented
     Delete Retry operation
     Check HTTP Response Status Code Is    405
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
