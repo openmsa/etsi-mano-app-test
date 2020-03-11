@@ -12,7 +12,7 @@ POST Terminate a NSInstance
     ...    Test title: POST Terminate a NSInstance
     ...    Test objective: The objective is to test that POST method terminate the NS
     ...    Pre-conditions: NS instance in INSTANTIATED state
-    ...    Reference: clause 6.4.8.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: NS instance has NOT_INSTANTIATED state
@@ -26,7 +26,7 @@ POST Terminate a NSInstance Conflict
     ...    Test title: POST Terminate a NSInstance Conflict
     ...    Test objective: The objective is to test that POST method can't terminate the NS because of conflict in resource status (i.e. the resource is not in INSTANTIATED state) 
     ...    Pre-conditions: NS instance is in NOT_INSTANTIATED state
-    ...    Reference: clause 6.4.8.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: NS instance is in NOT_INSTANTIATED state
@@ -40,7 +40,7 @@ GET Terminate NSInstance- Method not implemented
     ...    Test title: GET Terminate NSInstance- Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.8.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ PUT Terminate NSInstance - Method not implemented
     ...    Test title: PUT Terminate NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.8.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.8.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: resource state not modified
@@ -64,7 +64,7 @@ PATCH Terminate NSInstance - Method not implemented
     ...    Test title: PATCH Terminate NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.8.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.8.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: resource state not modified
@@ -76,7 +76,7 @@ DELETE Terminate NSInstance - Method not implemented
     ...    Test title: DELETE Terminate NSInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.8.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.8.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: resource state not modified

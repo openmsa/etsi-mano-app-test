@@ -14,7 +14,7 @@ POST Individual Subscription - Method not implemented
     ...    Test title: POST Individual Subscription - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.17.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.17.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS lifecycle management subscription is not created on the NFVO
@@ -26,7 +26,7 @@ GET Information about an individual subscription
     ...    Test title: GET Information about an individual subscription
     ...    Test objective: The objective is to test the retrieval of NS lifecycle management subscription and perform a JSON schema validation of the returned subscription data structure
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.17.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.17.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -39,7 +39,7 @@ PUT an individual subscription - Method not implemented
     ...    Test title: PUT an individual subscription - Method not implemented
     ...    Test objective: TThe objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.17.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.17.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS lifecycle management subscription is not modified by the operation
@@ -51,7 +51,7 @@ PATCH an individual subscription - Method not implemented
     ...    Test title: PATCH an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.17.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.17.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS lifecycle management subscription is not modified by the operation
@@ -63,7 +63,7 @@ DELETE an individual subscription
     ...    Test title: DELETE an individual subscription
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: At least one lifecycle management subscription is available in the NFVO
-    ...    Reference: clause 6.4.17.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.17.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS lifecycle management subscription is not available anymore on NFVO
