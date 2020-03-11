@@ -52,7 +52,7 @@ Requests a grant for a particular VNF lifecycle operation - Forbidden
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Send Request a new Grant Forbiden
+    Send Request a new Grant Forbidden
     Check HTTP Response Status Code Is    403
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -129,7 +129,7 @@ Send Request Grant Request in Asynchronous mode
     ${body}=    Output    response
     Set Suite Variable    &{response}    ${body}
     
-Send Request a new Grant Forbiden    
+Send Request a new Grant Forbidden    
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Log    The grant request should be rejected
     Set Headers    {"Accept": "${ACCEPT}"}
