@@ -27,7 +27,7 @@ Check Postcondition VNF fault management individual alarm Exists
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    alarm  
       
-Check Individual Subscription existance
+Check Individual Subscription existence
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 

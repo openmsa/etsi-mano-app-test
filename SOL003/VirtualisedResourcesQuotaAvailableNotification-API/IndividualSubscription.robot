@@ -7,7 +7,7 @@ Library    JSONSchemaLibrary    schemas/
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
 ...    subscription to notifications related to the availability of the virtualised resources quotas.
-Suite Setup    Check Individual Subscription existance
+Suite Setup    Check Individual Subscription existence
 
 *** Test Cases ***
 Create new Virtualised Resources Quota Available Notification individual subscription
