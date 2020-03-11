@@ -18,7 +18,7 @@ VNF Instance Scale Out
     ...    Test title: VNF Instance Scale Out worflow
     ...    Test objective: The objective is to test the workflow for the scaling out a VNF instance
     ...    Pre-conditions: VNF instance in INSTANTIATED state (Test ID: 5.4.4.1). NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID: 5.4.20.1)
-    ...    Reference: clause 5.4.5 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  NFVO is able to receive notifications from VNFM. Scale operation is supported for the VNF (as capability in the VNFD)
     ...    Post-Conditions: VNF instance still in INSTANTIATED state and VNF is scaled out

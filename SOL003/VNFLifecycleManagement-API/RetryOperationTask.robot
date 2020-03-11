@@ -16,7 +16,7 @@ Post Retry operation task
     ...    Test title: Post Retry operation task
     ...    Test objective: The objective is to test that POST method The POST method initiates retrying a VNF lifecycle operation if the operation is in FAILED_TEMP state
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
-    ...    Reference: clause 5.4.14.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.14.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -29,7 +29,7 @@ Post Retry operation task Conflict (Not-FAILED_TEMP)
     ...    Test title: Post Retry operation task Conflict (Not-FAILED_TEMP)
     ...    Test objective: The objective is to test that the retry operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. (i.e. the VNF instance resource is not in FAILED_TEMP state)
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
-    ...    Reference: clause 5.4.14.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.14.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -43,7 +43,7 @@ Post Retry operation task Not Found
     ...    Test title: Post Retry operation task Not Found
     ...    Test objective: The objective is to test that the retry operation cannot be executed because the operation is not supported
     ...    Pre-conditions: 
-    ...    Reference: clause 5.4.14.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.14.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -55,7 +55,7 @@ GET Retry operation task - Method not implemented
     ...    Test title: GET Retry operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.14.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.14.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -67,7 +67,7 @@ PUT Retry operation task - Method not implemented
     ...    Test title: PUT Retry operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.14.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.14.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -79,7 +79,7 @@ PATCH Retry operation task - Method not implemented
     ...    Test title: PATCH Retry operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.14.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.14.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -91,7 +91,7 @@ DELETE Retry operation task - Method not implemented
     ...    Test title: DELETE Retry operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.14.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.14.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 

@@ -13,7 +13,7 @@ POST Change external VNF connectivity
     ...    Test title: POST Change external VNF connectivity
     ...    Test objective: The objective is to test that POST method trigger a change in VNF external connectivity. Supported types of changes that this operation are: 1. Disconnect the external CPs that are connected to a particular external VL, and connect them to a different external VL. 2. Change the connectivity parameters of the existing external CPs, including changing addresses.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.11.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.11.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null         
@@ -26,7 +26,7 @@ GET Change external VNF connectivity - Method not implemented
     ...    Test title: GET Change external VNF connectivity - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.11.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.11.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -38,7 +38,7 @@ PUT Change external VNF connectivity - Method not implemented
     ...    Test title: PUT Change external VNF connectivity - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.11.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.11.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -50,7 +50,7 @@ PATCH Change external VNF connectivity - Method not implemented
     ...    Test title: PATCH Change external VNF connectivity - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.11.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.11.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -62,7 +62,7 @@ DELETE Change external VNF connectivity - Method not implemented
     ...    Test title: DELETE Change external VNF connectivity - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.11.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.11.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 

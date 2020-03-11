@@ -17,7 +17,7 @@ GET All VNF Indicator Subscriptions
     ...    Test title: GET All VNF Indicator Subscriptions
     ...    Test objective: The objective is to test the retrieval of all VNF indicator subscriptions and perform a JSON schema validation of the returned subscriptions data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none        
@@ -30,7 +30,7 @@ GET VNF Indicator Subscriptions with attribute-based filter
     ...    Test title: GET VNF Indicator Subscriptions with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of VNF indicator subscriptions using attribute-based filter, perform a JSON schema validation of the collected indicators data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -44,7 +44,7 @@ GET VNF Indicator Subscriptions with invalid attribute-based filter
     ...    Test title: GET VNF Indicator Subscriptions with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF indicator subscriptions fails when using invalid attribute-based filters, and perform the JSON schema validation of the failed operation HTTP response. 
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -57,7 +57,7 @@ GET VNF Indicator Subscriptions with invalid resource endpoint
     ...    Test title: GET VNF Indicator Subscriptions with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of all VNF indicator subscriptions fails when using invalid resource endpoint.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -69,7 +69,7 @@ Create new VNF indicator subscription
     ...    Test title: Create new VNF indicator subscription
     ...    Test objective: The objective is to test the creation of a new VNF indicator subscription and perform a JSON schema and content validation of the returned subscription data structure
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 8.4.5.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF indicator subscription is successfully set and it matches the issued subscription   
@@ -85,7 +85,7 @@ Create duplicated VNF indicator subscription with VNFM not creating duplicated s
     ...    Test title: Create duplicated VNF indicator subscription with VNFM not creating duplicated subscriptions
     ...    Test objective: The objective is to test the attempt of a creation of a duplicated VNF indicator subscription and check that no new subscription is created by the VNFM and a link to the original subscription is returned
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM does not support the creation of duplicated subscriptions
     ...    Post-Conditions: The existing VNF indicator subscription returned is available in the VNFM
@@ -101,7 +101,7 @@ Create duplicated VNF indicator subscription with VNFM creating duplicated subsc
     ...    Test title: Create duplicated VNF indicator subscription with VNFM creating duplicated subscriptions
     ...    Test objective: The objective is to test the creation of a duplicated VNF indicator subscription and perform a JSON schema and content validation of the returned duplicated subscription data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM supports the creation of duplicated subscriptions
     ...    Post-Conditions: The duplicated VNF indicator subscription is successfully set and it matches the issued subscription
@@ -116,7 +116,7 @@ PUT VNF Indicator Subscriptions - Method not implemented
     ...    Test title: PUT VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -128,7 +128,7 @@ PATCH VNF Indicator Subscriptions - Method not implemented
     ...    Test title: PATCH VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -140,7 +140,7 @@ DELETE VNF Indicator Subscriptions - Method not implemented
     ...    Test title: DELETE VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete VNF indicators subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.5.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.5.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF indicator subscriptions are not deleted by the failed operation   

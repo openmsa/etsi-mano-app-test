@@ -16,7 +16,7 @@ VNF Indicator Value Change Notification
     ...    Test title: VNF Indicator Value Change Notification
     ...    Test objective: The objective is to test the dispatch of VNF Indicator Value Change Notification when new indicator values are available in the VNFM, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF is instantiated, and a subscription for indicator value change notifications is available in the VNFM.
-    ...    Reference: clause 8.4.7.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 8.4.7.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 

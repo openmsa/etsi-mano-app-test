@@ -20,7 +20,7 @@ Fail a VNF LCM Operation Workflow
     ...    Test title: Fail a VNF LCM Operation Workflow
     ...    Test objective: The objective is to test the workflow for a Fail VNF LCM Operation
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
-    ...    Reference: clause 5.4.16 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.16 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in FAILED state
