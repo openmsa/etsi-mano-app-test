@@ -18,7 +18,7 @@ Requests a grant for a particular VNF lifecycle operation - Synchronous mode
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Synchronous mode
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation  and perform a JSON schema validation on the returned grant data structure
     ...    Pre-conditions: 
-    ...    Reference: clause 9.4.2.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO can decide immediately what to respond to a grant request
     ...    Post-Conditions: The grant information is available to the VNFM.
@@ -33,7 +33,7 @@ Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
     ...    Pre-conditions: 
-    ...    Reference: clause 9.4.2.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO can not decide immediately what to respond to a grant request
     ...    Post-Conditions: The grant information is available to the VNFM.
@@ -48,11 +48,11 @@ Requests a grant for a particular VNF lifecycle operation - Forbidden
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Forbidden 
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and check the content of the problem details data structure returned
     ...    Pre-conditions: The grant should not be accorded
-    ...    Reference: clause 9.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Send Request a new Grant Forbiden
+    Send Request a new Grant Forbidden
     Check HTTP Response Status Code Is    403
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -61,7 +61,7 @@ GET Grants - Method not implemented
     ...    Test title: GET Grants - Method not implemented
     ...    Test objective: The objective is to test that GET method is not allowed for Life cycle operation granting 
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions:   none
@@ -73,7 +73,7 @@ PUT Grants - Method not implemented
     ...    Test title: PUT Grants - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed for Life cycle operation granting 
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.2.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 9.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -85,7 +85,7 @@ PATCH Grants - Method not implemented
     ...    Test title: PATCH Grants - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed for Life cycle operation granting  
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.2.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 9.4.2.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -97,7 +97,7 @@ DELETE Grants - Method not implemented
     ...    Test title: DELETE Grants - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed for Life cycle operation granting  
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.2.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 9.4.2.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -129,7 +129,7 @@ Send Request Grant Request in Asynchronous mode
     ${body}=    Output    response
     Set Suite Variable    &{response}    ${body}
     
-Send Request a new Grant Forbiden    
+Send Request a new Grant Forbidden    
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Log    The grant request should be rejected
     Set Headers    {"Accept": "${ACCEPT}"}

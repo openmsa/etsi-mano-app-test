@@ -12,11 +12,11 @@ POST NS LCM occurrences - Method not implemented
     ...    Test title: POST NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.9.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	POST NS LCM OP Occurences
+	POST NS LCM OP Occurrences
 	Check HTTP Response Status Code Is    405
 
 GET status information about multiple NS LCM occurrences   
@@ -24,11 +24,11 @@ GET status information about multiple NS LCM occurrences
     ...    Test title: GET status information about multiple NS LCM occurrences
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	GET NS LCN OP Occurences
+	GET NS LCM OP Occurrences
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -37,11 +37,11 @@ GET status information about multiple NS LCM occurrences Bad Request Invalid att
     ...    Test title: GET status information about multiple NS LCM occurrences Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to test that GET method fail because of wrong query parameter
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO, Invalid filter parameter
-    ...    Reference: clause 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	GET NS LCN OP Occurences Invalid attribute-based filtering parameters
+	GET NS LCM OP Occurrences Invalid attribute-based filtering parameters
 	Check HTTP Response Status Code Is    400
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -50,11 +50,11 @@ GET status information about multiple NS LCM occurrences Bad Request Invalid att
     ...    Test title: GET status information about multiple NS LCM occurrences Bad Request Invalid attribute selector
     ...    Test objective: The objective is to test that GET method fail because of wrong attributes selector
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO, Invalid attribute selector
-    ...    Reference: clause 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	GET NS LCN OP Occurences Invalid attribute selector
+	GET NS LCM OP Occurrences Invalid attribute selector
 	Check HTTP Response Status Code Is    400
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -63,11 +63,11 @@ GET status information about multiple NS LCM occurrences with "all_fields"
     ...    Test title: GET status information about multiple NS LCM occurrences with "all_fields"
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	Get NS LCN OP Occurences with all_fields attribute selector
+	Get NS LCM OP Occurrences with all_fields attribute selector
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -76,11 +76,11 @@ GET status information about multiple NS LCM occurrences with "exclude_default"
     ...    Test title: GET status information about multiple NS LCM occurrences with "exclude_default"
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	Get NS LCN OP Occurences with exclude_default attribute selector
+	Get NS LCM OP Occurrences with exclude_default attribute selector
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -89,11 +89,11 @@ GET status information about multiple NS LCM occurrences with "fields"
     ...    Test title: GET status information about multiple NS LCM occurrences with "fields"
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	Get NS LCN OP Occurences with fields attribute selector
+	Get NS LCM OP Occurrences with fields attribute selector
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -102,11 +102,11 @@ GET status information about multiple NS LCM occurrences with "exclude_fields"
     ...    Test title: GET status information about multiple NS LCM occurrences with "exclude_fields"
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	Get NS LCN OP Occurences with exclude_fields attribute selector
+	Get NS LCM OP Occurrences with exclude_fields attribute selector
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -115,11 +115,11 @@ PUT status information about multiple NS LCM occurrences - Method not implemente
     ...    Test title: PUT status information about multiple NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.9.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    PUT NS LCM OP Occurences
+    PUT NS LCM OP Occurrences
     Check HTTP Response Status Code Is    405
 
 PATCH status information about multiple NS LCM occurrences - Method not implemented
@@ -127,11 +127,11 @@ PATCH status information about multiple NS LCM occurrences - Method not implemen
     ...    Test title: PATCH status information about multiple NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.9.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    PATCH NS LCM OP Occurences
+    PATCH NS LCM OP Occurrences
     Check HTTP Response Status Code Is    405
 
 DELETE status information about multiple NS LCM occurrences - Method not implemented
@@ -139,10 +139,10 @@ DELETE status information about multiple NS LCM occurrences - Method not impleme
     ...    Test title: DELETE status information about multiple NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.9.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.9.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    DELETE NS LCM OP Occurences
+    DELETE NS LCM OP Occurrences
     Check HTTP Response Status Code Is    405
     

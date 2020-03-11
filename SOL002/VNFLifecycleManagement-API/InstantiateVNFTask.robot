@@ -6,7 +6,7 @@ Library    DependencyLibrary
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 
 *** Test Cases ***
@@ -15,7 +15,7 @@ POST Instantiate a vnfInstance
     ...    Test title: POST Instantiate a vnfInstance
     ...    Test objective: The objective is to instantiate a VNF instance
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.4.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -28,7 +28,7 @@ POST Instantiate a vnfInstance Conflict
     ...    Test title: POST Instantiate a vnfInstance Conflict
     ...    Test objective: The objective is to verify that the instantiation of the vnf cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
-    ...    Reference: clause 5.4.4.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -41,7 +41,7 @@ GET Instantiate VNFInstance - Method not implemented
     ...    Test title: GET Instantiate VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.4.3.2  - SOL002 v2.4.1
+    ...    Reference: clause 5.4.4.3.2  - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -53,10 +53,10 @@ PUT Instantiate VNFInstance - Method not implemented
     ...    Test title: PUT Instantiate VNFInstance  - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.4.3.3  - SOL002 v2.4.1
+    ...    Reference: clause 5.4.4.3.3  - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not modified
+    ...    Post-Conditions: VNF instance not modified
     PUT instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
 
@@ -65,10 +65,10 @@ PATCH Instantiate VNFInstance - Method not implemented
     ...    Test title: PATCH Instantiate VNFInstance  - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.4.3.4  - SOL002 v2.4.1
+    ...    Reference: clause 5.4.4.3.4  - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not modified
+    ...    Post-Conditions: VNF instance not modified
     PATCH instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
     
@@ -77,15 +77,15 @@ DELETE Instantiate VNFInstance - Method not implemented
     ...    Test title: DELETE Instantiate VNFInstance  - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.4.3.5  - SOL002 v2.4.1
+    ...    Reference: clause 5.4.4.3.5  - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not deleted
+    ...    Post-Conditions: VNF instance not deleted
     DELETE instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
 
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

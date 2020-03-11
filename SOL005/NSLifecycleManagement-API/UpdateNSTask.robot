@@ -5,7 +5,7 @@ Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 POST Update a NSInstance
@@ -13,7 +13,7 @@ POST Update a NSInstance
     ...    Test title: POST Update a NSInstance
     ...    Test objective: The objective is to test that POST method update a NS instance
     ...    Pre-conditions: an existing NS Instance 
-    ...    Reference: clause 6.4.6.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The  NS instance is updated on the NFVO
@@ -26,7 +26,7 @@ POST Update a NSInstance Conflict
     ...    Test title: POST Update a NSInstance Conflict
     ...    Test objective: The objective is to test that POST method fail if a NS Instance is not existing or is not in NOT_INSTANTIATED state
     ...    Pre-conditions: an existing NS  Instance 
-    ...    Reference: clause 6.4.6.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The  NS instance is not updated on the NFVO
@@ -39,7 +39,7 @@ GET Update NSInstance- Method not implemented
     ...    Test title: GET Update NSInstance- Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.6.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.6.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -51,7 +51,7 @@ PUT Update NSInstance - Method not implemented
     ...    Test title: PUT Update NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.6.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.6.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The  NS instance is not updated on the NFVO
@@ -63,7 +63,7 @@ PATCH Update NSInstance - Method not implemented
     ...    Test title: PATCH Update NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.6.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.6.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The  NS instance is not updated on the NFVO
@@ -75,7 +75,7 @@ DELETE Update NSInstance - Method not implemented
     ...    Test title: DELETE Update NSInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.6.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.6.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The  NS instance is not deleted on the NFVO

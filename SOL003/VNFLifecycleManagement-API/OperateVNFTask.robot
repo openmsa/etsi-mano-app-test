@@ -7,7 +7,7 @@ Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
 
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 POST Operate a vnfInstance
@@ -15,7 +15,7 @@ POST Operate a vnfInstance
     ...    Test title: POST Operate a vnfInstance
     ...    Test objective: The objective is to test that POST method operate a VNF instance
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.10.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.10.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -28,7 +28,7 @@ POST Operate a vnfInstance Conflict (Not-Instantiated)
     ...    Test title: POST Operate a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: the VNF instance resource is in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.10.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.10.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -42,7 +42,7 @@ POST Operate a vnfInstance Not Found
     ...    Test title: POST Operate a vnfInstance Not Found
     ...    Test objective: The objective is to test that the operation cannot be executed currently, because the resource is not existing
     ...    Pre-conditions: the VNF instance resource is in  not existing
-    ...    Reference: clause 5.4.10.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.10.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -55,7 +55,7 @@ GET Operate VNFInstance - Method not implemented
     ...    Test title: GET Operate a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.10.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.10.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -67,7 +67,7 @@ PUT Operate VNFInstance - Method not implemented
     ...    Test title: PUT Operate a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.10.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.10.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -79,7 +79,7 @@ PATCH Operate VNFInstance - Method not implemented
     ...    Test title: PATCH Operate a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.10.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.10.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -91,7 +91,7 @@ DELETE Operate VNFInstance - Method not implemented
     ...    Test title: DELETE Operate a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.10.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.10.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -99,7 +99,7 @@ DELETE Operate VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

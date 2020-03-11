@@ -5,7 +5,7 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 POST Scale a vnfInstance
@@ -13,7 +13,7 @@ POST Scale a vnfInstance
     ...    Test title: POST Scale a vnfInstance
     ...    Test objective: The objective is to scale a VNF instance
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.5.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -26,7 +26,7 @@ POST Scale a vnfInstance Conflict (Not-Instantiated)
     ...    Test title: POST Scale a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions:  VNF instance resource is in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.5.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -40,7 +40,7 @@ POST Scale a vnfInstance Not Found
     ...    Test title: POST Scale a vnfInstance Not Found
     ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -53,7 +53,7 @@ GET Scale VNFInstance - Method not implemented
     ...    Test title: GET Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -65,7 +65,7 @@ PUT Scale VNFInstance - Method not implemented
     ...    Test title: PUT Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.3 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.5.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -77,7 +77,7 @@ PATCH Scale VNFInstance - Method not implemented
     ...    Test title: PATCH Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.4 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.5.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -89,7 +89,7 @@ DELETE Scale VNFInstance - Method not implemented
     ...    Test title: DELETE Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.5 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.5.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -97,7 +97,7 @@ DELETE Scale VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

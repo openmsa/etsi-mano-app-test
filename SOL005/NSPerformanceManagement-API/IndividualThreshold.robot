@@ -14,7 +14,7 @@ GET Individual Threshold
     ...    Test title: GET Individual Threshold
     ...    Test objective: The objective is to test the retrieval of an individual NS performance threshold and perform a JSON schema and content validation of the collected threshold data structure
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance thresholds are set in the NFVO.
-    ...    Reference: clause 7.4.6.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.6.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -28,7 +28,7 @@ GET Individual Threshold with invalid resource identifier
     ...    Test title: GET Individual Threshold with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual NS performance threshold fails when using an invalid resource identifier
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.6.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.6.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -40,7 +40,7 @@ DELETE Individual Threshold with invalid resource identifier
     ...    Test title: DELETE Individual Threshold with invalid resource identifier
     ...    Test objective: The objective is to test the deletion of an individual NS performance threshold
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance thresholds are set in the NFVO.
-    ...    Reference: clause 7.4.6.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.6.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -52,7 +52,7 @@ POST Individual Threshold - Method not implemented
     ...    Test title: POST Individual Threshold - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new NS performance Threshold
     ...    Pre-conditions: A NS instance is instantiated
-    ...    Reference: clause 7.4.6.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS performance Threshold is not created on the NFVO
@@ -65,7 +65,7 @@ PUT Individual Threshold - Method not implemented
     ...    Test title: PUT Individual Threshold - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing NS performance threshold
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance thresholds are set in the NFVO.
-    ...    Reference: clause 7.4.6.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.6.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS performance Threshold is not modified by the operation
@@ -78,7 +78,7 @@ PATCH Individual Threshold - Method not implemented
     ...    Test title: PATCH Individual Threshold - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing NS performance threshold
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance thresholds are set in the NFVO.
-    ...    Reference: clause 7.4.6.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.6.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS performance Threshold is not modified by the operation
@@ -91,7 +91,7 @@ DELETE Individual Threshold
     ...    Test title: DELETE Individual Threshold
     ...    Test objective: The objective is to test the deletion of an individual NS performance threshold
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance thresholds are set in the NFVO.
-    ...    Reference: clause 7.4.6.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 7.4.6.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS performance Threshold is not available anymore in the NFVO    

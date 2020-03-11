@@ -2,7 +2,7 @@
 Resource    environment/variables.txt 
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    JSONSchemaLibrary
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 Escalate the perceived severity 
@@ -10,7 +10,7 @@ Escalate the perceived severity
     ...    Test title: Escalate the perceived severity
     ...    Test objective: To enable the consumer to escalate the perceived severity of an alarm that is represented by an individual alarm resource.
     ...    Pre-conditions: The resource representing the individual alarm has been created
-    ...    Reference: clause 7.4.4.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 7.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -22,7 +22,7 @@ GET Escalate the perceived severity - Method not implemented
     ...    Test title: GET Escalate the perceived severity - Method not implemented
     ...    Test objective: to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -34,7 +34,7 @@ PUT Escalate the perceived severity - Method not implemented
     ...    Test title: PUT Escalate the perceived severity - Method not implemented
     ...    Test objective: to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.3 - SOL002 v2.4.1
+    ...    Reference: clause 7.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -46,7 +46,7 @@ PATCH Escalate the perceived severity - Method not implemented
     ...    Test title: PATCH Escalate the perceived severity - Method not implemented
     ...    Test objective: to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.4 - SOL002 v2.4.1
+    ...    Reference: clause 7.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -59,7 +59,7 @@ DELETE Escalate the perceived severity - Method not implemented
     ...    Test title: DELETE Escalate the perceived severity - Method not implemented
     ...    Test objective: to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.5 - SOL002 v2.4.1
+    ...    Reference: clause 7.4.4.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -67,7 +67,7 @@ DELETE Escalate the perceived severity - Method not implemented
     Check HTTP Response Status Code Is    405
 
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

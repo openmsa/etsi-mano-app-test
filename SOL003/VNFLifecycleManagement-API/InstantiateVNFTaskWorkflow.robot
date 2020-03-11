@@ -19,10 +19,10 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 *** Test Cases ***
 VNF Instantiation
     [Documentation]    Test ID: 7.3.1.26
-    ...    Test title: VNF Instantiation worflow
+    ...    Test title: VNF Instantiation workflow
     ...    Test objective: The objective is to test the workflow for the instantiation of a VNF instance
     ...    Pre-conditions: VNF instance resources is already created. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
-    ...    Reference: clause 5.4.4 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: VNF instance in INSTANTIATED state
