@@ -18,7 +18,7 @@ Update Flow of NS lifecycle management operations
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: the resource is in INSTANTIATED state
-    Check resource existance
+    Check resource existence
     Check resource instantiated
     POST Update NSInstance
     Check HTTP Response Status Code Is    202

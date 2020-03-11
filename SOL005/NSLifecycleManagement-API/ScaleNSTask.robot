@@ -5,7 +5,7 @@ Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 POST Scale a nsInstance
@@ -20,7 +20,7 @@ POST Scale a nsInstance
     POST scale nsInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
-    Check resource existance
+    Check resource existence
     
 POST Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.4.2

@@ -6,7 +6,7 @@ Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
-Suite Setup    Check subscription existance 
+Suite Setup    Check subscription existence 
 
 *** Test Cases ***
 POST Individual Subscription - Method not implemented

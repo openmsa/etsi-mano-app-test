@@ -18,7 +18,7 @@ Terminate Flow of NS lifecycle management operations
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: the resource is in NOT_INSTANTIATED state
-    Check resource existance
+    Check resource existence
     Check resource instantiated
     POST Terminate NSInstance
     Check HTTP Response Status Code Is    202

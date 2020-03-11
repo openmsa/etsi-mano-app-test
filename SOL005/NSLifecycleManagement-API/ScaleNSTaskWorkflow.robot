@@ -18,7 +18,7 @@ Scale Flow of NS lifecycle management operations
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: the resource is in INSTANTIATED state    
-    Check resource existance
+    Check resource existence
     Check resource instantiated
     POST scale nsInstance
     Check HTTP Response Status Code Is    202
