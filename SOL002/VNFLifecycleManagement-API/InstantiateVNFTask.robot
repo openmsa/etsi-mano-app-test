@@ -56,7 +56,7 @@ PUT Instantiate VNFInstance - Method not implemented
     ...    Reference: clause 5.4.4.3.3  - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not modified
+    ...    Post-Conditions: VNF instance not modified
     PUT instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
 
@@ -68,7 +68,7 @@ PATCH Instantiate VNFInstance - Method not implemented
     ...    Reference: clause 5.4.4.3.4  - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not modified
+    ...    Post-Conditions: VNF instance not modified
     PATCH instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
     
@@ -80,7 +80,7 @@ DELETE Instantiate VNFInstance - Method not implemented
     ...    Reference: clause 5.4.4.3.5  - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not deleted
+    ...    Post-Conditions: VNF instance not deleted
     DELETE instantiate individual vnfInstance   
     Check HTTP Response Status Code Is    405
 

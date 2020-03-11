@@ -144,6 +144,6 @@ DELETE VNFInstances - Method not implemented
     ...    Reference: clause 5.4.2.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not deleted
+    ...    Post-Conditions: VNF instance not deleted
     DELETE multiple vnfInstances
     Check HTTP Response Status Code Is    405

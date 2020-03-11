@@ -92,7 +92,7 @@ DELETE Fail operation task - Method not implemented
     ...    Reference: clause 5.4.16.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: vnf instance not deleted
+    ...    Post-Conditions: VNF instance not deleted
     Delete Fail operation
     Check HTTP Response Status Code Is    405
 

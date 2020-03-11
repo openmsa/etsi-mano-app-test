@@ -47,7 +47,7 @@ PUT Individual VNFInstance - Method not implemented
     ...    Reference: clause 5.4.3.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not modified
+    ...    Post-Conditions: VNF instance not modified
     PUT individual vnfInstance
     Check HTTP Response Status Code Is    405
 
@@ -59,7 +59,7 @@ PATCH Individual VNFInstance
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance modified
+    ...    Post-Conditions: VNF instance modified
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
@@ -72,7 +72,7 @@ PATCH Individual VNFInstance Precondition failed
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not modified
+    ...    Post-Conditions: VNF instance not modified
     PATCH individual vnfInstance
     Check HTTP Response Status Code Is    412
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -85,7 +85,7 @@ PATCH Individual VNFInstance Conflict
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance not modified
+    ...    Post-Conditions: VNF instance not modified
      PATCH individual vnfInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
@@ -98,7 +98,7 @@ DELETE Individual VNFInstance
     ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
-    ...    Post-Conditions: vnf instance deleted
+    ...    Post-Conditions: VNF instance deleted
     DELETE individual vnfInstance
     Check HTTP Response Status Code Is    204
 
