@@ -65,7 +65,7 @@ PATCH Fault Management Individual Alarm
 Modify an individual alarm resource - Precondition failed
     [Documentation]    Test ID: 7.3.5.2.5
     ...    Test title: Modify an individual alarm resource - Precondition failed
-    ...    Test objective: The objective is to test that we cannot Modify an individual alarm resource if the alarm is already in the state that is requested to be set
+    ...    Test objective: The objective is to test that an individual alarm resource cannot be modified if the alarm is already in the state that is requested to be set
     ...    Pre-conditions: The related alarm exists
     ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -79,7 +79,7 @@ Modify an individual alarm resource - Precondition failed
 Modify an individual alarm resource - Conflict
     [Documentation]    Test ID: 7.3.5.2.6
     ...    Test title: Modify an individual alarm resource - Conflict
-    ...    Test objective: The objective is to test that we cannot Modify an individual alarm resource if the resource was modified by another entity
+    ...    Test objective: The objective is to test that an individual alarm resource cannot be modified if the resource was modified by another entity
     ...    Pre-conditions: The related alarm exists
     ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
