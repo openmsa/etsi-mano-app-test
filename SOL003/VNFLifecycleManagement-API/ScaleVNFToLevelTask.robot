@@ -40,7 +40,7 @@ Scale a vnfInstance Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 7.3.1.5.3
     ...    Test title: Scale a vnfInstance Not Found
-    ...    Test objective: The objective is to verify that the operation cannot be executed , because the VNF instance resource can't be found.
+    ...    Test objective: The objective is to verify that the operation cannot be executed , because the VNF instance resource cannot be found.
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM

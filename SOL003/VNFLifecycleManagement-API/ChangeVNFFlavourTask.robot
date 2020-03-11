@@ -24,7 +24,7 @@ POST Change deployment flavour of a vnfInstance
 POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 7.3.1.6.2
     ...    Test title: POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
-    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. (VNF instance resource is not in NOT-INSTANTIATED state)
+    ...    Test objective: The objective is to test that POST method cannot trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. (VNF instance resource is not in NOT-INSTANTIATED state)
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: clause 5.4.7.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -39,7 +39,7 @@ POST Change deployment flavour of a vnfInstance Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 7.3.1.6.3
     ...    Test title: POST Change deployment flavour of a vnfInstance Not Found
-    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
+    ...    Test objective: The objective is to test that POST method cannot trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
     ...    Pre-conditions: the VNF instance resource is not existing
     ...    Reference: clause 5.4.7.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM

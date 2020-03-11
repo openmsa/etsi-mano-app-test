@@ -37,7 +37,7 @@ Create a new Subscription - DUPLICATION
 Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 7.3.1.17.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
-    ...    Test objective: The POST method can't create a duplicate subscription
+    ...    Test objective: The POST method cannot create a duplicate subscription
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
