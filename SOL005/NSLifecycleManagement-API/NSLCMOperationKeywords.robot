@@ -573,7 +573,7 @@ DELETE NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-GET NS LCN OP Occurences
+GET NS LCM OP Occurences
     Log    Query status information about multiple NS lifecycle management operation occurrences.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -582,7 +582,7 @@ GET NS LCN OP Occurences
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
  
-GET NS LCN OP Occurences Invalid attribute-based filtering parameters
+GET NS LCM OP Occurences Invalid attribute-based filtering parameters
     Log    Query status information about multiple NS lifecycle management operation occurrences.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
@@ -590,35 +590,35 @@ GET NS LCN OP Occurences Invalid attribute-based filtering parameters
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-GET NS LCN OP Occurences Invalid attribute selector
+GET NS LCM OP Occurences Invalid attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences.
     Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
 	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?${NEG_SELECTOR}
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
-Get NS LCN OP Occurences with all_fields attribute selector
+Get NS LCM OP Occurences with all_fields attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?exclude_default
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
-Get NS LCN OP Occurences with exclude_default attribute selector
+Get NS LCM OP Occurences with exclude_default attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?exclude_default
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
-Get NS LCN OP Occurences with fields attribute selector
+Get NS LCM OP Occurences with fields attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?fields=${fields}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}	
-Get NS LCN OP Occurences with exclude_fields attribute selector
+Get NS LCM OP Occurences with exclude_fields attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -658,7 +658,7 @@ DELETE Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-GET Individual NS LCN OP Occurence
+GET Individual NS LCM OP Occurence
     Log    Query status information about individual NS lifecycle management operation occurrence.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

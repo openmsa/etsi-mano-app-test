@@ -28,7 +28,7 @@ GET status information about multiple NS LCM occurrences
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	GET NS LCN OP Occurences
+	GET NS LCM OP Occurences
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -41,7 +41,7 @@ GET status information about multiple NS LCM occurrences Bad Request Invalid att
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	GET NS LCN OP Occurences Invalid attribute-based filtering parameters
+	GET NS LCM OP Occurences Invalid attribute-based filtering parameters
 	Check HTTP Response Status Code Is    400
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -54,7 +54,7 @@ GET status information about multiple NS LCM occurrences Bad Request Invalid att
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	GET NS LCN OP Occurences Invalid attribute selector
+	GET NS LCM OP Occurences Invalid attribute selector
 	Check HTTP Response Status Code Is    400
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -67,7 +67,7 @@ GET status information about multiple NS LCM occurrences with "all_fields"
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	Get NS LCN OP Occurences with all_fields attribute selector
+	Get NS LCM OP Occurences with all_fields attribute selector
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -80,7 +80,7 @@ GET status information about multiple NS LCM occurrences with "exclude_default"
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	Get NS LCN OP Occurences with exclude_default attribute selector
+	Get NS LCM OP Occurences with exclude_default attribute selector
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -93,7 +93,7 @@ GET status information about multiple NS LCM occurrences with "fields"
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	Get NS LCN OP Occurences with fields attribute selector
+	Get NS LCM OP Occurences with fields attribute selector
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 
@@ -106,7 +106,7 @@ GET status information about multiple NS LCM occurrences with "exclude_fields"
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	Get NS LCN OP Occurences with exclude_fields attribute selector
+	Get NS LCM OP Occurences with exclude_fields attribute selector
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOccs
 

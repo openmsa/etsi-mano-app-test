@@ -28,7 +28,7 @@ Get status information about Individual NS LCM occurrences
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-	GET Individual NS LCN OP Occurence
+	GET Individual NS LCM OP Occurence
 	Check HTTP Response Status Code Is    200
 	Check HTTP Response Body Json Schema Is    NsLcmOpOcc
 	
