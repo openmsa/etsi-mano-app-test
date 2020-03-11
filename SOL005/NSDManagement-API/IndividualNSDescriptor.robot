@@ -73,7 +73,7 @@ Enable Individual Network Service Descriptor
 Enable Individual Network Service Descriptor with conflict due to operational state ENABLED
     [Documentation]    Test ID: 5.3.1.2.5
     ...    Test title: Enable Individual Network Service Descriptor with conflict due to operational state ENABLED
-    ...    Test objective: The objective is to test that enabling an individual Network Service Descriptor that is already in ENABLED operational state failsand perform a JSON schema validation of the failder operation HTTP response
+    ...    Test objective: The objective is to test that enabling an individual Network Service Descriptor that is already in ENABLED operational state failsand perform a JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO in ENABLED operational state (Test ID 5.3.1.2.4).
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO

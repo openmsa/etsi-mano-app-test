@@ -27,7 +27,7 @@ NSD Onboarding Notification
 NSD Onboarding Failure Notification
     [Documentation]    Test ID: 5.3.1.9.2
     ...    Test title: NSD Onboarding Failure Notification
-    ...    Test objective: The objective is to test the dispatch of NSD Onboarding faulure notification when the NSD onboarding operation fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
+    ...    Test objective: The objective is to test the dispatch of NSD Onboarding failure notification when the NSD onboarding operation fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NSD management subscription for onboarding failure notifications is available in the NFVO.
     ...    Reference: clause 5.4.10.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -79,7 +79,7 @@ PNFD Onboarding Notification
 PNFD Onboarding Failure Notification
     [Documentation]    Test ID: 5.3.1.9.6
     ...    Test title: PNFD Onboarding Failure Notification
-    ...    Test objective: The objective is to test the dispatch of PNFD Onboarding faulure notification when the PNFD onboarding operation fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
+    ...    Test objective: The objective is to test the dispatch of PNFD Onboarding failure notification when the PNFD onboarding operation fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A PNFD management subscription for onboarding failure notifications is available in the NFVO.
     ...    Reference: clause 5.4.10.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
