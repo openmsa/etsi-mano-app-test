@@ -59,8 +59,8 @@ PUT Individual VNF Package - Method not implemented
 
 Disable Individual VNF Package   
     [Documentation]    Test ID: 5.3.5.2.5
-    ...    Test title: Disable Individual Individual VNF Package  
-    ...    Test objective: The objective is to test the disabling of an individual Individual VNF Package  and perform a JSON schema and content validation of the collected data structure
+    ...    Test title: Disable Individual VNF Package  
+    ...    Test objective: The objective is to test the disabling of an individual VNF Package  and perform a JSON schema and content validation of the collected data structure
     ...    Pre-conditions: One or more VNF Packages are onboarded in the NFVO in ENABLED operational state.
     ...    Reference: clause 9.4.3.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
