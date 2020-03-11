@@ -21,7 +21,7 @@ POST Individual Subscription - Method not implemented
 GET Individual Subscription
     [Documentation]    Test ID: 6.3.5.18.2
     ...    Test title: GET Individual Subscription
-    ...    Test objective: The objective is Get the an individual subscription
+    ...    Test objective: The objective is to test the Get individual subscription
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.19.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
