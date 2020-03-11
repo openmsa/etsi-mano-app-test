@@ -17,7 +17,7 @@ POST Instantiate a nsInstance
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS instance is instantiated on the NFVO
-    POST Instatiate nsInstance
+    POST Instantiate nsInstance
     Check HTTP Response Status Code Is    202
     Check HTTP Response Header Contains    Location
     Check resource INSTANTIATED
@@ -25,13 +25,13 @@ POST Instantiate a nsInstance
 POST Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.3.2
     ...    Test title: POST Instantiate a nsInstance Conflict
-    ...    Test objective: The objective is to test that the operation can't be performed due to a conflict with the state of resource (i.e. the resource is in INSTANTIATED state)
+    ...    Test objective: The objective is to test that the operation cannot be performed due to a conflict with the state of resource (i.e. the resource is in INSTANTIATED state)
     ...    Pre-conditions: resource is in INSTANTIATED state
     ...    Reference: clause 6.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS instance is not instantiated on the NFVO
-    POST Instatiate nsInstance
+    POST Instantiate nsInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
     Check resource not_instantiated
@@ -39,7 +39,7 @@ POST Instantiate a nsInstance Conflict
 GET Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.3
     ...    Test title: GET Instantiate NSInstance - Method not implemented
-    ...    Test objective: The objective is to test that the operation can't be performed due because method is not implemented
+    ...    Test objective: The objective is to test that the operation cannot be performed due because method is not implemented
     ...    Pre-conditions: none
     ...    Reference: clause 6.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -51,7 +51,7 @@ GET Instantiate NSInstance - Method not implemented
 PUT Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.4
     ...    Test title: PUT Instantiate NSInstance - Method not implemented
-    ...    Test objective: The objective is to test that the operation can't be performed due because method is not implemented
+    ...    Test objective: The objective is to test that the operation cannot be performed due because method is not implemented
     ...    Pre-conditions: none
     ...    Reference: clause 6.4.4.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -63,7 +63,7 @@ PUT Instantiate NSInstance - Method not implemented
 PATCH Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.5
     ...    Test title: PATCH Instantiate NSInstance - Method not implemented
-    ...    Test objective: The objective is to test that the operation can't be performed due because method is not implemented
+    ...    Test objective: The objective is to test that the operation cannot be performed due because method is not implemented
     ...    Pre-conditions: none
     ...    Reference: clause 6.4.4.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -75,7 +75,7 @@ PATCH Instantiate NSInstance - Method not implemented
 DELETE Instantiate NSInstance - Method not implemented
     [Documentation]    Test ID: 5.3.2.3.6
     ...    Test title: DELETE Instantiate NSInstance - Method not implemented
-    ...    Test objective: The objective is to test that the operation can't be performed due because method is not implemented
+    ...    Test objective: The objective is to test that the operation cannot be performed due because method is not implemented
     ...    Pre-conditions: none
     ...    Reference: clause 6.4.4.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO

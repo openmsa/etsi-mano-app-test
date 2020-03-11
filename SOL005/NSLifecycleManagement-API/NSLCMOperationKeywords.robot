@@ -355,7 +355,7 @@ GET Instantiate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
- POST Instatiate nsInstance
+ POST Instantiate nsInstance
     Log    Trying to Instantiate a ns Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}

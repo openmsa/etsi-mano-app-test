@@ -72,7 +72,7 @@ DELETE Individual NSInstance
 DELETE Individual NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.2.6
     ...    Test title: DELETE Individual NSInstance Conflict
-    ...    Test objective: The objective is to test that DELETE method can't delete an INSTANTIATED NS instance
+    ...    Test objective: The objective is to test that DELETE method cannot delete an INSTANTIATED NS instance
     ...    Pre-conditions: one instance of a NS in INSTANTIATED state
     ...    Reference: clause 6.4.3.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO

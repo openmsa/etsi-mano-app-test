@@ -20,7 +20,7 @@ Instantiate Flow of NS lifecycle management operations
     ...    Post-Conditions: the resource is in INSTANTIATED state
     Check resource existance
     Check resource not_instantiated
-    POST Instatiate nsInstance
+    POST Instantiate nsInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
     Check Operation Notification Status is    START

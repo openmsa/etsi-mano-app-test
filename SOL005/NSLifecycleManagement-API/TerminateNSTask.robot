@@ -24,7 +24,7 @@ POST Terminate a NSInstance
 POST Terminate a NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.7.2
     ...    Test title: POST Terminate a NSInstance Conflict
-    ...    Test objective: The objective is to test that POST method can't terminate the NS because of conflict in resource status (i.e. the resource is not in INSTANTIATED state) 
+    ...    Test objective: The objective is to test that POST method cannot terminate the NS because of conflict in resource status (i.e. the resource is not in INSTANTIATED state) 
     ...    Pre-conditions: NS instance is in NOT_INSTANTIATED state
     ...    Reference: clause 6.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO

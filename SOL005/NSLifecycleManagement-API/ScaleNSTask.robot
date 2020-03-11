@@ -25,7 +25,7 @@ POST Scale a nsInstance
 POST Instantiate a nsInstance Conflict
     [Documentation]    Test ID: 5.3.2.4.2
     ...    Test title: POST Instantiate a nsInstance Conflict
-    ...    Test objective: The objective is to test that POST method can't scale NS instance because of conflict in resource status (i.e. because the resource is in not in NOT_INSTANTIATED state)
+    ...    Test objective: The objective is to test that POST method cannot scale NS instance because of conflict in resource status (i.e. because the resource is in not in NOT_INSTANTIATED state)
     ...    Pre-conditions: the resource is in not in NOT_INSTANTIATED state
     ...    Reference: clause 6.4.5.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
