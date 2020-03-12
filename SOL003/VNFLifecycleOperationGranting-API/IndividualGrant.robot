@@ -47,7 +47,7 @@ GET an individual grant - Process ongoing
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Get individual grant on-going
+    Get individual grant
     Check HTTP Response Status Code Is    202
     Check HTTP Response Body Json Schema Is    grant
     
@@ -56,7 +56,7 @@ GET an individual grant - grant rejected
     [Documentation]    Test ID: 7.3.2.2.4
     ...    Test title: GET an individual grant - grant rejected
     ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation when grant is rejected
-    ...    Pre-conditions: 
+    ...    Pre-conditions: none
     ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none

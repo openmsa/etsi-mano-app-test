@@ -79,7 +79,7 @@ PATCH Individual VNFInstance Precondition failed
 PATCH Individual VNFInstance Conflict
     [Documentation]    Test ID: 6.3.5.2.6
     ...    Test title: PATCH Individual VNFInstance Conflict
-    ...    Test objective: The objective is to verify that The PATCH operation cannot be executed currently, due to a conflict with the state of the VNF instance resource because anyother LCM Operation is ongoing.
+    ...    Test objective: The objective is to verify that modification operation cannot be executed currently, due to a conflict with the state of the VNF instance resource because another LCM Operation is ongoing. 
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
@@ -104,7 +104,7 @@ DELETE Individual VNFInstance
 DELETE Individual VNFInstance Conflict
      [Documentation]    Test ID: 6.3.5.2.8
     ...    Test title: DELETE Individual VNFInstance Conflict
-    ...    Test objective: The objective is to verify that The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Test objective: The objective is to verify that The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource.
     ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
     ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE

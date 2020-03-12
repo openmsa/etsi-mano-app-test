@@ -25,7 +25,7 @@ POST Create a new subscription
 Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 7.3.1.17.2
     ...    Test title: POST Create a new subscription - DUPLICATION
-    ...    Test objective: The objective is to test that POST method create a duplicate (same cakkbackurl and filter) subscription
+    ...    Test objective: The objective is to test request to create a duplicate (same cakkbackurl and filter) subscription
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -38,7 +38,7 @@ Create a new Subscription - DUPLICATION
 Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 7.3.1.17.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
-    ...    Test objective: The objective is to test that POST method does not create a duplicate (same callbackurl and filter) subscription
+    ...    Test objective: The objective is to test the request that does not create a duplicate (same callbackurl and filter) subscription
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -87,59 +87,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Get subscriptions - invalid filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
-
-GET subscriptions with all_fields attribute selector
-     [Documentation]    Test ID: 7.3.1.17.7
-    ...    Test title: GET subscriptions with all_fields attribute selector
-    ...    Test objective: The objective is Get the list of active subscriptions
-    ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: none
-    ...    Post-Conditions: none 
-    Get subscriptions with all_fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    Subscriptions
-
-GET subscriptions with exclude_default attribute selector
-     [Documentation]    Test ID: 7.3.1.17.8
-    ...    Test title: GET subscriptions with exclude_default attribute selector
-    ...    Test objective: The objective is Get the list of active subscriptions
-    ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: none
-    ...    Post-Conditions: none 
-    Get subscriptions with exclude_default attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    Subscriptions
-
-GET subscriptions with fields attribute selector
-     [Documentation]    Test ID: 7.3.1.17.9
-    ...    Test title: GET subscriptions with fields attribute selector
-    ...    Test objective: The objective is Get the list of active subscriptions
-    ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: none
-    ...    Post-Conditions: none 
-    Get subscriptions with fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    Subscriptions
-
-GET subscriptions with exclude_fields attribute selector
-     [Documentation]    Test ID: 7.3.1.17.10
-    ...    Test title: GET subscriptions with exclude_fields attribute selector
-    ...    Test objective: The objective is Get the list of active subscriptions
-    ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: none
-    ...    Post-Conditions: none 
-    Get subscriptions with exclude_fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    Subscriptions
-
+    
 PUT subscriptions - Method not implemented
     [Documentation]    Test ID: 7.3.1.17.11
     ...    Test title: PUT subscriptions - Method not implemented

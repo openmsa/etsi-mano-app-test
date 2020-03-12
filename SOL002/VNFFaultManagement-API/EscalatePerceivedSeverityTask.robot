@@ -20,7 +20,7 @@ Escalate the perceived severity
 GET Escalate the perceived severity - Method not implemented
     [Documentation]    Test ID: 6.3.4.3.2
     ...    Test title: GET Escalate the perceived severity - Method not implemented
-    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Test objective: The objective is to test that the escalate perceived severity method is not implemented
     ...    Pre-conditions: 
     ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -32,7 +32,7 @@ GET Escalate the perceived severity - Method not implemented
 PUT Escalate the perceived severity - Method not implemented
     [Documentation]    Test ID: 6.3.4.3.3
     ...    Test title: PUT Escalate the perceived severity - Method not implemented
-    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Test objective: The objective is to test that the escalate perceived severity method is not implemented
     ...    Pre-conditions: 
     ...    Reference: clause 7.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -44,7 +44,7 @@ PUT Escalate the perceived severity - Method not implemented
 PATCH Escalate the perceived severity - Method not implemented
     [Documentation]    Test ID: 6.3.4.3.4
     ...    Test title: PATCH Escalate the perceived severity - Method not implemented
-    ...    Test objective: The objective is to test that the method is not implemented
+    ...    Test objective: The objective is to test that the escalate perceived severity method is not implemented
     ...    Pre-conditions: 
     ...    Reference: clause 7.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM

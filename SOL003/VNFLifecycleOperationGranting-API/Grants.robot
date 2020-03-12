@@ -46,13 +46,13 @@ Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
 Requests a grant for a particular VNF lifecycle operation - Forbidden 
     [Documentation]    Test ID: 7.3.2.1.3
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Forbidden 
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and check the content of the problem details data structure returned
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and the grant is rejected
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Send Request a new Grant Forbidden Operation
+    Send Request for a new Grant Forbiden Operation
     Check HTTP Response Status Code Is    403
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -130,7 +130,7 @@ Send Request Grant Request in Asynchronous mode
     ${body}=    Output    response
     Set Suite Variable    &{response}    ${body}
     
-Send Request a new Grant Forbidden Operation   
+Send Request for a new Grant Forbiden Operation   
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Log    The grant request should be rejected
     Set Headers    {"Accept": "${ACCEPT}"}

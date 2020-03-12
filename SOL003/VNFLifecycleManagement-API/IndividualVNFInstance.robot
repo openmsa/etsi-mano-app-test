@@ -66,8 +66,8 @@ PATCH Individual VNFInstance
 PATCH Individual VNFInstance Precondition failed
      [Documentation]    Test ID: 7.3.1.2.5
     ...    Test title: PATCH Individual VNFInstance Precondition failed
-    ...    Test objective: The objective is to test that PATCH method is not allowed to modify VNF Instance because pre-condition failed
-    ...    Pre-conditions:  VNF Instance is already created (Test ID 7.3.1.2.2)
+    ...    Test objective: The objective is to test the failure of modification of a vnf instance due to Etag Mismatch. The test also check the JSON schema of failed operation HTTP response. 
+    ...    Pre-conditions:  VNF Instance is already instantiated.
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -79,8 +79,8 @@ PATCH Individual VNFInstance Precondition failed
 PATCH Individual VNFInstance Conflict
      [Documentation]    Test ID: 7.3.1.2.6
     ...    Test title: PATCH Individual VNFInstance Conflict
-    ...    Test objective: The objective is to test the conflict while modifying a VNF instance resource
-    ...    Pre-conditions: another LCM operation is ongoing
+    ...    Test objective: The objective is to test the conflict while modifying a VNF instance resource because another LCM Operation is ongoing.
+    ...    Pre-conditions: Another LCM operation is ongoing
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 

@@ -400,7 +400,7 @@ Send DELETE Request for indicators in VNF instance
 
 Check HTTP Response Body Includes Requested VNF Instances ID
     Log    Check Response includes Indicators according to resource identifier
-    Should Be Equal As Strings   ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
+    Should Be Equal As Strings   ${response['body'][0]['vnfInstanceId']}    ${vnfInstanceId}
 
 Check Postcondition Indicators for VNF instance Exist
     Log    Check Postcondition Indicators for VNF instance Exist

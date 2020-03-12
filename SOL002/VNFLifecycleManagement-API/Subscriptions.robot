@@ -19,6 +19,7 @@ POST Create a new subscription
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
+    
 POST Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 6.3.5.17.2
     ...    Test title: POST Create a new subscription - DUPLICATION
