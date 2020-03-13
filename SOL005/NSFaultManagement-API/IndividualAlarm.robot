@@ -14,7 +14,7 @@ POST Individual Alarm - Method not implemented
     ...    Test title:POST Individual Alarm - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed for Fault management individual alarm on NFV
     ...    Pre-conditions: none
-    ...    Reference: clause 8.4.3.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.3.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions:  alarm is not created
@@ -26,7 +26,7 @@ GET information about Individual Alarm
     ...    Test title: GET information about Individual Alarm 
     ...    Test objective: The objective is to retrieve information about individual alarm and perform a JSON schema and content validation of the returned alarm data structure
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 8.4.3.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: none   
@@ -39,7 +39,7 @@ GET information about Invalid Individual Alarm
     ...    Test title: GET information about Invalid Individual Alarm 
     ...    Test objective: The objective is to try to read an Invalid individual alarm and get 404 not found response code
     ...    Pre-conditions: The related alarm does not exists
-    ...    Reference: clause 8.4.3.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:   none 
@@ -52,7 +52,7 @@ PUT Individual Alarm - Method not implemented
     ...    Test title:PUT Individual Alarm - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed for Fault management individual alarm on NFV
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.3.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.3.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:   none
@@ -64,7 +64,7 @@ PATCH Alarm
     ...    Test title: Modify an individual alarm resource
     ...    Test objective: The objective is to Modify an individual alarm resource and perform a JSON schema and content validation of the returned alarm modifications data structure
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 8.4.3.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.3.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:  none
@@ -75,9 +75,9 @@ PATCH Alarm
 PATCH Alarm - Conflict
     [Documentation]    Test ID: 5.3.3.2.6
     ...    Test title: Modify an individual alarm resource - Conflict
-    ...    Test objective: The objective is to test that we cannot Modify an individual alarm resource if the alarm is already in the state that is requested to be set
+    ...    Test objective: The objective is to test that an individual alarm resource cannot be modified if the alarm is already in the state that is requested to be set
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 8.4.3.3.4 - SOL002 v2.4.1
+    ...    Reference: clause 8.4.3.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -89,9 +89,9 @@ PATCH Alarm - Conflict
 PATCH Alarm - Precondition failed
     [Documentation]    Test ID: 5.3.3.2.7
     ...    Test title: Modify an individual alarm resource - Precondition failed
-    ...    Test objective: The objective is to test that we cannot Modify an individual alarm resource if the resource was modified by another entity
+    ...    Test objective: The objective is to test that an individual alarm resource cannot be modifed if the resource was modified by another entity
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 8.4.3.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.3.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: 
@@ -104,7 +104,7 @@ DELETE Individual Alarm - Method not implemented
     ...    Test title:DELETE Individual Alarm - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed for Fault management individual alarm on NFV
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.3.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 8.4.3.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: alarm not deleted

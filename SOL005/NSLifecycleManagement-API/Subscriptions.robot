@@ -12,7 +12,7 @@ POST Create a new subscription
     ...    Test title: POST Create a new subscription
     ...    Test objective: The objective is to test that POST method create a subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: subscription is created in the NFVO     
@@ -26,8 +26,8 @@ POST Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.2
     ...    Test title: POST Create a new subscription - DUPLICATION
     ...    Test objective: The objective is to test that POST method create a duplicate subscription 
-    ...    Pre-conditions: a subscription have already to exist
-    ...    Reference: clause 6.4.16.3.1 - SOL005 v2.4.1
+    ...    Pre-conditions: a subscription shall already exist
+    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: duplication supported by NFVO
     ...    Post-Conditions: duplicate subscription is created in the NFVO     
@@ -39,9 +39,9 @@ POST Create a new Subscription - DUPLICATION
 POST Create a new Subscription - NO-DUPLICATION
     [Documentation]    Test ID: 5.3.2.15.3
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
-    ...    Test objective: The objective is to test that POST method can't create a duplicate subscription 
-    ...    Pre-conditions: a subscription have already to exist
-    ...    Reference: clause 6.4.16.3.1 - SOL005 v2.4.1
+    ...    Test objective: The objective is to test that POST method cannot create a duplicate subscription 
+    ...    Pre-conditions: a subscription shall already exist
+    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: duplication NOT supported by NFVO
     ...    Post-Conditions: duplicate subscription is not created in the NFVO     
@@ -54,7 +54,7 @@ GET Subscriptions
     ...    Test title: GET Subscriptions
     ...    Test objective: The objective is to test that GET method  retrieve the list of existing subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -67,7 +67,7 @@ GET Subscription - Filter
     ...    Test title: GET Subscription - Filter
     ...    Test objective: The objective is Get the list of active subscriptions using a filter
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -80,7 +80,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is Get the list of active subscriptions using an invalid filter
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -93,7 +93,7 @@ GET subscriptions with "all_fields" attribute selector
     ...    Test title: GET subscriptions with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -106,7 +106,7 @@ GET subscriptions with "exclude_default" attribute selector
     ...    Test title: GET subscriptions with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -119,7 +119,7 @@ GET subscriptions with "fields" attribute selector
     ...    Test title: GET subscriptions with "fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -132,7 +132,7 @@ GET subscriptions with "exclude_fields" attribute selector
     ...    Test title: GET subscriptions with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.16.3.2 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -143,9 +143,9 @@ GET subscriptions with "exclude_fields" attribute selector
 PUT subscriptions - Method not implemented
      [Documentation]    Test ID: 5.3.2.15.7
     ...    Test title: PUT subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that PUT method can't modify a NS lifecycle management subscription
+    ...    Test objective: The objective is to test that PUT method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.3 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -155,9 +155,9 @@ PUT subscriptions - Method not implemented
 PATCH subscriptions - Method not implemented
     [Documentation]    Test ID: 5.3.2.15.8
     ...    Test title: PATCH subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that PUT method can't modify a NS lifecycle management subscription
+    ...    Test objective: The objective is to test that PUT method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.4 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -167,9 +167,9 @@ PATCH subscriptions - Method not implemented
 DELETE subscriptions - Method not implemented
     [Documentation]    Test ID: 5.3.2.15.9
     ...    Test title: DELETE subscriptions - Method not implemented
-    ...    Test objective: The objective is to test that DELETE method can't modify a NS lifecycle management subscription
+    ...    Test objective: The objective is to test that DELETE method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.5 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.16.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: Subscription is not deleted

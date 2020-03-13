@@ -14,7 +14,7 @@ Create new Virtualised Resources Quota Available Notification subscription
     ...    Test title: Create new Virtualised Resources Quota Available Notification subscription
     ...    Test objective: The objective is to create a new Virtualised Resources Quota Available Notification subscription and perform a JSON schema and content validation of the returned subscription data structure 
     ...    Pre-conditions: no subscription with the same filter and callbackUri exists
-    ...    Reference: clause 11.4.2.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -29,7 +29,7 @@ Create new Virtualised Resources Quota Available Notification subscription - DUP
     ...    Test title: Create new Virtualised Resources Quota Available Notification subscription - DUPLICATION
     ...    Test objective: The objective is to create a new Virtualised Resources Quota Available Notification subscription and perform a JSON schema and content validation of the returned duplicated subscription data structure
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: clause 11.4.2.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: the VNFM allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: none
@@ -43,7 +43,7 @@ Create new Virtualised Resources Quota Available Notification subscription - NO-
     ...    Test title: Create new Virtualised Resources Quota Available Notification subscription - NO-DUPLICATION
     ...    Test objective: The objective is to create a nduplicated Virtualised Resources Quota Available Notification subscription and verify that the VNF does not allow duplication
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: clause 11.4.2.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: the VNFM decides to not create a duplicate subscription resource 
     ...    Post-Conditions: none
@@ -56,7 +56,7 @@ GET Virtualised Resources Quota Available Notification Subscriptions
     ...    Test title: GET Virtualised Resources Quota Available Notification Subscriptions 
     ...    Test objective: The objective is to retrieve the list of active Virtualised Resources Quota Available Notification subscriptions and perform a JSON schema and content validation of the returned  subscriptions data structure
     ...    Pre-conditions: none
-    ...    Reference: clause 11.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -69,7 +69,7 @@ GET Virtualised Resources Quota Available Notification Subscriptions with attrib
     ...    Test title: GET Virtualised Resources Quota Available Notification Subscriptions with attribute-based Filter
     ...    Test objective: The objective is to retrieve the list of active Virtualised Resources Quota Available Notification subscriptions and perform a JSON schema and content validation of the returned subscriptions data structure, and verify that the retrieved information matches the issued attribute-based filters
     ...    Pre-conditions: none
-    ...    Reference: clause 11.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -82,7 +82,7 @@ GET Virtualised Resources Quota Available Notification subscriptions - Bad Reque
     ...    Test title: GET Virtualised Resources Quota Available Notification subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to retrieve the list of active Virtualised Resources Quota Available Notification subscriptions with invalid attribute-based filtering parameters, and verify that problem details are returned 
     ...    Pre-conditions: none
-    ...    Reference: clause 11.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none 
     ...    Post-Conditions: none
@@ -95,7 +95,7 @@ PUT Virtualised Resources Quota Available Notification subscriptions - Method no
     ...    Test title: PUT Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update existing Virtualised Resources Quota Available Notification subscriptions instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference: clause 11.4.2.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -107,7 +107,7 @@ PATCH Virtualised Resources Quota Available Notification subscriptions - Method 
     ...    Test title: PATCH Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify Virtualised Resources Quota Available Notification subscriptions instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference: clause 11.4.2.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -119,7 +119,7 @@ DELETE Virtualised Resources Quota Available Notification subscriptions - Method
     ...    Test title: DELETE Virtualised Resources Quota Available Notification subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to delete Virtualised Resources Quota Available Notification subscriptions instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference: clause 11.4.2.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 11.4.2.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none

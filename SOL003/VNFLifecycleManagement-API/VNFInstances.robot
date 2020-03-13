@@ -14,7 +14,7 @@ POST Create a new vnfInstance
     ...    Test title: POST Create a new vnfInstance
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.2.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: VNF instance created
@@ -27,7 +27,7 @@ GET information about multiple VNF instances
     ...    Test title: GET information about multiple VNF instances
     ...    Test objective: The objective is to query information about multiple VNF instances
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -39,8 +39,8 @@ GET information about multiple VNF instances Bad Request Invalid attribute-based
     [Documentation]    Test ID: 7.3.1.1.3
     ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute-based filtering parameters
-    ...    Pre-conditions:  A VNF is instantiated,  a bad filter selector (filter selectors are listed in Table 5.4.2.3.2-1  - SOL003 v2.4.1).
-    ...    Reference: clause 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Pre-conditions:  A VNF is instantiated,  a bad filter selector (filter selectors are listed in Table 5.4.2.3.2-1  - ETSI GS NFV-SOL 003 [1] v2.4.1).
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -53,8 +53,8 @@ GET information about multiple VNF instances Bad Request Invalid attribute selec
     [Documentation]    Test ID: 7.3.1.1.4
     ...    Test title: GET information about multiple VNF instances Bad Request Invalid attribute selector
     ...    Test objective: The objective is to query information about multiple VNF instances with Invalid attribute selector
-    ...    Pre-conditions:  A VNF is instantiated,  a bad attribute selector (attribute selectors are listed in Table 5.4.2.3.2-1  - SOL003 v2.4.1).
-    ...    Reference: clause 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Pre-conditions:  A VNF is instantiated,  a bad attribute selector (attribute selectors are listed in Table 5.4.2.3.2-1  - ETSI GS NFV-SOL 003 [1] v2.4.1).
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -67,7 +67,7 @@ GET information about multiple VNF instances with "all_fields" attribute selecto
     ...    Test title: GET information about multiple VNF instances with "all_fields" attribute selector
     ...    Test objective: The objective is to query information about multiple VNF instances
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -80,7 +80,7 @@ GET information about multiple VNF instances with "exclude_default" attribute se
     ...    Test title: GET information about multiple VNF instances with "exclude_default" attribute selector
     ...    Test objective: The objective is to query information about multiple VNF instances
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -93,7 +93,7 @@ GET information about multiple VNF instances with "fields" attribute selector
     ...    Test title: GET information about multiple VNF instances with "fields" attribute selector
     ...    Test objective: The objective is to query information about multiple VNF instances
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -106,7 +106,7 @@ GET information about multiple VNF instances with "exclude_fields" attribute sel
     ...    Test title: GET information about multiple VNF instances with "exclude_fields" attribute selector
     ...    Test objective: The objective is to query information about multiple VNF instances
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.2.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -119,7 +119,7 @@ PUT multiples VNFInstances - Method not implemented
     ...    Test title: PUT multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.2.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -131,7 +131,7 @@ PATCH multiples VNFInstances - Method not implemented
     ...    Test title: PATCH multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.2.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -143,7 +143,7 @@ DELETE VNFInstances - Method not implemented
     ...    Test title: DELETE multiples VNFInstances - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.2.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.2.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 

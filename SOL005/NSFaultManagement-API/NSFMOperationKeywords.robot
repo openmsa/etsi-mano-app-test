@@ -14,7 +14,7 @@ Create Sessions
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}:${callback_port}     #The API producer is set to NFVO according to SOL002-7.3.4
     
-Check Individual Subscription existance
+Check Individual Subscription existence
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 

@@ -12,7 +12,7 @@ POST VNF LCM Operation occurrences - Method not implemented
     ...    Test title: POST VNF LCM Operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.1 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -24,7 +24,7 @@ GET status information about multiple VNF LCM Operation OCC
     ...    Test title: GET status information about multiple VNF LCM Operation OCC
     ...    Test objective: The objective is to test that GET method retrieve Query status information about multiple VNF lifecycle management operation occurrences.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -37,7 +37,7 @@ GET status information about multiple VNF LCM Operation OCC Bad Request Invalid 
     ...    Test title: GET status information about multiple VNF LCM Operation OCC Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to test that GET method fail retrieving status information about multiple VNF lifecycle management operation occurrences because attribute is invalid.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -50,7 +50,7 @@ GET status information about multiple VNF LCM Operation OCC Bad Request Invalid 
     ...    Test title: GET status information about multiple VNF LCM Operation OCC Bad Request Invalid attribute selector
     ...    Test objective: The objective is to test that GET method fail retrieving status information about multiple VNF lifecycle management operation occurrences because attribute is invalid.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -63,7 +63,7 @@ GET status information about multiple VNF LCM Operation OCC with "all_fields"
     ...    Test title: GET status information about multiple VNF LCM Operation OCC with "all_fields"
     ...    Test objective: The objective is to test that GET method retrieve Query status information about multiple VNF lifecycle management operation occurrences.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -76,7 +76,7 @@ GET status information about multiple VNF LCM Operation OCC with "exlude_default
     ...    Test title: GET status information about multiple VNF LCM Operation OCC with "exclude_default"
     ...    Test objective: The objective is to test that GET method retrieve Query status information about multiple VNF lifecycle management operation occurrences.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -89,7 +89,7 @@ GET status information about multiple VNF LCM Operation OCC with "fields"
     ...    Test title: GET status information about multiple VNF LCM Operation OCC with "fields"
     ...    Test objective: The objective is to test that GET method retrieve Query status information about multiple VNF lifecycle management operation occurrences.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -102,7 +102,7 @@ GET status information about multiple VNF LCM Operation OCC with "exclude_fields
     ...    Test title: GET status information about multiple VNF LCM Operation OCC with "exclude_fields"
     ...    Test objective: The objective is to test that GET method retrieve Query status information about multiple VNF lifecycle management operation occurrences.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.2 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -115,7 +115,7 @@ PUT status information about multiple VNF LCM Operation OCC - Method not impleme
     ...    Test title: PUT status information about multiple VNF LCM Operation OCC - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.3 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -127,7 +127,7 @@ PATCH status information about multiple VNF LCM Operation OCC - Method not imple
     ...    Test title: PATCH status information about multiple VNF LCM Operation OCC - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.4 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -139,7 +139,7 @@ DELETE status information about multiple VNF LCM Operation OCC - Method not impl
     ...    Test title: DELETE status information about multiple VNF LCM Operation OCC - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.12.3.5 - SOL003 v2.4.1
+    ...    Reference: clause 5.4.12.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none

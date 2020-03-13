@@ -14,11 +14,11 @@ Terminate Flow of NS lifecycle management operations
     ...    Test title: Terminate Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Terminate a NS instance
     ...    Pre-conditions: the resource is in INSTANTIATED state
-    ...    Reference: clause 6.4.8 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.8 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: the resource is in NOT_INSTANTIATED state
-    Check resource existance
+    Check resource existence
     Check resource instantiated
     POST Terminate NSInstance
     Check HTTP Response Status Code Is    202

@@ -13,8 +13,8 @@ GET all Network Service Descriptors Information
     [Documentation]    Test ID: 5.3.1.1.1
     ...    Test title: GET all Network Service Descriptors Information
     ...    Test objective: The objective is to test the retrieval of all the Network Service Descriptors information and perform a JSON schema and content validation of the collected data structure
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -26,8 +26,8 @@ GET Network Service Descriptors Information with attribute-based filter
     [Documentation]    Test ID: 5.3.1.1.2
     ...    Test title: GET Network Service Descriptors Information with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of Network Service Descriptors information using attribute-based filter, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued attribute-based filter
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -40,8 +40,8 @@ GET Network Service Descriptors Information with invalid attribute-based filter
         [Documentation]    Test ID: 5.3.1.1.3
     ...    Test title: GET Network Service Descriptors Information with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of Network Service Descriptors information fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -53,8 +53,8 @@ Get all Network Service Descriptors Information with malformed authorization tok
     [Documentation]    Test ID: 5.3.1.1.4
     ...    Test title: Get all Network Service Descriptors Information with malformed authorization token
     ...    Test objective: The objective is to test that the retrieval of Network Service Descriptors Information fails when using malformed authorization token
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.5.3.3, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 4.5.3.3, 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
     ...    Post-Conditions: none
@@ -65,8 +65,8 @@ Get all Network Service Descriptors Information without authorization token
     [Documentation]    Test ID: 5.3.1.1.5
     ...    Test title: Get all Network Service Descriptors Information without authorization token
     ...    Test objective: The objective is to test that the retrieval of Network Service Descriptors Information fails when omitting the authorization token
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.5.3.3, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 4.5.3.3, 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
     ...    Post-Conditions: none
@@ -77,8 +77,8 @@ GET all Network Service Descriptors Information with expired or revoked authoriz
     [Documentation]    Test ID: 5.3.1.1.6
     ...    Test title: GET all Network Service Descriptors Information with expired or revoked authorization token
     ...    Test objective: The objective is to test that the retrieval of Network Service Descriptors Information fails when using expired or revoked authorization token
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.5.3.3, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 4.5.3.3, 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
     ...    Post-Conditions: none
@@ -89,8 +89,8 @@ GET all Network Service Descriptors Information with "all_fields" attribute sele
     [Documentation]    Test ID: 5.3.1.1.7
     ...    Test title: GET all Network Service Descriptors Information with "all_fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with "all_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "all_fileds" selector
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 4.3.3.2.1, 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -103,8 +103,8 @@ GET all Network Service Descriptors Information with "exclude_default" attribute
     [Documentation]    Test ID: 5.3.1.1.8
     ...    Test title: GET all Network Service Descriptors Information with "exclude_default" attribute selector
     ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with "exclude_default" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_default" selector
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 4.3.3.2.1, 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -117,8 +117,8 @@ GET all Network Service Descriptors Information with "fields" attribute selector
     [Documentation]    Test ID: 5.3.1.1.9
     ...    Test title: GET all Network Service Descriptors Information with "fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with "fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "fields" selector
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 4.3.3.2.1, 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports the use of "fields" attribute selector
     ...    Post-Conditions: none
@@ -131,8 +131,8 @@ GET all Network Service Descriptors Information with "exclude_fields" attribute 
     [Documentation]    Test ID: 5.3.1.1.10
     ...    Test title: GET all Network Service Descriptors Information with "exclude_fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of all Network Service Descriptors Information with "exclude_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_fields" selector
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 5.4.2.3.2 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 4.3.3.2.1, 5.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports the use of "exclude_fields" attribute selector
     ...    Post-Conditions: none
@@ -146,7 +146,7 @@ Create new Network Service Descriptor Resource
     ...    Test title:  Create new Network Service Descriptor Resource
     ...    Test objective: The objective is to test the creation of a new Create new Network Service Descriptor resource and perform the JSON schema validation of the returned structure
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.2.3.1 - SOL005 v2.4.1
+    ...    Reference: clause 5.4.2.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The Network Service Descriptor resource is successfully created on the NFVO
@@ -160,8 +160,8 @@ PUT all Network Service Descriptors - Method not implemented
     [Documentation]    Test ID: 5.3.1.1.12
     ...    Test title: PUT all Network Service Descriptors Information - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify Network Service Descriptors Information
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.2.3.3 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 5.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -172,8 +172,8 @@ PATCH all Network Service Descriptors - Method not implemented
     [Documentation]    Test ID: 5.3.1.1.13
     ...    Test title: PATCH all Network Service Descriptors Information - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update Network Service Descriptors Information
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.2.3.4 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 5.4.2.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -184,8 +184,8 @@ DELETE all Network Service Descriptors - Method not implemented
     [Documentation]    Test ID: 5.3.1.1.14
     ...    Test title: DELETE all Network Service Descriptors Information - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete Network Service Descriptors Information
-    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.2.3.5 - SOL005 v2.4.1
+    ...    Pre-conditions: One or more Network Service Descriptors are onboarded in the NFVO
+    ...    Reference: clause 5.4.2.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The Network Service Descriptors are not deleted by the failed operation

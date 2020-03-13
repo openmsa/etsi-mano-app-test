@@ -23,7 +23,7 @@ Create Sessions
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}:${callback_port}   
     
-Check subscription existance
+Check subscription existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -143,7 +143,7 @@ Launch another LCM operation
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/scale_to_level    ${body}
     Integer    response status    202
 
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -355,7 +355,7 @@ GET Instantiate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 	
- POST Instatiate nsInstance
+ POST Instantiate nsInstance
     Log    Trying to Instantiate a ns Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -541,7 +541,7 @@ POST Terminate NSInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
 		
-POST NS LCM OP Occurences
+POST NS LCM OP Occurrences
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -549,7 +549,7 @@ POST NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-PUT NS LCM OP Occurences
+PUT NS LCM OP Occurrences
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -557,7 +557,7 @@ PUT NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-PATCH NS LCM OP Occurences
+PATCH NS LCM OP Occurrences
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -565,7 +565,7 @@ PATCH NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-DELETE NS LCM OP Occurences
+DELETE NS LCM OP Occurrences
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -573,7 +573,7 @@ DELETE NS LCM OP Occurences
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-GET NS LCN OP Occurences
+GET NS LCM OP Occurrences
     Log    Query status information about multiple NS lifecycle management operation occurrences.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -582,7 +582,7 @@ GET NS LCN OP Occurences
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
  
-GET NS LCN OP Occurences Invalid attribute-based filtering parameters
+GET NS LCM OP Occurrences Invalid attribute-based filtering parameters
     Log    Query status information about multiple NS lifecycle management operation occurrences.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
@@ -590,35 +590,35 @@ GET NS LCN OP Occurences Invalid attribute-based filtering parameters
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-GET NS LCN OP Occurences Invalid attribute selector
+GET NS LCM OP Occurrences Invalid attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences.
     Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
 	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?${NEG_SELECTOR}
 	${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
-Get NS LCN OP Occurences with all_fields attribute selector
+Get NS LCM OP Occurrences with all_fields attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?exclude_default
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
-Get NS LCN OP Occurences with exclude_default attribute selector
+Get NS LCM OP Occurrences with exclude_default attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?exclude_default
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
-Get NS LCN OP Occurences with fields attribute selector
+Get NS LCM OP Occurrences with fields attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?fields=${fields}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}	
-Get NS LCN OP Occurences with exclude_fields attribute selector
+Get NS LCM OP Occurrences with exclude_fields attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
@@ -626,7 +626,7 @@ Get NS LCN OP Occurences with exclude_fields attribute selector
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
     
-POST Individual NS LCM OP Occurence
+POST Individual NS LCM OP Occurrence
     log    Trying to perform a POST. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -634,7 +634,7 @@ POST Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-PUT Individual NS LCM OP Occurence
+PUT Individual NS LCM OP Occurrence
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -642,7 +642,7 @@ PUT Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-PATCH Individual NS LCM OP Occurence
+PATCH Individual NS LCM OP Occurrence
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -650,7 +650,7 @@ PATCH Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-DELETE Individual NS LCM OP Occurence
+DELETE Individual NS LCM OP Occurrence
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -658,7 +658,7 @@ DELETE Individual NS LCM OP Occurence
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse}
 	
-GET Individual NS LCN OP Occurence
+GET Individual NS LCM OP Occurrence
     Log    Query status information about individual NS lifecycle management operation occurrence.
 	Set Headers  {"Accept":"${ACCEPT}"}  
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

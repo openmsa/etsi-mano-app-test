@@ -14,13 +14,13 @@ Instantiate Flow of NS lifecycle management operations
     ...    Test title: Instantiate Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Instantiate a NS instance
     ...    Pre-conditions: the resource is in NOT_INSTANTIATED state
-    ...    Reference: clause 6.4.4 - SOL005 v2.4.1
+    ...    Reference: clause 6.4.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: the resource is in INSTANTIATED state
-    Check resource existance
+    Check resource existence
     Check resource not_instantiated
-    POST Instatiate nsInstance
+    POST Instantiate nsInstance
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
     Check Operation Notification Status is    START

@@ -5,7 +5,7 @@ Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library     OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Suite Setup    Check resource existance
+Suite Setup    Check resource existence
 
 *** Test Cases ***
 POST Change deployment flavour of a vnfInstance
@@ -13,7 +13,7 @@ POST Change deployment flavour of a vnfInstance
     ...    Test title: POST Change deployment flavour of a vnfInstance
     ...    Test objective: The objective is to test that POST method trigger a change in VNF deployment flavour
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.7.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.7.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null  
@@ -24,9 +24,9 @@ POST Change deployment flavour of a vnfInstance
 POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     [Documentation]    Test ID: 6.3.5.6.2
     ...    Test title: POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
-    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. 
+    ...    Test objective: The objective is to test that POST method cannot trigger a change in VNF deployment flavour because of a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.7.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.7.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none  
@@ -38,9 +38,9 @@ POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
 POST Change deployment flavour of a vnfInstance Not Found
     [Documentation]    Test ID: 6.3.5.6.3
     ...    Test title: POST Change deployment flavour of a vnfInstance Not Found
-    ...    Test objective: The objective is to test that POST method can't trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
+    ...    Test objective: The objective is to test that POST method cannot trigger a change in VNF deployment flavour because the VNF instance resource is not found. 
     ...    Pre-conditions: VNF instance resource is not in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.7.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.7.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none  
@@ -54,7 +54,7 @@ GET Change deployment flavour VNFInstance - Method not implemented
     ...    Test title: GET Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.7.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.7.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -66,7 +66,7 @@ PUT Change deployment flavour VNFInstance - Method not implemented
     ...    Test title: PUT Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.7.3.3 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.7.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -78,7 +78,7 @@ PATCH Change deployment flavour VNFInstance - Method not implemented
     ...    Test title: PATCH Cancel operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.7.3.4 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.7.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -90,7 +90,7 @@ DELETE Change deployment flavour VNFInstance - Method not implemented
     ...    Test title: DELETE Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.7.3.5 - SOL002 v2.4.1
+    ...    Reference: clause 5.4.7.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -98,7 +98,7 @@ DELETE Change deployment flavour VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 *** Keywords ***
-Check resource existance
+Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

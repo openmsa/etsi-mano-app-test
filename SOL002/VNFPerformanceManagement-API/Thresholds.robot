@@ -12,7 +12,7 @@ GET All Performance Thresholds
     ...    Test title: GET All Performance Thresholds
     ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds and perform a JSON schema validation of the collected thresholds data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -25,7 +25,7 @@ GET Performance Thresholds with attribute-based filter
     ...    Test title: GET Performance Thresholds with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds when using attribute-based filters, perform a JSON schema validation of the collected thresholds data structure, and verify that the retrieved information matches the issued attribute-based filter
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -39,7 +39,7 @@ GET Performance Thresholds with invalid attribute-based filter
     ...    Test title: GET Performance Thresholds with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -51,7 +51,7 @@ GET Performance Thresholds with invalid resource endpoint
     ...    Test title: GET Performance Thresholds with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when using invalid resource endpoint, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.2 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -64,7 +64,7 @@ Create new Performance Threshold
     ...    Test title:  Create new Performance Threshold
     ...    Test objective: The objective is to test the creation of a new VNF performance threshold and perform the JSON schema validation of the returned threshold data structure
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 6.4.5.3.1 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF Performance Threshold is successfully created on the VNFM
@@ -79,7 +79,7 @@ PUT Performance Thresholds - Method not implemented
     ...    Test title: PUT Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNF.
-    ...    Reference: clause 6.4.5.3.3 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.5.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -91,7 +91,7 @@ PATCH Performance Thresholds - Method not implemented
     ...    Test title: PATCH Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.4 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.5.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -103,7 +103,7 @@ DELETE Performance Thresholds - Method not implemented
     ...    Test title: DELETE Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to update VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.5 - SOL002 v2.4.1
+    ...    Reference: clause 6.4.5.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF performance thresholds are not deleted by the failed operation
