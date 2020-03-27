@@ -20,10 +20,10 @@ POST API Version - Method not implemented
     POST API Version
 	Check HTTP Response Status Code Is    405
     
-GET Cancel operation task - Method not implemented
+GET API Version
     [Documentation]    Test ID: 6.3.5.20.2
-    ...    Test title: GET Cancel operation task - Method not implemented
-    ...    Test objective: The objective is to test that GET method is not implemented
+    ...    Test title: GET API Version
+    ...    Test objective: The objective is to test that GET method successfully return ApiVersionInformation
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.17.3.2 - ETSI NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
@@ -81,10 +81,10 @@ POST API Version with apiMajorVerion - Method not implemented
     POST API Version
 	Check HTTP Response Status Code Is    405
     
-GET Cancel operation task with apiMajorVerion - Method not implemented
+GET API Version with apiMajorVerion
     [Documentation]    Test ID: 6.3.5.20.2
-    ...    Test title: GET Cancel operation task with apiMajorVerion - Method not implemented
-    ...    Test objective: The objective is to test that GET method is not implemented
+    ...    Test title: GET API Version with apiMajorVerion
+    ...    Test objective: The objective is to test that GET method successfully return ApiVersionInformation
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.17.3.2 - ETSI NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
