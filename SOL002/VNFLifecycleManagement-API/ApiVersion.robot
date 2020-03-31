@@ -70,7 +70,7 @@ DELETE API Version - Method not implemented
 	Check HTTP Response Status Code Is    405
 	
 POST API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID: 6.3.5.20.1
+    [Documentation]    Test ID: 6.3.5.20.6
     ...    Test title: POST API version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
@@ -82,7 +82,7 @@ POST API Version with apiMajorVerion - Method not implemented
 	Check HTTP Response Status Code Is    405
     
 GET API Version with apiMajorVerion
-    [Documentation]    Test ID: 6.3.5.20.2
+    [Documentation]    Test ID: 6.3.5.20.7
     ...    Test title: GET API Version with apiMajorVerion
     ...    Test objective: The objective is to test that GET method successfully return ApiVersionInformation
     ...    Pre-conditions: none
@@ -95,7 +95,7 @@ GET API Version with apiMajorVerion
 	Check HTTP Response Body Json Schema Is    ApiVersionInformation
 
 PUT API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID:6.3.5.20.3
+    [Documentation]    Test ID:6.3.5.20.8
     ...    Test title: PUT API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -107,7 +107,7 @@ PUT API Version with apiMajorVerion - Method not implemented
 	Check HTTP Response Status Code Is    405
 
 PATCH API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID: 6.3.5.20.4
+    [Documentation]    Test ID: 6.3.5.20.9
     ...    Test title: PATCH API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -119,7 +119,7 @@ PATCH API Version with apiMajorVerion - Method not implemented
 	Check HTTP Response Status Code Is    405
     
 DELETE API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID: 6.3.5.20.5
+    [Documentation]    Test ID: 6.3.5.20.10
     ...    Test title: DELETE API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
