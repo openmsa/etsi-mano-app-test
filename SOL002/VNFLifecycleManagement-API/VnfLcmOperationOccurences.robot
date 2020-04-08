@@ -146,3 +146,4 @@ DELETE status information about multiple VNF LCM operation occurrences - Method 
     ...    Post-Conditions: Verify that resources are not deleted
     DELETE VNF LCM OP occurences
     Check HTTP Response Status Code Is    405
+    Check LCM OP OCC resource exist

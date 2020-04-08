@@ -15,7 +15,7 @@ NS Instance Deletion
     ...    Reference: clause 6.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: Resource should be deleted
+    ...    Post-Conditions: NS Instance resource is deleted
     Check resource not_instantiated
     DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    204

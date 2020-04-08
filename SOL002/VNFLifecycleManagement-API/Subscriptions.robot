@@ -171,4 +171,5 @@ DELETE subscriptions - Method not implemented
     ...    Post-Conditions: check that resources are not deleted
     DELETE subscriptions
 	Check HTTP Response Status Code Is    405
+	Check Subscription resource exist
     

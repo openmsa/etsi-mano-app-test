@@ -17,7 +17,7 @@ Heal Flow of NS lifecycle management operations
     ...    Reference: clause 6.4.7 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: Resource Instantiated
+    ...    Post-Conditions: NS Instance still in INSTANTIATED state
     Check resource instantiated
     POST Heal NSInstance
     Check HTTP Response Status Code Is    202
