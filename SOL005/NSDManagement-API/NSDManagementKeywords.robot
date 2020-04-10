@@ -445,6 +445,18 @@ Send PUT Request to upload NSD Content as plain text file in synchronous mode
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
 
+Check Post Condition NSD Content has been Uploaded
+    Log    Checking NsdOnboardingNotification Recieved
+    Wait Until Keyword Succeeds    ${retry}    ${interval}  Check Response is NsdOnboardingNotification
+
+Check Response is NsdOnboardingNotification
+    ${response}=    Output    response body
+    Should Contain    ${response['headers']['Content-Type']}    application/json
+    ${schema} =    Catenate    SEPARATOR=    NsdOnboardingNotification    .schema.json
+    Validate Json    ${schema}    ${response['body']}
+    Log    Json Schema Validation OK
+
+
 Check Postcondition NSD Content is uploaded and available in the NFVO
     Get single file NSD Content in Plain or Zip Format
     Check HTTP Response Status Code Is    200

@@ -15,6 +15,7 @@ Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process
+Library    String
 
 
 *** Keywords ***
@@ -54,9 +55,9 @@ GET VNF Packages with attribute-based filter
 
 Check HTTP Response Body VnfPkgsInfo Matches the requested Attribute-Based Filter
     Log    Checking that attribute-based filter is matched
-    @{attr} =  Split String    ${POS_FILTER}       ,${VAR_SEPERATOR} 
-    @{var_id} = Split String    @{attr}[0]       ,${SEPERATOR}
-    @{var_provider} = Split String    @{attr}[1]       ,${SEPERATOR}
+    @{attr} =    Split String    ${POS_FILTER}       ,${VAR_SEPERATOR} 
+    @{var_id} =    Split String    @{attr}[0]       ,${SEPERATOR}
+    @{var_provider} =    Split String    @{attr}[1]       ,${SEPERATOR}
     Should Be True     "${response['body'][0]['vnfdId']}"=="@{var_id}[1]" and "${response['body'][0]['vnfProvider']}"=="@{var_provider}[1]"
 
 GET VNF Packages with invalid attribute-based filter

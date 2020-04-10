@@ -19,7 +19,7 @@ POST Individual NSInstance - Method not implemented
     ...    Post-Conditions: Check Postcondition NS Instance is not created
     POST IndividualNSInstance
     Check HTTP Response Status Code Is    405
-    Check Postcondition NS Instance is not crerated
+    Check Postcondition NS Instance is not created
 
 GET Information about an individual NS Instance
     [Documentation]    Test ID: 5.3.2.2.2
