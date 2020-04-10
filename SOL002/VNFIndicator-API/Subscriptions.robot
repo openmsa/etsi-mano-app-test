@@ -5,7 +5,8 @@ Resource          environment/subscriptions.txt
 Library           OperatingSystem
 Library           JSONLibrary
 Library           Process
-Library           MockServerLibrary    
+Library           MockServerLibrary
+Library           String 
 Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}    ssl_verify=false
 Suite Setup       Create Sessions
 Suite Teardown    Terminate All Processes    kill=true

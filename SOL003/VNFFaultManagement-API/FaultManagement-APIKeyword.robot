@@ -13,10 +13,9 @@ ${original_etag}    1234
 
 *** Keywords ***
 Check created Subscription existence
-    ${subscriptionId} = ${response['body']['id']}
     Set Headers    {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
     Integer    response status    200  
 Check Postcondition FaultManagement Subscription Is Set
     Log    Check Postcondition subscription exist

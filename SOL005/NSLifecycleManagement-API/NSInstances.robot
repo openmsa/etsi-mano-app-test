@@ -50,7 +50,7 @@ GET information about multiple NS instances Bad Request Invalid attribute-based 
 GET information about multiple NS instances Bad Request Invalid attribute selector
     [Documentation]    Test ID: 5.3.2.1.4
     ...    Test title: GET information about multiple NS instances Bad Request Invalid attribute selector
- ...    Test objective: The objective is to query information about multiple NS instances with Invalid attribute selector
+    ...    Test objective: The objective is to query information about multiple NS instances with Invalid attribute selector
     ...    Pre-conditions: A Ns instance is instantiated, a bad attribute selector parameter is either malformed or syntactically incorrect (filter parameters are listed in Table 6.4.2.3.2-1  - SOL005 v2.4.1)
     ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 v2.4.1
     ...    Config ID: Config_prod_NFVO

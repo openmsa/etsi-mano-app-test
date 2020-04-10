@@ -15,6 +15,7 @@ Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process
+Library    String
 
 *** Keywords ***
 GET all NS Performance Monitoring Jobs
@@ -422,7 +423,7 @@ Check Postcondition Threshold Exists
         
 Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    @{words} =  Split String    ${FILTER_OK_Threshold}       ,${SEPERATOR} 
+    @{words} =    Split String    ${FILTER_OK_Threshold}       ,${SEPERATOR} 
     Should Be Equal As Strings    ${response['body'][0]['objectInstanceId']}    @{words}[1]
     
 

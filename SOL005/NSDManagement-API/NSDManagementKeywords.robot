@@ -12,6 +12,7 @@ Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process
+Library    String
 
 *** Keywords ***
 GET all Network Service Descriptors Information
@@ -32,7 +33,7 @@ GET Network Service Descriptors Information with attribute-based filter
     
 Check HTTP Response Body NsdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    @{words} =  Split String    ${NSD_NAME}       ,${SEPERATOR} 
+    @{words} =    Split String    ${NSD_NAME}       ,${SEPERATOR} 
     Should Be Equal As Strings    ${response['body'][0]['nsdName']}    @{words}[1]
 
 GET Network Service Descriptors Information with invalid attribute-based filter
@@ -422,8 +423,6 @@ Send PUT Request to upload NSD Content as plain text file in asynchronous mode
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
 
-==== BASE ====
-==== BASE ====
 Send PUT Request to upload NSD Content as zip file in synchronous mode
     Log    Trying to perform a PUT. This method upload the content of a NSD
     Set Headers    {"Accept": "${ACCEPT_ZIP}"}
@@ -504,7 +503,7 @@ GET PNF Descriptors Information with attribute-based filter
     
 Check HTTP Response Body PnfdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    @{words} =  Split String    ${PNFD_NAME}       ,${SEPERATOR} 
+    @{words} =    Split String    ${PNFD_NAME}       ,${SEPERATOR} 
     Should Be Equal As Strings    ${response['body'][0]['pnfdName']}    @{words}[1]
 
 GET PNF Descriptors Information with invalid attribute-based filter
