@@ -27,7 +27,7 @@ POST Individual Grant - Method not implemented
 GET an individual grant - Successful
     [Documentation]    Test ID: 7.3.2.2.2
     ...    Test title: GET an individual grant - Successful
-    ...    Test objective: The objective is to retrieve a grant for ta particular VNF Lifecycle Operation.
+    ...    Test objective: The objective is to retrieve a grant for a particular VNF Lifecycle Operation.
     ...    Pre-conditions: The  grant information is available to the VNFM
     ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
