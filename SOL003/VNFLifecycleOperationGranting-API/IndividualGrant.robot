@@ -27,7 +27,7 @@ POST Individual Grant - Method not implemented
 GET an individual grant - Successful
     [Documentation]    Test ID: 7.3.2.2.2
     ...    Test title: GET an individual grant - Successful
-    ...    Test objective: The objective is to successfully request a grant for a particular VNF lifecycle operation 
+    ...    Test objective: The objective is to retrieve a grant for ta particular VNF Lifecycle Operation.
     ...    Pre-conditions: The  grant information is available to the VNFM
     ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -41,7 +41,7 @@ GET an individual grant - Process ongoing
     [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 7.3.2.2.3
     ...    Test title: GET an individual grant - Process ongoing
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation when process is ongoing and no grant is avaliable yet
+    ...    Test objective: The objective is to retrieve a grant for a particular VNF lifecycle operation when process is ongoing and no grant is available yet.
     ...    Pre-conditions: The process of creating the grant is ongoing, no grant is available yet.
     ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -55,7 +55,7 @@ GET an individual grant - grant rejected
     [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 7.3.2.2.4
     ...    Test title: GET an individual grant - grant rejected
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation when grant is rejected
+    ...    Test objective: The objective is to retrieve a grant for a particular VNF Lifecycle Operation but error returned because grant has been rejected.
     ...    Pre-conditions: none
     ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
