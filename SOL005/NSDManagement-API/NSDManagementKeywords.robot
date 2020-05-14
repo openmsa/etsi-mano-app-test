@@ -12,6 +12,7 @@ Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process
+Library    String
 
 *** Keywords ***
 GET all Network Service Descriptors Information
@@ -26,13 +27,14 @@ GET Network Service Descriptors Information with attribute-based filter
     Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?${POS_FIELDS}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors?${NSD_NAME}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     
 Check HTTP Response Body NsdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{words} =    Split String    ${NSD_NAME}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['nsdName']}    @{words}[1]
 
 GET Network Service Descriptors Information with invalid attribute-based filter
     Log    The GET method queries multiple NS descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -443,6 +445,18 @@ Send PUT Request to upload NSD Content as plain text file in synchronous mode
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output} 
 
+Check Post Condition NSD Content has been Uploaded
+    Log    Checking NsdOnboardingNotification Recieved
+    Wait Until Keyword Succeeds    ${retry}    ${interval}  Check Response is NsdOnboardingNotification
+
+Check Response is NsdOnboardingNotification
+    ${response}=    Output    response body
+    Should Contain    ${response['headers']['Content-Type']}    application/json
+    ${schema} =    Catenate    SEPARATOR=    NsdOnboardingNotification    .schema.json
+    Validate Json    ${schema}    ${response['body']}
+    Log    Json Schema Validation OK
+
+
 Check Postcondition NSD Content is uploaded and available in the NFVO
     Get single file NSD Content in Plain or Zip Format
     Check HTTP Response Status Code Is    200
@@ -495,13 +509,14 @@ GET PNF Descriptors Information with attribute-based filter
     Log    The GET method queries multiple PNF descriptors using Attribute-based filtering parameters
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors?${POS_FIELDS}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors?${PNFD_NAME}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     
 Check HTTP Response Body PnfdInfos Matches the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{words} =    Split String    ${PNFD_NAME}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['pnfdName']}    @{words}[1]
 
 GET PNF Descriptors Information with invalid attribute-based filter
     Log    The GET method queries multiple PNF descriptors using Attribute-based filtering parameters. Negative case, with erroneous attribute name
@@ -888,12 +903,11 @@ Check HTTP Response Body Json Schema Is
 Check HTTP Response Body Is Empty
     Should Be Empty    ${response['body']}    
     Log    No json schema is provided. Validation OK  
-
-
+    
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes NSD Management Management according to filter
-    #TODO
-
+    @{words} =  Split String    ${filter_ok}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
 
 Check HTTP Response Body NsdmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription

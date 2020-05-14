@@ -4,6 +4,7 @@ Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/vnfIndicatorinVnfInstance.txt
 Library           JSONLibrary
+Library           String 
 Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}    ssl_verify=false
 
 *** Test Cases ***
@@ -196,12 +197,17 @@ Check HTTP Response Body Json Schema Is
 
 Check HTTP Response Body Includes Requested VNF Instance ID
     Log    Check Response includes Indicators according to resource identifier
-    #todo
+    Should Be Equal As Strings   ${response['body']['vnfInstanceId']}    ${vnfInstanceId}
     
 Check HTTP Response Body Matches Attribute-Based Filter
     Log    Check Response includes VNF Indicators according to filter
-    #todo
+    @{words} =  Split String    ${POS_FIELDS}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['name']}    @{words}[1]
 
 Check Postcondition Indicators for VNF instance Exist
-    Log    Check Response includes VNF Indicators according to filter
-    #todo
+    Log    Check Postcondition Indicators for VNF instance Exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
+    Should Be Equal    ${response.status_code}    200
+    

@@ -75,7 +75,7 @@ PUT Change deployment flavour VNFInstance - Method not implemented
 
 PATCH Change deployment flavour VNFInstance - Method not implemented
     [Documentation]    Test ID: 6.3.5.6.6
-    ...    Test title: PATCH Cancel operation task - Method not implemented
+    ...    Test title: PATCH Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.7.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1

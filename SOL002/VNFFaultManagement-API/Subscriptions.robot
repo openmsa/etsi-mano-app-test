@@ -14,10 +14,11 @@ Create a new subscription
     ...    Reference: clause 7.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: subscription is created
+    ...    Post-Conditions: Resource created successfully
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    FmSubscription
+    Check resource existence
 
 Create a new Subscription - DUPLICATION
      [Documentation]    Test ID: 6.3.4.4.2
@@ -82,60 +83,6 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Get subscriptions - invalid filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is   ProblemDetails 
-
-GET subscriptions with "all_fields" attribute selector
-    [Documentation]    Test ID: 6.3.4.4.8
-    ...    Test title: GET subscriptions with "all_fields" attribute selector
-    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
-    ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    Get subscriptions with all_fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions 
-
-GET subscriptions with "exclude_default" attribute selector
-    [Documentation]    Test ID: 6.3.4.4.9
-    ...    Test title: GET subscriptions with "exclude_default" attribute selector
-    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
-    ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    Get subscriptions with exclude_default attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions
-
-GET subscriptions with "fields" attribute selector
-    [Documentation]    Test ID: 6.3.4.4.10
-    ...    Test title: GET subscriptions with "fields" attribute selector
-    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
-    ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    Get subscriptions with fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions
-
-GET subscriptions with "exclude_fields" attribute selector
-    [Documentation]    Test ID: 6.3.4.4.11
-    ...    Test title: GET subscriptions with "exclude_fields" attribute selector
-    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
-    ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    Get subscriptions with exclude_fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions    
-
-
         
 PUT subscriptions - Method not implemented
     [Documentation]    Test ID: 6.3.4.4.8
@@ -287,3 +234,10 @@ Check HTTP Response Body Json Schema Is
     ${schema} =    Catenate    SEPARATOR=    ${input}	.schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK  
+    
+Check resource existence
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    Integer    response status    200
+

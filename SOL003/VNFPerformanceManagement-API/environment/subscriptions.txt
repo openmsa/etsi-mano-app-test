@@ -1,6 +1,6 @@
 *** Variables ***
-${callbackUri}    http://172.22.1.7:9091/vnfpm/subscriptions
-${filter_ok}      callbackUri=${callbackUri}
+${callbackUri_Sub}    http://172.22.1.7:9091/vnfpm/subscriptions
+${filter_ok}      callbackUri=${callbackUri_Sub}
 ${filter_ko}      erroneousFilter=erroneous
 ${total_polling_time}   2 min
 ${polling_interval}     10 sec

@@ -15,6 +15,7 @@ Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process
+Library    String
 
 *** Keywords ***
 GET all NS Performance Monitoring Jobs
@@ -172,7 +173,9 @@ Check HTTP Response Body PmJobs Matches the requested all_fields selector
     
 Check HTTP Response Body PmJobs Matches the requested Attribute-Based Filter 
     Log    Checking that attribute-based filter is matched
-    #todo
+    ${user}=    Get Value From Json    ${response['body']}    $..userDefinedData
+    Validate Json    UserDefinedData.schema.json    ${user[0]}
+    Log    Validation for schema OK
 
 Check HTTP Response Body PmJobs Do Not Contain reports
     Log    Checking that field element is missing
@@ -349,7 +352,7 @@ GET Performance Thresholds with attribute-based filter
     Log    Trying to get thresholds present in the NFVO with filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK_Threshold}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
@@ -420,7 +423,9 @@ Check Postcondition Threshold Exists
         
 Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{words} =    Split String    ${FILTER_OK_Threshold}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceId']}    @{words}[1]
+    
 
 GET Individual NS performance Threshold
     Log    Trying to get a Threhsold present in the NFVO
@@ -653,8 +658,8 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes NS Package Management according to filter
-    #TODO
-
+    @{words} =  Split String    ${filter_ok}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
 
 Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription

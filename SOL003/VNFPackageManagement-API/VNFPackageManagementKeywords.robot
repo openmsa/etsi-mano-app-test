@@ -15,6 +15,7 @@ Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process
+Library    String
 
 
 *** Keywords ***
@@ -54,7 +55,10 @@ GET VNF Packages with attribute-based filter
 
 Check HTTP Response Body VnfPkgsInfo Matches the requested Attribute-Based Filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{attr} =    Split String    ${POS_FILTER}       ,${VAR_SEPERATOR} 
+    @{var_id} =    Split String    @{attr}[0]       ,${SEPERATOR}
+    @{var_provider} =    Split String    @{attr}[1]       ,${SEPERATOR}
+    Should Be True     "${response['body'][0]['vnfdId']}"=="@{var_id}[1]" and "${response['body'][0]['vnfProvider']}"=="@{var_provider}[1]"
 
 GET VNF Packages with invalid attribute-based filter
     Log    Trying to perform a negative get, filtering by the inexistent filter 'nfvId'
@@ -631,8 +635,8 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Package Management according to filter
-    #TODO
-
+    @{words} =  Split String    ${filter_ok}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
 
 Check HTTP Response Body PkgmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription

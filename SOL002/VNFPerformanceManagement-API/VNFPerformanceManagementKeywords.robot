@@ -283,8 +283,7 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Performance Management according to filter
-    # Should Be Equal As Strings    ${response['body']['callbackUri']}    ${callbackUri}
-    #TODO
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    ${callbackUri_Sub}
 
 Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription

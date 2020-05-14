@@ -7,3 +7,4 @@ ${NEG_FILTER}     callback=http://127.0.0.1/subscribe
 ${response}=    httpresponse
 ${total_polling_time}   2 min
 ${polling_interval}     10 sec
+${SEPERATOR}      =

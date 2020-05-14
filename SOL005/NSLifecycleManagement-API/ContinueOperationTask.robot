@@ -60,7 +60,7 @@ GET Continue operation task - Method not implemented
 	Check HTTP Response Status Code Is    405	
 	
 PUT Continue operation task - Method not implemented
-    [Documentation]    Test ID: 5.3.2.13.5
+    [Documentation]    Test ID: 5.3.2.12.5
     ...    Test title: PUT Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -72,11 +72,11 @@ PUT Continue operation task - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Continue operation task - Method not implemented
-    [Documentation]    Test ID: 5.3.2.13.5
+    [Documentation]    Test ID: 5.3.2.12.6
     ...    Test title: PATCH Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.14.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.13.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -84,11 +84,11 @@ PATCH Continue operation task - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Continue operation task - Method not implemented
-        [Documentation]    Test ID: 5.3.2.13.5
+        [Documentation]    Test ID: 5.3.2.12.7
     ...    Test title: DELETE Continue operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.14.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.13.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none

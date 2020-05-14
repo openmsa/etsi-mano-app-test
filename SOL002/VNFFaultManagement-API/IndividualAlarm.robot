@@ -41,9 +41,9 @@ GET information about an individual alarm
     
 
 
-PUT Alarm - Method not implemented
+PUT Individual Alarm - Method not implemented
      [Documentation]    Test ID: 6.3.4.2.3
-    ...    Test title: PUT Alarm - Method not implemented
+    ...    Test title: PUT Individual Alarm - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: clause 7.4.3.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
@@ -54,9 +54,9 @@ PUT Alarm - Method not implemented
     Check HTTP Response Status Code Is    405
 
 
-PATCH Alarm
+PATCH Individual Alarm
     [Documentation]    Test ID: 6.3.4.2.4
-    ...    Test title: PATCH Alarm
+    ...    Test title: PATCH Individual Alarm
     ...    Test objective: The objective is to Modify an individual alarm resource
     ...    Pre-conditions: The related alarm exists
     ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
@@ -67,10 +67,10 @@ PATCH Alarm
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is     alarmModifications
     
-PATCH Alarm - Precondition failed
+PATCH Individual Alarm - Precondition failed
     [Documentation]    Test ID: 6.3.4.2.5
-    ...    Test title: PATCH Alarm - Precondition failed
-    ...    Test objective: The objective is to Modify an individual alarm resource
+    ...    Test title: PATCH Individual Alarm - Precondition failed
+    ...    Test objective: The objective is to attempt to Modify an individual alarm resource, where the precondition was not met
     ...    Pre-conditions: The related alarm exists
     ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VNFM
@@ -80,9 +80,9 @@ PATCH Alarm - Precondition failed
     Check HTTP Response Status Code Is    412
     Check HTTP Response Body Json Schema Is     ProblemDetails
     
-PATCH Alarm - Conflict
+PATCH Individual Alarm - Conflict
     [Documentation]    Test ID: 6.3.4.2.6
-    ...    Test title: PATCH Alarm - Conflict
+    ...    Test title: PATCH Individual Alarm - Conflict
     ...    Test objective: The objective is to Modify an individual alarm resource
     ...    Pre-conditions: The related alarm exists
     ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
@@ -94,9 +94,9 @@ PATCH Alarm - Conflict
     Check HTTP Response Body Json Schema Is     ProblemDetails
     
 
-DELETE Alarm - Method not implemented
+DELETE Individual Alarm - Method not implemented
     [Documentation]    Test ID: 6.3.4.2.7
-    ...    Test title: DELETE Alarm - Method not implemented
+    ...    Test title: DELETE Individual Alarm - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
     ...    Reference: clause 7.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1

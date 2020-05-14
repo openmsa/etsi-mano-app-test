@@ -21,6 +21,7 @@ Create a new Fault Management alarm subscription
     Check HTTP Response Status Code Is    201
     Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
+    Check created Subscription existence 
   
 
 Create a new alarm subscription - DUPLICATION
@@ -32,10 +33,11 @@ Create a new alarm subscription - DUPLICATION
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: duplicated subscription is created
-    POST Subscription Duplication permitted
+    Send POST Request for duplicated subscription
     Check HTTP Response Status Code Is    201
     Check Operation Occurrence Id
     Check HTTP Response Body Json Schema Is  FmSubscription
+    Check Postcondition FaultManagement Subscription Is Set
 
 Create a new alarm subscription - NO DUPLICATION
     [Documentation]    Test ID: 7.3.5.3.3
@@ -46,10 +48,10 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
     ...    Post-Conditions: duplicated subscription is not created
-    POST Subscription Duplication not permitted
+    Send POST Request for duplicated subscription not permitted
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id
-    Check HTTP Response Body Json Schema Is  FmSubscription
+    Check Postcondition Subscription Resource Returned in Location Header Is Available
 
 Retrieve a list of alarm subscriptions
     [Documentation]    Test ID: 7.3.5.3.4
@@ -90,58 +92,6 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
-GET subscriptions with "all_fields" attribute selector
-    [Documentation]    Test ID: 7.3.5.3.7
-    ...    Test title: GET subscriptions with "all_fields" attribute selector
-    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
-    ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    Get subscriptions with all_fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions 
-
-GET subscriptions with "exclude_default" attribute selector
-    [Documentation]    Test ID: 7.3.5.3.8
-    ...    Test title: GET subscriptions with "exclude_default" attribute selector
-    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
-    ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    Get subscriptions with exclude_default attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions
-
-GET subscriptions with "fields" attribute selector
-    [Documentation]    Test ID: 7.3.5.3.9
-    ...    Test title: GET subscriptions with "fields" attribute selector
-    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
-    ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    Get subscriptions with fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions
-
-GET subscriptions with "exclude_fields" attribute selector
-    [Documentation]    Test ID: 7.3.5.3.10
-    ...    Test title: GET subscriptions with "exclude_fields" attribute selector
-    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
-    ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability:  
-    ...    Post-Conditions: 
-    Get subscriptions with exclude_fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is   FmSubscriptions  
-    
 PUT subscriptions - Method not implemented
     [Documentation]    Test ID: 7.3.5.3.11
     ...    Test title:PUT subscriptions - Method not implemented

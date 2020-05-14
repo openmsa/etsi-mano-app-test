@@ -57,60 +57,7 @@ GET information about multiple alarms Bad Request Invalid attribute-based filter
     GET Alarms With Invalid Filters
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
-
-GET information about multiple alarms with "all_fields" attribute selector
-    [Documentation]    Test ID: 5.3.3.1.5
-    ...    Test title: GET information about multiple alarms with "all_fields" attribute selector
-    ...    Test objective: The objective is to retrieve information about the alarm list
-    ...    Pre-conditions: 
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
-    ...    Config ID: Config_prod_NFVO
-    ...    Applicability: 
-    ...    Post-Conditions: 
-    GET Alarms Task with all_fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms
-    
-GET information about multiple alarms with exclude_default attribute selector
-    [Documentation]    Test ID: 5.3.3.1.6
-    ...    Test title: GET information about multiple alarms with "exclude_default" attribute selector
-    ...    Test objective: The objective is to retrieve information about the alarm list
-    ...    Pre-conditions: 
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
-    ...    Config ID: Config_prod_NFVO
-    ...    Applicability: 
-    ...    Post-Conditions: 
-    GET Alarms Task with exclude_default attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms
-
-    
-GET information about multiple alarms with fields attribute selector
-    [Documentation]    Test ID: 5.3.3.1.7
-    ...    Test title: GET information about multiple alarms with fields attribute selector
-    ...    Test objective: The objective is to retrieve information about the alarm list
-    ...    Pre-conditions: 
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
-    ...    Config ID: Config_prod_NFVO
-    ...    Applicability: 
-    ...    Post-Conditions: 
-    GET Alarms Task with fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms
-     
-GET information about multiple alarms with "exclude_fields" attribute selector
-    [Documentation]    Test ID: 5.3.3.1.8
-    ...    Test title: GET information about multiple alarms with "exclude_fields" attribute selector
-    ...    Test objective: The objective is to retrieve information about the alarm list
-    ...    Pre-conditions: 
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
-    ...    Config ID: Config_prod_NFVO
-    ...    Applicability: 
-    ...    Post-Conditions: none
-    GET Alarms Task with exclude_fields attribute selector
-    Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms  
-    
+  
 PUT Alarms - Method not implemented
     [Documentation]    Test ID: 5.3.3.1.5
     ...    Test title: PUT Alarms - Method not implemented

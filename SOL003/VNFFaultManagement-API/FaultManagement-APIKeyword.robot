@@ -12,6 +12,18 @@ Library    Process
 ${original_etag}    1234
 
 *** Keywords ***
+Check created Subscription existence
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    Integer    response status    200  
+Check Postcondition FaultManagement Subscription Is Set
+    Log    Check Postcondition subscription exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    Check HTTP Response Status Code Is    200
 Check Operation Occurrence Id
     ${opOccId}=    Get Value From Json    ${response.headers}    $..Location
     Should Not Be Empty    ${opOccId}
@@ -61,6 +73,18 @@ Check HTTP Response Header ContentType is
     Log    Validate content type
     Should Be Equal    ${response[0]['headers']['Content-Type']}    ${expected_contentType}
     Log    Content Type validated 
+    
+Check Postcondition Subscription Resource Returned in Location Header Is Available
+    Log    Going to check postcondition
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${response['headers']['Location']}
+    Integer    response status    200
+    Log    Received a 200 OK as expected
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    ${result}=    Output    response body
+    Validate Json    FMSubscription.schema.json    ${result}
+    Log    Validated FMSubscription schema
     
 Send POST request for fault management Alarms
     log    Trying to perform a POST. This method should not be implemented
@@ -241,7 +265,7 @@ POST Subscription
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
     
-POST Subscription Duplication permitted
+Send POST Request for duplicated subscription
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Pass Execution If    ${VNFM_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -252,7 +276,7 @@ POST Subscription Duplication permitted
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
 
-POST Subscription Duplication not permitted
+Send POST Request for duplicated subscription not permitted
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Pass Execution If    ${VNFM_DUPLICATION} == 1    NVFO is not permitting duplication. Skipping the test
     Set Headers  {"Accept":"${ACCEPT}"}  

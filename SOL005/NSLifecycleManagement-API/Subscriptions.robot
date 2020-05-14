@@ -141,7 +141,7 @@ GET subscriptions with "exclude_fields" attribute selector
     Check HTTP Response Body Json Schema Is   FmSubscriptions  
         
 PUT subscriptions - Method not implemented
-     [Documentation]    Test ID: 5.3.2.15.7
+     [Documentation]    Test ID: 5.3.2.15.11
     ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none
@@ -153,7 +153,7 @@ PUT subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH subscriptions - Method not implemented
-    [Documentation]    Test ID: 5.3.2.15.8
+    [Documentation]    Test ID: 5.3.2.15.12
     ...    Test title: PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none
@@ -165,7 +165,7 @@ PATCH subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE subscriptions - Method not implemented
-    [Documentation]    Test ID: 5.3.2.15.9
+    [Documentation]    Test ID: 5.3.2.15.13
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none

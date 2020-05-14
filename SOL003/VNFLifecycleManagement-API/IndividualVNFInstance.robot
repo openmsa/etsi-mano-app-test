@@ -37,7 +37,6 @@ Get Information about an individual VNF Instance
     GET individual vnfInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    vnfInstance
-    SET etag
     
 PUT Individual VNFInstance - Method not implemented 
     [Documentation]    Test ID: 7.3.1.2.3
@@ -67,8 +66,8 @@ PATCH Individual VNFInstance
 PATCH Individual VNFInstance Precondition failed
      [Documentation]    Test ID: 7.3.1.2.5
     ...    Test title: PATCH Individual VNFInstance Precondition failed
-    ...    Test objective: The objective is to create a new VNF instance resource
-    ...    Pre-conditions:  ETag mismatch
+    ...    Test objective: The objective is to test the failure of modification of a vnf instance due to Etag Mismatch. The test also check the JSON schema of failed operation HTTP response. 
+    ...    Pre-conditions:  VNF Instance is already instantiated.
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -80,8 +79,8 @@ PATCH Individual VNFInstance Precondition failed
 PATCH Individual VNFInstance Conflict
      [Documentation]    Test ID: 7.3.1.2.6
     ...    Test title: PATCH Individual VNFInstance Conflict
-    ...    Test objective: The objective is to test the conflict while modifying a VNF instance resource
-    ...    Pre-conditions: another LCM operation is ongoing
+    ...    Test objective: The objective is to test the conflict while modifying a VNF instance resource because another LCM Operation is ongoing.
+    ...    Pre-conditions: Another LCM operation is ongoing
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
@@ -110,10 +109,11 @@ DELETE Individual VNFInstance Conflict
     ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: Resources are not deleted
     DELETE individual vnfInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
+    Check resource existence
     
 *** Keywords ***
 Check resource existence

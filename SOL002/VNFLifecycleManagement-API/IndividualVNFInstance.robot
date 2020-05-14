@@ -37,7 +37,6 @@ GET Information about an individual VNF Instance
     GET individual vnfInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    vnfInstance
-    SET etag
     
 PUT Individual VNFInstance - Method not implemented 
      [Documentation]    Test ID: 6.3.5.2.3
@@ -68,7 +67,7 @@ PATCH Individual VNFInstance Precondition failed
     [Documentation]    Test ID: 6.3.5.2.5
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
-    ...    Pre-conditions:  A precondition given in an HTTP request header is not fulfilled. Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity
+    ...    Pre-conditions: VNF Instance is Created
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
@@ -80,7 +79,7 @@ PATCH Individual VNFInstance Precondition failed
 PATCH Individual VNFInstance Conflict
     [Documentation]    Test ID: 6.3.5.2.6
     ...    Test title: PATCH Individual VNFInstance Conflict
-    ...    Test objective: The objective is to create a new VNF instance resource
+    ...    Test objective: The objective is to verify that modification operation cannot be executed currently, due to a conflict with the state of the VNF instance resource because another LCM Operation is ongoing. 
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
@@ -104,8 +103,8 @@ DELETE Individual VNFInstance
 
 DELETE Individual VNFInstance Conflict
      [Documentation]    Test ID: 6.3.5.2.8
-    ...    Test title: DELETE Individual VNFInstance
-    ...    Test objective: The objective is to verify that The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Test title: DELETE Individual VNFInstance Conflict
+    ...    Test objective: The objective is to verify that The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource.
     ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
     ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
@@ -136,7 +135,4 @@ Launch another LCM operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
-    Integer    response status    202
-SET etag
-    ${etag}    Output    response headers ETag
-    Set Suite Variable    ${original_etag}    ${etag}   
+    Integer    response status    202 

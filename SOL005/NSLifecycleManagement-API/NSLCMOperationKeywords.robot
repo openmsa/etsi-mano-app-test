@@ -6,6 +6,7 @@ Library    Process
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 Library    MockServerLibrary
+Library    Collections
 
 *** Keywords ***
 Initialize System
@@ -29,6 +30,13 @@ Check subscription existence
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
     Integer    response status    200
+    
+Check Instance Deleted
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
+    Integer    response status    404
     
 Check Fail not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -150,11 +158,31 @@ Check resource existence
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
     Integer    response status    200
     
+Check Postcondition NS Instance is not created
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    Integer    response status    404
+    
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     Log    Validate Status code    
     Should Be Equal as Strings  ${response[0]['status']}    ${expected_status}
     Log    Status code validated 
+    
+Check Postcondition NS Instance is deleted
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    Integer    response status    404
+    
+Check Postcondition NS Instance is not modified
+    GET IndividualNSInstance
+    ${resp_dict}=    evaluate    json.loads('''${response[0]['body']}''')    json
+    ${body}=    Get File    jsons/CreateNsRequest.json
+    Dictionaries Should Be Equal    ${resp_dict}    ${body}    values=True
     
 Check HTTP Response Header Contains
     [Arguments]    ${HEADER_TOCHECK}
@@ -166,6 +194,13 @@ Check HTTP Response Body Json Schema Is
     ${schema} =    Catenate    ${input}    .schema.json
     Validate Json    ${schema}    ${response[0]['body']}
     Log    Json Schema Validation OK
+    
+Check Postcondition NS Instance is not deleted
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    Integer    response status    200
     
 Check HTTP Response Header ContentType is
     [Arguments]    ${expected_contentType}

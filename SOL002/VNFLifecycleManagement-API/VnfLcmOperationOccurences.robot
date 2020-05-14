@@ -112,7 +112,7 @@ GET status information about multiple VNF LCM Operation OCC with "exclude_fields
     Check HTTP Response Body Json Schema Is    VnfLcmOpOccs    
     
 PUT status information about multiple VNF LCM operation occurrences - Method not implemented
-     [Documentation]    Test ID: 6.3.5.11.5
+     [Documentation]    Test ID: 6.3.5.11.9
     ...    Test title: PUT status information about multiple VNF LCM operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -124,7 +124,7 @@ PUT status information about multiple VNF LCM operation occurrences - Method not
     Check HTTP Response Status Code Is    405
 
 PATCH status information about multiple VNF LCM operation occurrences - Method not implemented
-    [Documentation]    Test ID: 6.3.5.11.6
+    [Documentation]    Test ID: 6.3.5.11.10
     ...    Test title: PATCH status information about multiple VNF LCM operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -136,13 +136,14 @@ PATCH status information about multiple VNF LCM operation occurrences - Method n
     Check HTTP Response Status Code Is    405
 
 DELETE status information about multiple VNF LCM operation occurrences - Method not implemented
-    [Documentation]    Test ID: 6.3.5.11.7
+    [Documentation]    Test ID: 6.3.5.11.11
     ...    Test title: DELETE status information about multiple VNF LCM operation occurrences - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.12.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: none
-    DELETE VNF LCM OP occurrences
+    ...    Post-Conditions: Verify that resources are not deleted
+    DELETE VNF LCM OP occurences
     Check HTTP Response Status Code Is    405
+    Check LCM OP OCC resource exist

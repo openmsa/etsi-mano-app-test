@@ -16,10 +16,10 @@ POST Create a new subscription
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
+    
 POST Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 6.3.5.17.2
     ...    Test title: POST Create a new subscription - DUPLICATION
@@ -27,9 +27,8 @@ POST Create a new Subscription - DUPLICATION
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: none
+    ...    Applicability: SUT should support duplication of subscription creation
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
@@ -41,9 +40,8 @@ POST Create a new Subscription - NO-DUPLICATION
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: none
+    ...    Applicability: SUT should not support duplication of subscription creation
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id
@@ -64,7 +62,7 @@ GET Subscriptions
 GET Subscription - Filter
     [Documentation]    Test ID: 6.3.5.17.5
     ...    Test title: GET Subscriptions - Filter
-    ...    Test objective: The objective is Get the list of active subscriptions using a filter
+    ...    Test objective: The objective is Get the list of active subscriptions using a "filter"
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
@@ -170,7 +168,8 @@ DELETE subscriptions - Method not implemented
     ...    Reference: clause 5.4.18.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: check that resources are not deleted
     DELETE subscriptions
 	Check HTTP Response Status Code Is    405
+	Check Subscription resource exist
     

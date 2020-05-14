@@ -3,6 +3,7 @@ Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Library           OperatingSystem
+Library           String
 Resource          environment/pmJobs.txt
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 
@@ -324,7 +325,8 @@ Check HTTP Response Body Matches all_fields selector
     
 Check HTTP Response Body Matches filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{words} =  Split String    ${POS_FILTER}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceIds']}    @{words}[1]
 
 Check HTTP Response Body Does Not Contain reports
     Log    Checking that field element is missing

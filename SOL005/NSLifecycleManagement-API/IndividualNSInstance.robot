@@ -16,9 +16,10 @@ POST Individual NSInstance - Method not implemented
     ...    Reference: clause 6.4.3.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is not created on the NFVO
+    ...    Post-Conditions: Check Postcondition NS Instance is not created
     POST IndividualNSInstance
     Check HTTP Response Status Code Is    405
+    Check Postcondition NS Instance is not created
 
 GET Information about an individual NS Instance
     [Documentation]    Test ID: 5.3.2.2.2
@@ -41,9 +42,10 @@ PUT Individual NSInstance - Method not implemented
     ...    Reference: clause 6.4.3.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is not modified on the NFVO
+    ...    Post-Conditions: Check Postcondition NS Instance is not modified
     PUT IndividualNSInstance
     Check HTTP Response Status Code Is    405
+    Check Postcondition NS Instance is not modified
 
 PATCH Individual NSInstance - Method not implemented 
     [Documentation]    Test ID: 5.3.2.2.4
@@ -53,9 +55,10 @@ PATCH Individual NSInstance - Method not implemented
     ...    Reference: clause 6.4.3.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is not modified on the NFVO
+    ...    Post-Conditions: Check Postcondition NS Instance is not modified
     PATCH IndividualNSInstance
     Check HTTP Response Status Code Is    405
+    Check Postcondition NS Instance is not modified
 
 DELETE Individual NSInstance
      [Documentation]    Test ID: 5.3.2.2.5
@@ -65,9 +68,10 @@ DELETE Individual NSInstance
     ...    Reference: clause 6.4.3.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is deleted from the NFVO
+    ...    Post-Conditions: Check Postcondition NS Instance is deleted
     DELETE IndividualNSInstance    
     Check HTTP Response Status Code Is    204
+    Check Postcondition NS Instance is deleted
 
 DELETE Individual NSInstance Conflict
     [Documentation]    Test ID: 5.3.2.2.6
@@ -77,7 +81,8 @@ DELETE Individual NSInstance Conflict
     ...    Reference: clause 6.4.3.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The NS instance is not deleted from the NFVO
+    ...    Post-Conditions: Check Postcondition NS Instance is not deleted
     DELETE IndividualNSInstance
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
+    Check Postcondition NS Instance is not deleted

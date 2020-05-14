@@ -10,14 +10,14 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Heal Flow of NS lifecycle management operations
-     [Documentation]    Test ID: 5.3.2.19
+     [Documentation]    Test ID: 5.3.2.18.3
     ...    Test title: Heal Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Healing a NS instance
     ...    Pre-conditions: the resource is in INSTANTIATED state
     ...    Reference: clause 6.4.7 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions: NS Instance still in INSTANTIATED state
     Check resource instantiated
     POST Heal NSInstance
     Check HTTP Response Status Code Is    202

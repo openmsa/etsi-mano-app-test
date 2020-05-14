@@ -27,13 +27,13 @@ POST Individual Grant - Method not implemented
 GET an individual grant - Successful
     [Documentation]    Test ID: 7.3.2.2.2
     ...    Test title: GET an individual grant - Successful
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
+    ...    Test objective: The objective is to retrieve a grant for a particular VNF Lifecycle Operation.
     ...    Pre-conditions: The  grant information is available to the VNFM
     ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Get individual grant success
+    Get individual grant
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    grant
     
@@ -41,13 +41,13 @@ GET an individual grant - Process ongoing
     [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 7.3.2.2.3
     ...    Test title: GET an individual grant - Process ongoing
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
+    ...    Test objective: The objective is to retrieve a grant for a particular VNF lifecycle operation when process is ongoing and no grant is available yet.
     ...    Pre-conditions: The process of creating the grant is ongoing, no grant is available yet.
     ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Get individual grant on-going
+    Get individual grant
     Check HTTP Response Status Code Is    202
     Check HTTP Response Body Json Schema Is    grant
     
@@ -55,13 +55,13 @@ GET an individual grant - grant rejected
     [Tags]    no-synchronous-mode
     [Documentation]    Test ID: 7.3.2.2.4
     ...    Test title: GET an individual grant - grant rejected
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
-    ...    Pre-conditions: 
+    ...    Test objective: The objective is to retrieve a grant for a particular VNF Lifecycle Operation but error returned because grant has been rejected.
+    ...    Pre-conditions: none
     ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: The grant is rejected
-    Get individual grant rejected
+    ...    Post-Conditions: none
+    Get individual grant
     Check HTTP Response Status Code Is    403
 	Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -97,27 +97,12 @@ DELETE an individual grant - Method not implemented
     ...    Reference: clause 9.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: grant not deleted
+    ...    Post-Conditions: none
     Delete individual Grant
     Check HTTP Response Status Code Is    405
 
-*** Keywords ***
-Get individual grant rejected
-    log    Trying to read an individual grant
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}
-    ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
-Get individual grant on-going
-    log    Trying to read an individual grant
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}
-    ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
-    
-Get individual grant success
+*** Keywords ***    
+Get individual grant
     log    Trying to read an individual grant
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}

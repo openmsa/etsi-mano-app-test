@@ -25,7 +25,7 @@ POST Fail operation task
 Post Fail operation task Conflict (Not-FAILED_TEMP)
     # TODO: Need to set the pre-condition of the test. VNF instance shall be in INSTANTIATED state
     [Documentation]    Test ID: 7.3.1.15.2
-    ...    Test title: Post Fail operation task
+    ...    Test title: Post Fail operation task Conflict (Not-FAILED_TEMP)
     ...    Test objective: The objective is to test that POST method cannot mark as "finally failed" a VNF lifecycle operation 
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
     ...    Reference: clause 5.4.16.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
@@ -39,7 +39,7 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
 Post Fail operation task Not Found
     # TODO: Need to create a vnfInstance which's instantiatedVnfInfo.scaleStatus is absent
     [Documentation]    Test ID: 7.3.1.15.3
-    ...    Test title: Post Fail operation task
+    ...    Test title: Post Fail operation task Not Found 
     ...    Test objective: The objective is to test that POST method cannot mark as "finally failed" a VNF lifecycle operation because the operation is not supported
     ...    Pre-conditions: 
     ...    Reference: clause 5.4.16.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
@@ -75,7 +75,7 @@ PUT Fail operation task - Method not implemented
 
 PATCH Fail operation task - Method not implemented
      [Documentation]    Test ID: 7.3.1.15.6
-    ...    Test title: GET Fail operation task- Method not implemented
+    ...    Test title: PATCH Fail operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
     ...    Reference: clause 5.4.16.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1

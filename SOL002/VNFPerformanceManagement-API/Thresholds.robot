@@ -2,6 +2,7 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
+Library           String
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Resource          environment/thresholds.txt
 Library           OperatingSystem
@@ -195,7 +196,8 @@ Check Postcondition Threshold Exists
         
 Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{words} =  Split String    ${FILTER_OK}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceId']}    @{words}[1]
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}

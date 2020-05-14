@@ -53,7 +53,7 @@ Upload PNFD Content as plain text file
     ...    Test title: Upload PNFD Content as plain text file
     ...    Test objective: The objective is to test the upload of a PNFD Content in plain text format.
     ...    Pre-conditions: One or more PNFDs are onboarded in the NFVO.
-    ...    Reference: clause 5.4.7.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.7.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The uploaded PNFD content is available in the NFVO
@@ -67,7 +67,7 @@ Upload PNFD Content with conflict due to onboarding state
     ...    Test title: Upload PNFD Content with conflict due to onboarding state
     ...    Test objective: The objective is to test that the upload of the PNFD Content fails due to a conflict when the PNFD is not in onboarding state CREATED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: The onboarding state of the PNFD for which the PNFD Content is requested is different from CREATED.
-    ...    Reference: clause 5.4.7.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.7.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 

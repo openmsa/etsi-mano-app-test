@@ -38,14 +38,14 @@ POST Scale a vnfInstance to level Conflict (Not-Instantiated)
 POST Scale a vnfInstance Not Found
     [Documentation]    Test ID: 6.3.5.5.3
     ...    Test title: POST Scale a vnfInstance Not Found
-    ...    Test objective: The objective is to verify that the operation cannot be executed , because the VNF instance resource cannot be found.
+    ...    Test objective: The objective is to verify that the VNF Scale operation fails when the VNF instance resource is not present
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
     ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions:
     POST Scale vnfInstance to level    
-    Check HTTP Response Status Code Is    409
+    Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails 
    
     

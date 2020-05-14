@@ -16,7 +16,7 @@ ${polling}    10 sec
 Requests a grant for a particular VNF lifecycle operation - Synchronous mode
     [Documentation]    Test ID: 7.3.2.1.1
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Synchronous mode
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation  and perform a JSON schema validation on the returned grant data structure
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and perform a JSON schema validation on the returned grant data structure
     ...    Pre-conditions: 
     ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -31,7 +31,7 @@ Requests a grant for a particular VNF lifecycle operation - Synchronous mode
 Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
     [Documentation]    Test ID: 7.3.2.1.2
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation 
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and perform a JSON schema validation on the returned grant data structure
     ...    Pre-conditions: 
     ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
@@ -46,13 +46,13 @@ Requests a grant for a particular VNF lifecycle operation - Asynchronous mode
 Requests a grant for a particular VNF lifecycle operation - Forbidden 
     [Documentation]    Test ID: 7.3.2.1.3
     ...    Test title: Requests a grant for a particular VNF lifecycle operation - Forbidden 
-    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and check the content of the problem details data structure returned
-    ...    Pre-conditions: The grant should not be accorded
-    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Test objective: The objective is to request a grant for a particular VNF lifecycle operation and the grant is rejected
+    ...    Pre-conditions: none
+    ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Send Request a new Grant Forbidden
+    Send Request for a new Grant Forbiden Operation
     Check HTTP Response Status Code Is    403
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -100,9 +100,10 @@ DELETE Grants - Method not implemented
     ...    Reference: clause 9.4.2.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
-    ...    Post-Conditions: none
+    ...    Post-Conditions:  resources are not deleted
     Delete Grants
     Check HTTP Response Status Code Is    405
+    Get an individual grant - Successful
     
 *** Keywords ***
 Wait for individual grant successful notification
@@ -129,7 +130,7 @@ Send Request Grant Request in Asynchronous mode
     ${body}=    Output    response
     Set Suite Variable    &{response}    ${body}
     
-Send Request a new Grant Forbidden    
+Send Request for a new Grant Forbiden Operation   
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
     Log    The grant request should be rejected
     Set Headers    {"Accept": "${ACCEPT}"}
@@ -177,9 +178,6 @@ Get an individual grant - Successful
     Get    ${response['headers']['Location']}
     Log    Validate Status code
     Integer    response status    200
-    ${result}    Output    response body
-    Validate Json    grant.schema.json    ${result}
-    Log    Validation OK
     
 Get Grants
     Log    Trying to perform a GET. This method should not be implemented
