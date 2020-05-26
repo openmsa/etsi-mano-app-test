@@ -13,7 +13,7 @@ Create a new alarm subscription
     ...    Test title: Create a new alarm subscription
     ...    Test objective: The objective is to create a new Fault management alarm subscriptions and perform a JSON schema and content validation of the returned fault management alarms subscription data structure
     ...    Pre-conditions: no subscription with the same filter and callbackUri exists
-    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -28,7 +28,7 @@ Create a new alarm subscription - DUPLICATION
     ...    Test title: Create a new alarm subscription - DUPLICATION
     ...    Test objective: The objective is to create a new subscription with the NFV allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure..
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: none
@@ -42,7 +42,7 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Test title: Create a new alarm subscription - NO DUPLICATION
     ...    Test objective: The objective is to create a new subscription with the NFV not allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
     ...    Post-Conditions: none
@@ -55,7 +55,7 @@ Retrieve a list of alarm subscriptions
     ...    Test title: Retrieve a list of alarm subscriptions
     ...    Test objective: The objective is to retrieve the list of active subscriptions and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: none
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -68,7 +68,7 @@ Retrieve a list of alarm subscriptions - Filter
     ...    Test title: Retrieve a list of alarm subscriptions - Filter
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: none
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -81,20 +81,72 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective:The objective is to retrieve the list of active subscriptions with Invalid attribute-based filtering parameters and perform a JSON schema and content validation of the returned problem details data structure.
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:   none
     ...    Post-Conditions: none     
     GET Subscriptions with Invalid filter
     Check HTTP Response Status Code Is    400
     Check HTTP Response Body Json Schema Is    ProblemDetails
-   
+
+GET subscriptions with "all_fields" attribute selector
+    [Documentation]    Test ID: 5.3.3.3.7
+    ...    Test title: GET subscriptions with "all_fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with all_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions 
+
+GET subscriptions with "exclude_default" attribute selector
+    [Documentation]    Test ID: 5.3.3.3.8
+    ...    Test title: GET subscriptions with "exclude_default" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with exclude_default attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+
+GET subscriptions with "fields" attribute selector
+    [Documentation]    Test ID: 5.3.3.3.9
+    ...    Test title: GET subscriptions with "fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions
+
+GET subscriptions with "exclude_fields" attribute selector
+    [Documentation]    Test ID: 5.3.3.3.10
+    ...    Test title: GET subscriptions with "exclude_fields" attribute selector
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
+    ...    Pre-conditions: 
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  
+    ...    Post-Conditions: 
+    Get subscriptions with exclude_fields attribute selector
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is   FmSubscriptions  
+    
 PUT subscriptions - Method not implemented
     [Documentation]    Test ID: 5.3.3.3.11
     ...    Test title:PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to for Fault management subscriptions on NFV 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.4.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:   none
@@ -106,7 +158,7 @@ PATCH subscriptions - Method not implemented
     ...    Test title:PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to for Fault management subscriptions on NFV  
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.4.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:   none
@@ -118,9 +170,119 @@ DELETE subscriptions - Method not implemented
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to for Fault management subscriptions on NFV 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.4.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.4.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: subscription is not deleted
     DELETE Subscriptions
     Check HTTP Response Status Code Is    405
+    
+Retrieve a list of alarm subscriptions as Paged Response
+    [Documentation]    Test ID: 5.3.3.3.14
+    ...    Test title: Retrieve a list of alarm subscriptions as Paged Response
+    ...    Test objective: The objective is to retrieve the list of active subscriptions as paged response.
+    ...    Pre-conditions: none
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:  none
+    ...    Post-Conditions: none
+    GET Subscriptions
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+GET subscriptions - Bad Request Response too Big
+    [Documentation]    Test ID: 5.3.3.3.15
+    ...    Test title: GET subscriptions - Bad Request Response too Big
+    ...    Test objective:The objective is test that the retrieval of active subscriptions list fails because response is too big, and perform a JSON schema and content validation of the returned problem details data structure.
+    ...    Pre-conditions:  none
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability:   none
+    ...    Post-Conditions: none     
+    GET Subscriptions
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails
+    
+Retrieve a list of alarm subscriptions with filter "id"
+    [Documentation]    Test ID: 5.3.3.3.16
+    ...    Test title: Retrieve a list of alarm subscriptions with filter "id"
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "id" and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
+    ...    Pre-conditions: none
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO 
+    ...    Applicability:  none
+    ...    Post-Conditions: none
+    Get subscriptions with filter "id"
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    FmSubscriptions
+    Check PostCondition HTTP Response Body Subscription Matches the requested attribute-based filter "id"
+    
+Retrieve a list of alarm subscriptions with filter "filter.notificationTypes"
+    [Documentation]    Test ID: 5.3.3.3.17
+    ...    Test title: Retrieve a list of alarm subscriptions with filter "filter.notificationTypes"
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.notificationTypes" and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
+    ...    Pre-conditions: none
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO 
+    ...    Applicability:  none
+    ...    Post-Conditions: none
+    Get subscriptions with filter "filter_notificationTypes"
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    FmSubscriptions
+    Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_notificationTypes"
+    
+Retrieve a list of alarm subscriptions with filter "filter.faultyResourceTypes"
+    [Documentation]    Test ID: 5.3.3.3.18
+    ...    Test title: Retrieve a list of alarm subscriptions with filter "filter.faultyResourceTypes"
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.faultyResourceTypes" and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
+    ...    Pre-conditions: none
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO 
+    ...    Applicability:  none
+    ...    Post-Conditions: none
+    Get subscriptions with filter "filter_faultyResourceTypes"
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    FmSubscriptions
+    Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_faultyResourceTypes"
+    
+Retrieve a list of alarm subscriptions with filter "filter.perceivedSeverities"
+    [Documentation]    Test ID: 5.3.3.3.19
+    ...    Test title: Retrieve a list of alarm subscriptions with filter "filter.perceivedSeverities"
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.perceivedSeverities" and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
+    ...    Pre-conditions: none
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO 
+    ...    Applicability:  none
+    ...    Post-Conditions: none
+    Get subscriptions with filter "filter_perceivedSeverities"
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    FmSubscriptions
+    Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_perceivedSeverities"
+    
+Retrieve a list of alarm subscriptions with filter "filter.eventTypes"
+    [Documentation]    Test ID: 5.3.3.3.20
+    ...    Test title: Retrieve a list of alarm subscriptions with filter "filter.eventTypes"
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.eventTypes" and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
+    ...    Pre-conditions: none
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO 
+    ...    Applicability:  none
+    ...    Post-Conditions: none
+    Get subscriptions with filter "filter_eventTypes"
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    FmSubscriptions
+    Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_eventTypes"
+    
+Retrieve a list of alarm subscriptions with filter "filter.probableCauses"
+    [Documentation]    Test ID: 5.3.3.3.21
+    ...    Test title: Retrieve a list of alarm subscriptions with filter "filter.probableCauses"
+    ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.probableCauses" and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
+    ...    Pre-conditions: none
+    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO 
+    ...    Applicability:  none
+    ...    Post-Conditions: none
+    Get subscriptions with filter "filter_probableCauses"
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    FmSubscriptions
+    Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_probableCauses"

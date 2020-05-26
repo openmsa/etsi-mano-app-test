@@ -11,7 +11,7 @@ Post Individual Subscription - Method not implemented
     ...    Test title:Post Individual Subscription - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed for Fault management subscription on NFV  
     ...    Pre-conditions:none 
-    ...    Reference: clause 8.4.5.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.5.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: subscription is not created
@@ -23,7 +23,7 @@ Get Information about an individual subscription
     ...    Test title: Get Information about an individual subscription
     ...    Test objective: The objective is to read an individual subscription for NFVO alarms subscribed by the client and perform a JSON schema and content validation of the returned fault management individual subscription data structure
     ...    Pre-conditions: The subscription with the given id exists
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -36,7 +36,7 @@ PUT an individual subscription - Method not implemented
     ...    Test title:PUT an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed for Fault management subscription on NFV   
     ...    Pre-conditions: none
-    ...    Reference: clause 8.4.5.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.5.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -48,7 +48,7 @@ PATCH an individual subscription - Method not implemented
     ...    Test title:PATCH an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed for Fault management subscription on NFV  
     ...    Pre-conditions: none
-    ...    Reference: clause 8.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -60,7 +60,7 @@ DELETE an individual subscription
     ...    Test title:DELETE an individual subscription
     ...    Test objective: The objective is to DELETE an individual subscription 
     ...    Pre-conditions: The Subsbcription already exists
-    ...    Reference: clause 8.4.5.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.5.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: subscription is not deleted
