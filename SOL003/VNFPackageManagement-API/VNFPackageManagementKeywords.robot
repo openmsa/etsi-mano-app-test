@@ -776,3 +776,407 @@ Check Notification Endpoint
     Create Mock Expectation  ${notification_request}  ${notification_response}
     Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
     Clear Requests  ${callback_endpoint}
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    Should Not Be Empty    ${linkURL}
+
+Get all OnBoarded VNF Packages
+    Log    Trying to get all OnBoarded VNF Packages present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+    
+GET OnBoarded VNF Packages with attribute-based filter
+    Log    Trying to get all OnBoarded VNF Packages present in the NFVO Catalogue, using filter params
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages?${POS_FILTER}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET OnBoarded VNF Packages with invalid attribute-based filter
+    Log    Trying to perform a negative get, filtering by the inexistent filter 'nfvId'
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages?${NEG_FILTER}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET OnBoarded VNF Packages with all_fields attribute selector
+    Log    Trying to get all OnBoarded VNF Packages present in the NFVO Catalogue, using filter params
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages?all_fields
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET OnBoarded VNF Packages with exclude_default attribute selector
+    Log    Trying to get all OnBoarded VNF Packages present in the NFVO Catalogue, using exclude_default filter.
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages?exclude_default   
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET OnBoarded VNF Packages with fields attribute selector
+    Log    Trying to get all OnBoarded VNF Packages present in the NFVO Catalogue, using fields
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET OnBoarded VNF Packages with exclude_fields attribute selector
+    Log    Trying to get all OnBoarded VNF Packages present in the NFVO Catalogue, using fields
+    Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET OnBoarded all VNF Packages with invalid resource endpoint
+    Log    Trying to perform a GET on a erroneous URI
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_package
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send OnBoarded POST Request for all VNF Packages
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send OnBoarded PUT Request for all VNF Packages
+    Log    Trying to perform a PUT (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send OnBoarded PATCH Request for all VNF Packages
+    Log    Trying to perform a PATCH (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send OnBoarded DELETE Request for all VNF Packages
+    Log    Trying to perform a DELETE (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual OnBoarded VNF Package
+    Log    Trying to get a OnBoarded VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual OnBoarded VNF Package with invalid resource identifier
+    Log    Trying to perform a negative get, using wrong authorization bearer
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${erroneousVnfdId} 
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send POST Request for individual OnBoarded VNF Package
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for individual OnBoarded VNF Package
+    Log    Trying to perform a PUT (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+ 
+Send PATCH Request for individual OnBoarded VNF Package
+    Log    Trying to perform a PATCH (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send DELETE Request for individual OnBoarded VNF Package
+    Log    Trying to perform a DELETE (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get single file VNFD in Individual OnBoarded VNF Package in Plain Format
+    Log    Trying to get a VNFD from a given OnBoarded VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get VNFD in Individual OnBoarded VNF Package in Zip Format
+    Log    Trying to get a VNFD from a given OnBoarded VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get single file VNFD in Individual OnBoarded VNF Package in Plain or Zip Format
+    Log    Trying to get a VNFD from a given OnBoarded VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get multi file VNFD in Individual OnBoarded VNF Package in Plain or Zip Format
+    Log    Trying to get a VNFD from a given OnBoarded VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get multi file VNFD in Individual OnBoarded VNF Package in Plain Format
+    Log    Trying to get a negative case performing a get on a VNFD from a given VNF Package present in the NFVO Catalogue. Accept will be text/plain but VNFD is composed my multiple files.
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndIdZipVnfd}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+    
+Get VNFD in Individual OnBoarded VNF Package with invalid resource identifier
+    Log    Trying to perform a negative get, using an erroneous package ID
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${erroneousVnfdId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+    
+Get VNFD in Individual OnBoarded VNF Package Content with conflict due to onboarding state 
+    Log    Trying to get a VNFD from a given OnBoarded VNF Package present in the NFVO Catalogue
+    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${onboardingStateVnfdId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send POST Request for VNFD in individual OnBoarded VNF Package
+    Log    Trying to perform a POST. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send PUT Request for VNFD in individual OnBoarded VNF Package
+    Log    Trying to perform a PUT. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+    
+Send PATCH Request for VNFD in individual OnBoarded VNF Package
+    Log    Trying to perform a PATCH. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+
+Send DELETE Request for VNFD in individual OnBoarded VNF Package
+    Log    Trying to perform a DELETE. This method should not be implemented
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndIdZipVnfd}/vnfd
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 
+    
+GET Individual OnBoarded VNF Package Content  
+    Log    Trying to get a VNF Package Content
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual OnBoarded VNF Package Content with Range Request
+    Log    Trying to get a VNF Package Content using RANGE using an NFVO that can handle it
+    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Range": "${range}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual OnBoarded VNF Package Content with invalid Range Request
+    Log    Trying to get a range of bytes of the limit of the VNF Package
+    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Range": "${erroneousRange}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual OnBoarded VNF Package Content with invalid resource identifier
+    Log    Trying to perform a negative get, using an erroneous package ID
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${erroneousVnfdId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Content for OnBoarded VNF Package in onboarding state different from ONBOARDED
+    Log    Trying to get a VNF Package content present in the NFVO Catalogue, but not in ONBOARDED operationalStatus
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${onboardingStateVnfdId}/package_content
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Send POST Request for individual OnBoarded VNF Package
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for individual OnBoarded VNF Package
+    Log    Trying to perform a PUT (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+ 
+Send PATCH Request for individual OnBoarded VNF Package
+    Log    Trying to perform a PATCH (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send DELETE Request for individual OnBoarded VNF Package
+    Log    Trying to perform a DELETE (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual OnBoarded VNF Package Artifact
+    Log    Trying to get a VNF Package Artifact
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual OnBoarded VNF Package Artifact in octet stream format  
+    Log    Trying to get a VNF Package Artifact
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vnfdOctetStreamId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET Individual OnBoarded VNF Package Artifact with Range Request
+    Log    Trying to get an Artifact using RANGE Header and using an NFVO that can handle it
+    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
+    Set Headers    {"Range": "${range}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+GET Individual OnBoarded VNF Package Artifact with invalid Range Request
+    Log    Trying to get a range of bytes of the limit of the VNF Package
+    Pass Execution If    ${NFVO_RANGE_OK} == 0    Skipping this test as NFVO is not able to handle partial Requests.
+    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
+    Set Headers    {"Range": "${erroneousRange}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+ 
+GET Individual OnBoarded VNF Package Artifact with invalid resource identifier
+    Log    Trying to perform a negative get, using an erroneous package ID
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${erroneousVnfdId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+GET Artifact for OnBoarded VNF Package in onboarding state different from ONBOARDED
+    Log    Trying to get a VNF Package artifact present in the NFVO Catalogue, but not in ONBOARDED operationalStatus
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${onboardingStateVnfdId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send POST Request for individual OnBoarded VNF Package Artifact
+    Log    Trying to perform a POST (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    POST    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send PUT Request for individual OnBoarded VNF Package Artifact
+    Log    Trying to perform a PUT (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PUT    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+ 
+Send PATCH Request for individual OnBoarded VNF Package Artifact
+    Log    Trying to perform a PATCH (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    PATCH    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Send DELETE Request for individual OnBoarded VNF Package Artifact
+    Log    Trying to perform a DELETE (method should not be implemented)
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    DELETE    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/artifacts/${artifactPath}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+
+Check Postcondition OnBoarded VNF Package Artifact Exist
+    Log    Checking that vnf pacakge still exists
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}/artifacts/${artifactPath}
+    Check HTTP Response Status Code Is    200

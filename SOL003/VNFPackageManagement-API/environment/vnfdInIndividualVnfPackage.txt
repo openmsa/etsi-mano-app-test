@@ -6,4 +6,4 @@ ${ACCEPT_ZIP}     application/zip
 ${CONTENT_TYPE_ZIP}    application/zip
 ${vnfPkgZipVNFD}    f5b220d4-6177-4ebb-a554-a43311e16075    # The VNF Package contains a VNFD composed by multiple files
 ${erroneousVnfPkgId}    erroneousVnfPackageId    # Given ID for vnfPkg not present in database
-
+${vndIdZipVnfd}       f5b220d4-6177-4ebb-a554-a43311e16075 
