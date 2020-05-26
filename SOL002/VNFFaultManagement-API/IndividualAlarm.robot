@@ -18,7 +18,7 @@ POST Alarm - Method not implemented
     ...    Test title: POST Alarm - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.3.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.3.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -31,7 +31,7 @@ GET information about an individual alarm
     ...    Test title: GET information about an individual alarm
     ...    Test objective: The objective is to read an individual alarm.
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.2  - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.3.3.2  - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -46,7 +46,7 @@ PUT Individual Alarm - Method not implemented
     ...    Test title: PUT Individual Alarm - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.3.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.3.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -59,7 +59,7 @@ PATCH Individual Alarm
     ...    Test title: PATCH Individual Alarm
     ...    Test objective: The objective is to Modify an individual alarm resource
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -72,7 +72,7 @@ PATCH Individual Alarm - Precondition failed
     ...    Test title: PATCH Individual Alarm - Precondition failed
     ...    Test objective: The objective is to attempt to Modify an individual alarm resource, where the precondition was not met
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: The alarm resource is not modified
@@ -85,7 +85,7 @@ PATCH Individual Alarm - Conflict
     ...    Test title: PATCH Individual Alarm - Conflict
     ...    Test objective: The objective is to Modify an individual alarm resource
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: The alarm resource is not modified
@@ -99,7 +99,7 @@ DELETE Individual Alarm - Method not implemented
     ...    Test title: DELETE Individual Alarm - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: alarm not deleted
