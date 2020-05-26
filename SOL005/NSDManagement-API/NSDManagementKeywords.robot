@@ -1036,17 +1036,19 @@ Check HTTP Response Header Contains Etag
     Log    Header is present
     Set Suite Variable    ${original_etag}    ${response['headers]['ETag']}
 
-
 Create Sessions
     Pass Execution If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 0    MockServer not started as NFVO is not checking the notification endpoint
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
     Create Mock Session  ${callback_uri}
-    
-    
+       
 Check Notification Endpoint
     &{notification_request}=  Create Mock Request Matcher	GET  ${callback_endpoint}    
     &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${notification_request}  ${notification_response}
     Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
     Clear Requests  ${callback_endpoint}
+
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    Should Not Be Empty    ${linkURL}
