@@ -16,7 +16,7 @@ Deliver a notification - Vr Quota Availibility
     ...    Test title: Deliver a notification - Vr Quota Availibility
     ...    Test objective: The objective is to notify related to the availability of the virtualised resources quota.
     ...    Pre-conditions: The VNF has subscribed to the Vr Quota Availibility resource
-    ...    Reference: clause 11.4.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 11.4.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:  

@@ -175,4 +175,9 @@ Send Delete request for Virtualised Resources Quota Available Notification subsc
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${outputResponse}=    Output    response 
-    Set Global Variable    @{response}    ${outputResponse}           
+    Set Global Variable    @{response}    ${outputResponse}     
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    Should Not Be Empty    ${linkURL}
+      
