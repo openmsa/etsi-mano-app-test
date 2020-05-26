@@ -13,7 +13,7 @@ Get Indicators for VNF Instance
     ...    Test title: Get all performance indicators for a VNF instance
     ...    Test objective: The objective is to test the retrieval of all performance indicators for a given VNF instance and perform a JSON schema validation of the returned indicators data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
-    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators
     ...    Post-Conditions: none
@@ -27,7 +27,7 @@ GET Indicators for VNF Instance with attribute-based filter
     ...    Test title: Get all performance indicators for a VNF instance with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of all performance indicators for a given VNF instance using attribute-based filter and perform a JSON schema validation of the returned indicators data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
-    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators
     ...    Post-Conditions: none
@@ -41,7 +41,7 @@ Get Indicators for VNF Instance with invalid attribute-based filter
     ...    Test title: Get all performance indicators for a VNF instance with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of all performance indicators for a given VNF instance fails using invalid attribute-based filter. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
-    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -54,7 +54,7 @@ Get Indicators for VNF Instance with invalid resource identifier
     ...    Test title: Get all performance indicators for a VNF instance with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of all performance indicators for a given VNF instance fails when using invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
-    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -67,7 +67,7 @@ POST Indicators for VNF instance - Method not implemented
     ...    Test title: POST performance indicators for VNF instance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create new performance indicators for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 8.4.3.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.3.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -79,7 +79,7 @@ PUT Indicators for VNF instance - Method not implemented
     ...    Test title: PUT performance indicators for VNF instance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify existing performance indicators for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
-    ...    Reference: clause 8.4.3.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.3.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -91,7 +91,7 @@ PATCH Indicators for VNF instance - Method not implemented
     ...    Test title: PATCH performance indicators for VNF instance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update existing performance indicators for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
-    ...    Reference: clause 8.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -103,13 +103,39 @@ DELETE Indicators for VNF instance - Method not implemented
     ...    Test title: DELETE performance indicators for VNF instance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete performance indicators for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
-    ...    Reference: clause 8.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: The indicators for the VNF instance are not deleted by the unsuccessful operation
     Send DELETE Request for indicators in VNF instance
     Check HTTP Response Status Code Is    405
     Check Postcondition Indicators for VNF instance Exist
+    
+Get Indicators for VNF Instance to get Paged Response
+    [Documentation]    Test ID: 6.3.2.2.9
+    ...    Test title: Get Indicators for VNF Instance to get Paged Response
+    ...    Test objective: The objective is to test the retrieval of all performance indicators for a given VNF instance to get paged response.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
+    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
+    ...    Post-Conditions: none
+    Get all indicators for a VNF instance
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+Get Indicators for VNF Instance - Bad Request Response too Big
+    [Documentation]    Test ID 6.3.2.2.10
+    ...    Test title: Get Indicators for VNF Instance - Bad Request Response too Big
+    ...    Test objective: The objective is to test that the retrieval of all performance indicators for a given VNF instance fails when response is too big. The test also checks the JSON schema of the unsuccessful operation HTTP response.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more measures of performance indicators are available for the given VNF instance.
+    ...    Reference: clause 8.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
+    ...    Post-Conditions: none
+    Get all indicators for a VNF instance
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails
 
 *** Keywords ***
 Get all indicators for a VNF instance
