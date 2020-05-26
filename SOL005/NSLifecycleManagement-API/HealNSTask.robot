@@ -13,7 +13,7 @@ POST Heal a NSInstance
     ...    Test title: POST Heal a NSInstance
     ...    Test objective: The objective is to test that POST method trigger a Heal NS instance
     ...    Pre-conditions: resource status is not in NOT_INSTANTIATED state
-    ...    Reference: clause 6.4.7.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.7.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -26,7 +26,7 @@ POST Heal a NSInstance Conflict
     ...    Test title: POST Heal a NSInstance Conflict
     ...    Test objective: The objective is to test that POST method fail if NS instance is not in NOT_INSTANTIATE state 
     ...    Pre-conditions: resource status is in NOT_INSTANTIATED state
-    ...    Reference: clause 6.4.7.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.7.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -39,7 +39,7 @@ GET Heal NSInstance- Method not implemented
     ...    Test title: GET Heal NSInstance- Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.7.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.7.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -51,7 +51,7 @@ PUT Heal NSInstance - Method not implemented
     ...    Test title: PUT Heal NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.7.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.7.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -59,11 +59,11 @@ PUT Heal NSInstance - Method not implemented
     Check HTTP Response Status Code Is    405
     
 PATCH Heal NSInstance - Method not implemented
-    [Documentation]    Test ID: 5.3.2.6.4
+    [Documentation]    Test ID: 5.3.2.6.5
     ...    Test title: PATCH Heal NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.7.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.7.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -71,11 +71,11 @@ PATCH Heal NSInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Heal NSInstance - Method not implemented
-    [Documentation]    Test ID: 5.3.2.6.4
+    [Documentation]    Test ID: 5.3.2.6.6
     ...    Test title: DELETE Heal NSInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.7.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.7.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none

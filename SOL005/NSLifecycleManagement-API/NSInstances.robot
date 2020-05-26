@@ -11,8 +11,8 @@ POST Create a new NsInstance
     [Documentation]    Test ID: 5.3.2.1.1
     ...    Test title: POST Create a new NsInstance
     ...    Test objective: The objective is to test the creation of a new Ns Instances and perform a JSON schema validation of the collected instance data structure
-    ...    Pre-conditions: An NS Instance is already created
-    ...    Reference: clause 6.4.2.3.1 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Pre-conditions: None.
+    ...    Reference: clause 6.4.2.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
     ...    Post-Conditions: A Ns instance is instantiated.
@@ -25,8 +25,8 @@ GET information about multiple NS instances
     [Documentation]    Test ID: 5.3.2.1.2
     ...    Test title: GET information about multiple NS instances
     ...    Test objective: The objective is to test the retrieval of all the available NS Instances and perform a JSON schema and content validation of the collected instance data structure
-    ...    Pre-conditions: An NS Instance is already created
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Pre-conditions: An existing Ns instance.
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
     ...    Post-Conditions: none.
@@ -37,9 +37,9 @@ GET information about multiple NS instances
 GET information about multiple NS instances Bad Request Invalid attribute-based filtering parameters
     [Documentation]    Test ID: 5.3.2.1.3
     ...    Test title: GET information about multiple NS instances Bad Request Invalid attribute-based filtering parameters
-    ...    Test objective: The objective is to query information about multiple NS instances with Invalid attribute-based filtering parameters
-    ...    Pre-conditions: An Ns instance is instantiated, a bad attribute-based filter parameter is either malformed or syntactically incorrect (filter parameters are listed in Table 6.4.2.3.2-1  - SOL005 v2.4.1)
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Test objective: The objective is to test the retrieval of all the available NS Instances using attribute-based filter and perform a JSON schema and content validation of the collected instance data structure
+    ...    Pre-conditions: A Ns instance is instantiated, a bad filter parameter (filter parameters are listed in Table 6.4.2.3.2-1  - ETSI GS NFV-SOL 005 [3] v2.6.1).
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
     ...    Post-Conditions: none.
@@ -50,9 +50,9 @@ GET information about multiple NS instances Bad Request Invalid attribute-based 
 GET information about multiple NS instances Bad Request Invalid attribute selector
     [Documentation]    Test ID: 5.3.2.1.4
     ...    Test title: GET information about multiple NS instances Bad Request Invalid attribute selector
-    ...    Test objective: The objective is to query information about multiple NS instances with Invalid attribute selector
-    ...    Pre-conditions: A Ns instance is instantiated, a bad attribute selector parameter is either malformed or syntactically incorrect (filter parameters are listed in Table 6.4.2.3.2-1  - SOL005 v2.4.1)
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Test objective: The objective is to test the retrieval of all the available NS Instances using attribute-based filter and perform a JSON schema and content validation of the collected instance data structure
+    ...    Pre-conditions: A Ns instance is instantiated,  a bad attribute selector (attribute selectors are listed in Table 6.4.2.3.2-1  - ETSI GS NFV-SOL 005 [3] v2.6.1).
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none.
     ...    Post-Conditions: none.
@@ -64,7 +64,7 @@ GET NSInstances with "all_fields" attribute selector
     ...    Test title: GET NSInstances with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active NSInstances with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -77,7 +77,7 @@ GET NSInstances with "exclude_default" attribute selector
     ...    Test title: GET NSInstances with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve the list of active NSInstances with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -90,7 +90,7 @@ GET NSInstances with "fields" attribute selector
     ...    Test title: GET NSInstances with "fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active NSInstances with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -103,7 +103,7 @@ GET NSInstances with "exclude_fields" attribute selector
     ...    Test title: GET NSInstances with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active NSInstances with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -116,7 +116,7 @@ PUT NSInstances - Method not implemented
     ...    Test title: PUT Individual NS instance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.2.3.3 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Reference: clause 6.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS instance is not modified by the operation
@@ -128,7 +128,7 @@ PATCH NSInstances - Method not implemented
     ...    Test title: PATCH NSInstances - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.2.3.4 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Reference: clause 6.4.2.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS instance is not modified by the operation
@@ -140,9 +140,35 @@ DELETE NSInstances - Method not implemented
     ...    Test title: DELETE NSInstances - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.2.3.5 - ETSI GS NFV-SOL 005 v2.4.1
+    ...    Reference: clause 6.4.2.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS instance is not deleted by the operation
     DELETE NSInstances
     Check HTTP Response Status Code Is    405
+    
+GET information about multiple NS instances as Paged Response
+    [Documentation]    Test ID: 5.3.2.1.12
+    ...    Test title: GET information about multiple NS instances as Paged Response
+    ...    Test objective: The objective is to test the retrieval of all the available NS Instances as a Paged Response.
+    ...    Pre-conditions: An existing Ns instance.
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none.
+    ...    Post-Conditions: none.
+    GET NsInstances
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+GET information about multiple NS instances - Bad Request Response too Big
+    [Documentation]    Test ID: 5.3.2.1.13
+    ...    Test title: GET information about multiple NS instances - Bad Request Response too Big
+    ...    Test objective: The objective is to test the retrieval of all the available NS Instances fails because reponse is too big, and perform a JSON schema and content validation of the collected instance data structure
+    ...    Pre-conditions: A Ns instance is instantiated,  a bad attribute selector (attribute selectors are listed in Table 6.4.2.3.2-1  - ETSI GS NFV-SOL 005 [3] v2.6.1).
+    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none.
+    ...    Post-Conditions: none.
+    GET NsInstances
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails
