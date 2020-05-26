@@ -13,7 +13,7 @@ POST Individual Subscription - Method not implemented
     ...    Test title: POST Individual Subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -25,7 +25,7 @@ GET Information about an individual subscription
     ...    Test title: GET Information about an individual subscription
     ...    Test objective: The objective is to read an individual subscription for VNF alarms subscribed by the client
     ...    Pre-conditions: The subscription with the given id exists
-    ...    Reference: clause 7.4.6.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.6.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -38,7 +38,7 @@ PUT an individual subscription - Method not implemented
     ...    Test title: PUT an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.6.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.6.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -51,7 +51,7 @@ PATCH an individual subscription - Method not implemented
     ...    Test title: PATCH an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.6.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.6.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -64,7 +64,7 @@ DELETE an individual subscription
     ...    Test title: DELETE an individual subscription
     ...    Test objective: The objective is to test that the deletion of a subscription
     ...    Pre-conditions: an existing subscription
-    ...    Reference: clause 7.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: the subscription is deleted

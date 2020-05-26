@@ -10,7 +10,7 @@ Escalate the perceived severity
     ...    Test title: Escalate the perceived severity
     ...    Test objective: To enable the consumer to escalate the perceived severity of an alarm that is represented by an individual alarm resource.
     ...    Pre-conditions: The resource representing the individual alarm has been created
-    ...    Reference: clause 7.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -22,7 +22,7 @@ GET Escalate the perceived severity - Method not implemented
     ...    Test title: GET Escalate the perceived severity - Method not implemented
     ...    Test objective: The objective is to test that the GET HTTP method not implemented for escalate perceived severity
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -34,7 +34,7 @@ PUT Escalate the perceived severity - Method not implemented
     ...    Test title: PUT Escalate the perceived severity - Method not implemented
     ...    Test objective: The objective is to test that the PUT HTTP method not implemented for escalate perceived severity
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -46,7 +46,7 @@ PATCH Escalate the perceived severity - Method not implemented
     ...    Test title: PATCH Escalate the perceived severity - Method not implemented
     ...    Test objective: The objective is to test that the PATCH HTTP method not implemented for escalate perceived severity
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
@@ -59,7 +59,7 @@ DELETE Escalate the perceived severity - Method not implemented
     ...    Test title: DELETE Escalate the perceived severity - Method not implemented
     ...    Test objective: The objective is to test that the DELETE HTTP method not implemented for escalate perceived severity
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 7.4.4.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:   
