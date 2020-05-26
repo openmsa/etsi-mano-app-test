@@ -12,7 +12,7 @@ Get Individual Performance Report
     ...    Test title: Get Individual Performance Report
     ...    Test objective: The objective is to test the retrieval of an individual NS performance report associated to a monitoring job and perform a JSON schema validation of the collected report data structure
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -25,7 +25,7 @@ Get Individual Performance Report with invalid resource endpoint
     ...    Test title: Get Individual Performance Report with invalid resource endpoint
     ...    Test objective:  The objective is to test that the retrieval of an individual NS performance report associated to a monitoring job fails when using an invalid resource endpoint 
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -37,7 +37,7 @@ POST Individual Performance Report - Method not implemented
     ...    Test title: POST Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new NS performance report within a monitoring job
     ...    Pre-conditions: A NS instance is instantiated.
-    ...    Reference: clause 7.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 7.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS performance report is not created on the NFVO
@@ -50,7 +50,7 @@ PUT Individual Performance Report - Method not implemented
     ...    Test title: PUT Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing NS performance report within a monitoring job
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
-    ...    Reference: clause 7.4.4.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 7.4.4.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS performance report is not modified by the operation
@@ -63,7 +63,7 @@ PATCH Individual Performance Report - Method not implemented
     ...    Test title: PATCH Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing NS performance report within a monitoring job
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
-    ...    Reference: clause 7.4.4.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 7.4.4.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS performance report is not modified by the operation
@@ -76,7 +76,7 @@ DELETE Individual Performance Report - Method not implemented
     ...    Test title: DELETE Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete an existing NS performance report within a monitoring job
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance reports are set for a monitoring job in the NFVO.
-    ...    Reference: clause 7.4.4.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 7.4.4.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS performance report is not deleted by the operation
