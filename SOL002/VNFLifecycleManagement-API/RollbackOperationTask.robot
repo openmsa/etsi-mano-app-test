@@ -14,7 +14,7 @@ POST Rollback operation task
     ...    Test title: POST Rollback operation task
     ...    Test objective: The objective is to test that POST method The POST method initiates rollback a VNF lifecycle operation if that operation has experienced a temporary failure
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
-    ...    Reference: clause 5.4.15.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.15.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -28,7 +28,7 @@ POST Rollback operation task Conflict (Not-FAILED_TEMP)
     ...    Test title: POST Rollback operation task Conflict (Not-FAILED_TEMP)
     ...    Test objective: The objective is to test that POST method The POST method initiates rollback a VNF lifecycle operation if that operation has experienced a temporary failure
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
-    ...    Reference: clause 5.4.15.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.15.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -43,7 +43,7 @@ POST Rollback operation task Not Found
     ...    Test title: POST Rollback operation task Not Found
     ...    Test objective: The objective is to test that the retry operation cannot be executed because the operation is not supported
     ...    Pre-conditions: 
-    ...    Reference: clause 5.4.15.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.15.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -55,7 +55,7 @@ GET Rollback operation task - Method not implemented
     ...    Test title: GET Rollback operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.15.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.15.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -67,7 +67,7 @@ PUT Rollback operation task - Method not implemented
     ...    Test title: PUT Rollback operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.15.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.15.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -79,7 +79,7 @@ PATCH Rollback operation task - Method not implemented
     ...    Test title: PATCH Rollback operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.15.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.15.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -91,7 +91,7 @@ DELETE Rollback operation task - Method not implemented
     ...    Test title: DELETE Rollback operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.15.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.15.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 

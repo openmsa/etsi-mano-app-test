@@ -922,18 +922,10 @@ GET test endpoint
     Create Mock Expectation  ${req}  ${rsp}
     Sleep  ${sleep_interval}
     Verify Mock Expectation  ${req}
-    Clear Requests  ${callback_endpoint}    
-    
-Check LCM OP OCC resource exist
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs
-    Integer    response status    200	
-    
-Check Subscription resource exist
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
-    Integer    response status    200	
+    Clear Requests  ${callback_endpoint}   
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    Should Not Be Empty    ${linkURL}
+
+
+ 	
