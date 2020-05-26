@@ -34,9 +34,11 @@
 7.3.1.32,VNF Instance Scale Out, ScaleVNFWorkflow.robot
 7.3.1.33,Terminate a VNF Instance, TerminateVNFWorkflow.robot
 7.3.1.34,Notification Endpoint, NotificationEndpoint.robot
+7.3.1.35,API Version Resource Endpoint, ApiVersion.robot
 7.3.2,VNF Lifecycle Operation Granting Interface, VNFLifecycleOperationGranting-API
 7.3.2.1,Grants, Grants.robot
 7.3.2.2,Individual Grant, IndividualGrant.robot
+7.3.2.3,API Version Resource Endpoint, ApiVersion.robot
 7.3.3,VNF Package Management Interface, VNFPackageManagement-API
 7.3.3.1,VNF Packages Resource Endpoint, VNFPackages.robot
 7.3.3.2,Individual VNF Package Resource Endpoint, IndividualVNFPackage.robot
@@ -46,6 +48,7 @@
 7.3.3.6,Subscriptions Resource Endpoint, Subscriptions.robot
 7.3.3.7,Individual Subscription Resource Endpoint, IndividualSubscription.robot
 7.3.3.8,Notification Endpoint, PackageManagementNotification.robot
+7.3.3.9,API Version Resource Endpoint, ApiVersion.robot
 7.3.4,VNF Performance Management Interface, VNFPerformanceManagement-API
 7.3.4.1,PM Jobs Resource Endpoint, PMJobs.robot
 7.3.4.2,Individual Pm Job Resource Endpoint, IndividualPmJob.robot
@@ -55,19 +58,23 @@
 7.3.4.6,Subscriptions, Subscriptions.robot
 7.3.4.7,Individual Subscription Resource Endpoint, IndividualSubscription.robot
 7.3.4.8,Notification Endpoint,  PerformanceManagementNotification.robot 
+7.3.4.9,API Version Resource Endpoint, ApiVersion.robot
 7.3.5,VNF Fault Management interface, VNFFaultManagement-API
 7.3.5.1,Alarms, Alarms.robot
 7.3.5.2,Individual Alarm, IndividualAlarm.robot 
 7.3.5.3,Subscriptions, Subscriptions.robot
 7.3.5.4,Individual Subscription, IndividualSubscription.robot
 7.3.5.5,Notification Endpoint, ../VNFFaultManagementNotification-API/NotificationEndpoint.robot
-7.3.6,VNF Indicator Interface, VNFIndicator-API
+7.3.5.6,API Version Resource Endpoint, ApiVersion.robot
+7.3.5.6,VNF Indicator Interface, VNFIndicator-API
 7.3.6.1,VNF Indicators Resource Endpoint, VNFIndicators.robot
 7.3.6.2,VNF Indicators Related to a VNF Instance Resource Endpoint, VnfIndicatorsInVnfInstanceId.robot
 7.3.6.3,Individual VNF Indicator Resource Endpoint, IndividualVNFindicator.robot
 7.3.6.4,Subscriptions Resource Endpoint, Subscriptions.robot
 7.3.6.5,Individual Subscription Resource Endpoint, IndividualSubscription.robot
 7.3.6.6,Notification Endpoint, VnfIndicatorNotification.robot
+7.3.6.7,API Version Resource Endpoint, ApiVersion.robot
 7.3.7,Virtualised Resources Quota Available Notification interface, VirtualisedResourcesQuotaAvailableNotification-API
 7.3.7.1,Subscriptions, Subscriptions.robot
 7.3.7.2,Individual Subscription, IndividualSubscription.robot
+7.3.7.3,API Version Resource Endpoint, ApiVersion.robot

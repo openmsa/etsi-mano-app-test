@@ -9,6 +9,7 @@
 5.3.1.7,Subscriptions Resource Endpoint, Subscriptions.robot
 5.3.1.8,Individual Subscription Resource Endpoint, IndividualSubscription.robot
 5.3.1.9,Notifications Endpoint, NSDManagementNotification.robot
+5.3.1.10,API Version Resource Endpoint, ApiVersion.robot
 5.3.2,NS Lifecycle Management interface, NSLifecycleManagement-API
 5.3.2.1,NsInstances, NSInstances.robot
 5.3.2.2,Individual NSInstance, IndividualNSInstance.robot
@@ -19,7 +20,7 @@
 5.3.2.7,Terminate a NSInstance, TerminateNSTask.robot
 5.3.2.8,NS LCM occurrences, NSLCMOccurences.robot
 5.3.2.9,Individual NS LCM Occurences, IndividualNSLCMOccurences.robot
-5.3.2.1, Retry operation task, RetryOperationTask.robot
+5.3.2.10, Retry operation task, RetryOperationTask.robot
 5.3.2.11, Rollback operation task, RollbackOperationTask.robot
 5.3.2.12,Continue operation task, ContinueOperationTask.robot
 5.3.2.13,Fail operation task, FailOperationTask.robot
@@ -34,12 +35,14 @@
 5.3.2.22, Scale Flow of NS lifecycle management operations, ScaleNSTaskWorkflow.robot
 5.3.2.23, Terminate Flow of NS lifecycle management operations, TerminateNSTaskWorkflow.robot
 5.3.2.24, Update Flow of NS lifecycle management operations, UpdateNSTaskWorkflow.robot
+5.3.2.25,API Version Resource Endpoint, ApiVersion.robot
 5.3.3,NS Fault Management interface, NSFaultManagement-API
 5.3.3.1,Alarms, Alarms.robot
 5.3.3.2,Individual Alarm, IndividualAlarm.robot
 5.3.3.3,Subscriptions, Subscriptions.robot
 5.3.3.4,Individual Subscription, IndividualSubscription.robot
 5.3.3.5,Notification Endpoint, NotificationEndpoint.robot
+5.3.3.6,API Version Resource Endpoint, ApiVersion.robot
 5.3.4,NS Performance Management interface, NSPerformanceManagement-API
 5.3.4.1,PM Jobs Resource Endpoint, PMJobs.robot
 5.3.4.2,Individual PM Job Resource Endpoint, IndividualPmJob.robot
@@ -49,6 +52,7 @@
 5.3.4.6,Subscriptions Resource Endpoint, Subscriptions.robot
 5.3.4.7,Individual Subscription Resource Endpoint, IndividualSubscription.robot
 5.3.4.8,Notifications Endpoint, Notifications.robot
+5.3.4.9,API Version Resource Endpoint, ApiVersion.robot
 5.3.5,VNF Package Management interface, VNFPackageManagement-API
 5.3.5.1,VNF Packages Resource Endpoint, VNFPackages.robot
 5.3.5.2,Individual VNF Package Resource Endpoint, IndividualVNFPackage.robot
@@ -59,3 +63,4 @@
 5.3.5.7,Subscriptions Resource Endpoint, Subscriptions.robot
 5.3.5.8,Individual Subscription Resource Endpoint, IndividualSubscription.robot
 5.3.5.9,Notifications Endpoint, Notifications.robot
+5.3.5.10,API Version Resource Endpoint, ApiVersion.robot
