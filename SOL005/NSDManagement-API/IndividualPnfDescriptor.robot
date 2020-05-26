@@ -14,7 +14,7 @@ GET Individual PNF Descriptor Information
     ...    Test title: GET Individual PNF Descriptor Information
     ...    Test objective: The objective is to test the retrieval of an individual PNF Descriptor information and perform a JSON schema validation of the collected data structure
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.6.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.6.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -29,7 +29,7 @@ GET Individual PNF Descriptor Information with invalid resource identifier
     ...    Test title: GET Individual PNF Descriptor Information with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual PNF Descriptor Information fails when using an invalid resource identifier
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.6.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.6.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -41,7 +41,7 @@ Update Individual PNF Descriptor
     ...    Test title: Update Individual PNF Descriptor
     ...    Test objective: The objective is to test the update of an individual PNF Descriptor and perform a JSON schema and content validation of the collected data structure
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.6.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.6.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The PNF Descriptor is modified according to the update request
@@ -56,7 +56,7 @@ Update Individual PNF Descriptor with HTTP Etag precondition failure
     ...    Test title:  Update Individual PNF Descriptor with HTTP Etag precondition failure
     ...    Test objective: The objective is to test that the update of a PNF Descriptor fails due to a precondition failure when using an uncorrect Http Etag identified.
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.6.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.6.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -68,7 +68,7 @@ POST Individual PNF Descriptor - Method not implemented
     ...    Test title: POST Individual PNF Descriptor - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new PNF Descriptor
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -80,7 +80,7 @@ PUT Individual PNF Descriptor - Method not implemented
     ...    Test title: PUT Individual PNF Descriptor - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify a new PNF Descriptor
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.6.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.6.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -92,7 +92,7 @@ DELETE Individual PNF Descriptor
     ...    Test title:  DELETE Individual PNF Descriptor
     ...    Test objective: The objective is to test the deletion of an individual PNF Descriptor.
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.6.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 5.4.6.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The PNF Descriptor is not available anymore in the NFVO 
