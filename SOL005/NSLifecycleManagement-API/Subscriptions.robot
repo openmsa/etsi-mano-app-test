@@ -12,7 +12,7 @@ POST Create a new subscription
     ...    Test title: POST Create a new subscription
     ...    Test objective: The objective is to test that POST method create a subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: subscription is created in the NFVO     
@@ -27,7 +27,7 @@ POST Create a new Subscription - DUPLICATION
     ...    Test title: POST Create a new subscription - DUPLICATION
     ...    Test objective: The objective is to test that POST method create a duplicate subscription 
     ...    Pre-conditions: a subscription shall already exist
-    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: duplication supported by NFVO
     ...    Post-Conditions: duplicate subscription is created in the NFVO     
@@ -41,7 +41,7 @@ POST Create a new Subscription - NO-DUPLICATION
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
     ...    Test objective: The objective is to test that POST method cannot create a duplicate subscription 
     ...    Pre-conditions: a subscription shall already exist
-    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: duplication NOT supported by NFVO
     ...    Post-Conditions: duplicate subscription is not created in the NFVO     
@@ -54,7 +54,7 @@ GET Subscriptions
     ...    Test title: GET Subscriptions
     ...    Test objective: The objective is to test that GET method  retrieve the list of existing subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -67,7 +67,7 @@ GET Subscription - Filter
     ...    Test title: GET Subscription - Filter
     ...    Test objective: The objective is Get the list of active subscriptions using a filter
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -80,7 +80,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is Get the list of active subscriptions using an invalid filter
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -93,7 +93,7 @@ GET subscriptions with "all_fields" attribute selector
     ...    Test title: GET subscriptions with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -106,7 +106,7 @@ GET subscriptions with "exclude_default" attribute selector
     ...    Test title: GET subscriptions with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -119,7 +119,7 @@ GET subscriptions with "fields" attribute selector
     ...    Test title: GET subscriptions with "fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -132,7 +132,7 @@ GET subscriptions with "exclude_fields" attribute selector
     ...    Test title: GET subscriptions with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -145,7 +145,7 @@ PUT subscriptions - Method not implemented
     ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -157,7 +157,7 @@ PATCH subscriptions - Method not implemented
     ...    Test title: PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -169,9 +169,35 @@ DELETE subscriptions - Method not implemented
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method cannot modify a NS lifecycle management subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.16.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 6.4.16.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: Subscription is not deleted
     DELETE subscriptions
     Check HTTP Response Status Code Is    405
+    
+GET Subscriptions as Paged Response
+    [Documentation]    Test ID: 5.3.2.15.14
+    ...    Test title: GET Subscriptions as Paged Response
+    ...    Test objective: The objective is to test that GET method  retrieve the list of existing subscriptions as paged response.
+    ...    Pre-conditions: none
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none    
+    GET Subscriptions
+    Check HTTP Response Status Code Is  200
+    Check LINK in Header
+    
+GET subscriptions - Bad Request Response too Big
+    [Documentation]    Test ID: 5.3.2.15.15
+    ...    Test title: GET subscriptions - Bad Request Response too Big
+    ...    Test objective: The objective is test that the retrieval of active subscriptions list fails because response is too big, and perform the JSON schema validation of the failed operation HTTP response.
+    ...    Pre-conditions: none
+    ...    Reference: clause 6.4.16.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none 
+     GET Subscriptions
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails

@@ -360,7 +360,7 @@
 					"description": "Link to the subscription that triggered this notification.\n",
 					"$ref": "SOL005_def.yaml#/definitions/Link"
 				},
-				"lcOpOcc": {
+				"ndlcmOpOcc": {
 					"description": "Link to the lifecycle operation occurrence that this notification is related to. Shall be present if there is a related lifecycle operation occurrence\n",
 					"$ref": "SOL005_def.yaml#/definitions/Link"
 				}
