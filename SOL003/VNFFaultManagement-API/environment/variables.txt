@@ -30,6 +30,12 @@ ${apiVersion}     v1
 
 
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${notification_type}    AlarmNotification
+${faultyResourceType}    COMPUTE
+${eventType}            COMMUNICATIONS_ALARM
+${perceivedSeverity}    CRITICAL
+${probableCause}    ""
+
 
 ${AlarmNotification}    {}
 ${AlarmClearedNotification}    {}

@@ -149,3 +149,28 @@ DELETE Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF fault management alarms Exists
     
+Get information about multiple alarms as a Paged Response
+    [Documentation]    Test ID: 7.3.5.1.8
+    ...    Test title: Get information about multiple alarms as a Paged Response
+    ...    Test objective: The objective is to retrieve information about the alarm list as a Paged Response
+    ...    Pre-conditions: none
+    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Fault Management Alarms
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+Get information about multiple alarms - Bad Request Response too Big
+    [Documentation]    Test ID: 7.3.5.1.9
+    ...    Test title:  Get information about multiple alarms - Bad Request Response too Big
+    ...    Test objective: The objective is to try to retrieve information about the alarm list because response is too big and perform a JSON schema and content validation of the returned problem details data structure
+    ...    Pre-conditions: none
+    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Fault Management Alarms
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails

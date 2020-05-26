@@ -401,3 +401,83 @@ DELETE Individual Subscription
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
     ${outputResponse}=    Output    response
     Set Global Variable    @{response}    ${outputResponse}
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    Should Not Be Empty    ${linkURL}
+    
+Get subscriptions with filter "id"
+    Log    Get the list of active subscriptions using a filter "id"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?id=${subscription_id}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscription Matches the requested attribute-based filter "id"
+    Should Be Equal As Strings    ${response['body']['id']}    ${subscription_id}
+	
+Get subscriptions with filter "filter_notificationTypes"
+    Log    Get the list of active subscriptions using a filter "filter.notificationTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.notificationTypes=${notification_type}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_notificationTypes"
+	:FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings    ${item['filter']['notificationTypes']}   ${probableCause}
+    END
+
+Get subscriptions with filter "filter_faultyResourceTypes"
+    Log    Get the list of active subscriptions using a filter "filter.faultyResourceTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.faultyResourceTypes=${faultyResourceType}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_faultyResourceTypes"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings    ${item['filter']['faultyResourceTypes']}   ${faultyResourceType}
+    END
+	
+Get subscriptions with filter "filter_perceivedSeverities"
+    Log    Get the list of active subscriptions using a filter "filter.perceivedSeverities"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.perceivedSeverities=${perceivedSeverity}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_perceivedSeverities"
+	:FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings    ${item['filter']['perceivedSeverities']}   ${perceivedSeverity}
+    END
+    
+Get subscriptions with filter "filter_eventTypes"
+    Log    Get the list of active subscriptions using a filter "filter.eventTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.eventTypes=${eventType}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_eventTypes"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings    ${item['filter']['eventTypes']}   ${eventType}
+    END
+	
+Get subscriptions with filter "filter_probableCauses"
+    Log    Get the list of active subscriptions using a filter "filter.probableCauses"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.probableCauses=${probableCause}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_probableCauses"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings    ${item['filter']['probableCauses']}   ${probableCause}
+    END
