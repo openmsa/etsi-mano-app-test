@@ -608,7 +608,7 @@ Send Post Request for Duplicated NS Performance Subscription
 
 Send Put Request for NS Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+    ...    Not Allowed" response as defined in Clause 4.3.5.4.
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
@@ -618,7 +618,7 @@ Send Put Request for NS Performance Subscriptions
 
 Send Patch Request for NS Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+    ...    Not Allowed" response as defined in Clause 4.3.5.4.
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
@@ -628,7 +628,7 @@ Send Patch Request for NS Performance Subscriptions
 
 Send Delete Request for NS Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+    ...    Not Allowed" response as defined in Clause 4.3.5.4.
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions

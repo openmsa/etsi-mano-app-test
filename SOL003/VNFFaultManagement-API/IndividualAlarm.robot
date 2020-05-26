@@ -16,7 +16,7 @@ POST Alarm - Method not implemented
     ...    Test title: POST Alarm - Method not implemented
     ...    Test objective: The objective is to test that Post method is not allowed to create Fault management individual alarm on VNF 
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.3.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.3.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  
@@ -28,7 +28,7 @@ Get information about an fault management individual alarm
     ...    Test title: Get information about an fault management individual alarm
     ...    Test objective: The objective is to retrieve information about an individual alarm and perform a JSON schema and content validation of the returned alarm data structure
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none 
@@ -41,7 +41,7 @@ PUT Alarm - Method not implemented
     ...    Test title: PUT Alarm - Method not implemented
     ...    Test objective: he objective is to test that PUT method is not allowed to for Fault management individual alarm on VNF 
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.3.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none 
@@ -53,7 +53,7 @@ PATCH Fault Management Individual Alarm
     ...    Test title: PATCH Fault Management Individual Alarm
     ...    Test objective: The objective is to Modify an individual alarm resource and perform a JSON schema and content validation of the returned alarm data structure
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -67,7 +67,7 @@ Modify an individual alarm resource - Precondition failed
     ...    Test title: Modify an individual alarm resource - Precondition failed
     ...    Test objective: The objective is to test that an individual alarm resource cannot be modified if the alarm is already in the state that is requested to be set
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -81,7 +81,7 @@ Modify an individual alarm resource - Conflict
     ...    Test title: Modify an individual alarm resource - Conflict
     ...    Test objective: The objective is to test that an individual alarm resource cannot be modified if the resource was modified by another entity
     ...    Pre-conditions: The related alarm exists
-    ...    Reference: clause 7.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -96,7 +96,7 @@ DELETE Alarm - Method not implemented
     ...    Test title: DELETE Alarm - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to for Fault management individual alarm on VNF 
     ...    Pre-conditions: nona
-    ...    Reference: clause 7.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  The individual alarm still exists 

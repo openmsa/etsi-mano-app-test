@@ -17,7 +17,7 @@ GET VNF Indicators Subscriptions
     ...    Test title: GET VNF Indicators Subscriptions
     ...    Test objective: The objective is to test the retrieval of all VNF indicators subscriptions and perform a JSON schema validation of the returned subscriptions data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none
@@ -30,7 +30,7 @@ GET VNF Indicators Subscriptions with attribute-based filter
     ...    Test title: GET VNF Indicators Subscriptions with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of all VNF indicators subscriptions using attribute-based filter and perform a JSON schema and content validation of the returned subscriptions data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none
@@ -44,7 +44,7 @@ GET VNF Indicators Subscriptions with invalid attribute-based filter
     ...    Test title: GET VNF Indicators Subscriptions with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of all VNF indicators subscriptions fails when using invalid attribute-based filter. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none
@@ -53,11 +53,11 @@ GET VNF Indicators Subscriptions with invalid attribute-based filter
     Check HTTP Response Body Json Schema Is   ProblemDetails    
 
 GET VNF Indicators Subscriptions with invalid resource endpoint
-    [Documentation]    Test ID 6.3.2.4.4
+    [Documentation]    Test ID: 6.3.2.4.4
     ...    Test title: GET VNF Indicators Subscriptions with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of all VNF indicators subscriptions fails when using invalid resource endpoint.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: none
@@ -65,11 +65,11 @@ GET VNF Indicators Subscriptions with invalid resource endpoint
     Check HTTP Response Status Code Is    404
 
 Create new VNF indicator subscription
-    [Documentation]    Test ID 6.3.2.4.5
+    [Documentation]    Test ID: 6.3.2.4.5
     ...    Test title: Create new VNF indicator subscription
     ...    Test objective: The objective is to test the creation of a new VNF indicator subscription perform a JSON schema and content validation of the returned subscriptions data structure
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 8.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: The VNF indicator subscription is successfully set and it matches the issued subscription
@@ -80,11 +80,11 @@ Create new VNF indicator subscription
     Check Postcondition VNF Indicator Subscription Is Set
 
 PUT VNF Indicator Subscriptions - Method not implemented
-    [Documentation]    Test ID 6.3.2.4.6
+    [Documentation]    Test ID: 6.3.2.4.6
     ...    Test title: PUT VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: none
@@ -92,11 +92,11 @@ PUT VNF Indicator Subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH VNF Indicator Subscriptions - Method not implemented
-    [Documentation]    Test ID 6.3.2.4.7
+    [Documentation]    Test ID: 6.3.2.4.7
     ...    Test title: PATCH VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: none
@@ -104,11 +104,11 @@ PATCH VNF Indicator Subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE VNF Indicator Subscriptions - Method not implemented
-    [Documentation]    Test ID 6.3.2.4.8
+    [Documentation]    Test ID: 6.3.2.4.8
     ...    Test title: DELETE VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: none
@@ -120,7 +120,7 @@ GET VNF Indicators Subscriptions to get Paged Response
     ...    Test title: GET VNF Indicators Subscriptions to get Paged Response
     ...    Test objective: The objective is to test the retrieval of all VNF indicators subscriptions to get Paged Response.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none
@@ -133,7 +133,7 @@ GET VNF Indicators Subscriptions - Bad Request Response too Big
     ...    Test title: GET VNF Indicators Subscriptions - Bad Request Response too Big
     ...    Test objective: The objective is to test that the retrieval of all VNF indicators subscriptions fails because response is too big. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none

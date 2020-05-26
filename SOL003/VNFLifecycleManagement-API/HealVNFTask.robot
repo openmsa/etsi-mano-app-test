@@ -13,7 +13,7 @@ POST Heal a vnfInstance
     ...    Test title: POST Heal a vnfInstance
     ...    Test objective: The objective is to test that POST method heal a VNF instance
     ...    Pre-conditions: the VNF instance resource is not in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -27,7 +27,7 @@ POST Heal a vnfInstance Conflict (Not-Instantiated)
     ...    Test title: POST Heal a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: the VNF instance resource is in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -42,7 +42,7 @@ POST Heal a vnfInstance Not Found
     ...    Test title: POST Heal a vnfInstance Not Found
     ...    Test objective: The objective is to test that the operation cannot be executed because the VNF instance resource is not found. 
     ...    Pre-conditions: the VNF instance resource is not existing
-    ...    Reference: clause 5.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -56,7 +56,7 @@ GET Heal VNFInstance - Method not implemented
     ...    Test title: GET Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.9.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.9.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -68,7 +68,7 @@ PUT Heal VNFInstance - Method not implemented
     ...    Test title: PUT Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.9.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.9.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -80,7 +80,7 @@ PATCH Heal VNFInstance - Method not implemented
     ...    Test title: PATCH Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.9.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.9.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
@@ -92,7 +92,7 @@ DELETE Heal VNFInstance - Method not implemented
     ...    Test title: DELETE Heal a vnfInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.9.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.9.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:

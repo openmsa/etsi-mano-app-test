@@ -13,7 +13,7 @@ Create a new Fault Management alarm subscription
     ...    Test title: Create a new Fault Management alarm subscription
     ...    Test objective: The objective is to create a new Fault management alarm subscriptions and perform a JSON schema and content validation of the returned fault management alarms subscription data structure
     ...    Pre-conditions: No subscription with the same filter and callbackUri exists
-    ...    Reference: clause 7.4.4.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: subscription is created
@@ -29,7 +29,7 @@ Create a new alarm subscription - DUPLICATION
     ...    Test title: Create a new alarm subscription - DUPLICATION
     ...    Test objective: The objective is to create a new subscription with the VNF allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: clause 7.4.4.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
     ...    Post-Conditions: duplicated subscription is created
@@ -44,7 +44,7 @@ Create a new alarm subscription - NO DUPLICATION
     ...    Test title: Create a new alarm subscription - NO DUPLICATION
     ...    Test objective: The objective is to create a new subscription with the VNF not allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: clause 7.4.4.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
     ...    Post-Conditions: duplicated subscription is not created
@@ -58,7 +58,7 @@ Retrieve a list of alarm subscriptions
     ...    Test title: Retrieve a list of alarm subscriptions
     ...    Test objective: The objective is to retrieve the list of active subscriptions and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability:  none
     ...    Post-Conditions: noe
@@ -71,7 +71,7 @@ Retrieve a list of alarm subscriptions with filter
     ...    Test title: Retrieve a list of alarm subscriptions with filter
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
     ...    Pre-conditions: none 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -84,7 +84,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to retrieve the list of active subscriptions with Invalid attribute-based filtering parameters and perform a JSON schema and content validation of the returned problem details data structure.
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability:  none
     ...    Post-Conditions:    none 
@@ -97,7 +97,7 @@ GET subscriptions with "all_fields" attribute selector
     ...    Test title: GET subscriptions with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -110,7 +110,7 @@ GET subscriptions with "exclude_default" attribute selector
     ...    Test title: GET subscriptions with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -123,7 +123,7 @@ GET subscriptions with "fields" attribute selector
     ...    Test title: GET subscriptions with "fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -136,7 +136,7 @@ GET subscriptions with "exclude_fields" attribute selector
     ...    Test title: GET subscriptions with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -149,7 +149,7 @@ PUT subscriptions - Method not implemented
     ...    Test title:PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to for Fault management subscriptions on VNF 
     ...    Pre-conditions: none
-    ...    RReference: clause 7.4.4.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    RReference: Clause 7.4.4.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:  Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none
@@ -161,7 +161,7 @@ PATCH subscriptions - Method not implemented
     ...    Test title: PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to for Fault management subscriptions on VNF  
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.4.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:  Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none
@@ -173,7 +173,7 @@ DELETE subscriptions - Method not implemented
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to for Fault management subscriptions on VNF  
     ...    Pre-conditions: none 
-    ...    Reference: clause 7.4.4.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:  Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: subscription is not deleted
@@ -185,7 +185,7 @@ Retrieve a list of alarm subscriptions as Paged Response
     ...    Test title: Retrieve a list of alarm subscriptions as Paged Response
     ...    Test objective: The objective is to retrieve the list of active subscriptions as Paged Response.
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability:  none
     ...    Post-Conditions: noe
@@ -198,7 +198,7 @@ GET subscriptions - Bad Request Response too Big
     ...    Test title: GET subscriptions - Bad Request Response too Big
     ...    Test objective: The objective is to retrieve the list of active subscriptions because response is too big and perform a JSON schema and content validation of the returned problem details data structure.
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 7.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID:   Config_prod_VNFM
     ...    Applicability:  none
     ...    Post-Conditions:    none 
@@ -211,7 +211,7 @@ GET Subscription with attribute-based filter "id"
     ...    Test title: GET Subscription with attribute-based filter "id"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "id"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -225,7 +225,7 @@ Get subscriptions with filter "filter.notificationTypes"
     ...    Test title: GET Subscription with attribute-based filter "filter.notificationTypes"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.notificationTypes"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -239,7 +239,7 @@ Get subscriptions with filter "filter.faultyResourceTypes"
     ...    Test title: GET Subscription with attribute-based filter "filter.faultyResourceTypes"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.faultyResourceTypes"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -253,7 +253,7 @@ Get subscriptions with filter "filter.perceivedSeverities"
     ...    Test title: GET Subscription with attribute-based filter "filter.perceivedSeverities"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.perceivedSeverities"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -267,7 +267,7 @@ Get subscriptions with filter "filter.eventTypes"
     ...    Test title: GET Subscription with attribute-based filter "filter.eventTypes"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.eventTypes"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 
@@ -281,7 +281,7 @@ Get subscriptions with filter "filter.probableCauses"
     ...    Test title: GET Subscription with attribute-based filter "filter.probableCauses"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.probableCauses"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  
     ...    Post-Conditions: 

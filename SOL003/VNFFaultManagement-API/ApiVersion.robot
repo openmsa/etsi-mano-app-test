@@ -13,7 +13,7 @@ POST API Version - Method not implemented
     ...    Test title: POST API version - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.1 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.1 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -25,7 +25,7 @@ GET API Version
     ...    Test title: GET API Version
     ...    Test objective: The objective is to test that GET method successfully return ApiVersionInformation
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.2 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.2 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -34,11 +34,11 @@ GET API Version
 	Check HTTP Response Body Json Schema Is    ApiVersionInformation
 
 PUT API Version - Method not implemented
-    [Documentation]    Test ID:7.3.5.6.3
+    [Documentation]    Test ID: 7.3.5.6.3
     ...    Test title: PUT API Version - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.3 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.3 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -50,7 +50,7 @@ PATCH API Version - Method not implemented
     ...    Test title: PATCH API Version - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.4 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.4 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -62,7 +62,7 @@ DELETE API Version - Method not implemented
     ...    Test title: DELETE API Version - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.5 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.5 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -74,7 +74,7 @@ POST API Version with apiMajorVerion - Method not implemented
     ...    Test title: POST API version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.1 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.1 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -86,7 +86,7 @@ GET API Version with apiMajorVerion
     ...    Test title: GET API Version with apiMajorVerion
     ...    Test objective: The objective is to test that GET method successfully return ApiVersionInformation
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.2 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.2 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -95,11 +95,11 @@ GET API Version with apiMajorVerion
 	Check HTTP Response Body Json Schema Is    ApiVersionInformation
 
 PUT API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID:7.3.5.6.8
+    [Documentation]    Test ID: 7.3.5.6.8
     ...    Test title: PUT API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.3 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.3 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -111,7 +111,7 @@ PATCH API Version with apiMajorVerion - Method not implemented
     ...    Test title: PATCH API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.4 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.4 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -123,7 +123,7 @@ DELETE API Version with apiMajorVerion - Method not implemented
     ...    Test title: DELETE API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 9.3.3.3.5 - ETSI NFV-SOL 013 v2.6.1
+    ...    Reference: Clause 9.3.3.3.5 - ETSI GS NFV-SOL 013 v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 

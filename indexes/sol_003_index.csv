@@ -66,7 +66,7 @@
 7.3.5.4,Individual Subscription, IndividualSubscription.robot
 7.3.5.5,Notification Endpoint, ../VNFFaultManagementNotification-API/NotificationEndpoint.robot
 7.3.5.6,API Version Resource Endpoint, ApiVersion.robot
-7.3.5.6,VNF Indicator Interface, VNFIndicator-API
+7.3.6,VNF Indicator Interface, VNFIndicator-API
 7.3.6.1,VNF Indicators Resource Endpoint, VNFIndicators.robot
 7.3.6.2,VNF Indicators Related to a VNF Instance Resource Endpoint, VnfIndicatorsInVnfInstanceId.robot
 7.3.6.3,Individual VNF Indicator Resource Endpoint, IndividualVNFindicator.robot

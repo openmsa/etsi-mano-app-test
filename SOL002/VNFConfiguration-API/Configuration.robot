@@ -12,7 +12,7 @@ Set new VNF Configuration
     ...    Test title: Set a new VNF Configuration
     ...    Test objective: The objective is to test the creation of a new VNF configuration and perform a JSON schema validation of the returned configuration data structure
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference: clause 9.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 9.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation of HTTP Etag opaque identifiers
     ...    Post-Conditions: The configuration is successfully set in the VNF and it matches the issued configuration
@@ -28,7 +28,7 @@ Get information about a VNF configuration
     ...    Test title: Get information about a VNF configuration
     ...    Test objective: The objective is to test the retrieval of an existing VNF instance configuration and perform a JSON schema validation of the collected configuration data structure
     ...    Pre-conditions: A VNF instance is instantiated. The VNF instance is already configured.
-    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 9.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -42,7 +42,7 @@ Get information about a VNF configuration with HTTP Etag
     ...    Test title: Get information about a VNF configuration with HTTP Etag
     ...    Test objective: The objective is to test the retrieval of an existing VNF instance configuration, check the generation by the VNF of an HTTP Etag opaque identifier, and perform a JSON schema validation of the collected configuration data structure
     ...    Pre-conditions:  A VNF instance is instantiated. The VNF instance is already configured
-    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 9.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation of HTTP Etag opaque identifiers
     ...    Post-Conditions: none
@@ -57,7 +57,7 @@ Set new VNF Configuration - HTTP Etag precondition unsuccessful
     ...    Test title: Set a new VNF Configuration - HTTP Etag precondition unsuccessful
     ...    Test objective: The objective is to test the unsuccess in setting a duplication of VNF configuration identified by an already used HTTP Etag identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions:  A VNF instance is instantiated. The VNF instance is already configured (Test ID 6.3.1.1.1) with a given HTTP Etag identifier.
-    ...    Reference: clause 9.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 9.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation of HTTP Etag opaque identifiers
     ...    Post-Conditions:  The VNF configuration is not modified by the unsuccessful operation and it matches the configuration issued in Test ID 6.3.1.1.1
@@ -71,7 +71,7 @@ POST VNF Configuration - Method not implemented
     ...    Test title: POST VNF Configuration - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF configuration
     ...    Pre-conditions: A VNF instance is instantiated. The VNF instance is alrseady configured
-    ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 9.4.2.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -83,7 +83,7 @@ PUT VNF Configuration - Method not implemented
     ...    Test title: PUT VNF Configuration - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify an existing VNF configuration
     ...    Pre-conditions:  A VNF instance is instantiated. The VNF instance is already configured
-    ...    Reference: clause 9.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 9.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -95,7 +95,7 @@ DELETE VNF Configuration - Method not implemented
     ...    Test title: Delete VNF Configuration - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete an existing VNF configuration
     ...    Pre-conditions:  A VNF instance is instantiated. The VNF instance is already configured
-    ...    Reference: clause 9.4.2.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 9.4.2.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: The VNF configuration is not deleted by the unsuccessful operation

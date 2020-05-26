@@ -1,51 +1,51 @@
-"6,	Ve-Vnfm Reference Point, SOL002 "
-"6.3.1,	VNF Configuration Interface	, VNFConfiguration-API    "
-"6.3.1.1,	Configuration Resource Endpoint	, Configuration.robot"
+6,	Ve-Vnfm Reference Point, SOL002 
+6.3.1,	VNF Configuration Interface	, VNFConfiguration-API    
+6.3.1.1,	Configuration Resource Endpoint	, Configuration.robot
 6.3.1.2,API Version Resource Endpoint, ApiVersion.robot
-"6.3.2,	VNF Indicator Interface	, VNFIndicator-API"
-"6.3.2.1,	VNF Indicators Resource Endpoint	, VNFIndicators.robot"
-"6.3.2.2,	VNF Indicators related to a VNF Instance Resource Endpoint	, VnfIndicatorsInVnfInstanceId.robot "
-"6.3.2.3,	Individual VNF Indicator Resource Endpoint	, IndividualSubscription.robot"
-"6.3.2.4,	Subscriptions Resource Endpoint	, Subscriptions.robot"
-"6.3.2.5,	Individual Subscription Resource Endpoint	, IndividualSubscription.robot"
-"6.3.2.6,	Notification Endpoint	, ../VNFIndicatorNotification-API/VnfIndicatorNotification.robot"
+6.3.2,	VNF Indicator Interface	, VNFIndicator-API
+6.3.2.1,	VNF Indicators Resource Endpoint	, VNFIndicators.robot
+6.3.2.2,	VNF Indicators related to a VNF Instance Resource Endpoint	, VnfIndicatorsInVnfInstanceId.robot 
+6.3.2.3,	Individual VNF Indicator Resource Endpoint	, IndividualSubscription.robot
+6.3.2.4,	Subscriptions Resource Endpoint	, Subscriptions.robot
+6.3.2.5,	Individual Subscription Resource Endpoint	, IndividualSubscription.robot
+6.3.2.6,	Notification Endpoint	, ../VNFIndicatorNotification-API/VnfIndicatorNotification.robot
 6.3.2.7,API Version Resource Endpoint, ApiVersion.robot
-"6.3.3,	VNF Performance Management Interface	, VNFPerformanceManagement-API"
-"6.3.3.1,	PM Jobs Resource Endpoint	, PMJobs.robot   "
-"6.3.3.2,	Individual PM Job Resource Endpoint	, IndividualPmJob.robot "
-"6.3.3.3,	Individual Performance Report Resource Endpoint	, IndividualReport.robot"
-"6.3.3.4,	Thresholds Resource Endpoint	, Thresholds.robot"
-"6.3.3.5,	Individual Threshold Resource Endpoint	, IndividualThreshold.robot  "
-"6.3.3.6,	Subscriptions Resource Endpoint	, Subscriptions.robot  "
-"6.3.3.7,	Individual Subscription Resource Endpoint	, IndividualSubscription.robot "
-"6.3.3.8,	Notification Endpoint	, ../VNFPerformanceManagementNotification-API/PerformanceManagementNotification.robot    "
+6.3.3,	VNF Performance Management Interface	, VNFPerformanceManagement-API
+6.3.3.1,	PM Jobs Resource Endpoint	, PMJobs.robot   
+6.3.3.2,	Individual PM Job Resource Endpoint	, IndividualPmJob.robot 
+6.3.3.3,	Individual Performance Report Resource Endpoint	, IndividualReport.robot
+6.3.3.4,	Thresholds Resource Endpoint	, Thresholds.robot
+6.3.3.5,	Individual Threshold Resource Endpoint	, IndividualThreshold.robot  
+6.3.3.6,	Subscriptions Resource Endpoint	, Subscriptions.robot  
+6.3.3.7,	Individual Subscription Resource Endpoint	, IndividualSubscription.robot 
+6.3.3.8,	Notification Endpoint	, ../VNFPerformanceManagementNotification-API/PerformanceManagementNotification.robot    
 6.3.3.9,API Version Resource Endpoint, ApiVersion.robot
-"6.3.4,	VNF Fault Management interface	, VNFFaultManagement-API"
-"6.3.4.1,	Alarms	, Alarms.robot  "
-"6.3.4.2,	Individual Alarm	, IndividualAlarm.robot"
-"6.3.4.3,	Escalate the perceived severity	, EscalatePerceivedSeverityTask.robot"
-"6.3.4.4,	Subscriptions	, Subscriptions.robot"
-"6.3.4.5,	Individual Subscription	, IndividualSubscription.robot"
-"6.3.4.6,	Notification Endpoint	, NotificationEndpoint.robot"
+6.3.4,	VNF Fault Management interface	, VNFFaultManagement-API
+6.3.4.1,	Alarms	, Alarms.robot  
+6.3.4.2,	Individual Alarm	, IndividualAlarm.robot
+6.3.4.3,	Escalate the perceived severity	, EscalatePerceivedSeverityTask.robot
+6.3.4.4,	Subscriptions	, Subscriptions.robot
+6.3.4.5,	Individual Subscription	, IndividualSubscription.robot
+6.3.4.6,	Notification Endpoint	, NotificationEndpoint.robot
 6.3.4.7,API Version Resource Endpoint, ApiVersion.robot
-"6.3.5,	VNF Lifecycle Management interface	, VNFLifecycleManagement-API"
-"6.3.5.1,	VNF Instances	, VNFInstances.robot"
-"6.3.5.2,	Individual VNFInstance	, IndividualVNFInstance.robot "
-"6.3.5.3,	Instantiate VNF Task	, InstantiateVNFTask.robot"
-"6.3.5.4,	Scale VNF Task	, ScaleVNFTask.robot  "
-"6.3.5.5,	Scale a VNF to level Task	, ScaleVNFToLevelTask.robot    "
-"6.3.5.6,	Change VNF deployment flavour Task	, ChangeVNFFlavourTask.robot "
-"6.3.5.7,	Terminate VNF Task	, TerminateVNFTask.robot"
-"6.3.5.8,	Heal VNF Task	, HealVNFTask.robot "
-"6.3.5.9,	Operate VNF Task	, OperateVNFTask.robot"
-"6.3.5.10,	Change external VNF connectivity	, ChangeExternalVNFConnectivityTask.robot  "
-"6.3.5.11,	VNF LCM OP occurrences	, VnfLcmOperationOccurences.robot"
-"6.3.5.12,	Individual VNF LCM OP occurrence	, IndividualVnfLcmOperationOccurence.robot  "
-"6.3.5.13,	Retry operation task	, RetryOperationTask.robot"
-"6.3.5.14,	Rollback operation task	, RollbackOperationTask.robot  "
-"6.3.5.15,	Fail operation task	, FailOperationTask.robot "
-"6.3.5.16,	Cancel operation task	, CancelOperationTask.robot"
-"6.3.5.17,	Subscriptions	, Subscriptions.robot"
-"6.3.5.18,	Individual Subscription	, IndividualSubscription.robot"
-"6.3.5.19,	Notification Endpoint	, NotificationEndpoint.robot"
+6.3.5,	VNF Lifecycle Management interface	, VNFLifecycleManagement-API
+6.3.5.1,	VNF Instances	, VNFInstances.robot
+6.3.5.2,	Individual VNFInstance	, IndividualVNFInstance.robot 
+6.3.5.3,	Instantiate VNF Task	, InstantiateVNFTask.robot
+6.3.5.4,	Scale VNF Task	, ScaleVNFTask.robot  
+6.3.5.5,	Scale a VNF to level Task	, ScaleVNFToLevelTask.robot    
+6.3.5.6,	Change VNF deployment flavour Task	, ChangeVNFFlavourTask.robot 
+6.3.5.7,	Terminate VNF Task	, TerminateVNFTask.robot
+6.3.5.8,	Heal VNF Task	, HealVNFTask.robot 
+6.3.5.9,	Operate VNF Task	, OperateVNFTask.robot
+6.3.5.10,	Change external VNF connectivity	, ChangeExternalVNFConnectivityTask.robot  
+6.3.5.11,	VNF LCM OP occurrences	, VnfLcmOperationOccurences.robot
+6.3.5.12,	Individual VNF LCM OP occurrence	, IndividualVnfLcmOperationOccurence.robot  
+6.3.5.13,	Retry operation task	, RetryOperationTask.robot
+6.3.5.14,	Rollback operation task	, RollbackOperationTask.robot  
+6.3.5.15,	Fail operation task	, FailOperationTask.robot 
+6.3.5.16,	Cancel operation task	, CancelOperationTask.robot
+6.3.5.17,	Subscriptions	, Subscriptions.robot
+6.3.5.18,	Individual Subscription	, IndividualSubscription.robot
+6.3.5.19,	Notification Endpoint	, NotificationEndpoint.robot
 6.3.5.20,API Version Resource Endpoint, ApiVersion.robot

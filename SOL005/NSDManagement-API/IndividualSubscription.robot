@@ -13,7 +13,7 @@ GET Individual NSD Management Subscription
     ...    Test title: GET Individual NSD Management Subscription
     ...    Test objective: The objective is to test the retrieval of individual NSD Management subscription and perform a JSON schema and content validation of the returned subscription data structure
     ...    Pre-conditions: At least one NSD Management subscription is available in the NFVO.
-    ...    Reference: clause 5.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 5.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -27,7 +27,7 @@ GET Individual NSD Management Subscription with invalid resource identifier
     ...    Test title: GET Individual NSD Management Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual NSD Management subscription fails when using an invalid resource identifier
     ...    Pre-conditions: At least one NSD Management subscription is available in the NFVO.
-    ...    Reference: clause 5.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 5.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -39,7 +39,7 @@ DELETE Individual NSD Management Subscription with invalid resource identifier
     ...    Test title: DELETE Individual NSD Management Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the deletion of an individual NSD Management subscription fails when using an invalid resource identifier
     ...    Pre-conditions: At least one NSD Management subscription is available in the NFVO.
-    ...    Reference: clause 5.4.9.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 5.4.9.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -51,7 +51,7 @@ POST Individual NSD Management Subscription - Method not implemented
     ...    Test title: POST Individual NSD Management Subscription - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new NSD Management Subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.9.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 5.4.9.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NSD Management Subscription is not created on the NFVO
@@ -64,7 +64,7 @@ PUT Individual NSD Management Subscription - Method not implemented
     ...    Test title: PUT Individual NSD Management Subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing NSD Management subscription
     ...    Pre-conditions: At least one NSD Management subscription is available in the NFVO.
-    ...    Reference: clause 5.4.9.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 5.4.9.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NSD Management subscription is not modified by the operation
@@ -77,7 +77,7 @@ PATCH Individual NSD Management Subscription - Method not implemented
     ...    Test title: PATCH Individual NSD Management Subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing NSD Management subscription
     ...    Pre-conditions: At least one NSD Management subscription is available in the NFVO.
-    ...    Reference: clause 5.4.9.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 5.4.9.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NSD Management subscription is not modified by the operation
@@ -90,7 +90,7 @@ DELETE Individual NSD Management Subscription
     ...    Test title: DELETE Individual NSD Management Subscription
     ...    Test objective: The objective is to test the deletion of an individual NSD Management subscription
     ...    Pre-conditions: At least one NSD Management subscription is available in the NFVO.
-    ...    Reference: clause 5.4.9.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 5.4.9.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NSD Management Subscription is not available anymore in the NFVO    

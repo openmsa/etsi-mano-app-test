@@ -20,7 +20,7 @@ Change external connectivity of VNF Workflow
     ...    Test title: Change external connectivity of VNF Workflow
     ...    Test objective: The objective is to change the external connectivity of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
-    ...    Reference: clause 5.4.11 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.11 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM. The VNFD supports the external connectivity change
     ...    Post-Conditions: VNF instance still in INSTANTIATED state and external connectivity of the VNF is changed

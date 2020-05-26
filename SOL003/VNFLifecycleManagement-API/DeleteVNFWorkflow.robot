@@ -20,7 +20,7 @@ Delete VNF Instance Resource
     ...    Test title: Delete VNF Instance workflow
     ...    Test objective: The objective is to test the workflow for the deleteion of an existing VNF instance resource
     ...    Pre-conditions: The VNF Instance resource is in NOT_INSTANTIATED state. NFVO is subscribed to VNF Identifier Creation notifications 
-    ...    Reference: clause 5.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: The VNF instance resource is deleted on the VNFM.

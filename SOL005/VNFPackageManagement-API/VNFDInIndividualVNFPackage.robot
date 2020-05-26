@@ -12,7 +12,7 @@ Get single file VNFD in Individual VNF Package in Plain Format
     ...    Test title: Get single file VNFD in Individual VNF Package in Plain Format
     ...    Test objective: The objective is to test the retrieval of the VNFD in plain format for an individual VNF package and perform a validation that returned content is in plain format
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The VNFD is implemented as a single file
     ...    Post-Conditions: none
@@ -25,7 +25,7 @@ Get VNFD in Individual VNF Package in Zip Format
     ...    Test title: Get VNFD in Individual VNF Package in Zip Format
     ...    Test objective: The objective is to test the retrieval of the VNFD in zip format for an individual VNF package and perform a validation that returned content is in zip format
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -38,7 +38,7 @@ Get single file VNFD in Individual VNF Package in Plain or Zip Format
     ...    Test title: Get single file VNFD in Individual VNF Package in Plain or Zip Format
     ...    Test objective: The objective is to test the retrieval of the single file VNFD for an individual VNF package when requesting Plain or Zip format to NFVO by including both formats in the request, and perform a validation that returned content is in Plain or Zip format
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The VNFD is implemented as a single file
     ...    Post-Conditions: none
@@ -51,7 +51,7 @@ Get multi file VNFD in Individual VNF Package in Plain or Zip Format
     ...    Test title: Get multi file VNFD in Individual VNF Package in Plain or Zip Format
     ...    Test objective: The objective is to test the retrieval of the multi file VNFD for an individual VNF package when requesting Plain or Zip format to NFVO by including both formats in the request, and perform a validation that returned content is in Zip format
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The VNFD is implemented as a multi file
     ...    Post-Conditions: none
@@ -64,7 +64,7 @@ Get multi file VNFD in Individual VNF Package in Plain Format
     ...    Test title: Get multi file VNFD in Individual VNF Package in Plain Format
     ...    Test objective: The objective is to test that the retrieval of the multi file VNFD for an individual VNF package fails when requesting it in Plain format, and perform a validation of the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The VNFD is implemented as a multi file
     ...    Post-Conditions: none
@@ -77,7 +77,7 @@ Get VNFD in Individual VNF Package with invalid resource identifier
     ...    Test title: Get VNFD in Individual VNF Package with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of the VNFD for an individual VNF Package fails when using an invalid resource identifier
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -89,7 +89,7 @@ Get VNFD in Individual VNF Package with conflict due to onboarding state
     ...    Test title: Get VNFD in Individual VNF Package with conflict due to onboarding state
     ...    Test objective: The objective is to test that the retrieval of the VNFD for an individual VNF Package fails due to a conflict when the VNF Package is not in onboarding state ONBOARDED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: The onboarding state of the VNF package for which the VNFD is requested is different from ONBOARDED.
-    ...    Reference: clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -102,7 +102,7 @@ POST VNFD in Individual VNF Package - Method not implemented
     ...    Test title: POST VNFD in Individual VNF Package - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create new VNFD
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -114,7 +114,7 @@ PUT VNFD in Individual VNF Package - Method not implemented
     ...    Test title: PUT VNFD in Individual VNF Package - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify a VNFD
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.4.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -126,7 +126,7 @@ PATCH VNFD in Individual VNF Package - Method not implemented
     ...    Test title: PATCH VNFD in Individual VNF Package - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update a VNFD
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.4.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -138,7 +138,7 @@ DELETE VNFD in Individual VNF Package - Method not implemented
     ...    Test title: DELETE VNFD in Individual VNF Package - Method not implemented
     ...    Test objective: The objective is to test that DELETE  method is not allowed to delete a VNFD
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.4.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.4.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNFD is not deleted by the failed operation

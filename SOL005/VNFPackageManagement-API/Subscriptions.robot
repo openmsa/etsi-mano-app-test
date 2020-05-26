@@ -17,7 +17,7 @@ Get All VNF Package Subscriptions
     ...    Test title: GET all VNF Package Subscriptions
     ...    Test objective: The objective is to test the retrieval of all VNF package subscriptions and perform a JSON schema validation of the returned subscriptions data structure
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -31,7 +31,7 @@ Get VNF Package Subscriptions with attribute-based filter
     ...    Test title: Get VNF Package Subscriptions with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of VNF package subscriptions using attribute-based filter, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -46,7 +46,7 @@ Get VNF Package Subscriptions with invalid attribute-based filter
     ...    Test title: Get VNF Package Subscriptions with attribute-based filters
     ...    Test objective: The objective is to test that the retrieval of VNF package subscriptions fails when using invalid attribute-based filters, and perform the JSON schema validation of the failed operation HTTP response. 
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -59,7 +59,7 @@ GET VNF Package Subscription with invalid resource endpoint
     ...    Test title: GET VNF Package Subscription with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of all VNF package subscriptions fails when using invalid resource endpoint.
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -71,7 +71,7 @@ Create new VNF Package subscription
     ...    Test title: Create new VNF Package subscription
     ...    Test objective: The objective is to test the creation of a new VNF package subscription and perform a JSON schema and content validation of the returned subscription data structure
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF package subscription is successfully set and it matches the issued subscription    
@@ -87,7 +87,7 @@ Create duplicated VNF Package subscription with NFVO not creating duplicated sub
     ...    Test title: Create duplicated VNF Package subscription with NFVO not creating duplicated subscriptions
     ...    Test objective: The objective is to test the attempt of a creation of a duplicated VNF package subscription and check that no new subscription is created by the NFVO and a link to the original subscription is returned
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO does not support the creation of duplicated subscriptions
     ...    Post-Conditions: The existing VNF package subscription returned is available in the NFVO
@@ -103,7 +103,7 @@ Create duplicated VNF Package subscription with NFVO creating duplicated subscri
     ...    Test title: Create duplicated VNF Package subscription with NFVO creating duplicated subscriptions
     ...    Test objective: The objective is to test the creation of a duplicated VNF package subscription and perform a JSON schema and content validation of the returned duplicated subscription data structure
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports the creation of duplicated subscriptions
     ...    Post-Conditions: The duplicated VNF package subscription is successfully set and it matches the issued subscription
@@ -118,7 +118,7 @@ PUT VNF Package Subscriptions - Method not implemented
     ...    Test title: PUT VNF Package Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF package subscriptions
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -130,7 +130,7 @@ PATCH VNF Package Subscriptions - Method not implemented
     ...    Test title: PATCH VNF Package Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF package subscriptions
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -155,7 +155,7 @@ Get All VNF Package Subscriptions as Paged Response
     ...    Test title: GET all VNF Package Subscriptions as Paged Response
     ...    Test objective: The objective is to test the retrieval of all VNF package subscriptions as paged response.
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -168,7 +168,7 @@ Get VNF Package Subscriptions - Bad Request Response too Big
     ...    Test title: Get VNF Package Subscriptions - Bad Request Response too Big
     ...    Test objective: The objective is to test that the retrieval of VNF package subscriptions fails because response is too big, and perform the JSON schema validation of the failed operation HTTP response. 
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 9.4.8.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none

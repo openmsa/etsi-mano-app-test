@@ -12,7 +12,7 @@ POST Individual Subscription - Method not implemented
     ...    Test title: POST Individual Subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.19.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.19.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -24,7 +24,7 @@ GET Individual Subscription
     ...    Test title: GET Individual Subscription
     ...    Test objective: The objective is to test the Get individual subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.19.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.19.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -37,7 +37,7 @@ PUT an individual subscription - Method not implemented
     ...    Test title: PUT an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.19.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.19.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -49,7 +49,7 @@ PATCH an individual subscription - Method not implemented
     ...    Test title: PATCH an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.19.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.19.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -61,7 +61,7 @@ DELETE an individual subscription
     ...    Test title: DELETE an individual subscription
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.19.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.19.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: subscription deleted from VNFM

@@ -12,7 +12,7 @@ POST Alarms - Method not implemented
     ...    Test title:POST Alarms - Method not implemented
     ...    Test objective: The objective is to test that Post method is not allowed to create Fault management alarms on NFV
     ...    Pre-conditions: none
-    ...    Reference: clause 8.4.2.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none 
     ...    Post-Conditions:  alarm not created
@@ -24,7 +24,7 @@ GET information about multiple alarms
     ...    Test title: GET information about multiple alarms
     ...    Test objective: The objective is to retrieve information about the alarm list and perform a JSON schema and content validation of the returned alarms data structure
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -37,7 +37,7 @@ GET information about multiple alarms with filters
     ...    Test title: GET information about multiple alarms with filters
     ...    Test objective: The objective is to retrieve information about the alarm list and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -50,7 +50,7 @@ GET information about multiple alarms Bad Request Invalid attribute-based filter
     ...    Test title: GET information about multiple alarms Bad Request Invalid attribute-based filtering parameters
     ...    Test objective:  The objective is to try to retrieve information about the alarm list with invalid filters and perform a JSON schema and content validation of the returned problem details data structure
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:  none
@@ -63,7 +63,7 @@ GET information about multiple alarms with "all_fields" attribute selector
     ...    Test title: GET information about multiple alarms with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -76,7 +76,7 @@ GET information about multiple alarms with exclude_default attribute selector
     ...    Test title: GET information about multiple alarms with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -90,7 +90,7 @@ GET information about multiple alarms with fields attribute selector
     ...    Test title: GET information about multiple alarms with fields attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -103,7 +103,7 @@ GET information about multiple alarms with "exclude_fields" attribute selector
     ...    Test title: GET information about multiple alarms with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -116,7 +116,7 @@ PUT Alarms - Method not implemented
     ...    Test title: PUT Alarms - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed for Fault management alarms on NFV
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -129,7 +129,7 @@ PATCH Alarms - Method not implemented
     ...    Test title: PATCH Alarms - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed for Fault management alarms on NFV
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -141,7 +141,7 @@ DELETE Alarms - Method not implemented
     ...    Test title: DELETE Alarms - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed for Fault management alarms on NFV
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions: alarm not deleted
@@ -153,7 +153,7 @@ GET information about multiple alarms as Paged Response
     ...    Test title: GET information about multiple alarms as Paged Response
     ...    Test objective: The objective is to retrieve information about the alarm list as paged response.
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -166,7 +166,7 @@ GET information about multiple alarms - Bad Request Response too Big
     ...    Test title: GET information about multiple alarms - Bad Request Response too Big
     ...    Test objective:  The objective is to test that the retrieval of information about the alarm list fails because response is too big, and perform a JSON schema and content validation of the returned problem details data structure
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability:  none
     ...    Post-Conditions:  none
@@ -179,7 +179,7 @@ GET information about multiple alarms with filter "id"
     ...    Test title: GET information about multiple alarms with filter "id"
     ...    Test objective: The objective is to retrieve information about the alarm list with filter "id" and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -193,7 +193,7 @@ GET information about multiple alarms with filter "rootCauseFaultyComponent.faul
     ...    Test title: GET information about multiple alarms with filter "rootCauseFaultyComponent.faultyNestedNsInstanceId"
     ...    Test objective: The objective is to retrieve information about the alarm list with filter "rootCauseFaultyComponent.faultyNestedNsInstanceId" and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -207,7 +207,7 @@ GET information about multiple alarms with filter "rootCauseFaultyComponent.faul
     ...    Test title: GET information about multiple alarms with filter "rootCauseFaultyComponent.faultyNsVirtualLinkInstanceId"
     ...    Test objective: The objective is to retrieve information about the alarm list with filter "rootCauseFaultyComponent.faultyNsVirtualLinkInstanceId" and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -221,7 +221,7 @@ GET information about multiple alarms with filter "rootCauseFaultyComponent.faul
     ...    Test title: GET information about multiple alarms with filter "rootCauseFaultyComponent.faultyVnfInstanceId"
     ...    Test objective: The objective is to retrieve information about the alarm list with filter "rootCauseFaultyComponent.faultyVnfInstanceId" and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -236,7 +236,7 @@ GET information about multiple alarms with filter "rootCauseFaultyResource.fault
     ...    Test title: GET information about multiple alarms with filter "rootCauseFaultyResource.faultyResourceType"
     ...    Test objective: The objective is to retrieve information about the alarm list with filter "rootCauseFaultyResource.faultyResourceType" and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -250,7 +250,7 @@ GET information about multiple alarms with filter "eventType"
     ...    Test title: GET information about multiple alarms with filter "eventType"
     ...    Test objective: The objective is to retrieve information about the alarm list with filter "eventType" and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -264,7 +264,7 @@ GET information about multiple alarms with filter "perceivedSeverity"
     ...    Test title: GET information about multiple alarms with filter "perceivedSeverity"
     ...    Test objective: The objective is to retrieve information about the alarm list with filter "perceivedSeverity" and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none
@@ -278,7 +278,7 @@ GET information about multiple alarms with filter "probableCause"
     ...    Test title: GET information about multiple alarms with filter "probableCause"
     ...    Test objective: The objective is to retrieve information about the alarm list with filter "probableCause" and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions:  none
-    ...    Reference: clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 8.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
     ...    Applicability:  none
     ...    Post-Conditions: none

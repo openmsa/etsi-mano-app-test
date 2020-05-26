@@ -17,7 +17,7 @@ POST Individual Grant - Method not implemented
     ...    Test title: POST Individual Grant - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed for Life cycle operation granting  
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.2.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 9.4.2.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -29,7 +29,7 @@ GET an individual grant - Successful
     ...    Test title: GET an individual grant - Successful
     ...    Test objective: The objective is to retrieve a grant for a particular VNF Lifecycle Operation.
     ...    Pre-conditions: The  grant information is available to the VNFM
-    ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -43,7 +43,7 @@ GET an individual grant - Process ongoing
     ...    Test title: GET an individual grant - Process ongoing
     ...    Test objective: The objective is to retrieve a grant for a particular VNF lifecycle operation when process is ongoing and no grant is available yet.
     ...    Pre-conditions: The process of creating the grant is ongoing, no grant is available yet.
-    ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -57,7 +57,7 @@ GET an individual grant - grant rejected
     ...    Test title: GET an individual grant - grant rejected
     ...    Test objective: The objective is to retrieve a grant for a particular VNF Lifecycle Operation but error returned because grant has been rejected.
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 9.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -70,7 +70,7 @@ PUT an individual grant - Method not implemented
     ...    Test title: PUT an individual grant - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to for Life cycle operation granting  
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.3.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 9.4.3.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -82,7 +82,7 @@ PATCH an individual grant - Method not implemented
     ...    Test title: PATCH an individual grant - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to for Life cycle operation granting  
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 9.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -94,7 +94,7 @@ DELETE an individual grant - Method not implemented
     ...    Test title: DELETE an individual grant - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to for Life cycle operation granting  
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 9.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none

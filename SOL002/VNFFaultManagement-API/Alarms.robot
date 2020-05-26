@@ -13,7 +13,7 @@ POST Alarms - Method not implemented
     ...    Test title: POST Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -25,7 +25,7 @@ GET information about multiple alarms
     ...    Test title: GET information about multiple alarms
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:  
@@ -38,7 +38,7 @@ GET information about multiple alarms with attribute-based filter
     ...    Test title: GET information about multiple alarms with attribute-based filter
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -51,7 +51,7 @@ GET information about multiple alarms with invalid attribute-based filter
     ...    Test title: GET information about multiple alarms with invalid attribute-based filter
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -64,7 +64,7 @@ GET information about multiple alarms with "all_fields" attribute selector
     ...    Test title: GET information about multiple alarms with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -77,7 +77,7 @@ GET information about multiple alarms with exclude_default attribute selector
     ...    Test title: GET information about multiple alarms with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -91,7 +91,7 @@ GET information about multiple alarms with fields attribute selector
     ...    Test title: GET information about multiple alarms with fields attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -104,7 +104,7 @@ GET information about multiple alarms with "exclude_fields" attribute selector
     ...    Test title: GET information about multiple alarms with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -117,7 +117,7 @@ PUT Alarms - Method not implemented
     ...    Test title: PUT Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -129,7 +129,7 @@ PATCH Alarms - Method not implemented
     ...    Test title: PATCH Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -141,7 +141,7 @@ DELETE Alarms - Method not implemented
     ...    Test title: DELETE Alarms - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.6 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.6 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: the alarm is not deleted
@@ -153,7 +153,7 @@ GET information about multiple alarms to get Paged Response
     ...    Test title: GET information about multiple alarms to get Paged Response
     ...    Test objective: The objective is to retrieve information about the alarms to get paged response
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions:  
@@ -166,7 +166,7 @@ GET information about multiple alarms for Bad Request Response too big
     ...    Test title: GET information about multiple alarms for Bad Request Response too big
     ...    Test objective: The objective is to test that GET method fail retrieving status information about Alarms when Response is too big, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -179,7 +179,7 @@ GET information about alarms with attribute-based filter "id"
     ...    Test title: GET information about alarms with attribute-based filter "id"
     ...    Test objective: The objective is to retrieve information about the alarm list with alarm filter "id"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -193,7 +193,7 @@ GET information about multiple alarms with attribute-based filter "vnfcInstanceI
     ...    Test title: GET information about multiple alarms with attribute-based filter "vnfcInstanceIds"
     ...    Test objective: The objective is to retrieve information about the alarm list with attribute filter "vnfcInstanceIds"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -207,7 +207,7 @@ GET information about multiple alarms with attribute-based filter "rootCauseFaul
     ...    Test title: GET information about multiple alarms with attribute-based filter "rootCauseFaultyResource.faultyResourceType"
     ...    Test objective: The objective is to retrieve information about the alarm list with attribute filter "rootCauseFaultyResource.faultyResourceType"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -221,7 +221,7 @@ GET information about multiple alarms with attribute-based filter "eventType"
     ...    Test title: GET information about multiple alarms with attribute-based filter "eventType"
     ...    Test objective: The objective is to retrieve information about the alarm list with attribute filter "eventType"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -235,7 +235,7 @@ GET information about multiple alarms with attribute-based filter "perceivedSeve
     ...    Test title: GET information about multiple alarms with attribute-based filter "perceivedSeverity"
     ...    Test objective: The objective is to retrieve information about the alarm list with attribute filter "perceivedSeverity"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -249,7 +249,7 @@ GET information about multiple alarms with attribute-based filter "probableCause
     ...    Test title: GET information about multiple alarms with attribute-based filter "probableCause"
     ...    Test objective: The objective is to retrieve information about the alarm list with attribute filter "probableCause"
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 

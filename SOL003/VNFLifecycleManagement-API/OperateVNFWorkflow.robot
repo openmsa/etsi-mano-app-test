@@ -20,7 +20,7 @@ Operate a VNF Instance
     ...    Test title: Operate a VNF Instance
     ...    Test objective: The objective is to test the workflow of operational change of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
-    ...    Reference: clause 5.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: change the operational state of a VNF instance is supported for the VNF (as capability in the VNFD)
     ...    Post-Conditions: VNF instance still in INSTANTIATED state and the operational state is changed

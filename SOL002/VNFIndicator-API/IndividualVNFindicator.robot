@@ -10,7 +10,7 @@ Get Individual Indicator for VNF Instance
     ...    Test title: Get individual performance indicator for a VNF instance
     ...    Test objective: The objective is to test the retrieval of a performance indicator for a given VNF instance and perform a JSON schema validation of the returned indicator data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of performance indicator is available for the given VNF instance.
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators
     ...    Post-Conditions: none
@@ -25,7 +25,7 @@ Get Individual Indicator for VNF Instance with invalid indicator identifier
     ...    Test title: Get individual performance indicator for a VNF instance with invalid indicator identifier
     ...    Test objective: The objective is to test that the retrieval of a performance indicator for a given VNF instance fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of performance indicator is available for the given VNF instance.
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -38,7 +38,7 @@ POST Individual VNF Indicator - Method not implemented
     ...    Test title: POST individual performance indicator for VNF instance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new performance indicator for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -50,7 +50,7 @@ PUT Individual VNF Indicator - Method not implemented
     ...    Test title: PUT individual performance indicator for VNF instance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify an existing performance indicator for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of performance indicator is available for the given VNF instance.
-    ...    Reference: clause 8.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -62,7 +62,7 @@ PATCH Individual VNF Indicator - Method not implemented
     ...    Test title: PATCH individual performance indicator for VNF instance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update an existing performance indicator for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of performance indicator is available for the given VNF instance.
-    ...    Reference: clause 8.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -74,7 +74,7 @@ DELETE Individual VNF Indicator - Method not implemented
     ...    Test title: DELETE individual performance indicator indicators for VNF instance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete an existing performance indicator for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of performance indicator is available for the given VNF instance.
-    ...    Reference: clause 8.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: The individual performance indicator for the VNF instance is not deleted by the unsuccessful operation
@@ -87,7 +87,7 @@ Get Individual Performance Indicator
     ...    Test title: Get Individual Performance Indicator 
     ...    Test objective: The objective is to test the retrieval of a performance indicator and perform a JSON schema validation of the returned indicator data structure
     ...    Pre-conditions: At least one measure of performance indicator is available..
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators
     ...    Post-Conditions: none
@@ -101,7 +101,7 @@ Get Individual Performance Indicator with invalid indicator identifier
     ...    Test title: Get Individual Performance Indicator with invalid indicator identifier
     ...    Test objective: The objective is to test that the retrieval of a performance indicator fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: At least one measure of performance indicator is available.
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -114,7 +114,7 @@ POST Individual Performance Indicator - Method not implemented
     ...    Test title: POST Individual Performance Indicator - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new performance indicator.
     ...    Pre-conditions: 
-    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -126,7 +126,7 @@ PUT Individual Performance Indicator - Method not implemented
     ...    Test title: PUT Individual Performance Indicator - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify an existing performance indicator.
     ...    Pre-conditions: At least one measure of performance indicator is available.
-    ...    Reference: clause 8.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -138,7 +138,7 @@ PATCH Individual Performance Indicator - Method not implemented
     ...    Test title: PATCH Individual Performance Indicator - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update an existing performance indicator.
     ...    Pre-conditions: At least one measure of performance indicator is available.
-    ...    Reference: clause 8.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: none
@@ -150,7 +150,7 @@ DELETE Individual Performance Indicator - Method not implemented
     ...    Test title: DELETE Individual Performance Indicator - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete an existing performance indicator.
     ...    Pre-conditions: At least one measure of performance indicator is available.
-    ...    Reference: clause 8.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Reference: Clause 8.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
     ...    Post-Conditions: 

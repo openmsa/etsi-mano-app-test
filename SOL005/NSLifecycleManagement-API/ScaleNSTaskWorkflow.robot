@@ -14,7 +14,7 @@ Scale Flow of NS lifecycle management operations
     ...    Test title: Instantiate Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Instantiate a NS instance
     ...    Pre-conditions: the resource is in NOT_INSTANTIATED state
-    ...    Reference: clause 6.4.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: the resource is in INSTANTIATED state    

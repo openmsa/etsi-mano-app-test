@@ -14,7 +14,7 @@ POST Create a new subscription
     ...    Test title: POST Create a new subscription
     ...    Test objective: The POST method creates a new subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
@@ -27,7 +27,7 @@ Create a new Subscription - DUPLICATION
     ...    Test title: POST Create a new subscription - DUPLICATION
     ...    Test objective: The objective is to test request to create a duplicate (same cakkbackurl and filter) subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: duplication is supported by SUT
     ...    Post-Conditions: in response header Location shall not be null
@@ -40,7 +40,7 @@ Create a new Subscription - NO-DUPLICATION
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
     ...    Test objective: The objective is to test the request that does not create a duplicate (same callbackurl and filter) subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: duplication is not supported by SUT
     ...    Post-Conditions: in response header Location shall not be null
@@ -53,7 +53,7 @@ GET Subscriptions
     ...    Test title: GET Subscriptions
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -66,7 +66,7 @@ GET Subscription - Filter
     ...    Test title: GET Subscriptions - Filter
     ...    Test objective: The objective is Get the list of active subscriptions using a filter
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -80,7 +80,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is Get the list of active subscriptions using an invalid filter
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -93,7 +93,7 @@ GET subscriptions with all_fields attribute selector
     ...    Test title: GET subscriptions with all_fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -106,7 +106,7 @@ GET subscriptions with exclude_default attribute selector
     ...    Test title: GET subscriptions with exclude_default attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -119,7 +119,7 @@ GET subscriptions with fields attribute selector
     ...    Test title: GET subscriptions with fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -132,7 +132,7 @@ GET subscriptions with exclude_fields attribute selector
     ...    Test title: GET subscriptions with exclude_fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -145,7 +145,7 @@ PUT subscriptions - Method not implemented
     ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -157,7 +157,7 @@ PATCH subscriptions - Method not implemented
     ...    Test title: PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: subscription not modified
@@ -169,7 +169,7 @@ DELETE subscriptions - Method not implemented
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: subscription not deleted
@@ -181,7 +181,7 @@ GET Subscriptions as a Paged Response
     ...    Test title: GET Subscriptions as a Paged Response
     ...    Test objective: The objective is Get the list of active subscriptions as a Paged Response.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -194,7 +194,7 @@ GET subscriptions - Bad Request Response too Big
     ...    Test title: GET subscriptions - Bad Request Response too Big
     ...    Test objective: The objective is to test that the retrieval of the list of active subscriptions fails because response is too big. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 

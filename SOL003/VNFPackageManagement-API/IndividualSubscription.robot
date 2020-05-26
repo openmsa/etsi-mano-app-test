@@ -13,7 +13,7 @@ GET Individual VNF Package Subscription
     ...    Test title: GET Individual VNF Package Subscription
     ...    Test objective: The objective is to test the retrieval of individual VNF package subscription and perform a JSON schema and content validation of the returned subscription data structure
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 10.4.8.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 10.4.8.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -27,7 +27,7 @@ GET Individual VNF Package Subscription with invalid resource identifier
     ...    Test title: GET Individual VNF Package Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual VNF package subscription fails when using an invalid resource identifier
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 10.4.8.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 10.4.8.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -39,7 +39,7 @@ DELETE Individual VNF Package Subscription with invalid resource identifier
     ...    Test title: DELETE Individual VNF Package Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the deletion of an individual VNF package subscription fails when using an invalid resource identifier
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 10.4.8.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 10.4.8.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -51,7 +51,7 @@ POST Individual VNF Package Subscription - Method not implemented
     ...    Test title: POST Individual VNF Package Subscription - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF Package Subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 10.4.8.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 10.4.8.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package Subscription is not created on the NFVO
@@ -64,7 +64,7 @@ PUT Individual VNF Package Subscription - Method not implemented
     ...    Test title: PUT Individual VNF Package Subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF Package subscription
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 10.4.8.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 10.4.8.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package subscription is not modified by the operation
@@ -77,7 +77,7 @@ PATCH Individual VNF Package Subscription - Method not implemented
     ...    Test title: PATCH Individual VNF Package Subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF Package subscription
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 10.4.8.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 10.4.8.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package subscription is not modified by the operation
@@ -90,7 +90,7 @@ DELETE Individual VNF Package Subscription
     ...    Test title: DELETE Individual VNF Package Subscription
     ...    Test objective: The objective is to test the deletion of an individual VNF package subscription
     ...    Pre-conditions: At least one VNF package subscription is available in the NFVO.
-    ...    Reference: clause 10.4.8.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 10.4.8.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package Subscription is not available anymore in the NFVO    

@@ -14,7 +14,7 @@ Heal Flow of NS lifecycle management operations
     ...    Test title: Heal Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Healing a NS instance
     ...    Pre-conditions: the resource is in INSTANTIATED state
-    ...    Reference: clause 6.4.7 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.7 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: NS Instance still in INSTANTIATED state

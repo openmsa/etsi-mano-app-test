@@ -18,7 +18,7 @@ Post Individual VNFInstance - Method not implemented
     ...    Test title: Post Individual VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.3.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -30,7 +30,7 @@ Get Information about an individual VNF Instance
     ...    Test title: Get Information about an individual VNF Instance
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -43,7 +43,7 @@ PUT Individual VNFInstance - Method not implemented
     ...    Test title: PUT Individual VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.3.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -55,7 +55,7 @@ PATCH Individual VNFInstance
     ...    Test title: PATCH Individual VNFInstance
     ...    Test objective: This method modifies an individual VNF instance resource
     ...    Pre-conditions: an existing VNF instance resource
-    ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: VNFInstance modified
@@ -68,7 +68,7 @@ PATCH Individual VNFInstance Precondition failed
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions:  ETag mismatch
-    ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: VNFInstance not modified
@@ -81,7 +81,7 @@ PATCH Individual VNFInstance Conflict
     ...    Test title: PATCH Individual VNFInstance Conflict
     ...    Test objective: The objective is to test the conflict while modifying a VNF instance resource
     ...    Pre-conditions: another LCM operation is ongoing
-    ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: VNFInstance not modified
@@ -94,7 +94,7 @@ DELETE Individual VNFInstance
     ...    Test title: DELETE Individual VNFInstance
     ...    Test objective: The objective is to delete a VNF instance
     ...    Pre-conditions: the VNF instance resource is existing
-    ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: VNFInstance deleted
@@ -106,7 +106,7 @@ DELETE Individual VNFInstance Conflict
     ...    Test title: DELETE Individual VNFInstance Conflict
     ...    Test objective: The objective is to verify that the deletion cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
-    ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 5.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: Resources are not deleted

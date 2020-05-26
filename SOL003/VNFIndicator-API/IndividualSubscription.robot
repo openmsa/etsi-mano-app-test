@@ -12,7 +12,7 @@ GET Individual VNF Indicator Subscription
     ...    Test title: GET Individual VNF Indicator Subscription
     ...    Test objective: The objective is to test the retrieval of individual VNF indicator subscription and perform a JSON schema validation of the returned subscription data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.6.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 8.4.6.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -25,7 +25,7 @@ GET Individual VNF Indicator Subscription with invalid resource identifier
     ...    Test title: GET Individual VNF Indicator Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of individual VNF indicator subscription fails when using an invalid resource identifier.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.6.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 8.4.6.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -37,7 +37,7 @@ DELETE Individual VNF Indicator Subscription
     ...    Test title: DELETE Individual VNF Indicator Subscription
     ...    Test objective: The objective is to test the deletion of an individual VNF indicator subscription.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 8.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The subscription to VNF indicators is deleted
@@ -50,7 +50,7 @@ DELETE Individual VNF Indicator Subscription with invalid resource identifier
     ...    Test title: DELETE Individual VNF Indicator Subscription with invalid resource identifier
     ...    Test objective: The objective is to test that the deletion of an individual VNF indicator subscription fails when using an invalid resource identifier.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 8.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -62,7 +62,7 @@ PUT Individual VNF Indicator Subscription - Method not implemented
     ...    Test title: PUT Individual VNF Indicator Subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify an individual VNF indicator subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.6.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 8.4.6.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
@@ -75,7 +75,7 @@ PATCH Individual VNF Indicator Subscription - Method not implemented
     ...    Test title: PATCH Individual VNF Indicator Subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update an individual VNF indicator subscription
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNFM.
-    ...    Reference: clause 8.4.6.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 8.4.6.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
@@ -88,7 +88,7 @@ POST Individual VNF Indicator Subscription - Method not implemented
     ...    Test title: POST Individual VNF Indicator Subscription - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF indicator subscription
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 8.4.6.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Reference: Clause 8.4.6.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The individual VNF indicator subscription is not created by the operation

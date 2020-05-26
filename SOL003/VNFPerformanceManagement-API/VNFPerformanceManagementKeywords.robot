@@ -154,7 +154,7 @@ Send Post Request for Duplicated VNF Performance Subscription
 
 Send Put Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 6.4.7.3.3.
+    ...    Not Allowed" response as defined in Clause 6.4.7.3.3.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
@@ -164,7 +164,7 @@ Send Put Request for VNF Performance Subscriptions
 
 Send Patch Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 6.4.7.3.4.
+    ...    Not Allowed" response as defined in Clause 6.4.7.3.4.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
@@ -174,7 +174,7 @@ Send Patch Request for VNF Performance Subscriptions
 
 Send Delete Request for VNF Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the VNFM shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 6.4.7.3.5.
+    ...    Not Allowed" response as defined in Clause 6.4.7.3.5.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response

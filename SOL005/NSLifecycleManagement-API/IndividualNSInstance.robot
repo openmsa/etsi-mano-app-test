@@ -13,7 +13,7 @@ POST Individual NSInstance - Method not implemented
     ...    Test title: POST Individual NSInstance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.3.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.3.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: Check Postcondition NS Instance is not created
@@ -26,7 +26,7 @@ GET Information about an individual NS Instance
     ...    Test title: GET Information about an individual NS Instance
     ...    Test objective: The objective is to test that GET method returns an individual NS instance
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.3.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.3.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -39,7 +39,7 @@ PUT Individual NSInstance - Method not implemented
     ...    Test title: PUT Individual NSInstance - Method not implemented
     ...    Test objective: TThe objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.3.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.3.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: Check Postcondition NS Instance is not modified
@@ -52,7 +52,7 @@ PATCH Individual NSInstance - Method not implemented
     ...    Test title: PATCH Individual NSInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.3.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.3.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: Check Postcondition NS Instance is not modified
@@ -65,7 +65,7 @@ DELETE Individual NSInstance
     ...    Test title: DELETE Individual NSInstance
     ...    Test objective: The objective is to test that DELETE method delete a not INSTANTIATED NS instance
     ...    Pre-conditions: NS instance is not INSTANTIATED .
-    ...    Reference: clause 6.4.3.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.3.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: Check Postcondition NS Instance is deleted
@@ -78,7 +78,7 @@ DELETE Individual NSInstance Conflict
     ...    Test title: DELETE Individual NSInstance Conflict
     ...    Test objective: The objective is to test that DELETE method cannot delete an INSTANTIATED NS instance
     ...    Pre-conditions: one instance of a NS in INSTANTIATED state
-    ...    Reference: clause 6.4.3.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.3.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: Check Postcondition NS Instance is not deleted

@@ -12,7 +12,7 @@ POST NS LCM occurrences - Method not implemented
     ...    Test title: POST NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.9.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -24,7 +24,7 @@ GET status information about multiple NS LCM occurrences
     ...    Test title: GET status information about multiple NS LCM occurrences
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -37,7 +37,7 @@ GET status information about multiple NS LCM occurrences Bad Request Invalid att
     ...    Test title: GET status information about multiple NS LCM occurrences Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to test that GET method fail because of wrong query parameter
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO, Invalid filter parameter
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -50,7 +50,7 @@ GET status information about multiple NS LCM occurrences Bad Request Invalid att
     ...    Test title: GET status information about multiple NS LCM occurrences Bad Request Invalid attribute selector
     ...    Test objective: The objective is to test that GET method fail because of wrong attributes selector
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO, Invalid attribute selector
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -63,7 +63,7 @@ GET status information about multiple NS LCM occurrences with "all_fields"
     ...    Test title: GET status information about multiple NS LCM occurrences with "all_fields"
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -76,7 +76,7 @@ GET status information about multiple NS LCM occurrences with "exclude_default"
     ...    Test title: GET status information about multiple NS LCM occurrences with "exclude_default"
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -89,7 +89,7 @@ GET status information about multiple NS LCM occurrences with "fields"
     ...    Test title: GET status information about multiple NS LCM occurrences with "fields"
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -102,7 +102,7 @@ GET status information about multiple NS LCM occurrences with "exclude_fields"
     ...    Test title: GET status information about multiple NS LCM occurrences with "exclude_fields"
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -115,7 +115,7 @@ PUT status information about multiple NS LCM occurrences - Method not implemente
     ...    Test title: PUT status information about multiple NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.9.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -127,7 +127,7 @@ PATCH status information about multiple NS LCM occurrences - Method not implemen
     ...    Test title: PATCH status information about multiple NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.9.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -139,7 +139,7 @@ DELETE status information about multiple NS LCM occurrences - Method not impleme
     ...    Test title: DELETE status information about multiple NS LCM occurrences - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.9.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -151,7 +151,7 @@ GET status information about multiple NS LCM occurrences as Paged Response
     ...    Test title: GET status information about multiple NS LCM occurrences as Paged Reponse
     ...    Test objective: The objective is to test that GET method returns a list of LCM occurrences of the NS as paged response.
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -164,7 +164,7 @@ GET status information about multiple NS LCM occurrences - Bad Request Response 
     ...    Test title: GET status information about multiple NS LCM occurrences - Bad Request Response too Big
     ...    Test objective: The objective is to test that GET method fail because response is too big, and perform the JSON schema validation of the failed operation HTTP response. 
     ...    Pre-conditions: At least one LCM occurrences available in the NFVO, Invalid filter parameter
-    ...    Reference: clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Reference: Clause 6.4.9.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
