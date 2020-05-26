@@ -17,7 +17,7 @@ VNF Performance Information Availability Notification
     ...    Test title: VNF Performance Information Availability Notification
     ...    Test objective: The objective is to test the dispatch of VNF Performance Information Availability Notification when new VNF performance information is available in the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF performance job is created, and a subscription for information availability notifications is available in the VNFM.
-    ...    Reference: clause 6.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 6.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -30,7 +30,7 @@ VNF Threshold Crossed Notification
     ...    Test title: VNF Threshold Crossed Notification
     ...    Test objective: The objective is to test the dispatch of VNF Threshold Crossed Notification when a previously set VNF performance metric threshold is crossed, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF performance job is created, and a threshold subscription is available in the VNFM.
-    ...    Reference: clause 6.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 6.4.9.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
