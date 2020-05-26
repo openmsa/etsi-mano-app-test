@@ -18,7 +18,7 @@ Terminate a VNF Instance
     ...    Test title: Terminate a VNF Instance
     ...    Test objective: The objective is to terminate a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
-    ...    Reference: clause 5.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 5.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM. 
     ...    Post-Conditions: VNF instance in NOT_INSTANTIATED state 
