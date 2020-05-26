@@ -12,7 +12,7 @@ POST Scale a vnfInstance to level
     ...    Test title: POST Scale a vnfInstance to level
     ...    Test objective: The objective is to scale a VNF instance to a target level.
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions:
@@ -26,7 +26,7 @@ POST Scale a vnfInstance to level Conflict (Not-Instantiated)
     ...    Test title: POST Scale a vnfInstance to level Conflict (Not-Instantiated)
     ...    Test objective: The objective is to verify that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions:
@@ -40,7 +40,7 @@ POST Scale a vnfInstance Not Found
     ...    Test title: POST Scale a vnfInstance Not Found
     ...    Test objective: The objective is to verify that the VNF Scale operation fails when the VNF instance resource is not present
     ...    Pre-conditions: VNF instance resource is in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions:
@@ -54,7 +54,7 @@ GET Scale to level VNFInstance - Method not implemented
     ...    Test title: GET Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.6.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.6.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -66,7 +66,7 @@ PUT Scale to level VNFInstance - Method not implemented
     ...    Test title: PUT Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.6.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.6.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -78,7 +78,7 @@ PATCH Scale to level VNFInstance - Method not implemented
     ...    Test title: PATCH Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.6.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.6.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -90,7 +90,7 @@ DELETE Scale to level VNFInstance - Method not implemented
     ...    Test title: DELETE Scale to level VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 

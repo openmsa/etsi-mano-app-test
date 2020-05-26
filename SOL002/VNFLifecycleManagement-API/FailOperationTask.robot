@@ -12,7 +12,7 @@ POST Fail operation task
     ...    Test title: POST Fail operation task
     ...    Test objective: The objective is to test that POST method mark as "finally failed" a VNF lifecycle operation if that operation has experienced a temporary failure
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is in "FAILED_TEMP" state.
-    ...    Reference: clause 5.4.16.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.16.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -27,7 +27,7 @@ POST Fail operation task Conflict (Not-FAILED_TEMP)
     ...    Test title: POST Fail operation task Conflict (Not-FAILED_TEMP)
     ...    Test objective: The objective is to test that POST method cannot mark as "finally failed" a VNF lifecycle operation if that operation has experienced a temporary failure
     ...    Pre-conditions: the "VNF LCM operation occurrence" resource is not in "FAILED_TEMP" state.
-    ...    Reference: clause 5.4.16.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.16.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none     
@@ -41,7 +41,7 @@ POST Fail operation task Not Found
     ...    Test title: POST Fail operation task Not Found
     ...    Test objective: The objective is to test that POST method cannot mark as "finally failed" a VNF lifecycle operation because the operation is not supported
     ...    Pre-conditions: 
-    ...    Reference: clause 5.4.16.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.16.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none  
@@ -53,7 +53,7 @@ GET Fail operation task - Method not implemented
     ...    Test title: GET Fail operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.16.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.16.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -65,7 +65,7 @@ PUT Fail operation task - Method not implemented
     ...    Test title: PUT Fail operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.16.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.16.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -77,7 +77,7 @@ PATCH Fail operation task - Method not implemented
     ...    Test title: PATCH Fail operation task - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.16.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.16.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -89,7 +89,7 @@ DELETE Fail operation task - Method not implemented
     ...    Test title: DELETE Fail operation task- Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.16.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 5.4.16.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: VNF instance not deleted
