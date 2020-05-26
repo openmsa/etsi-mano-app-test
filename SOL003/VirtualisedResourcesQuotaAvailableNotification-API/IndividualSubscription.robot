@@ -15,7 +15,7 @@ Create new Virtualised Resources Quota Available Notification individual subscri
     ...    Test title: Create new Virtualised Resources Quota Available Notification individual subscription
     ...    Test objective: The objective is to test that POST method is not allowed to create a new Virtualised Resources Quota Available Notification individual subscription instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference: clause 11.4.3.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 11.4.3.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -27,7 +27,7 @@ Get Information about an individual subscription
     ...    Test title: Get Information about an individual subscription
     ...    Test objective: The objective is to read an individual Virtualised Resources Quota Available Notification subscription subscribed by the client and perform a JSON schema and content validation of the returned individual subscription data structure 
     ...    Pre-conditions: The subscription with the given id exists
-    ...    Reference: clause 11.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 11.4.3.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none 
     ...    Post-Conditions: none
@@ -40,7 +40,7 @@ PUT an individual subscription - Method not implemented
     ...    Test title: PUT an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update a existing Virtualised Resources Quota Available Notification individual subscription instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference: clause 11.4.3.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 11.4.3.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ PATCH an individual subscription - Method not implemented
     ...    Test title: PATCH an individual subscription - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify a existing Virtualised Resources Quota Available Notification individual subscription instance on VNF 
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference: clause 11.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 11.4.3.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -64,7 +64,7 @@ DELETE an individual subscription
     ...    Test title: DELETE an individual subscription
     ...    Test objective: The objective is to test that Delete method is allowed to remove a existing Virtualised Resources Quota Available Notification individual subscription instance on VNF  
     ...    Pre-conditions: The subscription with the given id exists
-    ...    Reference: clause 11.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: clause 11.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
