@@ -23,3 +23,5 @@ ${callback_uri}    http://localhost
 ${callback_port}    9091
 ${callback_endpoint}    /endpoint
 ${callback_endpoint_error}    /endpoint_404
+
+${response}       some_response_object

@@ -1063,38 +1063,6 @@ GET Content for OnBoarded VNF Package in onboarding state different from ONBOARD
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     
-Send POST Request for individual OnBoarded VNF Package
-    Log    Trying to perform a POST (method should not be implemented)
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    POST    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output}
-
-Send PUT Request for individual OnBoarded VNF Package
-    Log    Trying to perform a PUT (method should not be implemented)
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output}
- 
-Send PATCH Request for individual OnBoarded VNF Package
-    Log    Trying to perform a PATCH (method should not be implemented)
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    PATCH    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output}
-
-Send DELETE Request for individual OnBoarded VNF Package
-    Log    Trying to perform a DELETE (method should not be implemented)
-    Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    DELETE    ${apiRoot}/${apiName}/${apiVersion}/onboarded_vnf_packages/${vndId}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output}
-    
 GET Individual OnBoarded VNF Package Artifact
     Log    Trying to get a VNF Package Artifact
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}

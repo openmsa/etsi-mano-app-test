@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    environment/configuration.txt
 Resource    environment/variables.txt
-Resource    VnfLcmOperationKeywords.robot
 Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
 Library    DependencyLibrary
 Library    JSONLibrary
@@ -200,3 +199,15 @@ DELETE API Version with apiMajorVersion
     Delete    ${apiRoot}/${apiName}/v1/api_version
     ${outputResponse}=    Output    response
 	Set Global Variable    @{response}    ${outputResponse} 
+	
+	
+Check HTTP Response Status Code Is
+    [Arguments]    ${expected_status}    
+    Should Be Equal    ${response.status_code}    ${expected_status}
+    Log    Status code validated 
+
+Check HTTP Response Body Json Schema Is
+    [Arguments]    ${input}
+    ${schema} =    Catenate    ${input}    .schema.json
+    Validate Json    ${schema}    ${response[0]['body']}
+    Log    Json Schema Validation OK
