@@ -16,7 +16,7 @@ VNF Package Onboarding Notification
     ...    Test title: VNF Package Onboarding Notification
     ...    Test objective: The objective is to test the dispatch of VNF Package Onboarding notification when the VNF package onboarding operation is successfully completed, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF package subscription for onboarding notifications is available in the NFVO.
-    ...    Reference: clause 9.4.10.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.10.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -29,7 +29,7 @@ VNF Package Operational State Change Notification
     ...    Test title: VNF Package Operational State Change Notification
     ...    Test objective: The objective is to test the dispatch of VNF Package Change notification when the VNF package operational state is modified, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF package subscription for change notifications is available in the NFVO.
-    ...    Reference: clause 9.4.10.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.10.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -43,7 +43,7 @@ VNF Package Deletion Notification
     ...    Test title: VNF Package Deletion Notification
     ...    Test objective: The objective is to test the dispatch of VNF Package Change notification when the VNF package is deleted on the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A VNF package subscription for change notifications is available in the NFVO.
-    ...    Reference: clause 9.4.10.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.10.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 

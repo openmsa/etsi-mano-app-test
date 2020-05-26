@@ -926,22 +926,21 @@ Check Notification Endpoint
     Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
     Clear Requests  ${callback_endpoint}
 
-
 Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
     Should Be Equal As Strings    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
     
- 
-    
-    
 Check HTTP Response Body Is Empty
     Should Be Empty    ${response['body']}    
     Log    No json schema is provided. Validation OK  
-    
     
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    Should Not Be Empty    ${linkURL}

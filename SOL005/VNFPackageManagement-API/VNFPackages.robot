@@ -12,7 +12,7 @@ GET all VNF Packages
     ...    Test title: GET all VNF Packages
     ...    Test objective: The objective is to test the retrieval of all the available VNF packages information and perform a JSON schema and content validation of the collected data structure
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -29,7 +29,7 @@ GET VNF Packages with attribute-based filter
     ...    Test title: GET VNF Packages with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of VNF packages using attribute-based filter, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued attribute-based filter
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -43,7 +43,7 @@ GET VNF Packages with invalid attribute-based filter
     ...    Test title: GET VNF Packages with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF packages fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -56,7 +56,7 @@ Get all VNF Packages with malformed authorization token
     ...    Test title: Get all VNF Packages Information with malformed authorization token
     ...    Test objective: The objective is to test that the retrieval of VNF Packages fails when using malformed authorization token
     ...    Pre-conditions: One or more VNF Packages are onboarded in the NFVO.
-    ...    Reference: clause 4.5.3.3, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 4.5.3.3, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
     ...    Post-Conditions: none
@@ -68,7 +68,7 @@ Get all VNF Packages without authorization token
     ...    Test title: Get all VNF Packages without authorization token
     ...    Test objective: The objective is to test that the retrieval of VNF Packages fails when omitting the authorization token
     ...    Pre-conditions: One or more VNF Packages are onboarded in the NFVO.
-    ...    Reference: clause 4.5.3.3, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 4.5.3.3, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO requires the usage of access tokens for authorizing the API requests.
     ...    Post-Conditions: none
@@ -80,7 +80,7 @@ GET VNF Packages with "all_fields" attribute selector
     ...    Test title: GET VNF Packages with "all_fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of VNF packages with "all_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "all_fileds" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 4.3.3.2.1, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -94,7 +94,7 @@ GET VNF Packages with "exclude_default" attribute selector
     ...    Test title: GET VNF Packages with exclude_default attribute selector
     ...    Test objective: The objective is to test the retrieval of VNF packages with "exclude_default" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_default" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 4.3.3.2.1, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none        
@@ -108,7 +108,7 @@ GET VNF Packages with "fields" attribute selector
     ...    Test title: GET VNF Packages with fields attribute selector
     ...    Test objective: The objective is to test the retrieval of VNF packages with "fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "fields" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 4.3.3.2.1, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The VNFM supports the use of fields attribute selector
     ...    Post-Conditions: none
@@ -122,7 +122,7 @@ GET VNF Packages with "exclude_fields" attribute selector
     ...    Test title: GET VNF Packages with exclude_fields attribute selector
     ...    Test objective: The objective is to test the retrieval of VNF packages with "exclude_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_fields" selector
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 4.3.3.2.1, 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The VNFM supports the use of exclude_fields attribute selector
     ...    Post-Conditions: none
@@ -136,7 +136,7 @@ GET all VNF Packages with invalid resource endpoint
     ...    Test title: GET VNF Packages with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of VNF packages fails when using invalid resource endpoint
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -148,7 +148,7 @@ Create new VNF Package Resource
     ...    Test title: Create new VNF Package Resource
     ...    Test objective: The objective is to test the creation of a new VNF Package Resource and perform the JSON schema validation of the returned structure
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.2.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package Resource is successfully created on the NFVO
@@ -163,7 +163,7 @@ PUT all VNF Packages - Method not implemented
     ...    Test title: PUT all VNF Packages - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify existing VNF Packages
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -175,7 +175,7 @@ PATCH all VNF Packages - Method not implemented
     ...    Test title: PATCH all VNF Packages - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update existing VNF Packages
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.2.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.2.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -187,7 +187,7 @@ DELETE all VNF Packages - Method not implemented
     ...    Test title: DELETE all VNF Packages - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete existing VNF Packages
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.2.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 9.4.2.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Packages are not deleted by the failed operation
@@ -195,3 +195,28 @@ DELETE all VNF Packages - Method not implemented
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF Packages Exist
     
+GET all VNF Packages as Paged Response
+    [Documentation]    Test ID: 5.3.5.1.15
+    ...    Test title: GET all VNF Packages as Paged Response
+    ...    Test objective: The objective is to test the retrieval of all the available VNF packages information as paged response.
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all VNF Packages
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+GET VNF Packages - Bad Request Response too Big
+    [Documentation]    Test ID: 5.3.5.1.16
+    ...    Test title: GET VNF Packages - Bad Request Response too Big
+    ...    Test objective: The objective is to test that the retrieval of VNF packages fails because response is too big, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
+    ...    Reference: clause 9.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all VNF Packages
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails
