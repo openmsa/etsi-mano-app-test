@@ -1,0 +1,61 @@
+5,Os-Ma-Nfvo Reference Point, SOL005
+5.3.1,NSD Management interface, NSDManagement-API 
+5.3.1.1,Network Service Descriptors Resource Endpoint, NSDescriptors.robot
+5.3.1.2,Individual NS Descriptor Resource Endpoint , IndividualNSDescriptor.robot
+5.3.1.3,NSD Content Resource Endpoint, NSDContent.robot
+5.3.1.4,PNF Descriptors Resource Endpoint, PNFDescriptors.robot
+5.3.1.5,Individual PNF Descriptor Resource Endpoint, IndividualPnfDescriptor.robot
+5.3.1.6,PNFD Content Resource Endpoint, PNFDContent.robot
+5.3.1.7,Subscriptions Resource Endpoint, Subscriptions.robot
+5.3.1.8,Individual Subscription Resource Endpoint, IndividualSubscription.robot
+5.3.1.9,Notifications Endpoint, NSDManagementNotification.robot
+5.3.2,NS Lifecycle Management interface, NSLifecycleManagement-API
+5.3.2.1,NsInstances, NSInstances.robot
+5.3.2.2,Individual NSInstance, IndividualNSInstance.robot
+5.3.2.3,Instantiate NS Task, InstantiateNSTask.robot
+5.3.2.4,Scale a nsInstance, ScaleNSTask.robot
+5.3.2.5,Update a NSInstance, UpdateNSTask.robot
+5.3.2.6,Heal a NSInstance, HealNSTask.robot
+5.3.2.7,Terminate a NSInstance, TerminateNSTask.robot
+5.3.2.8,NS LCM occurrences, NSLCMOccurences.robot
+5.3.2.9,Individual NS LCM Occurences, IndividualNSLCMOccurences.robot
+5.3.2.1, Retry operation task, RetryOperationTask.robot
+5.3.2.11, Rollback operation task, RollbackOperationTask.robot
+5.3.2.12,Continue operation task, ContinueOperationTask.robot
+5.3.2.13,Fail operation task, FailOperationTask.robot
+5.3.2.14,Cancel operation task, CancelOperationTask.robot
+5.3.2.15,Subscriptions, Subscriptions.robot
+5.3.2.16,Individual Subscription, IndividualSubscription.robot
+5.3.2.17,Notification Endpoint, NotificationEndpoint.robot
+5.3.2.18,NS Instance Creation Workflow, CreateNSInstanceWorkflow.robot
+5.3.2.19, NS Instance Deletion, DeleteNSInstanceWorkflow.robot
+5.3.2.20, Heal Flow of NS lifecycle management operations, HealNSTaskWorkflow.robot
+5.3.2.21, Instantiate Flow of NS lifecycle management operations, InstanciateNSTaskWorkflow.robot
+5.3.2.22, Scale Flow of NS lifecycle management operations, ScaleNSTaskWorkflow.robot
+5.3.2.23, Terminate Flow of NS lifecycle management operations, TerminateNSTaskWorkflow.robot
+5.3.2.24, Update Flow of NS lifecycle management operations, UpdateNSTaskWorkflow.robot
+5.3.3,NS Fault Management interface, NSFaultManagement-API
+5.3.3.1,Alarms, Alarms.robot
+5.3.3.2,Individual Alarm, IndividualAlarm.robot
+5.3.3.3,Subscriptions, Subscriptions.robot
+5.3.3.4,Individual Subscription, IndividualSubscription.robot
+5.3.3.5,Notification Endpoint, NotificationEndpoint.robot
+5.3.4,NS Performance Management interface, NSPerformanceManagement-API
+5.3.4.1,PM Jobs Resource Endpoint, PMJobs.robot
+5.3.4.2,Individual PM Job Resource Endpoint, IndividualPmJob.robot
+5.3.4.3,Individual Performance Report Resource Endpoint, IndividualReport.robot
+5.3.4.4,Thresholds Resource Endpoint, Thresholds.robot
+5.3.4.5,Individual Threshold Resource Endpoint, IndividualThreshold.robot
+5.3.4.6,Subscriptions Resource Endpoint, Subscriptions.robot
+5.3.4.7,Individual Subscription Resource Endpoint, IndividualSubscription.robot
+5.3.4.8,Notifications Endpoint, Notifications.robot
+5.3.5,VNF Package Management interface, VNFPackageManagement-API
+5.3.5.1,VNF Packages Resource Endpoint, VNFPackages.robot
+5.3.5.2,Individual VNF Package Resource Endpoint, IndividualVNFPackage.robot
+5.3.5.3,VNFD In Individual VNF Package Resource Endpoint, VNFDInIndividualVNFPackage.robot
+5.3.5.4,VNF Package Content Resource Endpoint, VNFPackageContent.robot
+5.3.5.5,Upload VNF Package From URI Resource Endpoint, VNFPackageContentViaURI.robot
+5.3.5.6,Individual VNF Package Artifact Resource Endpoint, VNFPackageArtifacts.robot
+5.3.5.7,Subscriptions Resource Endpoint, Subscriptions.robot
+5.3.5.8,Individual Subscription Resource Endpoint, IndividualSubscription.robot
+5.3.5.9,Notifications Endpoint, Notifications.robot
