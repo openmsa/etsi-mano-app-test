@@ -7,6 +7,7 @@ Library    OperatingSystem
 #Suite Teardown    Terminate All Processes    kill=true
 Library    MockServerLibrary
 Library    Process
+Library     Collections
 
 *** Keywords ***
 Create Sessions
@@ -422,3 +423,193 @@ Do DELETE Notification
     Sleep  ${sleep_interval}
     Log  Verifying results
     Verify Mock Expectation  ${req}
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    Should Not Be Empty    ${linkURL}
+
+GET Alarm With Filter "id"
+	Log    Query NFVO The GET method queries information about multiple alarms with filter "id".
+	Set Headers  {"Accept":"${ACCEPT}"}  
+	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+	Log    Execute Query
+	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?id=${alarmId}
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "id"
+    Should Be Equal As Strings    ${response['body']['id']}    ${alarmId}
+	
+GET Alarms With Filter "rootCauseFaultyComponent_faultyNestedNsInstanceId"
+	Log    Query NFVO The GET method queries information about multiple alarms with filter "rootCauseFaultyComponent.faultyNestedNsInstanceId".
+	Set Headers  {"Accept":"${ACCEPT}"}  
+	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+	Log    Execute Query
+	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?rootCauseFaultyComponent.faultyNestedNsInstanceId=${faultyNestedNsInstanceId}
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "rootCauseFaultyComponent_faultyNestedNsInstanceId"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings     ${item['rootCauseFaultyComponent']['faultyNestedNsInstanceId']}    ${faultyNestedNsInstanceId}
+    END
+
+GET Alarms With Filter "rootCauseFaultyComponent_faultyNsVirtualLinkInstanceId"
+	Log    Query NFVO The GET method queries information about multiple alarms with filter "rootCauseFaultyComponent.faultyNsVirtualLinkInstanceId".
+	Set Headers  {"Accept":"${ACCEPT}"}  
+	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+	Log    Execute Query
+	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?rootCauseFaultyComponent.faultyNsVirtualLinkInstanceId=${faultyNsVirtualLinkInstanceId}
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "faultyNsVirtualLinkInstanceId"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings     ${item['rootCauseFaultyComponent']['faultyNsVirtualLinkInstanceId']}    ${faultyNsVirtualLinkInstanceId}
+    END
+	
+GET Alarms With Filter "rootCauseFaultyComponent_faultyVnfInstanceId"
+	Log    Query NFVO The GET method queries information about multiple alarms with filter "rootCauseFaultyComponent.faultyVnfInstanceId".
+	Set Headers  {"Accept":"${ACCEPT}"}  
+	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+	Log    Execute Query
+	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?rootCauseFaultyComponent.faultyVnfInstanceId=${faultyVnfInstanceId}
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "faultyVnfInstanceId"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings     ${item['rootCauseFaultyComponent']['faultyVnfInstanceId']}    ${faultyVnfInstanceId}
+    END
+	
+GET Alarms With Filter "rootCauseFaultyResource_faultyResourceType"
+	Log    Query NFVO The GET method queries information about multiple alarms with filter "rootCauseFaultyResource.faultyResourceType".
+	Set Headers  {"Accept":"${ACCEPT}"}  
+	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+	Log    Execute Query
+	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?rootCauseFaultyResource.faultyResourceType=${faultyResourceType}
+	${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "faultyResourceType"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings     ${item['rootCauseFaultyResource']['faultyResourceType']}    ${faultyResourceType}
+    END
+	
+GET Alarms with filter "eventType"
+	Log    Query VNF The GET method queries information about multiple alarms with filters "eventType".
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?eventType=${eventType}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "eventType"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings     ${item['eventType']}    ${eventType}
+    END
+	
+GET Alarms with filter "perceivedSeverity"
+	Log    Query VNF The GET method queries information about multiple alarms with filters "perceivedSeverity".
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?perceivedSeverity=${perceivedSeverity}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "perceivedSeverity"
+	:FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings     ${item['perceivedSeverity']}    ${perceivedSeverity}
+    END
+	
+GET Alarms with filter "probableCause"
+	Log    Query VNF The GET method queries information about multiple alarms with filters "probableCause".
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?probableCause=${probableCause}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "probableCause"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Be Equal As Strings     ${item['probableCause']}    ${probableCause}
+    END
+    
+Get subscriptions with filter "id"
+    Log    Get the list of active subscriptions using a filter "id"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?id=${subscription_id}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscription Matches the requested attribute-based filter "id"
+    Should Be Equal As Strings    ${response['body']['id']}    ${subscription_id}
+	
+Get subscriptions with filter "filter_notificationTypes"
+    Log    Get the list of active subscriptions using a filter "filter.notificationTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.notificationTypes=${notification_type}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_notificationTypes"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Contain Match    ${item['filter']['notificationTypes']}   ${notification_type}    case_insensitive=True
+    END
+	
+Get subscriptions with filter "filter_faultyResourceTypes"
+    Log    Get the list of active subscriptions using a filter "filter.faultyResourceTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.faultyResourceTypes=${faultyResourceType}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_faultyResourceTypes"
+	:FOR   ${item}   IN  @{response['body']}
+    Should Contain Match    ${item['filter']['faultyResourceTypes']}   ${faultyResourceType}    case_insensitive=True
+    END
+    
+Get subscriptions with filter "filter_perceivedSeverities"
+    Log    Get the list of active subscriptions using a filter "filter.perceivedSeverities"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.perceivedSeverities=${perceivedSeverity}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_perceivedSeverities"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Contain Match    ${item['filter']['perceivedSeverities']}   ${perceivedSeverity}    case_insensitive=True
+    END
+	
+Get subscriptions with filter "filter_eventTypes"
+    Log    Get the list of active subscriptions using a filter "filter.eventTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.eventTypes=${eventType}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_eventTypes"
+	:FOR   ${item}   IN  @{response['body']}
+    Should Contain Match    ${item['filter']['eventTypes']}   ${eventType}    case_insensitive=True
+    END
+    
+Get subscriptions with filter "filter_probableCauses"
+    Log    Get the list of active subscriptions using a filter "filter.probableCauses"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.probableCauses=${probableCause}
+    ${outputResponse}=    Output    response
+	Set Global Variable    @{response}    ${outputResponse}
+
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_probableCauses"
+    :FOR   ${item}   IN  @{response['body']}
+    Should Contain Match    ${item['filter']['probableCauses']}   ${probableCause}    case_insensitive=True
+    END

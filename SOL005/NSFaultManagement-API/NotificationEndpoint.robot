@@ -16,7 +16,7 @@ NS Fault Alarm Notification
     ...    Test title: NS Fault Alarm Notification
     ...    Test objective: The objective is to test the dispatch of NS Fault Alarm Notification when a virtualised resource within an NS instance fails, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NS instance is instantiated, and a subscription for fault alarm notifications is available in the NFVO.
-    ...    Reference: clause 8.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -29,7 +29,7 @@ NS Fault Alarm Cleared Notification
     ...    Test title: NS Fault Alarm Cleared Notification
     ...    Test objective: The objective is to test the dispatch of NS Fault Alarm Cleared Notification when a faulty virtualised resource within an NS instance is cleared, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NS instance is instantiated, a virtualised resource is in faulty state, and a subscription for fault alarm cleared notifications is available in the NFVO.
-    ...    Reference: clause 8.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -42,7 +42,7 @@ NS Fault Alarm List Rebuilt Notification
     ...    Test title: NS Fault Alarm List Rebuilt Notification 
     ...    Test objective: The objective is to test the dispatch of NS Fault Alarm List Rebuilt Notification when the NFVO decides to rebuild the list of its NS alarms, e.g. due to a corruption in the alarm storage, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NS instance is instantiated, one or more virtualised resource are in faulty state, and a subscription for fault alarm list rebuilt notifications is available in the NFVO.
-    ...    Reference: clause 8.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: clause 8.4.6.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
