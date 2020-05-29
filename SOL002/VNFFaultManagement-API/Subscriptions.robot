@@ -479,3 +479,10 @@ Check PostCondition HTTP Response Body Subscriptions Matches the requested attri
     :FOR   ${item}   IN  @{response['body']}
     Should Be Equal As Strings    ${item['filter']['probableCauses']}   ${probableCause}
     END
+    
+Check resource existence
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    Integer    response status    200
+
