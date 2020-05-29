@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt
-Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library    REST     ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
