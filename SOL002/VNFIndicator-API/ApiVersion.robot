@@ -2,7 +2,7 @@
 
 Resource    environment/variables.txt
 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT} 
 Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/

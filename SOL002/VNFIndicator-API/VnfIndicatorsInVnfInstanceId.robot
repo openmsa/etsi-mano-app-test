@@ -237,3 +237,6 @@ Check Postcondition Indicators for VNF instance Exist
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
     Should Be Equal    ${response.status_code}    200
     
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    Should Not Be Empty    ${linkURL}
