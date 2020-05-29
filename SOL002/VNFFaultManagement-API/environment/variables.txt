@@ -55,5 +55,4 @@ ${eventType}            COMMUNICATIONS_ALARM
 ${perceivedSeverity}    CRITICAL
 ${probableCause}
 
-${subscription_id}
 ${notification_type}	AlarmNotification
