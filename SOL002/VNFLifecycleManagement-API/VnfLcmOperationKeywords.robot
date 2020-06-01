@@ -927,5 +927,39 @@ Check LINK in Header
     ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
     Should Not Be Empty    ${linkURL}
 
+Check Subscription resource exist
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
+    Integer    response status    200
 
- 	
+Get VNF LCM Operation occurrences with all_fields attribute selector
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?all_fields
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+
+Get VNF LCM Operation occurrences with exclude_default attribute selector
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?exclude_default
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get VNF LCM Operation occurrences with fields attribute selector
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    
+Get VNF LCM Operation occurrences with exclude_fields attribute selector
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs?exclude_fields=${fields}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output} 	
+    
