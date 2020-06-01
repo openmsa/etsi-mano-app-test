@@ -89,9 +89,9 @@ Check Operation Notification
     
 Configure Notification Forward
     [Arguments]    ${element}    ${endpoint}    ${endpoint_fwd}    
-    ${BODY}=	evaluate	json.loads('''${json}''')	json
+   # ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock HTTP forward to handle ${element}
-    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${element}
     &{notification_fwd}=  Create Mock Http Forward	${endpoint_fwd}
     Create Mock Expectation With Http Forward  ${notification_tmp}  ${notification_fwd}
     
@@ -99,7 +99,7 @@ Configure Notification Status Handler
     [Arguments]    ${endpoint}    ${status}=""
     Run Keyword If   ${status}!=""  set to dictionary    ${json["notificationStatus"]}    dp=${status}    
     ${BODY}=    evaluate    json.dumps(${json})    json
-    Log  Creating mock request and response to handle ${element}
+    Log  Creating mock request and response to handle ${endpoint}
     &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
     &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${notification_request}  ${notification_response}    
