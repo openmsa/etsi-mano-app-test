@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    environment/subscriptions.txt
-Resource    environment/IndividualSubscription.txt
+Resource    environment/individualSubscription.txt
 Resource    environment/vnfPackages.txt
 Resource    environment/individualVnfPackage.txt
 Resource    environment/vnfPackageContent.txt
