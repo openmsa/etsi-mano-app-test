@@ -117,7 +117,7 @@ Send Request Grant Request in Synchronous mode
     ${body}=    Get File    jsons/grantRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Send Request Grant Request in Asynchronous mode
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
@@ -128,7 +128,7 @@ Send Request Grant Request in Asynchronous mode
     ${body}=    Get File    jsons/grantRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Send Request for a new Grant Forbiden Operation   
     Log    Request a new Grant for a VNF LCM operation by POST to ${apiRoot}/${apiName}/${apiVersion}/grants
@@ -139,7 +139,7 @@ Send Request for a new Grant Forbiden Operation
     ${body}=    Get File    jsons/grantRejectedRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/grants    ${body}
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
    
 Send Request Grant Request
     Set Headers    {"Accept": "${ACCEPT}"}
@@ -169,7 +169,7 @@ Check HTTP Response Header Contains
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     
 Get an individual grant - Successful
     log    Trying to read an individual grant
@@ -185,7 +185,7 @@ Get Grants
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/grants
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Put Grants
     Log    Trying to perform a PUT. This method should not be implemented
@@ -193,7 +193,7 @@ Put Grants
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/grants
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Patch Grants
     Log    Trying to perform a PATCH. This method should not be implemented
@@ -201,7 +201,7 @@ Patch Grants
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/grants
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
     
 Delete Grants
@@ -210,6 +210,6 @@ Delete Grants
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/grants
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
     

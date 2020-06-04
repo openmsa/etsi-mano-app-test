@@ -24,7 +24,7 @@ Check Individual Subscription existence
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     Log    Validate Status code    
-    Should Be Equal    ${response[0]['status']}    ${expected_status}
+    Should Be Equal As Strings    ${response[0]['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Header Contains

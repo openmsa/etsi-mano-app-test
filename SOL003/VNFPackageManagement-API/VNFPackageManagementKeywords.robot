@@ -616,7 +616,7 @@ Check Postcondition VNF Package Artifact Exist
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings   ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 

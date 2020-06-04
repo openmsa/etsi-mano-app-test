@@ -168,7 +168,7 @@ Send Delete Request for VNF Indicator Subscriptions
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Body Json Schema Is

@@ -294,7 +294,7 @@ Post Create subscription
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}				
+	Set Global Variable    ${response}    ${outputResponse}				
 Post Create subscription - DUPLICATION
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 0    NVFO is not permitting duplication. Skipping the test
@@ -304,7 +304,7 @@ Post Create subscription - DUPLICATION
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}		
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}			
+	Set Global Variable    ${response}    ${outputResponse}			
 Post Create subscription - NO-DUPLICATION	
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 1    VNFM permits duplication. Skipping the test
@@ -314,7 +314,7 @@ Post Create subscription - NO-DUPLICATION
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 Get subscriptions
     Log    Get the list of active subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -323,21 +323,21 @@ Get subscriptions
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 Get subscriptions - filter
     Log    Get the list of active subscriptions using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 Get subscriptions - invalid filter  
     Log    Get the list of active subscriptions using an invalid filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 Get subscriptions with all_fields attribute selector
     Log    Get the list of active subscriptions, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -372,25 +372,25 @@ PUT subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions       
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 PATCH subscriptions
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions     
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 DELETE subscriptions
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions 	   
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	  
+	Set Global Variable    ${response}    ${outputResponse}	  
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings   ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Body Json Schema Is
@@ -410,7 +410,7 @@ Get subscriptions with filter "id"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?id=${subscription_id}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscription Matches the requested attribute-based filter "id"
     Should Be Equal As Strings    ${response['body']['id']}    ${subscription_id}
@@ -421,7 +421,7 @@ Get subscriptions with filter "filter_notificationTypes"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.notificationTypes=${notification_type}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_notificationTypes"
     :FOR   ${item}   IN  @{response['body']}
@@ -434,7 +434,7 @@ Get subscriptions with filter "filter_faultyResourceTypes"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.faultyResourceTypes=${faultyResourceType}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_faultyResourceTypes"
     :FOR   ${item}   IN  @{response['body']}
@@ -447,7 +447,7 @@ Get subscriptions with filter "filter_perceivedSeverities"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.perceivedSeverities=${perceivedSeverity}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_perceivedSeverities"
     :FOR   ${item}   IN  @{response['body']}
@@ -460,7 +460,7 @@ Get subscriptions with filter "filter_eventTypes"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.eventTypes=${eventType}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_eventTypes"
     :FOR   ${item}   IN  @{response['body']}
@@ -473,7 +473,7 @@ Get subscriptions with filter "filter_probableCauses"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.probableCauses=${probableCause}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_probableCauses"
     :FOR   ${item}   IN  @{response['body']}

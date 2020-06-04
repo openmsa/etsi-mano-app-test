@@ -108,7 +108,7 @@ Get individual grant
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Check resource existence
     Set Headers    {"Accept":"${ACCEPT}"}
@@ -123,7 +123,7 @@ Post individual Grant
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Put individual Grant
     Log    Trying to perform a GET. This method should not be implemented
@@ -131,7 +131,7 @@ Put individual Grant
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Patch individual Grant
     Log    Trying to perform a GET. This method should not be implemented
@@ -139,7 +139,7 @@ Patch individual Grant
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Delete individual Grant
     Log    Trying to perform a GET. This method should not be implemented
@@ -147,7 +147,7 @@ Delete individual Grant
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/grants/${grantId}
     ${body}=    Output    response
-    Set Suite Variable    &{response}    ${body}
+    Set Suite Variable    ${response}    ${body}
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
@@ -162,4 +162,4 @@ Check HTTP Response Header Contains
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}

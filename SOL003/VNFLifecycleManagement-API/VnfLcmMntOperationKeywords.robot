@@ -23,7 +23,7 @@ Get Vnf Instance
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings   ${response['status']}    ${expected_status}
     Log    Status code validated 
 
 Check Operation Occurrence IdS
@@ -37,7 +37,7 @@ Check Operation Occurrence Id existence
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
 Check resource Instantiated

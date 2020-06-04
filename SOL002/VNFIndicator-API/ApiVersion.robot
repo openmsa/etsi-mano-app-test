@@ -203,7 +203,7 @@ DELETE API Version with apiMajorVersion
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings   ${response[0]['status']}    ${expected_status}
     Log    Status code validated 
 
 Check HTTP Response Body Json Schema Is

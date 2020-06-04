@@ -113,7 +113,7 @@ POST Alarm Task
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 PUT Alarm Task
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -121,7 +121,7 @@ PUT Alarm Task
     ${body}=    Get File    jsons/alarmModifications.json
     Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}     ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 PATCH Alarm Task
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
@@ -131,7 +131,7 @@ PATCH Alarm Task
     ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 PATCH Alarm Task with wrong precondition
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
     Set Headers  {"Accept":"${ACCEPT}"} 
@@ -140,14 +140,14 @@ PATCH Alarm Task with wrong precondition
     ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 DELETE Alarm Task
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}			
+	Set Global Variable    ${response}    ${outputResponse}			
 GET Alarm Task	
 	Log    Query VNF The GET method queries information about individual alarm.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -157,7 +157,7 @@ GET Alarm Task
     ${etag}    Output    response headers ETag
     Set Suite Variable    &{original_etag}    ${etag}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 GET Alarm Task with filter
 	Log    Query VNF The GET method queries information about individual alarm with filters.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -165,7 +165,7 @@ GET Alarm Task with filter
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${alarm_filter}=${managedObjectId} 
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 GET Alarm Task with invalid filter
 	Log    Query VNF The GET method queries information about individual alarm with filters.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -173,10 +173,10 @@ GET Alarm Task with invalid filter
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${managedObjectId} 
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Body Json Schema Is

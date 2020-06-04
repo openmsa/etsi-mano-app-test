@@ -638,7 +638,7 @@ Send Delete Request for NS Performance Subscriptions
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
     
@@ -770,7 +770,7 @@ Check Postcondition NS Performance Subscription is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Check HTTP Response Body Subscription Identifier matches the requested Subscription

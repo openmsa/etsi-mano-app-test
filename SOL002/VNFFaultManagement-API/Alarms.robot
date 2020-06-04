@@ -265,28 +265,28 @@ POST Alarms Task
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 PUT Alarms Task
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 PATCH Alarms Task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 DELETE Alarms Task
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}			
+	Set Global Variable    ${response}    ${outputResponse}			
 GET Alarms Task	
 	Log    Query VNF The GET method queries information about multiple alarms.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -294,7 +294,7 @@ GET Alarms Task
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 GET Alarms Task with filter
 	Log    Query VNF The GET method queries information about multiple alarms with filters.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -302,7 +302,7 @@ GET Alarms Task with filter
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${alarm_filter}=${managedObjectId} 
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	   	
+	Set Global Variable    ${response}    ${outputResponse}	   	
 GET Alarms Task with invalid filter
 	Log    Query VNF The GET method queries information about multiple alarms with filters.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -310,7 +310,7 @@ GET Alarms Task with invalid filter
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${managedObjectId} 
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 GET Alarms Task with all_fields attribute selector
     Log    Query VNF The GET method queries information about multiple alarms, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -342,7 +342,7 @@ GET Alarms Task with exclude_fields attribute selector
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Header Contains
@@ -369,7 +369,7 @@ GET Alarms Task with filter "id"
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?id=${alarmId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "id"
     Should Be Equal As Strings    ${response['body']['id']}    ${alarmId}
@@ -381,7 +381,7 @@ GET Alarms Task with filter "vnfcInstanceIds"
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?vnfcInstanceIds=${vnfcInstanceIds}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "vnfcInstanceIds"
     :FOR   ${item}   IN  @{response['body']}
@@ -395,7 +395,7 @@ GET Alarms Task with filter "rootCauseFaultyResource_faultyResourceType"
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?rootCauseFaultyResource.faultyResourceType=${faultyResourceType}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "rootCauseFaultyResource_faultyResourceType"
     :FOR   ${item}   IN  @{response['body']}
@@ -409,7 +409,7 @@ GET Alarms Task with filter "eventType"
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?eventType=${eventType}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "eventType"
     :FOR   ${item}   IN  @{response['body']}
@@ -423,7 +423,7 @@ GET Alarms Task with filter "perceivedSeverity"
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?perceivedSeverity=${perceivedSeverity}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "perceivedSeverity"
     :FOR   ${item}   IN  @{response['body']}
@@ -437,7 +437,7 @@ GET Alarms Task with filter "probableCause"
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?probableCause=${probableCause}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body alarms Matches the requested attribute-based filter "probableCause"
     :FOR   ${item}   IN  @{response['body']}

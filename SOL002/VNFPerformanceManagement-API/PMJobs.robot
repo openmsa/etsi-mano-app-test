@@ -363,8 +363,7 @@ Check HTTP Response Body Does Not Contain reports
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
-    ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${status} 
+    Should Be Equal As Strings   ${response['status']}    ${expected_status} 
     Log    Status code validated
     
 Check HTTP Response Status Code Is 40x  
