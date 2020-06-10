@@ -10,7 +10,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Update Flow of NS lifecycle management operations
-    [Documentation]    Test ID: 5.3.2.18.7
+    [Documentation]    Test ID: 5.3.2.24.1
     ...    Test title: Update Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Update a NS instance
     ...    Pre-conditions: the resource is in INSTANTIATED state
