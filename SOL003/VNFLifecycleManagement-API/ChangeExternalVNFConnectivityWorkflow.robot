@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Change external connectivity of VNF Workflow
-    [Documentation]    Test ID: 7.3.1.20
+    [Documentation]    Test ID: 7.3.1.20.1
     ...    Test title: Change external connectivity of VNF Workflow
     ...    Test objective: The objective is to change the external connectivity of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
