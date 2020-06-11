@@ -184,7 +184,7 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Performance Management according to filter
-    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${filter_ok['callbackUri']}
+    Should Be Equal As Strings    ${response['body']['callbackUri']}    ${filter_ok['callbackUri']}
 
 Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription

@@ -433,7 +433,7 @@ GET Individual NS performance Threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET individual NS performance Threshold with invalid resource identifier
     Log    Trying to get a Threhsold with invalid resource endpoint
@@ -441,28 +441,28 @@ GET individual NS performance Threshold with invalid resource identifier
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual NS performance Threshold
     Log    Trying to delete a Threhsold in the NFVO
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual NS performance Threshold with invalid resource identifier
     Log    Trying to delete a Threhsold in the NFVO with invalid id
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual NS performance Threshold
     Log    Trying to create new threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual NS performance Threshold
     Log    Trying to PUT threshold
@@ -473,7 +473,7 @@ Send Put request for individual NS performance Threshold
     Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Patch request for individual NS performance Threshold
     Log    Trying to PUT threshold
@@ -484,7 +484,7 @@ Send Patch request for individual NS performance Threshold
     Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check Postcondition NS performance Threshold is Unmodified (Implicit)
     Log    Check postconidtion threshold not modified
@@ -500,7 +500,7 @@ Check Postcondition NS performance Threshold is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Check Postcondition NS performance Threshold is Deleted
@@ -736,7 +736,7 @@ Send Post request for individual NS Performance Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual NS Performance Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -745,7 +745,7 @@ Send Put request for individual NS Performance Subscription
     Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual NS Performance Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -754,7 +754,7 @@ Send Patch request for individual NS Performance Subscription
     Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
    
 Check Postcondition NS Performance Subscription is Unmodified (Implicit)
     Log    Check postconidtion subscription not modified

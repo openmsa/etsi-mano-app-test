@@ -76,4 +76,4 @@ Get multiple VNF instances
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	

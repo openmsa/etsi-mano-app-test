@@ -984,7 +984,7 @@ Send Post request for individual NSD Management Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual NSD Management Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -993,7 +993,7 @@ Send Put request for individual NSD Management Subscription
     Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual NSD Management Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -1002,7 +1002,7 @@ Send Patch request for individual NSD Management Subscription
     Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
    
 Check Postcondition NSD Management Subscription is Unmodified (Implicit)
     Log    Check postconidtion subscription not modified
@@ -1018,7 +1018,7 @@ Check Postcondition NSD Management Subscription is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Check HTTP Response Body Subscription Identifier matches the requested Subscription
@@ -1032,7 +1032,7 @@ Check HTTP Response Header Contains
     Log    Header is present
 
 Check HTTP Response Header Contains Etag
-    Should Contain    ${response['headers']}    Etag
+    Should Contain    ${response['headers']}    ETag
     Log    Header is present
     Set Suite Variable    ${original_etag}    ${response['headers]['ETag']}
 
