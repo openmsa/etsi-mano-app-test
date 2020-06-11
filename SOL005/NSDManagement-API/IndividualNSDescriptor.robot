@@ -22,7 +22,7 @@ GET Individual Network Service Descriptor Information
     GET Individual Network Service Descriptor Information
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   NsdInfo
-    Check HTTP Response Header Contains ETag
+    Check HTTP Response Header Contains Etag
     Check HTTP Response Body NsdInfo Identifier matches the requested Network Service Descriptor Information
 
 GET Individual Network Service Descriptor Information with invalid resource identifier
@@ -50,6 +50,7 @@ Disable Individual Network Service Descriptor
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is   NsdInfoModification
     Check Postcondition Network Service Descriptor is in operational state    DISABLED
+    Check PostCondition GET Individual Network Service Descriptor Information
     Check Postcondition Network Service Descriptor usage state is unmodified (Implicit)
 
 Enable Individual Network Service Descriptor

@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Modify info of a VNF Instance
-    [Documentation]    Test ID: 7.3.1.27
+    [Documentation]    Test ID: 7.3.1.27.1
     ...    Test title: Update information about a VNF instance
     ...    Test objective: The objective is to update information about a VNF instance.
     ...    Pre-conditions: VNF instance is created 

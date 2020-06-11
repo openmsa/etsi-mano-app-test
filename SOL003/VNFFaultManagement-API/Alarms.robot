@@ -125,7 +125,7 @@ PUT Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Alarms - Method not implemented
-     [Documentation]    Test ID: 7.3.5.1.6
+     [Documentation]    Test ID: 7.3.5.1.10
     ...    Test title: PATCH Alarms - Method not implemented 
     ...    Test objective: The objective is to test that PATCH method is not allowed to for Fault management alarms on VNF 
     ...    Pre-conditions: none
@@ -137,7 +137,7 @@ PATCH Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Alarms - Method not implemented
-     [Documentation]    Test ID: 7.3.5.1.7
+     [Documentation]    Test ID: 7.3.5.1.11
     ...    Test title: POST Alarms - Method not implemented 
     ...    Test objective: The objective is to test that DELETE method is not allowed for Fault management alarms on VNF 
     ...    Pre-conditions: none
@@ -150,7 +150,7 @@ DELETE Alarms - Method not implemented
     Check Postcondition VNF fault management alarms Exists
     
 Get information about multiple alarms as a Paged Response
-    [Documentation]    Test ID: 7.3.5.1.8
+    [Documentation]    Test ID: 7.3.5.1.12
     ...    Test title: Get information about multiple alarms as a Paged Response
     ...    Test objective: The objective is to retrieve information about the alarm list as a Paged Response
     ...    Pre-conditions: none
@@ -163,7 +163,7 @@ Get information about multiple alarms as a Paged Response
     Check LINK in Header
     
 Get information about multiple alarms - Bad Request Response too Big
-    [Documentation]    Test ID: 7.3.5.1.9
+    [Documentation]    Test ID: 7.3.5.1.13
     ...    Test title:  Get information about multiple alarms - Bad Request Response too Big
     ...    Test objective: The objective is to try to retrieve information about the alarm list because response is too big and perform a JSON schema and content validation of the returned problem details data structure
     ...    Pre-conditions: none

@@ -237,7 +237,7 @@ PUT Individual OnBoarded VNF Package Content - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Individual OnBoarded VNF Package Content - Method not implemented
-    [Documentation]    Test ID: 7.3.3.3.9
+    [Documentation]    Test ID: 7.3.3.3.19
     ...    Test title: PATCH Individual OnBoarded VNF Package Content - Method not implemented
     ...    Test objective: The objective is to test that PATCH  method is not allowed to update a VNF Package content
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
@@ -249,7 +249,7 @@ PATCH Individual OnBoarded VNF Package Content - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Individual OnBoarded VNF Package Content - Method not implemented
-    [Documentation]    Test ID: 7.3.3.3.10
+    [Documentation]    Test ID: 7.3.3.3.20
     ...    Test title: DELETE Individual OnBoarded VNF Package Content - Method not implemented
     ...    Test objective: The objective is to test that DELETE  method is not allowed to delete a VNF Package content
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.

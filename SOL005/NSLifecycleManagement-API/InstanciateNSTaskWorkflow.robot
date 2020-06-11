@@ -10,7 +10,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Instantiate Flow of NS lifecycle management operations
-    [Documentation]    Test ID: 5.3.2.18.4
+    [Documentation]    Test ID: 5.3.2.21.1
     ...    Test title: Instantiate Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Instantiate a NS instance
     ...    Pre-conditions: the resource is in NOT_INSTANTIATED state

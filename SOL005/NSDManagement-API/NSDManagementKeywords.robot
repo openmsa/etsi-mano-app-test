@@ -891,7 +891,6 @@ Check HTTP Response Status Code Is
     Log    Status code validated 
     
     
-    
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     Should Contain    ${response['headers']['Content-Type']}    application/json
@@ -1034,7 +1033,7 @@ Check HTTP Response Header Contains
 Check HTTP Response Header Contains Etag
     Should Contain    ${response['headers']}    ETag
     Log    Header is present
-    Set Suite Variable    ${original_etag}    ${response['headers]['ETag']}
+    Set Suite Variable    ${original_etag}    ${response['headers]['Etag']}
 
 Create Sessions
     Pass Execution If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 0    MockServer not started as NFVO is not checking the notification endpoint
@@ -1050,5 +1049,11 @@ Check Notification Endpoint
     Clear Requests  ${callback_endpoint}
 
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}
+
+Check PostCondition GET Individual Network Service Descriptor Information
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoId}
+    Should Be Equal As Strings     ${response['status']}    200
