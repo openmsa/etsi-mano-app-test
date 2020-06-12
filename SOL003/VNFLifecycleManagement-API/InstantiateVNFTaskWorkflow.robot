@@ -13,7 +13,7 @@ Library    Collections
 Library    String
 Library    JSONSchemaLibrary    schemas/
 Library    JSONLibrary
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 
 
 *** Test Cases ***

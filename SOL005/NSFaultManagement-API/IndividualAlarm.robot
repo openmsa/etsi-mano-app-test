@@ -2,7 +2,7 @@
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource   environment/variables.txt
 Resource   NSFMOperationKeywords.robot  
-Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem

@@ -3,7 +3,7 @@ Resource    environment/configuration.txt
 Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Library    MockServerLibrary
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library    OperatingSystem
 Library    BuiltIn
 Library    JSONLibrary

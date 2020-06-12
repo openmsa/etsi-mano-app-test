@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library    JSONSchemaLibrary
 Suite Setup    Check resource existence
 

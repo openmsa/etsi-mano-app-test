@@ -2,7 +2,7 @@
 
 Resource    environment/variables.txt
 
-Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT} 
+Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}     ssl_verify=false
 Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
