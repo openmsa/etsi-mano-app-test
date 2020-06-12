@@ -113,14 +113,14 @@ Check resource instantiated
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
-    String    response body instantiationState    INSTANTIATED
+    String    response body nsState    INSTANTIATED
     
 Check resource not_instantiated
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
-    String    response body instantiationState    NOT_INSTANTIATED
+    String    response body nsState     NOT_INSTANTIATED
 
 Check operation resource state is FAILED_TEMP    
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -128,6 +128,7 @@ Check operation resource state is FAILED_TEMP
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
     String    response body instantiationState    FAILED_TEMP 
+    
 Check operation resource state is not FAILED_TEMP
     Check operation resource state is FAILED_TEMP    
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -317,7 +318,7 @@ GET IndividualNSInstance
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
-    ${Etag}=    Output    response headers Etag
+    ${Etag}=    Output    response headers ETag
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 
