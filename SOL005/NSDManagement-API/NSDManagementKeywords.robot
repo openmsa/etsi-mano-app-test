@@ -1033,7 +1033,7 @@ Check HTTP Response Header Contains
 Check HTTP Response Header Contains Etag
     Should Contain    ${response['headers']}    ETag
     Log    Header is present
-    Set Suite Variable    ${original_etag}    ${response['headers]['Etag']}
+    Set Suite Variable    ${original_etag}    ${response['headers]['ETag']}
 
 Create Sessions
     Pass Execution If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 0    MockServer not started as NFVO is not checking the notification endpoint
