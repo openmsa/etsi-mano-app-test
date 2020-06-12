@@ -1,39 +1,195 @@
 {
   "type": "array",
   "items": {
-		"description": "This type represents a subscription related to notifications about NS lifecycle changes.  It shall comply with the provisions defined in Table 6.5.2.4-1.\n",
-		"type": "object",
-		"required": [
-			"id",
-			"callbackUri",
-			"_links"
-		],
-		"properties": {
-			"id": {
-				"description": "Identifier of this subscription resource.\n",
-				"$ref": "SOL005_def.yaml#/definitions/Identifier"
-			},
-			"filter": {
-				"description": "Filter settings for this subscription, to define the subset of all notifications this subscription relates to. A particular notification is sent to the subscriber if the filter matches, or if there is no filter.\n",
-				"$ref": "#/definitions/LifecycleChangeNotificationsFilter"
-			},
-			"callbackUri": {
-				"description": "The URI of the endpoint to send the notification to.\n",
-				"$ref": "SOL005_def.yaml#/definitions/Uri"
-			},
-			"_links": {
-				"description": "Links to resources related to this resource.\n",
-				"type": "object",
-				"required": [
-					"self"
-				],
-				"properties": {
-					"self": {
-						"description": "URI of this resource.\n",
-						"$ref": "SOL005_def.yaml#/definitions/Link"
-					}
-				}
-			}
-		}
-	}
+    "description": "This type represents a subscription related to notifications about NS lifecycle changes.  It shall comply with the provisions defined in Table 6.5.2.4-1.\n",
+    "type": "object",
+    "required": [
+      "id",
+      "callbackUri",
+      "_links"
+    ],
+    "properties": {
+      "id": {
+        "description": "An identifier with the intention of being globally unique.\n",
+        "type": "string"
+      },
+      "filter": {
+        "description": "This type represents a subscription filter related to notifications about  NS lifecycle changes. It shall comply with the provisions defined in Table 6.5.3.8-1. At a particular nesting level in the filter structure, the following applies:  All attributes shall match in order for the filter to match (logical \"and\" between different filter attributes).  If an attribute is an array, the attribute shall match if at least one of the values in the array matches (logical \"or\" between the values of one filter attribute).\n",
+        "type": "object",
+        "properties": {
+          "nsInstanceSubscriptionFilter": {
+            "description": "This type represents subscription filter criteria to match NS instances.\nNOTE 1: The attributes \"nsdIds\", \"vnfdIds\" and \"pnfdIds\" are alternatives to reference to NS instances that are created based on certain NSDs, or contain VNF instances that are based on certain VNFDs, or contain PNFs that are based on certain PNFDs in a filter. They should not be used together in the same filter instance, but one alternative should be chosen.\nNOTE 2: The attributes \"nsInstanceIds\" and \"nsInstanceNames\" are alternatives to reference to particular NS Instances in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+            "type": "object",
+            "properties": {
+              "nsdIds": {
+                "description": "If present, match NS instances that were created based on a NSD identified by one of the nsdId values listed in this attribute.\n",
+                "type": "array",
+                "items": {
+                  "description": "An identifier with the intention of being globally unique.\n",
+                  "type": "string"
+                }
+              },
+              "vnfdIds": {
+                "description": "If present, match NS instances that contain VNF instances that were created based on a VNFD identified by one of the vnfdId values listed in this attribute.\n",
+                "type": "array",
+                "items": {
+                  "description": "An identifier with the intention of being globally unique.\n",
+                  "type": "string"
+                }
+              },
+              "pnfdIds": {
+                "description": "If present, match NS instances that contain PNFs that are represented by a PNFD identified by one of the pnfdId values listed in this attribute.\n",
+                "type": "array",
+                "items": {
+                  "description": "An identifier with the intention of being globally unique.\n",
+                  "type": "string"
+                }
+              },
+              "nsInstanceIds": {
+                "description": "If present, match NS instances with an instance identifier listed in this attribute.\n",
+                "type": "array",
+                "items": {
+                  "description": "An identifier with the intention of being globally unique.\n",
+                  "type": "string"
+                }
+              },
+              "nsInstanceNames": {
+                "description": "If present, match NS instances with a NS Instance Name listed in this attribute.\n",
+                "type": "array",
+                "items": {
+                  "description": "A string as defined in IETF RFC 8259.\n",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "notificationTypes": {
+            "description": "Match particular notification types. Permitted values: - NsLcmOperationOccurenceNotification - NsIdentifierCreationNotification - NsIdentifierDeletionNotification - NsChangeNotification\n",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "NsLcmOperationOccurenceNotification",
+                "NsIdentifierCreationNotification",
+                "NsIdentifierDeletionNotification",
+                "NsChangeNotification"
+              ]
+            }
+          },
+          "operationTypes": {
+            "description": "Match particular NS lifecycle operation types for the notification of type NsLcmOperationOccurrenceNotification. May be present if the \"notificationTypes\" attribute contains the value \"NsLcmOperationOccurrenceNotification\", and shall be absent otherwise.\n",
+            "type": "array",
+            "items": {
+              "description": "The enumeration NsLcmOpType represents those lifecycle operations that trigger a NS lifecycle management operation occurrence notification. Value | Description ------|------------ INSTANTIATE | Represents the \"Instantiate NS\" LCM operation. SCALE | Represents the \"Scale NS\" LCM operation. UPDATE | Represents the \"Update NS\" LCM operation. TERMINATE | Represents the \"Terminate NS\" LCM operation. HEAL | Represents the \"Heal NS\" LCM operation.\n",
+              "type": "string",
+              "enum": [
+                "INSTANTIATE",
+                "SCALE",
+                "UPDATE",
+                "TERMINATE",
+                "HEAL"
+              ]
+            }
+          },
+          "operationStates": {
+            "description": "Match particular LCM operation state values as reported in notifications of type NsLcmOperationOccurrenceNotification. May be present if the \"notificationTypes\" attribute contains the value \"NsLcmOperationOccurrenceNotification\", and shall be absent otherwise.\n",
+            "type": "array",
+            "items": {
+              "description": "Value | Description ------|------------ PROCESSING | The LCM operation is currently in execution. COMPLETED | The LCM operation has been completed successfully. PARTIALLY_COMPLETED | The LCM operation has been partially completed with accepTable errors. FAILED_TEMP | The LCM operation has failed and execution has stopped, but the execution of the operation is not considered to be closed. FAILED | The LCM operation has failed and it cannot be retried or rolled back, as it is determined that such action will not succeed. OLLING_BACK | The LCM operation is currently being rolled back. ROLLED_BACK | The LCM operation has been successfully rolled back, i.e. The state of the NS prior to the original operation invocation has been restored as closely as possible.\n",
+              "type": "string",
+              "enum": [
+                "PROCESSING",
+                "COMPLETED",
+                "PARTIALLY_COMPLETED",
+                "FAILED_TEMP",
+                "FAILED",
+                "ROLLING_BACK",
+                "ROLLED_BACK"
+              ]
+            }
+          },
+          "nsComponentTypes": {
+            "description": "Match particular NS component types for the notification of type NsChangeNotification. May be present if the \"notificationTypes\" attribute contains the value \"NsChang.\n",
+            "type": "array",
+            "items": {
+              "description": "The enumeration NsComponentType represents the NS component type. It shall comply with the provisions defined in Table 6.5.4.5-1. Value | Description ------|------------ VNF | Represents the impacted NS component is a VNF. PNF | Represents the impacted NS component is a PNF. NS | Represents the impacted NS component is a nested NS.\n",
+              "type": "string",
+              "enum": [
+                "VNF",
+                "PNF",
+                "NS"
+              ]
+            }
+          },
+          "lcmOpNameImpactingNsComponent": {
+            "description": "Match particular LCM operation names for the notification of type NsChangeNotification. May be present if the \"notificationTypes\" attribute contains the value \"NsChangeNotification\", and shall be absent otherwise.\n",
+            "type": "array",
+            "items": {
+              "description": "The enumeration LcmOpNameForChangeNotificationType represents the name of the lifecycle operation that impacts the NS component and trigger an NS change notification. It shall comply with the provisions defined in Table 6.5.4.6-1. Value | Description ------|------------ VNF_INSTANTIATE | Represents the \"Instantiate VNF\" LCM operation. VNF_SCALE | Represents the \"Scale VNF\" LCM operation. VNF_SCALE_TO_LEVEL | Represents the \"Scale VNF to Level\" LCM operation. VNF_CHANGE_FLAVOUR | Represents the \"Change VNF Flavor\" LCM operation. VNF_TERMINATE | Represents the \"Terminate VNF\" LCM operation. VNF_HEAL | Represents the \"Heal VNF\" LCM operation. VNF_OPERATE | Represents the \"Operate VNF\" LCM operation. VNF_CHANGE_EXT_CONN | Represents the \"Change external VNF connectivity\" LCM operation. VNF_MODIFY_INFO | Represents the \"Modify VNF Information\" LCM operation.            NS_INSTANTIATE | Represents the \"Instantiate NS\" LCM operation NS_SCALE | Represents the \"Scale NS\" LCM operation. NS_UPDATE | Represents the \"Update NS\" LCM operation. NS_TERMINATE | Represents the \"Terminate NS\" LCM operation. NS_HEAL | Represents the \"Heal NS\" LCM operation.\n",
+              "type": "string",
+              "enum": [
+                "VNF_INSTANTIATE",
+                "VNF_SCALE",
+                "VNF_SCALE_TO_LEVEL",
+                "VNF_CHANGE_FLAVOUR",
+                "VNF_TERMINATE",
+                "VNF_HEAL",
+                "VNF_OPERATE",
+                "VNF_CHANGE_EXT_CONN",
+                "VNF_MODIFY_INFO",
+                "NS_INSTANTIATE",
+                "NS_SCALE",
+                "NS_UPDATE",
+                "NS_TERMINATE",
+                "NS_HEAL"
+              ]
+            }
+          },
+          "lcmOpOccStatusImpactingNsComponent": {
+            "description": "Match particular LCM operation status values as reported in notifications of type NsChangeNotification. May be present if the \"notificationTypes\" attribute contains the value \"NsChangeNotification\", and shall be absent otherwise.\n",
+            "type": "array",
+            "items": {
+              "description": "The enumeration LcmOpOccStatusForChangeNotificationType represents the status of the lifecycle management operation occurrence that impacts the NS component and triggers an NS change notification. It shall comply with the provisions defined in Table 6.5.4.7-1. Value | Description ------|------------ START | The impact on the NS component is identified. COMPLETED | The impact on the NS component stops and related lifecycle operation completes successfully. PARTIALLY_COMPLETED | The impact on the NS component stops and related lifecycle operation partially completes. Inconsistency state may exist on the NS component. FAILED | The impact on the NS component stops and related lifecycle operation fails. Inconsistency state may exist for the NS component. ROLLED_BACK | The impact on the NS component stops and related lifecycle operation is rolled back.\n",
+              "type": "string",
+              "enum": [
+                "START",
+                "COMPLETED",
+                "PARTIALLY_COMPLETED",
+                "FAILED",
+                "ROLLED_BACK"
+              ]
+            }
+          }
+        }
+      },
+      "callbackUri": {
+        "description": "String formatted according to IETF RFC 3986.\n",
+        "type": "string",
+        "format": "uri"
+      },
+      "_links": {
+        "description": "Links to resources related to this resource.\n",
+        "type": "object",
+        "required": [
+          "self"
+        ],
+        "properties": {
+          "self": {
+            "description": "This type represents a link to a resource.\n",
+            "type": "object",
+            "required": [
+              "href"
+            ],
+            "properties": {
+              "href": {
+                "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+                "type": "string",
+                "format": "url"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

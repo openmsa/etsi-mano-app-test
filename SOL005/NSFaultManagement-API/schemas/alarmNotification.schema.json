@@ -11,8 +11,8 @@
   ],
   "properties": {
     "id": {
-      "description": "Identifier of this notification. If a notification is sent multiple times due to multiple subscriptions, the \"id\" attribute of all these notifications shall have the same value.\n",
-      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
     },
     "notificationType": {
       "description": "Discriminator for the different notification types. Shall be set to \"AlarmNotification\" for this notification type.\n",
@@ -22,16 +22,195 @@
       ]
     },
     "subscriptionId": {
-      "description": "Identifier of the subscription that this notification relates to.\n",
-      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
     },
     "timeStamp": {
-      "description": "Date-time of the generation of the notification.\n",
-      "$ref": "SOL005_def.yaml#/definitions/DateTime"
+      "description": "Date-time stamp. Representation: String formatted according toas defined by the date-time production in IETF RFC 3339.\n",
+      "format": "date-time"
     },
     "alarm": {
-      "description": "Information about an alarm including AlarmId, affected NS identifier, and FaultDetails.\n",
-      "$ref": "#/definitions/Alarm"
+      "description": "The alarm data type encapsulates information about an alarm. It shall comply with the provisions defined in Table 8.5.2.4-1\n",
+      "type": "object",
+      "required": [
+        "id",
+        "managedObjectId",
+        "alarmRaisedTime",
+        "rootCauseFaultyComponent",
+        "ackState",
+        "perceivedSeverity",
+        "eventTime",
+        "eventType",
+        "probableCause",
+        "isRootCause",
+        "_links"
+      ],
+      "properties": {
+        "id": {
+          "description": "An identifier with the intention of being globally unique.\n",
+          "type": "string"
+        },
+        "managedObjectId": {
+          "description": "An identifier with the intention of being globally unique.\n",
+          "type": "string"
+        },
+        "rootCauseFaultyComponent": {
+          "description": "This type represents the faulty component that has a negative impact on an NS.  It shall comply with the provisions defined in Table 8.5.3.4-1.\n",
+          "type": "object",
+          "properties": {
+            "faultyNestedNsInstanceId": {
+              "description": "An identifier with the intention of being globally unique.\n",
+              "type": "string"
+            },
+            "faultyResourceType": {
+              "description": "An identifier with the intention of being globally unique.\n",
+              "type": "string"
+            },
+            "faultyNsVirtualLinkInstanceId": {
+              "description": "An identifier with the intention of being globally unique.\n",
+              "type": "string"
+            }
+          }
+        },
+        "rootCauseFaultyResource": {
+          "description": "This type represents the faulty virtual resources that have a negative impact on a NS.\n",
+          "type": "object",
+          "required": [
+            "faultyResource",
+            "faultyResourceType"
+          ],
+          "properties": {
+            "faultyResource": {
+              "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+              "type": "object",
+              "required": [
+                "resourceId"
+              ],
+              "properties": {
+                "vimId": {
+                  "description": "An identifier with the intention of being globally unique.\n",
+                  "type": "string"
+                },
+                "resourceProviderId": {
+                  "description": "An identifier with the intention of being globally unique.\n",
+                  "type": "string"
+                },
+                "resourceId": {
+                  "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
+                  "type": "string"
+                },
+                "vimLevelResourceType": {
+                  "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
+                  "type": "string"
+                }
+              }
+            },
+            "faultyResourceType": {
+              "description": "The enumeration FaultyResourceType represents those types of faulty resource. Acceptable values are: - COMPUTE - Virtual compute resource. - STORAGE - Virtual storage resource. - NETWORK - Virtual network resource.\n",
+              "type": "string",
+              "enum": [
+                "COMPUTE",
+                "STORAGE",
+                "NETWORK"
+              ]
+            }
+          }
+        },
+        "alarmRaisedTime": {
+          "description": "Date-time stamp. Representation: String formatted according toas defined by the date-time production in IETF RFC 3339.\n",
+          "format": "date-time"
+        },
+        "alarmChangedTime": {
+          "description": "Date-time stamp. Representation: String formatted according toas defined by the date-time production in IETF RFC 3339.\n",
+          "format": "date-time"
+        },
+        "alarmClearedTime": {
+          "description": "Date-time stamp. Representation: String formatted according toas defined by the date-time production in IETF RFC 3339.\n",
+          "format": "date-time"
+        },
+        "ackState": {
+          "description": "Acknowledgment state of the alarm. Permitted values: UNACKNOWLEDGED ACKNOWLEDGED\n",
+          "type": "string",
+          "enum": [
+            "UNACKNOWLEDGED",
+            "ACKNOWLEDGED"
+          ]
+        },
+        "perceivedSeverity": {
+          "description": "Indicates the relative level of urgency for operator attention. * CRITICAL: The Critical severity level indicates that a service\n  affecting condition has occurred and an immediate corrective action\n  is required. Such a severity can be reported, for example, when a\n  managed object becomes totally out of service and its capability needs\n  to be restored (ITU-T Recommendation X.733).\n* MAJOR: The Major severity level indicates that a service affecting\n  condition has developed and an urgent corrective action is required.\n  Such a severity can be reported, for example, when there is a severe\n  degradation in the capability of the managed object and its full\n  capability needs to be restored (ITU-T Recommendation X.733).\n* MINOR: The Minor severity level indicates the existence of a\n  non-service affecting fault condition and that corrective action\n  should be taken in order to prevent a more serious (for example,\n  service affecting) fault. Such a severity can be reported, for\n  example, when the detected alarm condition is not currently degrading\n  the capacity of the managed object (ITU-T Recommendation X.733).\n* WARNING: The Warning severity level indicates the detection of a\n  potential or impending service affecting fault, before any significant\n  effects have been felt. Action should be taken to further diagnose (if\n  necessary) and correct the problem in order to prevent it from\n  becoming a more serious service affecting fault (ITU-T Recommendation\n  X.733).\n* INDETERMINATE: The Indeterminate severity level indicates that the\n  severity level cannot be determined (ITU-T Recommendation X.733).\n* CLEARED: The Cleared severity level indicates the clearing of one or\n  more previously reported alarms. This alarm clears all alarms for this\n  managed object that have the same Alarm type, Probable cause and\n  Specific problems (if given) (ITU-T Recommendation X.733).\n",
+          "type": "string",
+          "enum": [
+            "CRITICAL",
+            "MAJOR",
+            "MINOR",
+            "WARNING",
+            "INDETERMINATE",
+            "CLEARED"
+          ]
+        },
+        "eventTime": {
+          "description": "Date-time stamp. Representation: String formatted according toas defined by the date-time production in IETF RFC 3339.\n",
+          "format": "date-time"
+        },
+        "eventType": {
+          "description": "The enumeration EventType represents those types of events that trigger an alarm. - COMMUNICATIONS_ALARM: An alarm of this type is associated with the\n  procedure and/or process required conveying information from one point\n  to another (ITU-T Recommendation X.733).\n- PROCESSING_ERROR_ALARM: An alarm of this type is associated with a\n  software or processing fault (ITU-T Recommendation X.733).\n- ENVIRONMENTAL_ALARM: An alarm of this type is associated with a\n  condition related to an enclosure in which the equipment resides\n  (ITU-T Recommendation X.733).\n- QOS_ALARM: An alarm of this type is associated with degradation in the\n  quality of a service (ITU-T Recommendation X.733).\n- EQUIPMENT_ALARM: An alarm of this type is associated with an equipment\n  fault (ITU-T Recommendation X.733).\n",
+          "type": "string",
+          "enum": [
+            "COMMUNICATIONS_ALARM",
+            "PROCESSING_ERROR_ALARM",
+            "ENVIRONMENTAL_ALARM",
+            "QOS_ALARM",
+            "EQUIPMENT_ALARM"
+          ]
+        },
+        "faultType": {
+          "description": "Additional information to clarify the type of the fault.\n",
+          "type": "string"
+        },
+        "probableCause": {
+          "description": "Information about the probable cause of the fault.\n",
+          "type": "string"
+        },
+        "isRootCause": {
+          "description": "Attribute indicating if this fault is the root for other correlated alarms. If TRUE, then the alarms listed in the attribute CorrelatedAlarmId are caused by this fault.\n",
+          "type": "boolean"
+        },
+        "correlatedAlarmIds": {
+          "description": "List of identifiers of other alarms correlated to this fault.\n",
+          "type": "array",
+          "items": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          }
+        },
+        "faultDetails": {
+          "description": "Provides additional information about the fault..\n",
+          "type": "string"
+        },
+        "_links": {
+          "description": "Links for this resource.\n",
+          "type": "object",
+          "required": [
+            "self"
+          ],
+          "properties": {
+            "self": {
+              "description": "This type represents a link to a resource.\n",
+              "type": "object",
+              "required": [
+                "href"
+              ],
+              "properties": {
+                "href": {
+                  "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+                  "type": "string",
+                  "format": "url"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "alarmClearedTime": {
       "description": "The time stamp indicating when the alarm was cleared.\n"
@@ -45,12 +224,32 @@
       ],
       "properties": {
         "subscription": {
-          "description": "Link to the related subscription.\n",
-          "$ref": "SOL005_def.yaml#/definitions/Link"
+          "description": "This type represents a link to a resource in a notification, using an absolute or relative URI.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
         },
         "alarm": {
-          "description": "Link to the resource that represents the related alarm.\n",
-          "$ref": "SOL005_def.yaml#/definitions/Link"
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
         }
       }
     }

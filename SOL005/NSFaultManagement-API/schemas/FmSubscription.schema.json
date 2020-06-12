@@ -8,12 +8,123 @@
   ],
   "properties": {
     "id": {
-      "description": "Identifier of this subscription resource.\n",
-      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
     },
     "filter": {
-      "description": "Filter settings for this subscription, to define the subset of all notifications this subscription relates to. A particular notification is sent to the subscriber if the filter matches, or if there is no filter.\n",
-      "$ref": "#/definitions/FmNotificationsFilter"
+      "description": "This type represents a subscription filter related to notifications about NS faults.  It shall comply with the provisions defined in Table 8.5.3.2-1. At a particular nesting level in the filter structure, the following applies:  All attributes shall match in order for the filter to match (logical \"and\" between different filter attributes).  If an attribute is an array, the attribute shall match if at least one of the values in the array matches (logical \"or\" between the values of one filter attribute)..\n",
+      "type": "object",
+      "properties": {
+        "nsInstanceSubscriptionFilter": {
+          "description": "This type represents subscription filter criteria to match NS instances.\nNOTE 1: The attributes \"nsdIds\", \"vnfdIds\" and \"pnfdIds\" are alternatives to reference to NS instances that are created based on certain NSDs, or contain VNF instances that are based on certain VNFDs, or contain PNFs that are based on certain PNFDs in a filter. They should not be used together in the same filter instance, but one alternative should be chosen.\nNOTE 2: The attributes \"nsInstanceIds\" and \"nsInstanceNames\" are alternatives to reference to particular NS Instances in a filter. They should not be used both in the same filter instance, but one alternative should be chosen.\n",
+          "type": "object",
+          "properties": {
+            "nsdIds": {
+              "description": "If present, match NS instances that were created based on a NSD identified by one of the nsdId values listed in this attribute.\n",
+              "type": "array",
+              "items": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              }
+            },
+            "vnfdIds": {
+              "description": "If present, match NS instances that contain VNF instances that were created based on a VNFD identified by one of the vnfdId values listed in this attribute.\n",
+              "type": "array",
+              "items": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              }
+            },
+            "pnfdIds": {
+              "description": "If present, match NS instances that contain PNFs that are represented by a PNFD identified by one of the pnfdId values listed in this attribute.\n",
+              "type": "array",
+              "items": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              }
+            },
+            "nsInstanceIds": {
+              "description": "If present, match NS instances with an instance identifier listed in this attribute.\n",
+              "type": "array",
+              "items": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              }
+            },
+            "nsInstanceNames": {
+              "description": "If present, match NS instances with a NS Instance Name listed in this attribute.\n",
+              "type": "array",
+              "items": {
+                "description": "A string as defined in IETF RFC 8259.\n",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "notificationTypes": {
+          "description": "Match particular notification types. Permitted values: - AlarmNotification - AlarmClearedNotification - AlarmListRebuiltNotification.\n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "AlarmNotification",
+              "AlarmClearedNotification",
+              "AlarmListRebuiltNotification"
+            ]
+          }
+        },
+        "faultyResourceTypes": {
+          "description": "Match alarms related to NSs with a faulty resource type listed in this attribute.\n",
+          "type": "array",
+          "items": {
+            "description": "The enumeration FaultyResourceType represents those types of faulty resource. Acceptable values are: - COMPUTE - Virtual compute resource. - STORAGE - Virtual storage resource. - NETWORK - Virtual network resource.\n",
+            "type": "string",
+            "enum": [
+              "COMPUTE",
+              "STORAGE",
+              "NETWORK"
+            ]
+          }
+        },
+        "perceivedSeverities": {
+          "description": "Match VNF alarms with a perceived severity listed in this attribute.\n",
+          "type": "array",
+          "items": {
+            "description": "Indicates the relative level of urgency for operator attention. * CRITICAL: The Critical severity level indicates that a service\n  affecting condition has occurred and an immediate corrective action\n  is required. Such a severity can be reported, for example, when a\n  managed object becomes totally out of service and its capability needs\n  to be restored (ITU-T Recommendation X.733).\n* MAJOR: The Major severity level indicates that a service affecting\n  condition has developed and an urgent corrective action is required.\n  Such a severity can be reported, for example, when there is a severe\n  degradation in the capability of the managed object and its full\n  capability needs to be restored (ITU-T Recommendation X.733).\n* MINOR: The Minor severity level indicates the existence of a\n  non-service affecting fault condition and that corrective action\n  should be taken in order to prevent a more serious (for example,\n  service affecting) fault. Such a severity can be reported, for\n  example, when the detected alarm condition is not currently degrading\n  the capacity of the managed object (ITU-T Recommendation X.733).\n* WARNING: The Warning severity level indicates the detection of a\n  potential or impending service affecting fault, before any significant\n  effects have been felt. Action should be taken to further diagnose (if\n  necessary) and correct the problem in order to prevent it from\n  becoming a more serious service affecting fault (ITU-T Recommendation\n  X.733).\n* INDETERMINATE: The Indeterminate severity level indicates that the\n  severity level cannot be determined (ITU-T Recommendation X.733).\n* CLEARED: The Cleared severity level indicates the clearing of one or\n  more previously reported alarms. This alarm clears all alarms for this\n  managed object that have the same Alarm type, Probable cause and\n  Specific problems (if given) (ITU-T Recommendation X.733).\n",
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MINOR",
+              "WARNING",
+              "INDETERMINATE",
+              "CLEARED"
+            ]
+          }
+        },
+        "eventTypes": {
+          "description": "Match VNF alarms related to NSs with an event type listed  in this attribute.\n",
+          "type": "array",
+          "items": {
+            "description": "The enumeration EventType represents those types of events that trigger an alarm. - COMMUNICATIONS_ALARM: An alarm of this type is associated with the\n  procedure and/or process required conveying information from one point\n  to another (ITU-T Recommendation X.733).\n- PROCESSING_ERROR_ALARM: An alarm of this type is associated with a\n  software or processing fault (ITU-T Recommendation X.733).\n- ENVIRONMENTAL_ALARM: An alarm of this type is associated with a\n  condition related to an enclosure in which the equipment resides\n  (ITU-T Recommendation X.733).\n- QOS_ALARM: An alarm of this type is associated with degradation in the\n  quality of a service (ITU-T Recommendation X.733).\n- EQUIPMENT_ALARM: An alarm of this type is associated with an equipment\n  fault (ITU-T Recommendation X.733).\n",
+            "type": "string",
+            "enum": [
+              "COMMUNICATIONS_ALARM",
+              "PROCESSING_ERROR_ALARM",
+              "ENVIRONMENTAL_ALARM",
+              "QOS_ALARM",
+              "EQUIPMENT_ALARM"
+            ]
+          }
+        },
+        "probableCauses": {
+          "description": "Match VNF alarms with a probable cause listed in this attribute.\n",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     },
     "callbackUri": {
       "description": "The URI of the endpoint to send the notification to.\n",
@@ -28,8 +139,18 @@
       ],
       "properties": {
         "self": {
-          "description": "URI of this resource.\n",
-          "$ref": "SOL005_def.yaml#/definitions/Link"
+          "description": "This type represents a link to a resource.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
         }
       }
     }
