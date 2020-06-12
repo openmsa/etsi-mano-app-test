@@ -39,7 +39,7 @@ Check Postcondition VNF Instance Created status is
     [Arguments]    ${status}
     Check VNF Instance    ${vnfInstanceId}
     Check HTTP Response Status Code Is    200
-    Check VNF Status    ${response.body.instantiationState}  ${status}  
+    Check VNF Status    ${response['body']['instantiationState']}  ${status}  
      
 Check Operation Notification For VNF Instance Creation
     Check VNF Instance Operation Notification    VnfIdentifierCreationNotification   ${vnfInstanceId}

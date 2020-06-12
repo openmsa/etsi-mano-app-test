@@ -302,5 +302,5 @@ Check HTTP Response Body vnfIndicators Matches the requested attribute-based fil
     Should Be True     "${response['body'][0]['name']}"=="@{var_name}[1]" and "${response['body'][0]['vnfInstanceId']}"=="@{var_id}[1]"
 
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}

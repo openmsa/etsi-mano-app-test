@@ -942,5 +942,5 @@ Check HTTP Response Header Contains
     Log    Header is present
     
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}

@@ -27,11 +27,11 @@ Check HTTP Response Status Code Is
     Log    Status code validated 
 
 Check Operation Occurrence IdS
-    ${vnfLcmOpOccId}=    Get Value From Json    ${response.headers}    $..Location
+    ${vnfLcmOpOccId}=    Get Value From Json    ${response['headers']}    $..Location
     Should Not Be Empty    ${vnfLcmOpOccId}
 
 Check Operation Occurrence Id existence 
-    ${vnfLcmOpOccId}=    Get Value From Json    ${response.headers}    $..Location
+    ${vnfLcmOpOccId}=    Get Value From Json    ${response['headers']}    $..Location
     Should Not Be Empty    ${vnfLcmOpOccId}
     
 Check HTTP Response Body Json Schema Is
@@ -43,12 +43,12 @@ Check HTTP Response Body Json Schema Is
 Check resource Instantiated
     Check VNF Instance    ${vnfInstanceId}
     Check HTTP Response Status Code Is    200
-    Check VNF Status    ${response.body.instantiationState}    INSTANTIATED
+    Check VNF Status    ${response['body']['instantiationState']}    INSTANTIATED
 
 Check resource not Instantiated
     Check VNF Instance    ${vnfInstanceId}
     Check HTTP Response Status Code Is    200
-    Check VNF Status    ${response.body.instantiationState}    NOT_INSTANTIATED
+    Check VNF Status    ${response['body']['instantiationState']}     NOT_INSTANTIATED
 
 Check VNF Instance
     [Arguments]    ${vnfId}
@@ -96,7 +96,7 @@ Get Vnf Ext Link Id
 
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
-    Should Contain    ${response.headers}    ${CONTENT_TYPE}
+    Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
 
 Send VNF Scale Out Request
@@ -1150,5 +1150,5 @@ GET test endpoint
     Clear Requests  ${callback_endpoint}    	    	
     
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}

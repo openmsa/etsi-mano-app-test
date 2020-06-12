@@ -53,7 +53,7 @@ Clean Endpoint
     Clear Requests  ${callback_endpoint}
 
 Check Operation Occurrence Id
-    ${occId}=    Get Value From Json    ${response.headers}    $..Location
+    ${occId}=    Get Value From Json    ${response['headers']}    $..Location
     Should Not Be Empty    ${occId}    
     
 POST Alarms
@@ -425,7 +425,7 @@ Do DELETE Notification
     Verify Mock Expectation  ${req}
     
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}
 
 GET Alarm With Filter "id"

@@ -235,8 +235,8 @@ Check Postcondition Indicators for VNF instance Exist
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
-    Should Be Equal    ${response.status_code}    200
+    Should Be Equal    ${response['status']}    200
     
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}

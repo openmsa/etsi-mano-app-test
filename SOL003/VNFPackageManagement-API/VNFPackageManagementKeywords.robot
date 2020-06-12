@@ -778,7 +778,7 @@ Check Notification Endpoint
     Clear Requests  ${callback_endpoint}
     
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}
 
 Get all OnBoarded VNF Packages

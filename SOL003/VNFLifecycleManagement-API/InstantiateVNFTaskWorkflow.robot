@@ -57,7 +57,7 @@ Check Postcondition VNF Status
     Check VNF Instance    ${vnfInstanceId}
     Should Not Be Empty    ${response}
     Check HTTP Response Status Code Is    200
-    Should Be Equal    ${response.body.id}    ${vnfInstanceId}    
+    Should Be Equal    ${response['body']['id']}    ${vnfInstanceId}    
     Check HTTP Response Header Contains    Content-Type
     Check HTTP Response Body Json Schema Is    vnfInstance.schema.json
-    Check VNF Status    ${response.body.instantiationState}    ${status}
+    Check VNF Status    ${response['body']['instantiationState']}    ${status}

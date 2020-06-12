@@ -359,7 +359,7 @@ Check HTTP Response Body Json Schema Is
     Log    Json Schema Validation OK
     
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}
     
 GET Alarms Task with filter "id"

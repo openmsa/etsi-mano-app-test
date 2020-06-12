@@ -158,7 +158,7 @@ Check HTTP Response Status Code Is
     Log    Status code validated
 
 Check Operation Occurrence Id existence 
-    ${occId}=    Get Value From Json    ${response.headers}    $..Location
+    ${occId}=    Get Value From Json    ${response['headers']}    $..Location
     Should Not Be Empty    ${occId}
 
 Check HTTP Response Header Contains

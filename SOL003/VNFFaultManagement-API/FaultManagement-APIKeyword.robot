@@ -25,7 +25,7 @@ Check Postcondition FaultManagement Subscription Is Set
     Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    200
 Check Operation Occurrence Id
-    ${opOccId}=    Get Value From Json    ${response.headers}    $..Location
+    ${opOccId}=    Get Value From Json    ${response['headers']}    $..Location
     Should Not Be Empty    ${opOccId}
 Check Postcondition VNF fault management alarms Exists
     Log    Checking that alarms exists
@@ -403,7 +403,7 @@ DELETE Individual Subscription
     Set Global Variable    ${response}    ${outputResponse}
     
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}
     
 Get subscriptions with filter "id"
