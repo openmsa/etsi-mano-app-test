@@ -4,7 +4,7 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}        ssl_verify=false
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Operate a VNF Instance
-    [Documentation]    Test ID: 7.3.1.28
+    [Documentation]    Test ID: 7.3.1.28.1
     ...    Test title: Operate a VNF Instance
     ...    Test objective: The objective is to test the workflow of operational change of a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 

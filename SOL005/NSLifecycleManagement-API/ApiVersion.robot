@@ -2,14 +2,14 @@
 
 Resource    environment/variables.txt
 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
 Library    DependencyLibrary
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 
 *** Test Cases ***
 POST API Version - Method not implemented
-    [Documentation]    Test ID: 5.3.2.18.1
+    [Documentation]    Test ID: 5.3.2.25.1
     ...    Test title: POST API version - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
@@ -21,7 +21,7 @@ POST API Version - Method not implemented
 	Check HTTP Response Status Code Is    405
     
 GET API Version
-    [Documentation]    Test ID: 5.3.2.18.2
+    [Documentation]    Test ID: 5.3.2.25.2
     ...    Test title: GET API Version
     ...    Test objective: The objective is to test that GET method successfully return ApiVersionInformation
     ...    Pre-conditions: none
@@ -34,7 +34,7 @@ GET API Version
 	Check HTTP Response Body Json Schema Is    ApiVersionInformation
 
 PUT API Version - Method not implemented
-    [Documentation]    Test ID: 5.3.2.18.3
+    [Documentation]    Test ID: 5.3.2.25.3
     ...    Test title: PUT API Version - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -46,7 +46,7 @@ PUT API Version - Method not implemented
 	Check HTTP Response Status Code Is    405
 
 PATCH API Version - Method not implemented
-    [Documentation]    Test ID: 5.3.2.18.4
+    [Documentation]    Test ID: 5.3.2.25.4
     ...    Test title: PATCH API Version - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -58,7 +58,7 @@ PATCH API Version - Method not implemented
 	Check HTTP Response Status Code Is    405
     
 DELETE API Version - Method not implemented
-    [Documentation]    Test ID: 5.3.2.18.5
+    [Documentation]    Test ID: 5.3.2.25.5
     ...    Test title: DELETE API Version - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
@@ -70,7 +70,7 @@ DELETE API Version - Method not implemented
 	Check HTTP Response Status Code Is    405
 	
 POST API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID: 5.3.2.18.6
+    [Documentation]    Test ID: 5.3.2.25.6
     ...    Test title: POST API version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
@@ -82,7 +82,7 @@ POST API Version with apiMajorVerion - Method not implemented
 	Check HTTP Response Status Code Is    405
     
 GET API Version with apiMajorVerion
-    [Documentation]    Test ID: 5.3.2.18.7
+    [Documentation]    Test ID: 5.3.2.25.7
     ...    Test title: GET API Version with apiMajorVerion
     ...    Test objective: The objective is to test that GET method successfully return ApiVersionInformation
     ...    Pre-conditions: none
@@ -95,7 +95,7 @@ GET API Version with apiMajorVerion
 	Check HTTP Response Body Json Schema Is    ApiVersionInformation
 
 PUT API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID: 5.3.2.18.8
+    [Documentation]    Test ID: 5.3.2.25.8
     ...    Test title: PUT API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -107,7 +107,7 @@ PUT API Version with apiMajorVerion - Method not implemented
 	Check HTTP Response Status Code Is    405
 
 PATCH API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID: 5.3.2.18.9
+    [Documentation]    Test ID: 5.3.2.25.9
     ...    Test title: PATCH API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -119,7 +119,7 @@ PATCH API Version with apiMajorVerion - Method not implemented
 	Check HTTP Response Status Code Is    405
     
 DELETE API Version with apiMajorVerion - Method not implemented
-    [Documentation]    Test ID: 5.3.2.18.10
+    [Documentation]    Test ID: 5.3.2.25.10
     ...    Test title: DELETE API Version with apiMajorVerion - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
@@ -136,78 +136,78 @@ POST API Version
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 PUT API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 PATCH API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 DELETE API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 POST API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/v1/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/v1/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 PUT API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/v1/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 PATCH API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/v1/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 DELETE API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/v1/api_version
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
 
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK

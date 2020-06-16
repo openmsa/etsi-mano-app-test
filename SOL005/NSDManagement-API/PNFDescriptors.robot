@@ -168,7 +168,7 @@ GET all PNF Descriptors Information as Paged Response
     ...    Post-Conditions: none
     GET all PNF Descriptors Information
     Check HTTP Response Status Code Is    200
-    Check LINK in Heade
+    Check LINK in Header
     
 GET PNF Descriptors Information - Bad Request Response too Big
         [Documentation]    Test ID: 5.3.1.4.13

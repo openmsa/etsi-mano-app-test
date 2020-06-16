@@ -1,96 +1,599 @@
 {
-	"type": "object",
-	"required": [
-		"id",
-		"nsInstanceId",
-		"nsLcmOpOccId",
-		"subscriptionId"
-	],
-	"properties": {
-		"id": {
-			"description": "Identifier of this notification. If a notification is sent multiple times due to multiple subscriptions, the \"id\" attribute of all these notifications shall have the same value.\n",
-			"$ref": "SOL005_def.yaml#/definitions/Identifier"
-		},
-		"nsInstanceId": {
-			"description": "The identifier of the NS instance affected.\n",
-			"$ref": "SOL005_def.yaml#/definitions/Identifier"
-		},
-		"nsLcmOpOccId": {
-			"description": "The identifier of the NS lifecycle operation occurrence associated to the notification.\n",
-			"$ref": "SOL005_def.yaml#/definitions/Identifier"
-		},
-		"operation": {
-			"description": "The lifecycle operation.\n",
-			"$ref": "#/definitions/NsLcmOpType"
-		},
-		"notificationType": {
-			"description": "Discriminator for the different notification types. Shall be set to \"NsLcmOperationOccurrenceNotification\" for this notification type.\n",
-			"type": "string"
-		},
-		"subscriptionId": {
-			"description": "Identifier of the subscription that this notification relates to.\n",
-			"$ref": "SOL005_def.yaml#/definitions/Identifier"
-		},
-		"timestamp": {
-			"description": "Date-time of the generation of the notification.\n",
-			"$ref": "SOL005_def.yaml#/definitions/DateTime"
-		},
-		"notificationStatus": {
-			"description": "Indicates whether this notification reports about the start of a NS lifecycle operation or the result of a NS lifecycle operation. Permitted values: - START: Informs about the start of the NS LCM operation occurrence. - RESULT: Informs about the final or intermediate result of the NS LCM operation occurrence.\n",
-			"type": "string",
-			"enum": [
-				"START",
-				"RESULT"
-			]
-		},
-		"operationState": {
-			"description": "The state of the NS lifecycle operation occurrence.\n",
-			"$ref": "#/definitions/NsLcmOperationStateType"
-		},
-		"isAutomaticInvocation": {
-			"description": "Set to true if this NS LCM operation occurrence has been automatically triggered by the NFVO. This occurs in case of auto-scaling, auto-healing and when a nested NS is modified as a result of an operation on its composite NS. Set to false otherwise.\n",
-			"type": "boolean"
-		},
-		"affectedVnf": {
-			"description": "Information about the VNF instances that were affected during the lifecycle operation.\n",
-			"$ref": "#/definitions/AffectedVnf"
-		},
-		"affectedPnf": {
-			"description": "Information about the PNF instances that were affected during the lifecycle operation.\n",
-			"$ref": "#/definitions/AffectedPnf"
-		},
-		"affectedVl": {
-			"description": "Information about the VL instances that were affected during the lifecycle operation.\n",
-			"type": "array",
-			"items": {
-				"$ref": "#/definitions/AffectedVirtualLink"
-			}
-		},
-		"affectedVnffg": {
-			"description": "Information about the VNFFG instances that were affected during the lifecycle operation.\n",
-			"type": "array",
-			"items": {
-				"$ref": "#/definitions/AffectedVnffg"
-			}
-		},
-		"affectedNs": {
-			"description": "Information about the SAP instances that were affected during the lifecycle operation. See note.\n",
-			"type": "array",
-			"items": {
-				"$ref": "#/definitions/AffectedSap"
-			}
-		},
-		"affectedSap": {
-			"description": "The lifecycle operation.\n",
-			"$ref": "#/definitions/NsLcmOpType"
-		},
-		"error": {
-			"description": "Details of the latest error, if one has occurred during executing the LCM operation (see clause 4.3.5). Shall be present if operationState is \"FAILED_TEMP\" or \"FAILED\", and shall be absent otherwise.\n",
-			"$ref": "SOL005_def.yaml#/definitions/ProblemDetails"
-		},
-		"_links": {
-			"description": "Links to resources related to this notification.\n",
-			"$ref": "#/definitions/LccnLinks"
-		}
-	}
+  "type": "object",
+  "required": [
+    "id",
+    "nsInstanceId",
+    "nsLcmOpOccId",
+    "subscriptionId",
+    "timestamp",
+    "notificationStatus",
+    "operationState",
+    "isAutomaticInvocation",
+    "_links"
+  ],
+  "properties": {
+    "id": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "nsInstanceId": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "nsLcmOpOccId": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "operation": {
+      "description": "The enumeration NsLcmOpType represents those lifecycle operations that trigger a NS lifecycle management operation occurrence notification. Value | Description ------|------------ INSTANTIATE | Represents the \"Instantiate NS\" LCM operation. SCALE | Represents the \"Scale NS\" LCM operation. UPDATE | Represents the \"Update NS\" LCM operation. TERMINATE | Represents the \"Terminate NS\" LCM operation. HEAL | Represents the \"Heal NS\" LCM operation.\n",
+      "type": "string",
+      "enum": [
+        "INSTANTIATE",
+        "SCALE",
+        "UPDATE",
+        "TERMINATE",
+        "HEAL"
+      ]
+    },
+    "notificationType": {
+      "description": "Discriminator for the different notification types. Shall be set to \"NsLcmOperationOccurrenceNotification\" for this notification type.\n",
+      "type": "string"
+    },
+    "subscriptionId": {
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Date-time stamp. Representation: String formatted according toas defined by the date-time production in IETF RFC 3339.\n",
+      "format": "date-time"
+    },
+    "notificationStatus": {
+      "description": "Indicates whether this notification reports about the start of a NS lifecycle operation or the result of a NS lifecycle operation. Permitted values: - START: Informs about the start of the NS LCM operation occurrence. - RESULT: Informs about the final or intermediate result of the NS LCM operation occurrence.\n",
+      "type": "string",
+      "enum": [
+        "START",
+        "RESULT"
+      ]
+    },
+    "operationState": {
+      "description": "The enumeration NsLcmOperationStateType shall comply with the provisions defined in Table 6.5.4.4-1. Value | Description ------|------------ PROCESSING | The LCM operation is currently in execution. COMPLETED | The LCM operation has been completed successfully. PARTIALLY_COMPLETED | The LCM operation has been partially completed with accepTable errors. FAILED_TEMP | The LCM operation has failed and execution has stopped, but the execution of the operation is not considered to be closed. FAILED | The LCM operation has failed and it cannot be retried or rolled back, as it is determined that such action won't succeed. OLLING_BACK | The LCM operation is currently being rolled back. ROLLED_BACK | The LCM operation has been successfully rolled back, i.e. The state of the VNF prior to the original operation invocation has been restored as closely as possible.\n",
+      "type": "string",
+      "enum": [
+        "PROCESSING",
+        "COMPLETED",
+        "FAILED_TEMP",
+        "FAILED",
+        "ROLLING_BACK",
+        "ROLLED_BACK"
+      ]
+    },
+    "isAutomaticInvocation": {
+      "description": "The Boolean is a data type having two values (TRUE and FALSE).\n",
+      "type": "boolean"
+    },
+    "affectedVnf": {
+      "description": "Information about the VNF instances that were affected during the lifecycle operation.\n",
+      "type": "array",
+      "items": {
+        "description": "This type provides information about added, deleted and modified VNFs.  It shall comply with the provisions in Table 6.5.3.2-1.\n",
+        "type": "object",
+        "required": [
+          "vnfInstanceId",
+          "vnfdId",
+          "vnfProfileId"
+        ],
+        "properties": {
+          "vnfInstanceId": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          },
+          "vnfdId": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          },
+          "vnfProfileId": {
+            "description": "An identifier that is unique within a NS descriptor. Representation: string of variable length.\n",
+            "type": "string"
+          },
+          "vnfName": {
+            "description": "Name of the VNF Instance.\n",
+            "type": "string"
+          },
+          "changeType": {
+            "description": "Signals the type of change Permitted values: - ADD - REMOVE - INSTANTIATE - TERMINATE - SCALE - CHANGE_FLAVOUR - HEAL - OPERATE - MODIFY_INFORMATION - CHANGE_EXTERNAL_VNF_CONNECTIVITY\n",
+            "type": "string",
+            "enum": [
+              "ADD",
+              "REMOVE",
+              "INSTANTIATE",
+              "TERMINATE",
+              "SCALE",
+              "CHANGE_FLAVOUR",
+              "HEAL",
+              "OPERATE",
+              "MODIFY_INFORMATION",
+              "CHANGE_EXTERNAL_VNF_CONNECTIVITY"
+            ]
+          },
+          "changeResult": {
+            "description": "Signals the result of change identified by the \"changeType\" attribute. Permitted values: - COMPLETED - ROLLED_BACK - FAILED\n",
+            "type": "string",
+            "enum": [
+              "COMPLETED",
+              "ROLLED_BACK",
+              "FAILED"
+            ]
+          },
+          "changedInfo": {
+            "description": "Information about the changed VNF instance information, including VNF configurable properties,if applicable. When the \"changedInfo\" attribute is present,  either the \"changedVnfInfo\" attribute or the \"changedExtConnectivity\" attribute or both shall be present.\n",
+            "type": "object",
+            "required": [
+              "self"
+            ],
+            "properties": {
+              "changedVnfInfo": {
+                "description": "This type represents the information that is requested to be modified for a VNF instance. The information to be modified shall comply with the associated NSD. EXAMPLE. The vnfPkgId attribute value for a particular VNF instance can only be updated with a value that matches the identifier value of a VNF package whose vnfdId is present in the associated profile of the NSD.\n",
+                "type": "object",
+                "required": [
+                  "vnfInstanceId"
+                ],
+                "properties": {
+                  "vnfInstanceId": {
+                    "description": "An identifier with the intention of being globally unique.\n",
+                    "type": "string"
+                  },
+                  "vnfInstanceName": {
+                    "description": "New value of the \"vnfInstanceName\" attribute in \"VnfInstance\", or \"null\" to remove the attribute.\n",
+                    "type": "string"
+                  },
+                  "vnfInstanceDescription": {
+                    "description": "New value of the \"vnfInstanceDescription\" attribute in \"VnfInstance\", or \"null\" to remove the attribute.\n",
+                    "type": "string"
+                  },
+                  "vnfdId": {
+                    "description": "An identifier with the intention of being globally unique.\n",
+                    "type": "string"
+                  },
+                  "vnfConfigurableProperties": {
+                    "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
+                    "type": "object"
+                  },
+                  "metadata": {
+                    "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
+                    "type": "object"
+                  },
+                  "extensions": {
+                    "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
+                    "type": "object"
+                  }
+                }
+              },
+              "changedExtConnectivity": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "resourceHandle"
+                ],
+                "properties": {
+                  "id": {
+                    "description": "An identifier with the intention of being globally unique.\n",
+                    "type": "string"
+                  },
+                  "resourceHandle": {
+                    "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                    "type": "object",
+                    "required": [
+                      "resourceId"
+                    ],
+                    "properties": {
+                      "vimId": {
+                        "description": "An identifier with the intention of being globally unique.\n",
+                        "type": "string"
+                      },
+                      "resourceProviderId": {
+                        "description": "An identifier with the intention of being globally unique.\n",
+                        "type": "string"
+                      },
+                      "resourceId": {
+                        "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
+                        "type": "string"
+                      },
+                      "vimLevelResourceType": {
+                        "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "extLinkPorts": {
+                    "description": "Link ports of this VL.\n",
+                    "type": "array",
+                    "items": {
+                      "description": "This type represents information about a link port of an external VL, i.e. a port providing connectivity for the VNF to an NS VL. \n",
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "resourceHandle"
+                      ],
+                      "properties": {
+                        "id": {
+                          "description": "An identifier with the intention of being globally unique.\n",
+                          "type": "string"
+                        },
+                        "resourceHandle": {
+                          "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                          "type": "object",
+                          "required": [
+                            "resourceId"
+                          ],
+                          "properties": {
+                            "vimId": {
+                              "description": "An identifier with the intention of being globally unique.\n",
+                              "type": "string"
+                            },
+                            "resourceProviderId": {
+                              "description": "An identifier with the intention of being globally unique.\n",
+                              "type": "string"
+                            },
+                            "resourceId": {
+                              "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
+                              "type": "string"
+                            },
+                            "vimLevelResourceType": {
+                              "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "cpInstanceId": {
+                          "description": "An identifier that is unique for the respective type within a VNF instance, but may not be globally unique.\n",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "affectedPnf": {
+      "description": "Information about the PNF instances that were affected during the lifecycle operation.\n",
+      "type": "array",
+      "items": {
+        "description": "This type provides information about added, deleted and modified PNFs.  It shall comply with the provisions in Table 6.5.3.3-1.\n",
+        "type": "object",
+        "required": [
+          "pnfId",
+          "pnfdId",
+          "pnfProfileId",
+          "cpInstanceId"
+        ],
+        "properties": {
+          "pnfId": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          },
+          "pnfdId": {
+            "description": "An identifier that is unique within a NS descriptor. Representation: string of variable length.\n",
+            "type": "string"
+          },
+          "pnfProfileId": {
+            "description": "An identifier that is unique within a NS descriptor. Representation: string of variable length.\n",
+            "type": "string"
+          },
+          "pnfName": {
+            "description": "Name of the PNF.\n",
+            "type": "string"
+          },
+          "cpInstanceId": {
+            "description": "Identifier of the CP in the scope of the PNF.\n",
+            "type": "array",
+            "items": {
+              "description": "An Identifier that is unique within respect to a PNF. Representation: string of variable length.\n",
+              "type": "string"
+            }
+          },
+          "changeType": {
+            "description": "Signals the type of change. Permitted values: - ADD - REMOVE - MODIFY\n",
+            "type": "string",
+            "enum": [
+              "ADD",
+              "REMOVE",
+              "MODIFY"
+            ]
+          },
+          "changeResult": {
+            "description": "Signals the result of change identified by the \"changeType\" attribute. Permitted values: - COMPLETED - ROLLED_BACK - FAILED\n",
+            "type": "string",
+            "enum": [
+              "COMPLETED",
+              "ROLLED_BACK",
+              "FAILED"
+            ]
+          }
+        }
+      }
+    },
+    "affectedVl": {
+      "description": "Information about the VL instances that were affected during the lifecycle operation.\n",
+      "type": "array",
+      "items": {
+        "description": "This type provides information about added, deleted, modified and temporary VLs.\n",
+        "type": "object",
+        "required": [
+          "id",
+          "virtualLinkDescId",
+          "changeType",
+          "networkResource"
+        ],
+        "properties": {
+          "id": {
+            "description": "An identifier that is unique for the respective type within a VNF instance, but may not be globally unique.\n",
+            "type": "string"
+          },
+          "virtualLinkDescId": {
+            "description": "Identifier of the VNF Virtual Link Descriptor (VLD) in the VNFD.\n",
+            "type": "string"
+          },
+          "changeType": {
+            "description": "Signals the type of change. Permitted values: * ADDED * REMOVED * MODIFIED * TEMPORARY * LINK_PORT_ADDED * LINK_PORT_REMOVED For a temporary resource, an AffectedVirtualLink structure exists as long as the temporary resource exists.\n",
+            "type": "string",
+            "enum": [
+              "ADDED",
+              "REMOVED",
+              "MODIFIED",
+              "TEMPORARY",
+              "LINK_PORT_ADDED",
+              "LINK_PORT_REMOVED"
+            ]
+          },
+          "networkResource": {
+            "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+            "type": "object",
+            "required": [
+              "resourceId"
+            ],
+            "properties": {
+              "vimId": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              },
+              "resourceProviderId": {
+                "description": "An identifier with the intention of being globally unique.\n",
+                "type": "string"
+              },
+              "resourceId": {
+                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
+                "type": "string"
+              },
+              "vimLevelResourceType": {
+                "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
+                "type": "string"
+              }
+            }
+          },
+          "metadata": {
+            "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "affectedVnffg": {
+      "description": "Information about the VNFFG instances that were affected during the lifecycle operation.\n",
+      "type": "array",
+      "items": {
+        "description": "This type provides information about added, deleted and modified VNFFG instances. It shall comply with the provisions in Table 6.5.3.5-1.\n",
+        "type": "object",
+        "required": [
+          "vnffgInstanceId",
+          "vnffgdId"
+        ],
+        "properties": {
+          "vnffgInstanceId": {
+            "description": "An identifier that is unique with respect to a NS. Representation: string of variable length.\n",
+            "type": "string"
+          },
+          "vnffgdId": {
+            "description": "An identifier that is unique within a NS descriptor. Representation: string of variable length.\n",
+            "type": "string"
+          },
+          "changeType": {
+            "description": "Signals the type of change. Permitted values: - ADD - DELETE - MODIFY\n",
+            "type": "string",
+            "enum": [
+              "ADD",
+              "DELETE",
+              "MODIFY"
+            ]
+          },
+          "changeResult": {
+            "description": "Signals the result of change identified by the \"changeType\" attribute. Permitted values: - COMPLETED - ROLLED_BACK - FAILED\n",
+            "type": "string",
+            "enum": [
+              "COMPLETED",
+              "ROLLED_BACK",
+              "FAILED"
+            ]
+          }
+        }
+      }
+    },
+    "affectedNs": {
+      "description": "Information about the SAP instances that were affected during the lifecycle operation. See note.\n",
+      "type": "array",
+      "items": {
+        "description": "This type provides information about added, deleted and modified nested NSs. It shall comply with the provisions in Table 6.5.3.6-1.\n",
+        "type": "object",
+        "required": [
+          "nsInstanceId",
+          "nsdId",
+          "changeType",
+          "changeResult"
+        ],
+        "properties": {
+          "nsInstanceId": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          },
+          "nsdId": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          },
+          "changeType": {
+            "description": "Signals the type of lifecycle change. Permitted values: - ADD - REMOVE - INSTANTIATE - SCALE - UPDATE - HEAL - TERMINATE\n",
+            "type": "string",
+            "enum": [
+              "ADD",
+              "REMOVE",
+              "INSTANTIATE",
+              "SCALE",
+              "UPDATE",
+              "HEAL",
+              "TERMINATE"
+            ]
+          },
+          "changeResult": {
+            "description": "Signals the result of change identified by the \"changeType\" attribute. Permitted values: - COMPLETED - ROLLED_BACK - FAILED - PARTIALLY_COMPLETED\n",
+            "type": "string",
+            "enum": [
+              "COMPLETED",
+              "ROLLED_BACK",
+              "FAILED",
+              "PARTIALLY_COMPLETED"
+            ]
+          }
+        }
+      }
+    },
+    "affectedSap": {
+      "description": "Information about the SAP instances that were affected during the lifecycle operation. Shall be present if the \"notificationStatus\" is set to \"RESULT\" and the operation has performed any resource modification. Shall be absent otherwise.\n",
+      "type": "array",
+      "items": {
+        "description": "This type provides information about added, deleted and modified SAP of a NS. It shall comply with the provisions in Table 6.5.3.7-1.\n",
+        "type": "object",
+        "required": [
+          "sapInstanceId",
+          "sapdId"
+        ],
+        "properties": {
+          "sapInstanceId": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          },
+          "sapdId": {
+            "description": "An identifier with the intention of being globally unique.\n",
+            "type": "string"
+          },
+          "sapName": {
+            "description": "Human readable name for the SAP.\n",
+            "type": "string"
+          },
+          "changeType": {
+            "description": "Signals the type of lifecycle change. Permitted values: - ADD - REMOVE - MODIFY\n",
+            "type": "string",
+            "enum": [
+              "ADD",
+              "REMOVE",
+              "MODIFY"
+            ]
+          },
+          "changeResult": {
+            "description": "Signals the result of change identified by the \"changeType\" attribute. Permitted values: - COMPLETED - ROLLED_BACK - FAILED\n",
+            "type": "string",
+            "enum": [
+              "COMPLETED",
+              "ROLLED_BACK",
+              "FAILED"
+            ]
+          }
+        }
+      }
+    },
+    "error": {
+      "description": "The definition of the general \"ProblemDetails\" data structure from IETF RFC 7807 [19] is reproduced in this structure. Compared to the general framework defined in IETF RFC 7807 [19], the \"status\" and \"detail\" attributes are mandated to be included by the present document, to ensure that the response contains additional textual information about an error. IETF RFC 7807 [19] foresees extensibility of the \"ProblemDetails\" type. It is possible that particular APIs in the present document, or particular implementations, define extensions to define additional attributes that provide more information about the error. The description column only provides some explanation of the meaning to Facilitate understanding of the design. For a full description, see IETF RFC 7807 [19].\n",
+      "type": "object",
+      "required": [
+        "status",
+        "detail"
+      ],
+      "properties": {
+        "type": {
+          "description": "A URI reference according to IETF RFC 3986 [5] that identifies the problem type. It is encouraged that the URI provides human-readable documentation for the problem (e.g. using HTML) when dereferenced. When this member is not present, its value is assumed to be \"about:blank\".\n",
+          "type": "string",
+          "format": "URI"
+        },
+        "title": {
+          "description": "A short, human-readable summary of the problem type. It should not change from occurrence to occurrence of the problem, except for purposes of localization. If type is given and other than \"about:blank\", this attribute shall also be provided. A short, human-readable summary of the problem type.  It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC7231], Section 3.4).\n",
+          "type": "string"
+        },
+        "status": {
+          "description": "The HTTP status code for this occurrence of the problem. The HTTP status code ([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.\n",
+          "type": "integer"
+        },
+        "detail": {
+          "description": "A human-readable explanation specific to this occurrence of the problem.\n",
+          "type": "string"
+        },
+        "instance": {
+          "description": "A URI reference that identifies the specific occurrence of the problem. It may yield further information if dereferenced.\n",
+          "type": "string",
+          "format": "URI"
+        }
+      }
+    },
+    "_links": {
+      "description": "This type represents the links to resources that a notification can contain.\n",
+      "type": "object",
+      "required": [
+        "nsInstance"
+      ],
+      "properties": {
+        "nsInstance": {
+          "description": "This type represents a link to a resource in a notification, using an absolute or relative URI.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        },
+        "subscription": {
+          "description": "This type represents a link to a resource in a notification, using an absolute or relative URI.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        },
+        "nslcmOpOcc": {
+          "description": "This type represents a link to a resource in a notification, using an absolute or relative URI.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
+        }
+      }
+    }
+  }
 }

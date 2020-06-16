@@ -1,8 +1,8 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Resource    VnfLcmOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
-Library    OperatingSystem
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
+Library    OperatingSystem    
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Suite Setup    Check resource existence

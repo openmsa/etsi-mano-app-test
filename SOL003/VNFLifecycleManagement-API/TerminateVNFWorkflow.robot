@@ -4,7 +4,7 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}        ssl_verify=false
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -14,7 +14,7 @@ Library    Process
 
 *** Test Cases ***
 Terminate a VNF Instance
-    [Documentation]    Test ID: 7.3.1.33
+    [Documentation]    Test ID: 7.3.1.33.1
     ...    Test title: Terminate a VNF Instance
     ...    Test objective: The objective is to terminate a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 

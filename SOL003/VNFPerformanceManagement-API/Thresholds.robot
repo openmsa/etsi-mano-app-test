@@ -225,7 +225,7 @@ Check HTTP Response Body Thresholds match the requested attribute-based filter
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${status} 
+    Should Be Equal As Strings   ${response['status']}    ${status} 
     Log    Status code validated
 
 Check HTTP Response Header Contains
@@ -241,6 +241,6 @@ Check HTTP Response Body Json Schema Is
     Log    Json Schema Validation OK
 
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}
 

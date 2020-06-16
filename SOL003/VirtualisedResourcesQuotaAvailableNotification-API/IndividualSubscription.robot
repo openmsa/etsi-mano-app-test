@@ -4,7 +4,7 @@ Resource    VRQANOperationKeywords.robot
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Documentation    This resource represents an individual subscription. The client can use this resource to read and to terminate a
 ...    subscription to notifications related to the availability of the virtualised resources quotas.
 Suite Setup    Check Individual Subscription existence

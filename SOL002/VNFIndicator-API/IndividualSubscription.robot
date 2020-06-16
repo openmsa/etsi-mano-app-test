@@ -31,7 +31,33 @@ GET Individual VNF Indicator Subscription with invalid resource identifier
     GET Individual VNF Indicator Subscription with invalid resource identifier
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is   ProblemDetails
-    
+
+DELETE Individual VNF Indicator Subscription
+    [Documentation]    Test ID: 6.3.2.5.3
+    ...    Test title: Delete individual subscription to VNF performance indicators
+    ...    Test objective: The objective is to test the deletion of an individual VNF performance indicator subscription.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference: clause 8.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
+    ...    Post-Conditions: The subscription to VNF performance indicators is deleted
+    Send Delete Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    204
+    Check Postcondition Individual VNF Indicator Subscription is Deleted
+
+DELETE Individual VNF Indicator Subscription with invalid resource identifier
+    [Documentation]    Test ID: 6.3.2.5.4
+    ...    Test title: Delete individual subscription to VNF performance indicators
+    ...    Test objective: The objective is to test that the deletion of an individual VNF performance indicator subscription fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference: clause 8.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
+    ...    Post-Conditions: none   
+    Send Delete Request for Individual VNF Indicator Subscription with invalid resource identifier
+    Check HTTP Response Status Code Is    404
+    Check HTTP Response Body Json Schema Is   ProblemDetails
+
 PUT Individual VNF Indicator Subscription - Method not implemented
     [Documentation]    Test ID: 6.3.2.5.5
     ...    Test title: PUT individual VNF indicator subscription - Method not implemented
@@ -70,32 +96,6 @@ POST Individual VNF Indicator Subscription - Method not implemented
     Send Post Request for Individual VNF Indicator Subscription
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF individual subscription is not created  
-
-DELETE Individual VNF Indicator Subscription
-    [Documentation]    Test ID: 6.3.2.5.3
-    ...    Test title: Delete individual subscription to VNF performance indicators
-    ...    Test objective: The objective is to test the deletion of an individual VNF performance indicator subscription.
-    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: Clause 8.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
-    ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
-    ...    Post-Conditions: The subscription to VNF performance indicators is deleted
-    Send Delete Request for Individual VNF Indicator Subscription
-    Check HTTP Response Status Code Is    204
-    Check Postcondition Individual VNF Indicator Subscription is Deleted
-
-DELETE Individual VNF Indicator Subscription with invalid resource identifier
-    [Documentation]    Test ID: 6.3.2.5.4
-    ...    Test title: Delete individual subscription to VNF performance indicators
-    ...    Test objective: The objective is to test that the deletion of an individual VNF performance indicator subscription fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
-    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: Clause 8.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
-    ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators
-    ...    Post-Conditions: none   
-    Send Delete Request for Individual VNF Indicator Subscription with invalid resource identifier
-    Check HTTP Response Status Code Is    404
-    Check HTTP Response Body Json Schema Is   ProblemDetails
 
 *** Keywords ***
 Get Individual VNF Indicator Subscription

@@ -2,7 +2,7 @@
 # Suite setup     Expect spec    SOL002-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt 
 Resource    VnfLcmOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}      ssl_verify=false  
 Library    OperatingSystem
 Library    DependencyLibrary
 Library    JSONLibrary

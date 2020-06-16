@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
 Library     OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -46,7 +46,7 @@ Create a new Subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303
 
 GET Subscriptions
-    [Documentation]    Test ID: 6.3.4.4.5
+    [Documentation]    Test ID: 6.3.4.4.4
     ...    Test title: GET Subscriptions
     ...    Test objective: The objective is to retrieve the list of active subscriptions
     ...    Pre-conditions: 
@@ -59,7 +59,7 @@ GET Subscriptions
     Check HTTP Response Body Json Schema Is   FmSubscriptions 
 
 GET Subscription - Filter
-    [Documentation]    Test ID: 6.3.4.4.6
+    [Documentation]    Test ID: 6.3.4.4.5
     ...    Test title: GET Subscription - Filter
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter
     ...    Pre-conditions: 
@@ -72,7 +72,7 @@ GET Subscription - Filter
     Check HTTP Response Body Json Schema Is   FmSubscriptions 
     
 GET subscriptions - Bad Request Invalid attribute-based filtering parameters
-    [Documentation]    Test ID: 6.3.4.4.7
+    [Documentation]    Test ID: 6.3.4.4.6
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to retrieve the list of active subscriptions with Invalid attribute-based filtering parameters
     ...    Pre-conditions: 
@@ -85,7 +85,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     Check HTTP Response Body Json Schema Is   ProblemDetails 
 
 GET subscriptions with "all_fields" attribute selector
-    [Documentation]    Test ID: 6.3.4.4.8
+    [Documentation]    Test ID: 6.3.4.4.7
     ...    Test title: GET subscriptions with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
@@ -98,7 +98,7 @@ GET subscriptions with "all_fields" attribute selector
     Check HTTP Response Body Json Schema Is   FmSubscriptions 
 
 GET subscriptions with "exclude_default" attribute selector
-    [Documentation]    Test ID: 6.3.4.4.9
+    [Documentation]    Test ID: 6.3.4.4.8
     ...    Test title: GET subscriptions with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
@@ -111,7 +111,7 @@ GET subscriptions with "exclude_default" attribute selector
     Check HTTP Response Body Json Schema Is   FmSubscriptions
 
 GET subscriptions with "fields" attribute selector
-    [Documentation]    Test ID: 6.3.4.4.10
+    [Documentation]    Test ID: 6.3.4.4.9
     ...    Test title: GET subscriptions with "fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
@@ -124,7 +124,7 @@ GET subscriptions with "fields" attribute selector
     Check HTTP Response Body Json Schema Is   FmSubscriptions
 
 GET subscriptions with "exclude_fields" attribute selector
-    [Documentation]    Test ID: 6.3.4.4.11
+    [Documentation]    Test ID: 6.3.4.4.10
     ...    Test title: GET subscriptions with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve the list of active subscriptions with attribute selector
     ...    Pre-conditions: 
@@ -139,7 +139,7 @@ GET subscriptions with "exclude_fields" attribute selector
 
         
 PUT subscriptions - Method not implemented
-    [Documentation]    Test ID: 6.3.4.4.8
+    [Documentation]    Test ID: 6.3.4.4.11
     ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -151,7 +151,7 @@ PUT subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH subscriptions - Method not implemented
-    [Documentation]    Test ID: 6.3.4.4.9
+    [Documentation]    Test ID: 6.3.4.4.12
     ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -163,7 +163,7 @@ PATCH subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE subscriptions - Method not implemented
-    [Documentation]    Test ID: 6.3.4.4.10
+    [Documentation]    Test ID: 6.3.4.4.13
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that the method is not implemented
     ...    Pre-conditions: 
@@ -175,7 +175,7 @@ DELETE subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
     
 GET Subscriptions to get Paged Response
-    [Documentation]    Test ID: 6.3.4.4.11
+    [Documentation]    Test ID: 6.3.4.4.14
     ...    Test title: GET Subscriptions to get Paged Response
     ...    Test objective: The objective is to retrieve the list of active subscriptions to get paged response
     ...    Pre-conditions: 
@@ -188,7 +188,7 @@ GET Subscriptions to get Paged Response
     Check LINK in Header
     
 GET subscriptions - Bad Request Response too Big
-    [Documentation]    Test ID: 6.3.4.4.12
+    [Documentation]    Test ID: 6.3.4.4.15
     ...    Test title: GET subscriptions - Bad Request Response too Big
     ...    Test objective: The objective is to test that GET method fail retrieving list of active subscription because Response is too big, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: 
@@ -201,7 +201,7 @@ GET subscriptions - Bad Request Response too Big
     Check HTTP Response Body Json Schema Is   ProblemDetails
 
 GET Subscription with attribute-based filter "id"
-    [Documentation]    Test ID: 6.3.4.4.13
+    [Documentation]    Test ID: 6.3.4.4.16
     ...    Test title: GET Subscription with attribute-based filter "id"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "id"
     ...    Pre-conditions: 
@@ -216,7 +216,7 @@ GET Subscription with attribute-based filter "id"
     
     
 Get subscriptions with filter "filter.notificationTypes"
-    [Documentation]    Test ID: 6.3.4.4.14
+    [Documentation]    Test ID: 6.3.4.4.17
     ...    Test title: GET Subscription with attribute-based filter "filter.notificationTypes"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.notificationTypes"
     ...    Pre-conditions: 
@@ -230,7 +230,7 @@ Get subscriptions with filter "filter.notificationTypes"
     Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_notificationTypes"
     
 Get subscriptions with filter "filter.faultyResourceTypes"
-    [Documentation]    Test ID: 6.3.4.4.15
+    [Documentation]    Test ID: 6.3.4.4.18
     ...    Test title: GET Subscription with attribute-based filter "filter.faultyResourceTypes"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.faultyResourceTypes"
     ...    Pre-conditions: 
@@ -244,7 +244,7 @@ Get subscriptions with filter "filter.faultyResourceTypes"
     Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_faultyResourceTypes"
     
 Get subscriptions with filter "filter.perceivedSeverities"
-    [Documentation]    Test ID: 6.3.4.4.16
+    [Documentation]    Test ID: 6.3.4.4.19
     ...    Test title: GET Subscription with attribute-based filter "filter.perceivedSeverities"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.perceivedSeverities"
     ...    Pre-conditions: 
@@ -258,7 +258,7 @@ Get subscriptions with filter "filter.perceivedSeverities"
     Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_perceivedSeverities"
     
 Get subscriptions with filter "filter.eventTypes"
-    [Documentation]    Test ID: 6.3.4.4.17
+    [Documentation]    Test ID: 6.3.4.4.20
     ...    Test title: GET Subscription with attribute-based filter "filter.eventTypes"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.eventTypes"
     ...    Pre-conditions: 
@@ -272,7 +272,7 @@ Get subscriptions with filter "filter.eventTypes"
     Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_eventTypes"
     
 Get subscriptions with filter "filter.probableCauses"
-    [Documentation]    Test ID: 6.3.4.4.18
+    [Documentation]    Test ID: 6.3.4.4.21
     ...    Test title: GET Subscription with attribute-based filter "filter.probableCauses"
     ...    Test objective: The objective is to retrieve the list of active subscriptions with filter "filter.probableCauses"
     ...    Pre-conditions: 
@@ -294,7 +294,7 @@ Post Create subscription
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}				
+	Set Global Variable    ${response}    ${outputResponse}				
 Post Create subscription - DUPLICATION
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 0    NVFO is not permitting duplication. Skipping the test
@@ -304,7 +304,7 @@ Post Create subscription - DUPLICATION
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}		
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}			
+	Set Global Variable    ${response}    ${outputResponse}			
 Post Create subscription - NO-DUPLICATION	
     Log    Trying to create a subscription with an already created content
     Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 1    VNFM permits duplication. Skipping the test
@@ -314,7 +314,7 @@ Post Create subscription - NO-DUPLICATION
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 Get subscriptions
     Log    Get the list of active subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -323,21 +323,21 @@ Get subscriptions
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 Get subscriptions - filter
     Log    Get the list of active subscriptions using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 Get subscriptions - invalid filter  
     Log    Get the list of active subscriptions using an invalid filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 Get subscriptions with all_fields attribute selector
     Log    Get the list of active subscriptions, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -372,25 +372,25 @@ PUT subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions       
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 PATCH subscriptions
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions     
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 DELETE subscriptions
     log    Trying to perform a DELETE. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions 	   
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	  
+	Set Global Variable    ${response}    ${outputResponse}	  
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings   ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Body Json Schema Is
@@ -401,7 +401,7 @@ Check HTTP Response Body Json Schema Is
     Log    Json Schema Validation OK  
     
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}
     
 Get subscriptions with filter "id"
@@ -410,7 +410,7 @@ Get subscriptions with filter "id"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?id=${subscription_id}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscription Matches the requested attribute-based filter "id"
     Should Be Equal As Strings    ${response['body']['id']}    ${subscription_id}
@@ -421,7 +421,7 @@ Get subscriptions with filter "filter_notificationTypes"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.notificationTypes=${notification_type}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_notificationTypes"
     :FOR   ${item}   IN  @{response['body']}
@@ -434,7 +434,7 @@ Get subscriptions with filter "filter_faultyResourceTypes"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.faultyResourceTypes=${faultyResourceType}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_faultyResourceTypes"
     :FOR   ${item}   IN  @{response['body']}
@@ -447,7 +447,7 @@ Get subscriptions with filter "filter_perceivedSeverities"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.perceivedSeverities=${perceivedSeverity}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_perceivedSeverities"
     :FOR   ${item}   IN  @{response['body']}
@@ -460,7 +460,7 @@ Get subscriptions with filter "filter_eventTypes"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.eventTypes=${eventType}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_eventTypes"
     :FOR   ${item}   IN  @{response['body']}
@@ -473,9 +473,16 @@ Get subscriptions with filter "filter_probableCauses"
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.probableCauses=${probableCause}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_probableCauses"
     :FOR   ${item}   IN  @{response['body']}
     Should Be Equal As Strings    ${item['filter']['probableCauses']}   ${probableCause}
     END
+    
+Check resource existence
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
+    Integer    response status    200
+
