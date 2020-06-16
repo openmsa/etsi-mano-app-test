@@ -4,7 +4,7 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}       ssl_verify=false 
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Heal a VNF Instance
-    [Documentation]    Test ID: 7.3.1.25
+    [Documentation]    Test ID: 7.3.1.25.1
     ...    Test title: Heal a VNF Instance
     ...    Test objective: The objective is to heal a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 

@@ -4,7 +4,7 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}        ssl_verify=false
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Modify info of a VNF Instance
-    [Documentation]    Test ID: 7.3.1.27
+    [Documentation]    Test ID: 7.3.1.27.1
     ...    Test title: Update information about a VNF instance
     ...    Test objective: The objective is to update information about a VNF instance.
     ...    Pre-conditions: VNF instance is created 

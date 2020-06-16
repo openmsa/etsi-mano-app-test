@@ -208,13 +208,13 @@ Send Delete request for individual VNF Performance Subscription with invalid res
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${erroneousSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual VNF Performance Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual VNF Performance Threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -223,7 +223,7 @@ Send Put request for individual VNF Performance Threshold
     Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual VNF Performance Threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -232,7 +232,7 @@ Send Patch request for individual VNF Performance Threshold
     Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check Postcondition VNF Performance Subscription is Unmodified (Implicit)
     Log    Check postconidtion subscription not modified
@@ -248,7 +248,7 @@ Check Postcondition VNF Performance Subscription is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404 
 
 Check Postcondition VNF Performance Subscription is Deleted
@@ -283,7 +283,7 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Performance Management according to filter
-    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${callbackUri_Sub}
+    Should Be Equal As Strings    ${response['body']['callbackUri']}    ${callbackUri_Sub}
 
 Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription
@@ -345,5 +345,5 @@ Check Notification Endpoint
     Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
     Clear Requests  ${callback_endpoint}
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}

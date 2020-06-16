@@ -19,7 +19,7 @@
 7.3.1.17,Subscriptions, Subscriptions.robot
 7.3.1.18,Individual Subscription, IndividualSubscription.robot
 7.3.1.19,Cancel VNF LCM Operation, CancelOperationWorkflow.robot
-7.3.1.20,Change external connectivity of VNF Workflow, CancelOperationWorkflow.robot
+7.3.1.20,Change external connectivity of VNF Workflow, ChangeExternalVNFConnectivityWorkflow.robot
 7.3.1.21,Change VNF Flavour Workflow, ChangeVNFFlavourWorkflow.robot
 7.3.1.22,Create VNF Instance Resource,CreateVNFWorkflow.robot
 7.3.1.23,Delete VNF Instance Resource, DeleteVNFWorkflow.robot

@@ -168,7 +168,7 @@ Send Delete Request for VNF Indicator Subscriptions
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Body Json Schema Is
@@ -184,7 +184,7 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Performance Management according to filter
-    Should Be Equal As Strings    ${response[0]['body']['callbackUri']}    ${filter_ok['callbackUri']}
+    Should Be Equal As Strings    ${response['body']['callbackUri']}    ${filter_ok['callbackUri']}
 
 Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
@@ -408,7 +408,7 @@ Check Postcondition Indicators for VNF instance Exist
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
-    Should Be Equal    ${response.status_code}    200
+    Should Be Equal    ${response['status']}    200
     
 
 Get Individual Indicator for a VNF instance
@@ -569,5 +569,5 @@ Check Notification Endpoint
     Clear Requests  ${callback_endpoint}
 
 Check LINK in Header
-    ${linkURL}=    Get Value From Json    ${response.headers}    $..Link
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
     Should Not Be Empty    ${linkURL}

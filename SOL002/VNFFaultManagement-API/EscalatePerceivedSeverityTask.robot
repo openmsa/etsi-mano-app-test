@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library    JSONSchemaLibrary
 Suite Setup    Check resource existence
 
@@ -80,35 +80,35 @@ POST escalate severity
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}/escalate    ${PerceivedSeverity}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 GET escalate severity
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}/escalate 
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 PUT escalate severity	
 	log    Trying to perform a PUT. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}/escalate    
      ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 PATCH escalate severity
     log    Trying to perform a PATCH. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}/escalate  
      ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 DELETE escalate severity        
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}/escalate  
      ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Body Json Schema Is

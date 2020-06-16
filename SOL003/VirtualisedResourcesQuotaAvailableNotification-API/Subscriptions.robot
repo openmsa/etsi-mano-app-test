@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Resource    VRQANOperationKeywords.robot 
-Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT} 
+Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}     ssl_verify=false
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/

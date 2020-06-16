@@ -2,7 +2,7 @@
 Resource    environment/variables.txt 
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}       ssl_verify=false 
 Documentation    This resource represents an individual subscription for VNF alarms. 
 ...    The client can use this resource to read and to terminate a subscription to notifications related to VNF fault management.
 Suite Setup    Check resource existence
@@ -83,35 +83,35 @@ Post Create individual subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}				
+	Set Global Variable    ${response}    ${outputResponse}				
 Get individual subscription
     log    Trying to get information about an individual subscription
     Set Headers    {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 Get individual subscription - filter
     Log    Get the list of active individual subscription using a filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 Get individual subscription - invalid filter  
     Log    Get the list of active individual subscription using an invalid filter
     Set Headers    {"Accept": "${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 PUT individual subscription
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}        
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 PATCH individual subscription
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -119,18 +119,18 @@ PATCH individual subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}		
 DELETE individual subscription
     log    Try to delete an individual subscription
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    	   
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	      
+	Set Global Variable    ${response}    ${outputResponse}	      
 	
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response.status_code}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Body Json Schema Is

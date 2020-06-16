@@ -1,8 +1,8 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Resource    VnfLcmOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
-Library    DependencyLibrary
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
+Library    DependencyLibrary    
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This task resource represents the "Rollback operation" operation. The client can use this resource to initiate rolling back a VNF lifecycle operation

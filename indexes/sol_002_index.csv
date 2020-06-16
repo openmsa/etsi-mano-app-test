@@ -5,7 +5,7 @@
 6.3.2,	VNF Indicator Interface	, VNFIndicator-API
 6.3.2.1,	VNF Indicators Resource Endpoint	, VNFIndicators.robot
 6.3.2.2,	VNF Indicators related to a VNF Instance Resource Endpoint	, VnfIndicatorsInVnfInstanceId.robot 
-6.3.2.3,	Individual VNF Indicator Resource Endpoint	, IndividualSubscription.robot
+6.3.2.3,	Individual VNF Indicator Resource Endpoit,IndividualVNFindicator.robot
 6.3.2.4,	Subscriptions Resource Endpoint	, Subscriptions.robot
 6.3.2.5,	Individual Subscription Resource Endpoint	, IndividualSubscription.robot
 6.3.2.6,	Notification Endpoint	, ../VNFIndicatorNotification-API/VnfIndicatorNotification.robot

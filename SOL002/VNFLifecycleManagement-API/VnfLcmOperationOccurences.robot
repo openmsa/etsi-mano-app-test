@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Resource    VnfLcmOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}       ssl_verify=false 
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Documentation    This resource represents VNF lifecycle management operation occurrences. The client can use this resource to query

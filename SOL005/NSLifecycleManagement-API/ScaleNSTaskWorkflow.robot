@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Resource   NSLCMOperationKeywords.robot   
-Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT} 
+Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}     ssl_verify=false
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -10,7 +10,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Scale Flow of NS lifecycle management operations
-    [Documentation]    Test ID: 5.3.2.18.5
+    [Documentation]    Test ID: 5.3.2.22.1
     ...    Test title: Instantiate Flow of NS lifecycle management operations
     ...    Test objective: The objective is to test the workflow for Instantiate a NS instance
     ...    Pre-conditions: the resource is in NOT_INSTANTIATED state

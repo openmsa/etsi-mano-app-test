@@ -10,8 +10,8 @@
   ],
   "properties": {
     "id": {
-      "description": "Identifier of this notification. If a notification is sent multiple times due to multiple subscriptions, the \"id\" attribute of all these notifications shall have the same value.\n",
-      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
     },
     "notificationType": {
       "description": "Discriminator for the different notification types. Shall be set to \"AlarmListRebuiltNotification\" for this notification type.\n",
@@ -21,12 +21,12 @@
       ]
     },
     "subscriptionId": {
-      "description": "Identifier of the subscription that this notification relates to.\n",
-      "$ref": "SOL005_def.yaml#/definitions/Identifier"
+      "description": "An identifier with the intention of being globally unique.\n",
+      "type": "string"
     },
     "timeStamp": {
-      "description": "Date-time of the generation of the notification.\n",
-      "$ref": "SOL005_def.yaml#/definitions/DateTime"
+      "description": "Date-time stamp. Representation: String formatted according toas defined by the date-time production in IETF RFC 3339.\n",
+      "format": "date-time"
     },
     "_links": {
       "description": "Links to resources related to this notification.\n",
@@ -37,12 +37,32 @@
       ],
       "properties": {
         "subscription": {
-          "description": "Link to the related subscription.\n",
-          "$ref": "SOL005_def.yaml#/definitions/Link"
+          "description": "This type represents a link to a resource in a notification, using an absolute or relative URI.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
         },
         "alarms": {
-          "description": "Link to the alarm list, i.e. the \"Alarms\" resource.\n",
-          "$ref": "SOL005_def.yaml#/definitions/Link"
+          "description": "This type represents a link to a resource in a notification, using an absolute or relative URI.\n",
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
+              "type": "string",
+              "format": "url"
+            }
+          }
         }
       }
     }

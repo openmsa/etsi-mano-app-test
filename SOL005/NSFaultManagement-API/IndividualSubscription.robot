@@ -3,7 +3,7 @@ Resource    environment/variables.txt
 Resource   NSFMOperationKeywords.robot   
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
-Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}   
+Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}       ssl_verify=false
 
 *** Test Cases ***
 Post Individual Subscription - Method not implemented

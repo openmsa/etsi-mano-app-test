@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/configuration.txt
 Resource    environment/variables.txt 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
 Resource    VnfLcmMntOperationKeywords.robot
 Library     OperatingSystem
 Library    JSONLibrary
@@ -51,7 +51,7 @@ POST Change deployment flavour of a vnfInstance Not Found
    
     
 GET Change deployment flavour VNFInstance - Method not implemented
-    [Documentation]    Test ID: 7.3.1.16.4
+    [Documentation]    Test ID: 7.3.1.6.4
     ...    Test title: GET Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
@@ -63,7 +63,7 @@ GET Change deployment flavour VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PUT Change deployment flavour VNFInstance - Method not implemented
-    [Documentation]    Test ID: 7.3.1.16.5
+    [Documentation]    Test ID: 7.3.1.6.5
     ...    Test title: PUT Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
@@ -75,7 +75,7 @@ PUT Change deployment flavour VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Change deployment flavour VNFInstance - Method not implemented
-    [Documentation]    Test ID: 7.3.1.16.6
+    [Documentation]    Test ID: 7.3.1.6.6
     ...    Test title: PATCH Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
@@ -87,7 +87,7 @@ PATCH Change deployment flavour VNFInstance - Method not implemented
     Check HTTP Response Status Code Is    405
     
 DELETE Change deployment flavour VNFInstance - Method not implemented
-    [Documentation]    Test ID: 7.3.1.16.7
+    [Documentation]    Test ID: 7.3.1.6.7
     ...    Test title: DELETE Change deployment flavour VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none

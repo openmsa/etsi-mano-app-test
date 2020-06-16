@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/configuration.txt
 Resource    environment/variables.txt 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}        ssl_verify=false
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Resource    VnfLcmMntOperationKeywords.robot
@@ -76,4 +76,4 @@ Get multiple VNF instances
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	

@@ -157,7 +157,7 @@ Check Postcondition VNF Individual Performance Report is Unmodified (Implicit)
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${status} 
+    Should Be Equal As Strings   ${response['status']}    ${status} 
     Log    Status code validated
 
 Check HTTP Response Header Contains

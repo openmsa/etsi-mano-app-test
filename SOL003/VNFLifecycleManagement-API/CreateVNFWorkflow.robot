@@ -4,7 +4,7 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}        ssl_verify=false
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -16,7 +16,7 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Create VNF Instance Resource
-    [Documentation]    Test ID: 7.3.1.22
+    [Documentation]    Test ID: 7.3.1.22.1
     ...    Test title: Create VNF Instance workflow
     ...    Test objective: The objective is to test the workflow for the creation of a new VNF instance resource.
     ...    Pre-conditions: NFVO is subscribed to VNF Identifier Creation notifications 
@@ -39,7 +39,7 @@ Check Postcondition VNF Instance Created status is
     [Arguments]    ${status}
     Check VNF Instance    ${vnfInstanceId}
     Check HTTP Response Status Code Is    200
-    Check VNF Status    ${response.body.instantiationState}  ${status}  
+    Check VNF Status    ${response['body']['instantiationState']}  ${status}  
      
 Check Operation Notification For VNF Instance Creation
     Check VNF Instance Operation Notification    VnfIdentifierCreationNotification   ${vnfInstanceId}
