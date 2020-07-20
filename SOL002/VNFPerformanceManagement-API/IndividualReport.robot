@@ -11,7 +11,7 @@ Get Individual Performance Report
     ...    Test title: Get Individual Performance Report
     ...    Test objective: The objective is to test the retrieval of an individual VNF performance report associated to a monitoring job and perform a JSON schema validation of the collected report data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
-    ...    Reference: clause 6.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -24,7 +24,7 @@ Get Individual Performance Report with invalid resource endpoint
     ...    Test title: Get Individual Performance Report with invalid resource endpoint
     ...    Test objective:  The objective is to test that the retrieval of an individual VNF performance report associated to a monitoring job fails when using an invalid resource endpoint 
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
-    ...    Reference: clause 6.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.4.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -36,7 +36,7 @@ POST Individual Performance Report - Method not implemented
     ...    Test title: POST Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF performance report within a monitoring job
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 6.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.4.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF performance report is not created on the VNFM
@@ -49,7 +49,7 @@ PUT Individual Performance Report - Method not implemented
     ...    Test title: PUT Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF performance report within a monitoring job
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
-    ...    Reference: clause 6.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.4.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF performance report is not modified by the operation
@@ -62,7 +62,7 @@ PATCH Individual Performance Report - Method not implemented
     ...    Test title: PATCH Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF performance report within a monitoring job
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
-    ...    Reference: clause 6.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.4.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF performance report is not modified by the operation
@@ -75,7 +75,7 @@ DELETE Individual Performance Report - Method not implemented
     ...    Test title: DELETE Individual Performance Report - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete an existing VNF performance report within a monitoring job
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance reports are set for a monitoring job in the VNFM.
-    ...    Reference: clause 6.4.4.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.4.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF performance report is not deleted by the operation

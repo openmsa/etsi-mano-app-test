@@ -2,7 +2,7 @@
 # Suite setup     Expect spec    SOL002-VNFLifecycleManagement-API.yaml
 Resource    environment/variables.txt 
 Resource    VnfLcmOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}      ssl_verify=false  
 Library    OperatingSystem
 Library    DependencyLibrary
 Library    JSONLibrary
@@ -18,7 +18,7 @@ POST Individual VNFInstance - Method not implemented
     ...    Test title: POST Individual VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.3.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -30,21 +30,20 @@ GET Information about an individual VNF Instance
     ...    Test title: GET Information about an individual VNF Instance
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.3.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
     GET individual vnfInstance
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    vnfInstance
-    SET etag
     
 PUT Individual VNFInstance - Method not implemented 
      [Documentation]    Test ID: 6.3.5.2.3
     ...    Test title: PUT Individual VNFInstance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.3.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: VNF instance not modified
@@ -56,7 +55,7 @@ PATCH Individual VNFInstance
     ...    Test title: PATCH Individual VNFInstance
     ...    Test objective: This method modifies an individual VNF instance resource
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: VNF instance modified
@@ -69,7 +68,7 @@ PATCH Individual VNFInstance Precondition failed
     ...    Test title: PATCH Individual VNFInstance Precondition failed
     ...    Test objective: The objective is to create a new VNF instance resource
     ...    Pre-conditions:  A precondition given in an HTTP request header is not fulfilled. Typically, this is due to an ETag mismatch, indicating that the resource was modified by another entity
-    ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: VNF instance not modified
@@ -80,9 +79,9 @@ PATCH Individual VNFInstance Precondition failed
 PATCH Individual VNFInstance Conflict
     [Documentation]    Test ID: 6.3.5.2.6
     ...    Test title: PATCH Individual VNFInstance Conflict
-    ...    Test objective: The objective is to create a new VNF instance resource
+    ...    Test objective: The objective is to verify that modification operation cannot be executed currently, due to a conflict with the state of the VNF instance resource because another LCM Operation is ongoing. 
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.3.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: VNF instance not modified
@@ -95,7 +94,7 @@ DELETE Individual VNFInstance
     ...    Test title: DELETE Individual VNFInstance
     ...    Test objective: The objective is to delete a VNF instance
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: VNF instance deleted
@@ -104,10 +103,10 @@ DELETE Individual VNFInstance
 
 DELETE Individual VNFInstance Conflict
      [Documentation]    Test ID: 6.3.5.2.8
-    ...    Test title: DELETE Individual VNFInstance
-    ...    Test objective: The objective is to verify that The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
+    ...    Test title: DELETE Individual VNFInstance Conflict
+    ...    Test objective: The objective is to verify that The operation cannot be executed currently, due to a conflict with the state of the VNF instance resource.
     ...    Pre-conditions: VNF instance resource is in INSTANTIATED state
-    ...    Reference: clause 5.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.3.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -136,7 +135,4 @@ Launch another LCM operation
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
-    Integer    response status    202
-SET etag
-    ${etag}    Output    response headers ETag
-    Set Suite Variable    ${original_etag}    ${etag}   
+    Integer    response status    202 

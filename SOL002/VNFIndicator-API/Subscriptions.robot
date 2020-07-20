@@ -5,7 +5,8 @@ Resource          environment/subscriptions.txt
 Library           OperatingSystem
 Library           JSONLibrary
 Library           Process
-Library           MockServerLibrary    
+Library           MockServerLibrary
+Library           String 
 Library           REST    ${EM-VNF_SCHEMA}://${EM-VNF_HOST}:${EM-VNF_PORT}    ssl_verify=false
 Suite Setup       Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
@@ -16,7 +17,7 @@ GET VNF Indicators Subscriptions
     ...    Test title: GET VNF Indicators Subscriptions
     ...    Test objective: The objective is to test the retrieval of all VNF indicators subscriptions and perform a JSON schema validation of the returned subscriptions data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none
@@ -29,7 +30,7 @@ GET VNF Indicators Subscriptions with attribute-based filter
     ...    Test title: GET VNF Indicators Subscriptions with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of all VNF indicators subscriptions using attribute-based filter and perform a JSON schema and content validation of the returned subscriptions data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none
@@ -43,7 +44,7 @@ GET VNF Indicators Subscriptions with invalid attribute-based filter
     ...    Test title: GET VNF Indicators Subscriptions with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of all VNF indicators subscriptions fails when using invalid attribute-based filter. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators
     ...    Post-Conditions: none
@@ -52,11 +53,11 @@ GET VNF Indicators Subscriptions with invalid attribute-based filter
     Check HTTP Response Body Json Schema Is   ProblemDetails    
 
 GET VNF Indicators Subscriptions with invalid resource endpoint
-    [Documentation]    Test ID 6.3.2.4.4
+    [Documentation]    Test ID: 6.3.2.4.4
     ...    Test title: GET VNF Indicators Subscriptions with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of all VNF indicators subscriptions fails when using invalid resource endpoint.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: none
@@ -64,11 +65,11 @@ GET VNF Indicators Subscriptions with invalid resource endpoint
     Check HTTP Response Status Code Is    404
 
 Create new VNF indicator subscription
-    [Documentation]    Test ID 6.3.2.4.5
+    [Documentation]    Test ID: 6.3.2.4.5
     ...    Test title: Create new VNF indicator subscription
     ...    Test objective: The objective is to test the creation of a new VNF indicator subscription perform a JSON schema and content validation of the returned subscriptions data structure
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 8.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: The VNF indicator subscription is successfully set and it matches the issued subscription
@@ -79,11 +80,11 @@ Create new VNF indicator subscription
     Check Postcondition VNF Indicator Subscription Is Set
 
 PUT VNF Indicator Subscriptions - Method not implemented
-    [Documentation]    Test ID 6.3.2.4.6
+    [Documentation]    Test ID: 6.3.2.4.6
     ...    Test title: PUT VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.5.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: none
@@ -91,11 +92,11 @@ PUT VNF Indicator Subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH VNF Indicator Subscriptions - Method not implemented
-    [Documentation]    Test ID 6.3.2.4.7
+    [Documentation]    Test ID: 6.3.2.4.7
     ...    Test title: PATCH VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.5.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: none
@@ -103,17 +104,43 @@ PATCH VNF Indicator Subscriptions - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE VNF Indicator Subscriptions - Method not implemented
-    [Documentation]    Test ID 6.3.2.4.8
+    [Documentation]    Test ID: 6.3.2.4.8
     ...    Test title: DELETE VNF Indicator Subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete VNF indicator subscriptions
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.5.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.5.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of indicators.
     ...    Post-Conditions: none
     Send Delete Request for VNF Indicator Subscriptions
     Check HTTP Response Status Code Is    405
     
+GET VNF Indicators Subscriptions to get Paged Response
+    [Documentation]    Test ID: 6.3.2.4.9
+    ...    Test title: GET VNF Indicators Subscriptions to get Paged Response
+    ...    Test objective: The objective is to test the retrieval of all VNF indicators subscriptions to get Paged Response.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of indicators
+    ...    Post-Conditions: none
+    Get VNF Indicators Subscriptions
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+ 
+GET VNF Indicators Subscriptions - Bad Request Response too Big
+    [Documentation]    Test ID: 6.3.2.4.10
+    ...    Test title: GET VNF Indicators Subscriptions - Bad Request Response too Big
+    ...    Test objective: The objective is to test that the retrieval of all VNF indicators subscriptions fails because response is too big. The test also checks the JSON schema of the unsuccessful operation HTTP response.
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference: Clause 8.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of indicators
+    ...    Post-Conditions: none
+    Get VNF Indicators Subscriptions
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails    
+
  *** Keywords ***
 Get VNF Indicators Subscriptions
     Log    Trying to get the list of subscriptions
@@ -220,9 +247,9 @@ Check Postcondition VNF Indicator Subscription Is Set
     
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Indicators according to filter
-    #todo
-
-
+    @{words} =  Split String    ${POS_FILTER}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
+    
 Create Sessions
     Pass Execution If    ${VNFM_CHECKS_NOTIF_ENDPOINT} == 0   MockServer not necessary to run    
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
@@ -235,3 +262,7 @@ Check Notification Endpoint
     Create Mock Expectation  ${notification_request}  ${notification_response}
     Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
     Clear Requests  ${callback_endpoint}
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
+    Should Not Be Empty    ${linkURL}

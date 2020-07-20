@@ -60,3 +60,4 @@ ${Etag_modified}=    a modified etag
 
 ${NEG_FILTER}    attribute_not_exist=some_value
 ${NEG_SELECTOR}    fields=wrong_field
+${json}    {}

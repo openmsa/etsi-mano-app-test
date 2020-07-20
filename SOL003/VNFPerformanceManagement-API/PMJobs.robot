@@ -3,6 +3,7 @@ Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
 Library           OperatingSystem
+Library           String
 Resource          environment/pmJobs.txt
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library           MockServerLibrary
@@ -13,7 +14,7 @@ GET all VNF Performance Monitoring Jobs
     ...    Test title: GET all VNF Performance Monitoring Jobs
     ...    Test objective: The objective is to test the retrieval of all the available VNF performance monitoring jobs and perform a JSON schema and content validation of the collected jobs data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -27,7 +28,7 @@ GET VNF Performance Monitoring Jobs with attribute-based filter
     ...    Test title: GET all VNF Performance Monitoring Jobs with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of VNF performance monitoring jobs using attribute-based filter, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued attribute-based filter
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -41,7 +42,7 @@ GET all VNF Performance Monitoring Jobs with all_fields attribute selector
     ...    Test title: GET all VNF Performance Monitoring Jobs with all_fields attribute selector
     ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring jobs all_fields attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued all_fileds selector
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 4.3.3.2.1, 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -55,7 +56,7 @@ GET all VNF Performance Monitoring Jobs with exclude_default attribute selector
     ...    Test title: GET all VNF Performance Monitoring Jobs with exclude_default attribute selector
     ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring jobs exclude_default attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued exclude_default selector
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 4.3.3.2.1, 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -69,7 +70,7 @@ GET all VNF Performance Monitoring Jobs with fields attribute selector
     ...    Test title: GET all VNF Performance Monitoring Jobs with fields attribute selector
     ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring jobs fields attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued fields selector
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 4.3.3.2.1, 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM supports the use of exclude_fields attribute selector
     ...    Post-Conditions: none
@@ -83,7 +84,7 @@ GET all VNF Performance Monitoring Jobs with exclude_fields attribute selector
     ...    Test title: GET all VNF Performance Monitoring Jobs with exclude_fields attribute selector
     ...    Test objective: The objective is to test the retrieval of all VNF performance monitoring jobs exclude_fields attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued exclude_fields selector
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 4.3.3.2.1, 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: The VNFM supports the use of exclude_fields attribute selector
     ...    Post-Conditions: none
@@ -97,7 +98,7 @@ GET VNF Performance Monitoring Jobs with invalid attribute-based filter
     ...    Test title: GET VNF Performance Monitoring Jobs with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF performance monitoring jobs fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -110,7 +111,7 @@ GET VNF Performance Monitoring Jobs with invalid resource endpoint
     ...    Test title: GET VNF Performance Monitoring Jobs with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of VNF performance monitoring jobs fails when using invalid resource endpoint
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -122,7 +123,7 @@ Create new VNF Performance Monitoring Job
     ...    Test title:  Create a new VNF Performance Monitoring Job
     ...    Test objective: The objective is to test the creation of a new VNF performance monitoring job and perform the JSON schema validation of the returned job data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 6.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF Performance Job is successfully created on the VNFM
@@ -136,7 +137,7 @@ PUT all VNF Performance Monitoring Jobs - Method not implemented
     ...    Test title: PUT all VNF Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF Performance Monitoring Jobs
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 6.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -148,7 +149,7 @@ PATCH all VNF Performance Monitoring Jobs - (Method not implemented)
     ...    Test title: PATCH all VNF Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update VNF Performance Monitoring Jobs
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 6.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -160,13 +161,39 @@ DELETE all VNF Performance Monitoring Jobs - Method not implemented
     ...    Test title: DELETE all VNF Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to update VNF Performance Monitoring Jobs
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
-    ...    Reference: clause 6.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
     Send PATCH Request for all VNF Performance Monitoring Jobs
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF Performance Monitoring Jobs Exist
+    
+GET all VNF Performance Monitoring Jobs as Paged Response
+    [Documentation]    Test ID: 7.3.4.1.13
+    ...    Test title: GET all VNF Performance Monitoring Jobs as Paged Response
+    ...    Test objective: The objective is to test the retrieval of all the available VNF performance monitoring jobs as Paged Response.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all VNF Performance Monitoring Jobs
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+GET VNF Performance Monitoring Jobs - Bad Request Response too Big
+    [Documentation]    Test ID: 7.3.4.1.14
+    ...    Test title: GET VNF Performance Monitoring Jobs - Bad Request Response too Big
+    ...    Test objective: The objective is to test that the retrieval of VNF performance monitoring jobs fails because response is too big, and perform the JSON schema validation of the failed operation HTTP response.
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNF.
+    ...    Reference: Clause 6.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all VNF Performance Monitoring Jobs
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails
     
 *** Keywords ***
 GET all VNF Performance Monitoring Jobs
@@ -324,7 +351,8 @@ Check HTTP Response Body PmJobs Matches the requested all_fields selector
     
 Check HTTP Response Body PmJobs Matches the requested Attribute-Based Filter 
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{words} =  Split String    ${POS_FILTER}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceIds']}    @{words}[1]
 
 Check HTTP Response Body Does Not Contain reports
     Log    Checking that field element is missing
@@ -335,7 +363,7 @@ Check HTTP Response Body Does Not Contain reports
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${status} 
+    Should Be Equal As Strings    ${response['status']}    ${status} 
     Log    Status code validated
     
 Check HTTP Response Status Code Is 40x  
@@ -353,3 +381,7 @@ Check HTTP Response Body Json Schema Is
     ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
+    Should Not Be Empty    ${linkURL}

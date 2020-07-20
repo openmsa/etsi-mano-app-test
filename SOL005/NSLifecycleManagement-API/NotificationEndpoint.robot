@@ -13,7 +13,7 @@ NS LCM Operation Occurrence Start Notification
     ...    Test title: NS LCM Operation Occurrence Start Notification
     ...    Test objective: The objective is to test the dispatch of NS LCM Operation Occurrence Start Notification when a new NS LCM operation is started in the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A subscription for NS LCM Operation Occurrence notifications is available in the NFVO.
-    ...    Reference: clause 6.4.18.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.18.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -27,7 +27,7 @@ NS LCM Operation Occurrence Result Notification
     ...    Test title: NS LCM Operation Occurrence Result Notification
     ...    Test objective: The objective is to test the dispatch of NS LCM Operation Occurrence Result Notification when a NS LCM operation is completed in the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: An NS LCM operation is in progress, and a subscription for NS LCM Operation Occurrence notifications is available in the NFVO.
-    ...    Reference: clause 6.4.18.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.18.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -41,7 +41,7 @@ NS Identifier Creation Notification
     ...    Test title: NS Identifier Creation Notification
     ...    Test objective: The objective is to test the dispatch of NS Identifier Creation Notification when a new NS instance resource is created in the NFVO, and perform a JSON schema and content validation of the delivered notification. The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A subscription for NS identifier creation notifications is available in the NFVO.
-    ...    Reference: clause 6.4.18.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.18.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -54,7 +54,7 @@ NS Identifier Deletion Notification
     ...    Test title: NS Identifier Deletion Notification
     ...    Test objective: The objective is to test the dispatch of NS Identifier Deletion Notification when a NS instance resource is deleted in the NFVO, and perform a JSON schema and content validation of the delivered notification.The action that triggers the notification under test is an explicit test step, but it is not performed by the test system.
     ...    Pre-conditions: A NS instance resource is created, and a subscription for NS identifier creation notifications is available in the NFVO.
-    ...    Reference: clause 6.4.18.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.18.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 

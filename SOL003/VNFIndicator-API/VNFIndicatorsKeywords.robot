@@ -13,6 +13,7 @@ Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process    
+Library    String
 
 *** Keywords ***
 Get All VNF Indicators Subscriptions
@@ -167,7 +168,7 @@ Send Delete Request for VNF Indicator Subscriptions
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Body Json Schema Is
@@ -183,7 +184,7 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Performance Management according to filter
-    #TODO
+    Should Be Equal As Strings    ${response['body']['callbackUri']}    ${filter_ok['callbackUri']}
 
 Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
@@ -329,8 +330,11 @@ Check Postcondition VNF Indicators Exist
     
 Check HTTP Response Body vnfIndicators Matches the requested attribute-based filter
     Log    Check Response includes VNF Indicators according to filter
-    #todo
-
+    @{attr} =  Split String    ${POS_FIELDS}       ,${VAR_SEPERATOR} 
+    @{var_name} =    Split String    @{attr}[0]       ,${SEPERATOR}
+    @{var_id} =    Split String    @{attr}[1]       ,${SEPERATOR}
+    Should Be True     "${response['body'][0]['name']}"=="@{var_name}[1]" and "${response['body'][0]['vnfInstanceId']}"=="@{var_id}[1]"
+    
 Get all indicators for a VNF instance
     Log    This resource represents VNF indicators related to a VNF instance.
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -397,11 +401,15 @@ Send DELETE Request for indicators in VNF instance
 
 Check HTTP Response Body Includes Requested VNF Instances ID
     Log    Check Response includes Indicators according to resource identifier
-    #todo
+    Should Be Equal As Strings   ${response['body'][0]['vnfInstanceId']}    ${vnfInstanceId}
 
 Check Postcondition Indicators for VNF instance Exist
-    Log    Check Response includes VNF Indicators according to filter
-    #todo
+    Log    Check Postcondition Indicators for VNF instance Exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/indicators/${vnfInstanceId}
+    Should Be Equal    ${response['status']}    200
+    
 
 Get Individual Indicator for a VNF instance
     Log    This resource represents a VNF indicator related to a VNF instance.
@@ -559,3 +567,7 @@ Check Notification Endpoint
     Create Mock Expectation  ${notification_request}  ${notification_response}
     Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
     Clear Requests  ${callback_endpoint}
+
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
+    Should Not Be Empty    ${linkURL}

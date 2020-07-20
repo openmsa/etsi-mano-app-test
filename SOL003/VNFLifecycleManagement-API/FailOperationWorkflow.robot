@@ -4,7 +4,7 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -16,11 +16,11 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Fail a VNF LCM Operation Workflow
-    [Documentation]    Test ID: 7.3.1.24
+    [Documentation]    Test ID: 7.3.1.24.1
     ...    Test title: Fail a VNF LCM Operation Workflow
     ...    Test objective: The objective is to test the workflow for a Fail VNF LCM Operation
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
-    ...    Reference: clause 5.4.16 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.16 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in FAILED state

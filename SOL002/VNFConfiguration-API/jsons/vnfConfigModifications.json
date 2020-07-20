@@ -39,5 +39,6 @@
       "dhcpServer": "string",
       "vnfcSpecificData": {}
     }
-  ]
+  ],
+  "vnfcConfigurationDataDeleteIds": []
 }

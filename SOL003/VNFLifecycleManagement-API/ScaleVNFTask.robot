@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/configuration.txt
 Resource    environment/variables.txt 
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -14,7 +14,7 @@ POST Scale a vnfInstance
     ...    Test title: POST Scale a vnfInstance
     ...    Test objective: The objective is to scale a VNF instance
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -28,7 +28,7 @@ POST Scale a vnfInstance Conflict (Not-Instantiated)
     ...    Test title: POST Scale a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to verify that the scale operation cannot be executed 
     ...    Pre-conditions:  VNF instance resource is in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -42,7 +42,7 @@ POST Scale a vnfInstance Not Found
     ...    Test title: POST Scale a vnfInstance Not Found
     ...    Test objective: The objective is to verify that the operation cannot be executed currently, because the VNF instance resource is not found. 
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.5.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -55,7 +55,7 @@ GET Scale VNFInstance - Method not implemented
     ...    Test title: GET Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -67,7 +67,7 @@ PUT Scale VNFInstance - Method not implemented
     ...    Test title: PUT Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.5.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -79,7 +79,7 @@ PATCH Scale VNFInstance - Method not implemented
     ...    Test title: PATCH Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.5.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -91,12 +91,13 @@ DELETE Scale VNFInstance - Method not implemented
     ...    Test title: DELETE Scale VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  
-    ...    Reference: clause 5.4.5.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.5.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
-    ...    Post-Conditions: 
+    ...    Post-Conditions: Resource are not deleted
     DELETE Scale vnfInstance
     Check HTTP Response Status Code Is    405
+    Check resource existence
 
 *** Keywords ***
 Check resource existence

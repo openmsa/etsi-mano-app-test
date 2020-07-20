@@ -13,16 +13,16 @@ Library    Collections
 Library    String
 Library    JSONSchemaLibrary    schemas/
 Library    JSONLibrary
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 
 
 *** Test Cases ***
 VNF Instantiation
-    [Documentation]    Test ID: 7.3.1.26
+    [Documentation]    Test ID: 7.3.1.26.1
     ...    Test title: VNF Instantiation workflow
     ...    Test objective: The objective is to test the workflow for the instantiation of a VNF instance
     ...    Pre-conditions: VNF instance resources is already created. NFVO is subscribed to VNF LCM Operation Occurrence notifications 
-    ...    Reference: clause 5.4.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability:  NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: VNF instance in INSTANTIATED state
@@ -57,7 +57,7 @@ Check Postcondition VNF Status
     Check VNF Instance    ${vnfInstanceId}
     Should Not Be Empty    ${response}
     Check HTTP Response Status Code Is    200
-    Should Be Equal    ${response.body.id}    ${vnfInstanceId}    
+    Should Be Equal    ${response['body']['id']}    ${vnfInstanceId}    
     Check HTTP Response Header Contains    Content-Type
     Check HTTP Response Body Json Schema Is    vnfInstance.schema.json
-    Check VNF Status    ${response.body.instantiationState}    ${status}
+    Check VNF Status    ${response['body']['instantiationState']}    ${status}

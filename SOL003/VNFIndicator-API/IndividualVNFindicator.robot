@@ -11,7 +11,7 @@ Get Individual Indicator for VNF Instance
     ...    Test title: Get Individual Indicator for VNF Instance
     ...    Test objective: The objective is to test the retrieval of an indicator for a given VNF instance and perform a JSON schema validation of the returned indicator data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of VNF indicator is available in the VNFM.
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 8.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -26,7 +26,7 @@ Get Individual Indicator for VNF Instance with invalid indicator identifier
     ...    Test title: Get Individual Indicator for VNF Instance with invalid indicator identifier
     ...    Test objective: The objective is to test that the retrieval of an indicator for a given VNF instance fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of VNF indicator is available in the VNFM.
-    ...    Reference: clause 8.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 8.4.4.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -38,7 +38,7 @@ POST Individual VNF Indicator for VNF Instance - Method not implemented
     ...    Test title: POST Individual VNF Indicator for VNF Instance - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF indicator in the VNFM
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 8.4.4.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 8.4.4.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -50,7 +50,7 @@ PUT Individual VNF Indicator for VNF Instance - Method not implemented
     ...    Test title: PUT Individual VNF Indicator for VNF Instance - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify an existing indicator for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of VNF indicator is available in the VNFM
-    ...    Reference: clause 8.4.4.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 8.4.4.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -62,7 +62,7 @@ PATCH Individual VNF Indicator for VNF Instance - Method not implemented
     ...    Test title: PATCH Individual VNF Indicator for VNF Instance - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update an existing indicator for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of VNF indicator is available for the given VNF instance.
-    ...    Reference: clause 8.4.4.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 8.4.4.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -74,7 +74,7 @@ DELETE Individual VNF Indicator for VNF Instance - Method not implemented
     ...    Test title: DELETE Individual VNF Indicator for VNF Instance - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete an existing indicator for a VNF instance
     ...    Pre-conditions: A VNF instance is instantiated. At least one measure of VNF indicator is available in the VNFM
-    ...    Reference: clause 8.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 8.4.3.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The individual indicator for the VNF instance is not deleted by the unsuccessful operation

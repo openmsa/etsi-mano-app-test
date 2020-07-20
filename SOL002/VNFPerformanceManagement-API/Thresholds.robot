@@ -2,6 +2,7 @@
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Library           JSONLibrary
+Library           String
 Library           REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Resource          environment/thresholds.txt
 Library           OperatingSystem
@@ -12,7 +13,7 @@ GET All Performance Thresholds
     ...    Test title: GET All Performance Thresholds
     ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds and perform a JSON schema validation of the collected thresholds data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -25,7 +26,7 @@ GET Performance Thresholds with attribute-based filter
     ...    Test title: GET Performance Thresholds with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds when using attribute-based filters, perform a JSON schema validation of the collected thresholds data structure, and verify that the retrieved information matches the issued attribute-based filter
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -39,7 +40,7 @@ GET Performance Thresholds with invalid attribute-based filter
     ...    Test title: GET Performance Thresholds with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -51,7 +52,7 @@ GET Performance Thresholds with invalid resource endpoint
     ...    Test title: GET Performance Thresholds with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when using invalid resource endpoint, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -64,7 +65,7 @@ Create new Performance Threshold
     ...    Test title:  Create new Performance Threshold
     ...    Test objective: The objective is to test the creation of a new VNF performance threshold and perform the JSON schema validation of the returned threshold data structure
     ...    Pre-conditions: A VNF instance is instantiated.
-    ...    Reference: clause 6.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF Performance Threshold is successfully created on the VNFM
@@ -79,7 +80,7 @@ PUT Performance Thresholds - Method not implemented
     ...    Test title: PUT Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNF.
-    ...    Reference: clause 6.4.5.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.5.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -91,7 +92,7 @@ PATCH Performance Thresholds - Method not implemented
     ...    Test title: PATCH Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.5.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -103,7 +104,7 @@ DELETE Performance Thresholds - Method not implemented
     ...    Test title: DELETE Performance Thresholds - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to update VNF Performance Thresholds
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.5.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 6.4.5.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF performance thresholds are not deleted by the failed operation
@@ -111,6 +112,32 @@ DELETE Performance Thresholds - Method not implemented
     Check HTTP Response Status Code Is    405
     Check Postcondition Thresholds Exist
 
+GET Performance Thresholds with Paged Response
+    [Documentation]    Test ID: 6.3.3.4.9
+    ...    Test title: GET Performance Thresholds with Paged Response
+    ...    Test objective: The objective is to test the retrieval of all the available VNF performance thresholds with Paged response
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: Clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all Performance Thresholds
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header 
+    
+GET Performance Thresholds for Bad Request Response too big
+    [Documentation]    Test ID: 6.3.3.4.10
+    ...    Test title: GET Performance Thresholds for Bad Request Response too big
+    ...    Test objective: The objective is to test that the retrieval of VNF performance thresholds fails when response is too big, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
+    ...    Reference: Clause 6.4.5.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all Performance Thresholds
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails
+    
 *** Keywords ***
 GET all Performance Thresholds
     Log    Trying to get all thresholds present in the VNFM    
@@ -195,12 +222,12 @@ Check Postcondition Threshold Exists
         
 Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{words} =  Split String    ${FILTER_OK}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceId']}    @{words}[1]
     
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
-    ${status}=    Convert To Integer    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${status} 
+    Should Be Equal As Strings    ${response['status']}    ${expected_status} 
     Log    Status code validated
 
 Check HTTP Response Header Contains
@@ -214,5 +241,10 @@ Check HTTP Response Body Json Schema Is
     ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
+    Should Not Be Empty    ${linkURL}
+
 
 

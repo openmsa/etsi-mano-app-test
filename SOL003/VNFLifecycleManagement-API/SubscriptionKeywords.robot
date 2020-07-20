@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    VnfLcmMntOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
 Library    OperatingSystem
 Library    BuiltIn
 Library    Process
@@ -28,42 +28,53 @@ Create Sessions
     
 Configure Notification Status Handler
     [Arguments]    ${endpoint}    ${status}=""
-    Run Keyword If   ${status}!=""  set to dictionary    ${json["operationState"]}    dp=${status}    
-    ${BODY}=    evaluate    json.dumps(${json})    json
+    ${json}=     Create Dictionary
+    ${value}=    Run Keyword And Return Status    Should Not Be Equal As Strings    ${status}        ""
+    Run Keyword If   ${value} == True      Set to dictionary    ${json}    operationState    ${status}
     Log  Creating mock request and response to handle ${element}
-    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
-    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    ${notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type='JSON'    body=${json}
+    &{headers}=  Create Dictionary  Content-Type=application/json
+    ${notification_response}=  Create Mock Response	    status_code=${status}    headers=${headers}     
     Create Mock Expectation  ${notification_request}  ${notification_response}
+    [Return]    ${notification_request}
     
 Configure Notification VNF Instance Handler
     [Arguments]    ${endpoint}    ${instanceId}=""
-    Run Keyword If   ${instanceId}!=""  set to dictionary    ${json["vnfInstanceId"]}    dp=${instanceId}    
-    ${BODY}=    evaluate    json.dumps(${json})    json
+    ${json}=     Create Dictionary
+    ${value}=    Run Keyword And Return Status    Should Not Be Equal As Strings    ${instanceId}        ""
+    Run Keyword If   ${value} == True      Set to dictionary    ${json}    vnfInstanceId    ${instanceId}
     Log  Creating mock request and response to handle ${element}
-    &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
-    &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
+    ${notification_request}=  Create Mock Request Matcher	POST  ${endpoint}    body_type='JSON'  body=${json}
+    &{headers}=  Create Dictionary  Content-Type=application/json
+    ${notification_response}=  Create Mock Response     204    headers=${headers}    
+    Log    ${notification_request}
+    Log    ${notification_response}
     Create Mock Expectation  ${notification_request}  ${notification_response}
+    [Return]    ${notification_request}
 
 Configure Notification Forward
-    [Arguments]    ${element}    ${endpoint}    ${endpoint_fwd}    
-    ${BODY}=	evaluate	json.loads('''${json}''')	json
+    [Arguments]    ${element}    ${endpoint}    ${endpoint_fwd}
+    ${json}=    Get File    schemas/${element}.schema.json
     Log  Creating mock HTTP forward to handle ${element}
-    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
-    &{notification_fwd}=  Create Mock Http Forward	${endpoint_fwd}
+    ${notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type='JSON_SCHEMA'    body=${json}
+    ${notification_fwd}=  Create Mock Http Forward	${endpoint_fwd}
     Create Mock Expectation With Http Forward  ${notification_tmp}  ${notification_fwd}
+    [Return]  ${notification_tmp}
 
 Check Operation Notification
     [Arguments]    ${element}    ${status}=""
     ${json}=	Get File	schemas/${element}.schema.json
-    Configure Notification Forward    ${element}    ${callback_endpoint}    ${callback_endpoint_fwd}
-    Configure Notification Status Handler    ${callback_endpoint_fwd}    ${status}
-    Wait Until Keyword Succeeds    2 min   10 sec   Verify Mock Expectation    ${notification_request}
+    ${req1}=    Configure Notification Forward    ${element}    ${callback_endpoint}    ${callback_endpoint_fwd}
+    ${req2}=    Configure Notification Status Handler    ${callback_endpoint_fwd}    ${status}
+    Wait Until Keyword Succeeds    12 sec   3 sec   Verify Mock Expectation    ${req2}
     Clear Requests    ${callback_endpoint}
     Clear Requests    ${callback_endpoint_fwd}
     
 Check VNF Instance Operation Notification
     [Arguments]    ${element}   ${instance_id}
     ${json}=	Get File	schemas/${element}.schema.json
-    Configure Notification Forward    ${element}    ${callback_endpoint}    ${callback_endpoint_fwd}
-    Configure Notification VNF Instance Handler    ${callback_endpoint_fwd}    ${instance_id}
-    
+    ${req1}=  Configure Notification Forward   ${element}    ${callback_endpoint}    ${callback_endpoint_fwd}
+    ${req2}=  Configure Notification VNF Instance Handler    ${callback_endpoint_fwd}    ${instance_id}
+    Wait Until Keyword Succeeds    12 sec  3 sec   Verify Mock Expectation    ${req2}
+    Clear Requests    ${callback_endpoint}
+    Clear Requests    ${callback_endpoint_fwd}

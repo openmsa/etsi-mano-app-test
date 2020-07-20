@@ -1,9 +1,0 @@
-{
-  "description": "The enumeration FaultyResourceType represents those types of faulty resource. Acceptable values are: - COMPUTE - Virtual compute resource. - STORAGE - Virtual storage resource. - NETWORK - Virtual network resource.\n",
-  "type": "string",
-  "enum": [
-    "COMPUTE",
-    "STORAGE",
-    "NETWORK"
-  ]
-}

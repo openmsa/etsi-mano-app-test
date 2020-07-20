@@ -1,11 +1,12 @@
 *** Settings ***
 Resource   environment/variables.txt
-Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library    JSONLibrary
 Library    Process
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
 Library    MockServerLibrary
+Library    Collections
 
 *** Keywords ***
 Initialize System
@@ -14,7 +15,7 @@ Initialize System
     Create Mock Session  ${callback_uri}:${callback_port} 
     
 Check Operation Occurrence Id
-    ${occid}=    Get Value From Json    ${response[0]['headers']['Location']}  ${response}
+    ${occid}=    Get Value From Json    ${response['headers']['Location']}  ${response}
     Set Global Variable    @{nsLcmOpOccId}    ${occid}
     Should Not Be Empty    ${nsLcmOpOccId}
     
@@ -29,6 +30,13 @@ Check subscription existence
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
     Integer    response status    200
+    
+Check Instance Deleted
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
+    Integer    response status    404
     
 Check Fail not supported
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -81,9 +89,9 @@ Check Operation Notification
     
 Configure Notification Forward
     [Arguments]    ${element}    ${endpoint}    ${endpoint_fwd}    
-    ${BODY}=	evaluate	json.loads('''${json}''')	json
+   # ${BODY}=	evaluate	json.loads('''${json}''')	json
     Log  Creating mock HTTP forward to handle ${element}
-    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${BODY}
+    &{notification_tmp}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON_SCHEMA"    body=${element}
     &{notification_fwd}=  Create Mock Http Forward	${endpoint_fwd}
     Create Mock Expectation With Http Forward  ${notification_tmp}  ${notification_fwd}
     
@@ -91,28 +99,28 @@ Configure Notification Status Handler
     [Arguments]    ${endpoint}    ${status}=""
     Run Keyword If   ${status}!=""  set to dictionary    ${json["notificationStatus"]}    dp=${status}    
     ${BODY}=    evaluate    json.dumps(${json})    json
-    Log  Creating mock request and response to handle ${element}
+    Log  Creating mock request and response to handle ${endpoint}
     &{notification_request}=  Create Mock Request Matcher	POST  ${endpoint}  body_type="JSON"    body=${BODY}
     &{notification_response}=  Create Mock Response	headers="Content-Type: application/json"  status_code=204
     Create Mock Expectation  ${notification_request}  ${notification_response}    
         
 Check resource operationState is
     [Arguments]    ${state} 
-    String    ${response[0]['body']['operationState']}   ${state}
+    String    ${response['body']['operationState']}   ${state}
     
 Check resource instantiated
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
-    String    response body instantiationState    INSTANTIATED
+    String    response body nsState    INSTANTIATED
     
 Check resource not_instantiated
     Set Headers    {"Accept":"${ACCEPT}"}  
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
-    String    response body instantiationState    NOT_INSTANTIATED
+    String    response body nsState     NOT_INSTANTIATED
 
 Check operation resource state is FAILED_TEMP    
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -120,6 +128,7 @@ Check operation resource state is FAILED_TEMP
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
     String    response body instantiationState    FAILED_TEMP 
+    
 Check operation resource state is not FAILED_TEMP
     Check operation resource state is FAILED_TEMP    
     Set Headers    {"Accept":"${ACCEPT}"}  
@@ -150,27 +159,54 @@ Check resource existence
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
     Integer    response status    200
     
+Check Postcondition NS Instance is not created
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    Integer    response status    404
+    
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     Log    Validate Status code    
-    Should Be Equal as Strings  ${response[0]['status']}    ${expected_status}
+    Should Be Equal as Strings  ${response['status']}    ${expected_status}
     Log    Status code validated 
+    
+Check Postcondition NS Instance is deleted
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    Integer    response status    404
+    
+Check Postcondition NS Instance is not modified
+    GET IndividualNSInstance
+    ${resp_dict}=    evaluate    json.loads('''${response['body']}''')    json
+    ${body}=    Get File    jsons/CreateNsRequest.json
+    Dictionaries Should Be Equal    ${resp_dict}    ${body}    values=True
     
 Check HTTP Response Header Contains
     [Arguments]    ${HEADER_TOCHECK}
-    Should Contain     ${response[0]['headers']}    ${HEADER_TOCHECK}
+    Should Contain     ${response['headers']}    ${HEADER_TOCHECK}
     Log    Header is present    
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
+    
+Check Postcondition NS Instance is not deleted
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId} 
+    Integer    response status    200
     
 Check HTTP Response Header ContentType is
     [Arguments]    ${expected_contentType}
     Log    Validate content type
-    Should Be Equal as Strings   ${response[0]['headers']['Content-Type']}    ${expected_contentType}
+    Should Be Equal as Strings   ${response['headers']['Content-Type']}    ${expected_contentType}
     Log    Content Type validated 
 
 POST New nsInstance
@@ -181,7 +217,7 @@ POST New nsInstance
     ${body}=    Get File    jsons/CreateNsRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}     
+	Set Global Variable    ${response}    ${outputResponse}     
 
 GET NsInstances
     Log    Query NS The GET method queries information about multiple NS instances.
@@ -190,7 +226,7 @@ GET NsInstances
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 
 GET NsInstance Invalid Attribute-Based filtering parameter
@@ -200,7 +236,7 @@ GET NsInstance Invalid Attribute-Based filtering parameter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get   ${apiRoot}/${apiName}/${apiVersion}/ns_instances?attribute_not_exist=some_value
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 GET NsInstance Invalid Attribute Selector
     Log    Query NS The GET method queries information about multiple NS instances.
@@ -209,7 +245,7 @@ GET NsInstance Invalid Attribute Selector
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances?fields=wrong_field	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}  
+	Set Global Variable    ${response}    ${outputResponse}  
 	
 Get NSInstances with all_fields attribute selector
     Log    Get the list of NSInstances, using fields
@@ -247,7 +283,7 @@ PUT NSInstances
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_instances
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}   
+	Set Global Variable    ${response}    ${outputResponse}   
 	
 PATCH NSInstances
     log    Trying to perform a PATCH. This method should not be implemented
@@ -256,7 +292,7 @@ PATCH NSInstances
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_instances
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}  
+	Set Global Variable    ${response}    ${outputResponse}  
 	
 DELETE NSInstances
     log    Trying to perform a DELETE. This method should not be implemented
@@ -265,7 +301,7 @@ DELETE NSInstances
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 
 POST IndividualNSInstance
     Log    Trying to perform a POST. This method should not be implemented
@@ -274,7 +310,7 @@ POST IndividualNSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET IndividualNSInstance
     Log    Trying to get information about an individual NS instance
@@ -282,9 +318,9 @@ GET IndividualNSInstance
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
-    ${Etag}=    Output    response headers Etag
+    ${Etag}=    Output    response headers ETag
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 
     
 PUT IndividualNSInstance
@@ -294,7 +330,7 @@ PUT IndividualNSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 	
+	Set Global Variable    ${response}    ${outputResponse} 	
 	
 PATCH IndividualNSInstance
     Log    Trying to perform a PATCH. This method should not be implemented
@@ -303,14 +339,14 @@ PATCH IndividualNSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 	
+	Set Global Variable    ${response}    ${outputResponse} 	
 	
 DELETE IndividualNSInstance
     log    Trying to delete an individual VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 	
+	Set Global Variable    ${response}    ${outputResponse} 	
 	
 
 DELETE IndividualNSInstance Conflict
@@ -318,7 +354,7 @@ DELETE IndividualNSInstance Conflict
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${ConflictNsInstanceId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 	
+	Set Global Variable    ${response}    ${outputResponse} 	
 
 
 DELETE Instantiate NSInstance
@@ -326,7 +362,7 @@ DELETE Instantiate NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/instantiate
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
  PATCH Instantiate NSInstance
     log    Trying to patch an instantiate NS instance. This method should not be implemented 
@@ -335,7 +371,7 @@ DELETE Instantiate NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/instantiate
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
 PUT Instantiate NSInstance
     log    Trying to put an instantiate NS instance. This method should not be implemented
@@ -344,7 +380,7 @@ PUT Instantiate NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/instantiate
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET Instantiate NSInstance
     log    Trying to get an instantiate NS instance. This method should not be implemented
@@ -353,7 +389,7 @@ GET Instantiate NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/instantiate
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
  POST Instantiate nsInstance
     Log    Trying to Instantiate a ns Instance
@@ -363,14 +399,14 @@ GET Instantiate NSInstance
     ${body}=    Get File    jsons/InstantiateNsRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/instantiate    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE Scale NSInstance
     log    Trying to delete an Scale NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/scale
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
  PATCH Scale NSInstance
     log    Trying to patch an Scale NS instance. This method should not be implemented 
@@ -379,7 +415,7 @@ DELETE Scale NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/scale
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
 PUT Scale NSInstance
     log    Trying to put an Scale NS instance. This method should not be implemented
@@ -388,7 +424,7 @@ PUT Scale NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/scale
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET Scale NSInstance
     log    Trying to get an Scale NS instance. This method should not be implemented
@@ -397,7 +433,7 @@ GET Scale NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/scale
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 POST scale nsInstance
 	Log    Trying to Instantiate a scale NS Instance
@@ -407,14 +443,14 @@ POST scale nsInstance
     ${body}=    Get File    jsons/ScaleNsRequest.json
 	Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/scale    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 DELETE Update NSInstance
     log    Trying to delete an Update NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/update
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
  PATCH Update NSInstance
     log    Trying to patch an Update NS instance. This method should not be implemented 
@@ -423,7 +459,7 @@ DELETE Update NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/update
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
 PUT Update NSInstance
     log    Trying to put an Update NS instance. This method should not be implemented
@@ -432,7 +468,7 @@ PUT Update NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/update
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET Update NSInstance
     log    Trying to get an Update NS instance. This method should not be implemented
@@ -441,7 +477,7 @@ GET Update NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/update
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 POST Update NSInstance
 	Log    Trying to Instantiate a Update NS Instance
@@ -451,14 +487,14 @@ POST Update NSInstance
     ${body}=    Get File    jsons/UpdateNsRequest.json
 	Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/update    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 DELETE Heal NSInstance
     log    Trying to Delete an Heal NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/heal
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
  PATCH Heal NSInstance
     log    Trying to patch an Heal NS instance. This method should not be implemented 
@@ -467,7 +503,7 @@ DELETE Heal NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/heal
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
 PUT Heal NSInstance
     log    Trying to put an Heal NS instance. This method should not be implemented
@@ -476,7 +512,7 @@ PUT Heal NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/heal
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET Heal NSInstance
     log    Trying to get an Heal NS instance. This method should not be implemented
@@ -485,7 +521,7 @@ GET Heal NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/heal
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 POST Heal NSInstance
 	Log    Trying to Instantiate a Heal NS Instance
@@ -495,14 +531,14 @@ POST Heal NSInstance
     ${body}=    Get File    jsons/HealNsRequest.json
 	Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/heal    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 DELETE Terminate NSInstance
     log    Trying to Delete an Terminate NS instance. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/terminate
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
 PATCH Terminate NSInstance
     log    Trying to patch an Terminate NS instance. This method should not be implemented 
@@ -511,7 +547,7 @@ PATCH Terminate NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/terminate
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
  
 PUT Terminate NSInstance
     log    Trying to put an Terminate NS instance. This method should not be implemented
@@ -520,7 +556,7 @@ PUT Terminate NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/terminate
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET Terminate NSInstance
     log    Trying to Get an Terminate NS instance. This method should not be implemented
@@ -529,7 +565,7 @@ GET Terminate NSInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/terminate
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 	
 POST Terminate NSInstance
 	Log    Trying to Instantiate a Terminate NS Instance
@@ -539,7 +575,7 @@ POST Terminate NSInstance
     ${body}=    Get File    jsons/TerminateNsRequest.json
 	Post    ${apiRoot}/${apiName}/${apiVersion}/ns_instances/${nsInstanceId}/terminate    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 		
 POST NS LCM OP Occurrences
     log    Trying to perform a POST. This method should not be implemented
@@ -547,7 +583,7 @@ POST NS LCM OP Occurrences
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PUT NS LCM OP Occurrences
     log    Trying to perform a PUT. This method should not be implemented
@@ -555,7 +591,7 @@ PUT NS LCM OP Occurrences
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PATCH NS LCM OP Occurrences
     log    Trying to perform a PATCH. This method should not be implemented
@@ -563,7 +599,7 @@ PATCH NS LCM OP Occurrences
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE NS LCM OP Occurrences
     log    Trying to perform a DELETE. This method should not be implemented
@@ -571,7 +607,7 @@ DELETE NS LCM OP Occurrences
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 GET NS LCM OP Occurrences
     Log    Query status information about multiple NS lifecycle management operation occurrences.
@@ -580,7 +616,7 @@ GET NS LCM OP Occurrences
 	Log    Execute Query and validate response
 	Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
  
 GET NS LCM OP Occurrences Invalid attribute-based filtering parameters
     Log    Query status information about multiple NS lifecycle management operation occurrences.
@@ -588,7 +624,7 @@ GET NS LCM OP Occurrences Invalid attribute-based filtering parameters
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
 	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?${NEG_FILTER}
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 GET NS LCM OP Occurrences Invalid attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences.
@@ -596,7 +632,7 @@ GET NS LCM OP Occurrences Invalid attribute selector
 	Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"} 
 	GET    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs?${NEG_SELECTOR}
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 Get NS LCM OP Occurrences with all_fields attribute selector
     Log    Query status information about multiple NS lifecycle management operation occurrences, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -632,7 +668,7 @@ POST Individual NS LCM OP Occurrence
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PUT Individual NS LCM OP Occurrence
     log    Trying to perform a PUT. This method should not be implemented
@@ -640,7 +676,7 @@ PUT Individual NS LCM OP Occurrence
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 		
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PATCH Individual NS LCM OP Occurrence
     log    Trying to perform a PATCH. This method should not be implemented
@@ -648,7 +684,7 @@ PATCH Individual NS LCM OP Occurrence
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE Individual NS LCM OP Occurrence
     log    Trying to perform a DELETE. This method should not be implemented
@@ -656,7 +692,7 @@ DELETE Individual NS LCM OP Occurrence
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 GET Individual NS LCM OP Occurrence
     Log    Query status information about individual NS lifecycle management operation occurrence.
@@ -665,35 +701,35 @@ GET Individual NS LCM OP Occurrence
 	Log    Execute Query and validate response
 	Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId} 	
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}	
+	Set Global Variable    ${response}    ${outputResponse}	
 	
 GET Retry operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PUT Retry operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  		
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PATCH Retry operation task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE Retry operation task
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 POST Retry operation task
     Log    Retry a NS lifecycle operation if that operation has experienced a temporary failure
@@ -701,35 +737,35 @@ POST Retry operation task
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/retry
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 GET Rollback operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PUT Rollback operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  		
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PATCH Rollback operation task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE Rollback operation task
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 POST Rollback operation task
     Log    Rollback a NS lifecycle operation task
@@ -737,35 +773,35 @@ POST Rollback operation task
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/rollback
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 GET Continue operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PUT Continue operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  		
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PATCH Continue operation task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE Continue operation task
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 POST Continue operation task
     Log    Continue a NS lifecycle operation task
@@ -773,35 +809,35 @@ POST Continue operation task
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/continue
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 
 GET Fail operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PUT Fail operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  		
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PATCH Fail operation task
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE Fail operation task
     log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 POST Fail operation task
     Log    Fail a NS lifecycle operation task
@@ -809,35 +845,35 @@ POST Fail operation task
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/fail
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 GET Cancel operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PUT Cancel operation task
     log    Trying to perform a PUT. This method should not be implemented 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  		
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PATCH Cancel operation task
     Log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Patch    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE Cancel operation task
     Log    Trying to perform a DELETE. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel  	 	
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 POST Cancel operation task
     Log    Cancel a NS lifecycle operation task
@@ -845,7 +881,7 @@ POST Cancel operation task
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/ns_lcm_op_occs/${nsLcmOpOccId}/cancel
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PUT subscriptions
     Log    Trying to perform a PUT. This method should not be implemented
@@ -854,7 +890,7 @@ PUT subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 PATCH subscriptions
     Log    Trying to perform a PATCH. This method should not be implemented
@@ -863,7 +899,7 @@ PATCH subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE subscriptions
     Log    Trying to perform a DELETE. This method should not be implemented
@@ -872,7 +908,7 @@ DELETE subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 POST subscriptions
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
@@ -882,7 +918,7 @@ POST subscriptions
     ${body}=    Get File    jsons/LccnSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}    
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 POST subscriptions DUPLICATION
     Log    Trying to create a subscription with an already created content
@@ -893,7 +929,7 @@ POST subscriptions DUPLICATION
     ${body}=    Get File    jsons/LccnSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}    
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 POST subscriptions NO DUPLICATION
     Log    Trying to create a subscription with an already created content
@@ -904,7 +940,7 @@ POST subscriptions NO DUPLICATION
     ${body}=    Get File    jsons/LccnSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}    
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 
 GET Subscriptions
@@ -915,7 +951,7 @@ GET Subscriptions
     Log    Execute Query and validate response
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 
 Get subscriptions with all_fields attribute selector
     Log    Get the list of active subscriptions, using fields
@@ -952,7 +988,7 @@ GET subscriptions with filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 
 Get subscriptions - invalid filter
     Log    Get the list of active subscriptions using an invalid filter
@@ -960,7 +996,7 @@ Get subscriptions - invalid filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid} 
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 
 POST Individual Subscription
     log    Trying to perform a POST. This method should not be implemented
@@ -969,7 +1005,7 @@ POST Individual Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}  
+	Set Global Variable    ${response}    ${outputResponse}  
 	
 PUT Individual Subscription
     log    Trying to perform a PUT. This method should not be implemented
@@ -978,7 +1014,7 @@ PUT Individual Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}  
+	Set Global Variable    ${response}    ${outputResponse}  
 	
 PATCH Individual Subscription
     log    Trying to perform a PATCH. This method should not be implemented
@@ -987,7 +1023,7 @@ PATCH Individual Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 
 GET Individual subscription
     log    Trying to get information about an individual subscription
@@ -995,7 +1031,7 @@ GET Individual subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 DELETE Individual subscription
     log    Try to delete an individual subscription
@@ -1003,7 +1039,7 @@ DELETE Individual subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}    
     ${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 
 POST Operation occurrence
     log    The POST method delivers a notification from the server to the client.
@@ -1067,3 +1103,6 @@ PUT notification
     Log  Cleaning the endpoint
     Clear Requests  ${callback_endpoint}         
         
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
+    Should Not Be Empty    ${linkURL}

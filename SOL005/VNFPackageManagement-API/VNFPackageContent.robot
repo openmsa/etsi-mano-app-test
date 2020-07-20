@@ -13,7 +13,7 @@ GET Individual VNF Package Content
     ...    Test title: GET Individual VNF Package Content
     ...    Test objective: The objective is to test the retrieval of an individual VNF package content and perform a validation that returned content is in zip format
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -26,7 +26,7 @@ GET Individual VNF Package Content with Range Request and NFVO supporting Range 
     ...    Test title: GET Individual VNF Package Content with Range Request and NFVO supporting Range Requests
     ...    Test objective: The objective is to test the retrieval of an individual VNF package content when using a range request to return single range of bytes from the file, with the NFVO supporting it. The test also perform a validation that returned content matches the issued range
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports range requests to return single range of bytes from the VNF package file
     ...    Post-Conditions: none
@@ -41,7 +41,7 @@ GET Individual VNF Package Content with Range Request and NFVO not supporting Ra
     ...    Test title: GET Individual VNF Package Content with Range Request and NFVO not supporting Range Requests
     ...    Test objective: The objective is to test that the retrieval of an individual VNF package content, when using a range request to return single range of bytes from the file and the NFVO not supporting it, returns the full VNF Package file.
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO does not support range requests to return single range of bytes from the VNF package file
     ...    Post-Conditions: none    
@@ -54,7 +54,7 @@ GET Individual VNF Package Content with invalid Range Request
     ...    Test title: GET Individual VNF Package Content with invalid Range Request
     ...    Test objective: The objective is to test that the retrieval of an individual VNF package content fails when using a range request that does not match any available byte range in the file.
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports range requests to return single range of bytes from the VNF package file
     ...    Post-Conditions: none      
@@ -66,7 +66,7 @@ GET Individual VNF Package Content with invalid resource identifier
     ...    Test title: GET Individual VNF Package Content with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual VNF package content fails when using an invalid resource identifier
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    
@@ -78,7 +78,7 @@ GET Individual VNF Package Content with conflict due to onboarding state
     ...    Test title: GET Individual VNF Package Content with conflict due to onboarding state
     ...    Test objective: The objective is to test that the retrieval of an individual VNF package content fails due to a conflict when the VNF Package is not in onboarding state ONBOARDED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: The onboarding state of the VNF package for which the content is requested is different from ONBOARDED.
-    ...    Reference: clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -91,7 +91,7 @@ POST Individual VNF Package Content - Method not implemented
     ...    Test title: POST Individual VNF Package Content - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create new VNF Package content
     ...    Pre-conditions: none
-    ...    Reference: clause 9.4.5.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -103,7 +103,7 @@ Upload VNF Package Content
     ...    Test title: Upload VNF Package Content
     ...    Test objective: The objective is to test the upload of a VNF Package Content in Zip format.
     ...    Pre-conditions: One or more VNF Packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package content is successfully uploaded and available in the NFVO
@@ -116,7 +116,7 @@ Upload VNF Package Content with conflict due to onboarding state
     ...    Test title: Upload VNF Package Content with conflict due to onboarding state
     ...    Test objective: The objective is to test that the upload of the VNF Package Content fails due to a conflict when the VNF Package is not in onboarding state CREATED in the NFVO. The test also performs a validation of the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: The onboarding state of the VNF Package for which the content is requested is different from CREATED.
-    ...    Reference: clause 9.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -129,7 +129,7 @@ PATCH Individual VNF Package Content - Method not implemented
     ...    Test title: PATCH Individual VNF Package Content - Method not implemented
     ...    Test objective: The objective is to test that PATCH  method is not allowed to update a VNF Package content
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -141,7 +141,7 @@ DELETE Individual VNF Package Content - Method not implemented
     ...    Test title: DELETE Individual VNF Package Content - Method not implemented
     ...    Test objective: The objective is to test that DELETE  method is not allowed to delete a VNF Package content
     ...    Pre-conditions: One or more VNF packages are onboarded in the NFVO.
-    ...    Reference: clause 9.4.5.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 9.4.5.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package content is not deleted by the failed operation

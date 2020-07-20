@@ -37,3 +37,5 @@ ${NFVO_ALLOWS_DUPLICATE_SUBS}    1
 ${total_polling_time}   2 min
 ${polling_interval}     10 sec
 ${response}
+${retry}		5x
+${interval}		5 sec

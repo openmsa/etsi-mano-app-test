@@ -2,7 +2,7 @@
 
 This folder includes the NFV API conformance test descriptions for NFV SOL005 APIs.
 
-The reference spec version is v2.4.1: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/005/02.04.01_60/gs_NFV-SOL005v020401p.pdf<
+The reference spec version is v2.6.1: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/005/02.06.01_60/gs_NFV-SOL005v020601p.pdf
 
 ## License
 

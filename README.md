@@ -1,9 +1,10 @@
 # NFV API Conformance Test Specification (NFV-TST 010)
 
 This repository hosts the NFV API Conformance test specification for 
-the APIs defined in ETSI NFV GS [SOL002](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/002/02.04.01_60/gs_NFV-SOL002v020401p.pdf), [SOL003](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/003/02.04.01_60/gs_NFV-SOL003v020401p.pdf), [SOL005](http://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/005/02.04.01_60/gs_NFV-SOL005v020401p.pdf), in their versions v2.4.1.
+the APIs defined in ETSI NFV GS [SOL002](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/002/02.06.01_60/gs_NFV-SOL002v020601p.pdf), [SOL003](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/003/02.06.01_60/gs_NFV-SOL003v020601p.pdf), [SOL005](https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/005/02.06.01_60/gs_NFV-SOL005v020601p.pdf), in their versions v2.6.1.
 
-More information and download is available at [DGS/NFV-TST010](https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54031).
+More information and download is available at [DGS/NFV-TST010ed261](https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=58428).
+
 
 ## Overview
 

@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     This clause defines all the resources and methods provided by the PNF descriptors interface. \
+Documentation     This Clause defines all the resources and methods provided by the PNF descriptors interface. \
 Library           JSONSchemaLibrary    schemas/
 Resource          environment/variables.txt    # Generic Parameters
 Resource          environment/pnfDescriptors.txt    # Specific nsDescriptors Parameters
@@ -14,7 +14,7 @@ GET all PNF Descriptors Information
     ...    Test title: GET all PNF Descriptors Information
     ...    Test objective: The objective is to test the retrieval of all the PNF Descriptors information and perform a JSON schema and content validation of the collected data structure
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -27,7 +27,7 @@ GET PNF Descriptors Information with attribute-based filter
     ...    Test title: GET PNF Descriptors Information with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of PNF Descriptors information using attribute-based filter, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued attribute-based filter
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -41,7 +41,7 @@ GET PNF Descriptors Information with invalid attribute-based filter
     ...    Test title: GET PNF Descriptors Information with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of PNF Descriptors information fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -54,7 +54,7 @@ GET all PNF Descriptors Information with "all_fields" attribute selector
     ...    Test title: GET all PNF Descriptors Information with "all_fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of all PNF Descriptors Information with "all_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "all_fileds" selector
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -68,7 +68,7 @@ GET all PNF Descriptors Information with "exclude_default" attribute selector
     ...    Test title: GET all PNF Descriptors Information with "exclude_default" attribute selector
     ...    Test objective: The objective is to test the retrieval of all PNF Descriptors Information with "exclude_default" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_default" selector
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -82,7 +82,7 @@ GET all PNF Descriptors Information with "fields" attribute selector
     ...    Test title: GET all PNF Descriptors Information with "fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of all PNF Descriptors Information with "fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "fields" selector
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports the use of "fields" attribute selector
     ...    Post-Conditions: none
@@ -96,7 +96,7 @@ GET all PNF Descriptors Information with "exclude_fields" attribute selector
     ...    Test title: GET all PNF Descriptors Information with "exclude_fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of all PNF Descriptors Information with "exclude_fields" attribute selector, perform a JSON schema validation of the collected data structure, and verify that the retrieved information matches the issued "exclude_fields" selector
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports the use of "exclude_fields" attribute selector
     ...    Post-Conditions: none
@@ -110,7 +110,7 @@ Create new PNF Descriptor Resource
     ...    Test title:  Create new PNF Descriptor Resource
     ...    Test objective: The objective is to test the creation of a new Create new PNF Descriptor resource and perform the JSON schema validation of the returned structure
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.5.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The PNF Descriptor resource is successfully created on the NFVO
@@ -125,7 +125,7 @@ PUT all PNF Descriptors - Method not implemented
     ...    Test title: PUT all PNF Descriptors Information - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify PNF Descriptors Information
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.5.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -137,7 +137,7 @@ PATCH all PNF Descriptors - Method not implemented
     ...    Test title: PATCH all PNF Descriptors Information - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update NF Descriptors Information
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -149,10 +149,36 @@ DELETE all PNF Descriptors - Method not implemented
     ...    Test title: DELETE all PNF Descriptors Information - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete PNF Descriptors Information
     ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
-    ...    Reference: clause 5.4.5.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 5.4.5.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The PNF Descriptors are not deleted by the failed operation
     Send DELETE Request for all PNF Descriptors
     Check HTTP Response Status Code Is    405
     Check Postcondition PNF Descriptors Exist
+    
+GET all PNF Descriptors Information as Paged Response
+    [Documentation]    Test ID: 5.3.1.4.12
+    ...    Test title: GET all PNF Descriptors Information as Paged Response
+    ...    Test objective: The objective is to test the retrieval of all the PNF Descriptors information as a Paged Response.
+    ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all PNF Descriptors Information
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+GET PNF Descriptors Information - Bad Request Response too Big
+        [Documentation]    Test ID: 5.3.1.4.13
+    ...    Test title: GET PNF Descriptors Information - Bad Request Response too Big
+    ...    Test objective: The objective is to test that the retrieval of PNF Descriptors information fails because response is too big, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: One or more PNF Descriptors are onboarded in the NFVO.
+    ...    Reference: Clause 5.4.5.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all PNF Descriptors Information
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails

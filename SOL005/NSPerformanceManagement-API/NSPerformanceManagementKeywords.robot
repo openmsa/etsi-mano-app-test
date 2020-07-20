@@ -15,6 +15,7 @@ Library    JSONLibrary
 Library    Collections
 Library    JSONSchemaLibrary    schemas/
 Library    Process
+Library    String
 
 *** Keywords ***
 GET all NS Performance Monitoring Jobs
@@ -172,7 +173,9 @@ Check HTTP Response Body PmJobs Matches the requested all_fields selector
     
 Check HTTP Response Body PmJobs Matches the requested Attribute-Based Filter 
     Log    Checking that attribute-based filter is matched
-    #todo
+    ${user}=    Get Value From Json    ${response['body']}    $..userDefinedData
+    Validate Json    UserDefinedData.schema.json    ${user[0]}
+    Log    Validation for schema OK
 
 Check HTTP Response Body PmJobs Do Not Contain reports
     Log    Checking that field element is missing
@@ -349,7 +352,7 @@ GET Performance Thresholds with attribute-based filter
     Log    Trying to get thresholds present in the NFVO with filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
-    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK_Threshold}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
@@ -420,7 +423,9 @@ Check Postcondition Threshold Exists
         
 Check HTTP Response Body Thresholds match the requested attribute-based filter
     Log    Checking that attribute-based filter is matched
-    #todo
+    @{words} =    Split String    ${FILTER_OK_Threshold}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['objectInstanceId']}    @{words}[1]
+    
 
 GET Individual NS performance Threshold
     Log    Trying to get a Threhsold present in the NFVO
@@ -428,7 +433,7 @@ GET Individual NS performance Threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET individual NS performance Threshold with invalid resource identifier
     Log    Trying to get a Threhsold with invalid resource endpoint
@@ -436,28 +441,28 @@ GET individual NS performance Threshold with invalid resource identifier
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual NS performance Threshold
     Log    Trying to delete a Threhsold in the NFVO
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual NS performance Threshold with invalid resource identifier
     Log    Trying to delete a Threhsold in the NFVO with invalid id
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual NS performance Threshold
     Log    Trying to create new threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual NS performance Threshold
     Log    Trying to PUT threshold
@@ -468,7 +473,7 @@ Send Put request for individual NS performance Threshold
     Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Patch request for individual NS performance Threshold
     Log    Trying to PUT threshold
@@ -479,7 +484,7 @@ Send Patch request for individual NS performance Threshold
     Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check Postcondition NS performance Threshold is Unmodified (Implicit)
     Log    Check postconidtion threshold not modified
@@ -495,7 +500,7 @@ Check Postcondition NS performance Threshold is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Check Postcondition NS performance Threshold is Deleted
@@ -603,7 +608,7 @@ Send Post Request for Duplicated NS Performance Subscription
 
 Send Put Request for NS Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+    ...    Not Allowed" response as defined in Clause 4.3.5.4.
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
@@ -613,7 +618,7 @@ Send Put Request for NS Performance Subscriptions
 
 Send Patch Request for NS Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+    ...    Not Allowed" response as defined in Clause 4.3.5.4.
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
@@ -623,7 +628,7 @@ Send Patch Request for NS Performance Subscriptions
 
 Send Delete Request for NS Performance Subscriptions
     [Documentation]    This method is not supported. When this method is requested on this resource, the NFVO shall return a "405 Method
-    ...    Not Allowed" response as defined in clause 4.3.5.4.
+    ...    Not Allowed" response as defined in Clause 4.3.5.4.
     Pass Execution If    ${testOptionalMethods} == 0    optional methods are not implemented on the FUT. Skipping test.
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
@@ -633,7 +638,7 @@ Send Delete Request for NS Performance Subscriptions
 
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}    
-    Should Be Equal    ${response['status']}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
     
@@ -653,8 +658,8 @@ Check HTTP Response Body Is Empty
 
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes NS Package Management according to filter
-    #TODO
-
+    @{words} =  Split String    ${filter_ok}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
 
 Check HTTP Response Body PmSubscription Attributes Values Match the Issued Subscription
     Log    Check Response matches subscription
@@ -731,7 +736,7 @@ Send Post request for individual NS Performance Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual NS Performance Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -740,7 +745,7 @@ Send Put request for individual NS Performance Subscription
     Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual NS Performance Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -749,7 +754,7 @@ Send Patch request for individual NS Performance Subscription
     Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
    
 Check Postcondition NS Performance Subscription is Unmodified (Implicit)
     Log    Check postconidtion subscription not modified
@@ -765,7 +770,7 @@ Check Postcondition NS Performance Subscription is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Check HTTP Response Body Subscription Identifier matches the requested Subscription
@@ -792,3 +797,8 @@ Check Notification Endpoint
     Create Mock Expectation  ${notification_request}  ${notification_response}
     Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
     Clear Requests  ${callback_endpoint}
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
+    Should Not Be Empty    ${linkURL}
+

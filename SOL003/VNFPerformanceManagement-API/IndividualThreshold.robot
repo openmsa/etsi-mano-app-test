@@ -12,7 +12,7 @@ GET Individual Threshold
     ...    Test title: GET Individual Threshold
     ...    Test objective: The objective is to test the retrieval of an individual VNF performance threshold and perform a JSON schema and content validation of the collected threshold data structure
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.6.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.6.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -26,7 +26,7 @@ GET Individual Threshold with invalid resource identifier
     ...    Test title: GET Individual Threshold with invalid resource identifier
     ...    Test objective: The objective is to test that the retrieval of an individual VNF performance threshold fails when using an invalid resource identifier
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance jobs are set in the VNFM.
-    ...    Reference: clause 6.4.6.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.6.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -38,7 +38,7 @@ DELETE Individual Threshold
     ...    Test title: DELETE Individual Threshold
     ...    Test objective: The objective is to test the deletion of an individual VNF performance threshold
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF Performance Threshold is not available anymore in the VNFM    
@@ -51,7 +51,7 @@ DELETE Individual Threshold with invalid resource identifier
     ...    Test title: DELETE Individual Threshold with invalid resource identifier
     ...    Test objective: The objective is to test the deletion of an individual VNF performance threshold
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.6.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none   
@@ -63,7 +63,7 @@ POST Individual Threshold - Method not implemented
     ...    Test title: POST Individual Threshold - Method not implemented
     ...    Test objective: The objective is to test that POST method is not allowed to create a new VNF Performance Threshold
     ...    Pre-conditions: A VNF instance is instantiated
-    ...    Reference: clause 6.4.6.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.6.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF Performance Threshold is not created on the VNFM
@@ -76,7 +76,7 @@ PUT Individual Threshold - Method not implemented
     ...    Test title: PUT Individual Threshold - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to update an existing VNF Performance threshold
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.6.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.6.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF Performance Threshold is not modified by the operation
@@ -89,7 +89,7 @@ PATCH Individual Threshold - Method not implemented
     ...    Test title: PATCH Individual Threshold - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to modify an existing VNF Performance threshold
     ...    Pre-conditions: A VNF instance is instantiated. One or more VNF performance thresholds are set in the VNFM.
-    ...    Reference: clause 6.4.6.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 6.4.6.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: The VNF Performance Threshold is not modified by the operation
@@ -104,7 +104,7 @@ GET Individual VNF Performance Threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 GET individual VNF Performance Threshold with invalid resource identifier
     Log    Trying to get a Threhsold with invalid resource endpoint
@@ -112,28 +112,28 @@ GET individual VNF Performance Threshold with invalid resource identifier
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual VNF Performance Threshold
     Log    Trying to delete a Threhsold in the VNFM
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual VNF Performance Threshold with invalid resource identifier
     Log    Trying to delete a Threhsold in the VNFM with invalid id
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual VNF Performance Threshold
     Log    Trying to create new threshold
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual VNF Performance Threshold
     Log    Trying to PUT threshold
@@ -144,7 +144,7 @@ Send Put request for individual VNF Performance Threshold
     Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Patch request for individual VNF Performance Threshold
     Log    Trying to PUT threshold
@@ -155,7 +155,7 @@ Send Patch request for individual VNF Performance Threshold
     Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Check Postcondition VNF Performance Threshold is Unmodified (Implicit)
     Log    Check postconidtion threshold not modified
@@ -171,7 +171,7 @@ Check Postcondition VNF Performance Threshold is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Check Postcondition VNF Performance Threshold is Deleted

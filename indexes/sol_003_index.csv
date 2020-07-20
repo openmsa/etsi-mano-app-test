@@ -1,0 +1,80 @@
+7,Or-Vnfm Reference Point, SOL003
+7.3.1,VNF Lifecycle Management Interface, VNFLifecycleManagement-API
+7.3.1.1,VnfInstances, VNFInstances.robot
+7.3.1.2,Individual VNFInstance, IndividualVNFInstance.robot
+7.3.1.3,Instantiate a VNF, InstantiateVNFTask.robot
+7.3.1.4,Scale a vnfInstance, ScaleVNFTask.robot
+7.3.1.5,Scale a vnfInstance to level, ScaleVNFToLevelTask.robot
+7.3.1.6,Change deployment flavour of a vnfInstance,ChangeVNFFlavourTask.robot
+7.3.1.7,Terminate a vnfInstance,TerminateVNFTask.robot
+7.3.1.8,Heal a vnfInstance, HealVNFTask.robot
+7.3.1.9,Operate a vnfInstance, OperateVNFTask.robot
+7.3.1.10,Change external VNF connectivity, ChangeExternalVNFConnectivityTask.robot
+7.3.1.11,VNF LCM Operation occurrences, VnfLcmOperationOccurences.robot
+7.3.1.12,Individual VNF LCM Operation occurrence, IndividualVnfLcmOperationOccurence.robot
+7.3.1.13,Retry operation task, RetryOperationTask.robot
+7.3.1.14,Rollback operation task, RollbackOperationTask.robot
+7.3.1.15,Fail operation task, FailOperationTask.robot
+7.3.1.16,Cancel operation task, CancelOperationTask.robot
+7.3.1.17,Subscriptions, Subscriptions.robot
+7.3.1.18,Individual Subscription, IndividualSubscription.robot
+7.3.1.19,Cancel VNF LCM Operation, CancelOperationWorkflow.robot
+7.3.1.20,Change external connectivity of VNF Workflow, ChangeExternalVNFConnectivityWorkflow.robot
+7.3.1.21,Change VNF Flavour Workflow, ChangeVNFFlavourWorkflow.robot
+7.3.1.22,Create VNF Instance Resource,CreateVNFWorkflow.robot
+7.3.1.23,Delete VNF Instance Resource, DeleteVNFWorkflow.robot
+7.3.1.24,Fail a VNF LCM Operation Workflow,FailOperationWorkflow.robot
+7.3.1.25,Heal a VNF Instance,HealVNFWorkflow.robot
+7.3.1.26,VNF Instantiation,InstantiateVNFTaskWorkflow.robot
+7.3.1.27,Modify info of a VNF Instance, ModifyVNFInformationWorkflow.robot 
+7.3.1.28,Operate a VNF Instance,OperateVNFWorkflow.robot
+7.3.1.29,Retry VNF LCM Operation, RetryOperationWorkflow.robot
+7.3.1.30,Rollback VNF LCM Operation, RollBackOperationWorkflow.robot
+7.3.1.31,VNF Instance Scale To Level, ScaleVNFToLevelWorkflow.robot
+7.3.1.32,VNF Instance Scale Out, ScaleVNFWorkflow.robot
+7.3.1.33,Terminate a VNF Instance, TerminateVNFWorkflow.robot
+7.3.1.34,Notification Endpoint, NotificationEndpoint.robot
+7.3.1.35,API Version Resource Endpoint, ApiVersion.robot
+7.3.2,VNF Lifecycle Operation Granting Interface, VNFLifecycleOperationGranting-API
+7.3.2.1,Grants, Grants.robot
+7.3.2.2,Individual Grant, IndividualGrant.robot
+7.3.2.3,API Version Resource Endpoint, ApiVersion.robot
+7.3.3,VNF Package Management Interface, VNFPackageManagement-API
+7.3.3.1,VNF Packages Resource Endpoint, VNFPackages.robot
+7.3.3.2,Individual VNF Package Resource Endpoint, IndividualVNFPackage.robot
+7.3.3.3,VNF Package Content Resource Endpoint, VNFPackageContent.robot
+7.3.3.4,VNFD In Individual VNF Package Resource Endpoint, VNFDInIndividualVNFPackage.robot
+7.3.3.5,Individual VNF Package Artifact Resource Endpoint, VNFPackageArtifacts.robot
+7.3.3.6,Subscriptions Resource Endpoint, Subscriptions.robot
+7.3.3.7,Individual Subscription Resource Endpoint, IndividualSubscription.robot
+7.3.3.8,Notification Endpoint, PackageManagementNotification.robot
+7.3.3.9,API Version Resource Endpoint, ApiVersion.robot
+7.3.4,VNF Performance Management Interface, VNFPerformanceManagement-API
+7.3.4.1,PM Jobs Resource Endpoint, PMJobs.robot
+7.3.4.2,Individual Pm Job Resource Endpoint, IndividualPmJob.robot
+7.3.4.3,Individual Performance Report Resource Endpoint, IndividualReport.robot
+7.3.4.4,Thresholds Resource Endpoint, Thresholds.robot
+7.3.4.5,Individual Threshold Resource Endpoint, IndividualThreshold.robot
+7.3.4.6,Subscriptions, Subscriptions.robot
+7.3.4.7,Individual Subscription Resource Endpoint, IndividualSubscription.robot
+7.3.4.8,Notification Endpoint,  PerformanceManagementNotification.robot 
+7.3.4.9,API Version Resource Endpoint, ApiVersion.robot
+7.3.5,VNF Fault Management interface, VNFFaultManagement-API
+7.3.5.1,Alarms, Alarms.robot
+7.3.5.2,Individual Alarm, IndividualAlarm.robot 
+7.3.5.3,Subscriptions, Subscriptions.robot
+7.3.5.4,Individual Subscription, IndividualSubscription.robot
+7.3.5.5,Notification Endpoint, ../VNFFaultManagementNotification-API/NotificationEndpoint.robot
+7.3.5.6,API Version Resource Endpoint, ApiVersion.robot
+7.3.6,VNF Indicator Interface, VNFIndicator-API
+7.3.6.1,VNF Indicators Resource Endpoint, VNFIndicators.robot
+7.3.6.2,VNF Indicators Related to a VNF Instance Resource Endpoint, VnfIndicatorsInVnfInstanceId.robot
+7.3.6.3,Individual VNF Indicator Resource Endpoint, IndividualVNFindicator.robot
+7.3.6.4,Subscriptions Resource Endpoint, Subscriptions.robot
+7.3.6.5,Individual Subscription Resource Endpoint, IndividualSubscription.robot
+7.3.6.6,Notification Endpoint, VnfIndicatorNotification.robot
+7.3.6.7,API Version Resource Endpoint, ApiVersion.robot
+7.3.7,Virtualised Resources Quota Available Notification interface, VirtualisedResourcesQuotaAvailableNotification-API
+7.3.7.1,Subscriptions, Subscriptions.robot
+7.3.7.2,Individual Subscription, IndividualSubscription.robot
+7.3.7.3,API Version Resource Endpoint, ApiVersion.robot

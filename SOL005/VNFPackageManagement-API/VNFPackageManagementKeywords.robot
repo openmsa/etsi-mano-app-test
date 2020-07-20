@@ -14,6 +14,7 @@ Library           JSONLibrary
 Library           REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
 Library           Process
 Library           MockServerLibrary
+Library           String
 
 
 *** Keywords ***
@@ -59,8 +60,11 @@ GET VNF Packages with attribute-based filter
 
 Check HTTP Response Body VnfPkgsInfo Matches the requested Attribute-Based Filter
     Log    Checking that attribute-based filter is matched
-    #todo
-
+    @{attr} =    Split String    ${POS_FILTER}       ,${VAR_SEPERATOR} 
+    @{var_id} =    Split String    @{attr}[0]       ,${SEPERATOR}
+    @{var_provider} =    Split String    @{attr}[1]       ,${SEPERATOR}
+    Should Be True     "${response['body'][0]['vnfdId']}"=="@{var_id}[1]" and "${response['body'][0]['vnfProvider']}"=="@{var_provider}[1]"
+    
 GET VNF Packages with invalid attribute-based filter
     Log    Trying to perform a negative get, filtering by the inexistent filter 'nfvId'
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -848,7 +852,7 @@ Send Post request for individual VNF Package Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual VNF Package Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -857,7 +861,7 @@ Send Put request for individual VNF Package Subscription
     Set Suite Variable    ${origResponse}    ${origOutput}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual VNF Package Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
@@ -866,7 +870,7 @@ Send Patch request for individual VNF Package Subscription
     Set Suite Variable    ${origResponse}    ${origOutput}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
    
 Check Postcondition VNF Package Subscription is Unmodified (Implicit)
     Log    Check postconidtion subscription not modified
@@ -882,7 +886,7 @@ Check Postcondition VNF Package Subscription is not Created
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
-    Set Suite Variable    @{response}    ${output}
+    Set Suite Variable    ${response}    ${output}
     Check HTTP Response Status Code Is    404
 
 Create Sessions
@@ -907,7 +911,8 @@ Check HTTP Response Body Json Schema Is
     
 Check HTTP Response Body Subscriptions Match the requested Attribute-Based Filter
     Log    Check Response includes VNF Package Management according to filter
-    #TODO
+    @{words} =  Split String    ${filter_ok}       ,${SEPERATOR} 
+    Should Be Equal As Strings    ${response['body'][0]['callbackUri']}    @{words}[1]
 
 Check HTTP Response Body Subscription Identifier matches the requested Subscription
     Log    Trying to check response ID
@@ -921,22 +926,21 @@ Check Notification Endpoint
     Wait Until Keyword Succeeds    ${total_polling_time}   ${polling_interval}   Verify Mock Expectation    ${notification_request}
     Clear Requests  ${callback_endpoint}
 
-
 Check HTTP Response Body Matches the Subscription
     Log    Check Response matches subscription
     ${body}=    Get File    jsons/subscriptions.json
     ${subscription}=    evaluate    json.loads('''${body}''')    json
     Should Be Equal As Strings    ${response['body']['callbackUri']}    ${subscription['callbackUri']}
     
- 
-    
-    
 Check HTTP Response Body Is Empty
     Should Be Empty    ${response['body']}    
     Log    No json schema is provided. Validation OK  
-    
     
 Check HTTP Response Header Contains
     [Arguments]    ${CONTENT_TYPE}
     Should Contain    ${response['headers']}    ${CONTENT_TYPE}
     Log    Header is present
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
+    Should Not Be Empty    ${linkURL}

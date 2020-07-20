@@ -4,7 +4,7 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}      ssl_verify=false  
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -20,7 +20,7 @@ Cancel a VNF LCM Operation - STARTING
     ...    Test title: Cancel a VNF LCM Operation - STARTING
     ...    Test objective: The objective is to test the workflow for Cancelling a VNF LCM Operation being in the STARTING state
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in STARTING state. NFVO is subscribed to VNF LCM Operation Occurrence notifications (Test ID 5.4.20.1)
-    ...    Reference: clause 5.4.17 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.17 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in ROLLED_BACK state
@@ -36,7 +36,7 @@ Cancel a VNF LCM Operation - PROCESSING - ROLLING_BACK
     ...    Test title: Cancel a VNF LCM Operation - PROCESSING - ROLLING_BACK
     ...    Test objective: The objective is to test the workflow for Cancelling a VNF LCM Operation being either in the PROCESSIONG or ROLLING_BACK state
     ...    Pre-conditions: The VNF lifecycle management operation occurrence is in PROCESSING or ROLLING_BACK state. NFVO is subscribed to VNF LCM Operation Occurrence notifications
-    ...    Reference: clause 5.3.10 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.3.10 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state

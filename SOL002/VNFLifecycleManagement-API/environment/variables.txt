@@ -57,3 +57,6 @@ ${response}=    httpresponse
 
 ${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
 
+${fields}
+
+${original_etag}    some_etag

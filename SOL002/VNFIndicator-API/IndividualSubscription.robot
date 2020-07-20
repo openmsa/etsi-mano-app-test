@@ -11,7 +11,7 @@ GET Individual VNF Indicator Subscription
     ...    Test title: Get individual subscription to VNF performance indicators
     ...    Test objective: The objective is to test the retrieval of individual VNF performance indicator subscription and perform a JSON schema validation of the returned subscription data structure
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.6.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.6.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators
     ...    Post-Conditions: none
@@ -24,59 +24,20 @@ GET Individual VNF Indicator Subscription with invalid resource identifier
     ...    Test title: Get individual subscription to VNF performance indicators
     ...    Test objective: The objective is to test that the retrieval of individual VNF performance indicator subscription fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.6.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 8.4.6.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators
     ...    Post-Conditions: none
     GET Individual VNF Indicator Subscription with invalid resource identifier
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is   ProblemDetails
-    
-PUT Individual VNF Indicator Subscription - Method not implemented
-    [Documentation]    Test ID 6.3.2.5.5
-    ...    Test title: PUT individual VNF indicator subscription - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to modify an individual VNF performance indicator subscription
-    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.6.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
-    ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
-    ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
-    Send Put Request for Individual VNF Indicator Subscription
-    Check HTTP Response Status Code Is    405
-    Check Postcondition VNF individual subscription Unmodified (Implicit)
-
-PATCH Individual VNF Indicator Subscription - Method not implemented
-    [Documentation]    Test ID 6.3.2.5.6
-    ...    Test title: PUT individual VNF indicator subscription - Method not implemented
-    ...    Test objective: The objective is to test that PATCH method is not allowed to update an individual VNF performance indicator subscription
-    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.6.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
-    ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
-    ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
-    Send Patch Request for Individual VNF Indicator Subscription
-    Check HTTP Response Status Code Is    405
-    Check Postcondition VNF individual subscription Unmodified (Implicit) 
-
-POST Individual VNF Indicator Subscription - Method not implemented
-    [Documentation]    Test ID 6.3.2.5.7
-    ...    Test title: PUT individual VNF indicator subscription - Method not implemented
-    ...    Test objective: The objective is to test that PUT method is not allowed to modify an individual VNF performance indicator subscription
-    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
-    ...    Config ID: Config_prod_VE
-    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
-    ...    Post-Conditions: The individual VNF indicator subscription is not created by the operation
-    Send Post Request for Individual VNF Indicator Subscription
-    Check HTTP Response Status Code Is    405
-    Check Postcondition VNF individual subscription is not created  
 
 DELETE Individual VNF Indicator Subscription
     [Documentation]    Test ID: 6.3.2.5.3
     ...    Test title: Delete individual subscription to VNF performance indicators
     ...    Test objective: The objective is to test the deletion of an individual VNF performance indicator subscription.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators
     ...    Post-Conditions: The subscription to VNF performance indicators is deleted
@@ -89,13 +50,52 @@ DELETE Individual VNF Indicator Subscription with invalid resource identifier
     ...    Test title: Delete individual subscription to VNF performance indicators
     ...    Test objective: The objective is to test that the deletion of an individual VNF performance indicator subscription fails when using an invalid resource identifier. The test also checks the JSON schema of the unsuccessful operation HTTP response.
     ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
-    ...    Reference: clause 8.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: clause 8.4.6.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: The VNF supports the generation and maintenance of performance indicators
     ...    Post-Conditions: none   
     Send Delete Request for Individual VNF Indicator Subscription with invalid resource identifier
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is   ProblemDetails
+
+PUT Individual VNF Indicator Subscription - Method not implemented
+    [Documentation]    Test ID: 6.3.2.5.5
+    ...    Test title: PUT individual VNF indicator subscription - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify an individual VNF performance indicator subscription
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference: Clause 8.4.6.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
+    ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
+    Send Put Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF individual subscription Unmodified (Implicit)
+
+PATCH Individual VNF Indicator Subscription - Method not implemented
+    [Documentation]    Test ID: 6.3.2.5.6
+    ...    Test title: PUT individual VNF indicator subscription - Method not implemented
+    ...    Test objective: The objective is to test that PATCH method is not allowed to update an individual VNF performance indicator subscription
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference: Clause 8.4.6.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
+    ...    Post-Conditions: The individual VNF indicator subscription is not modified by the operation
+    Send Patch Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF individual subscription Unmodified (Implicit) 
+
+POST Individual VNF Indicator Subscription - Method not implemented
+    [Documentation]    Test ID: 6.3.2.5.7
+    ...    Test title: PUT individual VNF indicator subscription - Method not implemented
+    ...    Test objective: The objective is to test that PUT method is not allowed to modify an individual VNF performance indicator subscription
+    ...    Pre-conditions: A VNF instance is instantiated. At least one VNF indicator subscription is available in the VNF.
+    ...    Reference: Clause 8.4.6.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    ...    Config ID: Config_prod_VE
+    ...    Applicability: The VNF supports the generation and maintenance of performance indicators.
+    ...    Post-Conditions: The individual VNF indicator subscription is not created by the operation
+    Send Post Request for Individual VNF Indicator Subscription
+    Check HTTP Response Status Code Is    405
+    Check Postcondition VNF individual subscription is not created  
 
 *** Keywords ***
 Get Individual VNF Indicator Subscription

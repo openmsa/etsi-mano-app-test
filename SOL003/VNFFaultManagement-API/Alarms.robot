@@ -2,7 +2,7 @@
 # Suite setup     Expect spec    SOL003-VNFLifecycleManagement-API.yaml
 Resource   environment/variables.txt
 Resource   FaultManagement-APIKeyword.robot  
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
@@ -14,7 +14,7 @@ POST Alarms - Method not implemented
     ...    Test title: POST Alarms - Method not implemented 
     ...    Test objective: The objective is to test that Post method is not allowed to create Fault management alarms on VNF 
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none
@@ -26,7 +26,7 @@ Get information about multiple alarms
     ...    Test title: Get information about multiple alarms
     ...    Test objective: The objective is to retrieve information about the alarm list and perform a JSON schema and content validation of the returned alarms data structure
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -39,7 +39,7 @@ Get information about multiple alarms with filter
     ...    Test title: Get information about multiple alarms with filter
     ...    Test objective: The objective is to retrieve information about the alarm list and perform a JSON schema and content validation of the returned alarms data structure, and verify that the retrieved information matches the issued attribute-based filters 
     ...    Pre-conditions: none 
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ Get information about multiple alarms Bad Request Invalid attribute-based filter
     ...    Test title:  Get information about multiple alarms Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is to try to retrieve information about the alarm list with invalid filters and perform a JSON schema and content validation of the returned problem details data structure
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -65,7 +65,7 @@ GET information about multiple alarms with "all_fields" attribute selector
     ...    Test title: GET information about multiple alarms with "all_fields" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -78,7 +78,7 @@ GET information about multiple alarms with exclude_default attribute selector
     ...    Test title: GET information about multiple alarms with "exclude_default" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -91,7 +91,7 @@ GET information about multiple alarms with fields attribute selector
     ...    Test title: GET information about multiple alarms with fields attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
@@ -104,7 +104,7 @@ GET information about multiple alarms with "exclude_fields" attribute selector
     ...    Test title: GET information about multiple alarms with "exclude_fields" attribute selector
     ...    Test objective: The objective is to retrieve information about the alarm list
     ...    Pre-conditions: 
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: none
@@ -117,7 +117,7 @@ PUT Alarms - Method not implemented
     ...    Test title: PUT Alarms - Method not implemented 
     ...    Test objective: The objective is to test that PUT method is not allowed to for Fault management alarms on VNF 
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none
@@ -125,11 +125,11 @@ PUT Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 PATCH Alarms - Method not implemented
-     [Documentation]    Test ID: 7.3.5.1.6
+     [Documentation]    Test ID: 7.3.5.1.10
     ...    Test title: PATCH Alarms - Method not implemented 
     ...    Test objective: The objective is to test that PATCH method is not allowed to for Fault management alarms on VNF 
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.2.3.4 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.4 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none
@@ -137,11 +137,11 @@ PATCH Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
 
 DELETE Alarms - Method not implemented
-     [Documentation]    Test ID: 7.3.5.1.7
+     [Documentation]    Test ID: 7.3.5.1.11
     ...    Test title: POST Alarms - Method not implemented 
     ...    Test objective: The objective is to test that DELETE method is not allowed for Fault management alarms on VNF 
     ...    Pre-conditions: none
-    ...    Reference: clause 7.4.2.3.5 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 7.4.2.3.5 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:  none
@@ -149,3 +149,28 @@ DELETE Alarms - Method not implemented
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF fault management alarms Exists
     
+Get information about multiple alarms as a Paged Response
+    [Documentation]    Test ID: 7.3.5.1.12
+    ...    Test title: Get information about multiple alarms as a Paged Response
+    ...    Test objective: The objective is to retrieve information about the alarm list as a Paged Response
+    ...    Pre-conditions: none
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Fault Management Alarms
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+Get information about multiple alarms - Bad Request Response too Big
+    [Documentation]    Test ID: 7.3.5.1.13
+    ...    Test title:  Get information about multiple alarms - Bad Request Response too Big
+    ...    Test objective: The objective is to try to retrieve information about the alarm list because response is too big and perform a JSON schema and content validation of the returned problem details data structure
+    ...    Pre-conditions: none
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 003 [1] v2.6.1
+    ...    Config ID: Config_prod_VNFM
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET Fault Management Alarms
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is    ProblemDetails

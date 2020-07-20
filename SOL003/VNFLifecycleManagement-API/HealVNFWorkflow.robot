@@ -4,7 +4,7 @@ Resource    environment/variables.txt
 Resource    environment/scaleVariables.txt
 Resource    VnfLcmMntOperationKeywords.robot
 Resource    SubscriptionKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}       ssl_verify=false 
 Library    OperatingSystem
 Library    BuiltIn
 Library    Collections
@@ -16,11 +16,11 @@ Suite Teardown    Terminate All Processes    kill=true
 
 *** Test Cases ***
 Heal a VNF Instance
-    [Documentation]    Test ID: 7.3.1.25
+    [Documentation]    Test ID: 7.3.1.25.1
     ...    Test title: Heal a VNF Instance
     ...    Test objective: The objective is to heal a VNF instance.
     ...    Pre-conditions: VNF instance in INSTANTIATED state 
-    ...    Reference: clause 5.4.9 - ETSI GS NFV-SOL 003 [1] v2.4.1
+    ...    Reference: Clause 5.4.9 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: NFVO is able to receive notifications from VNFM. Heal a VNF instance is supported for the VNF (as capability in the VNFD)
     ...    Post-Conditions: VNF instance still in INSTANTIATED state 

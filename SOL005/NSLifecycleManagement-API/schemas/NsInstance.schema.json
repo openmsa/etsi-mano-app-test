@@ -76,11 +76,11 @@
             "type": "string"
           },
           "vnfSoftwareVersion": {
-            "description": "A Version.\n",
+            "description": "A Version. Representation: string of variable length.\n",
             "type": "string"
           },
           "vnfdVersion": {
-            "description": "A Version.\n",
+            "description": "A Version. Representation: string of variable length.\n",
             "type": "string"
           },
           "vnfPkgId": {
@@ -88,7 +88,7 @@
             "type": "string"
           },
           "vnfConfigurableProperties": {
-            "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+            "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
             "type": "object"
           },
           "vimId": {
@@ -148,6 +148,7 @@
                 "type": "array",
                 "minItems": 1,
                 "items": {
+                  "description": "This type represents information about an external CP of a VNF. It shall comply  with the provisions defined in Table 6.5.3.70-1.\n",
                   "type": "object",
                   "required": [
                     "id",
@@ -165,6 +166,7 @@
                     "cpProtocolInfo": {
                       "description": "Network protocol information for this CP.\n",
                       "type": "array",
+                      "minItems": 1,
                       "items": {
                         "description": "This type describes the protocol layer(s) that a CP or SAP uses together with protocol-related information, like addresses. It shall comply with the provisions defined in Table 6.5.3.58-1.\n",
                         "type": "object",
@@ -181,7 +183,7 @@
                             ]
                           },
                           "ipOverEthernet": {
-                            "description": "This type represents information about a network address that has been assigned.  It shall comply with the provisions defined in Table 6.5.3.18-1.\n",
+                            "description": "This type represents information about a network address that has been assigned. It shall comply with the provisions defined in Table 6.5.3.18-1.\n",
                             "type": "object",
                             "required": [
                               "macAddress",
@@ -217,7 +219,7 @@
                                       "description": "Fixed addresses assigned (from the subnet defined by \"subnetId\" if provided).\n",
                                       "type": "array",
                                       "items": {
-                                        "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                        "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                         "type": "string",
                                         "format": "IP"
                                       }
@@ -235,19 +237,19 @@
                                       ],
                                       "properties": {
                                         "minAddress": {
-                                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                           "type": "string",
                                           "format": "IP"
                                         },
                                         "maxAddress": {
-                                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                           "type": "string",
                                           "format": "IP"
                                         }
                                       }
                                     },
                                     "subnetId": {
-                                      "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                                      "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                                       "type": "string"
                                     }
                                   }
@@ -262,7 +264,7 @@
                                 ]
                               },
                               "addresses": {
-                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                 "type": "string",
                                 "format": "IP"
                               },
@@ -279,29 +281,29 @@
                                 ],
                                 "properties": {
                                   "minAddress": {
-                                    "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                    "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                     "type": "string",
                                     "format": "IP"
                                   },
                                   "maxAddress": {
-                                    "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                    "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                     "type": "string",
                                     "format": "IP"
                                   }
                                 }
                               },
                               "minAddress": {
-                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                 "type": "string",
                                 "format": "IP"
                               },
                               "maxAddress": {
-                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                 "type": "string",
                                 "format": "IP"
                               },
                               "subnetId": {
-                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                                 "type": "string"
                               }
                             }
@@ -310,7 +312,158 @@
                       }
                     },
                     "extLinkPortId": {
-                      "description": "An identifier with the intention of being globally unique.\n",
+                      "description": "This type describes the protocol layer(s) that a CP or SAP uses together with protocol-related information, like addresses. It shall comply with the provisions defined in Table 6.5.3.58-1.\n",
+                      "type": "object",
+                      "required": [
+                        "layerProtocol",
+                        "ipOverEthernet"
+                      ],
+                      "properties": {
+                        "layerProtocol": {
+                          "description": "The identifier of layer(s) and protocol(s) associated to the network address information. Permitted values: IP_OVER_ETHERNET See note.\n",
+                          "type": "string",
+                          "enum": [
+                            "IP_OVER_ETHERNET"
+                          ]
+                        },
+                        "ipOverEthernet": {
+                          "description": "This type represents information about a network address that has been assigned. It shall comply with the provisions defined in Table 6.5.3.18-1.\n",
+                          "type": "object",
+                          "required": [
+                            "macAddress",
+                            "ipAddresses",
+                            "subnetId",
+                            "addresses",
+                            "addressRange"
+                          ],
+                          "properties": {
+                            "macAddress": {
+                              "description": "A MAC address. Representation: string that consists of groups of two hexadecimal digits, separated by hyphens or colons.\n",
+                              "type": "string",
+                              "format": "MAC"
+                            },
+                            "ipAddresses": {
+                              "description": "Addresses assigned to the CP instance. Each entry represents IP addresses assigned by fixed or dynamic IP address assignment per subnet.\n",
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "type"
+                                ],
+                                "properties": {
+                                  "type": {
+                                    "description": "The type of the IP addresses. Permitted values: IPV4, IPV6.\n",
+                                    "type": "string",
+                                    "enum": [
+                                      "IPV4",
+                                      "IPV6"
+                                    ]
+                                  },
+                                  "addresses": {
+                                    "description": "Fixed addresses assigned (from the subnet defined by \"subnetId\" if provided).\n",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                      "type": "string",
+                                      "format": "IP"
+                                    }
+                                  },
+                                  "isDynamic": {
+                                    "description": "Indicates whether this set of addresses was assigned dynamically (true) or based on address information provided as input from the API consumer (false). Shall be present if \"addresses\" is present and shall be absent otherwise.\n",
+                                    "type": "boolean"
+                                  },
+                                  "addressRange": {
+                                    "description": "An IP address range used, e.g., in case of egress connections. Exactly one of \"addresses\" or \"addressRange\" shall be present.\n",
+                                    "type": "object",
+                                    "required": [
+                                      "minAddress",
+                                      "maxAddress"
+                                    ],
+                                    "properties": {
+                                      "minAddress": {
+                                        "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                        "type": "string",
+                                        "format": "IP"
+                                      },
+                                      "maxAddress": {
+                                        "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                        "type": "string",
+                                        "format": "IP"
+                                      }
+                                    }
+                                  },
+                                  "subnetId": {
+                                    "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "type": {
+                              "description": "The type of the IP addresses\n",
+                              "type": "string",
+                              "enum": [
+                                "PV4",
+                                "PV6"
+                              ]
+                            },
+                            "addresses": {
+                              "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                              "type": "string",
+                              "format": "IP"
+                            },
+                            "isDynamic": {
+                              "description": "Indicates whether this set of addresses was assigned dynamically (true) or based on address information provided as input from the API consumer (false). Shall be present if \"addresses\" is present and shall be absent otherwise.\n",
+                              "type": "boolean"
+                            },
+                            "addressRange": {
+                              "description": "An IP address range used, e.g. in case of egress connections. See note.\n",
+                              "type": "object",
+                              "required": [
+                                "minAddress",
+                                "maxAddress"
+                              ],
+                              "properties": {
+                                "minAddress": {
+                                  "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                  "type": "string",
+                                  "format": "IP"
+                                },
+                                "maxAddress": {
+                                  "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                  "type": "string",
+                                  "format": "IP"
+                                }
+                              }
+                            },
+                            "minAddress": {
+                              "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                              "type": "string",
+                              "format": "IP"
+                            },
+                            "maxAddress": {
+                              "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                              "type": "string",
+                              "format": "IP"
+                            },
+                            "subnetId": {
+                              "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
+                      "type": "object"
+                    },
+                    "associatedVnfcCpId": {
+                      "description": "An identifier that is unique for the respective type within a VNF instance, but may not be globally unique.\n",
+                      "type": "string"
+                    },
+                    "associatedVnfVirtualLinkId": {
+                      "description": "An identifier that is unique for the respective type within a VNF instance, but may not be globally unique.\n",
                       "type": "string"
                     }
                   }
@@ -331,14 +484,13 @@
                       "type": "string"
                     },
                     "resourceHandle": {
+                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                      "type": "object",
                       "required": [
-                        "vimConnectionId",
                         "resourceId"
                       ],
-                      "type": "object",
-                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                       "properties": {
-                        "vimConnectionId": {
+                        "vimId": {
                           "description": "An identifier with the intention of being globally unique.\n",
                           "type": "string"
                         },
@@ -347,11 +499,11 @@
                           "type": "string"
                         },
                         "resourceId": {
-                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                           "type": "string"
                         },
                         "vimLevelResourceType": {
-                          "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                          "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                           "type": "string"
                         }
                       }
@@ -372,14 +524,13 @@
                             "type": "string"
                           },
                           "resourceHandle": {
+                            "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                            "type": "object",
                             "required": [
-                              "vimConnectionId",
                               "resourceId"
                             ],
-                            "type": "object",
-                            "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                             "properties": {
-                              "vimConnectionId": {
+                              "vimId": {
                                 "description": "An identifier with the intention of being globally unique.\n",
                                 "type": "string"
                               },
@@ -388,11 +539,11 @@
                                 "type": "string"
                               },
                               "resourceId": {
-                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                                 "type": "string"
                               },
                               "vimLevelResourceType": {
-                                "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                                "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                                 "type": "string"
                               }
                             }
@@ -426,14 +577,13 @@
                       "type": "string"
                     },
                     "networkResource": {
+                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                      "type": "object",
                       "required": [
-                        "vimConnectionId",
                         "resourceId"
                       ],
-                      "type": "object",
-                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                       "properties": {
-                        "vimConnectionId": {
+                        "vimId": {
                           "description": "An identifier with the intention of being globally unique.\n",
                           "type": "string"
                         },
@@ -442,11 +592,11 @@
                           "type": "string"
                         },
                         "resourceId": {
-                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                           "type": "string"
                         },
                         "vimLevelResourceType": {
-                          "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                          "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                           "type": "string"
                         }
                       }
@@ -466,14 +616,13 @@
                             "type": "string"
                           },
                           "resourceHandle": {
+                            "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                            "type": "object",
                             "required": [
-                              "vimConnectionId",
                               "resourceId"
                             ],
-                            "type": "object",
-                            "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                             "properties": {
-                              "vimConnectionId": {
+                              "vimId": {
                                 "description": "An identifier with the intention of being globally unique.\n",
                                 "type": "string"
                               },
@@ -482,11 +631,11 @@
                                 "type": "string"
                               },
                               "resourceId": {
-                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                                 "type": "string"
                               },
                               "vimLevelResourceType": {
-                                "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                                "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                                 "type": "string"
                               }
                             }
@@ -494,6 +643,14 @@
                           "cpInstanceId": {
                             "description": "An identifier that is unique for the respective type within a VNF instance, but may not be globally unique.\n",
                             "type": "string"
+                          },
+                          "cpInstanceType": {
+                            "description": "Type of the CP instance that is identified by cpInstanceId. Shall be present if \"cpInstanceId\" is present, and shall be absent otherwise. Permitted values: * VNFC_CP: The link port is connected to a VNFC CP * EXT_CP: The link port is associated to an external CP.\n",
+                            "type": "string",
+                            "enum": [
+                              "VNFC_CP",
+                              "EXT_CP"
+                            ]
                           }
                         }
                       }
@@ -502,30 +659,26 @@
                 }
               },
               "monitoringParameters": {
-                "description": "Active monitoring parameters.\n",
+                "description": "Performance metrics tracked by the VNFM (e.g. for  auto-scaling purposes) as identified by the VNF  provider in the VNFD.\n",
                 "type": "array",
                 "items": {
+                  "description": "This type represents a monitoring parameter that is tracked by the VNFM, for example,  for auto-scaling purposes. It shall comply with the provisions defined in Table 6.5.3.69-1.\n",
                   "type": "object",
                   "required": [
                     "id",
-                    "value",
-                    "timeStamp"
+                    "performanceMetric"
                   ],
                   "properties": {
                     "id": {
-                      "description": "Identifier of the VNF Virtual Link Descriptor (VLD) in the VNFD.\n",
+                      "description": "An identifier that is unique within a NS descriptor. Representation: string of variable length.\n",
                       "type": "string"
                     },
                     "name": {
                       "description": "Human readable name of the monitoring parameter, as defined in the VNFD.\n",
                       "type": "string"
                     },
-                    "value": {
-                      "description": "Value of the monitoring parameter known to the VNFM (e.g. obtained for auto-scaling purposes). The type of the \"value\" attribute (i.e. scalar, structure (Object in JSON), or array (of scalars, arrays or structures/Objects)) is assumed to be defined in an external measurement specification.\n",
-                      "type": "object"
-                    },
-                    "timeStamp": {
-                      "description": "Represents the point in time when the measurement has been performed, as known to the VNFM. Should be formatted according to ETF RFC 3339.\n",
+                    "performanceMetric": {
+                      "description": "Performance metric that is monitored. This attribute shall contain the related  \"Measurement Name\" value as defined in clause 7.2 of ETSI GS NFV-IFA 027.\n",
                       "type": "string"
                     }
                   }
@@ -556,14 +709,13 @@
                       "type": "string"
                     },
                     "computeResource": {
+                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                      "type": "object",
                       "required": [
-                        "vimConnectionId",
                         "resourceId"
                       ],
-                      "type": "object",
-                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                       "properties": {
-                        "vimConnectionId": {
+                        "vimId": {
                           "description": "An identifier with the intention of being globally unique.\n",
                           "type": "string"
                         },
@@ -572,11 +724,11 @@
                           "type": "string"
                         },
                         "resourceId": {
-                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                           "type": "string"
                         },
                         "vimLevelResourceType": {
-                          "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                          "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                           "type": "string"
                         }
                       }
@@ -634,7 +786,7 @@
                                   ]
                                 },
                                 "ipOverEthernet": {
-                                  "description": "This type represents information about a network address that has been assigned.  It shall comply with the provisions defined in Table 6.5.3.18-1.\n",
+                                  "description": "This type represents information about a network address that has been assigned. It shall comply with the provisions defined in Table 6.5.3.18-1.\n",
                                   "type": "object",
                                   "required": [
                                     "macAddress",
@@ -670,7 +822,7 @@
                                             "description": "Fixed addresses assigned (from the subnet defined by \"subnetId\" if provided).\n",
                                             "type": "array",
                                             "items": {
-                                              "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                              "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                               "type": "string",
                                               "format": "IP"
                                             }
@@ -688,19 +840,19 @@
                                             ],
                                             "properties": {
                                               "minAddress": {
-                                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                                 "type": "string",
                                                 "format": "IP"
                                               },
                                               "maxAddress": {
-                                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                                 "type": "string",
                                                 "format": "IP"
                                               }
                                             }
                                           },
                                           "subnetId": {
-                                            "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                                            "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                                             "type": "string"
                                           }
                                         }
@@ -715,7 +867,7 @@
                                       ]
                                     },
                                     "addresses": {
-                                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                       "type": "string",
                                       "format": "IP"
                                     },
@@ -732,29 +884,29 @@
                                       ],
                                       "properties": {
                                         "minAddress": {
-                                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                           "type": "string",
                                           "format": "IP"
                                         },
                                         "maxAddress": {
-                                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                           "type": "string",
                                           "format": "IP"
                                         }
                                       }
                                     },
                                     "minAddress": {
-                                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                       "type": "string",
                                       "format": "IP"
                                     },
                                     "maxAddress": {
-                                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                       "type": "string",
                                       "format": "IP"
                                     },
                                     "subnetId": {
-                                      "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                                      "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                                       "type": "string"
                                     }
                                   }
@@ -765,12 +917,16 @@
                           "vnfLinkPortId": {
                             "description": "An identifier that is unique for the respective type within a VNF instance, but may not be globally unique.\n",
                             "type": "string"
+                          },
+                          "metadata": {
+                            "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
+                            "type": "object"
                           }
                         }
                       }
                     },
                     "metadata": {
-                      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+                      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
                       "type": "object"
                     }
                   }
@@ -797,14 +953,13 @@
                       "type": "string"
                     },
                     "networkResource": {
+                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                      "type": "object",
                       "required": [
-                        "vimConnectionId",
                         "resourceId"
                       ],
-                      "type": "object",
-                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                       "properties": {
-                        "vimConnectionId": {
+                        "vimId": {
                           "description": "An identifier with the intention of being globally unique.\n",
                           "type": "string"
                         },
@@ -813,11 +968,11 @@
                           "type": "string"
                         },
                         "resourceId": {
-                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                           "type": "string"
                         },
                         "vimLevelResourceType": {
-                          "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                          "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                           "type": "string"
                         }
                       }
@@ -841,14 +996,13 @@
                             "type": "string"
                           },
                           "resourceHandle": {
+                            "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                            "type": "object",
                             "required": [
-                              "vimConnectionId",
                               "resourceId"
                             ],
-                            "type": "object",
-                            "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                             "properties": {
-                              "vimConnectionId": {
+                              "vimId": {
                                 "description": "An identifier with the intention of being globally unique.\n",
                                 "type": "string"
                               },
@@ -857,11 +1011,11 @@
                                 "type": "string"
                               },
                               "resourceId": {
-                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                                 "type": "string"
                               },
                               "vimLevelResourceType": {
-                                "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                                "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                                 "type": "string"
                               }
                             }
@@ -869,12 +1023,20 @@
                           "cpInstanceId": {
                             "description": "An identifier that is unique for the respective type within a VNF instance, but may not be globally unique.\n",
                             "type": "string"
+                          },
+                          "cpInstanceType": {
+                            "description": "Type of the CP instance that is identified by cpInstanceId. Shall be present if \"cpInstanceId\" is present, and shall be absent otherwise. Permitted values: * VNFC_CP: The link port is connected to a VNFC CP * EXT_CP: The link port is associated to an external CP.\n",
+                            "type": "string",
+                            "enum": [
+                              "VNFC_CP",
+                              "EXT_CP"
+                            ]
                           }
                         }
                       }
                     },
                     "metadata": {
-                      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+                      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
                       "type": "object"
                     }
                   }
@@ -901,14 +1063,13 @@
                       "type": "string"
                     },
                     "storageResource": {
+                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                      "type": "object",
                       "required": [
-                        "vimConnectionId",
                         "resourceId"
                       ],
-                      "type": "object",
-                      "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                       "properties": {
-                        "vimConnectionId": {
+                        "vimId": {
                           "description": "An identifier with the intention of being globally unique.\n",
                           "type": "string"
                         },
@@ -917,11 +1078,11 @@
                           "type": "string"
                         },
                         "resourceId": {
-                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                          "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                           "type": "string"
                         },
                         "vimLevelResourceType": {
-                          "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                          "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                           "type": "string"
                         }
                       }
@@ -931,7 +1092,7 @@
                       "type": "string"
                     },
                     "metadata": {
-                      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+                      "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
                       "type": "object"
                     }
                   }
@@ -940,11 +1101,11 @@
             }
           },
           "metadata": {
-            "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+            "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
             "type": "object"
           },
           "extensions": {
-            "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions  defined in clause 4 of IETF RFC 7159. \n",
+            "description": "This type represents a list of key-value pairs. The order of the pairs in the list is not significant. In JSON, a set of key- value pairs is represented as an object. It shall comply with the provisions defined in clause 4 of IETF RFC 7159.\n",
             "type": "object"
           }
         }
@@ -992,7 +1153,7 @@
             ],
             "properties": {
               "cpInstanceId": {
-                "description": "Identifier of the CP in the scope of the PNF.\n",
+                "description": "An Identifier that is unique within respect to a PNF. Representation: string of variable length.\n",
                 "type": "string"
               },
               "cpdId": {
@@ -1003,7 +1164,7 @@
                 "description": "Parameters for configuring the network protocols on the CP.\n",
                 "type": "array",
                 "items": {
-                  "description": "This type represents network protocol data. \n",
+                  "description": "This type represents network protocol data.\n",
                   "type": "object",
                   "required": [
                     "layerProtocol"
@@ -1046,7 +1207,7 @@
                                 "description": "Fixed addresses to assign (from the subnet defined by \"subnetId\" if provided). Exactly one of \"fixedAddresses\", \"numDynamicAddresses\" or \"ipAddressRange\" shall be present.\n",
                                 "type": "array",
                                 "items": {
-                                  "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                  "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                   "type": "string",
                                   "format": "IP"
                                 }
@@ -1064,19 +1225,19 @@
                                 ],
                                 "properties": {
                                   "minAddress": {
-                                    "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                    "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                     "type": "string",
                                     "format": "IP"
                                   },
                                   "maxAddress": {
-                                    "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                    "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                     "type": "string",
                                     "format": "IP"
                                   }
                                 }
                               },
                               "subnetId": {
-                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                                "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                                 "type": "string"
                               }
                             }
@@ -1100,14 +1261,19 @@
         "type": "object",
         "required": [
           "id",
-          "nsVirtualLinkDescId"
+          "nsVirtualLinkDescId",
+          "nsVirtualLinkProfileId"
         ],
         "properties": {
           "id": {
-            "description": "An identifier that is unique with respect to a NS.  Representation: string of variable length.\n",
+            "description": "An identifier that is unique with respect to a NS. Representation: string of variable length.\n",
             "type": "string"
           },
           "nsVirtualLinkDescId": {
+            "description": "An identifier that is unique within a NS descriptor. Representation: string of variable length.\n",
+            "type": "string"
+          },
+          "nsVirtualLinkProfileId": {
             "description": "An identifier that is unique within a NS descriptor. Representation: string of variable length.\n",
             "type": "string"
           },
@@ -1115,14 +1281,13 @@
             "description": "Identifier(s) of the virtualised network resource(s) realizing the VL instance. See note.\n",
             "type": "array",
             "items": {
+              "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+              "type": "object",
               "required": [
-                "vimConnectionId",
                 "resourceId"
               ],
-              "type": "object",
-              "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
               "properties": {
-                "vimConnectionId": {
+                "vimId": {
                   "description": "An identifier with the intention of being globally unique.\n",
                   "type": "string"
                 },
@@ -1131,11 +1296,11 @@
                   "type": "string"
                 },
                 "resourceId": {
-                  "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                  "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                   "type": "string"
                 },
                 "vimLevelResourceType": {
-                  "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                  "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                   "type": "string"
                 }
               }
@@ -1145,7 +1310,7 @@
             "description": "Link ports of the VL instance. Cardinality of zero indicates that no port has yet been created for the VL instance.\n",
             "type": "array",
             "items": {
-              "description": "This type represents information about a link port of a VL instance.  It shall comply with the provisions defined in Table 6.5.3.55-1.\n",
+              "description": "This type represents information about a link port of a VL instance. It shall comply with the provisions defined in Table 6.5.3.55-1.\n",
               "type": "object",
               "required": [
                 "id",
@@ -1157,14 +1322,13 @@
                   "type": "string"
                 },
                 "resourceHandle": {
+                  "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance or by an NS instance. Information about the resource is available from the VIM.\n",
+                  "type": "object",
                   "required": [
-                    "vimConnectionId",
                     "resourceId"
                   ],
-                  "type": "object",
-                  "description": "This type represents the information that allows addressing a virtualised resource that is used by a VNF instance. Information about the resource is available from the VIM.\n",
                   "properties": {
-                    "vimConnectionId": {
+                    "vimId": {
                       "description": "An identifier with the intention of being globally unique.\n",
                       "type": "string"
                     },
@@ -1173,11 +1337,11 @@
                       "type": "string"
                     },
                     "resourceId": {
-                      "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                      "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                       "type": "string"
                     },
                     "vimLevelResourceType": {
-                      "description": "Type of the resource in the scope of the VIM or the resource provider.\n",
+                      "description": "Type of the resource in the scope of the VIM or the resource provider. The value set of the \"vimLevelResourceType\" attribute is within the scope of the VIM or the resource provider and can be used as information that complements the ResourceHandle.\n",
                       "type": "string"
                     }
                   }
@@ -1202,7 +1366,7 @@
                         "type": "string"
                       },
                       "pnfExtCpInstanceId": {
-                        "description": "Identifier of the CP in the scope of the PNF.\n",
+                        "description": "An Identifier that is unique within respect to a PNF. Representation: string of variable length.\n",
                         "type": "string"
                       },
                       "nsInstanceId": {
@@ -1210,7 +1374,7 @@
                         "type": "string"
                       },
                       "nsSapInstanceId": {
-                        "description": "An identifier that is unique with respect to a NS.  Representation: string of variable length.\n",
+                        "description": "An identifier that is unique with respect to a NS. Representation: string of variable length.\n",
                         "type": "string"
                       }
                     }
@@ -1263,7 +1427,7 @@
             "description": "Identifier(s) of the constituent VL instance(s) of this VNFFG instance.\n",
             "type": "array",
             "items": {
-              "description": "An identifier that is unique with respect to a NS.  Representation: string of variable length.\n",
+              "description": "An identifier that is unique with respect to a NS. Representation: string of variable length.\n",
               "type": "string"
             }
           },
@@ -1287,7 +1451,7 @@
                   "type": "string"
                 },
                 "pnfExtCpInstanceId": {
-                  "description": "Identifier of the CP in the scope of the PNF.\n",
+                  "description": "An Identifier that is unique within respect to a PNF. Representation: string of variable length.\n",
                   "type": "string"
                 },
                 "nsInstanceId": {
@@ -1295,7 +1459,7 @@
                   "type": "string"
                 },
                 "nsSapInstanceId": {
-                  "description": "An identifier that is unique with respect to a NS.  Representation: string of variable length.\n",
+                  "description": "An identifier that is unique with respect to a NS. Representation: string of variable length.\n",
                   "type": "string"
                 }
               }
@@ -1318,7 +1482,7 @@
         ],
         "properties": {
           "id": {
-            "description": "An identifier that is unique with respect to a NS.  Representation: string of variable length.\n",
+            "description": "An identifier that is unique with respect to a NS. Representation: string of variable length.\n",
             "type": "string"
           },
           "sapdId": {
@@ -1352,7 +1516,7 @@
                   ]
                 },
                 "ipOverEthernet": {
-                  "description": "This type represents information about a network address that has been assigned.  It shall comply with the provisions defined in Table 6.5.3.18-1.\n",
+                  "description": "This type represents information about a network address that has been assigned. It shall comply with the provisions defined in Table 6.5.3.18-1.\n",
                   "type": "object",
                   "required": [
                     "macAddress",
@@ -1388,7 +1552,7 @@
                             "description": "Fixed addresses assigned (from the subnet defined by \"subnetId\" if provided).\n",
                             "type": "array",
                             "items": {
-                              "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                              "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                               "type": "string",
                               "format": "IP"
                             }
@@ -1406,19 +1570,19 @@
                             ],
                             "properties": {
                               "minAddress": {
-                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                 "type": "string",
                                 "format": "IP"
                               },
                               "maxAddress": {
-                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                                "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                                 "type": "string",
                                 "format": "IP"
                               }
                             }
                           },
                           "subnetId": {
-                            "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                            "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                             "type": "string"
                           }
                         }
@@ -1433,7 +1597,7 @@
                       ]
                     },
                     "addresses": {
-                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                       "type": "string",
                       "format": "IP"
                     },
@@ -1450,29 +1614,29 @@
                       ],
                       "properties": {
                         "minAddress": {
-                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                           "type": "string",
                           "format": "IP"
                         },
                         "maxAddress": {
-                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                          "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                           "type": "string",
                           "format": "IP"
                         }
                       }
                     },
                     "minAddress": {
-                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                       "type": "string",
                       "format": "IP"
                     },
                     "maxAddress": {
-                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that  consists of groups of zero to four hexadecimal digits, separated by colons.\n",
+                      "description": "An IPV4 or IPV6 address. Representation: In case of an IPV4 address, string that consists of four decimal integers separated by dots, each integer ranging from 0 to 255. In case of an IPV6 address, string that consists of groups of zero to four hexadecimal digits, separated by colons.\n",
                       "type": "string",
                       "format": "IP"
                     },
                     "subnetId": {
-                      "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance.\n",
+                      "description": "An identifier maintained by the VIM or other resource provider. It is expected to be unique within the VIM instance. Representation: string of variable length.\n",
                       "type": "string"
                     }
                   }
@@ -1498,6 +1662,32 @@
         "NOT_INSTANTIATED",
         "INSTANTIATED"
       ]
+    },
+    "monitoringParameter": {
+      "description": "Performance metrics tracked by the NFVO (e.g. for auto-scaling purposes) as identified by the NS designer in the NSD.\n",
+      "type": "array",
+      "items": {
+        "description": "This type represents a monitoring parameter that is tracked by the NFVO, for example,  for auto-scaling purposes. It shall comply with the provisions defined in Table 6.5.3.68-1.\n",
+        "type": "object",
+        "required": [
+          "id",
+          "performanceMetric"
+        ],
+        "properties": {
+          "id": {
+            "description": "An identifier that is unique within a NS descriptor. Representation: string of variable length.\n",
+            "type": "string"
+          },
+          "name": {
+            "description": "Human readable name of the monitoring parameter, as defined in the NSD.\n",
+            "type": "string"
+          },
+          "performanceMetric": {
+            "description": "Performance metric that is monitored. This attribute shall contain the related  \"Measurement Name\" value as defined in clause 7.2 of ETSI GS NFV-IFA 027.\n",
+            "type": "string"
+          }
+        }
+      }
     },
     "nsScaleStatus": {
       "description": "Status of each NS scaling aspect declared in the applicable DF, how \"big\" the NS instance has been scaled w.r.t. that aspect. This attribute shall be present if the nsState attribute value is INSTANTIATED.\n",
@@ -1525,7 +1715,7 @@
       "description": "Information on the additional affinity or anti-affinity rule from NS instantiation operation. Shall not conflict with rules already specified in the NSD.\n",
       "type": "array",
       "items": {
-        "description": "This type describes the additional affinity or anti-affinity rule  applicable between the VNF instances to be instantiated in the NS instantiation operation request or between the VNF instances  to be instantiated in the NS instantiation operation request and the existing VNF instances..\n",
+        "description": "This type describes the additional affinity or anti-affinity rule applicable between the VNF instances to be instantiated in the NS instantiation operation request or between the VNF instances to be instantiated in the NS instantiation operation request and the existing VNF instances..\n",
         "type": "object",
         "required": [
           "affinityOrAntiAffiinty",
@@ -1592,7 +1782,7 @@
           ],
           "properties": {
             "href": {
-              "description": "URI of the referenced resource.\n",
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
               "type": "string",
               "format": "url"
             }
@@ -1609,7 +1799,7 @@
             ],
             "properties": {
               "href": {
-                "description": "URI of the referenced resource.\n",
+                "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
                 "type": "string",
                 "format": "url"
               }
@@ -1624,7 +1814,7 @@
           ],
           "properties": {
             "href": {
-              "description": "URI of the referenced resource.\n",
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
               "type": "string",
               "format": "url"
             }
@@ -1638,7 +1828,7 @@
           ],
           "properties": {
             "href": {
-              "description": "URI of the referenced resource.\n",
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
               "type": "string",
               "format": "url"
             }
@@ -1652,7 +1842,7 @@
           ],
           "properties": {
             "href": {
-              "description": "URI of the referenced resource.\n",
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
               "type": "string",
               "format": "url"
             }
@@ -1666,7 +1856,7 @@
           ],
           "properties": {
             "href": {
-              "description": "URI of the referenced resource.\n",
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
               "type": "string",
               "format": "url"
             }
@@ -1680,7 +1870,7 @@
           ],
           "properties": {
             "href": {
-              "description": "URI of the referenced resource.\n",
+              "description": "URI of a resource referenced from a notification. Should be an absolute URI (i.e. a URI that contains {apiRoot}), however, may be a relative URI (i.e. a URI where the {apiRoot} part is omitted) if the {apiRoot} information is not available.\n",
               "type": "string",
               "format": "url"
             }

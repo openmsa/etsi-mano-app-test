@@ -21,6 +21,14 @@ ${fields}         criteria,objectInstanceIds
 ${VNFM_ALLOWS_DUPLICATE_SUBS}    0
 
 ${alarmId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
+${faultyNestedNsInstanceId}    faultyNestedNsInstanceId
+${faultyNsVirtualLinkInstanceId}     faultyNsVirtualLinkInstanceId
+${faultyVnfInstanceId}    faultyVnfInstanceId
+${faultyResourceType}    COMPUTE
+${eventType}            COMMUNICATIONS_ALARM
+${perceivedSeverity}    CRITICAL
+${probableCause}
+
 ${invalidAlarmId}    invalidAlramID
 ${Etag}=    an etag
 ${Etag_modified}=    a modified etag
@@ -32,6 +40,7 @@ ${sub_filter}    filter
 ${sub_filter_invalid}    filter_invalid
 
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${notification_type}    AlarmNotification
 
 ${AlarmNotification}    {}
 ${AlarmClearedNotification}    {}

@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Resource    VnfLcmOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -12,24 +12,23 @@ POST Create a new subscription
     ...    Test title: POST Create a new subscription
     ...    Test objective: The POST method creates a new subscription
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
+    
 POST Create a new Subscription - DUPLICATION
     [Documentation]    Test ID: 6.3.5.17.2
     ...    Test title: POST Create a new subscription - DUPLICATION
     ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: none
+    ...    Applicability: SUT should support duplication of subscription creation
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription - DUPLICATION
     Check HTTP Response Status Code Is    201
     Check HTTP Response Body Json Schema Is    Subscription
@@ -39,11 +38,10 @@ POST Create a new Subscription - NO-DUPLICATION
     ...    Test title: POST Create a new subscription - NO-DUPLICATION
     ...    Test objective: The POST method creates a new subscription even if an existing subscription to same content exist
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
-    ...    Applicability: none
+    ...    Applicability: SUT should not support duplication of subscription creation
     ...    Post-Conditions: in response header Location shall not be null
-    ...    POST Cancel operation task
     Post Create subscription - NO-DUPLICATION
     Check HTTP Response Status Code Is    303
     Check Operation Occurrence Id
@@ -53,7 +51,7 @@ GET Subscriptions
     ...    Test title: GET Subscriptions
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -64,9 +62,9 @@ GET Subscriptions
 GET Subscription - Filter
     [Documentation]    Test ID: 6.3.5.17.5
     ...    Test title: GET Subscriptions - Filter
-    ...    Test objective: The objective is Get the list of active subscriptions using a filter
+    ...    Test objective: The objective is Get the list of active subscriptions using a "filter"
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -79,7 +77,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test objective: The objective is Get the list of active subscriptions using a filter
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -91,7 +89,7 @@ GET subscriptions - Bad Request Invalid attribute-based filtering parameters
     ...    Test title: GET subscriptions with all_fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -104,7 +102,7 @@ GET subscriptions with exclude_default attribute selector
     ...    Test title: GET subscriptions with exclude_default attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -117,7 +115,7 @@ GET subscriptions with fields attribute selector
     ...    Test title: GET subscriptions with fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -130,7 +128,7 @@ GET subscriptions with exclude_fields attribute selector
     ...    Test title: GET subscriptions with exclude_fields attribute selector
     ...    Test objective: The objective is Get the list of active subscriptions
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -143,7 +141,7 @@ PUT subscriptions - Method not implemented
     ...    Test title: PUT subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -155,7 +153,7 @@ PATCH subscriptions - Method not implemented
     ...    Test title: PATCH subscriptions - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -167,10 +165,11 @@ DELETE subscriptions - Method not implemented
     ...    Test title: DELETE subscriptions - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.18.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.18.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
-    ...    Post-Conditions: none 
+    ...    Post-Conditions: check that resources are not deleted
     DELETE subscriptions
 	Check HTTP Response Status Code Is    405
+	Check Subscription resource exist
     

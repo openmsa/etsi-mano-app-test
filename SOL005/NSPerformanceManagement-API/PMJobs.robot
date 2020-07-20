@@ -14,7 +14,7 @@ GET all NS Performance Monitoring Jobs
     ...    Test title: GET all NS Performance Monitoring Jobs
     ...    Test objective: The objective is to test the retrieval of all the available NS performance monitoring jobs and perform a JSON schema and content validation of the collected jobs data structure
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -28,7 +28,7 @@ GET NS Performance Monitoring Jobs with attribute-based filter
     ...    Test title: GET all NS Performance Monitoring Jobs with attribute-based filter
     ...    Test objective: The objective is to test the retrieval of NS performance monitoring jobs using attribute-based filter, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued attribute-based filter
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -42,7 +42,7 @@ GET all NS Performance Monitoring Jobs with "all_fields" attribute selector
     ...    Test title: GET all NS Performance Monitoring Jobs with "all_fields" attribute selector
     ...    Test objective: The objective is to test the retrieval of all NS performance monitoring jobs "all_fields" attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued "all_fileds" selector
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 4.3.3.2.1, 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -56,7 +56,7 @@ GET all NS Performance Monitoring Jobs with "exclude_default" attribute selector
     ...    Test title: GET all NS Performance Monitoring Jobs with "exclude_default" attribute selector
     ...    Test objective: The objective is to test the retrieval of all NS performance monitoring jobs "exclude_default" attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued "exclude_default" selector
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 4.3.3.2.1, 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -70,7 +70,7 @@ GET all NS Performance Monitoring Jobs with "include" attribute selector
     ...    Test title: GET all NS Performance Monitoring Jobs with "include" attribute selector
     ...    Test objective: The objective is to test the retrieval of all NS performance monitoring jobs "include" attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued "include" selector
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 4.3.3.2.1, 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports the use of "include" attribute selector
     ...    Post-Conditions: none
@@ -84,7 +84,7 @@ GET all NS Performance Monitoring Jobs with "exclude" attribute selector
     ...    Test title: GET all NS Performance Monitoring Jobs with exclude_fields attribute selector
     ...    Test objective: The objective is to test the retrieval of all NS performance monitoring jobs "exclude" attribute selector, perform a JSON schema validation of the collected jobs data structure, and verify that the retrieved information matches the issued "exclude" selector
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 4.3.3.2.1, 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 4.3.3.2.1, 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: The NFVO supports the use of "exclude" attribute selector
     ...    Post-Conditions: none
@@ -98,7 +98,7 @@ GET NS Performance Monitoring Jobs with invalid attribute-based filter
     ...    Test title: GET NS Performance Monitoring Jobs with invalid attribute-based filter
     ...    Test objective: The objective is to test that the retrieval of NS performance monitoring jobs fails when using invalid attribute-based filter, and perform the JSON schema validation of the failed operation HTTP response
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -111,7 +111,7 @@ GET NS Performance Monitoring Jobs with invalid resource endpoint
     ...    Test title: GET NS Performance Monitoring Jobs with invalid resource endpoint
     ...    Test objective: The objective is to test that the retrieval of NS performance monitoring jobs fails when using invalid resource endpoint
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -123,7 +123,7 @@ Create new NS Performance Monitoring Job
     ...    Test title:  Create a new NS Performance Monitoring Job
     ...    Test objective: The objective is to test the creation of a new NS performance monitoring job and perform the JSON schema validation of the returned job data structure
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.2.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 7.4.2.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS Performance Job is successfully created on the NFVO
@@ -137,7 +137,7 @@ PUT all NS Performance Monitoring Jobs - Method not implemented
     ...    Test title: PUT all NS Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not allowed to modify NS Performance Monitoring Jobs
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 7.4.2.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -149,7 +149,7 @@ PATCH all NS Performance Monitoring Jobs - Method not implemented
     ...    Test title: PATCH all NS Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not allowed to update NS Performance Monitoring Jobs
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.2.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 7.4.2.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -161,10 +161,36 @@ DELETE all NS Performance Monitoring Jobs - Method not implemented
     ...    Test title: DELETE all NS Performance Monitoring Jobs - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not allowed to delete NS Performance Monitoring Jobs
     ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
-    ...    Reference: clause 7.4.2.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 7.4.2.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The NS Performance Monitoring Jobs are not deleted by the failed operation
     Send PATCH Request for all NS Performance Monitoring Jobs
     Check HTTP Response Status Code Is    405
     Check Postcondition NS Performance Monitoring Jobs Exist
+    
+GET all NS Performance Monitoring Jobs as Paged Response
+    [Documentation]    Test ID: 5.3.4.1.13
+    ...    Test title: GET all NS Performance Monitoring Jobs as Paged Response
+    ...    Test objective: The objective is to test the retrieval of all the available NS performance monitoring jobs as paged response.
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all NS Performance Monitoring Jobs
+    Check HTTP Response Status Code Is    200
+    Check LINK in Header
+    
+GET NS Performance Monitoring Jobs - Bad Request Response too Big
+    [Documentation]    Test ID: 5.3.4.1.14
+    ...    Test title: GET NS Performance Monitoring Jobs - Bad Request Response too Big
+    ...    Test objective: The objective is to test that the retrieval of NS performance monitoring jobs fails because reponse is too big, and perform the JSON schema validation of the failed operation HTTP response
+    ...    Pre-conditions: A NS instance is instantiated. One or more NS performance jobs are set in the NFVO.
+    ...    Reference: Clause 7.4.2.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    ...    Config ID: Config_prod_NFVO
+    ...    Applicability: none
+    ...    Post-Conditions: none
+    GET all NS Performance Monitoring Jobs
+    Check HTTP Response Status Code Is    400
+    Check HTTP Response Body Json Schema Is   ProblemDetails

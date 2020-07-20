@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Resource    VnfLcmOperationKeywords.robot
-Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT} 
+Library    REST    ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}     ssl_verify=false
 Library    OperatingSystem
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
@@ -13,7 +13,7 @@ POST Terminate a vnfInstance
     ...    Test title: POST Terminate a vnfInstance
     ...    Test objective: The objective is to test that POST method terminate a VNF instance
     ...    Pre-conditions: none
-    ...    Reference: clause 5.4.8.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.8.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -26,7 +26,7 @@ POST Terminate a vnfInstance Conflict (Not-Instantiated)
     ...    Test title: POST Terminate a vnfInstance Conflict (Not-Instantiated)
     ...    Test objective: The objective is to test that the operation cannot be executed currently, due to a conflict with the state of the VNF instance resource. 
     ...    Pre-conditions:  VNF instance resource is in NOT-INSTANTIATED state
-    ...    Reference: clause 5.4.8.3.1 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.8.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: 
@@ -40,7 +40,7 @@ GET Terminate VNFInstance - Method not implemented
     ...    Test title:  GET Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
-    ...    Reference: clause 5.4.8.3.2 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.8.3.2 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -52,7 +52,7 @@ PUT Terminate VNFInstance - Method not implemented
     ...    Test title:  PUT Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
-    ...    Reference: clause 5.4.8.3.3 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.8.3.3 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -64,7 +64,7 @@ PATCH Terminate VNFInstance - Method not implemented
     ...    Test title:  PATCH Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
-    ...    Reference: clause 5.4.8.3.4 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.8.3.4 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -76,7 +76,7 @@ DELETE Terminate VNFInstance - Method not implemented
     ...    Test title:  DELETE Terminate VNFInstance - Method not implemented
     ...    Test objective: The objective is to verify that the method is not implemented
     ...    Pre-conditions:  none
-    ...    Reference: clause 5.4.8.3.5 - ETSI GS NFV-SOL 002 [2] v2.4.1
+    ...    Reference: Clause 5.4.8.3.5 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VE
     ...    Applicability: none
     ...    Post-Conditions: none

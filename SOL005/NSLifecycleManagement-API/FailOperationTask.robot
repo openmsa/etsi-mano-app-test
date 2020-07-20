@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt 
 Resource   NSLCMOperationKeywords.robot   
-Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT} 
+Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}     ssl_verify=false
 Library    OperatingSystem
 Library    DependencyLibrary
 Library    JSONLibrary
@@ -13,7 +13,7 @@ POST Fail operation task
     ...    Test title: POST Fail operation task
     ...    Test objective: The objective is to test that POST method trigger a state change to "finally failed" on the NS LCM operation
     ...    Pre-conditions: NS instance status equal to FAILED_TEMP
-    ...    Reference: clause 6.4.14.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.14.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -27,7 +27,7 @@ POST Fail operation task Not Found
     ...    Test title: POST Fail operation task Not Found
     ...    Test objective: The objective is to test that POST method fail if the NS LCM resource is not found
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.14.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.14.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -40,7 +40,7 @@ POST Fail operation task Conflict
     ...    Test title: POST Fail operation task Conflict
     ...    Test objective: The objective is to test that POST method fail in case of status conflict on the NS LCM operation (i.e NS instance status not equal to FAILED_TEMP)
     ...    Pre-conditions: NS instance status not equal to FAILED_TEMP
-    ...    Reference: clause 6.4.14.3.1 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.14.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none 
@@ -53,7 +53,7 @@ GET Fail operation task - Method not implemented
     ...    Test title: GET Fail operation task - Method not implemented
     ...    Test objective: The objective is to test that GET method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.14.3.2 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.14.3.2 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -65,7 +65,7 @@ PUT Fail operation task - Method not implemented
     ...    Test title: PUT Fail operation task - Method not implemented
     ...    Test objective: The objective is to test that PUT method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.14.3.3 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.14.3.3 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -77,7 +77,7 @@ PATCH Fail operation task - Method not implemented
     ...    Test title: PATCH Fail operation task - Method not implemented
     ...    Test objective: The objective is to test that PATCH method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.14.3.4 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.14.3.4 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
@@ -89,7 +89,7 @@ DELETE Fail operation task - Method not implemented
     ...    Test title: DELETE Fail operation task - Method not implemented
     ...    Test objective: The objective is to test that DELETE method is not implemented
     ...    Pre-conditions: none
-    ...    Reference: clause 6.4.14.3.5 - ETSI GS NFV-SOL 005 [3] v2.4.1
+    ...    Reference: Clause 6.4.14.3.5 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none    

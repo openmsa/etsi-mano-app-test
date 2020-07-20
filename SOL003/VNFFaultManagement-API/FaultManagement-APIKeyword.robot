@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt
-Library    REST     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}
+Library    REST     ${VNFM_SCHEMA}://${VNFM_HOST}:${VNFM_PORT}    ssl_verify=false
 Library    JSONLibrary
 Library    JSONSchemaLibrary    schemas/
 Library    OperatingSystem
@@ -12,8 +12,20 @@ Library    Process
 ${original_etag}    1234
 
 *** Keywords ***
+Check created Subscription existence
+    Set Headers    {"Accept":"${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    Integer    response status    200  
+Check Postcondition FaultManagement Subscription Is Set
+    Log    Check Postcondition subscription exist
+    Set Headers    {"Accept": "${ACCEPT_JSON}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${response['body']['id']}
+    ${output}=    Output    response
+    Set Suite Variable    ${response}    ${output}
+    Check HTTP Response Status Code Is    200
 Check Operation Occurrence Id
-    ${opOccId}=    Get Value From Json    ${response.headers}    $..Location
+    ${opOccId}=    Get Value From Json    ${response['headers']}    $..Location
     Should Not Be Empty    ${opOccId}
 Check Postcondition VNF fault management alarms Exists
     Log    Checking that alarms exists
@@ -42,25 +54,37 @@ Check Individual Subscription deleted
 Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     Log    Validate Status code    
-    Should Be Equal    ${response[0]['status']}    ${expected_status}
+    Should Be Equal As Strings    ${response['status']}    ${expected_status}
     Log    Status code validated 
     
 Check HTTP Response Header Contains
     [Arguments]    ${HEADER_TOCHECK}
-    Should Contain     ${response[0]['headers']}    ${HEADER_TOCHECK}
+    Should Contain     ${response['headers']}    ${HEADER_TOCHECK}
     Log    Header is present    
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
     ${schema} =    Catenate    ${input}    .schema.json
-    Validate Json    ${schema}    ${response[0]['body']}
+    Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
     
 Check HTTP Response Header ContentType is 
     [Arguments]    ${expected_contentType}
     Log    Validate content type
-    Should Be Equal    ${response[0]['headers']['Content-Type']}    ${expected_contentType}
+    Should Be Equal    ${response['headers']['Content-Type']}    ${expected_contentType}
     Log    Content Type validated 
+    
+Check Postcondition Subscription Resource Returned in Location Header Is Available
+    Log    Going to check postcondition
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${response['headers']['Location']}
+    Integer    response status    200
+    Log    Received a 200 OK as expected
+    ${contentType}=    Output    response headers Content-Type
+    Should Contain    ${contentType}    application/json
+    ${result}=    Output    response body
+    Validate Json    FMSubscription.schema.json    ${result}
+    Log    Validated FMSubscription schema
     
 Send POST request for fault management Alarms
     log    Trying to perform a POST. This method should not be implemented
@@ -68,7 +92,7 @@ Send POST request for fault management Alarms
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response 
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 PATCH Fault management Alarms
     log    Trying to perform a PATCH. This method should not be implemented
@@ -76,7 +100,7 @@ PATCH Fault management Alarms
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse} =    Output    response 
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 PUT Fault management Alarms
     log    Trying to perform a PUT. This method should not be implemented
@@ -84,7 +108,7 @@ PUT Fault management Alarms
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response 
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 DELETE Fault management Alarms
     log    Trying to perform a DELETE. This method should not be implemented
@@ -92,7 +116,7 @@ DELETE Fault management Alarms
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 GET Fault Management Alarms
     Log    Query NFVO The GET method queries information about multiple alarms.
@@ -101,7 +125,7 @@ GET Fault Management Alarms
     Log    Execute Query
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 GET Fault Management Alarms With Filters
 	Log    Query NFVO The GET method queries information about multiple alarms with filters.
@@ -110,7 +134,7 @@ GET Fault Management Alarms With Filters
 	Log    Execute Query
 	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${alarm_filter}=${nsInstanceId}
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse}
+	Set Global Variable    ${response}    ${outputResponse}
 	
 GET Fault Management Alarms With Invalid Filters
 	Log    Query NFVO The GET method queries information about multiple alarms with filters.
@@ -119,7 +143,7 @@ GET Fault Management Alarms With Invalid Filters
 	Log    Execute Query
 	Get    ${apiRoot}/${apiName}/${apiVersion}/alarms?${invalid_alarm_filter}=${nsInstanceId}
 	${outputResponse}=    Output    response
-	Set Global Variable    @{response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse} 
 GET Alarms Task with all_fields attribute selector
     Log    Trying to get all VNF Packages present in the NFVO Catalogue, using fields
     Pass Execution If    ${NFVO_FIELDS} == 0    The NFVO is not able to use fields parameter
@@ -158,7 +182,7 @@ Send POST request for fault management Individual Alarm
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     ${outputResponse}=    Output    response 
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 DELETE Fault Management Individual Alarm
     log    Trying to perform a DELETE. This method should not be implemented
@@ -166,7 +190,7 @@ DELETE Fault Management Individual Alarm
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 PUT Fault Management Individual Alarm
     log    Trying to perform a PUT. This method should not be implemented
@@ -174,7 +198,7 @@ PUT Fault Management Individual Alarm
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
 
 GET Fault Management Individual Alarm
     Log    Query VNF The GET method queries information about an alarm.
@@ -186,7 +210,7 @@ GET Fault Management Individual Alarm
     ${etag}    Output    response headers ETag
     Set Suite Variable    &{original_etag}    ${etag}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 GET Fault Management Individual Alarm with invalid id
     Log    Query NFVO The GET method queries information about an invalid alarm. Should return does not exist
@@ -196,7 +220,7 @@ GET Fault Management Individual Alarm with invalid id
     Log    Execute Query 
     Get    ${apiRoot}/${apiName}/${apiVersion}/alarms/${invalidAlarmId}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
    
 PATCH Fault Management Individual Alarm
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
@@ -206,7 +230,7 @@ PATCH Fault Management Individual Alarm
     ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 PATCH Fault Management Individual Alarm - precondition failed
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
@@ -217,7 +241,7 @@ PATCH Fault Management Individual Alarm - precondition failed
     ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
    
 PATCH Fault Management Individual Alarm Conflict
     log    Trying to perform a PATCH. This method modifies an individual alarm resource
@@ -228,7 +252,7 @@ PATCH Fault Management Individual Alarm Conflict
     ${body}=    Get File    jsons/alarmModifications.json
     Patch    ${apiRoot}/${apiName}/${apiVersion}/alarms/${alarmId}    ${body}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
     
 POST Subscription
@@ -239,9 +263,9 @@ POST Subscription
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
-POST Subscription Duplication permitted
+Send POST Request for duplicated subscription
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Pass Execution If    ${VNFM_DUPLICATION} == 0    NVFO is not permitting duplication. Skipping the test
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -250,9 +274,9 @@ POST Subscription Duplication permitted
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
 
-POST Subscription Duplication not permitted
+Send POST Request for duplicated subscription not permitted
     Log    Create subscription instance by POST to ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     Pass Execution If    ${VNFM_DUPLICATION} == 1    NVFO is not permitting duplication. Skipping the test
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -261,7 +285,7 @@ POST Subscription Duplication not permitted
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
 
 GET Subscriptions
     Log    Get the list of active subscriptions
@@ -269,7 +293,7 @@ GET Subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
         
 GET Subscriptions with filter
     Log    Get the list of active subscriptions using a filter
@@ -277,7 +301,7 @@ GET Subscriptions with filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}    
+    Set Global Variable    ${response}    ${outputResponse}    
     
 GET Subscriptions with Invalid filter   
     Log    Get the list of active subscriptions using an invalid filter
@@ -285,7 +309,7 @@ GET Subscriptions with Invalid filter
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${sub_filter_invalid}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
 Get subscriptions with all_fields attribute selector
     Log    Get the list of active subscriptions, using fields
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
@@ -320,7 +344,7 @@ PUT Subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 PATCH Subscriptions
     log    Trying to perform a PATCH Subscriptions. This method should not be implemented
@@ -328,7 +352,7 @@ PATCH Subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 DELETE Subscriptions
     log    Trying to perform a DELETE Subscriptions. This method should not be implemented
@@ -336,7 +360,7 @@ DELETE Subscriptions
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 POST Individual Subscription
     log    Trying to perform a POST. This method should not be implemented
@@ -344,7 +368,7 @@ POST Individual Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 GET Individual Subscription
     log    Trying to get information about an individual subscription
@@ -352,7 +376,7 @@ GET Individual Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}   
+    Set Global Variable    ${response}    ${outputResponse}   
     
 PUT Individual Subscription
     log    Trying to perform a PUT. This method should not be implemented
@@ -360,7 +384,7 @@ PUT Individual Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
     
 PATCH Individual Subscription
     log    Trying to perform a PATCH. This method should not be implemented
@@ -368,7 +392,7 @@ PATCH Individual Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Patch    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
 
 DELETE Individual Subscription
     log    Trying to perform a DELETE.
@@ -376,4 +400,84 @@ DELETE Individual Subscription
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Delete    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}  
     ${outputResponse}=    Output    response
-    Set Global Variable    @{response}    ${outputResponse}
+    Set Global Variable    ${response}    ${outputResponse}
+    
+Check LINK in Header
+    ${linkURL}=    Get Value From Json    ${response['headers']}    $..Link
+    Should Not Be Empty    ${linkURL}
+    
+Get subscriptions with filter "id"
+    Log    Get the list of active subscriptions using a filter "id"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?id=${subscription_id}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscription Matches the requested attribute-based filter "id"
+    Should Be Equal As Strings    ${response['body']['id']}    ${subscription_id}
+	
+Get subscriptions with filter "filter_notificationTypes"
+    Log    Get the list of active subscriptions using a filter "filter.notificationTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.notificationTypes=${notification_type}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_notificationTypes"
+	:FOR   ${item}   IN  ${response['body']}
+    Should Be Equal As Strings    ${item['filter']['notificationTypes']}   ${probableCause}
+    END
+
+Get subscriptions with filter "filter_faultyResourceTypes"
+    Log    Get the list of active subscriptions using a filter "filter.faultyResourceTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.faultyResourceTypes=${faultyResourceType}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_faultyResourceTypes"
+    :FOR   ${item}   IN  ${response['body']}
+    Should Be Equal As Strings    ${item['filter']['faultyResourceTypes']}   ${faultyResourceType}
+    END
+	
+Get subscriptions with filter "filter_perceivedSeverities"
+    Log    Get the list of active subscriptions using a filter "filter.perceivedSeverities"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.perceivedSeverities=${perceivedSeverity}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_perceivedSeverities"
+	:FOR   ${item}   IN  ${response['body']}
+    Should Be Equal As Strings    ${item['filter']['perceivedSeverities']}   ${perceivedSeverity}
+    END
+    
+Get subscriptions with filter "filter_eventTypes"
+    Log    Get the list of active subscriptions using a filter "filter.eventTypes"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.eventTypes=${eventType}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_eventTypes"
+    :FOR   ${item}   IN  ${response['body']}
+    Should Be Equal As Strings    ${item['filter']['eventTypes']}   ${eventType}
+    END
+	
+Get subscriptions with filter "filter_probableCauses"
+    Log    Get the list of active subscriptions using a filter "filter.probableCauses"
+    Set Headers    {"Accept": "${ACCEPT}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?filter.probableCauses=${probableCause}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+	
+Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_probableCauses"
+    :FOR   ${item}   IN  ${response['body']}
+    Should Be Equal As Strings    ${item['filter']['probableCauses']}   ${probableCause}
+    END
