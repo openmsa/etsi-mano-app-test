@@ -168,7 +168,7 @@ Check HTTP Response Header Contains
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     
 Get an individual grant - Successful

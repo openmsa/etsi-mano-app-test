@@ -208,6 +208,6 @@ Check HTTP Response Status Code Is
 
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
