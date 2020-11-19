@@ -5,6 +5,7 @@ Resource    environment/nsDescriptors.txt    # Specific nsDescriptors Parameters
 Resource    environment/pnfDescriptors.txt    # Specific pnfDescriptors Parameters
 Resource    environment/individualSubscription.txt
 Library    REST    ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}    ssl_verify=false
+Library    RequestsLibrary
 Library    MockServerLibrary 
 Library    OperatingSystem
 Library    BuiltIn
@@ -403,47 +404,40 @@ GET NSD Content with invalid Range Request
 
 Send PUT Request to upload NSD Content as zip file in asynchronous mode
     Log    Trying to perform a PUT. This method upload the content of a NSD
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=  Get File  ${contentZipFile}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoIdZip}/nsd_content    ${body}
-    ${response}=    Output    response body
-    Should Be Empty    ${response}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Create Session      nbi     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}  headers={"Accept": "${ACCEPT_JSON}", "Content-Type": "application/zip", "Authorization": "${AUTHORIZATION}"}      verify=False
+    ${body}=  Get Binary File  ${contentZipFile}
+    ${response}=    Put Request     nbi     ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoIdZip}/nsd_content     data=${body}
+    Should Be Empty     ${response.text}
+    ${response}=    Create Dictionary   status=${response.status_code}
+    Set Suite Variable      ${response}     ${response}
 
 Send PUT Request to upload NSD Content as plain text file in asynchronous mode
     Log    Trying to perform a PUT. This method upload the content of a NSD
-    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Create Session      nbi     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}  headers={"Accept": "${ACCEPT_PLAIN}", "Authorization": "${AUTHORIZATION}", "Content-Type": "text/plain"}      verify=False
     ${body}=  Get File  ${contentPlainFile}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoIdPlain}/nsd_content    ${body}
-    ${response}=    Output    response body
-    Should Be Empty    ${response}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    ${response}=    Put Request     nbi     ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoIdZip}/nsd_content     data=${body}
+    Should Be Empty     ${response.text}
+    ${response}=    Create Dictionary   status=${response.status_code}
+    Set Suite Variable  ${response}     ${response} 
 
 Send PUT Request to upload NSD Content as zip file in synchronous mode
     Log    Trying to perform a PUT. This method upload the content of a NSD
-    Set Headers    {"Accept": "${ACCEPT_ZIP}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=  Get File  ${contentZipFile}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoIdZip}/nsd_content    ${body}
-    ${response}=    Output    response body
-    Should Be Empty    ${response} 
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Create Session      nbi     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}  headers={"Accept": "${ACCEPT_JSON}", "Content-Type": "application/zip", "Authorization": "${AUTHORIZATION}"}      verify=False
+    ${body}=  Get Binary File  ${contentZipFile}
+    ${response}=    Put Request     nbi     ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoIdZip}/nsd_content     data=${body}
+    Should Be Empty     ${response.text}
+    ${response}=    Create Dictionary   status=${response.status_code}
+    Set Suite Variable      ${response}     ${response}
 
 Send PUT Request to upload NSD Content as plain text file in synchronous mode
     Log    Trying to perform a PUT. This method upload the content of a NSD
-    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
+    Create Session      nbi     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}  headers={"Accept": "${ACCEPT_PLAIN}", "Authorization": "${AUTHORIZATION}", "Content-Type": "text/plain"}      verify=False
     ${body}=  Get File  ${contentPlainFile}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoIdPlain}/nsd_content    ${body}
-    ${response}=    Output    response body
-    Should Be Empty    ${response}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    ${response}=    Put Request     nbi     ${apiRoot}/${apiName}/${apiVersion}/ns_descriptors/${nsdInfoIdZip}/nsd_content     data=${body}
+    Should Be Empty     ${response.text}
+    ${response}=    Create Dictionary   status=${response.status_code}
+    Set Suite Variable  ${response}     ${response} 
+
 
 Check Post Condition NSD Content has been Uploaded
     Log    Checking NsdOnboardingNotification Recieved
@@ -741,15 +735,14 @@ Get PNFD Content with conflict due to onboarding state
     Set Suite Variable    ${response}    ${output} 
 
 Send PUT Request to upload PNFD Content as plain text file
+    
     Log    Trying to perform a PUT. This method upload the content of a PNFD
-    Set Headers    {"Accept": "${ACCEPT_PLAIN}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
-    ${body}=  Get File  ${contentFilePnfd}
-    PUT    ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoId}/pnfd_content    ${body}
-    ${response}=    Output    response body
-    Should Be Empty    ${response}
-    ${output}=    Output    response
-    Set Suite Variable    ${response}    ${output} 
+    Create Session      pnfd     ${NFVO_SCHEMA}://${NFVO_HOST}:${NFVO_PORT}      headers={"Accept": "${ACCEPT_PLAIN}", "Content-Type": "${ACCEPT_PLAIN}", "Authorization": "${AUTHORIZATION}"}      verify=False
+    ${body}=  Get Binary File  ${contentZipFile}
+    ${response}=    Put Request     pnfd     ${apiRoot}/${apiName}/${apiVersion}/pnf_descriptors/${pnfdInfoUpld}/pnfd_content     data=${body}
+    Should Be Empty     ${response.text}
+    ${response}=    Create Dictionary   status=${response.status_code}
+    Set Suite Variable      ${response}     ${response}
 
 Send PUT Request to upload PNFD Content with conflict due to onboarding state
     Log    Trying to perform a PUT. This method upload the content of a PNFD
@@ -980,13 +973,13 @@ Send Delete request for individual NSD Management Subscription with invalid reso
     Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual NSD Management Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual NSD Management Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -995,7 +988,7 @@ Send Put request for individual NSD Management Subscription
     Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual NSD Management Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}

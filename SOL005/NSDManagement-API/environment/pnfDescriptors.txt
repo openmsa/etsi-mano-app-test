@@ -13,3 +13,4 @@ ${onboardingStatePnfdId}    8ed2bf1f-f6ae-4d18-b478-bfab02fd4cd2
 ${contentFilePnfd}    files/pnfdContent.zip
 ${creatingPnfdId}    2e4ce0ef-3ea8-49f9-92dd-8771866015bb
 ${userDefinedDataSet}    some
+${pnfdInfoUpld}

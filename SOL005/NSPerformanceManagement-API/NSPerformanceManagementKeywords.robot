@@ -273,7 +273,7 @@ Check HTTP Response Body Pm Job Identifier matches the requested Pm Job
 Get Individual Performance Report
     Log    Trying to get a performance report present in the NFVO
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -281,21 +281,21 @@ Get Individual Performance Report
 Get Individual Performance Report with invalid resource endpoint
     Log    Trying to get a performance report with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${erroneousReportId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Post request for Individual Performance Report
     Log    Trying to create new performance report
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${newReportId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Put request for Individual Performance Report
     Log    Trying to update performance report
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -305,7 +305,7 @@ Send Put request for Individual Performance Report
     
 Send Patch request for Individual Performance Report
     Log    Trying to update performance report
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -315,7 +315,7 @@ Send Patch request for Individual Performance Report
 
 Send Delete request for Individual Performance Report
     Log    Trying to delete performance report   
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -343,7 +343,7 @@ Check Postcondition NS Individual Performance Report is Unmodified (Implicit)
 GET all Performance Thresholds
     Log    Trying to get all thresholds present in the NFVO    
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -351,7 +351,7 @@ GET all Performance Thresholds
 GET Performance Thresholds with attribute-based filter
     Log    Trying to get thresholds present in the NFVO with filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK_Threshold}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -359,7 +359,7 @@ GET Performance Thresholds with attribute-based filter
 GET Performance Thresholds with invalid attribute-based filter
     Log    Trying to get thresholds present in the NFVO with invalid filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_KO}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -367,14 +367,14 @@ GET Performance Thresholds with invalid attribute-based filter
 GET NS performance Thresholds with invalid resource endpoint
     Log    Trying to get thresholds present in the NFVO with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/threshold
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Post Request Create new Performance Threshold
     Log    Creating a new THreshold
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     ${request}=    Get File    jsons/CreateThresholdRequest.json
@@ -384,7 +384,7 @@ Send Post Request Create new Performance Threshold
 
 Send PUT Request for all Performance Thresholds
     Log    PUT THresholds
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds
@@ -393,7 +393,7 @@ Send PUT Request for all Performance Thresholds
     
 Send PATCH Request for all Performance Thresholds
     Log    PUT THresholds
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds
@@ -402,7 +402,7 @@ Send PATCH Request for all Performance Thresholds
 
 Send DELETE Request for all Performance Thresholds
     Log    DELETE THresholds
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -430,7 +430,7 @@ Check HTTP Response Body Thresholds match the requested attribute-based filter
 GET Individual NS performance Threshold
     Log    Trying to get a Threhsold present in the NFVO
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -438,28 +438,28 @@ GET Individual NS performance Threshold
 GET individual NS performance Threshold with invalid resource identifier
     Log    Trying to get a Threhsold with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual NS performance Threshold
     Log    Trying to delete a Threhsold in the NFVO
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual NS performance Threshold with invalid resource identifier
     Log    Trying to delete a Threhsold in the NFVO with invalid id
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual NS performance Threshold
     Log    Trying to create new threshold
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -467,7 +467,7 @@ Send Post request for individual NS performance Threshold
 Send Put request for individual NS performance Threshold
     Log    Trying to PUT threshold
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -478,7 +478,7 @@ Send Put request for individual NS performance Threshold
 Send Patch request for individual NS performance Threshold
     Log    Trying to PUT threshold
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -733,13 +733,13 @@ Send Delete request for individual NS Performance Subscription with invalid reso
     Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual NS Performance Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual NS Performance Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -748,7 +748,7 @@ Send Put request for individual NS Performance Subscription
     Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual NS Performance Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}

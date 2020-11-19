@@ -713,13 +713,13 @@ Send Delete request for individual VNF Package Subscription with invalid resourc
     Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual VNF Package Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${newSubscriptionId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Put request for individual VNF Package Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -728,7 +728,7 @@ Send Put request for individual VNF Package Subscription
     Set Suite Variable    ${response}    ${output}
     
 Send Patch request for individual VNF Package Subscription
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}

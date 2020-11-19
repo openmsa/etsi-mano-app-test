@@ -121,7 +121,7 @@ DELETE Individual VNF Package
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package is not available anymore in the NFVO 
     Send DELETE Request for individual VNF Package
-    Check HTTP Response Status Code Is    405
+    Check HTTP Response Status Code Is    204
     Check Postcondition VNF Package is Deleted
 
 DELETE Individual VNF Package in operational state ENABLED
