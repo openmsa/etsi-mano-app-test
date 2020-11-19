@@ -24,8 +24,6 @@ Retry VNF LCM Operation - Successful
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in COMPLETED state
     Send Retry Operation Request
     Check HTTP Response Status Code Is    202
-    Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id existence
     Check Operation Notification For Retry    PROCESSING
     Check Operation Notification For Retry    COMPLETED
     Check Postcondition VNF Retry Successful

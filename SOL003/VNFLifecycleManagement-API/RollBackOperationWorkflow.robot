@@ -26,8 +26,6 @@ Rollback a VNF LCM Operation - Successful
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in ROLLED_BACK state
     Send Roll back Operation Request
     Check HTTP Response Status Code Is    202
-    Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id existence
     Check Operation Notification For Roll Back    ROLLING_BACK
     Check Operation Notification For Roll Back    ROLLED_BACK
     Check Postcondition VNF Roll Back Successful
@@ -43,8 +41,6 @@ Rollback VNF LCM Operation - Unsuccessful
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state
     Send Roll back Operation Request
     Check HTTP Response Status Code Is    202
-    Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id existence
     Check Operation Notification For Roll Back    ROLLING_BACK
     Check Operation Notification For Roll Back    FAILED_TEMP
     Check Postcondition VNF Roll Back UnSuccessful

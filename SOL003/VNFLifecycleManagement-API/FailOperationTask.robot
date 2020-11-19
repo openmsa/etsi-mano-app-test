@@ -18,8 +18,8 @@ POST Fail operation task
     ...    Applicability: none
     ...    Post-Conditions: VNF resource state is FINALLY_FAILED
     Post Fail operation
-    Check HTTP Response Status Code Is    202
-    Check Operation Occurrence Id existence
+    Check HTTP Response Status Code Is    200
+    Check HTTP Response Body Json Schema Is    VnfLcmOpOcc 
     Check operation resource state is FINALLY_FAILED
 
 Post Fail operation task Conflict (Not-FAILED_TEMP)
