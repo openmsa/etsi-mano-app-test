@@ -17,7 +17,7 @@ POST Scale a vnfInstance
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
-    POST Scale vnfInstance  
+    POST Scale vnfInstance    0
     Check HTTP Response Status Code Is    202
     Check Operation Occurrence Id
 
@@ -30,7 +30,7 @@ POST Scale a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
-    POST Scale vnfInstance  
+    POST Scale vnfInstance    1
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
 
@@ -44,7 +44,7 @@ POST Scale a vnfInstance Not Found
     ...    Config ID: Config_prod_VE
     ...    Applicability: 
     ...    Post-Conditions: 
-    POST Scale vnfInstance  
+    POST Scale vnfInstance    2
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails 
    
