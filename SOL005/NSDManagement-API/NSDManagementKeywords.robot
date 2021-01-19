@@ -1039,7 +1039,7 @@ Create Sessions
     Pass Execution If    ${NFVO_CHECKS_NOTIF_ENDPOINT} == 0    MockServer not started as NFVO is not checking the notification endpoint
     Start Process  java  -jar  ${MOCK_SERVER_JAR}    -serverPort  ${callback_port}  alias=mockInstance
     Wait For Process  handle=mockInstance  timeout=5s  on_timeout=continue
-    Create Mock Session  ${callback_uri}
+    Create Mock Session  ${callback_uri}:${callback_port}
        
 Check Notification Endpoint
     &{notification_request}=  Create Mock Request Matcher	GET  ${callback_endpoint}    

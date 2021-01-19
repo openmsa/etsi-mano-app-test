@@ -17,7 +17,7 @@ ${NFVO_AUTH_USAGE}    1
 ${MOCK_SERVER_JAR}    ../../../bin/mockserver-netty-5.5.0-jar-with-dependencies.jar
 
 ${callback_port}    9091
-${callback_uri}    http://172.22.1.7:${callback_port}
+${callback_uri}    http://172.22.1.7
 ${callback_endpoint}    /nsd/subscriptions
 ${callback_endpoint_error}    /subs_404
 ${callback_endpoint_fwd}    /endpoint/check
