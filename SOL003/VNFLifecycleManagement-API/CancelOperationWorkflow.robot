@@ -26,8 +26,6 @@ Cancel a VNF LCM Operation - STARTING
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in ROLLED_BACK state
     Send Cancel Operation Request
     Check HTTP Response Status Code Is    202
-    Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id existence
     Check Operation Notification For Cancel    ROLLED_BACK
     Check Postcondition VNF Cancel - STARTING
 
@@ -42,8 +40,6 @@ Cancel a VNF LCM Operation - PROCESSING - ROLLING_BACK
     ...    Post-Conditions: The VNF lifecycle management operation occurrence is in FAILED_TEMP state
     Send Cancel Operation Request
     Check HTTP Response Status Code Is    202
-    Check HTTP Response Header Contains    Location 
-    Check Operation Occurrence Id existence
     Check Operation Notification For Cancel    FAILED_TEMP
     Check Postcondition VNF Cancel - PROCESSING - ROLLING_BACK
 

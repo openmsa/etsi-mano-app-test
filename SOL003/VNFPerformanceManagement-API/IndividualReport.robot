@@ -87,7 +87,7 @@ DELETE Individual Performance Report - Method not implemented
 Get Individual Performance Report
     Log    Trying to get a performance report present in the VNFM
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -95,21 +95,21 @@ Get Individual Performance Report
 Get Individual Performance Report with invalid resource endpoint
     Log    Trying to get a performance report with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${erroneousReportId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Post request for Individual Performance Report
     Log    Trying to create new performance report
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${newReportId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Put request for Individual Performance Report
     Log    Trying to update performance report
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -119,7 +119,7 @@ Send Put request for Individual Performance Report
     
 Send Patch request for Individual Performance Report
     Log    Trying to update performance report
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -129,7 +129,7 @@ Send Patch request for Individual Performance Report
 
 Send Delete request for Individual Performance Report
     Log    Trying to delete performance report   
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/pm_jobs/${pmJobId}/reports/${reportId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}

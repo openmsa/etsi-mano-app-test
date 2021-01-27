@@ -34,7 +34,7 @@ Check HTTP Response Header Contains
     
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
     
@@ -613,3 +613,8 @@ Check PostCondition HTTP Response Body Subscriptions Matches the requested attri
     :FOR   ${item}   IN  @{response['body']}
     Should Contain Match    ${item['filter']['probableCauses']}   ${probableCause}    case_insensitive=True
     END
+
+Check Response for duplicated subscription
+    Run Keyword If    ${NFVO_ALLOWS_DUPLICATE_SUBS} == 1    Check HTTP Response Status Code Is    201
+    Run Keyword If    ${NFVO_ALLOWS_DUPLICATE_SUBS} == 1    Check HTTP Response Body Json Schema Is    FmSubscription
+    Run Keyword If    ${NFVO_ALLOWS_DUPLICATE_SUBS} == 0    Check HTTP Response Status Code Is    303

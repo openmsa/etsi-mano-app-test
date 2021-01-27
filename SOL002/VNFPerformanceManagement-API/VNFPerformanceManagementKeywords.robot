@@ -19,7 +19,7 @@ Get all VNF Performance Subscriptions
     ...    request and response data structures, and response codes.
     Set headers    {"Accept": "application/json"}
     Set headers    {"Content-Type": "application/json"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -38,7 +38,7 @@ Get all VNF Performance Subscriptions
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ok}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -58,7 +58,7 @@ Get VNF Performance Subscriptions with invalid attribute-based filters
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscriptions?${filter_ko}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -77,7 +77,7 @@ Get VNF Performance Subscriptions with invalid resource endpoint
     ...    This method shall follow the provisions specified in the tables 6.4.7.3.2-1 and 6.4.7.3.2-2 for URI query parameters,
     ...    request and response data structures, and response codes.
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/subscription
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -103,7 +103,7 @@ Send Post Request for VNF Performance Subscription
     ...    the existing subscription resource with the same filter and callbackUri).
     Set headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     Set headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body_request}=    Get File    jsons/subscriptions.json
     POST    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body_request}
     ${output}=    Output    response

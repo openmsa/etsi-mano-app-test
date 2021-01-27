@@ -20,30 +20,42 @@ Create a new subscription
     Check HTTP Response Body Json Schema Is    FmSubscription
     Check resource existence
 
-Create a new Subscription - DUPLICATION
-     [Documentation]    Test ID: 6.3.4.4.2
-    ...    Test title: Create a new Subscription - DUPLICATION
+# Create a new Subscription - DUPLICATION
+     # [Documentation]    Test ID: 6.3.4.4.2
+    # ...    Test title: Create a new Subscription - DUPLICATION
+    # ...    Test objective: The objective is to create a duplicate subscription.
+    # ...    Pre-conditions: subscription with the same filter and callbackUri exists
+    # ...    Reference: Clause 7.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    # ...    Config ID: Config_prod_VNFM
+    # ...    Applicability: the VNFM does not allow creation of a subscription resource if another subscription resource with the same filter and callbackUri already exists
+    # ...    Post-Conditions: duplicated subscription is created
+    # Post Create subscription - DUPLICATION
+    # Check HTTP Response Status Code Is    201
+    # Check HTTP Response Body Json Schema Is    FmSubscription
+    
+# Create a new Subscription - NO-DUPLICATION
+    # [Documentation]    Test ID: 6.3.4.4.3
+    # ...    Test title: Create a new Subscription - NO-DUPLICATION
+    # ...    Test objective: The objective is to create a subscription in case of not allowed DUPLICATION.
+    # ...    Pre-conditions: subscription with the same filter and callbackUri exists
+    # ...    Reference: Clause 7.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
+    # ...    Config ID: Config_prod_VNFM
+    # ...    Applicability: the VNFM does not allow creation of a duplicate subscription resource 
+    # ...    Post-Conditions: duplicated subscription is not created
+    # Post Create subscription - DUPLICATION
+    # Check HTTP Response Status Code Is    303
+
+Create a duplicated Subscription
+     [Documentation]    Test ID: 6.3.4.4.2a
+    ...    Test title: Create a duplicated Subscription
     ...    Test objective: The objective is to create a duplicate subscription.
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
     ...    Reference: Clause 7.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
     ...    Config ID: Config_prod_VNFM
-    ...    Applicability: the VNFM does not allow creation of a subscription resource if another subscription resource with the same filter and callbackUri already exists
-    ...    Post-Conditions: duplicated subscription is created
-    Post Create subscription - DUPLICATION
-    Check HTTP Response Status Code Is    201
-    Check HTTP Response Body Json Schema Is    FmSubscription
-    
-Create a new Subscription - NO-DUPLICATION
-    [Documentation]    Test ID: 6.3.4.4.3
-    ...    Test title: Create a new Subscription - NO-DUPLICATION
-    ...    Test objective: The objective is to create a subscription in case of not allowed DUPLICATION.
-    ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: Clause 7.4.5.3.1 - ETSI GS NFV-SOL 002 [2] v2.6.1
-    ...    Config ID: Config_prod_VNFM
-    ...    Applicability: the VNFM does not allow creation of a duplicate subscription resource 
-    ...    Post-Conditions: duplicated subscription is not created
-    Post Create subscription - DUPLICATION
-    Check HTTP Response Status Code Is    303
+    ...    Applicability: 
+    ...    Post-Conditions: duplicated subscription is created if the IUT allows duplications, otherwise the duplicated subscription is not created
+    Post Create subscription
+    Check Response for duplicated subscription
 
 GET Subscriptions
     [Documentation]    Test ID: 6.3.4.4.4
@@ -297,24 +309,26 @@ Post Create subscription
 	Set Global Variable    ${response}    ${outputResponse}				
 Post Create subscription - DUPLICATION
     Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 0    NVFO is not permitting duplication. Skipping the test
+    Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 0    VNFM is not permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}		
     ${outputResponse}=    Output    response
-	Set Global Variable    ${response}    ${outputResponse}			
-Post Create subscription - NO-DUPLICATION	
+	Set Global Variable    ${response}    ${outputResponse}
+
+Post Create subscription - NO-DUPLICATION
     Log    Trying to create a subscription with an already created content
-    Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 1    VNFM permits duplication. Skipping the test
+    Pass Execution If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 1    VNFM is permitting duplication. Skipping the test
     Set Headers    {"Accept": "${ACCEPT}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     ${body}=    Get File    jsons/fmSubscriptionRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}
+    Post    ${apiRoot}/${apiName}/${apiVersion}/subscriptions    ${body}		
     ${outputResponse}=    Output    response
-	Set Global Variable    ${response}    ${outputResponse}		
+	Set Global Variable    ${response}    ${outputResponse}
+
 Get subscriptions
     Log    Get the list of active subscriptions
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -486,3 +500,7 @@ Check resource existence
     Get    ${apiRoot}/${apiName}/${apiVersion}/subscriptions/${subscriptionId} 
     Integer    response status    200
 
+Check Response for duplicated subscription
+    Run Keyword If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 1    Check HTTP Response Status Code Is    201
+    Run Keyword If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 1    Check HTTP Response Body Json Schema Is    FmSubscription
+    Run Keyword If    ${VNFM_ALLOWS_DUPLICATE_SUBS} == 0    Check HTTP Response Status Code Is    303

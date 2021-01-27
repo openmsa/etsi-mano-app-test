@@ -134,70 +134,70 @@ DELETE API Version with apiMajorVerion - Method not implemented
 POST API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/api_version
+    Post    ${apiRoot}/${apiName}/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/api_version
+    Get    ${apiRoot}/${apiName}/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 PUT API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/api_version
+    Put    ${apiRoot}/${apiName}/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 PATCH API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/api_version
+    Patch    ${apiRoot}/${apiName}/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 DELETE API Version
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/api_version
+    Delete    ${apiRoot}/${apiName}/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 POST API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Post    ${apiRoot}/${apiName}/v1/api_version
+    Post    ${apiRoot}/${apiName}/v1/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 GET API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Get    ${apiRoot}/${apiName}/v1/api_version
+    Get    ${apiRoot}/${apiName}/v1/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 PUT API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Put    ${apiRoot}/${apiName}/v1/api_version
+    Put    ${apiRoot}/${apiName}/v1/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 PATCH API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Patch    ${apiRoot}/${apiName}/v1/api_version
+    Patch    ${apiRoot}/${apiName}/v1/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
 DELETE API Version with apiMajorVersion
     Set Headers    {"Accept":"${ACCEPT}"} 
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/v1/api_version
+    Delete    ${apiRoot}/${apiName}/v1/api_versions
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 	
@@ -208,6 +208,6 @@ Check HTTP Response Status Code Is
 
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK

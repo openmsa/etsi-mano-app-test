@@ -101,7 +101,7 @@ PATCH Individual Threshold - Method not implemented
 GET Individual VNF Performance Threshold
     Log    Trying to get a Threhsold present in the VNFM
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -109,28 +109,28 @@ GET Individual VNF Performance Threshold
 GET individual VNF Performance Threshold with invalid resource identifier
     Log    Trying to get a Threhsold with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual VNF Performance Threshold
     Log    Trying to delete a Threhsold in the VNFM
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Delete request for individual VNF Performance Threshold with invalid resource identifier
     Log    Trying to delete a Threhsold in the VNFM with invalid id
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${erroneousThresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Post request for individual VNF Performance Threshold
     Log    Trying to create new threshold
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     POST    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${newThresholdId}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -138,7 +138,7 @@ Send Post request for individual VNF Performance Threshold
 Send Put request for individual VNF Performance Threshold
     Log    Trying to PUT threshold
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}
@@ -149,7 +149,7 @@ Send Put request for individual VNF Performance Threshold
 Send Patch request for individual VNF Performance Threshold
     Log    Trying to PUT threshold
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds/${thresholdId}
     ${origOutput}=    Output    response
     Set Suite Variable    ${origResponse}    ${origOutput}

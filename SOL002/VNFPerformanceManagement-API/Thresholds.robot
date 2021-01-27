@@ -142,7 +142,7 @@ GET Performance Thresholds for Bad Request Response too big
 GET all Performance Thresholds
     Log    Trying to get all thresholds present in the VNFM    
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -150,7 +150,7 @@ GET all Performance Thresholds
 GET Performance Thresholds with attribute-based filter
     Log    Trying to get thresholds present in the VNFM with filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_OK}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -158,7 +158,7 @@ GET Performance Thresholds with attribute-based filter
 GET Performance Thresholds with invalid attribute-based filter
     Log    Trying to get thresholds present in the VNFM with invalid filter
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/thresholds?${FILTER_KO}
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
@@ -166,14 +166,14 @@ GET Performance Thresholds with invalid attribute-based filter
 GET VNF Performance Thresholds with invalid resource endpoint
     Log    Trying to get thresholds present in the VNFM with invalid resource endpoint
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     GET    ${apiRoot}/${apiName}/${apiVersion}/threshold
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
 
 Send Post Request Create new Performance Threshold
     Log    Creating a new THreshold
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     ${request}=    Get File    jsons/CreateThresholdRequest.json
@@ -183,7 +183,7 @@ Send Post Request Create new Performance Threshold
 
 Send PUT Request for all Performance Thresholds
     Log    PUT THresholds
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     PUT    ${apiRoot}/${apiName}/${apiVersion}/thresholds
@@ -192,7 +192,7 @@ Send PUT Request for all Performance Thresholds
     
 Send PATCH Request for all Performance Thresholds
     Log    PUT THresholds
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     Set Headers    {"Accept": "${ACCEPT_JSON}"}
     Set Headers    {"Content-Type": "${CONTENT_TYPE_JSON}"}
     PATCH    ${apiRoot}/${apiName}/${apiVersion}/thresholds
@@ -201,7 +201,7 @@ Send PATCH Request for all Performance Thresholds
 
 Send DELETE Request for all Performance Thresholds
     Log    DELETE THresholds
-    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": ${AUTHORIZATION}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization": "${AUTHORIZATION}"}
     DELETE    ${apiRoot}/${apiName}/${apiVersion}/thresholds
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}

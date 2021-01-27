@@ -814,13 +814,14 @@ Post Individual VNF LCM Operation occurrences
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}	
 
-Put multiple VNF instances	
+PUT multiple vnfInstances
     log    Trying to perform a PUT. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     Put    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}		
+
 Patch multiple VNF instances	
     log    Trying to perform a PATCH. This method should not be implemented
     Set Headers  {"Accept":"${ACCEPT}"}  

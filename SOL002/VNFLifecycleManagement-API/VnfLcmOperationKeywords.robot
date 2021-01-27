@@ -32,7 +32,7 @@ Check Operation Occurrence Id
 
 Check HTTP Response Body Json Schema Is
     [Arguments]    ${input}
-    ${schema} =    Catenate    ${input}    .schema.json
+    ${schema} =    Catenate    SEPARATOR=    ${input}    .schema.json
     Validate Json    ${schema}    ${response['body']}
     Log    Json Schema Validation OK
 
@@ -242,15 +242,25 @@ DELETE instantiate individual vnfInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 	
 	
-POST Scale vnfInstance	
+POST Scale vnfInstance
+    [Arguments]    ${vnf_state}
+    [Documentation]    ${vnf_state} differentiate the VNF ID to be used in the different POST requests
+    ...    ${vnf_state} == 0 -> VNF in instantiated state
+    ...    ${vnf_state} == 1 -> VNF in not_instantiated state
+    ...    ${vnf_state} == 2 -> VNF ID not stored
+    ...     
     Log    Trying to Instantiate a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/scaleVnfRequest.json
+    Run Keyword If    ${vnf_state} == 0    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instantiatedVnfInstanceId}/scale    ${body}
+    Run Keyword If    ${vnf_state} == 1    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/scale    ${body}
+    Run Keyword If    ${vnf_state} == 2    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${NOT_EXISTANT_VNF_INSTANCE_ID}/scale    ${body}
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
-    ${outputResponse}=    Output    response
+	${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
+
 GET Scale vnfInstance				
     Log    Trying to get a scale a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -941,6 +951,7 @@ Get VNF LCM Operation occurrences with all_fields attribute selector
     ${output}=    Output    response
     Set Suite Variable    ${response}    ${output}
     
+
 
 Get VNF LCM Operation occurrences with exclude_default attribute selector
     Set Headers    {"Accept": "${ACCEPT_JSON}"}

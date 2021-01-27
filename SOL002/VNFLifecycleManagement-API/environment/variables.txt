@@ -18,6 +18,8 @@ ${WRONG_AUTHORIZATION}    Bearer    XXXXXWRONGXXXXX
 ${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${badVnfInstanceId}       wrongId
 ${instantiatedVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f    #Change with an instantiated vnfInstanceID
+${notInstantiatedVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f    #Change with an instantiated vnfInstanceID
+${NOT_EXISTANT_VNF_INSTANCE_ID}    NOT_EXISTANT_VNF_INSTANCE_ID
 ${conflicVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${vnfInstanceName}    Test-VnfInstance
 ${vnfInstanceDescription}    description vnf

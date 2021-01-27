@@ -23,31 +23,45 @@ Create a new alarm subscription
     Check HTTP Response Body Json Schema Is  FmSubscription
   
 
-Create a new alarm subscription - DUPLICATION
-     [Documentation]    Test ID: 5.3.3.3.2
-    ...    Test title: Create a new alarm subscription - DUPLICATION
+# Create a new alarm subscription - DUPLICATION
+     # [Documentation]    Test ID: 5.3.3.3.2
+    # ...    Test title: Create a new alarm subscription - DUPLICATION
+    # ...    Test objective: The objective is to create a new subscription with the NFV allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure..
+    # ...    Pre-conditions: subscription with the same filter and callbackUri exists
+    # ...    Reference: Clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    # ...    Config ID: Config_prod_NFVO 
+    # ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
+    # ...    Post-Conditions: none
+    # Post Create subscription - DUPLICATION
+    # Check HTTP Response Status Code Is    201
+    # Check Operation Occurrence Id
+    # Check HTTP Response Body Json Schema Is  FmSubscription
+
+# Create a new alarm subscription - NO DUPLICATION
+    # [Documentation]    Test ID: 5.3.3.3.3
+    # ...    Test title: Create a new alarm subscription - NO DUPLICATION
+    # ...    Test objective: The objective is to create a new subscription with the NFV not allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
+    # ...    Pre-conditions: subscription with the same filter and callbackUri exists
+    # ...    Reference: Clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
+    # ...    Config ID: Config_prod_NFVO 
+    # ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
+    # ...    Post-Conditions: none
+    # Post Create subscription - NO-DUPLICATION
+    # Check HTTP Response Status Code Is    303
+    # Check Operation Occurrence Id
+
+
+Create a duplicated Subscription
+     [Documentation]    Test ID: 5.3.3.3.2a
+    ...    Test title: Create a duplicated alarm subscription
     ...    Test objective: The objective is to create a new subscription with the NFV allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure..
     ...    Pre-conditions: subscription with the same filter and callbackUri exists
     ...    Reference: Clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
     ...    Config ID: Config_prod_NFVO 
-    ...    Applicability: the NFVO allows creating a subscription resource if another subscription resource with the same filter and callbackUri already exists
+    ...    Applicability: 
     ...    Post-Conditions: none
-    Post Create subscription - DUPLICATION
-    Check HTTP Response Status Code Is    201
-    Check Operation Occurrence Id
-    Check HTTP Response Body Json Schema Is  FmSubscription
-
-Create a new alarm subscription - NO DUPLICATION
-    [Documentation]    Test ID: 5.3.3.3.3
-    ...    Test title: Create a new alarm subscription - NO DUPLICATION
-    ...    Test objective: The objective is to create a new subscription with the NFV not allowing duplication and perform a JSON schema and content validation of the returned fault management alarms subscription data structure.
-    ...    Pre-conditions: subscription with the same filter and callbackUri exists
-    ...    Reference: Clause 8.4.4.3.1 - ETSI GS NFV-SOL 005 [3] v2.6.1
-    ...    Config ID: Config_prod_NFVO 
-    ...    Applicability: the NFVO decides to not create a duplicate subscription resource 
-    ...    Post-Conditions: none
-    Post Create subscription - NO-DUPLICATION
-    Check HTTP Response Status Code Is    303
+    POST Subscription
+    Check Response for duplicated subscription
     Check Operation Occurrence Id
 
 Retrieve a list of alarm subscriptions
@@ -286,3 +300,4 @@ Retrieve a list of alarm subscriptions with filter "filter.probableCauses"
     Check HTTP Response Status Code Is    200
     Check HTTP Response Body Json Schema Is    FmSubscriptions
     Check PostCondition HTTP Response Body Subscriptions Matches the requested attribute-based filter "filter_probableCauses"
+
