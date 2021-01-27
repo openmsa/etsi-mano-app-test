@@ -94,7 +94,7 @@ POST Individual VNF Package Content - Method not implemented
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Send POST Request for individual VNF Package
+    Send POST Request for individual VNF Package Content
     Check HTTP Response Status Code Is    405
 
 PUT Individual VNF Package Content - Method not implemented
@@ -106,7 +106,7 @@ PUT Individual VNF Package Content - Method not implemented
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Send PUT Request for individual VNF Package
+    Send PUT Request for individual VNF Package Content
     Check HTTP Response Status Code Is    405
 
 PATCH Individual VNF Package Content - Method not implemented
@@ -118,7 +118,7 @@ PATCH Individual VNF Package Content - Method not implemented
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: none
-    Send PATCH Request for individual VNF Package
+    Send PATCH Request for individual VNF Package Content
     Check HTTP Response Status Code Is    405
 
 DELETE Individual VNF Package Content - Method not implemented
@@ -130,7 +130,7 @@ DELETE Individual VNF Package Content - Method not implemented
     ...    Config ID: Config_prod_NFVO
     ...    Applicability: none
     ...    Post-Conditions: The VNF Package content is not deleted by the failed operation
-    Send DELETE Request for individual VNF Package
+    Send DELETE Request for individual VNF Package Content
     Check HTTP Response Status Code Is    405
     Check Postcondition VNF Package Content Exist
     
