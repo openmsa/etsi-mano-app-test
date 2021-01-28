@@ -488,10 +488,11 @@ PATCH individual vnfInstance
     Patch    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}    ${body}	
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
+	
 DELETE individual vnfInstance
     log    Trying to delete an individual VNF instance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 
@@ -546,8 +547,7 @@ GET Scale vnfInstance
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
-    ${body}=    Get File    jsons/scaleVnfRequest.json
-    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
+    Get    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 PUT Scale vnfInstance				
@@ -659,6 +659,16 @@ POST Heal VNF
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/healVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/heal    ${body}		
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}	
+
+POST Heal VNF NOT INSTANTIATED  
+    Log    Trying to heal a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/healVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/heal    ${body}		
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}	
 
