@@ -33,7 +33,7 @@ Post Retry operation task Conflict (Not-FAILED_TEMP)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Post Retry operation
+    Post Retry operation with conflict
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -47,7 +47,7 @@ Post Retry operation task Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Post Retry operation
+    Post Retry operation not existing
     Check HTTP Response Status Code Is    404
 
 GET Retry operation task - Method not implemented

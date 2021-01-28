@@ -1,8 +1,15 @@
 *** Variables ***
+${instantiatedVnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${notInstantiatedVnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
+${notExistingVnfInstanceId}     6fc3539c-e602-4afa-8e13-962fb5a7d81f   
 ${vnfInstanceId}       6fc3539c-e602-4afa-8e13-962fb5a7d81f
 ${subscriptionId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
-${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
 ${conflicVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
+
+${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
+${notExistingVnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
+${vnfLcmOpOccIdNotStartingProcessingRollingback}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
+${vnfLcmOpOccIdNotFailedTemp}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
 
 ${VnfLcmOperationOccurrenceNotification}    {}
 ${VnfIdentifierCreationNotification}    {}
@@ -13,8 +20,6 @@ ${requestedFlavour}    test
 
 ${sub_filter}    filter
 ${sub_filter_invalid}    filter_invalid
-
-${notInstantiatedVnfInstanceId}    6fc3539c-e602-4afa-8e13-962fb5a7d81f
 
 ${fields}         criteria,objectInstanceIds
 

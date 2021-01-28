@@ -33,7 +33,7 @@ POST Rollback operation task Conflict (Not-FAILED_TEMP)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Post Rollback operation
+    Post Rollback operation with conflict
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -47,7 +47,7 @@ POST Rollback operation task Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none 
-    Post Rollback operation
+    Post Rollback operation not existing
     Check HTTP Response Status Code Is    404
 
 GET Rollback operation task - Method not implemented

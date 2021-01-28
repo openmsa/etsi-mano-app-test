@@ -32,7 +32,7 @@ POST Scale a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    POST Scale vnfInstance  
+    POST Scale vnfInstance with VNF NOT-INSTANTIATED 
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
     
@@ -46,7 +46,7 @@ POST Scale a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    POST Scale vnfInstance  
+    POST Scale vnfInstance with not existing VNF
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails 
    

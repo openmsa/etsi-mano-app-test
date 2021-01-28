@@ -32,7 +32,7 @@ POST Operate a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
-    POST Operate VNF
+    POST Operate VNF with conflict
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
 
@@ -46,7 +46,7 @@ POST Operate a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions:
-    POST Operate VNF
+    POST Operate VNF not existing
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
    

@@ -33,7 +33,7 @@ Instantiate a vnfInstance Conflict
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: 
-    POST instantiate individual vnfInstance
+    POST instantiate individual vnfInstance with conflict
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
     
