@@ -71,7 +71,7 @@ GET information about multiple alarms with "all_fields" attribute selector
     ...    Post-Conditions: 
     GET Alarms Task with all_fields attribute selector
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms
+    Check HTTP Response Body Json Schema Is    Alarms
     
 GET information about multiple alarms with exclude_default attribute selector
     [Documentation]    Test ID: 7.3.5.1.6
@@ -84,7 +84,7 @@ GET information about multiple alarms with exclude_default attribute selector
     ...    Post-Conditions: 
     GET Alarms Task with exclude_default attribute selector
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms
+    Check HTTP Response Body Json Schema Is    Alarms
     
 GET information about multiple alarms with fields attribute selector
     [Documentation]    Test ID: 7.3.5.1.7
@@ -97,7 +97,7 @@ GET information about multiple alarms with fields attribute selector
     ...    Post-Conditions: 
     GET Alarms Task with fields attribute selector
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms
+    Check HTTP Response Body Json Schema Is    Alarms
      
 GET information about multiple alarms with "exclude_fields" attribute selector
     [Documentation]    Test ID: 7.3.5.1.8
@@ -110,7 +110,7 @@ GET information about multiple alarms with "exclude_fields" attribute selector
     ...    Post-Conditions: none
     GET Alarms Task with exclude_fields attribute selector
     Check HTTP Response Status Code Is    200
-    Check HTTP Response Body Json Schema Is    alarms 
+    Check HTTP Response Body Json Schema Is    Alarms 
     
 PUT Alarms - Method not implemented
     [Documentation]    Test ID: 7.3.5.1.9
