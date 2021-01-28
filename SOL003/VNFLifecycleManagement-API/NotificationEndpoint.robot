@@ -2,6 +2,7 @@
 Suite Setup    Create Sessions
 Suite Teardown    Terminate All Processes    kill=true
 Resource    environment/variables.txt 
+Resource    environment/configuration.txt
 Library    MockServerLibrary
 Library    Process
 Library    OperatingSystem

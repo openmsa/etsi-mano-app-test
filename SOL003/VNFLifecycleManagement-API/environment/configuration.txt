@@ -31,7 +31,6 @@ ${vnfPkgId_processing}    007c111c-38a1-42c0-a666-7475ecb1567c
 ${ARTIFACT_TYPE}    application/octet-stream
 ${ARTIFACT_ID}    artifactId
 ${WRONG_ACCEPT}    application/json
-${vnfLcmOpOccId}    6fc3539c-e602-4afa-8e13-962fb5a7d81d
 ${SYNC_MODE}    0
 ${sleep_interval}    20s
 ${callback_uri}    http://localhost
