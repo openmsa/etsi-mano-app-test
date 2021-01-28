@@ -110,7 +110,7 @@ DELETE Individual VNFInstance Conflict
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: 
     ...    Post-Conditions: Resources are not deleted
-    DELETE individual vnfInstance
+    DELETE individual vnfInstance in INSTANTIATED state
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
     Check resource existence

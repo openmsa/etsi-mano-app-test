@@ -32,7 +32,7 @@ Post Fail operation task Conflict (Not-FAILED_TEMP)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none     
-    Post Fail operation
+    Post Fail operation with conflict
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -46,7 +46,7 @@ Post Fail operation task Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  
-    Post Fail operation
+    Post Fail operation not existing
     Check HTTP Response Status Code Is    404
 
 GET Fail operation task - Method not implemented

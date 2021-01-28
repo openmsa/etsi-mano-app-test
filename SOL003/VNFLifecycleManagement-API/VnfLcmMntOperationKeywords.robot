@@ -252,7 +252,26 @@ POST Cancel operation task
     Log    Validate Status code
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}
-    
+
+POST Cancel operation task with conflict
+    Log    Cancel an ongoing VNF lifecycle operation
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Cancel a VNF lifecycle operation
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccIdNotStartingProcessingRollingback}/cancel    ${CancelMode}
+    Log    Validate Status code
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+	
+POST Cancel operation task not existing
+    Log    Cancel an ongoing VNF lifecycle operation
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Cancel a VNF lifecycle operation
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${notExistingVnfLcmOpOccId}/cancel    ${CancelMode}
+    Log    Validate Status code
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+
+  
 GET Cancel operation task
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -328,6 +347,28 @@ POST Change VNF deployment flavour
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/change_flavour    ${body} 
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}  	 
+
+POST Change VNF deployment flavour of NOT-INSTANTIATED VNF
+    Log    Trying to change the deployment flavour of a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/change_flavour    ${body} 
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+
+POST Change VNF deployment flavour of not existing VNF
+    Log    Trying to change the deployment flavour of a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/changeVnfFlavourRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notExistingVnfInstanceId}/change_flavour    ${body} 
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+
+
 GET Change VNF deployment flavour
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -496,6 +537,13 @@ DELETE individual vnfInstance
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
 
+DELETE individual vnfInstance in INSTANTIATED state
+    log    Trying to delete an individual VNF instance
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Delete    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instantiatedVnfInstanceId}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+
 POST instantiate individual vnfInstance	
     Log    Trying to Instantiate a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -503,6 +551,16 @@ POST instantiate individual vnfInstance
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
     ${body}=    Get File    jsons/instantiateVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/instantiate    ${body}	
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+
+POST instantiate individual vnfInstance with conflict
+    Log    Trying to Instantiate a vnf Instance
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/instantiateVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${instantiatedVnfInstanceId}/instantiate    ${body}	
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 	
 	
@@ -541,7 +599,26 @@ POST Scale vnfInstance
     ${body}=    Get File    jsons/scaleVnfRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale    ${body}
     ${outputResponse}=    Output    response
-	Set Global Variable    ${response}    ${outputResponse} 
+	Set Global Variable    ${response}    ${outputResponse}
+POST Scale vnfInstance with VNF NOT-INSTANTIATED
+    Log    Trying to Instantiate a vnf Instance
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/scaleVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/scale    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+POST Scale vnfInstance with not existing VNF
+    Log    Trying to Instantiate a vnf Instance
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/scaleVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notExistingVnfInstanceId}/scale    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+ 
 GET Scale vnfInstance				
     Log    Trying to get a scale a vnf Instance
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -585,7 +662,26 @@ POST Scale vnfInstance to level
     ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/scale_to_level    ${body}
     ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+POST Scale vnfInstance to level with VNF NOT-INSTANTIATED
+    Log    Trying to scale a vnf Instance to level
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/scale_to_level    ${body}
+    ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse} 
+POST Scale vnfInstance to level with not existing VNF
+    Log    Trying to scale a vnf Instance to level
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/scaleVnfToLevelRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notExistingVnfInstanceId}/scale_to_level    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse} 
+
 GET Scale vnfInstance to level
     log    Trying to perform a GET. This method should not be implemented
     Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
@@ -623,6 +719,17 @@ POST Terminate VNF
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/terminate    ${body}	
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}		
+
+POST Terminate VNF in NOT-INSTANTIATED state
+    Log    Trying to terminate a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/terminateVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/terminate    ${body}	
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}	
+
 
 GET Terminate VNF
     log    Trying to perform a GET. This method should not be implemented
@@ -662,7 +769,7 @@ POST Heal VNF
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}	
 
-POST Heal VNF NOT INSTANTIATED  
+POST Heal VNF Not Instantiated
     Log    Trying to heal a VNF instance.
     Set Headers  {"Accept":"${ACCEPT}"}  
     Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
@@ -671,6 +778,16 @@ POST Heal VNF NOT INSTANTIATED
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/heal    ${body}		
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}	
+	
+POST Heal VNF Not Existing
+    Log    Trying to heal a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/healVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notExistingVnfInstanceId}/heal    ${body}		
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
 
 GET Heal VNF
     log    Trying to perform a GET. This method should not be implemented
@@ -709,6 +826,27 @@ POST Operate VNF
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${vnfInstanceId}/operate    ${body}
     ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}	
+
+POST Operate VNF with conflict
+    Log    Trying to operate a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/operateVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notInstantiatedVnfInstanceId}/operate    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+    
+POST Operate VNF not existing
+    Log    Trying to operate a VNF instance.
+    Set Headers  {"Accept":"${ACCEPT}"}  
+    Set Headers  {"Content-Type": "${CONTENT_TYPE}"}
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    ${body}=    Get File    jsons/operateVnfRequest.json
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_instances/${notExistingVnfInstanceId}/operate    ${body}
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+
 
 GET Operate VNF
     log    Trying to perform a GET. This method should not be implemented
@@ -852,7 +990,22 @@ Post Retry operation
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/retry	
     ${outputResponse}=    Output    response
-	Set Global Variable    ${response}    ${outputResponse}	    
+	Set Global Variable    ${response}    ${outputResponse}
+Post Retry operation with conflict
+    Log    Retry a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccIdNotFailedTemp}/retry	
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}	
+Post Retry operation not existing
+    Log    Retry a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${notExistingVnfLcmOpOccId}/retry	
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}  
+   
 Get Retry operation	
     Log    Trying to perform a GET. This method should not be implemented.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -888,7 +1041,22 @@ Post Rollback operation
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/rollback
     ${outputResponse}=    Output    response
-	Set Global Variable    ${response}    ${outputResponse}	    
+	Set Global Variable    ${response}    ${outputResponse}
+Post Rollback operation with conflict
+    Log    Rollback a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccIdNotFailedTemp}/rollback
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+Post Rollback operation not existing
+    Log    Rollback a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${notExistingVnfLcmOpOccId}/rollback
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}	 
+  
 Get Rollback operation	
     Log    Trying to perform a GET. This method should not be implemented.
     Set Headers  {"Accept":"${ACCEPT}"}  
@@ -924,7 +1092,23 @@ Post Fail operation
     Log    Execute Query and validate response
     Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccId}/fail
     ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}
+Post Fail operation with conflict
+    Log    mark as Failed a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${vnfLcmOpOccIdNotFailedTemp}/fail
+    ${outputResponse}=    Output    response
 	Set Global Variable    ${response}    ${outputResponse}	    
+	
+Post Fail operation not existing
+    Log    mark as Failed a VNF lifecycle operation if that operation has experienced a temporary failure
+    Run Keyword If    ${AUTH_USAGE} == 1    Set Headers    {"Authorization":"${AUTHORIZATION}"}
+    Log    Execute Query and validate response
+    Post    ${apiRoot}/${apiName}/${apiVersion}/vnf_lcm_op_occs/${notExistingvnfLcmOpOccId}/fail
+    ${outputResponse}=    Output    response
+	Set Global Variable    ${response}    ${outputResponse}	
+  
 Get Fail operation	
     Log    Trying to perform a GET. This method should not be implemented.
     Set Headers  {"Accept":"${ACCEPT}"}  

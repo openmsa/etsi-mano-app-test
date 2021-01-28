@@ -31,12 +31,10 @@ POST Heal a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
-    POST Heal VNF
+    POST Heal VNF Not Instantiated
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails 
-
-
-    
+  
 POST Heal a vnfInstance Not Found
     [Documentation]    Test ID: 7.3.1.8.3
     ...    Test title: POST Heal a vnfInstance Not Found
@@ -46,7 +44,7 @@ POST Heal a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: 
-    POST Heal VNF
+    POST Heal VNF Not Existing
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails 
     

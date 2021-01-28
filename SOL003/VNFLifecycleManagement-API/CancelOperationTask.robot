@@ -12,7 +12,7 @@ POST Cancel operation task
     [Documentation]    Test ID: 7.3.1.16.1
     ...    Test title: POST Cancel operation task
     ...    Test objective: The POST method initiates cancelling an ongoing VNF lifecycle operation while it is being executed or rolled back, i.e. the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
-    ...    Pre-conditions: the "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
+    ...    Pre-conditions: The "VNF LCM operation occurrence" is either in "PROCESSING" or "ROLLING_BACK" state.
     ...    Reference: Clause 5.4.17.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
@@ -25,12 +25,12 @@ POST Cancel operation task Conflict
     [Documentation]    Test ID: 7.3.1.16.2
     ...    Test title: POST Cancel operation task Conflict
     ...    Test objective: The POST method is NOT cancelling an ongoing VNF lifecycle operation due to the fact that the VNF instance resource is not in STARTING, PROCESSING or ROLLING_BACK state
-    ...    Pre-conditions: operation is not in STARTING, PROCESSING or ROLLING_BACK state
+    ...    Pre-conditions: The "VNF LCM operation occurrence" is not in STARTING, PROCESSING or ROLLING_BACK state
     ...    Reference: Clause 5.4.17.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
-    POST Cancel operation task
+    POST Cancel operation task with conflict
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -39,12 +39,12 @@ POST Cancel operation task Not Found
      [Documentation]    Test ID: 7.3.1.16.3
     ...    Test title: POST Cancel operation task Not Found
     ...    Test objective: The objective is to test that POST method cannot cancel a VNF lifecycle operation because the resource is not found
-    ...    Pre-conditions: 
+    ...    Pre-conditions: none
     ...    Reference: Clause 5.4.17.3.1 - ETSI GS NFV-SOL 003 [1] v2.6.1
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none
-    POST Cancel operation task
+    POST Cancel operation task not existing
     Check HTTP Response Status Code Is    404
     
 GET Cancel operation task - Method not implemented

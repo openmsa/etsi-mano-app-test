@@ -30,7 +30,7 @@ POST Change deployment flavour of a vnfInstance Conflict (Not-Instantiated)
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  
-    POST Change VNF deployment flavour   
+    POST Change VNF deployment flavour of NOT-INSTANTIATED VNF
     Check HTTP Response Status Code Is    409
     Check HTTP Response Body Json Schema Is    ProblemDetails
 
@@ -45,7 +45,7 @@ POST Change deployment flavour of a vnfInstance Not Found
     ...    Config ID: Config_prod_VNFM
     ...    Applicability: none
     ...    Post-Conditions: none  
-    POST Change VNF deployment flavour  
+    POST Change VNF deployment flavour of not existing VNF
     Check HTTP Response Status Code Is    404
     Check HTTP Response Body Json Schema Is    ProblemDetails
    
