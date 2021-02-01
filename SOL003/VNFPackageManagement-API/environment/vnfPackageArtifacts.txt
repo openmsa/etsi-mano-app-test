@@ -3,6 +3,7 @@ ${artifactPath}    artifactPath
 ${CONTENT_TYPE_OCTET}    application/octet-stream
 ${NFVO_RANGE_OK}    1    # If 1 means that Range is supported by the NFVO
 ${range}          bytes=0-1023
+${full_size}        2000        # Full size of the artifact to be downloaded using partial download
 ${erroneousRange}    bytes=10000000-1000000000    # Requesting a out of range number of bytes
 ${erroneousVnfPkgId}    erroneousPkgId
 ${vnfPackageOctetStreamId}    octetStreamPkgId

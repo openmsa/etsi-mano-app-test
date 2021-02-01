@@ -450,7 +450,7 @@ GET Individual VNF Package Content with Range Request
 Check HTTP Response Header Content-Range Is Present and Matches the requested range
     Log    Check Content-Range HTTP Header
     Should Contain    ${response['headers']}    Content-Range
-    Should Be Equal As Strings    ${response['headers']['Content-Range']}    ${range}
+    Should Be Equal As Strings    ${response['headers']['Content-Range']}    ${range}/${full_size}
     Log    Header Content-Range is present
     
 Check HTTP Response Header Content-Length Is Present and Matches the requested range length
